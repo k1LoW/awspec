@@ -1,4 +1,4 @@
-# Awspec
+# awspec
 
 RSpec tests for your AWS resources.
 
@@ -20,9 +20,24 @@ Or install it yourself as:
 
 ## Usage
 
-### Generate awspec template
+### 1. Generate awspec template
 
     $ awspec init
+
+### 2. Write *_spec.rb
+
+```ruby
+describe ec2('i-ec12345a') do
+  it { should be_running }
+  its(:instance_id) { should eq 'i-ec12345a' }
+  its(:image_id) { should eq 'ami-abc12def' }
+  its(:public_ip_address) { should eq '123.0.456.789' }
+  it { should have_security_group('my-security-group-name') }
+  it { should belong_to_vpc('my-vpc') }
+  it { should belong_to_subnet('subnet-1234a567') }
+  it { should have_eip('123.0.456.789') }
+end
+```
 
 ## Support AWS Resources
 
@@ -45,8 +60,8 @@ Or install it yourself as:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-## Reference
+## References
 
-- Original idea (architecture): [Serverspec](https://github.com/serverspec/serverspec)
+- Original idea (architecture) is [Serverspec](https://github.com/serverspec/serverspec)
 - [Serverspec book](http://www.oreilly.co.jp/books/9784873117096/)
 

@@ -29,6 +29,9 @@ Or install it yourself as:
 - [X] EC2
 - [X] RDS
 - [X] Security Group
+
+### Next..
+
 - [ ] VPC
 - [ ] S3
 - [ ] Route53

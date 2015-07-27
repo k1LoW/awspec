@@ -23,10 +23,18 @@ module Awspec::Type
                                            filters: filters
                                          })
       else
-        # instance_id
-        res = @client.describe_instances({
-                                           instance_ids: [@id]
-                                         })
+        # instance_id or tag:Name
+        begin
+          res = @client.describe_instances({
+                                             instance_ids: [@id]
+                                           })
+        rescue
+          # Aws::EC2::Errors::InvalidInstanceIDMalformed
+          # Aws::EC2::Errors::InvalidInstanceIDNotFound
+          res = @client.describe_instances({
+                                             filters: [{ name: 'tag:Name', values: [@id] }]
+                                           })
+        end
       end
       @id = res[:reservations][0][:instances][0][:instance_id]
       @instance = res[:reservations][0][:instances][0]

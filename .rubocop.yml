@@ -1,0 +1,50 @@
+Lint/Eval:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 120
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Style/BarePercentLiterals:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/PredicateName:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/SymbolProc:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false

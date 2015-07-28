@@ -17,8 +17,6 @@ Aws.config[:rds] = {
   }
 }
 
-Aws.config[:stub_responses] = false
-
 describe rds_db_parameters('test') do
   its(:basedir) { should eq '/rdsdbbin/mysql' }
   its(:innodb_buffer_pool_size) { '{DBInstanceClassMemory*3/4}' }

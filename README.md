@@ -45,10 +45,10 @@ end
 - [X] RDS
     - [ ] RDS DB Parameter
 - [X] Security Group
+- [X] VPC
 
 ### Next..
 
-- [ ] VPC
 - [ ] S3
 - [ ] Route53
 - ...

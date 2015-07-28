@@ -9,23 +9,37 @@ module Awspec::Type
       @ec2_client = Aws::EC2::Client.new
     end
 
-    def to_s
-      type = self.class.name.split(':')[-1]
-      type.gsub!(/([a-z\d])([A-Z])/, '\1 \2')
-      type.capitalize!
-      %Q!#{type} "#{@id}"!
+    def find_vpc(id)
+      res = @ec2_client.describe_vpcs({
+                                        filters: [{ name: 'vpc-id', values: [id] }]
+                                      })
+      return res[:vpcs][0] if res[:vpcs].count == 1
+      res = @ec2_client.describe_vpcs({
+                                        filters: [{ name: 'tag:Name', values: [id] }]
+                                      })
+      return res[:vpcs][0] if res[:vpcs].count == 1
     end
 
-    def inspect
-      if defined?(PowerAssert)
-        @inspection
-      else
-        to_s
-      end
+    def find_route_table(id)
+      res = @ec2_client.describe_route_tables({
+                                                filters: [{ name: 'route-table-id', values: [id] }]
+                                              })
+      return res[:route_tables][0] if res[:route_tables].count == 1
+      res = @ec2_client.describe_route_tables({
+                                                filters: [{ name: 'tag:Name', values: [id] }]
+                                              })
+      return res[:route_tables][0] if res[:route_tables].count == 1
     end
 
-    def to_ary
-      to_s.split(' ')
+    def find_network_acl(id)
+      res = @ec2_client.describe_network_acls({
+                                                filters: [{ name: 'network-acl-id', values: [id] }]
+                                              })
+      return res[:network_acls][0] if res[:network_acls].count == 1
+      res = @ec2_client.describe_network_acls({
+                                                filters: [{ name: 'tag:Name', values: [id] }]
+                                              })
+      return res[:network_acls][0] if res[:network_acls].count == 1
     end
 
     def find_security_group(id)

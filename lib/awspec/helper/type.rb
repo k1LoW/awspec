@@ -2,7 +2,7 @@ module Awspec
   module Helper
     module Type
       types = %w(
-        base ec2 rds security_group
+        base ec2 rds security_group vpc
       )
 
       types.each { |type| require "awspec/type/#{type}" }

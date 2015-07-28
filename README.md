@@ -43,6 +43,7 @@ end
 
 - [X] EC2
 - [X] RDS
+    - [ ] RDS DB Parameter
 - [X] Security Group
 
 ### Next..
@@ -62,6 +63,6 @@ end
 
 ## References
 
-- Original idea (architecture) is [Serverspec](https://github.com/serverspec/serverspec)
+- Original idea (code / architecture) is [Serverspec](https://github.com/serverspec/serverspec)
 - [Serverspec book](http://www.oreilly.co.jp/books/9784873117096/)
 

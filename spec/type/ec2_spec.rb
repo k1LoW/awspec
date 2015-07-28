@@ -102,7 +102,7 @@ describe ec2('i-ec12345a') do
   it { should have_eip('123.0.456.789') }
 end
 
-describe ec2({ :'tag:Name' => 'my-ec2' }) do
+describe ec2('my-ec2') do
   it { should be_running }
   it { should_not be_stopped }
   its(:instance_id) { should eq 'i-ec12345a' }

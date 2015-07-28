@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'RSpec tests for your AWS resources.'
   spec.description   = 'RSpec tests for your AWS resources.'
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = 'https://github.com/k1LoW/awspec'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

@@ -3,7 +3,7 @@ module Awspec::Type
     attr_reader :client, :instance
 
     def initialize(id)
-      super(id)
+      super
       @client = @ec2_client
       if id.is_a?(Array)
         # Aws::EC2::Client.describe_instances native filters format
@@ -14,10 +14,7 @@ module Awspec::Type
         # syntax sugar
         filters = []
         id.each do |k, v|
-          filters.push({
-                         name: k,
-                         values: Array(v)
-                       })
+          filters.push({ name: k, values: Array(v) })
         end
         res = @client.describe_instances({
                                            filters: filters
@@ -26,13 +23,13 @@ module Awspec::Type
         # instance_id or tag:Name
         begin
           res = @client.describe_instances({
-                                             instance_ids: [@id]
+                                             instance_ids: [id]
                                            })
         rescue
           # Aws::EC2::Errors::InvalidInstanceIDMalformed
           # Aws::EC2::Errors::InvalidInstanceIDNotFound
           res = @client.describe_instances({
-                                             filters: [{ name: 'tag:Name', values: [@id] }]
+                                             filters: [{ name: 'tag:Name', values: [id] }]
                                            })
         end
       end

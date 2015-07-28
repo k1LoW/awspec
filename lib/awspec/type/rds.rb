@@ -3,11 +3,11 @@ module Awspec::Type
     attr_reader :client, :instance
 
     def initialize(id)
+      super
       @client = Aws::RDS::Client.new
-      super(id)
       # db_instance_identifier
       res = @client.describe_db_instances({
-                                            db_instance_identifier: @id
+                                            db_instance_identifier: id
                                           })
       @id = res[:db_instances][0][:db_instance_identifier]
       @instance = res[:db_instances][0]

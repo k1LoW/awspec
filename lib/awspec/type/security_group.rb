@@ -3,10 +3,11 @@ module Awspec::Type
     attr_reader :client, :sg, :inbound
 
     def initialize(id)
-      super(id)
+      super
       @client = @ec2_client
       @inbound = true
       @sg = find_security_group(id)
+      @id = @sg[:group_id]
     end
 
     describes = %w(

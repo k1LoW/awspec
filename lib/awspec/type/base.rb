@@ -5,7 +5,7 @@ module Awspec::Type
     attr_reader :id, :ec2_client
 
     def initialize(id = nil)
-      @id = id if id.is_a?(String)
+      @tmp = id
       @ec2_client = Aws::EC2::Client.new
     end
 

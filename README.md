@@ -63,6 +63,6 @@ end
 
 ## References
 
-- Original idea (code / architecture) is [Serverspec](https://github.com/serverspec/serverspec)
+- Original idea (code / architecture) -> [Serverspec](https://github.com/serverspec/serverspec)
+- awspec original concept -> https://github.com/marcy-terui/awspec
 - [Serverspec book](http://www.oreilly.co.jp/books/9784873117096/)
-

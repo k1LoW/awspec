@@ -1,4 +1,4 @@
-# awspec [![Build Status](https://travis-ci.org/k1LoW/awspec.svg?branch=master)](https://travis-ci.org/k1LoW/awspec)
+# awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec)
 
 RSpec tests for your AWS resources.
 

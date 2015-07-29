@@ -19,14 +19,12 @@ module Awspec::Type
       end
     end
 
-    describes = %w(
-      vpc_id state cidr_block dhcp_options_id
-      tags instance_tenancy is_default
-    )
-
-    describes.each do |describe|
-      define_method describe do
+    def method_missing(name)
+      describe = name.to_s
+      if @vpc.key?(describe)
         @vpc[describe]
+      else
+        super
       end
     end
 

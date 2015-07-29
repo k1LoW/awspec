@@ -29,23 +29,12 @@ module Awspec::Type
       end
     end
 
-    describes = %w(
-      db_instance_identifier db_instance_class engine db_instance_status
-      master_username db_name endpoint allocated_storage instance_create_time
-      preferred_backup_window backup_retention_period db_security_groups
-      vpc_security_groups db_parameter_groups availability_zone
-      db_subnet_group preferred_maintenance_window pending_modified_values
-      latest_restorable_time multi_az engine_version auto_minor_version_upgrade
-      read_replica_source_db_instance_identifier
-      read_replica_db_instance_identifiers license_model iops
-      option_group_memberships character_set_name secondary_availability_zone
-      publicly_accessible status_infos storage_type tde_credential_arn
-      storage_encrypted kms_key_id dbi_resource_id ca_certificate_identifier
-    )
-
-    describes.each do |describe|
-      define_method describe do
+    def method_missing(name)
+      describe = name.to_s
+      if @instance.key?(describe)
         @instance[describe]
+      else
+        super
       end
     end
 

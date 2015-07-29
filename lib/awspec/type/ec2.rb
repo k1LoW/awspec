@@ -48,21 +48,12 @@ module Awspec::Type
       end
     end
 
-    describes = %w(
-      instance_id image_id state private_dns_name public_dns_name
-      state_transition_reason key_name ami_launch_index product_codes
-      instance_type launch_time placement kernel_id ramdisk_id platform
-      monitoring subnet_id vpc_id private_ip_address public_ip_address
-      state_reason architecture root_device_type root_device_name
-      block_device_mappings virtualization_type instance_lifecycle
-      spot_instance_request_id client_token tags security_groups
-      source_dest_check hypervisor network_interfaces
-      iam_instance_profile ebs_optimized sriov_net_support
-    )
-
-    describes.each do |describe|
-      define_method describe do
+    def method_missing(name)
+      describe = name.to_s
+      if @instance.key?(describe)
         @instance[describe]
+      else
+        super
       end
     end
 

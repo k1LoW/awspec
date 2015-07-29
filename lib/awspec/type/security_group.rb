@@ -10,14 +10,12 @@ module Awspec::Type
       @id = @sg[:group_id]
     end
 
-    describes = %w(
-      owner_id group_name group_id description
-      ip_permissions ip_permissions_egress vpc_id tags
-    )
-
-    describes.each do |describe|
-      define_method describe do
+    def method_missing(name)
+      describe = name.to_s
+      if @sg.key?(describe)
         @sg[describe]
+      else
+        super
       end
     end
 

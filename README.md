@@ -41,11 +41,11 @@ end
 
 ## Support AWS Resources
 
-- [X] EC2
-- [X] RDS
-    - [ ] RDS DB Parameter
-- [X] Security Group
-- [X] VPC
+- [X] EC2 (`ec2`)
+- [X] RDS (`rds`)
+    - [X] RDS DB Parameter Group  (`rds_db_parameter_group`)
+- [X] Security Group (`security_group`)
+- [X] VPC (`vpc`)
 
 ### Next..
 

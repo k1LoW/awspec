@@ -9,8 +9,8 @@ module Awspec::Type
       res = @client.describe_db_instances({
                                             db_instance_identifier: id
                                           })
-      @id = res[:db_instances][0][:db_instance_identifier]
-      @instance = res[:db_instances][0]
+      @instance = res[:db_instances][0] if res[:db_instances].count == 1
+      @id = @instance[:db_instance_identifier] if @instance
     end
 
     states = %w(

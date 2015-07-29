@@ -71,6 +71,7 @@ Aws.config[:rds] = {
 }
 
 describe security_group('sg-1a2b3cd4') do
+  it { should exist }
   its(:outbound) { should be_opened }
   its(:inbound) { should be_opened(80) }
   its(:inbound) { should be_opened(80).protocol('tcp').for('123.456.789.012/32') }
@@ -84,6 +85,7 @@ describe security_group('sg-1a2b3cd4') do
 end
 
 describe security_group('my-security-group-name') do
+  it { should exist }
   its(:outbound) { should be_opened }
   its(:inbound) { should be_opened(80) }
   its(:inbound) { should be_opened(80).protocol('tcp').for('123.456.789.012/32') }

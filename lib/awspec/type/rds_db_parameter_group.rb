@@ -3,6 +3,7 @@ module Awspec::Type
     attr_reader :parameters
 
     def initialize(name)
+      super
       @client = Aws::RDS::Client.new
       @parameters = {}
 
@@ -17,6 +18,7 @@ module Awspec::Type
           @parameters[param.parameter_name] = param.parameter_value
         end
       end
+      @id = name unless @parameters.empty?
     end
 
     def method_missing(name)

@@ -6,7 +6,7 @@ module Awspec::Type
       super
       @client = @ec2_client
       @vpc = find_vpc(id)
-      @id = @vpc[:vpc_id]
+      @id = @vpc[:vpc_id] if @vpc
     end
 
     states = %w(

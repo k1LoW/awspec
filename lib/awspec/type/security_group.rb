@@ -7,7 +7,7 @@ module Awspec::Type
       @client = @ec2_client
       @inbound = true
       @sg = find_security_group(id)
-      @id = @sg[:group_id]
+      @id = @sg[:group_id] if @sg
     end
 
     def method_missing(name)

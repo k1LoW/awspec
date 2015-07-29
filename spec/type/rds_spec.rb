@@ -94,6 +94,7 @@ Aws.config[:ec2] = {
 }
 
 describe rds('my-rds') do
+  it { should exist }
   it { should be_available }
   it { should_not be_maintenance }
   its(:db_instance_class) { should eq 'db.t2.medium' }

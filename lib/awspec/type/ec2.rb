@@ -5,36 +5,8 @@ module Awspec::Type
     def initialize(id)
       super
       @client = @ec2_client
-      if id.is_a?(Array)
-        # Aws::EC2::Client.describe_instances native filters format
-        res = @client.describe_instances({
-                                           filters: id
-                                         })
-      elsif id.is_a?(Hash)
-        # syntax sugar
-        filters = []
-        id.each do |k, v|
-          filters.push({ name: k, values: Array(v) })
-        end
-        res = @client.describe_instances({
-                                           filters: filters
-                                         })
-      else
-        # instance_id or tag:Name
-        begin
-          res = @client.describe_instances({
-                                             instance_ids: [id]
-                                           })
-        rescue
-          # Aws::EC2::Errors::InvalidInstanceIDMalformed
-          # Aws::EC2::Errors::InvalidInstanceIDNotFound
-          res = @client.describe_instances({
-                                             filters: [{ name: 'tag:Name', values: [id] }]
-                                           })
-        end
-      end
-      @id = res[:reservations][0][:instances][0][:instance_id]
-      @instance = res[:reservations][0][:instances][0]
+      @instance = find_ec2(id)
+      @id = @instance[:instance_id] if @instance
     end
 
     states = %w(

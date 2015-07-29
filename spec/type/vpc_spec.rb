@@ -48,6 +48,7 @@ Aws.config[:ec2] = {
 }
 
 describe vpc('vpc-ab123cde') do
+  it { should exist }
   it { should be_available }
   it { should have_route_table('rtb-a12bcd34') }
   it { should have_route_table('my-route-table') }
@@ -56,6 +57,7 @@ describe vpc('vpc-ab123cde') do
 end
 
 describe vpc('my-vpc') do
+  it { should exist }
   it { should be_available }
   it { should have_route_table('rtb-a12bcd34') }
   it { should have_route_table('my-route-table') }

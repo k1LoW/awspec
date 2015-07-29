@@ -86,6 +86,7 @@ Aws.config[:ec2] = {
 }
 
 describe ec2('i-ec12345a') do
+  it { should exist }
   it { should be_running }
   it { should_not be_stopped }
   its(:instance_id) { should eq 'i-ec12345a' }
@@ -103,6 +104,7 @@ describe ec2('i-ec12345a') do
 end
 
 describe ec2('my-ec2') do
+  it { should exist }
   it { should be_running }
   it { should_not be_stopped }
   its(:instance_id) { should eq 'i-ec12345a' }

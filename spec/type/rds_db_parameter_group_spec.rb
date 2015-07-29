@@ -17,7 +17,7 @@ Aws.config[:rds] = {
   }
 }
 
-describe rds_db_parameters('test') do
+describe rds_db_parameter_group('my-db-parameter-group') do
   its(:basedir) { should eq '/rdsdbbin/mysql' }
   its(:innodb_buffer_pool_size) { '{DBInstanceClassMemory*3/4}' }
 end

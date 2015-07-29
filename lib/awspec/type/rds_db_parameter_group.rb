@@ -1,5 +1,7 @@
 module Awspec::Type
-  class RdsDbParameters < Base
+  class RdsDbParameterGroup < Base
+    attr_reader :parameters
+
     def initialize(name)
       @client = Aws::RDS::Client.new
       @parameters = {}

@@ -14,7 +14,7 @@ module Awspec::Type
       @resource_record_sets = res.resource_record_sets
     end
 
-    def has_record_set?(name, type, value, ttl=nil)
+    def has_record_set?(name, type, value, ttl = nil)
       ret = @resource_record_sets.find do |record_set|
         v = record_set.resource_records.map { |r| return r.value }.join("\n")
         ttl = record_set.ttl unless ttl

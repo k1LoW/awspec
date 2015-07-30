@@ -47,10 +47,11 @@ end
 - [X] Security Group (`security_group`)
 - [X] VPC (`vpc`)
 - [X] S3 (`s3`)
+- Route53
+    - [ ] Route53 Hosted Zone
 
 ### Next..
 
-- [ ] Route53
 - ...
 
 ## Contributing

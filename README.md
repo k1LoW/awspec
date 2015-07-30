@@ -46,10 +46,10 @@ end
     - [X] RDS DB Parameter Group  (`rds_db_parameter_group`)
 - [X] Security Group (`security_group`)
 - [X] VPC (`vpc`)
+- [X] S3 (`s3`)
 
 ### Next..
 
-- [ ] S3
 - [ ] Route53
 - ...
 

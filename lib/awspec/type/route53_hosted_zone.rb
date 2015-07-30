@@ -28,5 +28,14 @@ module Awspec::Type
         break if marker.nil?
       end
     end
+
+    def method_missing(name)
+      describe = name.to_s
+      if @hosted_zone.key?(describe)
+        @hosted_zone[describe]
+      else
+        super
+      end
+    end
   end
 end

@@ -1,12 +1,24 @@
 module Awspec::Type
   class Route53HostedZone < Base
-    attr_reader :hosted_zone
+    attr_reader :hosted_zone, :resource_record_sets
 
     def initialize(id)
       super
       @client = Aws::Route53::Client.new
       @hosted_zone = find_hosted_zone(id)
       @id = @hosted_zone[:id] if @hosted_zone
+      return unless @id
+      res = @client.list_resource_record_sets({
+                                                hosted_zone_id: @id
+                                              })
+      @resource_record_sets = res.resource_record_sets
+    end
+
+    def has_record_set?(name, type, value)
+      ret = @resource_record_sets.find do |record_set|
+        v = record_set.resource_records.map { |r| return r.value }.join("\n")
+        record_set.name == name && record_set.type.upcase == type && value == v
+      end
     end
 
     def find_hosted_zone(id)

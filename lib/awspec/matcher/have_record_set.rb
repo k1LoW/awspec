@@ -9,4 +9,8 @@ RSpec::Matchers.define :have_record_set do |name|
       @value = value
     end
   end
+
+  chain :ttl do |ttl|
+    @ttl = ttl
+  end
 end

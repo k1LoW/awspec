@@ -14,10 +14,11 @@ module Awspec::Type
       @resource_record_sets = res.resource_record_sets
     end
 
-    def has_record_set?(name, type, value)
+    def has_record_set?(name, type, value, ttl=nil)
       ret = @resource_record_sets.find do |record_set|
         v = record_set.resource_records.map { |r| return r.value }.join("\n")
-        record_set.name == name && record_set.type.upcase == type && value == v
+        ttl = record_set.ttl unless ttl
+        record_set.name == name && record_set.type.upcase == type && value == v && record_set.ttl == ttl
       end
     end
 

@@ -48,7 +48,7 @@ end
 - [X] VPC (`vpc`)
 - [X] S3 (`s3`)
 - Route53
-    - [X] Route53 Hosted Zone (`route53\_hosted\_zone`)
+    - [X] Route53 Hosted Zone (`route53_hosted_zone`)
 
 ### Next..
 

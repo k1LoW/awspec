@@ -65,6 +65,17 @@ Aws.config[:route53] = {
               value: 'ns-890.awsdns-12.com.'
             }
           ]
+        },
+        {
+          name: 's3.example.com.',
+          type: 'A',
+          ttl: 3600,
+          resource_records: [],
+          alias_target: {
+            hosted_zone_id: 'Z2ABCDEFGHIJKL',
+            dns_name: 's3-website-us-east-1.amazonaws.com.',
+            evaluate_target_health: false
+          }
         }
       ],
       is_truncated: true,
@@ -84,6 +95,7 @@ ns-6789.awsdns-01.org.
 ns-2345.awsdns-67.co.uk.
 ns-890.awsdns-12.com.'
   it { should have_record_set('example.com.').ns(ns) }
+  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL') }
 end
 
 describe route53_hosted_zone('Z1A2BCDEF34GH5') do
@@ -97,4 +109,5 @@ ns-6789.awsdns-01.org.
 ns-2345.awsdns-67.co.uk.
 ns-890.awsdns-12.com.'
   it { should have_record_set('example.com.').ns(ns) }
+  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL') }
 end

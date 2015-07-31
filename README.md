@@ -47,10 +47,12 @@ end
 - [X] Security Group (`security_group`)
 - [X] VPC (`vpc`)
 - [X] S3 (`s3`)
+- Route53
+    - [X] Route53 Hosted Zone (`route53_hosted_zone`)
 
 ### Next..
 
-- [ ] Route53
+- [ ] AutoScaling
 - ...
 
 ## Contributing

@@ -3,7 +3,7 @@ RSpec::Matchers.define :belong_to_subnet do |subnet_id|
     # EC2
     if resource.instance_of?(Awspec::Type::Ec2)
       return true if resource.subnet_id == subnet_id
-      ret = resource.client.describe_subnets({
+      ret = resource.ec2_client.describe_subnets({
                                                filters: [{ name: 'tag:Name', values: [subnet_id] }]
                                              })
       return false unless ret

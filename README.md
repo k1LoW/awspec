@@ -1,6 +1,6 @@
 # awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec)
 
-RSpec tests for your AWS resources.
+RSpec tests for your AWS resources inspired by Serverspec.
 
 ## Installation
 
@@ -27,7 +27,7 @@ Or install it yourself as:
 ### 2. Write *_spec.rb
 
 ```ruby
-describe ec2('i-ec12345a') do
+describe ec2('my-ec2-tag-name') do
   it { should be_running }
   its(:instance_id) { should eq 'i-ec12345a' }
   its(:image_id) { should eq 'ami-abc12def' }
@@ -54,6 +54,11 @@ end
 
 - [ ] AutoScaling
 - ...
+
+## TODO
+
+- [ ] Comment format for Document generation
+- [ ] Spec generator
 
 ## Contributing
 

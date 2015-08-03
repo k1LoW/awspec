@@ -84,5 +84,15 @@ module Awspec::Type
       @inbound = false
       self
     end
+
+    def ip_permissions_count
+      @sg[:ip_permissions].count
+    end
+    alias_method :inbound_permissions_count, :ip_permissions_count
+
+    def ip_permissions_egress_count
+      @sg[:ip_permissions_egress].count
+    end
+    alias_method :outbound_permissions_count, :ip_permissions_egress_count
   end
 end

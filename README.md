@@ -1,6 +1,6 @@
 # awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec)
 
-RSpec tests for your AWS resources inspired by Serverspec.
+RSpec tests for your AWS resources.
 
 ## Installation
 
@@ -70,6 +70,8 @@ end
 
 ## References
 
+awspec is inspired by Serverspec.
+
 - Original idea (code / architecture) -> [Serverspec](https://github.com/serverspec/serverspec)
-- awspec original concept -> https://github.com/marcy-terui/awspec
+- `AWS + Serverspec` original concept -> https://github.com/marcy-terui/awspec
 - [Serverspec book](http://www.oreilly.co.jp/books/9784873117096/)

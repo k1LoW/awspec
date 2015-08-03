@@ -4,12 +4,11 @@ module Awspec::Type
 
     def initialize(name)
       super
-      @client = Aws::RDS::Client.new
       @parameters = {}
 
       marker = nil
       while @parameters.empty? || !marker.nil?
-        res = @client.describe_db_parameters(
+        res = @rds_client.describe_db_parameters(
           db_parameter_group_name: name,
           marker: marker)
         marker = res.marker

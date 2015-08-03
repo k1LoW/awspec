@@ -4,12 +4,7 @@ module Awspec::Type
 
     def initialize(id)
       super
-      @client = Aws::RDS::Client.new
-      # db_instance_identifier
-      res = @client.describe_db_instances({
-                                            db_instance_identifier: id
-                                          })
-      @instance = res[:db_instances][0] if res[:db_instances].count == 1
+      @instance = find_rds(id)
       @id = @instance[:db_instance_identifier] if @instance
     end
 

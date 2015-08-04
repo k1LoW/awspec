@@ -20,7 +20,7 @@ module Awspec::Generator
           eips = select_eip_by_instance_id(instance_id)
           content = ERB.new(ec2_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
-        specs.join("\n")
+        specs.join("\n\n")
       end
 
       def ec2_spec_template

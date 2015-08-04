@@ -5,7 +5,8 @@ require 'awspec/version'
 require 'awspec/cli'
 require 'awspec/matcher'
 require 'awspec/helper'
-require 'awspec/ext/string'
+require 'awspec/ext'
+require 'awspec/generator'
 
 module Awspec
 end

@@ -1,21 +1,5 @@
 require 'spec_helper'
-
-Aws.config[:rds] = {
-  stub_responses: {
-    describe_db_parameters: {
-      parameters: [
-        {
-          parameter_name: 'basedir',
-          parameter_value: '/rdsdbbin/mysql'
-        },
-        {
-          parameter_name: 'innodb_buffer_pool_size',
-          parameter_value: '{DBInstanceClassMemory*3/4}'
-        }
-      ]
-    }
-  }
-}
+require 'stub/rds_db_parameter_group'
 
 describe rds_db_parameter_group('default.mysql5.6') do
   it { should exist }

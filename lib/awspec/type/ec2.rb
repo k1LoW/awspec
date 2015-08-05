@@ -34,8 +34,9 @@ module Awspec::Type
         filters: [{ name: 'instance-id', values: [@id] }]
       }
       option[:public_ips] = [ip_address] if ip_address
-      ret = @client.describe_addresses(option)
-      ret[:addresses].count == 1
+      ret = @ec2_client.describe_addresses(option)
+      return ret[:addresses].count == 1 if ip_address
+      return ret[:addresses].count > 0 unless ip_address
     end
 
     def has_security_group?(sg_id)

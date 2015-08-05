@@ -28,7 +28,8 @@ Aws.config[:ec2] = {
               ip_ranges: [],
               user_id_group_pairs: [
                 {
-                  group_id: 'sg-5a6b7cd8'
+                  group_id: 'sg-5a6b7cd8',
+                  group_name: 'group-name-sg'
                 }
               ]
             }

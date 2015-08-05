@@ -10,8 +10,8 @@ module Awspec::Generator
         fail 'Not Found VPC' unless vpc
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
-        route_tables = select_route_table_by_vpc_id(vpc_id)
-        network_acls = select_network_acl_by_vpc_id(vpc_id)
+        route_tables = select_route_table_by_vpc_id(@vpc_id)
+        network_acls = select_network_acl_by_vpc_id(@vpc_id)
         spec = ERB.new(vpc_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
 

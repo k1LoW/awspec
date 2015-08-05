@@ -5,6 +5,7 @@ Aws.config[:ec2] = {
         {
           vpc_id: 'vpc-ab123cde',
           state: 'available',
+          cidr_block: '10.0.0.0/16',
           tags: [
             {
               key: 'Name',

@@ -33,6 +33,20 @@ module Awspec::Helper
                                                 })
         return res[:network_acls][0] if res[:network_acls].count == 1
       end
+
+      def select_route_table_by_vpc_id(vpc_id)
+        res = @ec2_client.describe_route_tables({
+                                                  filters: [{ name: 'vpc-id', values: [vpc_id] }]
+                                                })
+        res[:route_tables]
+      end
+
+      def select_network_acl_by_vpc_id(vpc_id)
+        res = @ec2_client.describe_network_acls({
+                                                  filters: [{ name: 'vpc-id', values: [vpc_id] }]
+                                                })
+        res[:network_acls]
+      end
     end
   end
 end

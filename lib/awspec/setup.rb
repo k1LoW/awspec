@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'yaml'
 
 module Awspec
   class Setup
@@ -6,6 +7,30 @@ module Awspec
       generate_spec_helper
       generate_rakefile
       generate_dotgitignore
+    end
+
+    def self.generate_from_vpc(vpc_id)
+      creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
+      creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
+      if creds
+        Aws.config.update({
+                            region: creds['region'],
+                            credentials: Aws::Credentials.new(
+                              creds['aws_access_key_id'],
+                              creds['aws_secret_access_key'])
+                          })
+      end
+      vpc = Awspec::Generator::Spec::Vpc.new
+      puts vpc.generate_from_vpc(vpc_id)
+      puts ''
+      ec2 = Awspec::Generator::Spec::Ec2.new
+      puts ec2.generate_from_vpc(vpc_id)
+      puts ''
+      rds = Awspec::Generator::Spec::Rds.new
+      puts rds.generate_from_vpc(vpc_id)
+      puts ''
+      security_group = Awspec::Generator::Spec::SecurityGroup.new
+      puts security_group.generate_from_vpc(vpc_id)
     end
 
     def self.generate_spec_helper

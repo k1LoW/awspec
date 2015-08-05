@@ -20,7 +20,7 @@ module Awspec::Generator
           end
           content = ERB.new(rds_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
-        specs.join("\n\n")
+        specs.join("\n")
       end
 
       # rubocop:disable all

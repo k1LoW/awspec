@@ -16,7 +16,7 @@ module Awspec::Generator
           linespecs = generate_linespecs(sg)
           content = ERB.new(security_group_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
-        specs.join("\n\n")
+        specs.join("\n")
       end
 
       def generate_linespecs(sg)

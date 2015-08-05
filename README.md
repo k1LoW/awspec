@@ -20,11 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-### 1. Generate awspec template
+### 1. Generate awspec init files
 
     $ awspec init
 
-### 2. Write *_spec.rb
+### 2. Set AWS region/aws_access_key_id/aws_secret_access_key
+
+```sh
+$ cat <<EOF > spec/secrets.yml
+region: ap-northeast-1
+aws_access_key_id: XXXXXXXXXXXXXXXXXXXX
+aws_secret_access_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+EOF
+```
+
+### 3. Write spec/*_spec.rb
 
 ```ruby
 describe ec2('my-ec2-tag-name') do
@@ -55,10 +65,16 @@ end
 - [ ] AutoScaling
 - ...
 
+## Spec generate command
+
+```sh
+$ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
+```
+
 ## TODO
 
 - [ ] Comment format for Document generation
-- [ ] Spec generator
+- [X] Spec generate command
 
 ## Contributing
 

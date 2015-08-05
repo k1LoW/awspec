@@ -24,7 +24,19 @@ Or install it yourself as:
 
     $ awspec init
 
-### 2. Set AWS region/aws_access_key_id/aws_secret_access_key
+### 2. Set AWS credentials
+
+#### 2-1. Use Shared Credentials
+
+```sh
+$ aws configure
+
+...
+
+$ export AWS_REGION='ap-northeast-1'
+```
+
+#### 2-2. Use spec/secrets.yml
 
 ```sh
 $ cat <<EOF > spec/secrets.yml
@@ -48,6 +60,10 @@ describe ec2('my-ec2-tag-name') do
   it { should have_eip('123.0.456.789') }
 end
 ```
+
+### 4. Run tests
+
+    $ bundle exec rake spec
 
 ### Advanced Usage: Spec generate command
 

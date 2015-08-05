@@ -49,7 +49,9 @@ describe ec2('my-ec2-tag-name') do
 end
 ```
 
-### Advanced: Spec generate command
+### Advanced Usage: Spec generate command
+
+Generate spec from AWS resources already exists.
 
 ```sh
 $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb

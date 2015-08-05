@@ -49,6 +49,12 @@ describe ec2('my-ec2-tag-name') do
 end
 ```
 
+### Advanced: Spec generate command
+
+```sh
+$ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
+```
+
 ## Support AWS Resources
 
 - [X] EC2 (`ec2`)
@@ -64,12 +70,6 @@ end
 
 - [ ] AutoScaling
 - ...
-
-## Spec generate command
-
-```sh
-$ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
-```
 
 ## TODO
 

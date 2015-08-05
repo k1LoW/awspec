@@ -25,7 +25,11 @@ module Awspec::Generator
 
       def ec2_spec_template
         template = <<-'EOF'
+<%- if instance_tag_name -%>
 describe ec2('<%= instance_tag_name %>') do
+<%- else -%>
+describe ec2('<%= instance_id %>') do
+<%- end -%>
   it { should exist }
   it { should be_<%= instance.state.name %> }
 <% describes.each do |describe| %>

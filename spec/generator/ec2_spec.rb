@@ -1,7 +1,9 @@
 require 'spec_helper'
-require 'stub/ec2'
 
 describe 'Awspec::Generator::Ec2' do
+  before do
+    require 'stub/ec2'
+  end
   let(:ec2) { Awspec::Generator::Spec::Ec2.new }
   it 'generate_from_vpc generate spec' do
     spec = <<-'EOF'

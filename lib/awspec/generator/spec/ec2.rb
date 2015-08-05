@@ -23,6 +23,7 @@ module Awspec::Generator
         specs.join("\n\n")
       end
 
+      # rubocop:disable all
       def ec2_spec_template
         template = <<-'EOF'
 <%- if instance_tag_name -%>
@@ -34,7 +35,11 @@ describe ec2('<%= instance_id %>') do
   it { should be_<%= instance.state.name %> }
 <% describes.each do |describe| %>
 <%- if instance.key?(describe) -%>
+<%- if instance[describe].is_a?(TrueClass) || instance[describe].is_a?(FalseClass) -%>
+  its(:<%= describe %>) { should eq <%= instance[describe] %> }
+<%- else -%>
   its(:<%= describe %>) { should eq '<%= instance[describe] %>' }
+<%- end -%>
 <%- end -%>
 <% end %>
 <% instance.security_groups.each do |sg| %>

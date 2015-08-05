@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Awspec::Generator::Rds' do
+describe 'Awspec::Generator::Spec::Rds' do
   before do
     require 'stub/rds'
   end
@@ -12,6 +12,8 @@ describe rds('my-rds') do
   it { should be_available }
   its(:db_instance_identifier) { should eq 'my-rds' }
   its(:db_instance_class) { should eq 'db.t2.medium' }
+  its(:multi_az) { should eq false }
+  its(:availability_zone) { should eq 'ap-northeast-1a' }
   it { should have_security_group('group-name-sg') }
   it { should belong_to_vpc('my-vpc') }
   it { should belong_to_db_subnet_group('my-db-subnet-group') }

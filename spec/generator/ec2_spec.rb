@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Awspec::Generator::Ec2' do
+describe 'Awspec::Generator::Spec::Ec2' do
   before do
     require 'stub/ec2'
   end

@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_from_vpc(vpc_id)
         describes = %w(
-          db_instance_identifier db_instance_class
+          db_instance_identifier db_instance_class multi_az availability_zone
         )
         vpc = find_vpc(vpc_id)
         fail 'Not Found VPC' unless vpc
@@ -23,6 +23,7 @@ module Awspec::Generator
         specs.join("\n\n")
       end
 
+      # rubocop:disable all
       def rds_spec_template
         template = <<-'EOF'
 describe rds('<%= instance_id %>') do
@@ -30,7 +31,11 @@ describe rds('<%= instance_id %>') do
   it { should be_<%= db_instance.db_instance_status %> }
 <% describes.each do |describe| %>
 <%- if db_instance.key?(describe) -%>
+<%- if db_instance[describe].is_a?(TrueClass) || db_instance[describe].is_a?(FalseClass) -%>
+  its(:<%= describe %>) { should eq <%= db_instance[describe] %> }
+<%- else -%>
   its(:<%= describe %>) { should eq '<%= db_instance[describe] %>' }
+<%- end -%>
 <%- end -%>
 <% end %>
 <% sg_group_names.each do |sg_group_name| %>

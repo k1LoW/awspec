@@ -39,7 +39,8 @@ Aws.config[:rds] = {
               option_group_name: 'custom:mysql-5-6'
             }
           ],
-          availability_zone: 'ap-northeast-1a'
+          availability_zone: 'ap-northeast-1a',
+          multi_az: false
         }
       ]
     }

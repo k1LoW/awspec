@@ -1,5 +1,6 @@
 require 'thor'
 require 'awspec/setup'
+require 'awspec/command/generate'
 
 module Awspec
   class CLI < Thor
@@ -9,10 +10,7 @@ module Awspec
     end
 
     desc 'awspec generate [vpc_id]', 'Generate *_spec.rb from VPC ID (or VPC "Name" tag)'
-    def generate(vpc_id)
-      Awspec::Setup.generate_from_vpc(vpc_id)
-    end
-
+    subcommand 'generate', Generate
     map 'g' => 'generate'
   end
 end

@@ -62,8 +62,8 @@ describe security_group('<%= sg.group_name %>') do
 <% linespecs.each do |line| %>
   <%= line %>
 <% end %>
-  its(:outbound_permissions_count) { should eq <%= sg.ip_permissions.count %> }
-  its(:inbound_permissions_count) { should eq <%= sg.ip_permissions_egress.count %> }
+  its(:inbound_permissions_count) { should eq <%= sg.ip_permissions.count %> }
+  its(:outbound_permissions_count) { should eq <%= sg.ip_permissions_egress.count %> }
 <%- if @vpc_tag_name -%>
   it { should belong_to_vpc('<%= @vpc_tag_name %>') }
 <%- else -%>

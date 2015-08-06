@@ -14,8 +14,8 @@ describe security_group('my-security-group-name') do
   its(:inbound) { should be_opened(80).protocol('tcp').for('456.789.123.456/32') }
   its(:inbound) { should be_opened(22).protocol('tcp').for('group-name-sg') }
   its(:outbound) { should be_opened }
-  its(:outbound_permissions_count) { should eq 2 }
-  its(:inbound_permissions_count) { should eq 1 }
+  its(:inbound_permissions_count) { should eq 2 }
+  its(:outbound_permissions_count) { should eq 1 }
   it { should belong_to_vpc('my-vpc') }
 end
 EOF

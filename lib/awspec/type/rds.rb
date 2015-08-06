@@ -25,8 +25,8 @@ module Awspec::Type
     end
 
     def method_missing(name)
-      describe = name.to_s
-      if @instance.key?(describe)
+      describe = name.to_sym
+      if @instance.members.include?(describe)
         @instance[describe]
       else
         super

@@ -34,7 +34,7 @@ describe ec2('<%= instance_id %>') do
   it { should exist }
   it { should be_<%= instance.state.name %> }
 <% describes.each do |describe| %>
-<%- if instance.key?(describe) -%>
+<%- if instance.members.include?(describe.to_sym) && !instance[describe.to_sym].nil? -%>
 <%- if instance[describe].is_a?(TrueClass) || instance[describe].is_a?(FalseClass) -%>
   its(:<%= describe %>) { should eq <%= instance[describe] %> }
 <%- else -%>

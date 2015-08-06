@@ -32,8 +32,8 @@ module Awspec::Type
     end
 
     def method_missing(name)
-      describe = name.to_s
-      if @hosted_zone.key?(describe)
+      describe = name.to_sym
+      if @hosted_zone.members.include?(describe)
         @hosted_zone[describe]
       else
         super

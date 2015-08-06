@@ -16,7 +16,6 @@ module Awspec::Generator
           instance_id = instance[:instance_id]
           instance_tag_name = instance.tag_name
           subnet = find_subnet(instance.subnet_id)
-          subnet_tag_name = subnet.tag_name
           eips = select_eip_by_instance_id(instance_id)
           content = ERB.new(ec2_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
@@ -50,7 +49,11 @@ describe ec2('<%= instance_id %>') do
 <%- else -%>
   it { should belong_to_vpc('<%= @vpc_id %>') }
 <%- end -%>
-  it { should belong_to_subnet('<%= subnet_tag_name %>') }
+<%- if subnet.tag_name -%>
+  it { should belong_to_subnet('<%= subnet.tag_name %>') }
+<%- else -%>
+  it { should belong_to_subnet('<%= subnet.subnet_id %>') }
+<%- end -%>
 <% eips.each do |eip| %>
   it { should have_eip('<%= eip.public_ip %>') }
 <% end %>

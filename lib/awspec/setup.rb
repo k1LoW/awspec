@@ -30,7 +30,7 @@ EOF
         end
       else
         FileUtils.mkdir dir
-        puts ' + #{dir}/'
+        puts " + #{dir}/"
       end
 
       if File.exist? 'spec/spec_helper.rb'

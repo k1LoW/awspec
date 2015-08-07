@@ -8,12 +8,18 @@ module Awspec
     )
 
     types.each do |type|
-      desc type + ' [vpc_id]', 'Generate VPC spec from VPC ID (or VPC "Name" tag)'
+      desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
       define_method type do |*args|
         load_secrets
         vpc_id = args.first
         eval "puts Awspec::Generator::Spec::#{type.to_camel_case}.new.generate_from_vpc(vpc_id)"
       end
+    end
+
+    desc 'route53_hosted_zone [example.com.]', 'Generate route53_hosted_zone spec from Domain name'
+    def route53_hosted_zone(hosted_zone)
+      load_secrets
+      puts Awspec::Generator::Spec::Route53HostedZone.new.generate_from_hosted_zone(hosted_zone)
     end
 
     no_commands do

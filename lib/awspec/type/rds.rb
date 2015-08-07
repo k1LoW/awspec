@@ -1,6 +1,6 @@
 module Awspec::Type
   class Rds < Base
-    attr_reader :client, :instance
+    attr_reader :instance
 
     def initialize(id)
       super

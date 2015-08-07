@@ -1,6 +1,6 @@
 module Awspec::Type
   class S3 < Base
-    attr_reader :s3_client, :bucket
+    attr_reader :bucket
 
     def initialize(id)
       super

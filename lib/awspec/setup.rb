@@ -7,6 +7,7 @@ module Awspec
       generate_spec_helper
       generate_rakefile
       generate_dotgitignore
+      generate_dotrspec
     end
 
     def self.generate_spec_helper
@@ -70,6 +71,21 @@ EOF
           f.puts content
         end
         puts ' + spec/.gitignore'
+      end
+    end
+
+    def self.generate_dotrspec
+      content = <<-'EOF'
+--color
+--format documentation
+EOF
+      if File.exist? '.rspec'
+        $stderr.puts '!! .rspec already exists'
+      else
+        File.open('.rspec', 'w') do |f|
+          f.puts content
+        end
+        puts ' + .rspec'
       end
     end
   end

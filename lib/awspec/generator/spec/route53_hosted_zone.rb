@@ -28,11 +28,9 @@ EOF
           # ALIAS
           dns_name = record_set.alias_target.dns_name
           hosted_zone_id = record_set.alias_target.hosted_zone_id
-          # rubocop:disable all
           template = <<-'EOF'
-it { should have_record_set('<%= record_set.name %>').alias('<%= dns_name %>', '<%= hosted_zone_id %>').ttl(<%= record_set.ttl %>) }
+it { should have_record_set('<%= record_set.name %>').alias('<%= dns_name %>', '<%= hosted_zone_id %>') }
 EOF
-          # rubocop:enable all
           return ERB.new(template, nil, '-').result(binding)
         end
       end

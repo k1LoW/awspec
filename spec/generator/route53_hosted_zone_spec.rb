@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-# rubocop:disable all
 describe 'Awspec::Generator::Spec::Route53HostedZone' do
   before do
     require 'stub/route53_hosted_zone'
@@ -18,7 +17,7 @@ describe route53_hosted_zone('example.com.') do
 ns-6789.awsdns-01.org.
 ns-2345.awsdns-67.co.uk.
 ns-890.awsdns-12.com.').ttl(172800) }
-  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL').ttl(3600) }
+  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL') }
 end
 EOF
     expect(route53_hosted_zone.generate_by_domain_name('example.com.').to_s.gsub(/\n/, "\n")).to eq spec

@@ -68,7 +68,6 @@ Aws.config[:route53] = {
         {
           name: 's3.example.com.',
           type: 'A',
-          ttl: 3600,
           resource_records: [],
           alias_target: {
             hosted_zone_id: 'Z2ABCDEFGHIJKL',

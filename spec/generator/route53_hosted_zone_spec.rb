@@ -6,7 +6,7 @@ describe 'Awspec::Generator::Spec::Route53HostedZone' do
     require 'stub/route53_hosted_zone'
   end
   let(:route53_hosted_zone) { Awspec::Generator::Spec::Route53HostedZone.new }
-  it 'generate_from_hosted_zone generate spec' do
+  it 'generate_by_domain_name generate spec' do
     spec = <<-'EOF'
 describe route53_hosted_zone('example.com.') do
   it { should exist }
@@ -21,6 +21,6 @@ ns-890.awsdns-12.com.').ttl(172800) }
   it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL').ttl(3600) }
 end
 EOF
-    expect(route53_hosted_zone.generate_from_hosted_zone('example.com.').to_s.gsub(/\n/, "\n")).to eq spec
+    expect(route53_hosted_zone.generate_by_domain_name('example.com.').to_s.gsub(/\n/, "\n")).to eq spec
   end
 end

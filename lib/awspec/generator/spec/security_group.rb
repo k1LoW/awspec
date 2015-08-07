@@ -2,7 +2,7 @@ module Awspec::Generator
   module Spec
     class SecurityGroup
       include Awspec::Helper::Finder
-      def generate_from_vpc(vpc_id)
+      def generate_by_vpc_id(vpc_id)
         describes = %w(
           group_id
         )

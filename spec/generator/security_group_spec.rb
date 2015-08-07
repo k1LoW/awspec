@@ -5,7 +5,7 @@ describe 'Awspec::Generator::Spec::SecurityGroup' do
     require 'stub/security_group'
   end
   let(:security_group) { Awspec::Generator::Spec::SecurityGroup.new }
-  it 'generate_from_vpc generate spec' do
+  it 'generate_by_vpc_id generate spec' do
     spec = <<-'EOF'
 describe security_group('my-security-group-name') do
   it { should exist }
@@ -19,6 +19,6 @@ describe security_group('my-security-group-name') do
   it { should belong_to_vpc('my-vpc') }
 end
 EOF
-    expect(security_group.generate_from_vpc('my-security-group-name').to_s.gsub(/\n/, "\n")).to eq spec
+    expect(security_group.generate_by_vpc_id('my-security-group-name').to_s.gsub(/\n/, "\n")).to eq spec
   end
 end

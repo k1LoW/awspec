@@ -2,7 +2,7 @@ module Awspec::Generator
   module Spec
     class Route53HostedZone
       include Awspec::Helper::Finder
-      def generate_from_hosted_zone(id)
+      def generate_by_domain_name(id)
         hosted_zone = find_hosted_zone(id)
         fail 'Not Found Route53 Hosted Zone' unless hosted_zone
         id = hosted_zone[:id]

@@ -5,7 +5,7 @@ describe 'Awspec::Generator::Spec::Vpc' do
     require 'stub/vpc'
   end
   let(:vpc) { Awspec::Generator::Spec::Vpc.new }
-  it 'generate_from_vpc generate spec' do
+  it 'generate_by_vpc_id generate spec' do
     spec = <<-'EOF'
 describe vpc('my-vpc') do
   it { should exist }
@@ -16,6 +16,6 @@ describe vpc('my-vpc') do
   it { should have_network_acl('my-network-acl') }
 end
 EOF
-    expect(vpc.generate_from_vpc('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec
+    expect(vpc.generate_by_vpc_id('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec
   end
 end

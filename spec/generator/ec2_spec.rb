@@ -5,7 +5,7 @@ describe 'Awspec::Generator::Spec::Ec2' do
     require 'stub/ec2'
   end
   let(:ec2) { Awspec::Generator::Spec::Ec2.new }
-  it 'generate_from_vpc generate spec' do
+  it 'generate_by_vpc_id generate spec' do
     spec = <<-'EOF'
 describe ec2('my-ec2') do
   it { should exist }
@@ -21,6 +21,6 @@ describe ec2('my-ec2') do
   it { should have_eip('123.0.456.789') }
 end
 EOF
-    expect(ec2.generate_from_vpc('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec
+    expect(ec2.generate_by_vpc_id('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec
   end
 end

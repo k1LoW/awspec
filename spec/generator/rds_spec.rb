@@ -5,7 +5,7 @@ describe 'Awspec::Generator::Spec::Rds' do
     require 'stub/rds'
   end
   let(:rds) { Awspec::Generator::Spec::Rds.new }
-  it 'generate_from_vpc generate spec' do
+  it 'generate_by_vpc_id generate spec' do
     spec = <<-'EOF'
 describe rds('my-rds') do
   it { should exist }
@@ -23,6 +23,6 @@ describe rds('my-rds') do
   it { should have_option_group('custom:mysql-5-6') }
 end
 EOF
-    expect(rds.generate_from_vpc('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec
+    expect(rds.generate_by_vpc_id('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec
   end
 end

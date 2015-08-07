@@ -16,7 +16,7 @@ module Awspec
       end
     end
 
-    desc 'route53_hosted_zone example.com.', 'Generate route53_hosted_zone spec from Hosted Zone name'
+    desc 'route53_hosted_zone [example.com.]', 'Generate route53_hosted_zone spec from Domain name'
     def route53_hosted_zone(hosted_zone)
       load_secrets
       puts Awspec::Generator::Spec::Route53HostedZone.new.generate_from_hosted_zone(hosted_zone)

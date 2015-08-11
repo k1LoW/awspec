@@ -48,8 +48,10 @@ Aws.config[:ec2] = {
     describe_subnets: {
       subnets: [
         {
+          state: 'available',
           vpc_id: 'vpc-ab123cde',
           subnet_id: 'subnet-1234a567',
+          cidr_block: '10.0.1.0/24',
           tags: [
             {
               key: 'Name',

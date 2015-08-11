@@ -85,7 +85,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
     - [x] Route53 Hosted Zone (`route53_hosted_zone`)
 - AutoScaling
     - [x] Auto Scaling Group (`auto_scaling_group`)
-- [x] Subnet
+- [x] Subnet (`subnet`)
 
 ### Next..
 

@@ -1,20 +1,5 @@
 Aws.config[:ec2] = {
   stub_responses: {
-    describe_vpcs: {
-      vpcs: [
-        {
-          vpc_id: 'vpc-ab123cde',
-          state: 'available',
-          cidr_block: '10.0.0.0/16',
-          tags: [
-            {
-              key: 'Name',
-              value: 'my-vpc'
-            }
-          ]
-        }
-      ]
-    },
     describe_route_tables: {
       route_tables: [
         {
@@ -51,15 +36,21 @@ Aws.config[:ec2] = {
         }
       ]
     },
-    describe_network_acls: {
-      network_acls: [
+    describe_internet_gateways: {
+      internet_gateways: [
         {
-          network_acl_id: 'acl-1abc2d3e',
-          vpc_id: 'vpc-ab123cde',
+          internet_gateway_id: 'igw-1ab2345c',
+          attachments:
+            [
+              {
+                vpc_id: 'vpc-ab123cde',
+                state: 'available'
+              }
+            ],
           tags: [
             {
               key: 'Name',
-              value: 'my-network-acl'
+              value: 'my-igw'
             }
           ]
         }

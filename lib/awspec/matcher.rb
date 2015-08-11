@@ -10,3 +10,6 @@ require 'awspec/matcher/be_opened'
 
 # Route53
 require 'awspec/matcher/have_record_set'
+
+# RouteTable
+require 'awspec/matcher/have_route'

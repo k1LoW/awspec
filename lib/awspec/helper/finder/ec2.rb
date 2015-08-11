@@ -45,6 +45,28 @@ module Awspec::Helper
         return res[:subnets][0] if res[:subnets].count == 1
       end
 
+      def find_route_table(route_table_id)
+        res = @ec2_client.describe_route_tables({
+                                                  filters: [{ name: 'route-table-id', values: [route_table_id] }]
+                                                })
+        return res[:route_tables][0] if res[:route_tables].count == 1
+        res = @ec2_client.describe_route_tables({
+                                                  filters: [{ name: 'tag:Name', values: [route_table_id] }]
+                                                })
+        return res[:route_tables][0] if res[:route_tables].count == 1
+      end
+
+      def find_internet_gateway(gateway_id)
+        res = @ec2_client.describe_internet_gateways({
+                                                       filters: [{ name: 'internet-gateway-id', values: [gateway_id] }]
+                                                     })
+        return res[:internet_gateways][0] if res[:internet_gateways].count == 1
+        res = @ec2_client.describe_internet_gateways({
+                                                       filters: [{ name: 'tag:Name', values: [gateway_id] }]
+                                                     })
+        return res[:internet_gateways][0] if res[:internet_gateways].count == 1
+      end
+
       def find_security_group(sg_id)
         res = @ec2_client.describe_security_groups({
                                                      filters: [{ name: 'group-id', values: [sg_id] }]

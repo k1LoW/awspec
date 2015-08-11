@@ -86,11 +86,10 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - AutoScaling
     - [x] Auto Scaling Group (`auto_scaling_group`)
 - [x] Subnet (`subnet`)
+- [x] RouteTable (`subnet`)
 
 ### Next..
 
-- [ ] RouteTable
-- [ ] * Gateway
 - [ ] EBS Volume
 - [ ] IAM
 - ...

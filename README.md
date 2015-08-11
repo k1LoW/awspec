@@ -75,20 +75,20 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 
 ## Support AWS Resources
 
-- [X] EC2 (`ec2`)
-- [X] RDS (`rds`)
-    - [X] RDS DB Parameter Group  (`rds_db_parameter_group`)
-- [X] Security Group (`security_group`)
-- [X] VPC (`vpc`)
-- [X] S3 (`s3`)
+- [x] EC2 (`ec2`)
+- [x] RDS (`rds`)
+    - [x] RDS DB Parameter Group  (`rds_db_parameter_group`)
+- [x] Security Group (`security_group`)
+- [x] VPC (`vpc`)
+- [x] S3 (`s3`)
 - Route53
-    - [X] Route53 Hosted Zone (`route53_hosted_zone`)
+    - [x] Route53 Hosted Zone (`route53_hosted_zone`)
 - AutoScaling
-    - [X] Auto Scaling Group (`auto_scaling_group`)
+    - [x] Auto Scaling Group (`auto_scaling_group`)
+- [x] Subnet
 
 ### Next..
 
-- [ ] Subnet
 - [ ] RouteTable
 - [ ] * Gateway
 - [ ] EBS Volume

@@ -18,6 +18,7 @@ describe ec2('i-ec12345a') do
   it { should belong_to_subnet('my-subnet') }
   it { should have_eip }
   it { should have_eip('123.0.456.789') }
+  it { should have_ebs('vol-123a123b') }
 end
 
 describe ec2('my-ec2') do

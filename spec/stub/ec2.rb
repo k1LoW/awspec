@@ -21,6 +21,14 @@ Aws.config[:ec2] = {
                   group_name: 'my-security-group-name'
                 }
               ],
+              block_device_mappings: [
+                {
+                  device_name: '/dev/sda',
+                  ebs: {
+                    volume_id: 'vol-123a123b'
+                  }
+                }
+              ],
               tags: [
                 {
                   key: 'Name',

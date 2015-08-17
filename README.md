@@ -87,7 +87,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
     - [x] Auto Scaling Group (`auto_scaling_group`)
 - [x] Subnet (`subnet`)
 - [x] RouteTable (`route_table`)
-- [x] EBS Volume
+- [x] EBS Volume (`ebs`)
 
 ### Next..
 

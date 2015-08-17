@@ -4,7 +4,7 @@ module Awspec
       types = %w(
         base ec2 rds rds_db_parameter_group security_group
         vpc s3 route53_hosted_zone auto_scaling_group subnet
-        route_table
+        route_table ebs
       )
 
       types.each { |type| require "awspec/type/#{type}" }

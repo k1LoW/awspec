@@ -50,5 +50,13 @@ module Awspec::Type
         tag[:key] == 'Name' && tag[:value] == sg_id
       end
     end
+
+    def has_ebs?(volume_id)
+      blocks = @instance[:block_device_mappings]
+      ret = blocks.find do |block|
+        next false unless block[:ebs]
+        block[:ebs][:volume_id] == volume_id
+      end
+    end
   end
 end

@@ -12,13 +12,13 @@ module Awspec::Helper
         return res[:vpcs][0] if res[:vpcs].count == 1
       end
 
-      def find_route_table(id)
+      def find_route_table(route_table_id)
         res = @ec2_client.describe_route_tables({
-                                                  filters: [{ name: 'route-table-id', values: [id] }]
+                                                  filters: [{ name: 'route-table-id', values: [route_table_id] }]
                                                 })
         return res[:route_tables][0] if res[:route_tables].count == 1
         res = @ec2_client.describe_route_tables({
-                                                  filters: [{ name: 'tag:Name', values: [id] }]
+                                                  filters: [{ name: 'tag:Name', values: [route_table_id] }]
                                                 })
         return res[:route_tables][0] if res[:route_tables].count == 1
       end

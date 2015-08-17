@@ -57,6 +57,11 @@ module Awspec::Type
         next false unless block[:ebs]
         block[:ebs][:volume_id] == volume_id
       end
+      return true if ret
+      blocks2 = find_ebs(volume_id)
+      blocks2[:attachments].find do |attachment|
+        attachment.instance_id == @id
+      end
     end
   end
 end

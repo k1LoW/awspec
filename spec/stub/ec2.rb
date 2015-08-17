@@ -90,6 +90,25 @@ Aws.config[:ec2] = {
           ]
         }
       ]
+    },
+    describe_volumes: {
+      volumes: [
+        {
+          volume_id: 'vpc-ab123cde',
+          attachments: [
+            {
+              instance_id: 'i-ec12345a',
+              volume_id: 'vpc-ab123cde'
+            }
+          ],
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-volume'
+            }
+          ]
+        }
+      ]
     }
   }
 }

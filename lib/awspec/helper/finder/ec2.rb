@@ -45,17 +45,6 @@ module Awspec::Helper
         return res[:subnets][0] if res[:subnets].count == 1
       end
 
-      def find_route_table(route_table_id)
-        res = @ec2_client.describe_route_tables({
-                                                  filters: [{ name: 'route-table-id', values: [route_table_id] }]
-                                                })
-        return res[:route_tables][0] if res[:route_tables].count == 1
-        res = @ec2_client.describe_route_tables({
-                                                  filters: [{ name: 'tag:Name', values: [route_table_id] }]
-                                                })
-        return res[:route_tables][0] if res[:route_tables].count == 1
-      end
-
       def find_internet_gateway(gateway_id)
         res = @ec2_client.describe_internet_gateways({
                                                        filters: [{ name: 'internet-gateway-id', values: [gateway_id] }]
@@ -80,6 +69,17 @@ module Awspec::Helper
                                                      filters: [{ name: 'tag:Name', values: [sg_id] }]
                                                    })
         return res[:security_groups][0] if res[:security_groups].count == 1
+      end
+
+      def find_ebs(volume_id)
+        res = @ec2_client.describe_volumes({
+                                             filters: [{ name: 'volume-id', values: [volume_id] }]
+                                           })
+        return res[:volumes][0] if res[:volumes].count == 1
+        res = @ec2_client.describe_volumes({
+                                             filters: [{ name: 'tag:Name', values: [volume_id] }]
+                                           })
+        return res[:volumes][0] if res[:volumes].count == 1
       end
 
       def select_ec2_by_vpc_id(vpc_id)

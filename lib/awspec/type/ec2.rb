@@ -46,8 +46,9 @@ module Awspec::Type
       end
       return true if ret
       sg2 = find_security_group(sg_id)
-      sg2[:tags].find do |tag|
-        tag[:key] == 'Name' && tag[:value] == sg_id
+      return false unless sg2.tag_name == sg_id
+      sgs.find do |sg|
+        sg[:group_id] == sg2[:group_id]
       end
     end
 

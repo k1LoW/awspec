@@ -13,7 +13,7 @@ module Awspec::Type
     )
 
     states.each do |state|
-      define_method state.gsub(/-/, '_') + '?' do
+      define_method state.tr('-', '_') + '?' do
         @volume[:state] == state
       end
     end

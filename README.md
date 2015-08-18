@@ -91,7 +91,9 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 
 ### Next..
 
-- [ ] IAM
+- [ ] ELB
+- IAM
+    - [ ] IAM User
 - ...
 
 ## TODO

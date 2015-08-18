@@ -19,7 +19,7 @@ module Awspec::Type
     )
 
     states.each do |state|
-      define_method state + '?' do
+      define_method state.tr('-', '_') + '?' do
         @instance[:db_instance_status] == state
       end
     end

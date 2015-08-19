@@ -16,7 +16,7 @@ module Awspec::Helper
           res = @ec2_client.describe_instances({
                                                  filters: filters
                                                })
-        else
+        elsif id.is_a?(String)
           # instance_id or tag:Name
           begin
             res = @ec2_client.describe_instances({
@@ -29,6 +29,8 @@ module Awspec::Helper
                                                    filters: [{ name: 'tag:Name', values: [id] }]
                                                  })
           end
+        else
+          return nil
         end
         return res[:reservations][0][:instances][0] if res[:reservations].count == 1 && \
                                                        res[:reservations][0][:instances].count == 1

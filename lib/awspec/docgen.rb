@@ -4,16 +4,18 @@ require 'awspec'
 
 Aws.config[:stub_responses] = true
 
+types = %w(ec2 rds auto_scaling_group)
+links = types.map do |type|
+  '[' + type + '](#' + type + ')'
+end
 header = <<-'EOF'
 ## Resource Types
 
-[ec2](#ec2)
-|[rds](#rds)
+<%= links.join('|') %>
 
 EOF
-puts header
-generator = Awspec::Generator::Doc::Ec2.new
-puts generator.generate_doc
+puts ERB.new(header, nil, '-').result(binding)
 
-generator = Awspec::Generator::Doc::Rds.new
-puts generator.generate_doc
+types.map do |type|
+  puts eval "Awspec::Generator::Doc::#{type.to_camel_case}.new.generate_doc"
+end

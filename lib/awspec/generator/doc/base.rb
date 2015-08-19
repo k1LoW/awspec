@@ -1,6 +1,17 @@
 module Awspec::Generator
   module Doc
     class Base
+      def generate_doc
+        @matchers += collect_matchers
+        @describes += @ret.members.select do |describe|
+          next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash)
+        end
+        its = @describes.map do |describe|
+          'its(:' + describe.to_s + ')'
+        end
+        ERB.new(doc_template, nil, '-').result(binding)
+      end
+
       def collect_matchers
         methods = @type.methods - Awspec::Helper::Finder.instance_methods - Object.methods
         methods.select! do |method|
@@ -16,10 +27,10 @@ module Awspec::Generator
 
       def doc_template
         template = <<-'EOF'
-### <a name="<%= type_name.to_snake_case %>"><%= type_name.to_snake_case %></a>
+### <a name="<%= @type_name.to_snake_case %>"><%= @type_name.to_snake_case %></a>
 
-<%= type_name %> resource type.
-<% matchers.each do |matcher| %>
+<%= @type_name %> resource type.
+<% @matchers.each do |matcher| %>
 #### <%= matcher %>
 <% end %>
 #### <%= its.join(', ') %>

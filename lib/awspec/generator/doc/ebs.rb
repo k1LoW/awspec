@@ -2,7 +2,7 @@ module Awspec::Generator
   module Doc
     class Ebs < Base
       def initialize
-        @type_name = 'Ebs'
+        @type_name = 'EBS'
         require File.dirname(__FILE__) + '/../../../../spec/stub/' + @type_name.to_snake_case
         @type = Awspec::Type::Ebs.new('my-ebs')
         @ret = @type.volume

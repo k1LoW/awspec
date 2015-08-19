@@ -7,6 +7,7 @@ module Awspec::Generator
         @type = Awspec::Type::Ec2.new('my-ec2')
         @ret = @type.instance
         @matchers = %w(belong_to_vpc belong_to_subnet)
+        @ignore_matchers = []
         @describes = []
       end
     end

@@ -2,10 +2,10 @@ module Awspec::Generator
   module Doc
     class Base
       def generate_doc
-        @matchers += collect_matchers
+        @matchers += collect_matchers - @ignore_matchers
         @describes += @ret.members.select do |describe|
           next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash)
-        end
+        end if @ret.respond_to?(:members)
         its = @describes.map do |describe|
           'its(:' + describe.to_s + ')'
         end
@@ -33,7 +33,8 @@ module Awspec::Generator
 <% @matchers.each do |matcher| %>
 #### <%= matcher %>
 <% end %>
-#### <%= its.join(', ') %>
+<%- unless its.empty? -%>#### <%= its.join(', ') %><%- end -%>
+
 
 EOF
         template

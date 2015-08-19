@@ -1,11 +1,11 @@
 module Awspec::Generator
   module Doc
-    class AutoScalingGroup < Base
+    class RdsDbParameterGroup < Base
       def initialize
-        @type_name = 'AutoScalingGroup'
+        @type_name = 'RdsDbParameterGroup'
         require File.dirname(__FILE__) + '/../../../../spec/stub/' + @type_name.to_snake_case
-        @type = Awspec::Type::AutoScalingGroup.new('my-auto-scaling-group')
-        @ret = @type.group
+        @type = Awspec::Type::RdsDbParameterGroup.new('my-rds-db-parameter-group')
+        @ret = @type.parameters
         @matchers = []
         @ignore_matchers = []
         @describes = []

@@ -7,6 +7,11 @@ require 'awspec/generator/spec/route53_hosted_zone'
 
 # Doc
 require 'awspec/generator/doc/base'
-require 'awspec/generator/doc/ec2'
-require 'awspec/generator/doc/rds'
-require 'awspec/generator/doc/auto_scaling_group'
+types = %w(
+  base ec2 rds rds_db_parameter_group security_group
+  vpc s3 route53_hosted_zone auto_scaling_group subnet
+  route_table ebs
+)
+types.each do |type|
+  require 'awspec/generator/doc/' + type
+end

@@ -11,7 +11,7 @@ links = types.map do |type|
   '[' + type + '](#' + type + ')'
 end
 header = <<-'EOF'
-## Resource Types
+# Resource Types
 
 <%= links.join('|') %>
 

@@ -31,14 +31,13 @@ module Awspec::Generator
 
       def doc_template
         template = <<-'EOF'
-### <a name="<%= @type_name.to_snake_case %>"><%= @type_name.to_snake_case %></a>
+## <a name="<%= @type_name.to_snake_case %>"><%= @type_name.to_snake_case %></a>
 
 <%= @type_name %> resource type.
 <% @matchers.each do |matcher| %>
-#### <%= matcher %>
+### <%= matcher %>
 <% end %>
 <%- unless its.empty? -%>#### <%= its.join(', ') %><%- end -%>
-
 
 EOF
         template

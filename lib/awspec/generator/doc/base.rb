@@ -15,19 +15,6 @@ module Awspec::Generator
         ERB.new(doc_template, nil, '-').result(binding)
       end
 
-      def sort_num(str)
-        case str
-        when 'exist'
-          0
-        when /\Abe_/
-          1
-        when /\Ahave_/
-          2
-        else
-          3
-        end
-      end
-
       def collect_matchers
         methods = @type.methods - Awspec::Helper::Finder.instance_methods - Object.methods
         methods.select! do |method|
@@ -53,6 +40,19 @@ module Awspec::Generator
 
 EOF
         template
+      end
+
+      def sort_num(str)
+        case str
+        when 'exist'
+          0
+        when /\Abe_/
+          1
+        when /\Ahave_/
+          2
+        else
+          3
+        end
       end
     end
   end

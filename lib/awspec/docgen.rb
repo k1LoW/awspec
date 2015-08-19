@@ -13,7 +13,7 @@ end
 header = <<-'EOF'
 # Resource Types
 
-<%= links.join('|') %>
+<%= links.join(' | ') %>
 
 EOF
 puts ERB.new(header, nil, '-').result(binding)

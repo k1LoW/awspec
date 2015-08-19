@@ -1,3 +1,5 @@
+require 'pp'
+
 module Awspec::Generator
   module Doc
     class Base
@@ -11,6 +13,20 @@ module Awspec::Generator
         end if @ret.respond_to?(:members)
         its = @describes.map do |describe|
           'its(:' + describe.to_s + ')'
+        end
+
+        @descriptions = {}
+        merge_file = File.dirname(__FILE__) + '/../../../../doc/_resource_types/' + @type_name.to_snake_case + '.md'
+        if File.exist?(merge_file)
+          matcher = nil
+          File.foreach(merge_file) do |line|
+            if /\A### (.+)\Z/ =~ line
+              matcher = Regexp.last_match[1]
+              next
+            end
+            @descriptions[matcher] = '' unless @descriptions[matcher]
+            @descriptions[matcher] += line
+          end
         end
         ERB.new(doc_template, nil, '-').result(binding)
       end
@@ -35,6 +51,7 @@ module Awspec::Generator
 <%= @type_name %> resource type.
 <% @matchers.each do |matcher| %>
 ### <%= matcher %>
+<%- if @descriptions.include?(matcher) -%><%= @descriptions[matcher] %><%- end -%>
 <% end %>
 <%- unless its.empty? -%>#### <%= its.join(', ') %><%- end -%>
 

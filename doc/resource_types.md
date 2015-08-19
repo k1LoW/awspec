@@ -1,6 +1,16 @@
 # Resource Types
 
-[ec2](#ec2)|[rds](#rds)|[rds_db_parameter_group](#rds_db_parameter_group)|[security_group](#security_group)|[vpc](#vpc)|[s3](#s3)|[route53_hosted_zone](#route53_hosted_zone)|[auto_scaling_group](#auto_scaling_group)|[subnet](#subnet)|[route_table](#route_table)|[ebs](#ebs)
+[ec2](#ec2)
+| [rds](#rds)
+| [rds_db_parameter_group](#rds_db_parameter_group)
+| [security_group](#security_group)
+| [vpc](#vpc)
+| [s3](#s3)
+| [route53_hosted_zone](#route53_hosted_zone)
+| [auto_scaling_group](#auto_scaling_group)
+| [subnet](#subnet)
+| [route_table](#route_table)
+| [ebs](#ebs)
 
 ## <a name="ec2">ec2</a>
 
@@ -8,11 +18,28 @@ EC2 resource type.
 
 ### exist
 
+In order to test a EC2 instance exists, you should use **exist** matcher.
+
+```
+describe ec2('my-ec2') do
+  it { should exist }
+end
+```
+
+
 ### be_stopped
 
 ### be_pending
 
 ### be_running
+
+In order to test a EC2 instance is running, you should use **be_running** matcher.
+
+```
+describe ec2('my-ec2') do
+  it { should be_running }
+end
+```
 
 ### be_shutting_down
 

@@ -6,11 +6,11 @@
 
 EC2 resource type.
 
-### belong_to_vpc
-
-### belong_to_subnet
-
 ### exist
+
+### be_stopping
+
+### belong_to_vpc
 
 ### be_stopped
 
@@ -22,7 +22,7 @@ EC2 resource type.
 
 ### have_security_group
 
-### be_stopping
+### belong_to_subnet
 
 ### have_ebs
 
@@ -35,57 +35,57 @@ EC2 resource type.
 
 RDS resource type.
 
-### belong_to_vpc
-
-### belong_to_subnet
-
-### belong_to_db_subnet_group
-
 ### exist
-
-### be_maintenance
-
-### be_available
-
-### be_modifying
-
-### be_creating
-
-### be_rebooting
-
-### be_failed
-
-### be_renaming
-
-### be_incompatible_credentials
-
-### be_resetting_master_credentials
-
-### be_incompatible_option_group
-
-### be_restore_error
 
 ### be_incompatible_restore
 
-### be_storage_full
+### belong_to_vpc
 
-### be_deleting
+### be_maintenance
 
-### be_upgrading
+### belong_to_db_subnet_group
 
-### be_incompatible_network
-
-### have_security_group
+### be_modifying
 
 ### be_backing_up
 
-### have_db_parameter_group
+### be_rebooting
+
+### be_deleting
+
+### be_renaming
+
+### be_inaccessible_encryption_credentials
+
+### be_resetting_master_credentials
+
+### be_incompatible_network
+
+### be_restore_error
 
 ### be_incompatible_parameters
 
+### be_storage_full
+
+### be_available
+
+### be_upgrading
+
+### be_failed
+
+### have_security_group
+
+### be_incompatible_option_group
+
+### have_db_parameter_group
+
+### be_creating
+
 ### have_option_group
 
-### be_inaccessible_encryption_credentials
+### belong_to_subnet
+
+### be_incompatible_credentials
 
 #### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:availability_zone), its(:db_subnet_group), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier)
 ## <a name="rds_db_parameter_group">rds_db_parameter_group</a>
@@ -99,9 +99,9 @@ RdsDbParameterGroup resource type.
 
 SecurityGroup resource type.
 
-### its(:inbound), its(:outbound)
-
 ### exist
+
+### its(:inbound), its(:outbound)
 
 #### its(:ip_permissions_count), its(:ip_permissions_egress_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
 ## <a name="vpc">vpc</a>

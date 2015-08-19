@@ -3,6 +3,10 @@ module Awspec::Generator
     class Base
       def generate_doc
         @matchers += collect_matchers - @ignore_matchers
+        @matchers.sort! do |matcher|
+          next -1 if matcher == 'exist'
+          1
+        end
         @describes += @ret.members.select do |describe|
           next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash)
         end if @ret.respond_to?(:members)
@@ -22,10 +26,6 @@ module Awspec::Generator
           next 'have_' + Regexp.last_match[1] if /\Ahas_(.+)\?\z/ =~ method.to_s
           next 'be_' + Regexp.last_match[1] if /\A(.+)\?\z/ =~ method.to_s
           method.to_s
-        end
-        methods.sort do |method|
-          next -1 if method == 'exist'
-          1
         end
       end
 

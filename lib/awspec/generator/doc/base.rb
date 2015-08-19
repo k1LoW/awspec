@@ -17,11 +17,15 @@ module Awspec::Generator
         methods.select! do |method|
           method.to_s.include?('?')
         end
-        methods.map do |method|
+        methods.map! do |method|
           next 'exist' if 'exists?' == method.to_s
           next 'have_' + Regexp.last_match[1] if /\Ahas_(.+)\?\z/ =~ method.to_s
           next 'be_' + Regexp.last_match[1] if /\A(.+)\?\z/ =~ method.to_s
           method.to_s
+        end
+        methods.sort do |method|
+          next -1 if method == 'exist'
+          1
         end
       end
 

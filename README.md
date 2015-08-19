@@ -89,6 +89,8 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - [x] RouteTable (`route_table`)
 - [x] EBS Volume (`ebs`)
 
+[Resource Types more infomation here](doc/resource_types.md)
+
 ### Next..
 
 - [ ] ELB
@@ -98,8 +100,8 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 
 ## TODO
 
-- [ ] Comment format for Document generation
-- [X] Spec generate command
+- [x] Comment format for Document generation
+- [x] Spec generate command
 
 ## Contributing
 

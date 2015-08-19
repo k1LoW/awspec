@@ -18,7 +18,7 @@ Or install it yourself as:
 
     $ gem install awspec
 
-## Usage
+## Getting Started
 
 ### 1. Generate awspec init files
 

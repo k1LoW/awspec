@@ -3,9 +3,8 @@ module Awspec::Generator
     class Base
       def generate_doc
         @matchers += collect_matchers - @ignore_matchers
-        @matchers.sort! do |matcher|
-          next -1 if matcher == 'exist'
-          1
+        @matchers.sort! do |a, b|
+          sort_num(a) <=> sort_num(b)
         end
         @describes += @ret.members.select do |describe|
           next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash)
@@ -14,6 +13,19 @@ module Awspec::Generator
           'its(:' + describe.to_s + ')'
         end
         ERB.new(doc_template, nil, '-').result(binding)
+      end
+
+      def sort_num(str)
+        case str
+        when 'exist'
+          0
+        when /\Abe_/
+          1
+        when /\Ahave_/
+          2
+        else
+          3
+        end
       end
 
       def collect_matchers

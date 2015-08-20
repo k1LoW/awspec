@@ -59,5 +59,13 @@ module Awspec::Type
         s == res[:subnet_id]
       end
     end
+
+    def has_listener?(protocol:, port:, instance_protocol:, instance_port:)
+      @lb[:listener_descriptions].find do |desc|
+        listener = desc.listener
+        listener.protocol == protocol && listener.load_balancer_port == port && \
+          listener.instance_protocol == instance_protocol && listener.instance_port == instance_port
+      end
+    end
   end
 end

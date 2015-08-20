@@ -23,7 +23,17 @@ Aws.config[:elasticloadbalancing] = {
             'my-lb-security-group-name'
           ],
           policies: {},
-          source_security_group: {}
+          source_security_group: {},
+          listener_descriptions: [
+            {
+              listener: {
+                protocol: 'HTTPS',
+                load_balancer_port: 443,
+                instance_protocol: 'HTTP',
+                instance_port: 80
+              }
+            }
+          ]
         }
       ]
     }

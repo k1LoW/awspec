@@ -6,6 +6,7 @@ require 'awspec/generator/spec/rds'
 require 'awspec/generator/spec/vpc'
 require 'awspec/generator/spec/security_group'
 require 'awspec/generator/spec/route53_hosted_zone'
+require 'awspec/generator/spec/elb'
 
 # Doc
 types.each do |type|

@@ -31,10 +31,10 @@ describe rds('<%= instance_id %>') do
   it { should be_<%= db_instance.db_instance_status %> }
 <% describes.each do |describe| %>
 <%- if db_instance.members.include?(describe.to_sym) && !db_instance[describe.to_sym].nil? -%>
-<%- if db_instance[describe].is_a?(TrueClass) || db_instance[describe].is_a?(FalseClass) -%>
-  its(:<%= describe %>) { should eq <%= db_instance[describe] %> }
-<%- else -%>
+<%- if db_instance[describe].is_a?(String) -%>
   its(:<%= describe %>) { should eq '<%= db_instance[describe] %>' }
+<%- else -%>
+  its(:<%= describe %>) { should eq <%= db_instance[describe] %> }
 <%- end -%>
 <%- end -%>
 <% end %>

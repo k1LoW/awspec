@@ -33,7 +33,8 @@ Aws.config[:elasticloadbalancing] = {
                 instance_port: 80
               }
             }
-          ]
+          ],
+          vpc_id: 'vpc-ab123cde'
         }
       ]
     }
@@ -90,6 +91,19 @@ Aws.config[:ec2] = {
             {
               key: 'Name',
               value: 'my-lb-security-group-tag-name'
+            }
+          ]
+        }
+      ]
+    },
+    describe_vpcs: {
+      vpcs: [
+        {
+          vpc_id: 'vpc-ab123cde',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-vpc'
             }
           ]
         }

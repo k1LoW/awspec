@@ -1,5 +1,3 @@
-require 'pp'
-
 module Awspec::Generator
   module Doc
     class Base
@@ -9,7 +7,7 @@ module Awspec::Generator
           sort_num(a) <=> sort_num(b)
         end
         @describes += @ret.members.select do |describe|
-          next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash)
+          next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash) || @ret[describe].is_a?(Struct)
         end if @ret.respond_to?(:members)
         its = @describes.map do |describe|
           'its(:' + describe.to_s + ')'

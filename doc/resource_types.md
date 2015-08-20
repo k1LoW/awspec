@@ -11,6 +11,7 @@
 | [subnet](#subnet)
 | [route_table](#route_table)
 | [ebs](#ebs)
+| [elb](#elb)
 
 ## <a name="ec2">ec2</a>
 
@@ -216,3 +217,20 @@ EBS resource type.
 ### be_creating
 
 #### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
+## <a name="elb">elb</a>
+
+ELB resource type.
+
+### exist
+
+### have_subnet
+
+### have_ec2
+
+### have_security_group
+
+### belong_to_subnet
+
+### belong_to_vpc
+
+#### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:policies), its(:vpc_id), its(:health_check), its(:source_security_group), its(:created_time), its(:scheme)

@@ -27,10 +27,10 @@ describe vpc('<%= @vpc_id %>') do
   it { should be_<%= vpc.state %> }
 <% describes.each do |describe| %>
 <%- if vpc.key?(describe) -%>
-<%- if vpc[describe].is_a?(TrueClass) || vpc[describe].is_a?(FalseClass) -%>
-  its(:<%= describe %>) { should eq <%= vpc[describe] %> }
-<%- else -%>
+<%- if vpc[describe].is_a?(String) -%>
   its(:<%= describe %>) { should eq '<%= vpc[describe] %>' }
+<%- else -%>
+  its(:<%= describe %>) { should eq <%= vpc[describe] %> }
 <%- end -%>
 <%- end -%>
 <% end %>

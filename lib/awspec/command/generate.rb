@@ -4,7 +4,7 @@ require 'awspec/setup'
 module Awspec
   class Generate < Thor
     types = %w(
-      vpc ec2 rds security_group
+      vpc ec2 rds security_group elb
     )
 
     types.each do |type|

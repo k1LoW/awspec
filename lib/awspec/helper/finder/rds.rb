@@ -11,10 +11,9 @@ module Awspec::Helper
 
       def select_rds_by_vpc_id(vpc_id)
         res = @rds_client.describe_db_instances
-        db_instances = res[:db_instances].select do |db_instance|
+        res[:db_instances].select do |db_instance|
           db_instance.db_subnet_group.vpc_id == vpc_id
         end
-        db_instances
       end
     end
   end

@@ -4,7 +4,7 @@ module Awspec
       TYPES = %w(
         base ec2 rds rds_db_parameter_group security_group
         vpc s3 route53_hosted_zone auto_scaling_group subnet
-        route_table ebs
+        route_table ebs elb
       )
 
       TYPES.each do |type|

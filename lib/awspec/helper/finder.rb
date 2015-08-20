@@ -6,6 +6,7 @@ require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
 require 'awspec/helper/finder/s3'
 require 'awspec/helper/finder/auto_scaling'
+require 'awspec/helper/finder/elb'
 
 module Awspec::Helper
   module Finder
@@ -17,6 +18,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Route53
     include Awspec::Helper::Finder::S3
     include Awspec::Helper::Finder::AutoScaling
+    include Awspec::Helper::Finder::Elb
 
     # rubocop:disable all
     def initialize(id = nil)
@@ -25,6 +27,7 @@ module Awspec::Helper
       @route53_client = Aws::Route53::Client.new
       @s3_client = Aws::S3::Client.new
       @auto_scaling_client = Aws::AutoScaling::Client.new
+      @elb_client = Aws::ElasticLoadBalancing::Client.new
     end
   end
 end

@@ -88,12 +88,12 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - [x] Subnet (`subnet`)
 - [x] RouteTable (`route_table`)
 - [x] EBS Volume (`ebs`)
+- [x] ELB (`elb`)
 
 [Resource Types more infomation here](doc/resource_types.md)
 
 ### Next..
 
-- [ ] ELB
 - IAM
     - [ ] IAM User
 - ...

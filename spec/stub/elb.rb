@@ -21,7 +21,9 @@ Aws.config[:elasticloadbalancing] = {
           },
           security_groups: [
             'my-lb-security-group-name'
-          ]
+          ],
+          policies: {},
+          source_security_group: {}
         }
       ]
     }

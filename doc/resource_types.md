@@ -19,8 +19,6 @@ EC2 resource type.
 
 ### exist
 
-In order to test a EC2 instance exists, you should use **exist** matcher.
-
 ```ruby
 describe ec2('my-ec2') do
   it { should exist }
@@ -33,8 +31,6 @@ end
 ### be_pending
 
 ### be_running
-
-In order to test a EC2 instance is running, you should use **be_running** matcher.
 
 ```ruby
 describe ec2('my-ec2') do
@@ -223,9 +219,19 @@ ELB resource type.
 
 ### exist
 
-### have_subnet
+### have_listener
+
+http://docs.aws.amazon.com/en_us/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html
+
+```ruby
+describe elb('my-elb') do
+  it { should have_listener(protocol: 'HTTPS', port: 443, instance_protocol: 'HTTP', instance_port: 80) }
+end
+```
 
 ### have_ec2
+
+### have_subnet
 
 ### have_security_group
 

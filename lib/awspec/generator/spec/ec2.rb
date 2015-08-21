@@ -17,6 +17,7 @@ module Awspec::Generator
           instance_tag_name = instance.tag_name
           subnet = find_subnet(instance.subnet_id)
           eips = select_eip_by_instance_id(instance_id)
+          volumes = select_ebs_by_instance_id(instance_id)
           content = ERB.new(ec2_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
@@ -56,6 +57,13 @@ describe ec2('<%= instance_id %>') do
 <%- end -%>
 <% eips.each do |eip| %>
   it { should have_eip('<%= eip.public_ip %>') }
+<% end %>
+<% volumes.each do |volume| %>
+<%- if volume.tag_name -%>
+  it { should have_ebs('<%= volume.tag_name %>') }
+<%- else -%>
+  it { should have_ebs('<%= volume.volume_id %>') }
+<%- end -%>
 <% end %>
 end
 EOF

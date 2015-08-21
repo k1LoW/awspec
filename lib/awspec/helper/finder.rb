@@ -6,6 +6,7 @@ require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
 require 'awspec/helper/finder/s3'
 require 'awspec/helper/finder/auto_scaling'
+require 'awspec/helper/finder/ebs'
 require 'awspec/helper/finder/elb'
 
 module Awspec::Helper
@@ -18,6 +19,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Route53
     include Awspec::Helper::Finder::S3
     include Awspec::Helper::Finder::AutoScaling
+    include Awspec::Helper::Finder::Ebs
     include Awspec::Helper::Finder::Elb
 
     # rubocop:disable all

@@ -9,6 +9,7 @@ require 'awspec/generator/spec/route53_hosted_zone'
 require 'awspec/generator/spec/elb'
 
 # Doc
+require 'awspec/generator/doc/type'
 types.each do |type|
   require 'awspec/generator/doc/type/' + type
 end

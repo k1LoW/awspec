@@ -76,7 +76,7 @@ EOF
           when /\Ahave_/
             2
           else
-            3
+            str.length + 3
           end
         end
       end

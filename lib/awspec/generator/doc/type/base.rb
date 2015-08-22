@@ -14,7 +14,9 @@ module Awspec::Generator
         def generate_doc
           @matchers += collect_matchers - @ignore_matchers
           @matchers.sort! do |a, b|
-            sort_num(a) <=> sort_num(b)
+            ret = sort_num(a) <=> sort_num(b)
+            next ret if ret != 0
+            a.casecmp(b)
           end
           @describes += @ret.members.select do |describe|
             next true unless @ret[describe].is_a?(Array) || @ret[describe].is_a?(Hash) || @ret[describe].is_a?(Struct)
@@ -72,11 +74,11 @@ EOF
           when 'exist'
             0
           when /\Abe_/
-            100 + str.length
+            1
           when /\Ahave_/
-            200 + str.length
+            2
           else
-            300 + str.length
+            3
           end
         end
       end

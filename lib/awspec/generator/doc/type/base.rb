@@ -8,11 +8,7 @@ module Awspec::Generator
         end
 
         def type_name
-          self.fullname.split('::').last
-        end
-
-        def fullname
-          self.class.to_s
+          self.class.to_s.split('::').last
         end
 
         def generate_doc

@@ -1,9 +1,8 @@
 module Awspec::Generator
   module Doc
     module Type
-      Aws.config[:stub_responses] = true
-
       def self.generate_doc
+        Aws.config[:stub_responses] = true
         types = Awspec::Helper::Type::TYPES
         types.delete('base')
         links = types.map do |type|

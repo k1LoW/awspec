@@ -26,8 +26,6 @@ end
 ```
 
 
-### be_stopped
-
 ### be_pending
 
 ### be_running
@@ -40,15 +38,17 @@ end
 
 ### be_shutting_down
 
-### be_terminated
+### be_stopped
 
 ### be_stopping
 
-### have_security_group
+### be_terminated
+
+### have_ebs
 
 ### have_eip
 
-### have_ebs
+### have_security_group
 
 ### belong_to_subnet
 
@@ -60,10 +60,6 @@ end
 RDS resource type.
 
 ### exist
-
-### be_upgrading
-
-### be_storage_full
 
 ### be_available
 
@@ -85,7 +81,7 @@ RDS resource type.
 
 ### be_incompatible_parameters
 
-### be_restore_error
+### be_incompatible_restore
 
 ### be_maintenance
 
@@ -97,7 +93,11 @@ RDS resource type.
 
 ### be_resetting_master_credentials
 
-### be_incompatible_restore
+### be_restore_error
+
+### be_storage_full
+
+### be_upgrading
 
 ### have_db_parameter_group
 
@@ -143,9 +143,9 @@ VPC resource type.
 
 ### exist
 
-### be_pending
-
 ### be_available
+
+### be_pending
 
 ### have_network_acl
 
@@ -187,9 +187,9 @@ Subnet resource type.
 
 ### exist
 
-### be_pending
-
 ### be_available
+
+### be_pending
 
 #### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
 ## <a name="route_table">route_table</a>
@@ -207,19 +207,19 @@ EBS resource type.
 
 ### exist
 
-### be_deleted
-
-### be_in_use
-
-### be_deleting
+### be_attached_to
 
 ### be_available
 
+### be_creating
+
+### be_deleted
+
+### be_deleting
+
 ### be_error
 
-### be_attached_to
-
-### be_creating
+### be_in_use
 
 #### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
 ## <a name="elb">elb</a>
@@ -227,6 +227,8 @@ EBS resource type.
 ELB resource type.
 
 ### exist
+
+### have_ec2
 
 ### have_listener
 
@@ -238,11 +240,9 @@ describe elb('my-elb') do
 end
 ```
 
-### have_ec2
+### have_security_group
 
 ### have_subnet
-
-### have_security_group
 
 ### belong_to_subnet
 

@@ -10,5 +10,5 @@ require 'awspec/generator/spec/elb'
 
 # Doc
 types.each do |type|
-  require 'awspec/generator/doc/' + type
+  require 'awspec/generator/doc/type/' + type
 end

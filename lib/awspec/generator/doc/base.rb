@@ -44,9 +44,9 @@ module Awspec::Generator
 
       def doc_template
         template = <<-'EOF'
-## <a name="<%= @type_name.to_snake_case %>"><%= @type_name.to_snake_case %></a>
+## <a name="<%= type_name.to_snake_case %>"><%= type_name.to_snake_case %></a>
 
-<%= @type_name %> resource type.
+<%= type_name %> resource type.
 <% @matchers.each do |matcher| %>
 ### <%= matcher %>
 <%- if @descriptions.include?(matcher) -%><%= @descriptions[matcher] %><%- end -%>

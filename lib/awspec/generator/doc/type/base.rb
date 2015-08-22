@@ -59,11 +59,13 @@ module Awspec::Generator
 ## <a name="<%= @type_name.to_snake_case %>"><%= @type_name.to_snake_case %></a>
 
 <%= @type_name %> resource type.
+<%- if @descriptions.include?('first') -%><%= @descriptions['first'] %><%- end -%>
 <% @matchers.each do |matcher| %>
 ### <%= matcher %>
 <%- if @descriptions.include?(matcher) -%><%= @descriptions[matcher] %><%- end -%>
 <% end %>
 <%- unless its.empty? -%>#### <%= its.join(', ') %><%- end -%>
+<%- if @descriptions.include?('last') -%><%= @descriptions['last'] %><%- end -%>
 
 EOF
           template

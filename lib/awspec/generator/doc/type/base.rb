@@ -72,11 +72,11 @@ EOF
           when 'exist'
             0
           when /\Abe_/
-            1
+            100 + str.length
           when /\Ahave_/
-            2
+            200 + str.length
           else
-            str.length + 3
+            300 + str.length
           end
         end
       end

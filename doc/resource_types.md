@@ -26,9 +26,9 @@ end
 ```
 
 
-### be_stopped
-
 ### be_pending
+
+### be_stopped
 
 ### be_running
 
@@ -38,17 +38,17 @@ describe ec2('my-ec2') do
 end
 ```
 
-### be_shutting_down
+### be_stopping
 
 ### be_terminated
 
-### be_stopping
+### be_shutting_down
 
-### have_security_group
+### have_ebs
 
 ### have_eip
 
-### have_ebs
+### have_security_group
 
 ### belong_to_vpc
 
@@ -61,49 +61,49 @@ RDS resource type.
 
 ### exist
 
-### be_upgrading
-
-### be_storage_full
-
-### be_available
-
-### be_backing_up
-
-### be_creating
+### be_failed
 
 ### be_deleting
 
-### be_failed
+### be_renaming
 
-### be_inaccessible_encryption_credentials
+### be_creating
 
-### be_incompatible_credentials
-
-### be_incompatible_network
-
-### be_incompatible_option_group
-
-### be_incompatible_parameters
-
-### be_restore_error
-
-### be_maintenance
-
-### be_modifying
+### be_available
 
 ### be_rebooting
 
-### be_renaming
+### be_upgrading
 
-### be_resetting_master_credentials
+### be_modifying
+
+### be_backing_up
+
+### be_maintenance
+
+### be_storage_full
+
+### be_restore_error
+
+### be_incompatible_network
 
 ### be_incompatible_restore
 
-### have_db_parameter_group
+### be_incompatible_parameters
+
+### be_incompatible_credentials
+
+### be_incompatible_option_group
+
+### be_resetting_master_credentials
+
+### be_inaccessible_encryption_credentials
 
 ### have_option_group
 
 ### have_security_group
+
+### have_db_parameter_group
 
 ### belong_to_vpc
 
@@ -207,19 +207,19 @@ EBS resource type.
 
 ### exist
 
-### be_deleted
+### be_error
 
 ### be_in_use
 
+### be_deleted
+
 ### be_deleting
+
+### be_creating
 
 ### be_available
 
-### be_error
-
 ### be_attached_to
-
-### be_creating
 
 #### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
 ## <a name="elb">elb</a>
@@ -227,6 +227,10 @@ EBS resource type.
 ELB resource type.
 
 ### exist
+
+### have_ec2
+
+### have_subnet
 
 ### have_listener
 
@@ -237,10 +241,6 @@ describe elb('my-elb') do
   it { should have_listener(protocol: 'HTTPS', port: 443, instance_protocol: 'HTTP', instance_port: 80) }
 end
 ```
-
-### have_ec2
-
-### have_subnet
 
 ### have_security_group
 

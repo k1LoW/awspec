@@ -116,7 +116,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 1. Create your feature branch (`git checkout -b add-type-redshift`)
 2. Generate template files (`bundle exec awspec/bin/toolbox template redshift`)
 3. Fill files with code.
-4. Generate [doc/resource_types.md](doc/resource_types.md) (`bundle exec awspec/bin/toolbox docgen`)
+4. Generate [doc/resource_types.md](doc/resource_types.md) (`bundle exec awspec/bin/toolbox docgen > doc/resource_type.md`)
 5. Run test (`bundle exec rake spec`)
 6. Push to the branch (`git push origin add-type-redshift`)
 7. Create a new Pull Request

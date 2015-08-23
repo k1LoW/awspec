@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/rds'
+Awspec::Stub.load 'rds'
 
 describe rds('my-rds') do
   it { should exist }

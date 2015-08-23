@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/security_group'
+Awspec::Stub.load 'security_group'
 
 describe security_group('sg-1a2b3cd4') do
   it { should exist }

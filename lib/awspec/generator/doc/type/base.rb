@@ -3,7 +3,7 @@ module Awspec::Generator
     module Type
       class Base
         def initialize
-          require File.dirname(__FILE__) + '/../../../../../spec/stub/' + type_name.to_snake_case
+          Awspec::Stub.load type_name.to_snake_case
           @type_name = type_name
         end
 

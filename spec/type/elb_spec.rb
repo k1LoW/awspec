@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/elb'
+Awspec::Stub.load 'elb'
 
 describe elb('my-elb') do
   it { should exist }

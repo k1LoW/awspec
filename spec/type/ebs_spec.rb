@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/ebs'
+Awspec::Stub.load 'ebs'
 
 describe ebs('my-volume') do
   it { should exist }

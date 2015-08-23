@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/s3'
+Awspec::Stub.load 's3'
 
 describe s3('my-bucket') do
   it { should exist }

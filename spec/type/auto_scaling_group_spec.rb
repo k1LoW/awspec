@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/auto_scaling_group'
+Awspec::Stub.load 'auto_scaling_group'
 
 describe auto_scaling_group('my-auto-scaling-group') do
   it { should exist }

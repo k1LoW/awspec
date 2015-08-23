@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/route53_hosted_zone'
+Awspec::Stub.load 'route53_hosted_zone'
 
 describe route53_hosted_zone('example.com.') do
   it { should exist }

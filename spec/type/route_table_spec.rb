@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/route_table'
+Awspec::Stub.load 'route_table'
 
 describe route_table('my-route-table') do
   it { should exist }

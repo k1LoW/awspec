@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/vpc'
+Awspec::Stub.load 'vpc'
 
 describe vpc('vpc-ab123cde') do
   it { should exist }

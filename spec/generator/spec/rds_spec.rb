@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Awspec::Generator::Spec::Rds' do
   before do
-    require 'stub/rds'
+    Awspec::Stub.load 'rds'
   end
   let(:rds) { Awspec::Generator::Spec::Rds.new }
   it 'generate_by_vpc_id generate spec' do

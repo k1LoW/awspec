@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/ec2'
+Awspec::Stub.load 'ec2'
 
 describe ec2('i-ec12345a') do
   it { should exist }

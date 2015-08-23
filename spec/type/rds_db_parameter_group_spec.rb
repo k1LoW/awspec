@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/rds_db_parameter_group'
+Awspec::Stub.load 'rds_db_parameter_group'
 
 describe rds_db_parameter_group('my-rds-db-parameter-group') do
   it { should exist }

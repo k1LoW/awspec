@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'stub/subnet'
+Awspec::Stub.load 'subnet'
 
 describe subnet('my-subnet') do
   it { should exist }

@@ -13,3 +13,6 @@ require 'awspec/generator/doc/type'
 types.each do |type|
   require 'awspec/generator/doc/type/' + type
 end
+
+# Template
+require 'awspec/generator/template'

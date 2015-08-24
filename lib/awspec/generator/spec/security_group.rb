@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
         describes = %w(
-          group_id
+          group_id group_name
         )
         vpc = find_vpc(vpc_id)
         fail 'Not Found VPC' unless vpc
@@ -36,6 +36,7 @@ module Awspec::Generator
             end
             permission.user_id_group_pairs.each do |group|
               target = group.group_name
+              target = group.group_id unless group.group_name
               linespecs.push(ERB.new(security_group_spec_linetemplate, nil, '-').result(binding))
             end
           end
@@ -52,7 +53,7 @@ EOF
 
       def security_group_spec_template
         template = <<-'EOF'
-describe security_group('<%= sg.group_name %>') do
+describe security_group('<%= sg.group_id %>') do
   it { should exist }
 <% describes.each do |describe| %>
 <%- if sg.key?(describe) -%>

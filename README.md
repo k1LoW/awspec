@@ -2,6 +2,8 @@
 
 RSpec tests for your AWS resources.
 
+[Resource Types](doc/resource_types.md)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -94,14 +96,10 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 
 ### Next..
 
+- [ ] Lambda
 - IAM
     - [ ] IAM User
 - ...
-
-## TODO
-
-- [x] Comment format for Document generation
-- [x] Spec generate command
 
 ## Contributing
 

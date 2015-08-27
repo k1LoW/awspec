@@ -91,12 +91,12 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - [x] RouteTable (`route_table`)
 - [x] EBS Volume (`ebs`)
 - [x] ELB (`elb`)
+- [x] Lambda (`lambda`)
 
 [Resource Types more infomation here](doc/resource_types.md)
 
 ### Next..
 
-- [ ] Lambda
 - IAM
     - [ ] IAM User
 - ...

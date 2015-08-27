@@ -12,6 +12,7 @@
 | [route_table](#route_table)
 | [ebs](#ebs)
 | [elb](#elb)
+| [lambda](#lambda)
 
 ## <a name="ec2">ec2</a>
 
@@ -256,3 +257,12 @@ end
 ### belong_to_vpc
 
 #### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:vpc_id), its(:created_time), its(:scheme)
+## <a name="lambda">lambda</a>
+
+Lambda resource type.
+
+### exist
+
+### have_event_source
+
+#### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified)

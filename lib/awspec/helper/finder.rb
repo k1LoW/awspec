@@ -9,10 +9,12 @@ require 'awspec/helper/finder/auto_scaling'
 require 'awspec/helper/finder/ebs'
 require 'awspec/helper/finder/elb'
 require 'awspec/helper/finder/lambda'
+require 'awspec/helper/finder/policy'
 
 module Awspec::Helper
   module Finder
     attr_reader :ec2_client
+    attr_reader :iam_client
     include Awspec::Helper::Finder::Vpc
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::SecurityGroup
@@ -23,6 +25,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ebs
     include Awspec::Helper::Finder::Elb
     include Awspec::Helper::Finder::Lambda
+    include Awspec::Helper::Finder::Policy
 
     # rubocop:disable all
     def initialize(id = nil)
@@ -33,6 +36,7 @@ module Awspec::Helper
       @auto_scaling_client = Aws::AutoScaling::Client.new
       @elb_client = Aws::ElasticLoadBalancing::Client.new
       @lambda_client = Aws::Lambda::Client.new
+      @iam_client = Aws::IAM::Client.new
     end
   end
 end

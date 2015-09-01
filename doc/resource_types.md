@@ -13,6 +13,7 @@
 | [ebs](#ebs)
 | [elb](#elb)
 | [lambda](#lambda)
+| [policy](#policy)
 
 ## <a name="ec2">ec2</a>
 
@@ -268,3 +269,18 @@ Lambda resource type.
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
 #### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified)
+## <a name="policy">policy</a>
+
+policy resource type.
+
+### exist
+
+### be_attachable
+
+### be_attached_to_group
+
+### be_attached_to_role
+
+### be_attached_to_user
+
+

@@ -15,7 +15,7 @@ Aws.config[:iam] = {
           path: '/',
           group_name: 'my-iam-group',
           group_id: 'GABCDEFGHI123455689',
-          arn: 'arn:aws:iam::123456789012:user/my-iam-group',
+          arn: 'arn:aws:iam::123456789012:group/my-iam-group',
           create_date: Time.local(2015)
         }
       ]

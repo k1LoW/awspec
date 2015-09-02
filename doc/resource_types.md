@@ -277,4 +277,6 @@ IamUser resource type.
 
 ### have_iam_policy
 
+### belong_to_iam_group
+
 #### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)

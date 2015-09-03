@@ -30,7 +30,7 @@ EOF
       path = 'lib/awspec/stub/' + @type.to_snake_case + '.rb'
       full_path = @root_path + path
       content = <<-"EOF"
-# Aws.config[:ec2]= {
+# Aws.config[:ec2] = {
 #   stub_responses: true
 # }
 EOF

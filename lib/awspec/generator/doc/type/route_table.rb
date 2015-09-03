@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type = Awspec::Type::RouteTable.new('my-route-table')
-          @ret = @type.route_table
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

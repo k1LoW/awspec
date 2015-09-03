@@ -1,11 +1,11 @@
 module Awspec::Type
   class Route53HostedZone < Base
-    attr_reader :hosted_zone, :resource_record_sets
+    attr_reader :resource_record_sets
 
     def initialize(id)
       super
-      @hosted_zone = find_hosted_zone(id)
-      @id = @hosted_zone[:id] if @hosted_zone
+      @resource = find_hosted_zone(id)
+      @id = @resource[:id] if @resource
       return unless @id
       res = @route53_client.list_resource_record_sets({
                                                         hosted_zone_id: @id
@@ -28,15 +28,6 @@ module Awspec::Type
           record_set.alias_target.dns_name == options[:alias_dns_name] && \
           record_set.alias_target.hosted_zone_id == options[:alias_hosted_zone_id]
         end
-      end
-    end
-
-    def method_missing(name)
-      describe = name.to_sym
-      if @hosted_zone.members.include?(describe)
-        @hosted_zone[describe]
-      else
-        super
       end
     end
   end

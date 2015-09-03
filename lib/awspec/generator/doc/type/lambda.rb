@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'Lambda'
           @type = Awspec::Type::Lambda.new('my-lambda-function-name')
-          @ret = @type.function
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

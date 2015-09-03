@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'VPC'
           @type = Awspec::Type::Vpc.new('my-vpc')
-          @ret = @type.vpc
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

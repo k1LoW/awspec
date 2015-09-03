@@ -63,7 +63,7 @@ module Awspec::Generator
           super
           @type_name = '#{@type.to_camel_case}'
           @type = Awspec::Type::#{@type.to_camel_case}.new('my-#{@type.to_snake_case.tr('_', '-')}')
-          # @ret = # @FIXME
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

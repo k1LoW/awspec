@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type = Awspec::Type::Subnet.new('my-route-table')
-          @ret = @type.subnet
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

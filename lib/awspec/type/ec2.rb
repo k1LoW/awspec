@@ -1,12 +1,12 @@
 module Awspec::Type
   class Ec2 < Base
-    attr_reader :client, :instance
+    attr_reader :client
 
     def initialize(id)
       super
       @client = @ec2_client
-      @instance = find_ec2(id)
-      @id = @instance[:instance_id] if @instance
+      @resource = find_ec2(id)
+      @id = @resource[:instance_id] if @resource
     end
 
     states = %w(
@@ -16,16 +16,7 @@ module Awspec::Type
 
     states.each do |state|
       define_method state.tr('-', '_') + '?' do
-        @instance[:state][:name] == state
-      end
-    end
-
-    def method_missing(name)
-      describe = name.to_sym
-      if @instance.members.include?(describe)
-        @instance[describe]
-      else
-        super
+        @resource[:state][:name] == state
       end
     end
 
@@ -40,7 +31,7 @@ module Awspec::Type
     end
 
     def has_security_group?(sg_id)
-      sgs = @instance[:security_groups]
+      sgs = @resource[:security_groups]
       ret = sgs.find do |sg|
         sg[:group_id] == sg_id || sg[:group_name] == sg_id
       end
@@ -53,7 +44,7 @@ module Awspec::Type
     end
 
     def has_ebs?(volume_id)
-      blocks = @instance[:block_device_mappings]
+      blocks = @resource[:block_device_mappings]
       ret = blocks.find do |block|
         next false unless block[:ebs]
         block[:ebs][:volume_id] == volume_id

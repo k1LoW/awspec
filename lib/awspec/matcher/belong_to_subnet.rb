@@ -10,7 +10,7 @@ RSpec::Matchers.define :belong_to_subnet do |subnet_id|
 
     # RDS
     if resource.instance_of?(Awspec::Type::Rds)
-      subnets = resource.instance[:db_subnet_group][:subnets]
+      subnets = resource.resource[:db_subnet_group][:subnets]
       ret = subnets.find do |s|
         s[:subnet_identifier] == subnet_id
       end

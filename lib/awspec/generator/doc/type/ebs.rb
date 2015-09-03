@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'EBS'
           @type = Awspec::Type::Ebs.new('my-ebs')
-          @ret = @type.volume
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

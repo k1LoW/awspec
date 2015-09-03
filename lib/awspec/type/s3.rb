@@ -1,11 +1,9 @@
 module Awspec::Type
   class S3 < Base
-    attr_reader :bucket
-
     def initialize(id)
       super
-      @bucket = find_bucket(id)
-      @id = id if @bucket
+      @resource = find_bucket(id)
+      @id = id if @resource
     end
 
     def has_object?(key)

@@ -15,6 +15,7 @@
 | [lambda](#lambda)
 | [iam_user](#iam_user)
 | [iam_group](#iam_group)
+| [iam_role](#iam_role)
 
 ## <a name="ec2">ec2</a>
 
@@ -292,3 +293,12 @@ IamGroup resource type.
 ### have_iam_user
 
 #### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
+## <a name="iam_role">iam_role</a>
+
+IamRole resource type.
+
+### exist
+
+### have_iam_policy
+
+#### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)

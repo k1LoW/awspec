@@ -14,6 +14,7 @@
 | [elb](#elb)
 | [lambda](#lambda)
 | [iam_user](#iam_user)
+| [iam_group](#iam_group)
 
 ## <a name="ec2">ec2</a>
 
@@ -280,3 +281,14 @@ IamUser resource type.
 ### belong_to_iam_group
 
 #### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)
+## <a name="iam_group">iam_group</a>
+
+IamGroup resource type.
+
+### exist
+
+### have_iam_policy
+
+### have_iam_user
+
+#### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)

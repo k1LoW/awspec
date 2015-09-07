@@ -94,7 +94,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - [x] Lambda (`lambda`)
 - IAM
     - [x] IAM User (`iam_user`)
-    - [ ] IAM Group
+    - [x] IAM Group (`iam_group`)
     - [ ] IAM Role
     - [ ] IAM Policy
 

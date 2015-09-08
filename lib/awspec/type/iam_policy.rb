@@ -7,7 +7,7 @@ module Awspec::Type
     end
 
     def attachable?
-      policy.is_attachable
+      @resource.is_attachable
     end
 
     def attached_to_user?(user_id = nil)

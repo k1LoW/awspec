@@ -12,7 +12,7 @@ module Awspec::Helper
           (res.next_page? && res = res.next_page) || break
         end
 
-        selected.size == 1 && selected.first
+        selected.first if selected.count == 1
       end
 
       def find_iam_group(id)
@@ -26,7 +26,7 @@ module Awspec::Helper
           (res.next_page? && res = res.next_page) || break
         end
 
-        selected.size == 1 && selected.first
+        selected.first if selected.count == 1
       end
 
       def find_iam_role(id)
@@ -40,7 +40,7 @@ module Awspec::Helper
           (res.next_page? && res = res.next_page) || break
         end
 
-        selected.size == 1 && selected.first
+        selected.first if selected.count == 1
       end
 
       def find_iam_policy(id)
@@ -54,7 +54,7 @@ module Awspec::Helper
           (res.next_page? && res = res.next_page) || break
         end
 
-        selected.size == 1 && selected.first
+        selected.first if selected.count == 1
       end
 
       def select_iam_group_by_user_name(user_name)

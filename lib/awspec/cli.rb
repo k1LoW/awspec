@@ -9,7 +9,7 @@ module Awspec
       Awspec::Setup.run
     end
 
-    desc 'generate [resource] [vpc_id]', 'Generate *_spec.rb from VPC ID'
+    desc 'generate [resource]', 'Generate AWS resource *_spec.rb'
     subcommand 'generate', Generate
     map 'g' => 'generate'
   end

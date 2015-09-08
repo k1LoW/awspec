@@ -100,8 +100,10 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 
 [Resource Types more infomation here](doc/resource_types.md)
 
-### Next..
+### Next..?
 
+- [ ] ElastiCache
+- [ ] CloudWatch
 - ...
 
 ## Contributing

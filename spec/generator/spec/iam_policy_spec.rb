@@ -14,8 +14,8 @@ describe iam_policy('my-iam-policy') do
   its(:arn) { should eq 'arn:aws:iam::aws:policy/my-iam-policy' }
   its(:update_date) { should eq Time.parse('2015-01-02 10:00:00 UTC') }
   its(:attachment_count) { should eq 1 }
-  it { should_not be_attached_to_user }
-  it { should_not be_attached_to_group }
+  it { should     be_attached_to_user('my-iam-user') }
+  it { should     be_attached_to_group('my-iam-group') }
   it { should     be_attached_to_role('HelloIAmGodRole') }
 end
 
@@ -25,8 +25,8 @@ describe iam_policy('AmazonAPIGatewayAdministrator') do
   its(:arn) { should eq 'arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator' }
   its(:update_date) { should eq Time.parse('2015-07-09 17:34:45 UTC') }
   its(:attachment_count) { should eq 1 }
-  it { should_not be_attached_to_user }
-  it { should_not be_attached_to_group }
+  it { should     be_attached_to_user('my-iam-user') }
+  it { should     be_attached_to_group('my-iam-group') }
   it { should     be_attached_to_role('HelloIAmGodRole') }
 end
 
@@ -36,8 +36,8 @@ describe iam_policy('AmazonEC2RoleforDataPipelineRole') do
   its(:arn) { should eq 'arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforDataPipelineRole' }
   its(:update_date) { should eq Time.parse('2015-03-19 19:21:14 UTC') }
   its(:attachment_count) { should eq 1 }
-  it { should_not be_attached_to_user }
-  it { should_not be_attached_to_group }
+  it { should     be_attached_to_user('my-iam-user') }
+  it { should     be_attached_to_group('my-iam-group') }
   it { should     be_attached_to_role('HelloIAmGodRole') }
 end
 EOF

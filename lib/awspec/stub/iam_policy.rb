@@ -31,6 +31,12 @@ Aws.config[:iam] = {
     list_entities_for_policy: {
       policy_roles: [
         { role_name: 'HelloIAmGodRole' }
+      ],
+      policy_users: [
+        { user_name: 'my-iam-user' }
+      ],
+      policy_groups: [
+        { group_name: 'my-iam-group' }
       ]
     }
   }

@@ -96,7 +96,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
     - [x] IAM User (`iam_user`)
     - [x] IAM Group (`iam_group`)
     - [x] IAM Role (`iam_role`)
-    - [ ] IAM Policy
+    - [x] IAM Policy (`iam_policy`)
 
 [Resource Types more infomation here](doc/resource_types.md)
 

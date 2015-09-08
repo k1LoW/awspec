@@ -8,7 +8,7 @@ Aws.config[:iam] = {
           is_attachable: true,
           policy_id: 'PABCDEFGHI123455689',
           policy_name: 'my-iam-policy',
-          update_date: Time.new(2015)
+          update_date: Time.new(2015, 1, 2, 10, 00, 00, '+00:00')
         },
         {
           attachment_count: 1,

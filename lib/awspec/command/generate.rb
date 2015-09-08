@@ -22,6 +22,12 @@ module Awspec
       puts Awspec::Generator::Spec::Route53HostedZone.new.generate_by_domain_name(hosted_zone)
     end
 
+    desc 'iam_policy', 'Generate attached iam_policy spec'
+    def iam_policy
+      load_secrets
+      puts Awspec::Generator::Spec::IamPolicy.new.generate_all
+    end
+
     no_commands do
       def load_secrets
         creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')

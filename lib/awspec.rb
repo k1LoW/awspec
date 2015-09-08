@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'rspec'
 require 'rspec/its'
+require 'time'
 require 'awspec/version'
 require 'awspec/cli'
 require 'awspec/stub'

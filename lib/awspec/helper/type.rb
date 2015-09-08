@@ -5,6 +5,7 @@ module Awspec
         base ec2 rds rds_db_parameter_group security_group
         vpc s3 route53_hosted_zone auto_scaling_group subnet
         route_table ebs elb lambda iam_user iam_group iam_role
+        iam_policy
       )
 
       TYPES.each do |type|

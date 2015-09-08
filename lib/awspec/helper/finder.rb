@@ -15,7 +15,6 @@ require 'awspec/helper/finder/iam'
 module Awspec::Helper
   module Finder
     attr_reader :ec2_client
-    attr_reader :iam_client
     include Awspec::Helper::Finder::Vpc
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::SecurityGroup

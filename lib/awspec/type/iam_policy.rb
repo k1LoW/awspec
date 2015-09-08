@@ -1,14 +1,9 @@
 module Awspec::Type
-  class Policy < Base
-    attr_reader :policy
-
+  class IamPolicy < Base
     def initialize(id)
       super
-      @policy = find_policy(id)
-    end
-
-    def exists?
-      !!policy
+      @resource = find_iam_policy(id)
+      @id = @resource[:policy_id] if @resource
     end
 
     def attachable?
@@ -16,7 +11,7 @@ module Awspec::Type
     end
 
     def attached_to_user?(user_name = nil)
-      users = select_attached_users(policy.arn)
+      users = select_attached_users(@resource.arn)
       if user_name
         users.any?{|g| g.user_name == user_name }
       else
@@ -25,7 +20,7 @@ module Awspec::Type
     end
 
     def attached_to_group?(group_name = nil)
-      groups = select_attached_groups(policy.arn)
+      groups = select_attached_groups(@resource.arn)
       if group_name
         groups.any?{|g| g.group_name == group_name }
       else
@@ -34,20 +29,11 @@ module Awspec::Type
     end
 
     def attached_to_role?(role_name = nil)
-      roles = select_attached_roles(policy.arn)
+      roles = select_attached_roles(@resource.arn)
       if role_name
         roles.any?{|g| g.role_name == role_name }
       else
         !roles.empty?
-      end
-    end
-
-    def method_missing(name)
-      describe = name.to_s
-      if policy.key?(describe)
-        policy[describe]
-      else
-        super
       end
     end
   end

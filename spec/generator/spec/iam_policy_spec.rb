@@ -1,14 +1,25 @@
 require 'spec_helper'
 
-describe Awspec::Generator::Spec::Policy do
+describe Awspec::Generator::Spec::IamPolicy do
   before do
-    Awspec::Stub.load 'policy'
+    Awspec::Stub.load 'iam_policy'
   end
-  let(:policy) { Awspec::Generator::Spec::Policy.new }
+  let(:policy) { Awspec::Generator::Spec::IamPolicy.new }
   it 'generates spec' do
     spec = <<-'EOF'
 
-describe policy('AmazonAPIGatewayAdministrator') do
+describe iam_policy('my-iam-policy') do
+  it { should exist }
+  it { should be_attachable }
+  its(:arn) { should eq 'arn:aws:iam::aws:policy/my-iam-policy' }
+  its(:update_date) { should eq Time.parse('2014-12-31 15:00:00 UTC') }
+  its(:attachment_count) { should eq 1 }
+  it { should_not be_attached_to_user }
+  it { should_not be_attached_to_group }
+  it { should     be_attached_to_role('HelloIAmGodRole') }
+end
+
+describe iam_policy('AmazonAPIGatewayAdministrator') do
   it { should exist }
   it { should be_attachable }
   its(:arn) { should eq 'arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator' }
@@ -19,7 +30,7 @@ describe policy('AmazonAPIGatewayAdministrator') do
   it { should     be_attached_to_role('HelloIAmGodRole') }
 end
 
-describe policy('AmazonEC2RoleforDataPipelineRole') do
+describe iam_policy('AmazonEC2RoleforDataPipelineRole') do
   it { should exist }
   it { should be_attachable }
   its(:arn) { should eq 'arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforDataPipelineRole' }

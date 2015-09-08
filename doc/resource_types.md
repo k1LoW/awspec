@@ -16,7 +16,7 @@
 | [iam_user](#iam_user)
 | [iam_group](#iam_group)
 | [iam_role](#iam_role)
-| [policy](#policy)
+| [iam_policy](#iam_policy)
 
 ## <a name="ec2">ec2</a>
 
@@ -303,9 +303,9 @@ IamRole resource type.
 ### have_iam_policy
 
 #### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
-## <a name="policy">policy</a>
+## <a name="iam_policy">iam_policy</a>
 
-policy resource type.
+IamPolicy resource type.
 
 ### exist
 
@@ -317,4 +317,4 @@ policy resource type.
 
 ### be_attached_to_user
 
-
+#### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date)

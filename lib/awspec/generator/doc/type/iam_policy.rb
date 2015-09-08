@@ -1,12 +1,12 @@
 module Awspec::Generator
   module Doc
     module Type
-      class Policy < Base
+      class IamPolicy < Base
         def initialize
           super
-          @type_name = 'policy'
-          @type = Awspec::Type::Policy.new('my-policy')
-          @ret = @type.policy
+          @type_name = 'IamPolicy'
+          @type = Awspec::Type::IamPolicy.new('my-iam-policy')
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

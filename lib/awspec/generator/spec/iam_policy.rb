@@ -1,6 +1,6 @@
 module Awspec::Generator
   module Spec
-    class Policy
+    class IamPolicy
       include Awspec::Helper::Finder
       def generate_all
         policies = select_all_attached_policies
@@ -12,7 +12,7 @@ module Awspec::Generator
       def policy_spec_template
         template = <<-'EOF'
 <% policies.each do |policy| %>
-describe policy('<%= policy.policy_name %>') do
+describe iam_policy('<%= policy.policy_name %>') do
   it { should exist }
 <%- if policy.is_attachable -%>
   it { should be_attachable }

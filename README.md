@@ -92,13 +92,16 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - [x] EBS Volume (`ebs`)
 - [x] ELB (`elb`)
 - [x] Lambda (`lambda`)
+- IAM
+    - [x] IAM User (`iam_user`)
+    - [x] IAM Group (`iam_group`)
+    - [x] IAM Role (`iam_role`)
+    - [ ] IAM Policy
 
 [Resource Types more infomation here](doc/resource_types.md)
 
 ### Next..
 
-- IAM
-    - [ ] IAM User
 - ...
 
 ## Contributing

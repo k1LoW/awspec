@@ -13,3 +13,6 @@ require 'awspec/matcher/have_record_set'
 
 # RouteTable
 require 'awspec/matcher/have_route'
+
+# IAM User
+require 'awspec/matcher/belong_to_iam_group'

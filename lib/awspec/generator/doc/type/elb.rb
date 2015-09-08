@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'ELB'
           @type = Awspec::Type::Elb.new('my-elb')
-          @ret = @type.lb
+          @ret = @type.resource
           @matchers = %w(belong_to_vpc belong_to_subnet)
           @ignore_matchers = []
           @describes = %w(

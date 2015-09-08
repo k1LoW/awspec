@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type = Awspec::Type::Route53HostedZone.new('example.com.')
-          @ret = @type.hosted_zone
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

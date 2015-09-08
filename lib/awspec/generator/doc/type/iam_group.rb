@@ -1,10 +1,11 @@
 module Awspec::Generator
   module Doc
     module Type
-      class AutoScalingGroup < Base
+      class IamGroup < Base
         def initialize
           super
-          @type = Awspec::Type::AutoScalingGroup.new('my-auto-scaling-group')
+          @type_name = 'IamGroup'
+          @type = Awspec::Type::IamGroup.new('my-iam-group')
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []

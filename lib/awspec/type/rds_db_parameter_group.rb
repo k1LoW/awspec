@@ -18,6 +18,7 @@ module Awspec::Type
         end
       end
       @id = name unless @parameters.empty?
+      @resource = @parameters
     end
 
     def method_missing(name)

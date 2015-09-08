@@ -30,7 +30,7 @@ EOF
       path = 'lib/awspec/stub/' + @type.to_snake_case + '.rb'
       full_path = @root_path + path
       content = <<-"EOF"
-# Aws.config[:ec2]= {
+# Aws.config[:ec2] = {
 #   stub_responses: true
 # }
 EOF
@@ -63,7 +63,7 @@ module Awspec::Generator
           super
           @type_name = '#{@type.to_camel_case}'
           @type = Awspec::Type::#{@type.to_camel_case}.new('my-#{@type.to_snake_case.tr('_', '-')}')
-          # @ret = # @FIXME
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

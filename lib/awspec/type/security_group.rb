@@ -1,22 +1,13 @@
 module Awspec::Type
   class SecurityGroup < Base
-    attr_reader :client, :sg, :inbound
+    attr_reader :client
 
     def initialize(id)
       super
       @client = @ec2_client
       @inbound = true
-      @sg = find_security_group(id)
-      @id = @sg[:group_id] if @sg
-    end
-
-    def method_missing(name)
-      describe = name.to_s
-      if @sg.key?(describe)
-        @sg[describe]
-      else
-        super
-      end
+      @resource = find_security_group(id)
+      @id = @resource[:group_id] if @resource
     end
 
     def opened?(port = nil, protocol = nil, cidr = nil)
@@ -28,7 +19,7 @@ module Awspec::Type
     end
 
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @sg[:ip_permissions].find do |permission|
+      @resource[:ip_permissions].find do |permission|
         next true unless port
         next true unless permission[:from_port]
         next true unless permission[:to_port]
@@ -52,7 +43,7 @@ module Awspec::Type
     end
 
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @sg[:ip_permissions_egress].find do |permission|
+      @resource[:ip_permissions_egress].find do |permission|
         next true unless port
         next true unless permission[:from_port]
         next true unless permission[:to_port]
@@ -86,12 +77,12 @@ module Awspec::Type
     end
 
     def ip_permissions_count
-      @sg[:ip_permissions].count
+      @resource[:ip_permissions].count
     end
     alias_method :inbound_permissions_count, :ip_permissions_count
 
     def ip_permissions_egress_count
-      @sg[:ip_permissions_egress].count
+      @resource[:ip_permissions_egress].count
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
   end

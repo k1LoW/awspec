@@ -13,6 +13,9 @@
 | [ebs](#ebs)
 | [elb](#elb)
 | [lambda](#lambda)
+| [iam_user](#iam_user)
+| [iam_group](#iam_group)
+| [iam_role](#iam_role)
 | [policy](#policy)
 
 ## <a name="ec2">ec2</a>
@@ -269,6 +272,37 @@ Lambda resource type.
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
 #### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified)
+## <a name="iam_user">iam_user</a>
+
+IamUser resource type.
+
+### exist
+
+### have_iam_policy
+
+### belong_to_iam_group
+
+#### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)
+## <a name="iam_group">iam_group</a>
+
+IamGroup resource type.
+
+### exist
+
+### have_iam_policy
+
+### have_iam_user
+
+#### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
+## <a name="iam_role">iam_role</a>
+
+IamRole resource type.
+
+### exist
+
+### have_iam_policy
+
+#### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
 ## <a name="policy">policy</a>
 
 policy resource type.

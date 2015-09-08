@@ -10,6 +10,7 @@ require 'awspec/helper/finder/ebs'
 require 'awspec/helper/finder/elb'
 require 'awspec/helper/finder/lambda'
 require 'awspec/helper/finder/policy'
+require 'awspec/helper/finder/iam'
 
 module Awspec::Helper
   module Finder
@@ -26,6 +27,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Elb
     include Awspec::Helper::Finder::Lambda
     include Awspec::Helper::Finder::Policy
+    include Awspec::Helper::Finder::Iam
 
     # rubocop:disable all
     def initialize(id = nil)

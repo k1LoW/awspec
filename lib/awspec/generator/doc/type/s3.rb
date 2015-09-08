@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type = Awspec::Type::S3.new('my-bucket')
-          @ret = @type.bucket
+          @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
           @describes = []

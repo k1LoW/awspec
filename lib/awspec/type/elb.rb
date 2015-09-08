@@ -1,11 +1,9 @@
 module Awspec::Type
   class Elb < Base
-    attr_reader :lb
-
     def initialize(id)
       super
-      @lb = find_elb(id)
-      @id = @lb[:load_balancer_name] if @lb
+      @resource = find_elb(id)
+      @id = @resource[:load_balancer_name] if @resource
     end
 
     health_check_options = %w(
@@ -15,28 +13,19 @@ module Awspec::Type
 
     health_check_options.each do |option|
       define_method 'health_check_' + option do
-        @lb[:health_check][option]
-      end
-    end
-
-    def method_missing(name)
-      describe = name.to_sym
-      if @lb.members.include?(describe)
-        @lb[describe]
-      else
-        super
+        @resource[:health_check][option]
       end
     end
 
     def has_ec2?(id)
       ec2 = find_ec2(id)
-      @lb.instances.find do |instance|
+      @resource.instances.find do |instance|
         instance.instance_id = ec2.instance_id
       end if ec2
     end
 
     def has_security_group?(sg_id)
-      sgs = @lb[:security_groups]
+      sgs = @resource[:security_groups]
       ret = sgs.find do |sg|
         sg == sg_id
       end
@@ -49,7 +38,7 @@ module Awspec::Type
     end
 
     def has_subnet?(subnet_id)
-      subnets = @lb[:subnets]
+      subnets = @resource[:subnets]
       ret = subnets.find do |s|
         s == subnet_id
       end
@@ -61,7 +50,7 @@ module Awspec::Type
     end
 
     def has_listener?(protocol:, port:, instance_protocol:, instance_port:)
-      @lb[:listener_descriptions].find do |desc|
+      @resource[:listener_descriptions].find do |desc|
         listener = desc.listener
         listener.protocol == protocol && listener.load_balancer_port == port && \
           listener.instance_protocol == instance_protocol && listener.instance_port == instance_port

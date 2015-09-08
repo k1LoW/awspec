@@ -1,12 +1,12 @@
 module Awspec::Type
   class Vpc < Base
-    attr_reader :client, :vpc
+    attr_reader :client
 
     def initialize(id)
       super
       @client = @ec2_client
-      @vpc = find_vpc(id)
-      @id = @vpc[:vpc_id] if @vpc
+      @resource = find_vpc(id)
+      @id = @resource[:vpc_id] if @resource
     end
 
     states = %w(
@@ -15,16 +15,7 @@ module Awspec::Type
 
     states.each do |state|
       define_method state + '?' do
-        @vpc[:state] == state
-      end
-    end
-
-    def method_missing(name)
-      describe = name.to_s
-      if @vpc.key?(describe)
-        @vpc[describe]
-      else
-        super
+        @resource[:state] == state
       end
     end
 

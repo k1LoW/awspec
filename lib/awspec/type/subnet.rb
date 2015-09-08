@@ -1,11 +1,9 @@
 module Awspec::Type
   class Subnet < Base
-    attr_reader :subnet
-
     def initialize(id)
       super
-      @subnet = find_subnet(id)
-      @id = @subnet[:subnet_id] if @subnet
+      @resource = find_subnet(id)
+      @id = @resource[:subnet_id] if @resource
     end
 
     states = %w(
@@ -14,16 +12,7 @@ module Awspec::Type
 
     states.each do |state|
       define_method state + '?' do
-        @subnet[:state] == state
-      end
-    end
-
-    def method_missing(name)
-      describe = name.to_sym
-      if @subnet.members.include?(describe)
-        @subnet[describe]
-      else
-        super
+        @resource[:state] == state
       end
     end
   end

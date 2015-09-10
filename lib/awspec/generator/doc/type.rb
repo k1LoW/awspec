@@ -17,7 +17,7 @@ EOF
         doc = ERB.new(header, nil, '-').result(binding)
 
         types.map do |type|
-          doc += eval "Awspec::Generator::Doc::Type::#{type.to_camel_case}.new.generate_doc"
+          doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
         end
         doc
       end

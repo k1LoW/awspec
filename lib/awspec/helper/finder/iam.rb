@@ -1,60 +1,22 @@
 module Awspec::Helper
   module Finder
     module Iam
-      def find_iam_user(id)
-        selected = []
-        res = @iam_client.list_users
-
-        loop do
-          selected += res.users.select do |u|
-            u.user_name == id || u.user_id == id || u.arn == id
+      # find_iam_user, find_iam_group find_iam_role find_iam_policy
+      role_types = %w(user group role policy)
+      role_types.each do |type|
+        define_method 'find_iam_' + type do |*args|
+          id = args.first
+          selected = []
+          res = @iam_client.method('list_' + type.pluralize).call
+          loop do
+            selected += res[type.pluralize].select do |u|
+              u[type + '_name'] == id || u[type + '_id'] == id || u.arn == id
+            end
+            (res.next_page? && res = res.next_page) || break
           end
-          (res.next_page? && res = res.next_page) || break
+
+          selected.first if selected.count == 1
         end
-
-        selected.first if selected.count == 1
-      end
-
-      def find_iam_group(id)
-        selected = []
-        res = @iam_client.list_groups
-
-        loop do
-          selected += res.groups.select do |g|
-            g.group_name == id || g.group_id == id || g.arn == id
-          end
-          (res.next_page? && res = res.next_page) || break
-        end
-
-        selected.first if selected.count == 1
-      end
-
-      def find_iam_role(id)
-        selected = []
-        res = @iam_client.list_roles
-
-        loop do
-          selected += res.roles.select do |r|
-            r.role_name == id || r.role_id == id || r.arn == id
-          end
-          (res.next_page? && res = res.next_page) || break
-        end
-
-        selected.first if selected.count == 1
-      end
-
-      def find_iam_policy(id)
-        selected = []
-        res = @iam_client.list_policies
-
-        loop do
-          selected += res.policies.select do |p|
-            p.policy_name == id || p.policy_id == id || p.arn == id
-          end
-          (res.next_page? && res = res.next_page) || break
-        end
-
-        selected.first if selected.count == 1
       end
 
       def select_iam_group_by_user_name(user_name)

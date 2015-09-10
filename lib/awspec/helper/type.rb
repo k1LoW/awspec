@@ -12,7 +12,7 @@ module Awspec
         require "awspec/type/#{type}"
         define_method type do |*args|
           name = args.first
-          eval "Awspec::Type::#{type.to_camel_case}.new(name)"
+          eval "Awspec::Type::#{type.camelize}.new(name)"
         end
       end
     end

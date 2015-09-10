@@ -12,7 +12,7 @@ types = Awspec::Helper::Type::TYPES
 types.delete('base')
 types.each do |type|
   describe 'Resource Type ' + type do
-    let(:generator) { eval "Awspec::Generator::Doc::Type::#{type.to_camel_case}.new" }
+    let(:generator) { eval "Awspec::Generator::Doc::Type::#{type.camelize}.new" }
     it 'should generate doc' do
       generated = generator.generate_doc
       expect(generated).to include(type)

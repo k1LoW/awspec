@@ -11,11 +11,11 @@ module Awspec::Generator
     end
 
     def self.generate_type
-      path = 'lib/awspec/type/' + @type.to_snake_case + '.rb'
+      path = 'lib/awspec/type/' + @type.underscore + '.rb'
       full_path = @root_path + path
       content = <<-"EOF"
 module Awspec::Type
-  class #{@type.to_camel_case} < Base
+  class #{@type.camelize} < Base
     def initialize(id)
       super
       # @id = # @FIXME
@@ -27,7 +27,7 @@ EOF
     end
 
     def self.generate_stub
-      path = 'lib/awspec/stub/' + @type.to_snake_case + '.rb'
+      path = 'lib/awspec/stub/' + @type.underscore + '.rb'
       full_path = @root_path + path
       content = <<-"EOF"
 # Aws.config[:ec2] = {
@@ -38,13 +38,13 @@ EOF
     end
 
     def self.generate_type_spec
-      path = 'spec/type/' + @type.to_snake_case + '_spec.rb'
+      path = 'spec/type/' + @type.underscore + '_spec.rb'
       full_path = @root_path + path
       content = <<-"EOF"
 require 'spec_helper'
-Awspec::Stub.load '#{@type.to_snake_case}'
+Awspec::Stub.load '#{@type.underscore}'
 
-describe #{@type.to_snake_case}('my-#{@type.to_snake_case.tr('_', '-')}') do
+describe #{@type.underscore}('my-#{@type.underscore.tr('_', '-')}') do
   it { should exist }
 end
 EOF
@@ -52,17 +52,17 @@ EOF
     end
 
     def self.generate_generator_doc
-      path = 'lib/awspec/generator/doc/type/' + @type.to_snake_case + '.rb'
+      path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
       full_path = @root_path + path
       content = <<-"EOF"
 module Awspec::Generator
   module Doc
     module Type
-      class #{@type.to_camel_case} < Base
+      class #{@type.camelize} < Base
         def initialize
           super
-          @type_name = '#{@type.to_camel_case}'
-          @type = Awspec::Type::#{@type.to_camel_case}.new('my-#{@type.to_snake_case.tr('_', '-')}')
+          @type_name = '#{@type.camelize}'
+          @type = Awspec::Type::#{@type.camelize}.new('my-#{@type.underscore.tr('_', '-')}')
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
@@ -79,9 +79,9 @@ EOF
     def self.put_message
       content = <<-"EOF"
 
-Genarate #{@type.to_camel_case} template files.
+Genarate #{@type.camelize} template files.
 
-* !! AND add '#{@type.to_snake_case}' to Awspec::Helper::Type::TYPES in awspec/lib/helper/type.rb *
+* !! AND add '#{@type.underscore}' to Awspec::Helper::Type::TYPES in awspec/lib/helper/type.rb *
 
 EOF
     end

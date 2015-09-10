@@ -12,7 +12,7 @@ module Awspec
       define_method type do |*args|
         load_secrets
         vpc_id = args.first
-        eval "puts Awspec::Generator::Spec::#{type.to_camel_case}.new.generate_by_vpc_id(vpc_id)"
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(vpc_id)"
       end
     end
 

@@ -3,7 +3,7 @@ module Awspec::Generator
     module Type
       class Base
         def initialize
-          Awspec::Stub.load type_name.to_snake_case
+          Awspec::Stub.load type_name.underscore
           @type_name = type_name
         end
 
@@ -26,7 +26,7 @@ module Awspec::Generator
           end
 
           @descriptions = {}
-          merge_file = File.dirname(__FILE__) + '/../../../../../doc/_resource_types/' + type_name.to_snake_case + '.md'
+          merge_file = File.dirname(__FILE__) + '/../../../../../doc/_resource_types/' + type_name.underscore + '.md'
           if File.exist?(merge_file)
             matcher = nil
             File.foreach(merge_file) do |line|
@@ -56,7 +56,7 @@ module Awspec::Generator
 
         def doc_template
           template = <<-'EOF'
-## <a name="<%= @type_name.to_snake_case %>"><%= @type_name.to_snake_case %></a>
+## <a name="<%= @type_name.underscore %>"><%= @type_name.underscore %></a>
 
 <%= @type_name %> resource type.
 <%- if @descriptions.include?('first') -%><%= @descriptions['first'] %><%- end -%>

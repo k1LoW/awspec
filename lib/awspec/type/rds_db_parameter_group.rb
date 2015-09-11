@@ -5,18 +5,17 @@ module Awspec::Type
     def initialize(name)
       super
       @parameters = {}
+      res = @rds_client.describe_db_parameters({
+                                                 db_parameter_group_name: name
+                                               })
 
-      marker = nil
-      while @parameters.empty? || !marker.nil?
-        res = @rds_client.describe_db_parameters(
-          db_parameter_group_name: name,
-          marker: marker)
-        marker = res.marker
-        break if res.parameters.empty?
+      loop do
         res.parameters.each do |param|
           @parameters[param.parameter_name] = param.parameter_value
         end
+        (res.next_page? && res = res.next_page) || break
       end
+
       @id = name unless @parameters.empty?
       @resource = @parameters
     end

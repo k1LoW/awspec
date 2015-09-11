@@ -17,7 +17,7 @@ Aws.config[:iam] = {
         }
       ],
       is_truncated: false,
-      maker: nil
+      marker: nil
     }
   }
 }

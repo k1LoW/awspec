@@ -60,6 +60,7 @@ describe ec2('my-ec2-tag-name') do
   it { should belong_to_vpc('my-vpc') }
   it { should belong_to_subnet('subnet-1234a567') }
   it { should have_eip('123.0.456.789') }
+  it { should be_disabled_api_termination }
 end
 ```
 

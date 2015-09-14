@@ -40,6 +40,12 @@ Aws.config[:ec2] = {
         }
       ]
     },
+    describe_instance_attribute: {
+      instance_id: 'i-ec12345a',
+      disable_api_termination: {
+        value: true
+      }
+    },
     describe_vpcs: {
       vpcs: [
         {

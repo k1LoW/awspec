@@ -9,6 +9,7 @@ describe ec2('i-ec12345a') do
   its(:image_id) { should eq 'ami-abc12def' }
   its(:public_ip_address) { should eq '123.0.456.789' }
   its(:private_ip_address) { should eq '10.0.1.1' }
+  it { should be_disabled_api_termination }
   it { should have_security_group('sg-1a2b3cd4') }
   it { should have_security_group('my-security-group-name') }
   it { should have_security_group('my-security-group-tag-name') }

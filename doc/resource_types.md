@@ -31,6 +31,8 @@ end
 ```
 
 
+### be_disabled_api_termination
+
 ### be_pending
 
 ### be_running

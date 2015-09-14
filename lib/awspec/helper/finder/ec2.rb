@@ -36,6 +36,12 @@ module Awspec::Helper
                                                              res[:reservations].first[:instances].count == 1
       end
 
+      def find_ec2_attribute(id, attribute)
+        res = @ec2_client.describe_instance_attribute({
+          instance_id: id, attribute: attribute
+        })
+      end
+
       def find_subnet(subnet_id)
         res = @ec2_client.describe_subnets({
                                              filters: [{ name: 'subnet-id', values: [subnet_id] }]

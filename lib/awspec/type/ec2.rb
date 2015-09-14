@@ -20,6 +20,11 @@ module Awspec::Type
       end
     end
 
+    def disabled_termination?
+      ret = find_ec2_attribute(@id, 'disableApiTermination')
+      return ret[:disable_api_termination][:value]
+    end
+
     def has_eip?(ip_address = nil)
       option = {
         filters: [{ name: 'instance-id', values: [@id] }]

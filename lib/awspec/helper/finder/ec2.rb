@@ -38,8 +38,8 @@ module Awspec::Helper
 
       def find_ec2_attribute(id, attribute)
         res = @ec2_client.describe_instance_attribute({
-          instance_id: id, attribute: attribute
-        })
+                                                        instance_id: id, attribute: attribute
+                                                      })
       end
 
       def find_subnet(subnet_id)

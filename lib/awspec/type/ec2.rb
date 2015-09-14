@@ -20,7 +20,7 @@ module Awspec::Type
       end
     end
 
-    def disabled_termination?
+    def disabled_api_termination?
       ret = find_ec2_attribute(@id, 'disableApiTermination')
       ret[:disable_api_termination][:value]
     end

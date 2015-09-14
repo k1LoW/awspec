@@ -31,7 +31,7 @@ end
 ```
 
 
-### be_disabled_termination
+### be_disabled_api_termination
 
 ### be_pending
 

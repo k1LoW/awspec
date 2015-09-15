@@ -19,11 +19,13 @@ module Awspec::Helper
         end
       end
 
-      def select_policy_evaluation_results(policy_arn, action_name)
-        res = @iam_client.simulate_principal_policy({
-                                                      policy_source_arn: policy_arn,
-                                                      action_names: [action_name]
-                                                    })
+      def select_policy_evaluation_results(policy_arn, action_name, resource_arn = nil)
+        options = {
+          policy_source_arn: policy_arn,
+          action_names: [action_name]
+        }
+        options[:resource_arns] = [resource_arn] if resource_arn
+        res = @iam_client.simulate_principal_policy(options)
         res.evaluation_results
       end
 

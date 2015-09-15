@@ -282,6 +282,13 @@ IamUser resource type.
 
 ### be_allowed_action
 
+```ruby
+describe iam_user('my-iam-user') do
+  it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
+
 ### have_iam_policy
 
 ### belong_to_iam_group
@@ -295,6 +302,13 @@ IamGroup resource type.
 
 ### be_allowed_action
 
+```ruby
+describe iam_group('my-iam-group') do
+  it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
+
 ### have_iam_policy
 
 ### have_iam_user
@@ -307,6 +321,13 @@ IamRole resource type.
 ### exist
 
 ### be_allowed_action
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
 
 ### have_iam_policy
 

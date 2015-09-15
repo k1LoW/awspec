@@ -19,6 +19,14 @@ module Awspec::Helper
         end
       end
 
+      def select_policy_evaluation_results(policy_arn, action_name)
+        res = @iam_client.simulate_principal_policy({
+                                                      policy_source_arn: policy_arn,
+                                                      action_names: [action_name]
+                                                    })
+        res.evaluation_results
+      end
+
       def select_iam_group_by_user_name(user_name)
         res = @iam_client.list_groups_for_user({
                                                  user_name: user_name

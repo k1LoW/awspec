@@ -29,6 +29,19 @@ Aws.config[:iam] = {
       ],
       is_truncated: false,
       marker: nil
+    },
+    simulate_principal_policy: {
+      evaluation_results: [
+        {
+          eval_action_name: 'ec2:DescribeInstances',
+          eval_resource_name: '*',
+          eval_decision: 'allowed',
+          matched_statements: [
+          ]
+        }
+      ],
+      is_truncated: false,
+      marker: nil
     }
   }
 }

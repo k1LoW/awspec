@@ -7,7 +7,7 @@ module Awspec::Generator
           @type_name = 'IamGroup'
           @type = Awspec::Type::IamGroup.new('my-iam-group')
           @ret = @type.resource
-          @matchers = []
+          @matchers = %w(be_allowed_action)
           @ignore_matchers = []
           @describes = []
         end

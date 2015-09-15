@@ -280,6 +280,8 @@ IamUser resource type.
 
 ### exist
 
+### be_allowed_action
+
 ### have_iam_policy
 
 ### belong_to_iam_group
@@ -291,6 +293,8 @@ IamGroup resource type.
 
 ### exist
 
+### be_allowed_action
+
 ### have_iam_policy
 
 ### have_iam_user
@@ -301,6 +305,8 @@ IamGroup resource type.
 IamRole resource type.
 
 ### exist
+
+### be_allowed_action
 
 ### have_iam_policy
 

@@ -16,3 +16,6 @@ require 'awspec/matcher/have_route'
 
 # IAM User
 require 'awspec/matcher/belong_to_iam_group'
+
+# IAM User/Group/Role
+require 'awspec/matcher/be_allowed_action'

@@ -7,8 +7,14 @@ module Awspec::Type
     attr_reader :id, :resource
 
     def initialize(id = nil)
+      @display_name = id
       super
       @id = nil
+    end
+
+    def to_s
+      type = self.class.name.demodulize.underscore
+      "#{type} '#{@display_name}'"
     end
 
     def exists?

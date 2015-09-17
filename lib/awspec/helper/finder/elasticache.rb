@@ -9,6 +9,13 @@ module Awspec::Helper
       rescue
         nil
       end
+
+      def find_cache_subnet_group(group_name)
+        res = @elasticache_client.describe_cache_subnet_groups({
+                                                                 cache_subnet_group_name: group_name
+                                                               })
+        res[:cache_subnet_groups].first if res[:cache_subnet_groups].count == 1
+      end
     end
   end
 end

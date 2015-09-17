@@ -44,6 +44,34 @@ Aws.config[:elasticache] = {
             snapshot_window: '17:30-18:30'
           }
         ]
+    },
+    describe_cache_subnet_groups: {
+      cache_subnet_groups: [
+        {
+          cache_subnet_group_name: 'my-cache-subnet-group',
+          cache_subnet_group_description: 'stub',
+          vpc_id: 'vpc-ab123cde',
+          subnets: []
+        }
+      ]
+    }
+  }
+}
+
+Aws.config[:ec2] = {
+  stub_responses: {
+    describe_vpcs: {
+      vpcs: [
+        {
+          vpc_id: 'vpc-ab123cde',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-vpc'
+            }
+          ]
+        }
+      ]
     }
   }
 }

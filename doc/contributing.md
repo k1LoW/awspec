@@ -14,12 +14,12 @@
 
 1. Create vpc.md (`touch doc/_resource_types/vpc.md`)
 2. Write following document.
-
-
-    ### be_available
-    (Write description)
-    ```ruby
-    describe vpc('my-vpc') do
-       it { should be_available }
-    end
-    ```
+```
+### be_available
+(Write cool description)
+```ruby
+describe vpc('my-vpc') do
+   it { should be_available }
+end
+```
+```

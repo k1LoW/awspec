@@ -14,7 +14,8 @@
 
 1. Create vpc.md (`touch doc/_resource_types/vpc.md`)
 2. Write following document.
-```
+
+<pre>
 ### be_available
 (Write cool description)
 ```ruby
@@ -22,4 +23,4 @@ describe vpc('my-vpc') do
    it { should be_available }
 end
 ```
-```
+</pre>

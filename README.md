@@ -2,7 +2,7 @@
 
 RSpec tests for your AWS resources.
 
-[Resource Types](doc/resource_types.md)
+[Resource Types](doc/resource_types.md) | [Contributing](doc/contributing.md)
 
 ## Installation
 
@@ -106,24 +106,6 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - [ ] ElastiCache
 - [ ] CloudWatch
 - ...
-
-## Contributing
-
-1. Fork it ( https://github.com/k1LoW/awspec/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-### How to add new resource type (ex. Redshift resource)
-
-1. Create your feature branch (`git checkout -b add-type-redshift`)
-2. Generate template files (`bundle exec ./lib/awspec/bin/toolbox template redshift`)
-3. Fill files with code.
-4. Generate [doc/resource_types.md](doc/resource_types.md) (`bundle exec ./lib/awspec/bin/toolbox docgen > doc/resource_type.md`)
-5. Run test (`bundle exec rake spec`)
-6. Push to the branch (`git push origin add-type-redshift`)
-7. Create a new Pull Request
 
 ## References
 

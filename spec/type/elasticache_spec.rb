@@ -1,6 +1,6 @@
 require 'spec_helper'
 Awspec::Stub.load 'elasticache'
 
-describe elasticache('my-elasticache') do
+describe elasticache('my-rep-group-001') do
   it { should exist }
 end

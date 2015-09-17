@@ -18,5 +18,9 @@ module Awspec::Type
         @resource[:cache_cluster_status] == state
       end
     end
+
+    def has_cache_parameter_group?(group_name)
+      @resource[:cache_parameter_group][:cache_parameter_group_name] == group_name
+    end
   end
 end

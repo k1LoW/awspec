@@ -22,3 +22,4 @@ require 'awspec/matcher/be_allowed_action'
 
 # ElastiCache
 require 'awspec/matcher/belong_to_replication_group'
+require 'awspec/matcher/belong_to_cache_subnet_group'

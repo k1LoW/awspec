@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'Elasticache'
-          @type = Awspec::Type::Elasticache.new('my-elasticache')
+          @type = Awspec::Type::Elasticache.new('my-rep-group-001')
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []

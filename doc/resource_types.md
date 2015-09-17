@@ -17,6 +17,7 @@
 | [iam_group](#iam_group)
 | [iam_role](#iam_role)
 | [iam_policy](#iam_policy)
+| [elasticache](#elasticache)
 
 ## <a name="ec2">ec2</a>
 
@@ -347,3 +348,28 @@ IamPolicy resource type.
 ### be_attached_to_user
 
 #### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date)
+## <a name="elasticache">elasticache</a>
+
+Elasticache resource type.
+
+### exist
+
+### be_available
+
+### be_creating
+
+### be_deleted
+
+### be_deleting
+
+### be_incompatible_network
+
+### be_modifying
+
+### be_rebooting_cache_cluster_nodes
+
+### be_restore_failed
+
+### be_snapshotting
+
+#### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_subnet_group_name), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window)

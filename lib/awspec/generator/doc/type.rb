@@ -19,7 +19,7 @@ EOF
         types.map do |type|
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
         end
-        doc
+        doc.sub(/\n*\z/, '')
       end
     end
   end

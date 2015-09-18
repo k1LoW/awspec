@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Awspec::Generator::Doc::Type' do
   it 'generate_doc outout should be same as doc/resource_type.md' do
     generated = Awspec::Generator::Doc::Type.generate_doc
-    doc = File.read(File.dirname(__FILE__) + '/../../../doc/resource_types.md')
+    doc = File.read(File.dirname(__FILE__) + '/../../../doc/resource_types.md').sub(/\n*\z/, '')
     expect(generated).to eq doc
   end
 end

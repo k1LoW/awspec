@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'ElasticacheCacheParameterGroup'
-          @type = Awspec::Type::ElasticacheCacheParameterGroup.new('my-elasticache-cache-parameter-group')
+          @type = Awspec::Type::ElasticacheCacheParameterGroup.new('my-cache-parameter-group')
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []

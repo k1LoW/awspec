@@ -99,7 +99,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
     - [x] IAM Role (`iam_role`)
     - [x] IAM Policy (`iam_policy`)
 - [x] ElastiCache (`elasticache`)
-    - [ ] ElastiCache Cache Parameter Group
+    - [x] ElastiCache Cache Parameter Group
 
 [Resource Types more infomation here](doc/resource_types.md)
 

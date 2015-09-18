@@ -1,13 +1,13 @@
 module Awspec::Type
-  class RdsDbParameterGroup < Base
+  class ElasticacheCacheParameterGroup < Base
     attr_reader :parameters
 
     def initialize(name)
       super
       @parameters = {}
-      res = @rds_client.describe_db_parameters({
-                                                 db_parameter_group_name: name
-                                               })
+      res = @elasticache_client.describe_cache_parameters({
+                                                            cache_parameter_group_name: name
+                                                          })
 
       loop do
         res.parameters.each do |param|
@@ -18,6 +18,7 @@ module Awspec::Type
 
       @id = name unless @parameters.empty?
       @resource = @parameters
+      @id
     end
 
     def method_missing(name)

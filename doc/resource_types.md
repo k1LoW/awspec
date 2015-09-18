@@ -18,6 +18,7 @@
 | [iam_role](#iam_role)
 | [iam_policy](#iam_policy)
 | [elasticache](#elasticache)
+| [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 
 ## <a name="ec2">ec2</a>
 
@@ -381,3 +382,16 @@ Elasticache resource type.
 ### belong_to_vpc
 
 #### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_subnet_group_name), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window)
+## <a name="elasticache_cache_parameter_group">elasticache_cache_parameter_group</a>
+
+ElasticacheCacheParameterGroup resource type.
+
+```ruby
+describe elasticache_cache_parameter_group('my-cache-parameter-group') do
+  it { should exist }
+  its(:activerehashing) { should eq 'yes' }
+  its(:client_output_buffer_limit_pubsub_hard_limit) { should eq '33554432' }
+end
+```
+
+### exist

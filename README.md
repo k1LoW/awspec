@@ -99,13 +99,14 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
     - [x] IAM Role (`iam_role`)
     - [x] IAM Policy (`iam_policy`)
 - [x] ElastiCache (`elasticache`)
-    - [x] ElastiCache Cache Parameter Group
+    - [x] ElastiCache Cache Parameter Group (`elasticache_cache_parameter_group`)
+- CloudWatch
+    - [x] CloudWatch Alarm (`cloudwatch_alarm`)
 
 [Resource Types more infomation here](doc/resource_types.md)
 
 ### Next..?
 
-- [ ] CloudWatch
 - ...
 
 ## References

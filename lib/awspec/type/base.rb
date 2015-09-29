@@ -17,6 +17,10 @@ module Awspec::Type
       "#{type} '#{@display_name}'"
     end
 
+    def inspect
+      to_s
+    end
+
     def exists?
       @id
     end

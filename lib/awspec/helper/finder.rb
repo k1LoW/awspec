@@ -11,6 +11,7 @@ require 'awspec/helper/finder/elb'
 require 'awspec/helper/finder/lambda'
 require 'awspec/helper/finder/iam'
 require 'awspec/helper/finder/elasticache'
+require 'awspec/helper/finder/cloudwatch'
 
 module Awspec::Helper
   module Finder
@@ -27,6 +28,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Lambda
     include Awspec::Helper::Finder::Iam
     include Awspec::Helper::Finder::Elasticache
+    include Awspec::Helper::Finder::Cloudwatch
 
     # rubocop:disable all
     def initialize(id = nil)
@@ -39,6 +41,7 @@ module Awspec::Helper
       @lambda_client = Aws::Lambda::Client.new
       @iam_client = Aws::IAM::Client.new
       @elasticache_client = Aws::ElastiCache::Client.new
+      @cloudwatch_client = Aws::CloudWatch::Client.new
     end
   end
 end

@@ -19,6 +19,7 @@
 | [iam_policy](#iam_policy)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
+| [cloudwatch_alarm](#cloudwatch_alarm)
 
 ## <a name="ec2">ec2</a>
 
@@ -395,3 +396,20 @@ end
 ```
 
 ### exist
+
+
+## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
+
+CloudwatchAlarm resource type.
+
+### exist
+
+### have_alarm_action
+
+### have_insufficient_data_action
+
+### have_ok_action
+
+### belong_to_metric
+
+#### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)

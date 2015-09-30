@@ -107,6 +107,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 
 ### Next..?
 
+- SES
 - ...
 
 ## References

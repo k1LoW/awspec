@@ -20,6 +20,7 @@
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [cloudwatch_alarm](#cloudwatch_alarm)
+| [ses_identity](#ses_identity)
 
 ## <a name="ec2">ec2</a>
 
@@ -413,3 +414,10 @@ CloudwatchAlarm resource type.
 ### belong_to_metric
 
 #### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
+## <a name="ses_identity">ses_identity</a>
+
+SesIdentity resource type.
+
+### exist
+
+### have_identity_policy

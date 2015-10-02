@@ -102,12 +102,13 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
     - [x] ElastiCache Cache Parameter Group (`elasticache_cache_parameter_group`)
 - CloudWatch
     - [x] CloudWatch Alarm (`cloudwatch_alarm`)
+- SES
+    - [ ] SES Identity
 
 [Resource Types more infomation here](doc/resource_types.md)
 
 ### Next..?
 
-- SES
 - ...
 
 ## References

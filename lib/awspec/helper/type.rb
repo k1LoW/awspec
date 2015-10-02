@@ -6,7 +6,7 @@ module Awspec
         vpc s3 route53_hosted_zone auto_scaling_group subnet
         route_table ebs elb lambda iam_user iam_group iam_role
         iam_policy elasticache elasticache_cache_parameter_group
-        cloudwatch_alarm
+        cloudwatch_alarm ses_identity
       )
 
       TYPES.each do |type|

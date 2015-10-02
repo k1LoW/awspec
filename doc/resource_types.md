@@ -420,4 +420,8 @@ SesIdentity resource type.
 
 ### exist
 
+### have_dkim_tokens
+
 ### have_identity_policy
+
+#### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)

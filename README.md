@@ -103,7 +103,7 @@ $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 - CloudWatch
     - [x] CloudWatch Alarm (`cloudwatch_alarm`)
 - SES
-    - [ ] SES Identity
+    - [x] SES Identity (`ses_identity`)
 
 [Resource Types more infomation here](doc/resource_types.md)
 

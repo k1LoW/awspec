@@ -23,7 +23,7 @@ module Awspec::Type
         next true unless port
         next true unless permission[:from_port]
         next true unless permission[:to_port]
-        next false unless port.between?(permission[:from_port], permission[:to_port])
+        next false unless port_between?(port, permission[:from_port], permission[:to_port])
         next false if protocol && permission[:ip_protocol] != protocol
         next true unless cidr
         ret = permission[:ip_ranges].select do |ip_range|
@@ -47,7 +47,7 @@ module Awspec::Type
         next true unless port
         next true unless permission[:from_port]
         next true unless permission[:to_port]
-        next false unless port.between?(permission[:from_port], permission[:to_port])
+        next false unless port_between?(port, permission[:from_port], permission[:to_port])
         next false if protocol && permission[:ip_protocol] != protocol
         next true unless cidr
         ret = permission[:ip_ranges].select do |ip_range|
@@ -85,5 +85,17 @@ module Awspec::Type
       @resource[:ip_permissions_egress].count
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
+
+    private
+
+    def port_between?(port, from_port, to_port)
+      if port.is_a?(String) && port.include?('-')
+        f, t = port.split('-')
+        false unless from_port == f.to_i && to_port == t.to_i
+      else
+        false unless port.between?(from_port, to_port)
+      end
+      true
+    end
   end
 end

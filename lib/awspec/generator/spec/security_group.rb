@@ -28,7 +28,13 @@ module Awspec::Generator
               linespecs.push('its(:' + inout + ') { should be_opened }')
               next
             end
-            port = permission.from_port
+
+            if permission.from_port == permission.to_port
+              port = permission.from_port
+            else
+              port = "'" + permission.from_port.to_s + '-' + permission.to_port.to_s + "'"
+            end
+
             protocol = permission.ip_protocol
             permission.ip_ranges.each do |ip_range|
               target = ip_range.cidr_ip

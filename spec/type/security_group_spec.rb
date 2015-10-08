@@ -9,8 +9,9 @@ describe security_group('sg-1a2b3cd4') do
   its(:inbound) { should be_opened(80).protocol('tcp').for('456.789.123.456/32') }
   its(:inbound) { should be_opened(22) }
   its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
-  its(:inbound_permissions_count) { should eq 2 }
-  its(:ip_permissions_count) { should eq 2 }
+  its(:inbound) { should be_opened('50000-50009').protocol('tcp').for('123.456.789.012/32') }
+  its(:inbound_permissions_count) { should eq 3 }
+  its(:ip_permissions_count) { should eq 3 }
   its(:outbound_permissions_count) { should eq 1 }
   its(:ip_permissions_egress_count) { should eq 1 }
   # its(:inbound) { should be_opened(22).protocol('tcp').for('group-name-sg') }

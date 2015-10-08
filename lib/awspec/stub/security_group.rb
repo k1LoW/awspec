@@ -32,6 +32,17 @@ Aws.config[:ec2] = {
                   group_name: 'group-name-sg'
                 }
               ]
+            },
+            {
+              from_port: 50_000,
+              to_port: 50_009,
+              ip_protocol: 'tcp',
+              ip_ranges: [
+                {
+                  cidr_ip: '123.456.789.012/32'
+                }
+              ],
+              user_id_group_pairs: []
             }
           ],
           ip_permissions_egress: [

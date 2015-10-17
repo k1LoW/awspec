@@ -91,11 +91,9 @@ module Awspec::Type
     def port_between?(port, from_port, to_port)
       if port.is_a?(String) && port.include?('-')
         f, t = port.split('-')
-        return false unless from_port == f.to_i && to_port == t.to_i
-        true
+        from_port == f.to_i && to_port == t.to_i
       else
-        return false unless port.between?(from_port, to_port)
-        true
+        port.between?(from_port, to_port)
       end
     end
   end

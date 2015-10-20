@@ -12,5 +12,14 @@ module Awspec
     desc 'generate [resource]', 'Generate AWS resource *_spec.rb'
     subcommand 'generate', Generate
     map 'g' => 'generate'
+
+    option :version, type: :boolean, aliases: :v
+    def help(version = nil)
+      if version
+        puts Awspec::VERSION
+      else
+        super
+      end
+    end
   end
 end

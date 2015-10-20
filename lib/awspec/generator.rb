@@ -8,6 +8,7 @@ require 'awspec/generator/spec/security_group'
 require 'awspec/generator/spec/route53_hosted_zone'
 require 'awspec/generator/spec/elb'
 require 'awspec/generator/spec/iam_policy'
+require 'awspec/generator/spec/cloudwatch_alarm'
 
 # Doc
 require 'awspec/generator/doc/type'

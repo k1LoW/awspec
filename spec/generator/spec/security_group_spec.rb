@@ -7,7 +7,7 @@ describe 'Awspec::Generator::Spec::SecurityGroup' do
   let(:security_group) { Awspec::Generator::Spec::SecurityGroup.new }
   it 'generate_by_vpc_id generate spec' do
     spec = <<-'EOF'
-describe security_group('sg-1a2b3cd4') do
+describe security_group('my-security-group-name') do
   it { should exist }
   its(:group_id) { should eq 'sg-1a2b3cd4' }
   its(:group_name) { should eq 'my-security-group-name' }

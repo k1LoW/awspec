@@ -87,21 +87,15 @@ module Awspec::Type
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
     def inbound_rule_count
-      count = 0
-      @resource[:ip_permissions].each do |permission|
-        count += permission.ip_ranges.count
-        count += permission.user_id_group_pairs.count
+      @resource[:ip_permissions].reduce(0) do |sum, permission|
+        sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
-      count
     end
 
     def outbound_rule_count
-      count = 0
-      @resource[:ip_permissions_egress].each do |permission|
-        count += permission.ip_ranges.count
-        count += permission.user_id_group_pairs.count
+      @resource[:ip_permissions_egress].reduce(0) do |sum, permission|
+        sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
-      count
     end
 
     private

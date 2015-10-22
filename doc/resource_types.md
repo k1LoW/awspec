@@ -154,7 +154,7 @@ describe security_group('my-security-group-name') do
 end
 ```
 
-#### its(:ip_permissions_count), its(:ip_permissions_egress_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
+#### its(:inbound_rule_count), its(:outbound_rule_count), its(:inbound_permissions_count), its(:outbound_permissions_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
 ## <a name="vpc">vpc</a>
 
 VPC resource type.

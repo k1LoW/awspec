@@ -86,6 +86,18 @@ module Awspec::Type
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
+    def inbound_rule_count
+      @resource[:ip_permissions].reduce(0) do |sum, permission|
+        sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
+      end
+    end
+
+    def outbound_rule_count
+      @resource[:ip_permissions_egress].reduce(0) do |sum, permission|
+        sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
+      end
+    end
+
     private
 
     def port_between?(port, from_port, to_port)

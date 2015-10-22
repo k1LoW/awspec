@@ -14,6 +14,12 @@ module Awspec::Generator
 
         specs = sgs.map do |sg|
           linespecs = generate_linespecs(sg)
+          inbound_rule_count = sg[:ip_permissions].reduce(0) do |sum, permission|
+            sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
+          end
+          outbound_rule_count = sg[:ip_permissions_egress].reduce(0) do |sum, permission|
+            sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
+          end
           content = ERB.new(security_group_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
@@ -69,6 +75,8 @@ describe security_group('<%= sg.group_name %>') do
 <% linespecs.each do |line| %>
   <%= line %>
 <% end %>
+  its(:inbound_rule_count) { should eq <%= inbound_rule_count %> }
+  its(:outbound_rule_count) { should eq <%= outbound_rule_count %> }
   its(:inbound_permissions_count) { should eq <%= sg.ip_permissions.count %> }
   its(:outbound_permissions_count) { should eq <%= sg.ip_permissions_egress.count %> }
 <%- if @vpc_tag_name -%>

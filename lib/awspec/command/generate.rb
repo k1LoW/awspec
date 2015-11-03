@@ -1,8 +1,12 @@
 require 'thor'
 require 'awspec/setup'
+require 'aws_config'
+require 'pp'
 
 module Awspec
   class Generate < Thor
+    class_option :profile
+
     types = %w(
       vpc ec2 rds security_group elb
     )
@@ -44,14 +48,22 @@ module Awspec
 
     no_commands do
       def load_secrets
-        creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
-        creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
-        Aws.config.update({
-                            region: creds['region'],
-                            credentials: Aws::Credentials.new(
-                              creds['aws_access_key_id'],
-                              creds['aws_secret_access_key'])
-                          }) if creds
+        if options[:profile]
+          # SharedCredentials
+          aws_config = AWSConfig.profiles[options[:profile]]
+          Aws.config[:region] = aws_config.config_hash[:region] if aws_config
+          Aws.config[:credentials] = Aws::SharedCredentials.new(profile_name: options[:profile])
+        else
+          # secrets.yml
+          creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
+          creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
+          Aws.config.update({
+                              region: creds['region'],
+                              credentials: Aws::Credentials.new(
+                                creds['aws_access_key_id'],
+                                creds['aws_secret_access_key'])
+                            }) if creds
+        end
       end
     end
   end

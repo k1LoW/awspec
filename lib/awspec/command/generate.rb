@@ -1,7 +1,6 @@
 require 'thor'
 require 'awspec/setup'
-require 'aws_config'
-require 'pp'
+require 'awspec/helper/credentials_loader'
 
 module Awspec
   class Generate < Thor
@@ -14,7 +13,7 @@ module Awspec
     types.each do |type|
       desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
       define_method type do |*args|
-        load_secrets
+        Awspec::Helper::CredentialsLoader.load(options[:profile])
         vpc_id = args.first
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(vpc_id)"
       end
@@ -26,7 +25,7 @@ module Awspec
 
     desc 'route53_hosted_zone [example.com.]', 'Generate route53_hosted_zone spec from Domain name'
     def route53_hosted_zone(hosted_zone)
-      load_secrets
+      Awspec::Helper::CredentialsLoader.load(options[:profile])
       puts Awspec::Generator::Spec::Route53HostedZone.new.generate_by_domain_name(hosted_zone)
     end
 
@@ -41,29 +40,8 @@ module Awspec
         desc type, "Generate #{type} spec"
       end
       define_method type do
-        load_secrets
+        Awspec::Helper::CredentialsLoader.load(options[:profile])
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_all"
-      end
-    end
-
-    no_commands do
-      def load_secrets
-        if options[:profile]
-          # SharedCredentials
-          aws_config = AWSConfig.profiles[options[:profile]]
-          Aws.config[:region] = aws_config.config_hash[:region] if aws_config
-          Aws.config[:credentials] = Aws::SharedCredentials.new(profile_name: options[:profile])
-        else
-          # secrets.yml
-          creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
-          creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
-          Aws.config.update({
-                              region: creds['region'],
-                              credentials: Aws::Credentials.new(
-                                creds['aws_access_key_id'],
-                                creds['aws_secret_access_key'])
-                            }) if creds
-        end
       end
     end
   end

@@ -68,12 +68,22 @@ end
 
     $ bundle exec rake spec
 
-### Advanced Usage: Spec generate command
+### Advanced Tips: Spec generate command
 
 Generate spec from AWS resources already exists.
 
 ```sh
 $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
+```
+
+### Advanced Tips: Use Shared credentials (~/.aws/config ~/.aws/credentials)
+
+```sh
+$ awspec generate ec2 vpc-ab123cde --profile mycreds
+```
+
+```sh
+$ export AWS_PROFILE=mycreds; bundle exec rake spec
 ```
 
 ## Support AWS Resources

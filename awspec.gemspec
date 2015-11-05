@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'rspec-its'
   spec.add_runtime_dependency 'aws-sdk', '~> 2.1.20'
+  spec.add_runtime_dependency 'aws_config'
   spec.add_runtime_dependency 'thor'
   spec.add_runtime_dependency 'activesupport'
   spec.add_development_dependency 'bundler', '~> 1.9'

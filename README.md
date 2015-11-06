@@ -34,8 +34,6 @@ Or install it yourself as:
 $ aws configure
 
 ...
-
-$ export AWS_REGION='ap-northeast-1'
 ```
 
 #### 2-2. Use spec/secrets.yml
@@ -76,7 +74,7 @@ Generate spec from AWS resources already exists.
 $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
 ```
 
-### Advanced Tips: Use Shared credentials (~/.aws/config ~/.aws/credentials)
+### Advanced Tips: Use Shared Credentials (~/.aws/config ~/.aws/credentials)
 
 ```sh
 $ awspec generate ec2 vpc-ab123cde --profile mycreds

@@ -16,6 +16,12 @@ module Awspec
           eval "Awspec::Type::#{type.camelize}.new(name)"
         end
       end
+
+      # deprecated resource type
+      def auto_scaling_group(name)
+        puts '!!! `auto_scaling_group` type is deprecated. use `autoscaling_group` !!!'
+        Awspec::Type::AutoscalingGroup.new(name)
+      end
     end
   end
 end

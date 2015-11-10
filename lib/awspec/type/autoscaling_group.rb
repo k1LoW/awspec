@@ -1,8 +1,8 @@
 module Awspec::Type
-  class AutoScalingGroup < Base
+  class AutoscalingGroup < Base
     def initialize(id)
       super
-      @resource = find_auto_scaling_group(id)
+      @resource = find_autoscaling_group(id)
       @id = @resource[:auto_scaling_group_arn] if @resource
     end
 

@@ -5,7 +5,7 @@ require 'awspec/helper/finder/security_group'
 require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
 require 'awspec/helper/finder/s3'
-require 'awspec/helper/finder/auto_scaling'
+require 'awspec/helper/finder/autoscaling'
 require 'awspec/helper/finder/ebs'
 require 'awspec/helper/finder/elb'
 require 'awspec/helper/finder/lambda'
@@ -23,7 +23,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Rds
     include Awspec::Helper::Finder::Route53
     include Awspec::Helper::Finder::S3
-    include Awspec::Helper::Finder::AutoScaling
+    include Awspec::Helper::Finder::Autoscaling
     include Awspec::Helper::Finder::Ebs
     include Awspec::Helper::Finder::Elb
     include Awspec::Helper::Finder::Lambda
@@ -38,7 +38,7 @@ module Awspec::Helper
       @rds_client = Aws::RDS::Client.new
       @route53_client = Aws::Route53::Client.new
       @s3_client = Aws::S3::Client.new
-      @auto_scaling_client = Aws::AutoScaling::Client.new
+      @autoscaling_client = Aws::AutoScaling::Client.new
       @elb_client = Aws::ElasticLoadBalancing::Client.new
       @lambda_client = Aws::Lambda::Client.new
       @iam_client = Aws::IAM::Client.new

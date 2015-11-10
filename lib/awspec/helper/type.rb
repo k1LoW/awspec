@@ -3,7 +3,7 @@ module Awspec
     module Type
       TYPES = %w(
         base ec2 rds rds_db_parameter_group security_group
-        vpc s3 route53_hosted_zone auto_scaling_group subnet
+        vpc s3 route53_hosted_zone autoscaling_group subnet
         route_table ebs elb lambda iam_user iam_group iam_role
         iam_policy elasticache elasticache_cache_parameter_group
         cloudwatch_alarm ses_identity
@@ -15,6 +15,12 @@ module Awspec
           name = args.first
           eval "Awspec::Type::#{type.camelize}.new(name)"
         end
+      end
+
+      # deprecated resource type
+      def auto_scaling_group(name)
+        puts '!!! `auto_scaling_group` type is deprecated. use `autoscaling_group` !!!'
+        Awspec::Type::AutoscalingGroup.new(name)
       end
     end
   end

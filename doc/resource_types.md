@@ -7,7 +7,7 @@
 | [vpc](#vpc)
 | [s3](#s3)
 | [route53_hosted_zone](#route53_hosted_zone)
-| [auto_scaling_group](#auto_scaling_group)
+| [autoscaling_group](#autoscaling_group)
 | [subnet](#subnet)
 | [route_table](#route_table)
 | [ebs](#ebs)
@@ -188,9 +188,9 @@ Route53HostedZone resource type.
 ### have_record_set
 
 #### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count)
-## <a name="auto_scaling_group">auto_scaling_group</a>
+## <a name="autoscaling_group">autoscaling_group</a>
 
-AutoScalingGroup resource type.
+AutoscalingGroup resource type.
 
 ### exist
 

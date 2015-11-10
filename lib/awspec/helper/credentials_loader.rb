@@ -4,7 +4,7 @@ require 'aws_config'
 module Awspec::Helper
   module CredentialsLoader
     def self.load(profile = nil)
-      profile = ENV['AWS_PROFILE'] if profile.nil? && ENV.key?('AWS_PROFILE')
+      profile = ENV['AWS_PROFILE'] if profile.nil?
       if profile
         # SharedCredentials
         aws_config = AWSConfig.profiles[profile]

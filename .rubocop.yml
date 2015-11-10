@@ -34,6 +34,9 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/StabbyLambdaParentheses:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   Enabled: false
 

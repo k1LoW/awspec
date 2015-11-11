@@ -21,6 +21,7 @@
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [ses_identity](#ses_identity)
+| [network_acl](#network_acl)
 
 ## <a name="ec2">ec2</a>
 
@@ -425,3 +426,16 @@ SesIdentity resource type.
 ### have_identity_policy
 
 #### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)
+## <a name="network_acl">network_acl</a>
+
+NetworkAcl resource type.
+
+### exist
+
+### be_allowed
+
+### be_denied
+
+### have_subnet
+
+#### its(:network_acl_id), its(:vpc_id), its(:is_default)

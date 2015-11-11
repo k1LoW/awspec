@@ -95,7 +95,7 @@ $ export AWS_PROFILE=mycreds; bundle exec rake spec
 - Route53
     - [x] Route53 Hosted Zone (`route53_hosted_zone`)
 - AutoScaling
-    - [x] Auto Scaling Group (`auto_scaling_group`)
+    - [x] AutoScaling Group (`autoscaling_group`)
 - [x] Subnet (`subnet`)
 - [x] RouteTable (`route_table`)
 - [x] EBS Volume (`ebs`)
@@ -112,12 +112,9 @@ $ export AWS_PROFILE=mycreds; bundle exec rake spec
     - [x] CloudWatch Alarm (`cloudwatch_alarm`)
 - SES
     - [x] SES Identity (`ses_identity`)
+- [x] NetworkAcl (`network_acl`)
 
 [Resource Types more infomation here](doc/resource_types.md)
-
-### Next..?
-
-- ...
 
 ## References
 

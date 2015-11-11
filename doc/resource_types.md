@@ -432,10 +432,8 @@ NetworkAcl resource type.
 
 ### exist
 
-### be_allowed
-
-### be_denied
-
 ### have_subnet
 
-#### its(:network_acl_id), its(:vpc_id), its(:is_default)
+### its(:inbound), its(:outbound)
+
+#### its(:inbound_entries_count), its(:outbound_entries_count), its(:network_acl_id), its(:vpc_id), its(:is_default)

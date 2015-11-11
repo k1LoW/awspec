@@ -7,7 +7,7 @@ module Awspec
     class_option :profile
 
     types = %w(
-      vpc ec2 rds security_group elb
+      vpc ec2 rds security_group elb network_acl
     )
 
     types.each do |type|
@@ -18,10 +18,6 @@ module Awspec
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(vpc_id)"
       end
     end
-
-    types_for_generate_all = %w(
-      iam_policy cloudwatch_alarm
-    )
 
     desc 'route53_hosted_zone [example.com.]', 'Generate route53_hosted_zone spec from Domain name'
     def route53_hosted_zone(hosted_zone)

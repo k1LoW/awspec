@@ -35,6 +35,18 @@ module Awspec::Type
       self
     end
 
+    def inbound_entries_count
+      @resource[:entries].count do |entry|
+        entry.egress == false
+      end
+    end
+
+    def outbound_entries_count
+      @resource[:entries].count do |entry|
+        entry.egress == true
+      end
+    end
+
     private
 
     def entry?(rule_action, port = nil, protocol = nil, cidr = nil, rule_number = nil)

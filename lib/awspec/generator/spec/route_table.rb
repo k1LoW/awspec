@@ -1,5 +1,3 @@
-require 'pp'
-
 module Awspec::Generator
   module Spec
     class RouteTable

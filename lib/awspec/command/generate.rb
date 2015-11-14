@@ -7,7 +7,7 @@ module Awspec
     class_option :profile
 
     types = %w(
-      vpc ec2 rds security_group elb network_acl
+      vpc ec2 rds security_group elb network_acl route_table
     )
 
     types.each do |type|

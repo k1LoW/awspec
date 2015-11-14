@@ -10,6 +10,7 @@ require 'awspec/generator/spec/elb'
 require 'awspec/generator/spec/iam_policy'
 require 'awspec/generator/spec/cloudwatch_alarm'
 require 'awspec/generator/spec/network_acl'
+require 'awspec/generator/spec/route_table'
 
 # Doc
 require 'awspec/generator/doc/type'

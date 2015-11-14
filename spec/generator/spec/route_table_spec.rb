@@ -9,6 +9,7 @@ describe 'Awspec::Generator::Spec::RouteTable' do
     spec = <<-'EOF'
 describe route_table('my-route-table') do
   it { should exist }
+  it { should belong_to_vpc('my-vpc') }
   it { shold have_route('local').destination('10.0.0.0/16') }
   it { shold have_route('igw-1ab2345c').destination('0.0.0.0/0') }
 end

@@ -6,4 +6,8 @@ RSpec::Matchers.define :have_route do |target|
   chain :destination do |destination|
     @destination = destination
   end
+
+  chain :destination_cidr_block do |destination|
+    @destination = destination
+  end
 end

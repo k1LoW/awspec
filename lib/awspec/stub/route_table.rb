@@ -1,5 +1,20 @@
 Aws.config[:ec2] = {
   stub_responses: {
+    describe_vpcs: {
+      vpcs: [
+        {
+          vpc_id: 'vpc-ab123cde',
+          state: 'available',
+          cidr_block: '10.0.0.0/16',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-vpc'
+            }
+          ]
+        }
+      ]
+    },
     describe_route_tables: {
       route_tables: [
         {

@@ -1,5 +1,3 @@
-require 'pp'
-
 module Awspec::Generator
   module Spec
     class RouteTable
@@ -44,6 +42,11 @@ describe route_table('<%= route_table_tag_name %>') do
 describe route_table('<%= route_table_id %>') do
 <%- end -%>
   it { should exist }
+<%- if @vpc_tag_name -%>
+  it { should belong_to_vpc('<%= @vpc_tag_name %>') }
+<%- else -%>
+  it { should belong_to_vpc('<%= @vpc_id %>') }
+<%- end -%>
 <% linespecs.each do |line| %>
   <%= line %>
 <% end %>

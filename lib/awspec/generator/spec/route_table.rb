@@ -29,7 +29,7 @@ module Awspec::Generator
 
       def route_table_spec_linetemplate
         template = <<-'EOF'
-it { shold have_route('<%= route.gateway_id %>').destination('<%= route.destination_cidr_block %>') }
+it { should have_route('<%= route.gateway_id %>').destination('<%= route.destination_cidr_block %>') }
 EOF
         template
       end

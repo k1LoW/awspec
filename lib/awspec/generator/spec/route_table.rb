@@ -22,14 +22,29 @@ module Awspec::Generator
       def generate_linespecs(route_table)
         linespecs = []
         route_table.routes.each do |route|
-          linespecs.push(ERB.new(route_table_spec_linetemplate, nil, '-').result(binding))
+          linespecs.push(ERB.new(route_table_spec_gateway_linetemplate, nil, '-').result(binding)) if route.gateway_id
+          if route.instance_id
+            instance = find_ec2(route.instance_id)
+            linespecs.push(ERB.new(route_table_spec_instance_linetemplate, nil, '-').result(binding)) if instance
+          end
         end
         linespecs
       end
 
-      def route_table_spec_linetemplate
+      def route_table_spec_gateway_linetemplate
         template = <<-'EOF'
 it { should have_route('<%= route.destination_cidr_block %>').target(geteway: '<%= route.gateway_id %>') }
+EOF
+        template
+      end
+
+      def route_table_spec_instance_linetemplate
+        template = <<-'EOF'
+<%- if instance.tag_name -%>
+it { should have_route('<%= route.destination_cidr_block %>').target(instance: '<%= instance.tag_name %>') }
+<%- else -%>
+it { should have_route('<%= route.destination_cidr_block %>').target(instance: '<%= route.instance_id %>') }
+<%- end -%>
 EOF
         template
       end

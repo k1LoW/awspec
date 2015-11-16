@@ -19,7 +19,8 @@ module Awspec
 
       # deprecated resource type
       def auto_scaling_group(name)
-        puts '!!! `auto_scaling_group` type is deprecated. use `autoscaling_group` !!!'
+        puts ''
+        puts Color.on_red(Color.white('!!! `auto_scaling_group` type is deprecated. use `autoscaling_group` !!!'))
         Awspec::Type::AutoscalingGroup.new(name)
       end
     end

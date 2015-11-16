@@ -47,6 +47,17 @@ module Awspec::Helper
                                                 })
         res[:network_acls]
       end
+
+      def find_subnet(subnet_id)
+        res = @ec2_client.describe_subnets({
+                                             filters: [{ name: 'subnet-id', values: [subnet_id] }]
+                                           })
+        return res[:subnets].first if res[:subnets].count == 1
+        res = @ec2_client.describe_subnets({
+                                             filters: [{ name: 'tag:Name', values: [subnet_id] }]
+                                           })
+        return res[:subnets].first if res[:subnets].count == 1
+      end
     end
   end
 end

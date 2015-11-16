@@ -42,26 +42,30 @@ module Awspec::Helper
                                                       })
       end
 
-      def find_subnet(subnet_id)
-        res = @ec2_client.describe_subnets({
-                                             filters: [{ name: 'subnet-id', values: [subnet_id] }]
-                                           })
-        return res[:subnets].first if res[:subnets].count == 1
-        res = @ec2_client.describe_subnets({
-                                             filters: [{ name: 'tag:Name', values: [subnet_id] }]
-                                           })
-        return res[:subnets].first if res[:subnets].count == 1
-      end
-
-      def find_internet_gateway(gateway_id)
-        res = @ec2_client.describe_internet_gateways({
-                                                       filters: [{ name: 'internet-gateway-id', values: [gateway_id] }]
-                                                     })
-        return res[:internet_gateways].first if res[:internet_gateways].count == 1
-        res = @ec2_client.describe_internet_gateways({
-                                                       filters: [{ name: 'tag:Name', values: [gateway_id] }]
-                                                     })
-        return res[:internet_gateways].first if res[:internet_gateways].count == 1
+      # fine_internet_gateway fine_virtual_gateway fine_customer_gateway
+      gateway_types = %w(internet virtual cutromer)
+      gateway_types.each do |type|
+        define_method 'find_' + type + '_gateway' do |*args|
+          gateway_id = args.first
+          res = @ec2_client.method('describe_' + type + '_gateways').call({
+                                                                            filters: [
+                                                                              {
+                                                                                name: 'internet-gateway-id',
+                                                                                values: [gateway_id]
+                                                                              }
+                                                                            ]
+                                                                          })
+          return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
+          res = @ec2_client.method('describe_' + type + '_gateways').call({
+                                                                            filters: [
+                                                                              {
+                                                                                name: 'tag:Name',
+                                                                                values: [gateway_id]
+                                                                              }
+                                                                            ]
+                                                                          })
+          return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
+        end
       end
 
       def find_security_group(sg_id)

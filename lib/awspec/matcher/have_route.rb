@@ -1,13 +1,15 @@
-RSpec::Matchers.define :have_route do |target|
+RSpec::Matchers.define :have_route do |destination|
   match do |route_table|
-    route_table.has_route?(target, @destination)
+    @destination = destination
+    route_table.has_route?(@destination, @gateway_id, @instance_id)
   end
 
-  chain :destination do |destination|
-    @destination = destination
+  chain :target do |target|
+    @gateway_id = target[:gateway]
+    @intance_id = target[:instance]
   end
 
-  chain :destination_cidr_block do |destination|
-    @destination = destination
+  chain :destination do |dest|
+    @destination = dest
   end
 end

@@ -82,7 +82,7 @@ Aws.config[:ec2] = {
               state: 'active'
             },
             {
-              destination_cidr_block: '192.168.1.0/16',
+              destination_cidr_block: '192.168.1.0/24',
               destination_prefix_list_id: nil,
               gateway_id: nil,
               instance_id: 'i-ec12345a',

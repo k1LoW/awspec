@@ -8,10 +8,10 @@ module Awspec::Type
 
     def has_subnet?(subnet_id)
       @resource.associations.find do |a|
-        return true if a.subnet_id == subnet_id
+        next true if a.subnet_id == subnet_id
         subnet = find_subnet(subnet_id)
-        return false unless subnet
-        return a.subnet_id == subnet[:subnet_id]
+        next false unless subnet
+        next a.subnet_id == subnet[:subnet_id]
       end
     end
 

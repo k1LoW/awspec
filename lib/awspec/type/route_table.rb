@@ -16,8 +16,8 @@ module Awspec::Type
         # internet gateway
         igw = find_internet_gateway(gateway_id)
         next true if igw && igw.tag_name == gateway_id
-        # virtual gateway
-        vgw = find_virtual_gateway(gateway_id)
+        # vpn gateway
+        vgw = find_vpn_gateway(gateway_id)
         next true if vgw && vgw.tag_name == gateway_id
         # customer gateway
         cgw = find_customer_gateway(gateway_id)

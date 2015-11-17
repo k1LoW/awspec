@@ -39,6 +39,7 @@ module Awspec::Generator
       def generate_subnet_linespecs(route_table)
         linespecs = []
         route_table.associations.each do |a|
+          next if a.subnet_id.nil?
           subnet = find_subnet(a.subnet_id)
           linespecs.push(ERB.new(route_table_spec_subnet_linetemplate, nil, '-').result(binding)) if subnet
         end

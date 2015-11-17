@@ -90,6 +90,16 @@ Aws.config[:ec2] = {
               network_interface_id: nil,
               vpc_peering_connection_id: nil,
               state: 'active'
+            },
+            {
+              destination_cidr_block: '192.168.2.0/24',
+              destination_prefix_list_id: nil,
+              gateway_id: nil,
+              instance_id: nil,
+              instance_owner_id: nil,
+              network_interface_id: nil,
+              vpc_peering_connection_id: 'pcx-c56789de',
+              state: 'active'
             }
           ],
           associations: [
@@ -140,6 +150,19 @@ Aws.config[:ec2] = {
             {
               key: 'Name',
               value: 'my-igw'
+            }
+          ]
+        }
+      ]
+    },
+    describe_vpc_peering_connections: {
+      vpc_peering_connections: [
+        {
+          vpc_peering_connection_id: 'pcx-c56789de',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-pcx'
             }
           ]
         }

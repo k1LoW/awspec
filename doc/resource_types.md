@@ -227,6 +227,8 @@ describe route_table('my-route-table') do
 end
 ```
 
+### have_subnet
+
 #### its(:route_table_id), its(:vpc_id)
 ## <a name="ebs">ebs</a>
 

@@ -92,10 +92,34 @@ Aws.config[:ec2] = {
               state: 'active'
             }
           ],
+          associations: [
+            {
+              route_table_association_id: 'rtbassoc-b123456cd',
+              route_table_id: 'rtb-a12bcd34',
+              subnet_id: 'subnet-1234a567',
+              main: false
+            }
+          ],
           tags: [
             {
               key: 'Name',
               value: 'my-route-table'
+            }
+          ]
+        }
+      ]
+    },
+    describe_subnets: {
+      subnets: [
+        {
+          state: 'available',
+          vpc_id: 'vpc-ab123cde',
+          subnet_id: 'subnet-1234a567',
+          cidr_block: '10.0.1.0/24',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-subnet'
             }
           ]
         }

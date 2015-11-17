@@ -11,7 +11,8 @@ module Awspec::Generator
         @vpc_tag_name = vpc.tag_name
         route_tables = select_route_table_by_vpc_id(@vpc_id)
         specs = route_tables.map do |route_table|
-          linespecs = generate_linespecs(route_table)
+          linespecs = generate_route_linespecs(route_table)
+          subnet_linespecs = generate_subnet_linespecs(route_table)
           route_table_id = route_table[:route_table_id]
           route_table_tag_name = route_table.tag_name
           content = ERB.new(route_table_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
@@ -19,7 +20,7 @@ module Awspec::Generator
         specs.join("\n")
       end
 
-      def generate_linespecs(route_table)
+      def generate_route_linespecs(route_table)
         linespecs = []
         route_table.routes.each do |route|
           linespecs.push(ERB.new(route_table_spec_gateway_linetemplate, nil, '-').result(binding)) if route.gateway_id
@@ -27,6 +28,15 @@ module Awspec::Generator
             instance = find_ec2(route.instance_id)
             linespecs.push(ERB.new(route_table_spec_instance_linetemplate, nil, '-').result(binding)) if instance
           end
+        end
+        linespecs
+      end
+
+      def generate_subnet_linespecs(route_table)
+        linespecs = []
+        route_table.associations.each do |a|
+          subnet = find_subnet(a.subnet_id)
+          linespecs.push(ERB.new(route_table_spec_subnet_linetemplate, nil, '-').result(binding)) if subnet
         end
         linespecs
       end
@@ -49,6 +59,17 @@ EOF
         template
       end
 
+      def route_table_spec_subnet_linetemplate
+        template = <<-'EOF'
+<%- if subnet.tag_name -%>
+it { should have_subnet('<%= subnet.tag_name %>') }
+<%- else -%>
+it { should have_subnet('<%= subnet.subnet_id %>') }
+<%- end -%>
+EOF
+        template
+      end
+
       def route_table_spec_template
         template = <<-'EOF'
 <%- if route_table_tag_name -%>
@@ -63,6 +84,9 @@ describe route_table('<%= route_table_id %>') do
   it { should belong_to_vpc('<%= @vpc_id %>') }
 <%- end -%>
 <% linespecs.each do |line| %>
+  <%= line %>
+<% end %>
+<% subnet_linespecs.each do |line| %>
   <%= line %>
 <% end %>
 end

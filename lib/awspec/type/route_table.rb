@@ -28,5 +28,13 @@ module Awspec::Type
         next true if instance && instance.tag_name == instance_id
       end
     end
+
+    def has_subnet?(subnet_id)
+      subnet = find_subnet(subnet_id)
+      return false unless subnet
+      @resource.associations.find do |a|
+        a[:subnet_id] == subnet[:subnet_id]
+      end
+    end
   end
 end

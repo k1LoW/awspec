@@ -10,8 +10,8 @@ describe 'Awspec::Generator::Spec::RouteTable' do
 describe route_table('my-route-table') do
   it { should exist }
   it { should belong_to_vpc('my-vpc') }
-  it { should have_route('10.0.0.0/16').target(geteway: 'local') }
-  it { should have_route('0.0.0.0/0').target(geteway: 'igw-1ab2345c') }
+  it { should have_route('10.0.0.0/16').target(gateway: 'local') }
+  it { should have_route('0.0.0.0/0').target(gateway: 'igw-1ab2345c') }
   it { should have_route('192.168.1.0/24').target(instance: 'my-ec2') }
 end
 EOF

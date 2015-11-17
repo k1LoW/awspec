@@ -11,6 +11,7 @@ require 'awspec/generator/spec/iam_policy'
 require 'awspec/generator/spec/cloudwatch_alarm'
 require 'awspec/generator/spec/network_acl'
 require 'awspec/generator/spec/route_table'
+require 'awspec/generator/spec/subnet'
 
 # Doc
 require 'awspec/generator/doc/type'

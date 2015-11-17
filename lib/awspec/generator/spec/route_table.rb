@@ -33,7 +33,7 @@ module Awspec::Generator
 
       def route_table_spec_gateway_linetemplate
         template = <<-'EOF'
-it { should have_route('<%= route.destination_cidr_block %>').target(geteway: '<%= route.gateway_id %>') }
+it { should have_route('<%= route.destination_cidr_block %>').target(gateway: '<%= route.gateway_id %>') }
 EOF
         template
       end

@@ -42,15 +42,15 @@ module Awspec::Helper
                                                       })
       end
 
-      # fine_internet_gateway fine_virtual_gateway fine_customer_gateway
-      gateway_types = %w(internet virtual cutromer)
+      # fine_internet_gateway fine_vpn_gateway fine_customer_gateway
+      gateway_types = %w(internet vpn cutromer)
       gateway_types.each do |type|
         define_method 'find_' + type + '_gateway' do |*args|
           gateway_id = args.first
           res = @ec2_client.method('describe_' + type + '_gateways').call({
                                                                             filters: [
                                                                               {
-                                                                                name: 'internet-gateway-id',
+                                                                                name: type + '-gateway-id',
                                                                                 values: [gateway_id]
                                                                               }
                                                                             ]

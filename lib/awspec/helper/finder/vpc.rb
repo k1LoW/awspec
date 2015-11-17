@@ -65,6 +65,27 @@ module Awspec::Helper
                                            })
         res[:subnets]
       end
+
+      def find_vpc_peering_connection(vpc_peering_connection_id)
+        res = @ec2_client.describe_vpc_peering_connections({
+                                                             filters: [
+                                                               {
+                                                                 name: 'vpc-peering-connection-id',
+                                                                 values: [vpc_peering_connection_id]
+                                                               }
+                                                             ]
+                                                           })
+        return res[:vpc_peering_connections].first if res[:vpc_peering_connections].count == 1
+        res = @ec2_client.describe_vpc_peering_connections({
+                                                             filters: [
+                                                               {
+                                                                 name: 'tag:Name',
+                                                                 values: [vpc_peering_connection_id]
+                                                               }
+                                                             ]
+                                                           })
+        return res[:vpc_peering_connections].first if res[:vpc_peering_connections].count == 1
+      end
     end
   end
 end

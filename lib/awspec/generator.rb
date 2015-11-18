@@ -12,6 +12,7 @@ require 'awspec/generator/spec/cloudwatch_alarm'
 require 'awspec/generator/spec/network_acl'
 require 'awspec/generator/spec/route_table'
 require 'awspec/generator/spec/subnet'
+require 'awspec/generator/spec/directconnect'
 
 # Doc
 require 'awspec/generator/doc/type'

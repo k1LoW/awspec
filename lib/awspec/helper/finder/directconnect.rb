@@ -9,6 +9,11 @@ module Awspec::Helper
         end
         return ret.first if ret.count == 1
       end
+
+      def select_virtual_interfaces
+        res = @directconnect_client.describe_virtual_interfaces
+        res.virtual_interfaces
+      end
     end
   end
 end

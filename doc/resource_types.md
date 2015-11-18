@@ -22,6 +22,7 @@
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [ses_identity](#ses_identity)
 | [network_acl](#network_acl)
+| [directconnect_virtual_interface](#directconnect_virtual_interface)
 
 ## <a name="ec2">ec2</a>
 
@@ -461,3 +462,24 @@ end
 ```
 
 #### its(:inbound_entries_count), its(:outbound_entries_count), its(:network_acl_id), its(:vpc_id), its(:is_default)
+## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
+
+DirectconnectVirtualInterface resource type.
+
+### exist
+
+### be_available
+
+### be_confirming
+
+### be_deleted
+
+### be_deleting
+
+### be_pending
+
+### be_rejected
+
+### be_verifying
+
+#### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id)

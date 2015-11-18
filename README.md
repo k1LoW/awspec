@@ -86,35 +86,7 @@ $ export AWS_PROFILE=mycreds; bundle exec rake spec
 
 ## Support AWS Resources
 
-- [x] EC2 (`ec2`)
-- [x] RDS (`rds`)
-    - [x] RDS DB Parameter Group  (`rds_db_parameter_group`)
-- [x] Security Group (`security_group`)
-- [x] VPC (`vpc`)
-- [x] S3 (`s3`)
-- Route53
-    - [x] Route53 Hosted Zone (`route53_hosted_zone`)
-- AutoScaling
-    - [x] AutoScaling Group (`autoscaling_group`)
-- [x] Subnet (`subnet`)
-- [x] RouteTable (`route_table`)
-- [x] EBS Volume (`ebs`)
-- [x] ELB (`elb`)
-- [x] Lambda (`lambda`)
-- IAM
-    - [x] IAM User (`iam_user`)
-    - [x] IAM Group (`iam_group`)
-    - [x] IAM Role (`iam_role`)
-    - [x] IAM Policy (`iam_policy`)
-- [x] ElastiCache (`elasticache`)
-    - [x] ElastiCache Cache Parameter Group (`elasticache_cache_parameter_group`)
-- CloudWatch
-    - [x] CloudWatch Alarm (`cloudwatch_alarm`)
-- SES
-    - [x] SES Identity (`ses_identity`)
-- [x] NetworkAcl (`network_acl`)
-
-[Resource Types more infomation here](doc/resource_types.md)
+[Resource Types infomation here](doc/resource_types.md)
 
 ## References
 

@@ -17,7 +17,7 @@ module Awspec::Generator
       end
 
       def generate_linespec(record_set)
-        name = record_set.name.sub(/\\052/, '*') # wildcard support
+        name = record_set.name.gsub(/\\052/, '*') # wildcard support
         if !record_set.resource_records.empty?
           template = <<-'EOF'
 it { should have_record_set('<%= name %>').<%= type %>('<%= v %>').ttl(<%= record_set.ttl %>) }

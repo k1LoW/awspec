@@ -9,8 +9,9 @@ describe 'Awspec::Generator::Spec::Route53HostedZone' do
     spec = <<-'EOF'
 describe route53_hosted_zone('example.com.') do
   it { should exist }
-  its(:resource_record_set_count) { should eq 5 }
+  its(:resource_record_set_count) { should eq 6 }
   it { should have_record_set('example.com.').a('123.456.7.890').ttl(3600) }
+  it { should have_record_set('*.example.com.').cname('example.com').ttl(3600) }
   it { should have_record_set('example.com.').mx('10 mail.example.com').ttl(3600) }
   it { should have_record_set('mail.example.com.').a('123.456.7.890').ttl(3600) }
   it { should have_record_set('example.com.').ns('ns-123.awsdns-45.net.

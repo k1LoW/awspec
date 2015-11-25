@@ -17,9 +17,10 @@ module Awspec::Generator
       end
 
       def generate_linespec(record_set)
+        name = record_set.name.sub(/\\052/, '*') # wildcard support
         if !record_set.resource_records.empty?
           template = <<-'EOF'
-it { should have_record_set('<%= record_set.name %>').<%= type %>('<%= v %>').ttl(<%= record_set.ttl %>) }
+it { should have_record_set('<%= name %>').<%= type %>('<%= v %>').ttl(<%= record_set.ttl %>) }
 EOF
           v = record_set.resource_records.map { |r| r.value }.join("\n")
           type = record_set.type.downcase
@@ -29,7 +30,7 @@ EOF
           dns_name = record_set.alias_target.dns_name
           hosted_zone_id = record_set.alias_target.hosted_zone_id
           template = <<-'EOF'
-it { should have_record_set('<%= record_set.name %>').alias('<%= dns_name %>', '<%= hosted_zone_id %>') }
+it { should have_record_set('<%= name %>').alias('<%= dns_name %>', '<%= hosted_zone_id %>') }
 EOF
           return ERB.new(template, nil, '-').result(binding)
         end

@@ -6,7 +6,7 @@ Aws.config[:route53] = {
           id: '/hostedzone/Z1A2BCDEF34GH5',
           name: 'example.com.',
           caller_reference: '',
-          resource_record_set_count: 5
+          resource_record_set_count: 6
         }
       ],
       marker: '',
@@ -23,6 +23,16 @@ Aws.config[:route53] = {
           resource_records: [
             {
               value: '123.456.7.890'
+            }
+          ]
+        },
+        {
+          name: '\052.example.com.',
+          type: 'CNAME',
+          ttl: 3600,
+          resource_records: [
+            {
+              value: 'example.com'
             }
           ]
         },

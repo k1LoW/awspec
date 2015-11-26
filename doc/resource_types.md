@@ -6,6 +6,7 @@
 | [security_group](#security_group)
 | [vpc](#vpc)
 | [s3](#s3)
+| [s3_bucket_acl](#s3_bucket_acl)
 | [route53_hosted_zone](#route53_hosted_zone)
 | [autoscaling_group](#autoscaling_group)
 | [subnet](#subnet)
@@ -181,6 +182,13 @@ S3 resource type.
 ### have_object
 
 #### its(:name), its(:creation_date)
+## <a name="s3_bucket_acl">s3_bucket_acl</a>
+
+S3BucketAcl resource type.
+
+### exist
+
+
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 
 Route53HostedZone resource type.

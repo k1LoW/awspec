@@ -417,19 +417,30 @@ EBS resource type.
 
 ### exist
 
+```ruby
+describe ebs('my-volume') do
+  it { should exist }
+end
+```
+
+
 ### be_attached_to
 
-### be_available
+```ruby
+describe ebs('my-volume') do
+  it { should be_attached_to('my-ec2') }
+end
+```
 
-### be_creating
 
-### be_deleted
+### be_creating, be_available, be_in_use, be_deleting, be_deleted, be_error
 
-### be_deleting
+```ruby
+describe ebs('my-volume') do
+  it { should be_in_use }
+end
+```
 
-### be_error
-
-### be_in_use
 
 #### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
 ## <a name="elb">elb</a>

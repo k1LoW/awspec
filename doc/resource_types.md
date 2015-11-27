@@ -196,6 +196,12 @@ end
 
 ### exist
 
+```ruby
+describe rds_db_parameter_group('my-rds-db-parameter-group') do
+  it { should exist }
+end
+```
+
 
 ## <a name="security_group">security_group</a>
 

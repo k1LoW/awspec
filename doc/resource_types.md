@@ -567,6 +567,13 @@ IamGroup resource type.
 
 ### exist
 
+```ruby
+describe iam_group('my-iam-group') do
+  it { should exist }
+end
+```
+
+
 ### be_allowed_action
 
 ```ruby
@@ -576,9 +583,23 @@ describe iam_group('my-iam-group') do
 end
 ```
 
+
 ### have_iam_policy
 
+```ruby
+describe iam_group('my-iam-group') do
+  it { should have_iam_policy('ReadOnlyAccess') }
+end
+```
+
+
 ### have_iam_user
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should have_iam_user('my-iam-user') }
+end
+```
 
 #### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
 ## <a name="iam_role">iam_role</a>

@@ -7,8 +7,10 @@ module Awspec::Generator
           @type_name = 'VPC'
           @type = Awspec::Type::Vpc.new('my-vpc')
           @ret = @type.resource
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::Vpc::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::Vpc::STATES.map { |state| 'be_' + state.tr('-', '_') }
           @describes = []
         end
       end

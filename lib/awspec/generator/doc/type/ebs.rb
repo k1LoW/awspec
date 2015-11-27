@@ -7,8 +7,10 @@ module Awspec::Generator
           @type_name = 'EBS'
           @type = Awspec::Type::Ebs.new('my-ebs')
           @ret = @type.resource
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::Ebs::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::Ebs::STATES.map { |state| 'be_' + state.tr('-', '_') }
           @describes = []
         end
       end

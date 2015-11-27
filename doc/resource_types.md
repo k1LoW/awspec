@@ -234,13 +234,40 @@ VPC resource type.
 
 ### exist
 
-### be_available
+```ruby
+describe vpc('my-vpc') do
+  it { should exist }
+end
+```
 
-### be_pending
+
+### be_available, be_pending
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should be_available }
+end
+```
+
 
 ### have_network_acl
 
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_network_acl('acl-1abc2d3e') }
+  it { should have_network_acl('my-network-acl') }
+end
+```
+
+
 ### have_route_table
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_network_acl('acl-1abc2d3e') }
+  it { should have_network_acl('my-network-acl') }
+end
+```
 
 #### its(:vpc_id), its(:state), its(:cidr_block), its(:dhcp_options_id), its(:instance_tenancy), its(:is_default)
 ## <a name="s3">s3</a>

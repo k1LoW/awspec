@@ -9,11 +9,11 @@ module Awspec::Type
       @id = @resource[:vpc_id] if @resource
     end
 
-    states = %w(
+    STATES = %w(
       available pending
     )
 
-    states.each do |state|
+    STATES.each do |state|
       define_method state + '?' do
         @resource[:state] == state
       end

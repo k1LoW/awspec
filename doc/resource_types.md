@@ -361,9 +361,7 @@ Subnet resource type.
 
 ### exist
 
-### be_available
-
-### be_pending
+### be_available, be_pending
 
 #### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
 ## <a name="route_table">route_table</a>

@@ -8,14 +8,11 @@ module Awspec::Generator
           @type = Awspec::Type::Ec2.new('my-ec2')
           @ret = @type.resource
           @matchers = [
-            'be_pending, be_running, be_shutting_down, be_terminated, be_stopping, be_stopped',
+            Awspec::Type::Ec2::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
             'belong_to_vpc',
             'belong_to_subnet'
           ]
-          @ignore_matchers = %w(
-            be_pending be_running be_shutting_down
-            be_terminated be_stopping be_stopped
-          )
+          @ignore_matchers = Awspec::Type::Ec2::STATES.map { |state| 'be_' + state.tr('-', '_') }
           @describes = []
         end
       end

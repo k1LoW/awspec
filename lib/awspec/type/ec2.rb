@@ -9,12 +9,12 @@ module Awspec::Type
       @id = @resource[:instance_id] if @resource
     end
 
-    states = %w(
+    STATES = %w(
       pending running shutting-down
       terminated stopping stopped
     )
 
-    states.each do |state|
+    STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
         @resource[:state][:name] == state
       end

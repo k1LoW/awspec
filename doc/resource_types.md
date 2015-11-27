@@ -330,9 +330,29 @@ AutoscalingGroup resource type.
 
 ### exist
 
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should exist }
+end
+```
+
+
 ### have_ec2
 
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_ec2('my-ec2') }
+end
+```
+
+
 ### have_elb
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_elb('my-elb') }
+end
+```
 
 #### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:status)
 ## <a name="subnet">subnet</a>

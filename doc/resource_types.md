@@ -689,31 +689,56 @@ Elasticache resource type.
 
 ### exist
 
-### be_available
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should exist }
+end
+```
 
-### be_creating
 
-### be_deleted
+### be_available, be_creating, be_deleted, be_deleting, be_incompatible_network, be_modifying, be_rebooting_cache_cluster_nodes, be_restore_failed, be_snapshotting
 
-### be_deleting
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should be_available }
+end
+```
 
-### be_incompatible_network
-
-### be_modifying
-
-### be_rebooting_cache_cluster_nodes
-
-### be_restore_failed
-
-### be_snapshotting
 
 ### have_cache_parameter_group
 
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should have_cache_parameter_group('my-cache-parameter-group') }
+end
+```
+
+
 ### belong_to_cache_subnet_group
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should belong_to_cache_subnet_group('my-cache-subnet-group') }
+end
+```
+
 
 ### belong_to_replication_group
 
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should belong_to_replication_group('my-rep-group') }
+end
+```
+
+
 ### belong_to_vpc
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
 
 #### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_subnet_group_name), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window)
 ## <a name="elasticache_cache_parameter_group">elasticache_cache_parameter_group</a>

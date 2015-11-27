@@ -6,12 +6,12 @@ module Awspec::Type
       @id = @resource[:virtual_interface_id] if @resource
     end
 
-    states = %w(
+    STATES = %w(
       confirming verifying pending available
       deleting deleted rejected
     )
 
-    states.each do |state|
+    STATES.each do |state|
       define_method state + '?' do
         @resource[:virtual_interface_state] == state
       end

@@ -26,7 +26,7 @@ end
 
 ```ruby
 describe iam_policy('my-iam-policy') do
-  it { should be_attached_to_role('my-iam-role') }
+  it { should be_attached_to_role('HelloIAmGodRole') }
 end
 ```
 

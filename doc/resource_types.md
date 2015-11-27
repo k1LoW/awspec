@@ -376,13 +376,19 @@ describe subnet('my-subnet') do
 end
 ```
 
-
 #### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
 ## <a name="route_table">route_table</a>
 
 RouteTable resource type.
 
 ### exist
+
+```ruby
+describe route_table('my-route-table') do
+  it { should exist }
+end
+```
+
 
 ### have_route
 
@@ -395,7 +401,14 @@ describe route_table('my-route-table') do
 end
 ```
 
+
 ### have_subnet
+
+```ruby
+describe route_table('my-route-table') do
+  it { should have_subnet('my-subnet') }
+end
+```
 
 #### its(:route_table_id), its(:vpc_id)
 ## <a name="ebs">ebs</a>

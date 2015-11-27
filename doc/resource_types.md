@@ -526,6 +526,13 @@ IamUser resource type.
 
 ### exist
 
+```ruby
+describe iam_user('my-iam-user') do
+  it { should exist }
+end
+```
+
+
 ### be_allowed_action
 
 ```ruby
@@ -535,9 +542,23 @@ describe iam_user('my-iam-user') do
 end
 ```
 
+
 ### have_iam_policy
 
+```ruby
+describe iam_user('my-iam-user') do
+  it { should have_iam_policy('ReadOnlyAccess') }
+end
+```
+
+
 ### belong_to_iam_group
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should belong_to_iam_group('my-iam-group') }
+end
+```
 
 #### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)
 ## <a name="iam_group">iam_group</a>

@@ -753,7 +753,14 @@ describe elasticache_cache_parameter_group('my-cache-parameter-group') do
 end
 ```
 
+
 ### exist
+
+```ruby
+describe elasticache_cache_parameter_group('my-cache-parameter-group') do
+  it { should exist }
+end
+```
 
 
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>

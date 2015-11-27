@@ -209,6 +209,13 @@ SecurityGroup resource type.
 
 ### exist
 
+```ruby
+describe security_group('my-security-group-name') do
+  it { should exist }
+end
+```
+
+
 ### its(:inbound), its(:outbound)
 
 ```ruby

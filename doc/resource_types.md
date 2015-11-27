@@ -818,9 +818,23 @@ SesIdentity resource type.
 
 ### exist
 
+```ruby
+describe ses_identity('example.com') do
+  it { should exist }
+end
+```
+
+
 ### have_dkim_tokens
 
+
 ### have_identity_policy
+
+```ruby
+describe ses_identity('example.com') do
+  it { should have_identity_policy('my-identity-policy-name') }
+end
+```
 
 #### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)
 ## <a name="network_acl">network_acl</a>

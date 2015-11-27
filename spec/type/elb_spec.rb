@@ -7,4 +7,5 @@ describe elb('my-elb') do
   it { should have_security_group('my-lb-security-group-tag-name') }
   it { should have_subnet('my-subnet') }
   it { should have_listener(protocol: 'HTTPS', port: 443, instance_protocol: 'HTTP', instance_port: 80) }
+  it { should belong_to_vpc('my-vpc') }
 end

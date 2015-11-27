@@ -441,7 +441,6 @@ describe ebs('my-volume') do
 end
 ```
 
-
 #### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
 ## <a name="elb">elb</a>
 
@@ -449,7 +448,21 @@ ELB resource type.
 
 ### exist
 
+```ruby
+describe elb('my-elb') do
+  it { should exist }
+end
+```
+
+
 ### have_ec2
+
+```ruby
+describe elb('my-elb') do
+  it { should have_ec2('my-ec2') }
+end
+```
+
 
 ### have_listener
 
@@ -461,13 +474,32 @@ describe elb('my-elb') do
 end
 ```
 
+
 ### have_security_group
+
+```ruby
+describe elb('my-elb') do
+  it { should have_security_group('my-lb-security-group-tag-name') }
+end
+```
+
 
 ### have_subnet
 
-### belong_to_subnet
+```ruby
+describe elb('my-elb') do
+  it { should have_subnet('my-subnet') }
+end
+```
+
 
 ### belong_to_vpc
+
+```ruby
+describe elb('my-elb') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
 
 #### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:vpc_id), its(:created_time), its(:scheme)
 ## <a name="lambda">lambda</a>

@@ -608,6 +608,13 @@ IamRole resource type.
 
 ### exist
 
+```ruby
+describe iam_role('my-iam-role') do
+  it { should exist }
+end
+```
+
+
 ### be_allowed_action
 
 ```ruby
@@ -617,7 +624,14 @@ describe iam_role('my-iam-role') do
 end
 ```
 
+
 ### have_iam_policy
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should have_iam_policy('ReadOnlyAccess') }
+end
+```
 
 #### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
 ## <a name="iam_policy">iam_policy</a>

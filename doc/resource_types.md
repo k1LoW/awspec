@@ -276,7 +276,20 @@ S3 resource type.
 
 ### exist
 
+```ruby
+describe s3('my-bucket') do
+  it { should exist }
+end
+```
+
+
 ### have_object
+
+```ruby
+describe s3('my-bucket') do
+  it { should have_object('path/to/object') }
+end
+```
 
 #### its(:name), its(:creation_date)
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>

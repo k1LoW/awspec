@@ -39,9 +39,14 @@ end
 
 ### be_disabled_api_termination
 
-### be_pending
+```ruby
+describe ec2('my-ec2') do
+  it { should be_disabled_api_termination }
+end
+```
 
-### be_running
+
+### be_pending, be_running, be_shutting_down, be_terminated, be_stopping, be_stopped
 
 ```ruby
 describe ec2('my-ec2') do
@@ -49,23 +54,54 @@ describe ec2('my-ec2') do
 end
 ```
 
-### be_shutting_down
-
-### be_stopped
-
-### be_stopping
-
-### be_terminated
 
 ### have_ebs
 
+```ruby
+describe ec2('my-ec2') do
+  it { should have_ebs('vol-123a123b') }
+  it { should have_ebs('my-volume') }
+end
+```
+
+
 ### have_eip
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_eip('123.0.456.789') }
+end
+```
+
 
 ### have_security_group
 
+```ruby
+describe ec2('my-ec2') do
+  it { should have_security_group('my-security-group-name') }
+  it { should have_security_group('sg-1a2b3cd4') }
+end
+```
+
+
 ### belong_to_subnet
 
+```ruby
+describe ec2('my-ec2') do
+  it { should belong_to_subnet('subnet-1234a567') }
+  it { should belong_to_subnet('my-subnet') }
+end
+```
+
+
 ### belong_to_vpc
+
+```ruby
+describe ec2('my-ec2') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```
 
 #### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:iam_instance_profile), its(:ebs_optimized), its(:sriov_net_support)
 ## <a name="rds">rds</a>

@@ -7,12 +7,12 @@ module Awspec::Generator
       generate_type
       generate_type_spec
       generate_generator_doc
+      generate_resource_type_doc
       put_message
     end
 
     def self.generate_type
       path = 'lib/awspec/type/' + @type.underscore + '.rb'
-      full_path = @root_path + path
       content = <<-"EOF"
 module Awspec::Type
   class #{@type.camelize} < Base
@@ -28,7 +28,6 @@ EOF
 
     def self.generate_stub
       path = 'lib/awspec/stub/' + @type.underscore + '.rb'
-      full_path = @root_path + path
       content = <<-"EOF"
 # Aws.config[:ec2] = {
 #   stub_responses: true
@@ -39,7 +38,6 @@ EOF
 
     def self.generate_type_spec
       path = 'spec/type/' + @type.underscore + '_spec.rb'
-      full_path = @root_path + path
       content = <<-"EOF"
 require 'spec_helper'
 Awspec::Stub.load '#{@type.underscore}'
@@ -53,7 +51,6 @@ EOF
 
     def self.generate_generator_doc
       path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
-      full_path = @root_path + path
       content = <<-"EOF"
 module Awspec::Generator
   module Doc
@@ -72,6 +69,14 @@ module Awspec::Generator
     end
   end
 end
+EOF
+      self.file_check_and_puts(path, content)
+    end
+
+    def self.generate_resource_type_doc
+      path = 'doc/_resource_types/' + @type.underscore + '.md'
+      content = <<-"EOF"
+# exist
 EOF
       self.file_check_and_puts(path, content)
     end

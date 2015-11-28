@@ -188,6 +188,8 @@ S3BucketAcl resource type.
 
 ### exist
 
+### belong_to_owner
+
 
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 

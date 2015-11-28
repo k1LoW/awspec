@@ -7,7 +7,7 @@ module Awspec::Generator
           @type_name = 'S3BucketAcl'
           @type = Awspec::Type::S3BucketAcl.new('my-bucket')
           @ret = @type.resource
-          @matchers = []
+          @matchers = ['belong_to_owner']
           @ignore_matchers = []
           @describes = []
         end

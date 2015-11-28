@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'S3BucketAcl'
-          @type = Awspec::Type::S3BucketAcl.new('my-s3-bucket-acl')
+          @type = Awspec::Type::S3BucketAcl.new('my-bucket')
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []

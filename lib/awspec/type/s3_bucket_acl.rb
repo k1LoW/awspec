@@ -5,5 +5,20 @@ module Awspec::Type
       @resource = find_s3_bucket_acl(bucket)
       @id = bucket if @resource
     end
+
+    def has_grant?(conditions)
+      evaluator = ->(obj, attr, val){
+        if val.is_a?(Hash)
+          o = obj.send(attr)
+          val.all?{ |a, v| evaluator.call(o, a, v) }
+        else
+          obj.send(attr) == val
+        end
+      }
+
+      @resource.grants.find do |grant|
+        conditions.all?{ |attr, val| evaluator.call(grant, attr, val) }
+      end
+    end
   end
 end

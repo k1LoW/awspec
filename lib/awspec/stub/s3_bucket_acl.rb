@@ -5,6 +5,13 @@ Aws.config[:s3] = {
         display_name: 'owner'
       },
       grants: [
+        {
+          grantee: {
+            display_name: 'grantee',
+            type: 'CanonicalUser'
+          },
+          permission: 'FULL_CONTROL'
+        }
       ]
     }
   }

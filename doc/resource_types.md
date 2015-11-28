@@ -188,6 +188,8 @@ S3BucketAcl resource type.
 
 ### exist
 
+### have_grant
+
 ### belong_to_owner
 
 

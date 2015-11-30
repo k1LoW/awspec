@@ -7,6 +7,12 @@ module Awspec::Helper
           bucket.name == id
         end
       end
+
+      def find_s3_bucket_acl(id)
+        @s3_client.get_bucket_acl(bucket: id)
+      rescue Aws::S3::Errors::NoSuchBucket
+        nil
+      end
     end
   end
 end

@@ -179,9 +179,11 @@ S3 resource type.
 
 ### exist
 
+### have_acl
+
 ### have_object
 
-#### its(:name), its(:creation_date)
+#### its(:bucket_acl_owner), its(:name), its(:creation_date)
 ## <a name="s3_bucket_acl">s3_bucket_acl</a>
 
 S3BucketAcl resource type.

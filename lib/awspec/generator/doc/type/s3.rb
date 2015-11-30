@@ -8,7 +8,7 @@ module Awspec::Generator
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []
-          @describes = []
+          @describes = %w(bucket_acl_owner)
         end
       end
     end

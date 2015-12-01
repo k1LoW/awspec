@@ -15,5 +15,9 @@ module Awspec::Type
     rescue
       false
     end
+
+    def resource
+      Aws::S3::Bucket.new(@id)
+    end
   end
 end

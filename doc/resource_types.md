@@ -291,7 +291,7 @@ describe s3('my-bucket') do
 end
 ```
 
-#### its(:name), its(:creation_date)
+
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 
 Route53HostedZone resource type.

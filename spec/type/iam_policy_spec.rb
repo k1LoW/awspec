@@ -8,4 +8,7 @@ describe iam_policy('my-iam-policy') do
   its(:attachment_count) { should eq 1 }
   its(:policy_id) { should eq 'PABCDEFGHI123455689' }
   its(:policy_name) { should eq 'my-iam-policy' }
+  it { should be_attached_to_group('my-iam-group') }
+  it { should be_attached_to_user('my-iam-user') }
+  it { should be_attached_to_role('HelloIAmGodRole') }
 end

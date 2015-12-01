@@ -6,7 +6,7 @@ module Awspec::Type
       @id = @resource[:db_instance_identifier] if @resource
     end
 
-    states = %w(
+    STATES = %w(
       available backing-up creating deleting
       failed inaccessible-encryption-credentials
       incompatible-credentials incompatible-network
@@ -16,7 +16,7 @@ module Awspec::Type
       restore-error storage-full upgrading
     )
 
-    states.each do |state|
+    STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
         @resource[:db_instance_status] == state
       end

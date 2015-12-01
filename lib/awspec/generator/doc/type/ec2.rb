@@ -7,8 +7,12 @@ module Awspec::Generator
           @type_name = 'EC2'
           @type = Awspec::Type::Ec2.new('my-ec2')
           @ret = @type.resource
-          @matchers = %w(belong_to_vpc belong_to_subnet)
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::Ec2::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
+            'belong_to_vpc',
+            'belong_to_subnet'
+          ]
+          @ignore_matchers = Awspec::Type::Ec2::STATES.map { |state| 'be_' + state.tr('-', '_') }
           @describes = []
         end
       end

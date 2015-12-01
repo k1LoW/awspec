@@ -285,8 +285,6 @@ end
 
 ### have_acl_grant
 
-### have_grant
-
 ### have_object
 
 ```ruby

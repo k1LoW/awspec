@@ -25,14 +25,13 @@ module Awspec::Type
         true
       end
     end
-    alias_method :has_grant?, :has_acl_grant?
 
-    def bucket_acl_owner
+    def acl_owner
       @acl = find_s3_bucket_acl(@id)
       @acl.owner.display_name
     end
 
-    def bucket_acl_grant_count
+    def acl_grant_count
       @acl = find_s3_bucket_acl(@id)
       @acl.grants.count
     end

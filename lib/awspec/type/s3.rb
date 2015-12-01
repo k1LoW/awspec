@@ -16,16 +16,16 @@ module Awspec::Type
       false
     end
 
-    def has_bucket_acl_grant?(grantee:, permission:, type: nil)
+    def has_acl_grant?(grantee:, permission:, grantee_type: nil)
       @acl = find_s3_bucket_acl(@id)
       @acl.grants.find do |grant|
         next false if !grantee.nil? && grant.grantee.display_name != grantee && grant.grantee.id != grantee
         next false if !permission.nil? && grant.permission != permission
-        next false if !type.nil? && grant.grantee.type != type
+        next false if !grantee_type.nil? && grant.grantee.type != grantee_type
         true
       end
     end
-    alias_method :has_grant?, :has_bucket_acl_grant?
+    alias_method :has_grant?, :has_acl_grant?
 
     def bucket_acl_owner
       @acl = find_s3_bucket_acl(@id)

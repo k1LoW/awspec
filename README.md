@@ -1,5 +1,7 @@
 # awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec) [![Scrutinizer](https://img.shields.io/scrutinizer/g/k1LoW/awspec.svg)](https://scrutinizer-ci.com/g/k1LoW/awspec/) [![Gemnasium](https://img.shields.io/gemnasium/k1LoW/awspec.svg)](https://gemnasium.com/k1LoW/awspec)
 
+[![Join the chat at https://gitter.im/k1LoW/awspec](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k1LoW/awspec?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 RSpec tests for your AWS resources.
 
 [Resource Types](doc/resource_types.md) | [Contributing](doc/contributing.md)

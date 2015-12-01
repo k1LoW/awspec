@@ -178,7 +178,9 @@ S3 resource type.
 
 ### exist
 
-### have_acl
+### have_bucket_acl_grant
+
+### have_grant
 
 ### have_object
 

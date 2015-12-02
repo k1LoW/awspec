@@ -46,6 +46,7 @@ Aws.config[:ec2] = {
           volume_id: 'vpc-ab123cde',
           state: 'in-use',
           size: 100,
+          volume_type: 'gp2',
           attachments: [
             {
               instance_id: 'i-ec12345a',

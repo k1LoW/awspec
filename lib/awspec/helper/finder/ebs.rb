@@ -22,6 +22,18 @@ module Awspec::Helper
         end
         volumes
       end
+
+      def select_all_attached_ebs
+        selected = []
+        res = @ec2_client.describe_volumes
+
+        loop do
+          selected += res.volumes.select { |v| v.attachments.count > 0 }
+          (res.next_page? && res = res.next_page) || break
+        end
+
+        selected
+      end
     end
   end
 end

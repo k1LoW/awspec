@@ -30,7 +30,7 @@ module Awspec::Type
       @acl.owner.display_name
     end
 
-    def acl_grant_count
+    def acl_grants_count
       @acl = find_bucket_acl(@id)
       @acl.grants.count
     end

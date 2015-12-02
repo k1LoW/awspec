@@ -14,6 +14,7 @@ require 'awspec/generator/spec/route_table'
 require 'awspec/generator/spec/subnet'
 require 'awspec/generator/spec/directconnect'
 require 'awspec/generator/spec/ebs'
+require 'awspec/generator/spec/s3_bucket'
 
 # Doc
 require 'awspec/generator/doc/type'

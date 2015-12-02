@@ -13,6 +13,10 @@ module Awspec::Helper
       rescue Aws::S3::Errors::NoSuchBucket
         nil
       end
+
+      def select_all_buckets
+        @s3_client.list_buckets.buckets
+      end
     end
   end
 end

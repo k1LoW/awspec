@@ -278,6 +278,8 @@ S3Bucket resource type.
 
 ### have_acl_grant
 
+### have_cors_rule
+
 ### have_object
 
 ### have_policy

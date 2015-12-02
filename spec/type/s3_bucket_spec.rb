@@ -12,6 +12,22 @@ describe s3_bucket('my-bucket') do
   it { should have_acl_grant(grantee: 'my-bucket-read-only', permission: 'READ') }
 
   it do
+    should have_cors_rule(
+      allowed_methods: ['GET'],
+      allowed_origins: ['*']
+    )
+  end
+  it do
+    should have_cors_rule(
+      allowed_headers: ['*'],
+      allowed_methods: ['GET'],
+      allowed_origins: ['https://example.org', 'https://example.com'],
+      expose_headers:  ['X-Custom-Header'],
+      max_age_seconds: 3600
+    )
+  end
+
+  it do
     should have_policy <<-POLICY
 {
   "Version": "2012-10-17",

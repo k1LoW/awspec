@@ -14,6 +14,12 @@ module Awspec::Helper
         nil
       end
 
+      def find_bucket_cors(id)
+        @s3_client.get_bucket_cors(bucket: id)
+      rescue Aws::S3::Errors::NoSuchBucket
+        nil
+      end
+
       def find_bucket_policy(id)
         @s3_client.get_bucket_policy(bucket: id)
       rescue Aws::S3::Errors::NoSuchBucket

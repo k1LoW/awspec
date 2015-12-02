@@ -283,6 +283,8 @@ end
 ```
 
 
+### have_acl_grant
+
 ### have_object
 
 ```ruby
@@ -291,7 +293,7 @@ describe s3('my-bucket') do
 end
 ```
 
-#### its(:name), its(:creation_date)
+#### its(:acl_grants_count), its(:acl_owner), its(:name), its(:creation_date)
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 
 Route53HostedZone resource type.

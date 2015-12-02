@@ -30,3 +30,6 @@ require 'awspec/matcher/belong_to_metric'
 # NetworkAcl
 require 'awspec/matcher/be_allowed'
 require 'awspec/matcher/be_denied'
+
+# S3 Bucket ACL
+require 'awspec/matcher/belong_to_owner'

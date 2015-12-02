@@ -8,7 +8,7 @@ module Awspec::Helper
         end
       end
 
-      def find_s3_bucket_acl(id)
+      def find_bucket_acl(id)
         @s3_client.get_bucket_acl(bucket: id)
       rescue Aws::S3::Errors::NoSuchBucket
         nil

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class S3 < Base
+  class S3Bucket < Base
     def initialize(id)
       super
       @resource = find_bucket(id)

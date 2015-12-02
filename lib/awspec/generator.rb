@@ -13,6 +13,7 @@ require 'awspec/generator/spec/network_acl'
 require 'awspec/generator/spec/route_table'
 require 'awspec/generator/spec/subnet'
 require 'awspec/generator/spec/directconnect'
+require 'awspec/generator/spec/ebs'
 
 # Doc
 require 'awspec/generator/doc/type'

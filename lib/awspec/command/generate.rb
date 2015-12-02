@@ -26,12 +26,12 @@ module Awspec
     end
 
     types_for_generate_all = %w(
-      iam_policy cloudwatch_alarm directconnect
+      iam_policy cloudwatch_alarm directconnect ebs
     )
 
     types_for_generate_all.each do |type|
-      if type == 'iam_policy'
-        desc 'iam_policy', 'Generate attached iam_policy spec'
+      if %w(iam_policy ebs).include?(type)
+        desc type, "Generate attached #{type} spec"
       else
         desc type, "Generate #{type} spec"
       end

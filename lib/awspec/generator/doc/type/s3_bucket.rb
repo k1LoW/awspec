@@ -1,10 +1,10 @@
 module Awspec::Generator
   module Doc
     module Type
-      class S3 < Base
+      class S3Bucket < Base
         def initialize
           super
-          @type = Awspec::Type::S3.new('my-bucket')
+          @type = Awspec::Type::S3Bucket.new('my-bucket')
           @ret = @type.resource
           @matchers = []
           @ignore_matchers = []

@@ -5,7 +5,7 @@
 | [rds_db_parameter_group](#rds_db_parameter_group)
 | [security_group](#security_group)
 | [vpc](#vpc)
-| [s3](#s3)
+| [s3_bucket](#s3_bucket)
 | [route53_hosted_zone](#route53_hosted_zone)
 | [autoscaling_group](#autoscaling_group)
 | [subnet](#subnet)
@@ -270,39 +270,15 @@ end
 ```
 
 #### its(:vpc_id), its(:state), its(:cidr_block), its(:dhcp_options_id), its(:instance_tenancy), its(:is_default)
-## <a name="s3">s3</a>
+## <a name="s3_bucket">s3_bucket</a>
 
-S3 resource type.
+S3Bucket resource type.
 
 ### exist
 
-```ruby
-describe s3('my-bucket') do
-  it { should exist }
-end
-```
-
-
 ### have_acl_grant
 
-```ruby
-describe s3('my-bucket') do
-  its(:acl_grants_count) { should eq 3 }
-  it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
-  it { should have_acl_grant(grantee: 'my-bucket-write-only', permission: 'WRITE') }
-  it { should have_acl_grant(grantee: 'my-bucket-read-only', permission: 'READ') }
-  its(:acl_owner) { should eq 'my-bucket-owner' }
-end
-```
-
-
 ### have_object
-
-```ruby
-describe s3('my-bucket') do
-  it { should have_object('path/to/object') }
-end
-```
 
 #### its(:acl_grants_count), its(:acl_owner), its(:name), its(:creation_date)
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>

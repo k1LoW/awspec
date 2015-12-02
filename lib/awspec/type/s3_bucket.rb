@@ -45,6 +45,10 @@ module Awspec::Type
       end
     end
 
+    def cors_rules_count
+      cors_rules.count
+    end
+
     def has_policy?(policy)
       bp = find_bucket_policy(@id)
       bp ? (bp.policy.read == policy) : false

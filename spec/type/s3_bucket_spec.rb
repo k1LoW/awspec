@@ -11,6 +11,7 @@ describe s3_bucket('my-bucket') do
   it { should have_acl_grant(grantee: 'my-bucket-write-only', permission: 'WRITE') }
   it { should have_acl_grant(grantee: 'my-bucket-read-only', permission: 'READ') }
 
+  its(:cors_rules_count) { should eq 2 }
   it do
     should have_cors_rule(
       allowed_methods: ['GET'],

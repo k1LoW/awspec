@@ -22,7 +22,7 @@ module Awspec::Generator
       end
 
       def grant_linetemplate
-        grantee = 'grant.grantee.display_name || grant.grantee.uri'
+        grantee = 'grant.grantee.display_name || grant.grantee.uri || grant.grantee.id'
         template = <<-EOF
 it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.permission %>') }
         EOF

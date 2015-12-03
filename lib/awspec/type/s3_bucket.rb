@@ -19,9 +19,8 @@ module Awspec::Type
     def has_acl_grant?(grantee:, permission:)
       @acl = find_bucket_acl(@id)
       @acl.grants.find do |grant|
-        next false if !grantee.nil? && grant.grantee.display_name != grantee && grant.grantee.id != grantee
-        next false if !permission.nil? && grant.permission != permission
-        true
+        grant.permission == permission &&
+          (grant.grantee.display_name == grantee || grant.grantee.uri == grantee || grant.grantee.id == grantee)
       end
     end
 

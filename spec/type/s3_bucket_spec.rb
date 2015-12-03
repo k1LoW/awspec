@@ -8,8 +8,8 @@ describe s3_bucket('my-bucket') do
   its(:acl_owner) { should eq 'my-bucket-owner' }
   its(:acl_grants_count) { should eq 3 }
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
-  it { should have_acl_grant(grantee: 'my-bucket-write-only', permission: 'WRITE') }
-  it { should have_acl_grant(grantee: 'my-bucket-read-only', permission: 'READ') }
+  it { should have_acl_grant(grantee: 'http://acs.amazonaws.com/groups/s3/LogDelivery', permission: 'WRITE') }
+  it { should have_acl_grant(grantee: '68f4bb06b094152df53893bfba57760e', permission: 'READ') }
 
   its(:cors_rules_count) { should eq 2 }
   it do
@@ -52,7 +52,7 @@ describe s3('my-bucket') do
   it { should have_object('path/to/object') }
   its(:acl_grants_count) { should eq 3 }
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
-  it { should have_acl_grant(grantee: 'my-bucket-write-only', permission: 'WRITE') }
-  it { should have_acl_grant(grantee: 'my-bucket-read-only', permission: 'READ') }
+  it { should have_acl_grant(grantee: 'http://acs.amazonaws.com/groups/s3/LogDelivery', permission: 'WRITE') }
+  it { should have_acl_grant(grantee: '68f4bb06b094152df53893bfba57760e', permission: 'READ') }
   its(:acl_owner) { should eq 'my-bucket-owner' }
 end

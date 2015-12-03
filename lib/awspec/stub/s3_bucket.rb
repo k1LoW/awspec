@@ -24,14 +24,14 @@ Aws.config[:s3] = {
         },
         {
           grantee: {
-            display_name: 'my-bucket-write-only',
+            uri: 'http://acs.amazonaws.com/groups/s3/LogDelivery',
             type: 'CanonicalUser'
           },
           permission: 'WRITE'
         },
         {
           grantee: {
-            display_name: 'my-bucket-read-only',
+            id: '68f4bb06b094152df53893bfba57760e',
             type: 'CanonicalUser'
           },
           permission: 'READ'

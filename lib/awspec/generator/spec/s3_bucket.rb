@@ -22,9 +22,10 @@ module Awspec::Generator
       end
 
       def grant_linetemplate
-        template = <<-'EOF'
-it { should have_acl_grant(grantee: '<%= grant.grantee.display_name %>', permission: '<%= grant.permission %>') }
-EOF
+        grantee = 'grant.grantee.display_name || grant.grantee.uri || grant.grantee.id'
+        template = <<-EOF
+it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.permission %>') }
+        EOF
         template
       end
 
@@ -32,11 +33,11 @@ EOF
         template = <<-'EOF'
 describe s3_bucket('<%= bucket.name %>') do
   it { should exist }
+  its(:acl_owner) { should eq '<%= acl.owner.display_name %>' }
   its(:acl_grants_count) { should eq <%= acl.grants.count %> }
 <% grant_specs.each do |line| %>
   <%= line %>
 <% end %>
-  its(:acl_owner) { should eq '<%= acl.owner.display_name %>' }
 end
 EOF
         template

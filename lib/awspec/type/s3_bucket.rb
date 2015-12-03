@@ -34,5 +34,10 @@ module Awspec::Type
       @acl = find_bucket_acl(@id)
       @acl.grants.count
     end
+
+    def has_policy?(policy)
+      bp = find_bucket_policy(@id)
+      bp ? (bp.policy.read == policy) : false
+    end
   end
 end

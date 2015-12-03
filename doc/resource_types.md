@@ -280,6 +280,8 @@ S3Bucket resource type.
 
 ### have_object
 
+### have_policy
+
 #### its(:acl_grants_count), its(:acl_owner), its(:name), its(:creation_date)
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 

@@ -35,7 +35,11 @@ module Awspec::Type
       @acl.grants.count
     end
 
-    def has_cors_rule?(allowed_headers: [], allowed_methods:, allowed_origins:, expose_headers: [], max_age_seconds: nil)
+    def has_cors_rule?(allowed_headers: [],
+                       allowed_methods:,
+                       allowed_origins:,
+                       expose_headers: [],
+                       max_age_seconds: nil)
       cors_rules.any? do |rule|
         (rule.allowed_headers - allowed_headers).empty? &&
           (rule.allowed_methods - allowed_methods).empty? &&

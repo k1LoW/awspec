@@ -33,11 +33,11 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
         template = <<-'EOF'
 describe s3_bucket('<%= bucket.name %>') do
   it { should exist }
+  its(:acl_owner) { should eq '<%= acl.owner.display_name %>' }
   its(:acl_grants_count) { should eq <%= acl.grants.count %> }
 <% grant_specs.each do |line| %>
   <%= line %>
 <% end %>
-  its(:acl_owner) { should eq '<%= acl.owner.display_name %>' }
 end
 EOF
         template

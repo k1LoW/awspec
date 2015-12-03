@@ -9,11 +9,11 @@ describe Awspec::Generator::Spec::S3Bucket do
     spec = <<-'EOF'
 describe s3_bucket('my-bucket') do
   it { should exist }
+  its(:acl_owner) { should eq 'my-bucket-owner' }
   its(:acl_grants_count) { should eq 3 }
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
-  it { should have_acl_grant(grantee: 'my-bucket-write-only', permission: 'WRITE') }
-  it { should have_acl_grant(grantee: 'my-bucket-read-only', permission: 'READ') }
-  its(:acl_owner) { should eq 'my-bucket-owner' }
+  it { should have_acl_grant(grantee: 'http://acs.amazonaws.com/groups/s3/LogDelivery', permission: 'WRITE') }
+  it { should have_acl_grant(grantee: '68f4bb06b094152df53893bfba57760e', permission: 'READ') }
 end
 EOF
     expect(s3_bucket.generate_all.to_s).to eq spec

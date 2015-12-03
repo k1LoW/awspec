@@ -35,9 +35,34 @@ module Awspec::Type
       @acl.grants.count
     end
 
+    def has_cors_rule?(allowed_headers: [],
+                       allowed_methods:,
+                       allowed_origins:,
+                       expose_headers: [],
+                       max_age_seconds: nil)
+      cors_rules.any? do |rule|
+        (rule.allowed_headers - allowed_headers).empty? &&
+          (rule.allowed_methods - allowed_methods).empty? &&
+          (rule.allowed_origins - allowed_origins).empty? &&
+          (rule.expose_headers - expose_headers).empty? &&
+          rule.max_age_seconds == max_age_seconds
+      end
+    end
+
+    def cors_rules_count
+      cors_rules.count
+    end
+
     def has_policy?(policy)
       bp = find_bucket_policy(@id)
       bp ? (bp.policy.read == policy) : false
+    end
+
+    private
+
+    def cors_rules
+      cors = find_bucket_cors(@id)
+      cors ? cors.cors_rules : []
     end
   end
 end

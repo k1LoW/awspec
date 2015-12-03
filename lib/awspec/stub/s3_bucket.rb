@@ -38,6 +38,21 @@ Aws.config[:s3] = {
         }
       ]
     },
+    get_bucket_cors: {
+      cors_rules: [
+        {
+          allowed_methods: ['GET'],
+          allowed_origins: ['*']
+        },
+        {
+          allowed_headers: ['*'],
+          allowed_methods: ['GET'],
+          allowed_origins: ['https://example.com', 'https://example.org'],
+          expose_headers:  ['X-Custom-Header'],
+          max_age_seconds: 3600
+        }
+      ]
+    },
     get_bucket_policy: {
       policy: <<-POLICY
 {

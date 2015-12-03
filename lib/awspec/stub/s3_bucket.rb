@@ -54,20 +54,10 @@ Aws.config[:s3] = {
       ]
     },
     get_bucket_policy: {
-      policy: <<-POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowPublicRead",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::my-bucket/*"
-    }
-  ]
-}
-      POLICY
+      policy: '{"Version":"2012-10-17","Statement":' \
+              '[{"Sid":"AllowPublicRead","Effect":"Allow",' \
+              '"Principal":"*","Action":"s3:GetObject",' \
+              '"Resource":"arn:aws:s3:::my-bucket/*"}]}'
     }
   }
 }

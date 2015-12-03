@@ -55,7 +55,8 @@ module Awspec::Type
 
     def has_policy?(policy)
       bp = find_bucket_policy(@id)
-      bp ? (bp.policy.read == policy) : false
+      # newlines, spaces, etc.. are removed from policy which is returned from API
+      bp ? (bp.policy.read == policy.gsub(/(\n|\r|\r\n|\s|\t)/, '')) : false
     end
 
     private

@@ -24,7 +24,7 @@ Aws.config[:s3] = {
         },
         {
           grantee: {
-            display_name: 'my-bucket-write-only',
+            uri: 'http://acs.amazonaws.com/groups/s3/LogDelivery',
             type: 'CanonicalUser'
           },
           permission: 'WRITE'

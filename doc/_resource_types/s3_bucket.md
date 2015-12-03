@@ -1,7 +1,7 @@
 ### exist
 
 ```ruby
-describe s3('my-bucket') do
+describe s3_bucket('my-bucket') do
   it { should exist }
 end
 ```
@@ -9,7 +9,7 @@ end
 ### have_acl_grant
 
 ```ruby
-describe s3('my-bucket') do
+describe s3_bucket('my-bucket') do
   its(:acl_grants_count) { should eq 3 }
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
   it { should have_acl_grant(grantee: 'my-bucket-write-only', permission: 'WRITE') }
@@ -21,7 +21,7 @@ end
 ### have_object
 
 ```ruby
-describe s3('my-bucket') do
+describe s3_bucket('my-bucket') do
   it { should have_object('path/to/object') }
 end
 ```

@@ -329,6 +329,27 @@ end
 
 ### have_policy
 
+```ruby
+describe s3_bucket('my-bucket') do
+    should have_policy <<-POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPublicRead",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+  ]
+}
+    POLICY
+  end
+end
+```
+
+
 #### its(:acl_grants_count), its(:acl_owner), its(:cors_rules_count), its(:name), its(:creation_date)
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 

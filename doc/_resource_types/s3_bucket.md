@@ -18,6 +18,29 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+### have_policy
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it do
+    should have_policy <<-POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPublicRead",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+  ]
+}
+    POLICY
+  end
+end
+```
+
 ### have_object
 
 ```ruby

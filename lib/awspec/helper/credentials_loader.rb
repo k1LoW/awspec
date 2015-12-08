@@ -13,7 +13,7 @@ module Awspec::Helper
         Aws.config[:region] = aws_config.config_hash[:region] if aws_config
         Aws.config[:credentials] = Aws::SharedCredentials.new(profile_name: profile)
       # else
-      elsif profile.nil? and role_profile.nil?
+      elsif profile.nil? && role_profile.nil?
         # secrets.yml
         creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
         creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
@@ -23,14 +23,14 @@ module Awspec::Helper
                               creds['aws_access_key_id'],
                               creds['aws_secret_access_key'])
                           }) if creds
-      elsif role_profile == 'true' and profile.nil?
+      elsif role_profile == 'true' && profile.nil?
         creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
         creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
         Aws.config.update({
                             region: creds['region']
                           }) if creds
       else
-        # nothing
+        STDERR.puts 'You need set any credentials'
       end
     end
   end

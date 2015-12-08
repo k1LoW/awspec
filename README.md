@@ -53,6 +53,8 @@ EOF
 ### 3. Write spec/*_spec.rb
 
 ```ruby
+require 'spec_helper'
+
 describe ec2('my-ec2-tag-name') do
   it { should be_running }
   its(:instance_id) { should eq 'i-ec12345a' }

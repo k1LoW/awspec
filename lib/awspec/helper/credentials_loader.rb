@@ -15,6 +15,7 @@ module Awspec::Helper
         # secrets.yml
         creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
         creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
+        return if creds.nil?
         Aws.config.update({
                             region: creds['region']
                           }) if creds.include?('region')

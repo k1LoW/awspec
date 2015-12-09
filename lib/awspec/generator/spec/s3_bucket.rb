@@ -6,11 +6,14 @@ module Awspec::Generator
         buckets = select_all_buckets
         buckets.empty? && fail('Not Found Bucket')
         specs = buckets.map do |bucket|
-          acl = find_bucket_acl(bucket.name)
-          grant_specs = generate_grant_specs(acl)
-          content = ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content(bucket)
         end
         specs.join("\n")
+      end
+
+      def generate(bucket_name)
+        bucket = find_bucket(bucket_name)
+        content(bucket)
       end
 
       def generate_grant_specs(acl)
@@ -41,6 +44,14 @@ describe s3_bucket('<%= bucket.name %>') do
 end
 EOF
         template
+      end
+
+      private
+
+      def content(bucket)
+        acl = find_bucket_acl(bucket.name)
+        grant_specs = generate_grant_specs(acl)
+        ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
     end
   end

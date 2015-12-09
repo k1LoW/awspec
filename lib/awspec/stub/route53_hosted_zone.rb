@@ -10,7 +10,7 @@ Aws.config[:route53] = {
         }
       ],
       marker: '',
-      is_truncated: true,
+      is_truncated: false,
       next_marker: '',
       max_items: 100
     },
@@ -86,7 +86,7 @@ Aws.config[:route53] = {
           }
         }
       ],
-      is_truncated: true,
+      is_truncated: false,
       max_items: 100
     }
   }

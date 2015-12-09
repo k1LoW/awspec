@@ -12,6 +12,18 @@ module Awspec::Helper
           (res.next_page? && res = res.next_page) || break
         end
       end
+
+      def select_record_sets_by_hosted_zone_id(id)
+        selected = []
+        res = @route53_client.list_resource_record_sets({
+                                                          hosted_zone_id: id
+                                                        })
+        loop do
+          selected += res.resource_record_sets
+          (res.next_page? && res = res.next_page) || break
+        end
+        selected
+      end
     end
   end
 end

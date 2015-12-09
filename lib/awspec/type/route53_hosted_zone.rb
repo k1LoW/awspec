@@ -7,10 +7,7 @@ module Awspec::Type
       @resource = find_hosted_zone(id)
       @id = @resource[:id] if @resource
       return unless @id
-      res = @route53_client.list_resource_record_sets({
-                                                        hosted_zone_id: @id
-                                                      })
-      @resource_record_sets = res.resource_record_sets
+      @resource_record_sets = select_record_sets_by_hosted_zone_id(@id)
     end
 
     def has_record_set?(name, type, value, options = {})

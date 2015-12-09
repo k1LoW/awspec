@@ -15,12 +15,15 @@ module Awspec::Helper
         # secrets.yml
         creds = YAML.load_file('spec/secrets.yml') if File.exist?('spec/secrets.yml')
         creds = YAML.load_file('secrets.yml') if File.exist?('secrets.yml')
+        return if creds.nil?
         Aws.config.update({
-                            region: creds['region'],
+                            region: creds['region']
+                          }) if creds.include?('region')
+        Aws.config.update({
                             credentials: Aws::Credentials.new(
                               creds['aws_access_key_id'],
                               creds['aws_secret_access_key'])
-                          }) if creds
+                          }) if creds.include?('aws_access_key_id') && creds.include?('aws_secret_access_key')
       end
     end
   end

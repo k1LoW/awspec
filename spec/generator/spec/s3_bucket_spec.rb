@@ -17,5 +17,6 @@ describe s3_bucket('my-bucket') do
 end
 EOF
     expect(s3_bucket.generate_all.to_s).to eq spec
+    expect(s3_bucket.generate('my-bucket').to_s).to eq spec
   end
 end

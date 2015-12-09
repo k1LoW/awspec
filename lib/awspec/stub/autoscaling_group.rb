@@ -25,7 +25,8 @@ Aws.config[:autoscaling] = {
               availability_zone: 'ap-northeast-1a',
               lifecycle_state: 'InService',
               health_status: 'Healthy',
-              launch_configuration_name: 'my-lc'
+              launch_configuration_name: 'my-lc',
+              protected_from_scale_in: false
             }
           ],
           created_time: Time.local(2015)

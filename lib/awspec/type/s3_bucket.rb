@@ -59,7 +59,7 @@ module Awspec::Type
     end
 
     def real_resource
-      @real_resource ||= Aws::S3::Bucket.new(@id)
+      @real_resource ||= Awspec::ResourceReader.new(Aws::S3::Bucket.new(@id))
     end
 
     private

@@ -11,6 +11,7 @@ require 'awspec/helper'
 require 'awspec/ext'
 require 'awspec/generator'
 require 'awspec/toolbox'
+require 'awspec/resource_reader'
 
 module Awspec
 end

@@ -4,9 +4,9 @@ module Awspec
     end
 
     def method_missing_via_black_list(name, delegate_to: nil)
-      raise(ArguementError, "delegate_to: must be specified") unless delegate_to
+      fail(ArguementError, 'delegate_to: must be specified') unless delegate_to
       if match_black_list?(name)
-        raise CalledMethodInBlackList, "Method call #{name.inspect} is black-listed"
+        fail CalledMethodInBlackList, "Method call #{name.inspect} is black-listed"
       else
         attr = delegate_to.send(name)
         case attr
@@ -30,7 +30,7 @@ module Awspec
     /ix
 
     def match_black_list?(name)
-      !!(BLACK_LIST_RE =~ name)
+      BLACK_LIST_RE =~ name
     end
   end
 

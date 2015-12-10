@@ -5,18 +5,6 @@ describe s3_bucket('my-bucket') do
   it { should exist }
   it { should have_object('path/to/object') }
 
-  its(:real_resource) {
-    should be_an_instance_of(Awspec::ResourceReader)
-  }
-
-  its('real_resource.name') { should eq "my-bucket" }
-  its('real_resource.acl')  {
-    should be_an_instance_of(Awspec::ResourceReader)
-  }
-  it {
-    expect(subject.real_resource.acl.instance_variable_get(:@resource)).to be_an_instance_of(Aws::S3::BucketAcl)
-  }
-
   its(:acl_owner) { should eq 'my-bucket-owner' }
   its(:acl_grants_count) { should eq 3 }
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
@@ -55,6 +43,29 @@ describe s3_bucket('my-bucket') do
   ]
 }
     POLICY
+  end
+
+  context "nested attribute call" do
+    its(:real_resource) {
+      should be_an_instance_of(Awspec::ResourceReader)
+    }
+
+    its('real_resource.name') { should eq "my-bucket" }
+    its('real_resource.acl')  {
+      should be_an_instance_of(Awspec::ResourceReader)
+    }
+    it {
+      expect(subject.real_resource.acl.instance_variable_get(:@resource)).to be_an_instance_of(Aws::S3::BucketAcl)
+    }
+
+    it 'should be a Exception when black list method is called' do
+      expect{ subject.real_resource.delete }.to raise_error(
+        Awspec::ResourceReader::CalledMethodInBlackList,
+        "Method call :delete is black-listed"
+      )
+    end
+
+    its('real_resource.acl.owner.display_name') { should eq "my-bucket-owner" }
   end
 end
 

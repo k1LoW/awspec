@@ -1,9 +1,12 @@
 require 'aws-sdk'
+require 'awspec/resource_reader'
 require 'awspec/helper/finder'
 
 module Awspec::Type
   class Base
     include Awspec::Helper::Finder
+    include Awspec::BlackListForwardable
+
     attr_reader :id, :resource
 
     def initialize(id = nil)
@@ -30,7 +33,8 @@ module Awspec::Type
       if @resource.members.include?(describe)
         @resource[describe]
       else
-        super
+        super unless self.respond_to?(:real_resource)
+        method_missing_via_black_list(name, delegate_to: real_resource)
       end
     end
   end

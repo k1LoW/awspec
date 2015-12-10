@@ -54,18 +54,18 @@ describe s3_bucket('my-bucket') do
     its('real_resource.acl')  {
       should be_an_instance_of(Awspec::ResourceReader)
     }
-    it {
-      expect(subject.real_resource.acl.instance_variable_get(:@resource)).to be_an_instance_of(Aws::S3::BucketAcl)
+    its(:acl) {
+      should be_an_kind_of(Awspec::ResourceReader)
     }
 
     it 'should be a Exception when black list method is called' do
-      expect{ subject.real_resource.delete }.to raise_error(
-        Awspec::ResourceReader::CalledMethodInBlackList,
+      expect{ subject.delete }.to raise_error(
+        Awspec::BlackListForwardable::CalledMethodInBlackList,
         "Method call :delete is black-listed"
       )
     end
 
-    its('real_resource.acl.owner.display_name') { should eq "my-bucket-owner" }
+    its('acl.owner.display_name') { should eq "my-bucket-owner" }
   end
 end
 

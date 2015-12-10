@@ -58,6 +58,10 @@ module Awspec::Type
       bp ? (bp.policy.read == policy.gsub(/(\n|\r|\r\n|\s|\t)/, '')) : false
     end
 
+    def real_resource
+      @real_resource ||= Aws::S3::Bucket.new(@id)
+    end
+
     private
 
     def cors_rules

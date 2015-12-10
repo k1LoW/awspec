@@ -69,3 +69,15 @@ describe s3_bucket('my-bucket') do
   it { should have_object('path/to/object') }
 end
 ```
+
+### advanced
+
+`s3_bucket` can delegate to `Aws::S3::Bucket` resource.
+
+```ruby
+describe s3_bucket('my-bucket') do
+  its('acl.owner.display_name') { should eq 'my-bucket-owner' }
+end
+```
+
+see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html .

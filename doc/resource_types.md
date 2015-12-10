@@ -327,6 +327,7 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+
 ### have_policy
 
 ```ruby

@@ -65,7 +65,10 @@ module Awspec::Generator
 <%- if @descriptions.include?(matcher) -%><%= @descriptions[matcher] %><%- end -%>
 <% end %>
 <%- unless its.empty? -%>#### <%= its.join(', ') %><%- end -%>
-<%- if @descriptions.include?('last') -%><%= @descriptions['last'] %><%- end -%>
+<%- if @descriptions.include?('last') -%>
+
+#### :unlock: Advanced use
+<%= @descriptions['advanced'] %><%- end -%>
 
 EOF
           template

@@ -362,6 +362,14 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+or
+
+```ruby
+describe s3_bucket('my-bucket') do
+  its('resource.acl.owner.display_name') { should eq 'my-bucket-owner' }
+end
+```
+
 ## <a name="route53_hosted_zone">route53_hosted_zone</a>
 
 Route53HostedZone resource type.

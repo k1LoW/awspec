@@ -79,3 +79,11 @@ describe s3_bucket('my-bucket') do
   its('acl.owner.display_name') { should eq 'my-bucket-owner' }
 end
 ```
+
+or
+
+```ruby
+describe s3_bucket('my-bucket') do
+  its('resource.acl.owner.display_name') { should eq 'my-bucket-owner' }
+end
+```

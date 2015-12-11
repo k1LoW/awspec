@@ -72,12 +72,10 @@ end
 
 ### advanced
 
-`s3_bucket` can delegate to `Aws::S3::Bucket` resource.
+`s3_bucket` can use `Aws::S3::Bucket` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html).
 
 ```ruby
 describe s3_bucket('my-bucket') do
   its('acl.owner.display_name') { should eq 'my-bucket-owner' }
 end
 ```
-
-see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html .

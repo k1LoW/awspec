@@ -58,8 +58,8 @@ module Awspec::Type
       bp ? (bp.policy.read == policy.gsub(/(\n|\r|\r\n|\s|\t)/, '')) : false
     end
 
-    def hogehoge
-      @hogehoge ||= Awspec::ResourceReader.new(Aws::S3::Bucket.new(@id))
+    def resource
+      @resource ||= Awspec::ResourceReader.new(Aws::S3::Bucket.new(@id))
     end
 
     private

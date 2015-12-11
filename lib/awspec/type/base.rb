@@ -33,8 +33,8 @@ module Awspec::Type
       if @resource_via_client.members.include?(describe)
         @resource_via_client[describe]
       else
-        super unless self.respond_to?(:hogehoge)
-        method_missing_via_black_list(name, delegate_to: hogehoge)
+        super unless self.respond_to?(:resource)
+        method_missing_via_black_list(name, delegate_to: resource)
       end
     end
   end

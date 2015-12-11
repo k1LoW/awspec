@@ -64,10 +64,10 @@ module Awspec::Generator
 ### <%= matcher %>
 <%- if @descriptions.include?(matcher) -%><%= @descriptions[matcher] %><%- end -%>
 <% end %>
-<%- unless its.empty? -%>#### <%= its.join(', ') %><%- end -%>
+<%- unless its.empty? -%>### <%= its.join(', ') %><%- end -%>
 <%- if @descriptions.include?('advanced') -%>
 
-#### :unlock: Advanced use
+### :unlock: Advanced use
 <%= @descriptions['advanced'] %><%- end -%>
 
 EOF

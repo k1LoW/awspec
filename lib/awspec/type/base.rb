@@ -1,10 +1,13 @@
 require 'aws-sdk'
+require 'awspec/resource_reader'
 require 'awspec/helper/finder'
 
 module Awspec::Type
   class Base
     include Awspec::Helper::Finder
-    attr_reader :id, :resource
+    include Awspec::BlackListForwardable
+
+    attr_reader :id, :resource_via_client
 
     def initialize(id = nil)
       @display_name = id
@@ -27,10 +30,11 @@ module Awspec::Type
 
     def method_missing(name)
       describe = name.to_sym
-      if @resource.members.include?(describe)
-        @resource[describe]
+      if @resource_via_client.members.include?(describe)
+        @resource_via_client[describe]
       else
-        super
+        super unless self.respond_to?(:hogehoge)
+        method_missing_via_black_list(name, delegate_to: hogehoge)
       end
     end
   end

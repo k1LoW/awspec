@@ -2,8 +2,8 @@ module Awspec::Type
   class Elb < Base
     def initialize(id)
       super
-      @resource = find_elb(id)
-      @id = @resource[:load_balancer_name] if @resource
+      @resource_via_client = find_elb(id)
+      @id = @resource_via_client[:load_balancer_name] if @resource_via_client
     end
 
     health_check_options = %w(
@@ -13,19 +13,19 @@ module Awspec::Type
 
     health_check_options.each do |option|
       define_method 'health_check_' + option do
-        @resource[:health_check][option]
+        @resource_via_client[:health_check][option]
       end
     end
 
     def has_ec2?(id)
       ec2 = find_ec2(id)
-      @resource.instances.find do |instance|
+      @resource_via_client.instances.find do |instance|
         instance.instance_id = ec2.instance_id
       end if ec2
     end
 
     def has_security_group?(sg_id)
-      sgs = @resource[:security_groups]
+      sgs = @resource_via_client[:security_groups]
       ret = sgs.find do |sg|
         sg == sg_id
       end
@@ -38,7 +38,7 @@ module Awspec::Type
     end
 
     def has_subnet?(subnet_id)
-      subnets = @resource[:subnets]
+      subnets = @resource_via_client[:subnets]
       ret = subnets.find do |s|
         s == subnet_id
       end
@@ -50,7 +50,7 @@ module Awspec::Type
     end
 
     def has_listener?(protocol:, port:, instance_protocol:, instance_port:)
-      @resource[:listener_descriptions].find do |desc|
+      @resource_via_client[:listener_descriptions].find do |desc|
         listener = desc.listener
         listener.protocol == protocol && listener.load_balancer_port == port && \
           listener.instance_protocol == instance_protocol && listener.instance_port == instance_port

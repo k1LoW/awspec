@@ -4,15 +4,15 @@ module Awspec::Type
 
     def initialize(id)
       super
-      @resource = find_hosted_zone(id)
-      @id = @resource[:id] if @resource
+      @resource_via_client = find_hosted_zone(id)
+      @id = @resource_via_client[:id] if @resource_via_client
       return unless @id
-      @resource_record_sets = select_record_sets_by_hosted_zone_id(@id)
+      @resource_via_client_record_sets = select_record_sets_by_hosted_zone_id(@id)
     end
 
     def has_record_set?(name, type, value, options = {})
       name.gsub!(/\*/, '\\\052') # wildcard support
-      ret = @resource_record_sets.find do |record_set|
+      ret = @resource_via_client_record_sets.find do |record_set|
         next if record_set.type != type.upcase
         options[:ttl] = record_set.ttl unless options[:ttl]
         if !record_set.resource_records.empty?

@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type = Awspec::Type::Subnet.new('my-route-table')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::Subnet::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', ')
           ]

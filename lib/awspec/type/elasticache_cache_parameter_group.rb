@@ -17,7 +17,7 @@ module Awspec::Type
       end
 
       @id = name unless @parameters.empty?
-      @resource = @parameters
+      @resource_via_client = @parameters
       @id
     end
 

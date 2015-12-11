@@ -60,7 +60,7 @@ module Awspec::Generator
           super
           @type_name = '#{@type.camelize}'
           @type = Awspec::Type::#{@type.camelize}.new('my-#{@type.underscore.tr('_', '-')}')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
           @describes = []

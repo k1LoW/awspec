@@ -5,8 +5,8 @@ module Awspec::Type
     def initialize(id)
       super
       @client = @ec2_client
-      @resource = find_ec2(id)
-      @id = @resource[:instance_id] if @resource
+      @resource_via_client = find_ec2(id)
+      @id = @resource_via_client[:instance_id] if @resource_via_client
     end
 
     STATES = %w(
@@ -16,7 +16,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
-        @resource[:state][:name] == state
+        @resource_via_client[:state][:name] == state
       end
     end
 
@@ -36,7 +36,7 @@ module Awspec::Type
     end
 
     def has_security_group?(sg_id)
-      sgs = @resource[:security_groups]
+      sgs = @resource_via_client[:security_groups]
       ret = sgs.find do |sg|
         sg[:group_id] == sg_id || sg[:group_name] == sg_id
       end
@@ -49,7 +49,7 @@ module Awspec::Type
     end
 
     def has_ebs?(volume_id)
-      blocks = @resource[:block_device_mappings]
+      blocks = @resource_via_client[:block_device_mappings]
       ret = blocks.find do |block|
         next false unless block[:ebs]
         block[:ebs][:volume_id] == volume_id

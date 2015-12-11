@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'IamUser'
           @type = Awspec::Type::IamUser.new('my-iam-user')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = %w(belong_to_iam_group be_allowed_action)
           @ignore_matchers = []
           @describes = []

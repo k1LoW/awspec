@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'Elasticache'
           @type = Awspec::Type::Elasticache.new('my-rep-group-001')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::Elasticache::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
             'belong_to_vpc',

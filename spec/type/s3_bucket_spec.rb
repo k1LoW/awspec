@@ -44,6 +44,21 @@ describe s3_bucket('my-bucket') do
 }
     POLICY
   end
+
+  context 'nested attribute call' do
+    its(:hogehoge) { should be_an_instance_of(Awspec::ResourceReader) }
+    its('hogehoge.name') { should eq 'my-bucket' }
+    its('hogehoge.acl') { should be_an_instance_of(Awspec::ResourceReader) }
+    its(:acl) { should be_an_kind_of(Awspec::ResourceReader) }
+    it 'should be a Exception when black list method is called' do
+      expect { subject.delete }.to raise_error(
+        Awspec::BlackListForwardable::CalledMethodInBlackList,
+        'Method call :delete is black-listed'
+      )
+    end
+
+    its('acl.owner.display_name') { should eq 'my-bucket-owner' }
+  end
 end
 
 # deprecated

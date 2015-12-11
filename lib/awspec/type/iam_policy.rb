@@ -2,12 +2,12 @@ module Awspec::Type
   class IamPolicy < Base
     def initialize(id)
       super
-      @resource = find_iam_policy(id)
-      @id = @resource[:policy_id] if @resource
+      @resource_via_client = find_iam_policy(id)
+      @id = @resource_via_client[:policy_id] if @resource_via_client
     end
 
     def attachable?
-      @resource.is_attachable
+      @resource_via_client.is_attachable
     end
 
     def attached_to_user?(user_id = nil)

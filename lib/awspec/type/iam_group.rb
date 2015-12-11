@@ -2,8 +2,8 @@ module Awspec::Type
   class IamGroup < Base
     def initialize(id)
       super
-      @resource = find_iam_group(id)
-      @id = @resource[:group_id] if @resource
+      @resource_via_client = find_iam_group(id)
+      @id = @resource_via_client[:group_id] if @resource_via_client
     end
 
     def has_iam_user?(user_id)
@@ -17,7 +17,7 @@ module Awspec::Type
     end
 
     def has_iam_policy?(policy_id)
-      policies = select_iam_policy_by_group_name(@resource[:group_name])
+      policies = select_iam_policy_by_group_name(@resource_via_client[:group_name])
       policies.find do |policy|
         policy.policy_arn == policy_id || policy.policy_name == policy_id
       end

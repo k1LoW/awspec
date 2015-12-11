@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'EC2'
           @type = Awspec::Type::Ec2.new('my-ec2')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::Ec2::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
             'belong_to_vpc',

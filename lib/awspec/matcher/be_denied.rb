@@ -1,6 +1,6 @@
 RSpec::Matchers.define :be_denied do |port|
-  match do |resource|
-    resource.denied?(port, @protocol, @cidr, @rule_number)
+  match do |type|
+    type.denied?(port, @protocol, @cidr, @rule_number)
   end
 
   chain :protocol do |protocol|

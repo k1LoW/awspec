@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type = Awspec::Type::AutoscalingGroup.new('my-auto-scaling-group')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
           @describes = []

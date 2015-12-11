@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'IamPolicy'
           @type = Awspec::Type::IamPolicy.new('my-iam-policy')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
           @describes = []

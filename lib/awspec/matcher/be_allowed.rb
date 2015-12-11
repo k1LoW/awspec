@@ -1,6 +1,6 @@
 RSpec::Matchers.define :be_allowed do |port|
-  match do |resource|
-    resource.allowed?(port, @protocol, @cidr, @rule_number)
+  match do |type|
+    type.allowed?(port, @protocol, @cidr, @rule_number)
   end
 
   chain :protocol do |protocol|

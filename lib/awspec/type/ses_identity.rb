@@ -2,8 +2,8 @@ module Awspec::Type
   class SesIdentity < Base
     def initialize(id)
       super
-      @resource = find_ses_identity(id)
-      @id = @resource if @resource
+      @resource_via_client = find_ses_identity(id)
+      @id = @resource_via_client if @resource_via_client
     end
 
     def has_identity_policy?(name)

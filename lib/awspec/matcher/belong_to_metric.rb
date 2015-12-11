@@ -1,9 +1,9 @@
 RSpec::Matchers.define :belong_to_metric do |name|
-  match do |resource|
+  match do |type|
     if @namespace
-      resource.namespace == @namespace && resource.metric_name == name
+      type.namespace == @namespace && type.metric_name == name
     else
-      resource.metric_name == name
+      type.metric_name == name
     end
   end
 

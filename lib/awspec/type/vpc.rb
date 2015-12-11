@@ -5,8 +5,8 @@ module Awspec::Type
     def initialize(id)
       super
       @client = @ec2_client
-      @resource = find_vpc(id)
-      @id = @resource[:vpc_id] if @resource
+      @resource_via_client = find_vpc(id)
+      @id = @resource_via_client[:vpc_id] if @resource_via_client
     end
 
     STATES = %w(
@@ -15,7 +15,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
-        @resource[:state] == state
+        @resource_via_client[:state] == state
       end
     end
 

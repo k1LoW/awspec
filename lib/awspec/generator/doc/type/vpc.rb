@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'VPC'
           @type = Awspec::Type::Vpc.new('my-vpc')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::Vpc::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', ')
           ]

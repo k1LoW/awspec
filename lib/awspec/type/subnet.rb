@@ -2,8 +2,8 @@ module Awspec::Type
   class Subnet < Base
     def initialize(id)
       super
-      @resource = find_subnet(id)
-      @id = @resource[:subnet_id] if @resource
+      @resource_via_client = find_subnet(id)
+      @id = @resource_via_client[:subnet_id] if @resource_via_client
     end
 
     STATES = %w(
@@ -12,7 +12,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
-        @resource[:state] == state
+        @resource_via_client[:state] == state
       end
     end
   end

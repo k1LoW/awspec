@@ -7,7 +7,7 @@ module Awspec::Type
     include Awspec::Helper::Finder
     include Awspec::BlackListForwardable
 
-    attr_reader :id, :resource
+    attr_reader :id, :resource_via_client
 
     def initialize(id = nil)
       @display_name = id
@@ -30,11 +30,11 @@ module Awspec::Type
 
     def method_missing(name)
       describe = name.to_sym
-      if @resource.members.include?(describe)
-        @resource[describe]
+      if @resource_via_client.members.include?(describe)
+        @resource_via_client[describe]
       else
-        super unless self.respond_to?(:real_resource)
-        method_missing_via_black_list(name, delegate_to: real_resource)
+        super unless self.respond_to?(:hogehoge)
+        method_missing_via_black_list(name, delegate_to: hogehoge)
       end
     end
   end

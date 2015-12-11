@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'EBS'
           @type = Awspec::Type::Ebs.new('my-ebs')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::Ebs::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', ')
           ]

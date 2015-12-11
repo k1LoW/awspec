@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'CloudwatchAlarm'
           @type = Awspec::Type::CloudwatchAlarm.new('my-cloudwatch-alarm')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = %w(belong_to_metric)
           @ignore_matchers = []
           @describes = []

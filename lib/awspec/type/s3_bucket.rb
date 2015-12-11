@@ -2,8 +2,8 @@ module Awspec::Type
   class S3Bucket < Base
     def initialize(id)
       super
-      @resource = find_bucket(id)
-      @id = id if @resource
+      @resource_via_client = find_bucket(id)
+      @id = id if @resource_via_client
     end
 
     def has_object?(key)
@@ -58,8 +58,8 @@ module Awspec::Type
       bp ? (bp.policy.read == policy.gsub(/(\n|\r|\r\n|\s|\t)/, '')) : false
     end
 
-    def real_resource
-      @real_resource ||= Awspec::ResourceReader.new(Aws::S3::Bucket.new(@id))
+    def hogehoge
+      @hogehoge ||= Awspec::ResourceReader.new(Aws::S3::Bucket.new(@id))
     end
 
     private

@@ -6,8 +6,8 @@ module Awspec::Type
       super
       @client = @ec2_client
       @inbound = true
-      @resource = find_security_group(id)
-      @id = @resource[:group_id] if @resource
+      @resource_via_client = find_security_group(id)
+      @id = @resource_via_client[:group_id] if @resource_via_client
     end
 
     def opened?(port = nil, protocol = nil, cidr = nil)
@@ -19,7 +19,7 @@ module Awspec::Type
     end
 
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @resource[:ip_permissions].find do |permission|
+      @resource_via_client[:ip_permissions].find do |permission|
         next true unless port
         next true unless permission[:from_port]
         next true unless permission[:to_port]
@@ -43,7 +43,7 @@ module Awspec::Type
     end
 
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @resource[:ip_permissions_egress].find do |permission|
+      @resource_via_client[:ip_permissions_egress].find do |permission|
         next true unless port
         next true unless permission[:from_port]
         next true unless permission[:to_port]
@@ -77,23 +77,23 @@ module Awspec::Type
     end
 
     def ip_permissions_count
-      @resource[:ip_permissions].count
+      @resource_via_client[:ip_permissions].count
     end
     alias_method :inbound_permissions_count, :ip_permissions_count
 
     def ip_permissions_egress_count
-      @resource[:ip_permissions_egress].count
+      @resource_via_client[:ip_permissions_egress].count
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
     def inbound_rule_count
-      @resource[:ip_permissions].reduce(0) do |sum, permission|
+      @resource_via_client[:ip_permissions].reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
     end
 
     def outbound_rule_count
-      @resource[:ip_permissions_egress].reduce(0) do |sum, permission|
+      @resource_via_client[:ip_permissions_egress].reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
     end

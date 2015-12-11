@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'NetworkAcl'
           @type = Awspec::Type::NetworkAcl.new('my-network-acl')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             'belong_to_vpc',
             'its(:inbound), its(:outbound), its(:inbound_entries_count), its(:outbound_entries_count)'

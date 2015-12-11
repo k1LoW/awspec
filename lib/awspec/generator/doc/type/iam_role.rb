@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'IamRole'
           @type = Awspec::Type::IamRole.new('my-iam-role')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = %w(be_allowed_action)
           @ignore_matchers = []
           @describes = []

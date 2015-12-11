@@ -6,7 +6,7 @@ module Awspec::Generator
           super
           @type_name = 'RDS'
           @type = Awspec::Type::Rds.new('my-rds')
-          @ret = @type.resource
+          @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::Rds::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
             'belong_to_vpc',

@@ -38,11 +38,11 @@ module Awspec
     include BlackListForwardable
 
     def initialize(resource)
-      @resource = resource
+      @resource_via_client = resource
     end
 
     def method_missing(name)
-      method_missing_via_black_list(name, delegate_to: @resource)
+      method_missing_via_black_list(name, delegate_to: @resource_via_client)
     end
   end
 end

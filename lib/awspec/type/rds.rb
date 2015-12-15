@@ -58,9 +58,9 @@ module Awspec::Type
 
     def has_vpc_security_group_name?(sg_id)
       sgs = @resource_via_client[:vpc_security_groups]
-      res = @ec2_client.describe_security_groups({
-                                                   filters: [{ name: 'group-name', values: [sg_id] }]
-                                                 })
+      res = ec2_client.describe_security_groups({
+                                                  filters: [{ name: 'group-name', values: [sg_id] }]
+                                                })
       return false unless res[:security_groups].count == 1
       sgs.find do |sg|
         sg[:vpc_security_group_id] == res[:security_groups][0][:group_id]
@@ -69,9 +69,9 @@ module Awspec::Type
 
     def has_vpc_security_group_tag_name?(sg_id)
       sgs = @resource_via_client[:vpc_security_groups]
-      res = @ec2_client.describe_security_groups({
-                                                   filters: [{ name: 'tag:Name', values: [sg_id] }]
-                                                 })
+      res = ec2_client.describe_security_groups({
+                                                  filters: [{ name: 'tag:Name', values: [sg_id] }]
+                                                })
       return false unless res[:security_groups].count == 1
       sgs.find do |sg|
         sg[:vpc_security_group_id] == res[:security_groups][0][:group_id]

@@ -4,7 +4,7 @@ module Awspec::Type
 
     def initialize(id)
       super
-      @client = @ec2_client
+      @client = ec2_client
       @resource_via_client = find_ec2(id)
       @id = @resource_via_client[:instance_id] if @resource_via_client
     end
@@ -30,7 +30,7 @@ module Awspec::Type
         filters: [{ name: 'instance-id', values: [@id] }]
       }
       option[:public_ips] = [ip_address] if ip_address
-      ret = @ec2_client.describe_addresses(option)
+      ret = ec2_client.describe_addresses(option)
       return ret[:addresses].count == 1 if ip_address
       return ret[:addresses].count > 0 unless ip_address
     end

@@ -5,9 +5,9 @@ module Awspec::Type
     def initialize(name)
       super
       @parameters = {}
-      res = @rds_client.describe_db_parameters({
-                                                 db_parameter_group_name: name
-                                               })
+      res = rds_client.describe_db_parameters({
+                                                db_parameter_group_name: name
+                                              })
 
       loop do
         res.parameters.each do |param|

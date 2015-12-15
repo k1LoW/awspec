@@ -7,9 +7,9 @@ module Awspec::Type
     end
 
     def has_identity_policy?(name)
-      res = @ses_client.list_identity_policies({
-                                                 identity: @id
-                                               })
+      res = ses_client.list_identity_policies({
+                                                identity: @id
+                                              })
       res[:policy_names].find do |policy_name|
         policy_name == name
       end
@@ -22,17 +22,17 @@ module Awspec::Type
 
     dkim_attributes.each do |attribute|
       define_method attribute do
-        res = @ses_client.get_identity_dkim_attributes({
-                                                         identities: [@id]
-                                                       })
+        res = ses_client.get_identity_dkim_attributes({
+                                                        identities: [@id]
+                                                      })
         res[:dkim_attributes][@id][attribute.to_sym]
       end
     end
 
     def has_dkim_tokens?(token)
-      res = @ses_client.get_identity_dkim_attributes({
-                                                       identities: [@id]
-                                                     })
+      res = ses_client.get_identity_dkim_attributes({
+                                                      identities: [@id]
+                                                    })
       res[:dkim_attributes][@id][:tokens].include?(token)
     end
 
@@ -44,9 +44,9 @@ module Awspec::Type
 
     notification_attributes.each do |attribute|
       define_method attribute do
-        res = @ses_client.get_identity_notification_attributes({
-                                                                 identities: [@id]
-                                                               })
+        res = ses_client.get_identity_notification_attributes({
+                                                                identities: [@id]
+                                                              })
         res[:notification_attributes][@id][attribute.to_sym]
       end
     end
@@ -58,9 +58,9 @@ module Awspec::Type
 
     verification_attributes.each do |attribute|
       define_method attribute do
-        res = @ses_client.get_identity_verification_attributes({
-                                                                 identities: [@id]
-                                                               })
+        res = ses_client.get_identity_verification_attributes({
+                                                                identities: [@id]
+                                                              })
         res[:verification_attributes][@id][attribute.to_sym]
       end
     end

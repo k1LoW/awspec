@@ -1,7 +1,5 @@
 module Awspec::Type
   class Route53HostedZone < Base
-    attr_reader :resource_record_sets
-
     def initialize(id)
       super
       @resource_via_client = find_hosted_zone(id)

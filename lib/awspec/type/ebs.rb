@@ -1,5 +1,7 @@
 module Awspec::Type
   class Ebs < Base
+    aws_resource Aws::EC2::Volume
+
     def initialize(id)
       super
       @resource_via_client = find_ebs(id)

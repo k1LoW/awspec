@@ -49,21 +49,6 @@ module Awspec::Helper
       directconnect_client: Aws::DirectConnect::Client
     }
 
-    def client_init
-      # @ec2_client ||= Aws::EC2::Client.new
-      # @rds_client ||= Aws::RDS::Client.new
-      # @route53_client ||= Aws::Route53::Client.new
-      # @s3_client ||= Aws::S3::Client.new
-      # @autoscaling_client ||= Aws::AutoScaling::Client.new
-      # @elb_client ||= Aws::ElasticLoadBalancing::Client.new
-      # @lambda_client ||= Aws::Lambda::Client.new
-      # @iam_client ||= Aws::IAM::Client.new
-      # @elasticache_client ||= Aws::ElastiCache::Client.new
-      # @cloudwatch_client ||= Aws::CloudWatch::Client.new
-      # @ses_client ||= Aws::SES::Client.new
-      # @directconnect_client ||= Aws::DirectConnect::Client.new
-    end
-
     CLIENTS.each do |method_name, client|
       define_method method_name do
         eval "@#{method_name} ||= #{client}.new"

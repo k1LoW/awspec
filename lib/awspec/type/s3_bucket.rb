@@ -7,10 +7,10 @@ module Awspec::Type
     end
 
     def has_object?(key)
-      res = @s3_client.head_object({
-                                     bucket: @id,
-                                     key: key.sub(%r(\A/), '')
-                                   })
+      res = s3_client.head_object({
+                                    bucket: @id,
+                                    key: key.sub(%r(\A/), '')
+                                  })
       res
     rescue
       false

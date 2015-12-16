@@ -2,13 +2,13 @@ module Awspec::Helper
   module Finder
     module Ebs
       def find_ebs(volume_id)
-        res = @ec2_client.describe_volumes({
-                                             filters: [{ name: 'volume-id', values: [volume_id] }]
-                                           })
+        res = ec2_client.describe_volumes({
+                                            filters: [{ name: 'volume-id', values: [volume_id] }]
+                                          })
         return res[:volumes].first if res[:volumes].count == 1
-        res = @ec2_client.describe_volumes({
-                                             filters: [{ name: 'tag:Name', values: [volume_id] }]
-                                           })
+        res = ec2_client.describe_volumes({
+                                            filters: [{ name: 'tag:Name', values: [volume_id] }]
+                                          })
         return res[:volumes].first if res[:volumes].count == 1
       end
 
@@ -25,7 +25,7 @@ module Awspec::Helper
 
       def select_all_attached_ebs
         selected = []
-        res = @ec2_client.describe_volumes
+        res = ec2_client.describe_volumes
 
         loop do
           selected += res.volumes.select { |v| v.attachments.count > 0 }

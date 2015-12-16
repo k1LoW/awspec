@@ -11,7 +11,6 @@ module Awspec::Type
 
     def initialize(id = nil)
       @display_name = id
-      super
       @id = nil
     end
 

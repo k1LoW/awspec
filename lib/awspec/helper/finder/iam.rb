@@ -7,7 +7,7 @@ module Awspec::Helper
         define_method 'find_iam_' + type do |*args|
           id = args.first
           selected = []
-          res = @iam_client.method('list_' + type.pluralize).call
+          res = iam_client.method('list_' + type.pluralize).call
           loop do
             selected += res[type.pluralize].select do |u|
               u[type + '_name'] == id || u[type + '_id'] == id || u.arn == id
@@ -25,41 +25,41 @@ module Awspec::Helper
           action_names: [action_name]
         }
         options[:resource_arns] = [resource_arn] if resource_arn
-        res = @iam_client.simulate_principal_policy(options)
+        res = iam_client.simulate_principal_policy(options)
         res.evaluation_results
       end
 
       def select_iam_group_by_user_name(user_name)
-        res = @iam_client.list_groups_for_user({
-                                                 user_name: user_name
-                                               })
+        res = iam_client.list_groups_for_user({
+                                                user_name: user_name
+                                              })
         res.groups
       end
 
       def select_iam_policy_by_user_name(user_name)
-        res = @iam_client.list_attached_user_policies({
-                                                        user_name: user_name
-                                                      })
+        res = iam_client.list_attached_user_policies({
+                                                       user_name: user_name
+                                                     })
         res.attached_policies
       end
 
       def select_iam_policy_by_group_name(group_name)
-        res = @iam_client.list_attached_group_policies({
-                                                         group_name: group_name
-                                                       })
+        res = iam_client.list_attached_group_policies({
+                                                        group_name: group_name
+                                                      })
         res.attached_policies
       end
 
       def select_iam_policy_by_role_name(role_name)
-        res = @iam_client.list_attached_role_policies({
-                                                        role_name: role_name
-                                                      })
+        res = iam_client.list_attached_role_policies({
+                                                       role_name: role_name
+                                                     })
         res.attached_policies
       end
 
       def select_all_attached_policies
         selected = []
-        res = @iam_client.list_policies
+        res = iam_client.list_policies
 
         loop do
           selected += res.policies.select { |p| p.attachment_count > 0 }
@@ -71,7 +71,7 @@ module Awspec::Helper
 
       def select_attached_entities(policy_id)
         policy = find_iam_policy(policy_id)
-        @iam_client.list_entities_for_policy(policy_arn: policy[:arn])
+        iam_client.list_entities_for_policy(policy_arn: policy[:arn])
       end
 
       def select_attached_users(policy_id)

@@ -17,7 +17,6 @@ require 'awspec/helper/finder/directconnect'
 
 module Awspec::Helper
   module Finder
-    attr_reader :ec2_client
     include Awspec::Helper::Finder::Vpc
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::SecurityGroup
@@ -34,20 +33,25 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ses
     include Awspec::Helper::Finder::Directconnect
 
-    # rubocop:disable all
-    def initialize(id = nil)
-      @ec2_client = Aws::EC2::Client.new
-      @rds_client = Aws::RDS::Client.new
-      @route53_client = Aws::Route53::Client.new
-      @s3_client = Aws::S3::Client.new
-      @autoscaling_client = Aws::AutoScaling::Client.new
-      @elb_client = Aws::ElasticLoadBalancing::Client.new
-      @lambda_client = Aws::Lambda::Client.new
-      @iam_client = Aws::IAM::Client.new
-      @elasticache_client = Aws::ElastiCache::Client.new
-      @cloudwatch_client = Aws::CloudWatch::Client.new
-      @ses_client = Aws::SES::Client.new
-      @directconnect_client = Aws::DirectConnect::Client.new
+    CLIENTS = {
+      ec2_client: Aws::EC2::Client,
+      rds_client: Aws::RDS::Client,
+      route53_client: Aws::Route53::Client,
+      s3_client: Aws::S3::Client,
+      autoscaling_client: Aws::AutoScaling::Client,
+      elb_client: Aws::ElasticLoadBalancing::Client,
+      lambda_client: Aws::Lambda::Client,
+      iam_client: Aws::IAM::Client,
+      elasticache_client: Aws::ElastiCache::Client,
+      cloudwatch_client: Aws::CloudWatch::Client,
+      ses_client: Aws::SES::Client,
+      directconnect_client: Aws::DirectConnect::Client
+    }
+
+    CLIENTS.each do |method_name, client|
+      define_method method_name do
+        eval "@#{method_name} ||= #{client}.new"
+      end
     end
   end
 end

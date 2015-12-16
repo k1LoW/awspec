@@ -5,9 +5,9 @@ module Awspec::Type
     def initialize(name)
       super
       @parameters = {}
-      res = @elasticache_client.describe_cache_parameters({
-                                                            cache_parameter_group_name: name
-                                                          })
+      res = elasticache_client.describe_cache_parameters({
+                                                           cache_parameter_group_name: name
+                                                         })
 
       loop do
         res.parameters.each do |param|

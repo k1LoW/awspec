@@ -3,7 +3,7 @@ module Awspec::Helper
     module Lambda
       def find_lambda(id)
         selected = []
-        res = @lambda_client.list_functions
+        res = lambda_client.list_functions
 
         loop do
           selected += res.functions.select do |function|
@@ -16,9 +16,9 @@ module Awspec::Helper
       end
 
       def select_event_source_by_function_arn(function_arn)
-        res = @lambda_client.list_event_source_mappings({
-                                                          function_name: function_arn
-                                                        })
+        res = lambda_client.list_event_source_mappings({
+                                                         function_name: function_arn
+                                                       })
         res[:event_source_mappings]
       end
     end

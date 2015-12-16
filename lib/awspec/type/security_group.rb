@@ -4,7 +4,6 @@ module Awspec::Type
 
     def initialize(id)
       super
-      @client = @ec2_client
       @inbound = true
       @resource_via_client = find_security_group(id)
       @id = @resource_via_client[:group_id] if @resource_via_client

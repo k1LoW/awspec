@@ -4,7 +4,6 @@ module Awspec::Type
 
     def initialize(id)
       super
-      @client = @ec2_client
       @resource_via_client = find_vpc(id)
       @id = @resource_via_client[:vpc_id] if @resource_via_client
     end

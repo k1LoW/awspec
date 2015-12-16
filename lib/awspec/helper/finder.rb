@@ -17,7 +17,6 @@ require 'awspec/helper/finder/directconnect'
 
 module Awspec::Helper
   module Finder
-    attr_reader :ec2_client
     include Awspec::Helper::Finder::Vpc
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::SecurityGroup

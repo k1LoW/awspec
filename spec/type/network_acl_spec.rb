@@ -10,4 +10,9 @@ describe network_acl('my-network-acl') do
   its(:outbound) { should be_allowed.protocol('ALL').source('0.0.0.0/0') }
   its(:inbound_entries_count) { should eq 3 }
   its(:outbound_entries_count) { should eq 2 }
+  context 'nested attribute call' do
+    its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
+    its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+    its('vpc.id') { should eq 'vpc-ab123cde' }
+  end
 end

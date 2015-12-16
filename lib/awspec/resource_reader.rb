@@ -25,7 +25,7 @@ module Awspec
       create|delete|put|update|add|
       attach|detach|
       reboot|start|stop|
-      modify|reset
+      modify|reset|replace
     /ix
 
     def match_black_list?(name)

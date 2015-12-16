@@ -21,12 +21,11 @@ module Awspec
     private
 
     BLACK_LIST_RE = /
-      create|
-      delete|
       clear|
-      put|
-      update|
-      add
+      create|delete|put|update|add|
+      attach|detach|
+      reboot|start|stop|
+      modify|reset
     /ix
 
     def match_black_list?(name)

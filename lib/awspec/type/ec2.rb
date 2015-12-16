@@ -1,7 +1,5 @@
 module Awspec::Type
   class Ec2 < Base
-    attr_reader :client
-
     def initialize(id)
       super
       @resource_via_client = find_ec2(id)

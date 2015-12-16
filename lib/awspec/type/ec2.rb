@@ -1,5 +1,7 @@
 module Awspec::Type
   class Ec2 < Base
+    aws_resource Aws::EC2::Instance
+
     def initialize(id)
       super
       @resource_via_client = find_ec2(id)

@@ -1,8 +1,15 @@
 require 'bundler/gem_tasks'
+
 begin
   require 'rspec/core/rake_task'
   require 'octorelease'
 rescue LoadError
+end
+
+require 'awspec'
+
+types = Awspec::Helper::Type::TYPES.reject { |type| type == 'base' }.map do |type|
+  'spec:' + type
 end
 
 if defined?(RSpec)
@@ -10,8 +17,12 @@ if defined?(RSpec)
   namespace :spec do
     task all: ['spec:type', 'spec:generator_spec', 'spec:generator_doc']
 
-    RSpec::Core::RakeTask.new(:type) do |t|
-      t.pattern = 'spec/type/*_spec.rb'
+    task type: types
+
+    Awspec::Helper::Type::TYPES.map do |type|
+      RSpec::Core::RakeTask.new(type) do |t|
+        t.pattern = 'spec/type/' + type + '_spec.rb'
+      end
     end
 
     RSpec::Core::RakeTask.new(:generator_spec) do |t|

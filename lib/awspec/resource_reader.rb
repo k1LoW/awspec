@@ -24,7 +24,7 @@ module Awspec
       clear|
       create|delete|put|update|add|
       attach|detach|
-      reboot|start|stop|
+      reboot|start|stop|terminate|
       modify|reset|replace
       authorize|revoke
     /ix

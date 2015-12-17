@@ -1,5 +1,7 @@
 module Awspec::Type
   class S3Bucket < Base
+    aws_resource Aws::S3::Bucket
+
     def initialize(id)
       super
       @resource_via_client = find_bucket(id)
@@ -56,10 +58,6 @@ module Awspec::Type
       bp = find_bucket_policy(@id)
       # newlines, spaces, etc.. are removed from policy which is returned from API
       bp ? (bp.policy.read == policy.gsub(/(\n|\r|\r\n|\s|\t)/, '')) : false
-    end
-
-    def resource
-      @resource ||= Awspec::ResourceReader.new(Aws::S3::Bucket.new(@id))
     end
 
     private

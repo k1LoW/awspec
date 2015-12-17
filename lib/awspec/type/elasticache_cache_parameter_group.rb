@@ -1,7 +1,5 @@
 module Awspec::Type
   class ElasticacheCacheParameterGroup < Base
-    attr_reader :parameters
-
     def initialize(name)
       super
       @parameters = {}

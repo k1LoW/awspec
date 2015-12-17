@@ -1,6 +1,6 @@
 module Awspec::Type
   class Ec2 < Base
-    attr_reader :client
+    aws_resource Aws::EC2::Instance
 
     def initialize(id)
       super

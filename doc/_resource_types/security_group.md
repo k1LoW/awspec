@@ -16,3 +16,21 @@ describe security_group('my-security-group-name') do
   its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
 end
 ```
+
+### advanced
+
+`security_group` can use `Aws::EC2::SecurityGroup` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/SecurityGroup.html).
+
+```ruby
+describe security_group('my-security-group-name') do
+  its('group_name') { should eq 'my-security-group-name' }
+end
+```
+
+or
+
+```ruby
+describe security_group('my-security-group-name') do
+  its('resource.group_name') { should eq 'my-security-group-name' }
+end
+```

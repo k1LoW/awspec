@@ -21,6 +21,11 @@ describe ec2('i-ec12345a') do
   it { should have_eip('123.0.456.789') }
   it { should have_ebs('vol-123a123b') }
   it { should have_ebs('my-volume') }
+  its(:private_ip_address) { should eq '10.0.1.1' }
+  context 'nested attribute call' do
+    its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
+    its('vpc.id') { should eq 'vpc-ab123cde' }
+  end
 end
 
 describe ec2('my-ec2') do

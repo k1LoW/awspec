@@ -103,7 +103,26 @@ describe ec2('my-ec2') do
 end
 ```
 
+
 ### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:iam_instance_profile), its(:ebs_optimized), its(:sriov_net_support)
+### :unlock: Advanced use
+
+`ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
+
+```ruby
+describe ec2('my-ec2') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe ec2('my-ec2') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
 ## <a name="rds">rds</a>
 
 RDS resource type.
@@ -227,7 +246,26 @@ describe security_group('my-security-group-name') do
 end
 ```
 
+
 ### its(:inbound_rule_count), its(:outbound_rule_count), its(:inbound_permissions_count), its(:outbound_permissions_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
+### :unlock: Advanced use
+
+`security_group` can use `Aws::EC2::SecurityGroup` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/SecurityGroup.html).
+
+```ruby
+describe security_group('my-security-group-name') do
+  its('group_name') { should eq 'my-security-group-name' }
+end
+```
+
+or
+
+```ruby
+describe security_group('my-security-group-name') do
+  its('resource.group_name') { should eq 'my-security-group-name' }
+end
+```
+
 ## <a name="vpc">vpc</a>
 
 VPC resource type.
@@ -269,7 +307,26 @@ describe vpc('vpc-ab123cde') do
 end
 ```
 
+
 ### its(:vpc_id), its(:state), its(:cidr_block), its(:dhcp_options_id), its(:instance_tenancy), its(:is_default)
+### :unlock: Advanced use
+
+`vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).
+
+```ruby
+describe vpc('my-vpc') do
+  its('route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
+end
+```
+
+or
+
+```ruby
+describe vpc('my-vpc') do
+  its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
+end
+```
+
 ## <a name="s3_bucket">s3_bucket</a>
 
 S3Bucket resource type.
@@ -454,7 +511,26 @@ describe subnet('my-subnet') do
 end
 ```
 
+
 ### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
+### :unlock: Advanced use
+
+`subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).
+
+```ruby
+describe subnet('my-subnet') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe subnet('my-subnet') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
 ## <a name="route_table">route_table</a>
 
 RouteTable resource type.
@@ -488,7 +564,26 @@ describe route_table('my-route-table') do
 end
 ```
 
+
 ### its(:route_table_id), its(:vpc_id)
+### :unlock: Advanced use
+
+`route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).
+
+```ruby
+describe route_table('my-route-table') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe s3_bucket('my-bucket') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
 ## <a name="ebs">ebs</a>
 
 EBS resource type.
@@ -519,7 +614,26 @@ describe ebs('my-volume') do
 end
 ```
 
+
 ### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
+### :unlock: Advanced use
+
+`ebs` can use `Aws::EC2::Volume` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html).
+
+```ruby
+describe ebs('my-volume') do
+  its('attachments.first.instance_id') { should eq 'i-ec12345a' }
+end
+```
+
+or
+
+```ruby
+describe ebs('my-volume') do
+  its('resource.attachments.first.instance_id') { should eq 'i-ec12345a' }
+end
+```
+
 ## <a name="elb">elb</a>
 
 ELB resource type.
@@ -958,7 +1072,26 @@ describe network_acl('my-network-acl') do
 end
 ```
 
+
 ### its(:inbound_entries_count), its(:outbound_entries_count), its(:network_acl_id), its(:vpc_id), its(:is_default)
+### :unlock: Advanced use
+
+`network_acl` can use `Aws::EC2::NetworkAcl` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/NetworkAcl.html).
+
+```ruby
+describe network_acl('my-network-acl') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe network_acl('my-network-acl') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
 ## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
 
 DirectconnectVirtualInterface resource type.

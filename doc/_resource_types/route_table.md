@@ -24,3 +24,21 @@ describe route_table('my-route-table') do
   it { should have_subnet('my-subnet') }
 end
 ```
+
+### advanced
+
+`route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).
+
+```ruby
+describe route_table('my-route-table') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe s3_bucket('my-bucket') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```

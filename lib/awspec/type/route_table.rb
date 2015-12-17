@@ -1,5 +1,7 @@
 module Awspec::Type
   class RouteTable < Base
+    aws_resource Aws::EC2::RouteTable
+
     def initialize(id)
       super
       @resource_via_client = find_route_table(id)

@@ -10,6 +10,10 @@ describe route_table('my-route-table') do
   it { should have_route('192.168.1.0/24').target(instance: 'my-ec2') }
   it { should have_route('192.168.2.0/24').target(vpc_peering_connection: 'my-pcx') }
   it { should have_subnet('my-subnet') }
+  context 'nested attribute call' do
+    its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
+    its('vpc.id') { should eq 'vpc-ab123cde' }
+  end
 end
 
 # deprecated

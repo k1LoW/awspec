@@ -27,6 +27,12 @@ module Awspec::Type
       @id
     end
 
+    def self.aws_resource(resource)
+      define_method :resource do
+        @resource ||= Awspec::ResourceReader.new(resource.new(@id))
+      end
+    end
+
     def method_missing(name)
       describe = name.to_sym
       if @resource_via_client.members.include?(describe)

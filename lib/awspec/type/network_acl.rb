@@ -1,5 +1,7 @@
 module Awspec::Type
   class NetworkAcl < Base
+    aws_resource Aws::EC2::NetworkAcl
+
     def initialize(id)
       super
       @resource_via_client = find_network_acl(id)

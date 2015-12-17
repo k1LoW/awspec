@@ -31,3 +31,21 @@ describe vpc('vpc-ab123cde') do
   it { should have_network_acl('my-network-acl') }
 end
 ```
+
+### advanced
+
+`vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).
+
+```ruby
+describe vpc('my-vpc') do
+  its('route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
+end
+```
+
+or
+
+```ruby
+describe vpc('my-vpc') do
+  its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
+end
+```

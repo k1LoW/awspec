@@ -1,5 +1,7 @@
 module Awspec::Type
   class Subnet < Base
+    aws_resource Aws::EC2::Subnet
+
     def initialize(id)
       super
       @resource_via_client = find_subnet(id)

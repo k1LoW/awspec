@@ -16,4 +16,8 @@ describe rds('my-rds') do
   it { should belong_to_subnet('db-subnet-a') }
   it { should have_db_parameter_group('default.mysql5.6') }
   it { should have_option_group('default:mysql-5-6') }
+  context 'nested attribute call' do
+    its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
+    its('db_subnet_group.db_subnet_group_name') { should eq 'my-db-subnet-group' }
+  end
 end

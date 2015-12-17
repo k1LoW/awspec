@@ -201,7 +201,26 @@ describe rds('my-rds') do
 end
 ```
 
+
 ### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:copy_tags_to_snapshot)
+### :unlock: Advanced use
+
+`rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).
+
+```ruby
+describe rds('my-rds') do
+  its('db_subnet_group.db_subnet_group_name') { should eq 'my-db-subnet-group' }
+end
+```
+
+or
+
+```ruby
+describe rds('my-rds') do
+  its('resource.db_subnet_group.db_subnet_group_name') { should eq 'my-db-subnet-group' }
+end
+```
+
 ## <a name="rds_db_parameter_group">rds_db_parameter_group</a>
 
 RdsDbParameterGroup resource type.

@@ -64,3 +64,21 @@ describe rds('my-rds') do
   it { should belong_to_vpc('my-vpc') }
 end
 ```
+
+### advanced
+
+`rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).
+
+```ruby
+describe rds('my-rds') do
+  its('db_subnet_group.db_subnet_group_name') { should eq 'my-db-subnet-group' }
+end
+```
+
+or
+
+```ruby
+describe rds('my-rds') do
+  its('resource.db_subnet_group.db_subnet_group_name') { should eq 'my-db-subnet-group' }
+end
+```

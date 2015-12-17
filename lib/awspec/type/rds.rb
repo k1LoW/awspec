@@ -1,5 +1,7 @@
 module Awspec::Type
   class Rds < Base
+    aws_resource Aws::RDS::DBInstance
+
     def initialize(id)
       super
       @resource_via_client = find_rds(id)

@@ -1,6 +1,6 @@
 module Awspec::Type
   class SecurityGroup < Base
-    attr_reader :client
+    aws_resource Aws::EC2::SecurityGroup
 
     def initialize(id)
       super

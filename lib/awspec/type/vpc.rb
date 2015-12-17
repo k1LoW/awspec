@@ -1,6 +1,6 @@
 module Awspec::Type
   class Vpc < Base
-    attr_reader :client
+    aws_resource Aws::EC2::Vpc
 
     def initialize(id)
       super

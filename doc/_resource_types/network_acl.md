@@ -33,3 +33,21 @@ describe network_acl('my-network-acl') do
   its(:outbound_entries_count) { should eq 2 }
 end
 ```
+
+### advanced
+
+`network_acl` can use `Aws::EC2::NetworkAcl` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/NetworkAcl.html).
+
+```ruby
+describe network_acl('my-network-acl') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe network_acl('my-network-acl') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```

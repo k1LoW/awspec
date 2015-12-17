@@ -73,3 +73,21 @@ describe ec2('my-ec2') do
   it { should belong_to_vpc('my-vpc') }
 end
 ```
+
+### advanced
+
+`ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
+
+```ruby
+describe ec2('my-ec2') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe ec2('my-ec2') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```

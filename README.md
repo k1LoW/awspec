@@ -26,11 +26,11 @@ Or install it yourself as:
 
 ## Getting Started
 
-### 1. Generate awspec init files
+### STEP 1. Generate awspec init files
 
     $ awspec init
 
-### 2. Set AWS credentials
+### STEP 2. Set AWS credentials
 
 #### 2-1. Use Shared Credentials
 
@@ -50,7 +50,7 @@ aws_secret_access_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 EOF
 ```
 
-### 3. Write spec/*_spec.rb
+### STEP 3. Write spec/*_spec.rb
 
 ```ruby
 require 'spec_helper'
@@ -68,7 +68,7 @@ describe ec2('my-ec2-tag-name') do
 end
 ```
 
-### 4. Run tests
+### STEP 4. Run tests
 
     $ bundle exec rake spec
 
@@ -87,7 +87,7 @@ $ awspec generate ec2 vpc-ab123cde --profile mycreds
 ```
 
 ```sh
-$ export AWS_PROFILE=mycreds; bundle exec rake spec
+$ AWS_PROFILE=mycreds bundle exec rake spec
 ```
 
 ## Support AWS Resources

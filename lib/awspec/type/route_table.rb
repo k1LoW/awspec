@@ -8,7 +8,11 @@ module Awspec::Type
       @id = @resource_via_client[:route_table_id] if @resource_via_client
     end
 
-    def has_route?(destination, gateway_id = nil, instance_id = nil, vpc_peering_connection_id = nil)
+    def has_route?(destination,
+                   gateway_id = nil,
+                   instance_id = nil,
+                   vpc_peering_connection_id = nil,
+                   nat_gateway_id = nil)
       @resource_via_client.routes.find do |route|
         if destination
           next false unless route.destination_cidr_block == destination
@@ -16,6 +20,7 @@ module Awspec::Type
         next target_gateway?(route, gateway_id) if gateway_id
         next target_instance?(route, instance_id) if instance_id
         next target_vpc_peering_connection?(route, vpc_peering_connection_id) if vpc_peering_connection_id
+        next target_nat?(route, nat_gateway_id) if nat_gateway_id
       end
     end
 
@@ -41,6 +46,8 @@ module Awspec::Type
       # customer gateway
       cgw = find_customer_gateway(gateway_id)
       return true if cgw && cgw.tag_name == gateway_id
+      # nat gateway
+      return true if route.nat_gateway_id == gateway_id
       false
     end
 
@@ -50,6 +57,11 @@ module Awspec::Type
       instance = find_ec2(instance_id)
       return true if instance && instance.tag_name == instance_id
       false
+    end
+
+    def target_nat?(route, nat_gateway_id)
+      # nat
+      route.nat_gateway_id == nat_gateway_id
     end
 
     def target_vpc_peering_connection?(route, vpc_peering_connection_id)

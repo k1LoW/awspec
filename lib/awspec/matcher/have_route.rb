@@ -7,13 +7,14 @@ RSpec::Matchers.define :have_route do |destination|
     else
       @destination = destination
     end
-    route_table.has_route?(@destination, @gateway_id, @instance_id, @vpc_peering_connection_id)
+    route_table.has_route?(@destination, @gateway_id, @instance_id, @vpc_peering_connection_id, @nat_gateway_id)
   end
 
   chain :target do |target|
     @gateway_id = target[:gateway]
     @instance_id = target[:instance]
     @vpc_peering_connection_id = target[:vpc_peering_connection]
+    @nat_gateway_id = target[:nat]
   end
 
   chain :destination do |dest|

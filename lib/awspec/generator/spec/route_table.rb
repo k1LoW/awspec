@@ -32,6 +32,9 @@ module Awspec::Generator
             connection = find_vpc_peering_connection(route.vpc_peering_connection_id)
             linespecs.push(ERB.new(route_table_spec_connection_linetemplate, nil, '-').result(binding)) if connection
           end
+          if route.nat_gateway_id
+            linespecs.push(ERB.new(route_table_spec_nat_linetemplate, nil, '-').result(binding))
+          end
         end
         linespecs
       end
@@ -76,6 +79,13 @@ EOF
         template
       end
       # rubocop:enable Metrics/LineLength
+
+      def route_table_spec_nat_linetemplate
+        template = <<-'EOF'
+it { should have_route('<%= route.destination_cidr_block %>').target(nat: '<%= route.nat_gateway_id %>') }
+EOF
+        template
+      end
 
       def route_table_spec_subnet_linetemplate
         template = <<-'EOF'

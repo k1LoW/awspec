@@ -67,6 +67,7 @@ Aws.config[:ec2] = {
               gateway_id: 'local',
               instance_id: nil,
               instance_owner_id: nil,
+              nat_gateway_id: nil,
               network_interface_id: nil,
               vpc_peering_connection_id: nil,
               state: 'active'
@@ -77,6 +78,7 @@ Aws.config[:ec2] = {
               gateway_id: 'igw-1ab2345c',
               instance_id: nil,
               instance_owner_id: nil,
+              nat_gateway_id: nil,
               network_interface_id: nil,
               vpc_peering_connection_id: nil,
               state: 'active'
@@ -87,6 +89,7 @@ Aws.config[:ec2] = {
               gateway_id: nil,
               instance_id: 'i-ec12345a',
               instance_owner_id: nil,
+              nat_gateway_id: nil,
               network_interface_id: nil,
               vpc_peering_connection_id: nil,
               state: 'active'
@@ -97,8 +100,20 @@ Aws.config[:ec2] = {
               gateway_id: nil,
               instance_id: nil,
               instance_owner_id: nil,
+              nat_gateway_id: nil,
               network_interface_id: nil,
               vpc_peering_connection_id: 'pcx-c56789de',
+              state: 'active'
+            },
+            {
+              destination_cidr_block: '192.168.3.0/24',
+              destination_prefix_list_id: nil,
+              gateway_id: nil,
+              instance_id: nil,
+              instance_owner_id: nil,
+              nat_gateway_id: 'nat-7ff7777f',
+              network_interface_id: nil,
+              vpc_peering_connection_id: nil,
               state: 'active'
             }
           ],
@@ -152,6 +167,15 @@ Aws.config[:ec2] = {
               value: 'my-igw'
             }
           ]
+        }
+      ]
+    },
+    describe_nat_gateways: {
+      nat_gateways: [
+        {
+          nat_gateway_id: 'nat-7ff7777f',
+          vpc_id: 'vpc-ab123cde',
+          state: 'available'
         }
       ]
     },

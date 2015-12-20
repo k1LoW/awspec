@@ -86,7 +86,7 @@ EOF
 
 Genarate #{@type.camelize} template files.
 
-* !! AND add '#{@type.underscore}' to Awspec::Helper::Type::TYPES in awspec/lib/helper/type.rb *
+* !! AND add '#{@type.underscore}' to Awspec::Helper::Type::TYPES in lib/awspec/helper/type.rb *
 
 EOF
     end

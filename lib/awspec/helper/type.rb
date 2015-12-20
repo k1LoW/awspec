@@ -7,6 +7,7 @@ module Awspec
         route_table ebs elb lambda iam_user iam_group iam_role
         iam_policy elasticache elasticache_cache_parameter_group
         cloudwatch_alarm ses_identity network_acl directconnect_virtual_interface
+        nat_gateway
       )
 
       TYPES.each do |type|

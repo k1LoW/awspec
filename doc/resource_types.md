@@ -23,6 +23,7 @@
 | [ses_identity](#ses_identity)
 | [network_acl](#network_acl)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
+| [nat_gateway](#nat_gateway)
 
 ## <a name="ec2">ec2</a>
 
@@ -1148,3 +1149,43 @@ end
 ```
 
 ### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id)
+## <a name="nat_gateway">nat_gateway</a>
+
+NatGateway resource type.
+
+### exist
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_failed, be_available, be_deleting, be_deleted
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should be_available }
+end
+```
+
+
+### have_eip
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should have_eip('123.0.456.789') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message)

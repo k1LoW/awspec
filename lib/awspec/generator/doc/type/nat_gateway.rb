@@ -5,10 +5,13 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'NatGateway'
-          @type = Awspec::Type::NatGateway.new('my-nat-gateway')
+          @type = Awspec::Type::NatGateway.new('nat-7ff7777f')
           @ret = @type.resource_via_client
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::NatGateway::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
+            'belong_to_vpc'
+          ]
+          @ignore_matchers = Awspec::Type::NatGateway::STATES.map { |state| 'be_' + state.tr('-', '_') }
           @describes = []
         end
       end

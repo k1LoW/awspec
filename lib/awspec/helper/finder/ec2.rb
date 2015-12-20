@@ -42,30 +42,34 @@ module Awspec::Helper
                                                      })
       end
 
-      # find_internet_gateway find_vpn_gateway find_customer_gateway find_nat_gateway
-      gateway_types = %w(internet vpn customer nat)
+      # find_internet_gateway find_vpn_gateway find_customer_gateway
+      gateway_types = %w(internet vpn customer)
       gateway_types.each do |type|
         define_method 'find_' + type + '_gateway' do |*args|
           gateway_id = args.first
-          res = ec2_client.method('describe_' + type + '_gateways').call({
-                                                                           filters: [
-                                                                             {
-                                                                               name: type + '-gateway-id',
-                                                                               values: [gateway_id]
-                                                                             }
-                                                                           ]
-                                                                         })
+          method_name = 'describe_' + type + '_gateways'
+          res = ec2_client.method(method_name).call({
+                                                      filters: [{ name: type + '-gateway-id', values: [gateway_id] }]
+                                                    })
+
           return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
-          res = ec2_client.method('describe_' + type + '_gateways').call({
-                                                                           filters: [
-                                                                             {
-                                                                               name: 'tag:Name',
-                                                                               values: [gateway_id]
-                                                                             }
-                                                                           ]
-                                                                         })
+          res = ec2_client.method(method_name).call({
+                                                      filters: [{ name: 'tag:Name', values: [gateway_id] }]
+                                                    })
           return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
         end
+      end
+
+      def find_nat_gateway(gateway_id)
+        res = ec2_client.describe_nat_gateways({
+                                                 filter: [
+                                                   {
+                                                     name: 'nat-gateway-id',
+                                                     values: [gateway_id]
+                                                   }
+                                                 ]
+                                               })
+        return res['nat_gateways'].first if res['nat_gateways'].count == 1
       end
 
       def find_security_group(sg_id)

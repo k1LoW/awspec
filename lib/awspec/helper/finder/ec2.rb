@@ -62,12 +62,7 @@ module Awspec::Helper
 
       def find_nat_gateway(gateway_id)
         res = ec2_client.describe_nat_gateways({
-                                                 filter: [
-                                                   {
-                                                     name: 'nat-gateway-id',
-                                                     values: [gateway_id]
-                                                   }
-                                                 ]
+                                                 filter: [{ name: 'nat-gateway-id', values: [gateway_id] }]
                                                })
         return res['nat_gateways'].first if res['nat_gateways'].count == 1
       end
@@ -107,6 +102,13 @@ module Awspec::Helper
                                             })
         return [] unless res[:addresses].count > 0
         res[:addresses]
+      end
+
+      def select_nat_gateway_by_vpc_id(vpc_id)
+        res = ec2_client.describe_nat_gateways({
+                                                 filter: [{ name: 'vpc-id', values: [vpc_id] }]
+                                               })
+        res[:nat_gateways]
       end
     end
   end

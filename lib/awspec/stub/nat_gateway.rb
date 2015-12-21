@@ -13,7 +13,8 @@ Aws.config[:ec2] = {
             network_interface_id: 'unknown'
           ]
         }
-      ]
+      ],
+      next_token: nil
     },
     describe_vpcs: {
       vpcs: [

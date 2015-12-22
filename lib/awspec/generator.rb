@@ -1,5 +1,3 @@
-types = Awspec::Helper::Type::TYPES
-
 # Spec
 require 'awspec/generator/spec/ec2'
 require 'awspec/generator/spec/rds'
@@ -19,7 +17,8 @@ require 'awspec/generator/spec/nat_gateway'
 
 # Doc
 require 'awspec/generator/doc/type'
-types.each do |type|
+require 'awspec/generator/doc/type/base'
+Awspec::Helper::Type::TYPES.each do |type|
   require 'awspec/generator/doc/type/' + type
 end
 

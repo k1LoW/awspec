@@ -1,8 +1,10 @@
 module Awspec
   module Helper
     module Type
+      require 'awspec/type/base'
+
       TYPES = %w(
-        base autoscaling_group cloudwatch_alarm directconnect_virtual_interface
+        autoscaling_group cloudwatch_alarm directconnect_virtual_interface
         ebs ec2 elasticache elasticache_cache_parameter_group elb iam_group
         iam_policy iam_role iam_user lambda nat_gateway network_acl rds
         rds_db_parameter_group route53_hosted_zone route_table

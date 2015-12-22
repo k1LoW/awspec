@@ -1,29 +1,195 @@
 # Resource Types
 
-[ec2](#ec2)
-| [rds](#rds)
-| [rds_db_parameter_group](#rds_db_parameter_group)
-| [security_group](#security_group)
-| [vpc](#vpc)
-| [s3_bucket](#s3_bucket)
-| [route53_hosted_zone](#route53_hosted_zone)
-| [autoscaling_group](#autoscaling_group)
-| [subnet](#subnet)
-| [route_table](#route_table)
+[autoscaling_group](#autoscaling_group)
+| [cloudwatch_alarm](#cloudwatch_alarm)
+| [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
-| [elb](#elb)
-| [lambda](#lambda)
-| [iam_user](#iam_user)
-| [iam_group](#iam_group)
-| [iam_role](#iam_role)
-| [iam_policy](#iam_policy)
+| [ec2](#ec2)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
-| [cloudwatch_alarm](#cloudwatch_alarm)
-| [ses_identity](#ses_identity)
-| [network_acl](#network_acl)
-| [directconnect_virtual_interface](#directconnect_virtual_interface)
+| [elb](#elb)
+| [iam_group](#iam_group)
+| [iam_policy](#iam_policy)
+| [iam_role](#iam_role)
+| [iam_user](#iam_user)
+| [lambda](#lambda)
 | [nat_gateway](#nat_gateway)
+| [network_acl](#network_acl)
+| [rds](#rds)
+| [rds_db_parameter_group](#rds_db_parameter_group)
+| [route53_hosted_zone](#route53_hosted_zone)
+| [route_table](#route_table)
+| [s3_bucket](#s3_bucket)
+| [security_group](#security_group)
+| [ses_identity](#ses_identity)
+| [subnet](#subnet)
+| [vpc](#vpc)
+
+## <a name="autoscaling_group">autoscaling_group</a>
+
+AutoscalingGroup resource type.
+
+### exist
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should exist }
+end
+```
+
+
+### have_ec2
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_ec2('my-ec2') }
+end
+```
+
+
+### have_elb
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_elb('my-elb') }
+end
+```
+
+### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:status), its(:new_instances_protected_from_scale_in)
+## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
+
+CloudwatchAlarm resource type.
+
+### exist
+
+```ruby
+describe cloudwatch_alarm('my-cloudwatch-alarm') do
+  it { should exist }
+end
+```
+
+
+### have_alarm_action
+
+```ruby
+describe cloudwatch_alarm('my-cloudwatch-alarm') do
+  it { should have_alarm_action('arn:aws:sns:ap-northeast-1:1234567890:sns_alert') }
+end
+```
+
+
+### have_insufficient_data_action
+
+```ruby
+describe cloudwatch_alarm('my-cloudwatch-alarm') do
+  it { should have_insufficient_data_action('arn:aws:sns:ap-northeast-1:1234567890:sns_alert') }
+end
+```
+
+
+### have_ok_action
+
+```ruby
+describe cloudwatch_alarm('my-cloudwatch-alarm') do
+  it { should have_ok_action('arn:aws:sns:ap-northeast-1:1234567890:sns_alert') }
+end
+```
+
+
+### belong_to_metric
+
+```ruby
+describe cloudwatch_alarm('my-cloudwatch-alarm') do
+  it { should belong_to_metric('NumberOfProcesses').namespace('my-cloudwatch-namespace') }
+end
+```
+
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
+## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
+
+DirectconnectVirtualInterface resource type.
+
+```ruby
+describe directconnect_virtual_interface('my-directconnect-virtual-interface') do
+  it { should exist }
+  it { should be_available }
+  its(:connection_id) { should eq 'dxcon-abcd5fgh' }
+  its(:virtual_interface_id) { should eq 'dxvif-aabbccdd' }
+  its(:amazon_address) { should eq '170.252.252.1/30' }
+  its(:customer_address) { should eq '123.456.789.2/30' }
+  its(:virtual_gateway_id) { should eq 'vgw-d234e5f6' }
+end
+```
+
+
+### exist
+
+```ruby
+describe directconnect_virtual_interface('my-directconnect-virtual-interface') do
+  it { should exist }
+end
+```
+
+
+### be_confirming, be_verifying, be_pending, be_available, be_deleting, be_deleted, be_rejected
+
+```ruby
+describe directconnect_virtual_interface('my-directconnect-virtual-interface') do
+  it { should exist }
+  it { should be_available }
+end
+```
+
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id)
+## <a name="ebs">ebs</a>
+
+EBS resource type.
+
+### exist
+
+```ruby
+describe ebs('my-volume') do
+  it { should exist }
+end
+```
+
+
+### be_attached_to
+
+```ruby
+describe ebs('my-volume') do
+  it { should be_attached_to('my-ec2') }
+end
+```
+
+
+### be_creating, be_available, be_in_use, be_deleting, be_deleted, be_error
+
+```ruby
+describe ebs('my-volume') do
+  it { should be_in_use }
+end
+```
+
+
+### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
+### :unlock: Advanced use
+
+`ebs` can use `Aws::EC2::Volume` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html).
+
+```ruby
+describe ebs('my-volume') do
+  its('attachments.first.instance_id') { should eq 'i-ec12345a' }
+end
+```
+
+or
+
+```ruby
+describe ebs('my-volume') do
+  its('resource.attachments.first.instance_id') { should eq 'i-ec12345a' }
+end
+```
 
 ## <a name="ec2">ec2</a>
 
@@ -120,6 +286,430 @@ or
 
 ```ruby
 describe ec2('my-ec2') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+## <a name="elasticache">elasticache</a>
+
+Elasticache resource type.
+
+### exist
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should exist }
+end
+```
+
+
+### be_available, be_creating, be_deleted, be_deleting, be_incompatible_network, be_modifying, be_rebooting_cache_cluster_nodes, be_restore_failed, be_snapshotting
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should be_available }
+end
+```
+
+
+### have_cache_parameter_group
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should have_cache_parameter_group('my-cache-parameter-group') }
+end
+```
+
+
+### belong_to_cache_subnet_group
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should belong_to_cache_subnet_group('my-cache-subnet-group') }
+end
+```
+
+
+### belong_to_replication_group
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should belong_to_replication_group('my-rep-group') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_subnet_group_name), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window)
+## <a name="elasticache_cache_parameter_group">elasticache_cache_parameter_group</a>
+
+ElasticacheCacheParameterGroup resource type.
+
+```ruby
+describe elasticache_cache_parameter_group('my-cache-parameter-group') do
+  it { should exist }
+  its(:activerehashing) { should eq 'yes' }
+  its(:client_output_buffer_limit_pubsub_hard_limit) { should eq '33554432' }
+end
+```
+
+
+### exist
+
+```ruby
+describe elasticache_cache_parameter_group('my-cache-parameter-group') do
+  it { should exist }
+end
+```
+
+
+## <a name="elb">elb</a>
+
+ELB resource type.
+
+### exist
+
+```ruby
+describe elb('my-elb') do
+  it { should exist }
+end
+```
+
+
+### have_ec2
+
+```ruby
+describe elb('my-elb') do
+  it { should have_ec2('my-ec2') }
+end
+```
+
+
+### have_listener
+
+http://docs.aws.amazon.com/en_us/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html
+
+```ruby
+describe elb('my-elb') do
+  it { should have_listener(protocol: 'HTTPS', port: 443, instance_protocol: 'HTTP', instance_port: 80) }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe elb('my-elb') do
+  it { should have_security_group('my-lb-security-group-tag-name') }
+end
+```
+
+
+### have_subnet
+
+```ruby
+describe elb('my-elb') do
+  it { should have_subnet('my-subnet') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe elb('my-elb') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:vpc_id), its(:created_time), its(:scheme)
+## <a name="iam_group">iam_group</a>
+
+IamGroup resource type.
+
+### exist
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should exist }
+end
+```
+
+
+### be_allowed_action
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
+
+
+### have_iam_policy
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should have_iam_policy('ReadOnlyAccess') }
+end
+```
+
+
+### have_iam_user
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should have_iam_user('my-iam-user') }
+end
+```
+
+### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
+## <a name="iam_policy">iam_policy</a>
+
+IamPolicy resource type.
+
+### exist
+
+```ruby
+describe iam_policy('my-iam-policy') do
+  it { should exist }
+end
+```
+
+
+### be_attachable
+
+```ruby
+describe iam_policy('my-iam-policy') do
+  it { should be_attachable }
+end
+```
+
+
+### be_attached_to_group
+
+```ruby
+describe iam_policy('my-iam-policy') do
+  it { should be_attached_to_group('my-iam-group') }
+end
+```
+
+
+### be_attached_to_role
+
+```ruby
+describe iam_policy('my-iam-policy') do
+  it { should be_attached_to_role('HelloIAmGodRole') }
+end
+```
+
+
+### be_attached_to_user
+
+```ruby
+describe iam_policy('my-iam-policy') do
+  it { should be_attached_to_policy('my-iam-policy') }
+end
+```
+
+### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date)
+## <a name="iam_role">iam_role</a>
+
+IamRole resource type.
+
+### exist
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should exist }
+end
+```
+
+
+### be_allowed_action
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
+
+
+### have_iam_policy
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should have_iam_policy('ReadOnlyAccess') }
+end
+```
+
+### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
+## <a name="iam_user">iam_user</a>
+
+IamUser resource type.
+
+### exist
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should exist }
+end
+```
+
+
+### be_allowed_action
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
+
+
+### have_iam_policy
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should have_iam_policy('ReadOnlyAccess') }
+end
+```
+
+
+### belong_to_iam_group
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should belong_to_iam_group('my-iam-group') }
+end
+```
+
+### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)
+## <a name="lambda">lambda</a>
+
+Lambda resource type.
+
+### exist
+
+```ruby
+describe lambda('my-lambda-function-name') do
+  it { should exist }
+end
+```
+
+
+### have_event_source
+
+This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
+
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version)
+## <a name="nat_gateway">nat_gateway</a>
+
+NatGateway resource type.
+
+### exist
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_failed, be_available, be_deleting, be_deleted
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should be_available }
+end
+```
+
+
+### have_eip
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should have_eip('123.0.456.789') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message)
+## <a name="network_acl">network_acl</a>
+
+NetworkAcl resource type.
+
+### exist
+
+```ruby
+describe network_acl('my-network-acl') do
+  it { should exist }
+end
+```
+
+
+### have_subnet
+
+```ruby
+describe network_acl('my-network-acl') do
+  it { should have_subnet('my-subnet') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe network_acl('my-network-acl') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+
+### its(:inbound), its(:outbound), its(:inbound_entries_count), its(:outbound_entries_count)
+
+```ruby
+describe network_acl('my-network-acl') do
+  its(:inbound) { should be_allowed(80).protocol('tcp').source('123.0.456.789/32') }
+  its(:inbound) { should be_denied.rule_number('*').source('0.0.0.0/0') }
+  its(:outbound) { should be_allowed.protocol('ALL').source('0.0.0.0/0') }
+  its(:inbound_entries_count) { should eq 3 }
+  its(:outbound_entries_count) { should eq 2 }
+end
+```
+
+
+### its(:inbound_entries_count), its(:outbound_entries_count), its(:network_acl_id), its(:vpc_id), its(:is_default)
+### :unlock: Advanced use
+
+`network_acl` can use `Aws::EC2::NetworkAcl` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/NetworkAcl.html).
+
+```ruby
+describe network_acl('my-network-acl') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe network_acl('my-network-acl') do
   its('resource.vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
@@ -242,108 +832,89 @@ end
 ```
 
 
-## <a name="security_group">security_group</a>
+## <a name="route53_hosted_zone">route53_hosted_zone</a>
 
-SecurityGroup resource type.
+Route53HostedZone resource type.
 
 ### exist
 
 ```ruby
-describe security_group('my-security-group-name') do
+describe route53_hosted_zone('example.com.') do
   it { should exist }
 end
 ```
 
 
-### its(:inbound), its(:outbound)
+### have_record_set
 
 ```ruby
-describe security_group('my-security-group-name') do
-  its(:outbound) { should be_opened }
-  its(:inbound) { should be_opened(80) }
-  its(:inbound) { should be_opened(80).protocol('tcp').for('203.0.113.1/32') }
-  its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
+describe route53_hosted_zone('example.com.') do
+  its(:resource_record_set_count) { should eq 6 }
+  it { should have_record_set('example.com.').a('123.456.7.890') }
+  it { should have_record_set('*.example.com.').cname('example.com') }
+  it { should have_record_set('example.com.').mx('10 mail.example.com') }
+  it { should have_record_set('mail.example.com.').a('123.456.7.890').ttl(3600) }
+  ns = 'ns-123.awsdns-45.net.
+ns-6789.awsdns-01.org.
+ns-2345.awsdns-67.co.uk.
+ns-890.awsdns-12.com.'
+  it { should have_record_set('example.com.').ns(ns) }
+  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL') }
+end
+```
+
+### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count)
+## <a name="route_table">route_table</a>
+
+RouteTable resource type.
+
+### exist
+
+```ruby
+describe route_table('my-route-table') do
+  it { should exist }
 end
 ```
 
 
-### its(:inbound_rule_count), its(:outbound_rule_count), its(:inbound_permissions_count), its(:outbound_permissions_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
-### :unlock: Advanced use
-
-`security_group` can use `Aws::EC2::SecurityGroup` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/SecurityGroup.html).
+### have_route
 
 ```ruby
-describe security_group('my-security-group-name') do
-  its('group_name') { should eq 'my-security-group-name' }
+describe route_table('my-route-table') do
+  it { should have_route('10.0.0.0/16').target(gateway: 'local') }
+  it { should have_route('0.0.0.0/0').target(gateway: 'igw-1ab2345c') }
+  it { should have_route('192.168.1.0/24').target(instance: 'my-ec2') }
+  it { should have_route('192.168.2.0/24').target(vpc_peering_connection: 'my-pcx') }
+  it { should have_route('192.168.3.0/24').target(nat: 'nat-7ff7777f') }
+end
+```
+
+
+### have_subnet
+
+```ruby
+describe route_table('my-route-table') do
+  it { should have_subnet('my-subnet') }
+end
+```
+
+
+### its(:route_table_id), its(:vpc_id)
+### :unlock: Advanced use
+
+`route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).
+
+```ruby
+describe route_table('my-route-table') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
 
 or
 
 ```ruby
-describe security_group('my-security-group-name') do
-  its('resource.group_name') { should eq 'my-security-group-name' }
-end
-```
-
-## <a name="vpc">vpc</a>
-
-VPC resource type.
-
-### exist
-
-```ruby
-describe vpc('my-vpc') do
-  it { should exist }
-end
-```
-
-
-### be_available, be_pending
-
-```ruby
-describe vpc('vpc-ab123cde') do
-  it { should be_available }
-end
-```
-
-
-### have_network_acl
-
-```ruby
-describe vpc('vpc-ab123cde') do
-  it { should have_network_acl('acl-1abc2d3e') }
-  it { should have_network_acl('my-network-acl') }
-end
-```
-
-
-### have_route_table
-
-```ruby
-describe vpc('vpc-ab123cde') do
-  it { should have_network_acl('acl-1abc2d3e') }
-  it { should have_network_acl('my-network-acl') }
-end
-```
-
-
-### its(:vpc_id), its(:state), its(:cidr_block), its(:dhcp_options_id), its(:instance_tenancy), its(:is_default)
-### :unlock: Advanced use
-
-`vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).
-
-```ruby
-describe vpc('my-vpc') do
-  its('route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
-end
-```
-
-or
-
-```ruby
-describe vpc('my-vpc') do
-  its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
+describe s3_bucket('my-bucket') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
 
@@ -447,69 +1018,75 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
-## <a name="route53_hosted_zone">route53_hosted_zone</a>
+## <a name="security_group">security_group</a>
 
-Route53HostedZone resource type.
+SecurityGroup resource type.
 
 ### exist
 
 ```ruby
-describe route53_hosted_zone('example.com.') do
+describe security_group('my-security-group-name') do
   it { should exist }
 end
 ```
 
 
-### have_record_set
+### its(:inbound), its(:outbound)
 
 ```ruby
-describe route53_hosted_zone('example.com.') do
-  its(:resource_record_set_count) { should eq 6 }
-  it { should have_record_set('example.com.').a('123.456.7.890') }
-  it { should have_record_set('*.example.com.').cname('example.com') }
-  it { should have_record_set('example.com.').mx('10 mail.example.com') }
-  it { should have_record_set('mail.example.com.').a('123.456.7.890').ttl(3600) }
-  ns = 'ns-123.awsdns-45.net.
-ns-6789.awsdns-01.org.
-ns-2345.awsdns-67.co.uk.
-ns-890.awsdns-12.com.'
-  it { should have_record_set('example.com.').ns(ns) }
-  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL') }
+describe security_group('my-security-group-name') do
+  its(:outbound) { should be_opened }
+  its(:inbound) { should be_opened(80) }
+  its(:inbound) { should be_opened(80).protocol('tcp').for('203.0.113.1/32') }
+  its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
 end
 ```
 
-### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count)
-## <a name="autoscaling_group">autoscaling_group</a>
 
-AutoscalingGroup resource type.
+### its(:inbound_rule_count), its(:outbound_rule_count), its(:inbound_permissions_count), its(:outbound_permissions_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
+### :unlock: Advanced use
+
+`security_group` can use `Aws::EC2::SecurityGroup` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/SecurityGroup.html).
+
+```ruby
+describe security_group('my-security-group-name') do
+  its('group_name') { should eq 'my-security-group-name' }
+end
+```
+
+or
+
+```ruby
+describe security_group('my-security-group-name') do
+  its('resource.group_name') { should eq 'my-security-group-name' }
+end
+```
+
+## <a name="ses_identity">ses_identity</a>
+
+SesIdentity resource type.
 
 ### exist
 
 ```ruby
-describe autoscaling_group('my-auto-scaling-group') do
+describe ses_identity('example.com') do
   it { should exist }
 end
 ```
 
 
-### have_ec2
+### have_dkim_tokens
+
+
+### have_identity_policy
 
 ```ruby
-describe autoscaling_group('my-auto-scaling-group') do
-  it { should have_ec2('my-ec2') }
+describe ses_identity('example.com') do
+  it { should have_identity_policy('my-identity-policy-name') }
 end
 ```
 
-
-### have_elb
-
-```ruby
-describe autoscaling_group('my-auto-scaling-group') do
-  it { should have_elb('my-elb') }
-end
-```
-
-### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:status), its(:new_instances_protected_from_scale_in)
+### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)
 ## <a name="subnet">subnet</a>
 
 Subnet resource type.
@@ -551,641 +1128,63 @@ describe subnet('my-subnet') do
 end
 ```
 
-## <a name="route_table">route_table</a>
+## <a name="vpc">vpc</a>
 
-RouteTable resource type.
+VPC resource type.
 
 ### exist
 
 ```ruby
-describe route_table('my-route-table') do
+describe vpc('my-vpc') do
   it { should exist }
 end
 ```
 
 
-### have_route
+### be_available, be_pending
 
 ```ruby
-describe route_table('my-route-table') do
-  it { should have_route('10.0.0.0/16').target(gateway: 'local') }
-  it { should have_route('0.0.0.0/0').target(gateway: 'igw-1ab2345c') }
-  it { should have_route('192.168.1.0/24').target(instance: 'my-ec2') }
-  it { should have_route('192.168.2.0/24').target(vpc_peering_connection: 'my-pcx') }
-  it { should have_route('192.168.3.0/24').target(nat: 'nat-7ff7777f') }
+describe vpc('vpc-ab123cde') do
+  it { should be_available }
 end
 ```
 
 
-### have_subnet
+### have_network_acl
 
 ```ruby
-describe route_table('my-route-table') do
-  it { should have_subnet('my-subnet') }
+describe vpc('vpc-ab123cde') do
+  it { should have_network_acl('acl-1abc2d3e') }
+  it { should have_network_acl('my-network-acl') }
 end
 ```
 
 
-### its(:route_table_id), its(:vpc_id)
+### have_route_table
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_network_acl('acl-1abc2d3e') }
+  it { should have_network_acl('my-network-acl') }
+end
+```
+
+
+### its(:vpc_id), its(:state), its(:cidr_block), its(:dhcp_options_id), its(:instance_tenancy), its(:is_default)
 ### :unlock: Advanced use
 
-`route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).
+`vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).
 
 ```ruby
-describe route_table('my-route-table') do
-  its('vpc.id') { should eq 'vpc-ab123cde' }
+describe vpc('my-vpc') do
+  its('route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
 
 or
 
 ```ruby
-describe s3_bucket('my-bucket') do
-  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+describe vpc('my-vpc') do
+  its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
-
-## <a name="ebs">ebs</a>
-
-EBS resource type.
-
-### exist
-
-```ruby
-describe ebs('my-volume') do
-  it { should exist }
-end
-```
-
-
-### be_attached_to
-
-```ruby
-describe ebs('my-volume') do
-  it { should be_attached_to('my-ec2') }
-end
-```
-
-
-### be_creating, be_available, be_in_use, be_deleting, be_deleted, be_error
-
-```ruby
-describe ebs('my-volume') do
-  it { should be_in_use }
-end
-```
-
-
-### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
-### :unlock: Advanced use
-
-`ebs` can use `Aws::EC2::Volume` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html).
-
-```ruby
-describe ebs('my-volume') do
-  its('attachments.first.instance_id') { should eq 'i-ec12345a' }
-end
-```
-
-or
-
-```ruby
-describe ebs('my-volume') do
-  its('resource.attachments.first.instance_id') { should eq 'i-ec12345a' }
-end
-```
-
-## <a name="elb">elb</a>
-
-ELB resource type.
-
-### exist
-
-```ruby
-describe elb('my-elb') do
-  it { should exist }
-end
-```
-
-
-### have_ec2
-
-```ruby
-describe elb('my-elb') do
-  it { should have_ec2('my-ec2') }
-end
-```
-
-
-### have_listener
-
-http://docs.aws.amazon.com/en_us/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html
-
-```ruby
-describe elb('my-elb') do
-  it { should have_listener(protocol: 'HTTPS', port: 443, instance_protocol: 'HTTP', instance_port: 80) }
-end
-```
-
-
-### have_security_group
-
-```ruby
-describe elb('my-elb') do
-  it { should have_security_group('my-lb-security-group-tag-name') }
-end
-```
-
-
-### have_subnet
-
-```ruby
-describe elb('my-elb') do
-  it { should have_subnet('my-subnet') }
-end
-```
-
-
-### belong_to_vpc
-
-```ruby
-describe elb('my-elb') do
-  it { should belong_to_vpc('my-vpc') }
-end
-```
-
-### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:vpc_id), its(:created_time), its(:scheme)
-## <a name="lambda">lambda</a>
-
-Lambda resource type.
-
-### exist
-
-```ruby
-describe lambda('my-lambda-function-name') do
-  it { should exist }
-end
-```
-
-
-### have_event_source
-
-This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
-
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version)
-## <a name="iam_user">iam_user</a>
-
-IamUser resource type.
-
-### exist
-
-```ruby
-describe iam_user('my-iam-user') do
-  it { should exist }
-end
-```
-
-
-### be_allowed_action
-
-```ruby
-describe iam_user('my-iam-user') do
-  it { should be_allowed_action('ec2:DescribeInstances') }
-  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
-end
-```
-
-
-### have_iam_policy
-
-```ruby
-describe iam_user('my-iam-user') do
-  it { should have_iam_policy('ReadOnlyAccess') }
-end
-```
-
-
-### belong_to_iam_group
-
-```ruby
-describe iam_user('my-iam-user') do
-  it { should belong_to_iam_group('my-iam-group') }
-end
-```
-
-### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)
-## <a name="iam_group">iam_group</a>
-
-IamGroup resource type.
-
-### exist
-
-```ruby
-describe iam_group('my-iam-group') do
-  it { should exist }
-end
-```
-
-
-### be_allowed_action
-
-```ruby
-describe iam_group('my-iam-group') do
-  it { should be_allowed_action('ec2:DescribeInstances') }
-  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
-end
-```
-
-
-### have_iam_policy
-
-```ruby
-describe iam_group('my-iam-group') do
-  it { should have_iam_policy('ReadOnlyAccess') }
-end
-```
-
-
-### have_iam_user
-
-```ruby
-describe iam_group('my-iam-group') do
-  it { should have_iam_user('my-iam-user') }
-end
-```
-
-### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
-## <a name="iam_role">iam_role</a>
-
-IamRole resource type.
-
-### exist
-
-```ruby
-describe iam_role('my-iam-role') do
-  it { should exist }
-end
-```
-
-
-### be_allowed_action
-
-```ruby
-describe iam_role('my-iam-role') do
-  it { should be_allowed_action('ec2:DescribeInstances') }
-  it { should be_allowed_action('s3:Put*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
-end
-```
-
-
-### have_iam_policy
-
-```ruby
-describe iam_role('my-iam-role') do
-  it { should have_iam_policy('ReadOnlyAccess') }
-end
-```
-
-### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
-## <a name="iam_policy">iam_policy</a>
-
-IamPolicy resource type.
-
-### exist
-
-```ruby
-describe iam_policy('my-iam-policy') do
-  it { should exist }
-end
-```
-
-
-### be_attachable
-
-```ruby
-describe iam_policy('my-iam-policy') do
-  it { should be_attachable }
-end
-```
-
-
-### be_attached_to_group
-
-```ruby
-describe iam_policy('my-iam-policy') do
-  it { should be_attached_to_group('my-iam-group') }
-end
-```
-
-
-### be_attached_to_role
-
-```ruby
-describe iam_policy('my-iam-policy') do
-  it { should be_attached_to_role('HelloIAmGodRole') }
-end
-```
-
-
-### be_attached_to_user
-
-```ruby
-describe iam_policy('my-iam-policy') do
-  it { should be_attached_to_policy('my-iam-policy') }
-end
-```
-
-### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date)
-## <a name="elasticache">elasticache</a>
-
-Elasticache resource type.
-
-### exist
-
-```ruby
-describe elasticache('my-rep-group-001') do
-  it { should exist }
-end
-```
-
-
-### be_available, be_creating, be_deleted, be_deleting, be_incompatible_network, be_modifying, be_rebooting_cache_cluster_nodes, be_restore_failed, be_snapshotting
-
-```ruby
-describe elasticache('my-rep-group-001') do
-  it { should be_available }
-end
-```
-
-
-### have_cache_parameter_group
-
-```ruby
-describe elasticache('my-rep-group-001') do
-  it { should have_cache_parameter_group('my-cache-parameter-group') }
-end
-```
-
-
-### belong_to_cache_subnet_group
-
-```ruby
-describe elasticache('my-rep-group-001') do
-  it { should belong_to_cache_subnet_group('my-cache-subnet-group') }
-end
-```
-
-
-### belong_to_replication_group
-
-```ruby
-describe elasticache('my-rep-group-001') do
-  it { should belong_to_replication_group('my-rep-group') }
-end
-```
-
-
-### belong_to_vpc
-
-```ruby
-describe elasticache('my-rep-group-001') do
-  it { should belong_to_vpc('my-vpc') }
-end
-```
-
-### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_subnet_group_name), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window)
-## <a name="elasticache_cache_parameter_group">elasticache_cache_parameter_group</a>
-
-ElasticacheCacheParameterGroup resource type.
-
-```ruby
-describe elasticache_cache_parameter_group('my-cache-parameter-group') do
-  it { should exist }
-  its(:activerehashing) { should eq 'yes' }
-  its(:client_output_buffer_limit_pubsub_hard_limit) { should eq '33554432' }
-end
-```
-
-
-### exist
-
-```ruby
-describe elasticache_cache_parameter_group('my-cache-parameter-group') do
-  it { should exist }
-end
-```
-
-
-## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
-
-CloudwatchAlarm resource type.
-
-### exist
-
-```ruby
-describe cloudwatch_alarm('my-cloudwatch-alarm') do
-  it { should exist }
-end
-```
-
-
-### have_alarm_action
-
-```ruby
-describe cloudwatch_alarm('my-cloudwatch-alarm') do
-  it { should have_alarm_action('arn:aws:sns:ap-northeast-1:1234567890:sns_alert') }
-end
-```
-
-
-### have_insufficient_data_action
-
-```ruby
-describe cloudwatch_alarm('my-cloudwatch-alarm') do
-  it { should have_insufficient_data_action('arn:aws:sns:ap-northeast-1:1234567890:sns_alert') }
-end
-```
-
-
-### have_ok_action
-
-```ruby
-describe cloudwatch_alarm('my-cloudwatch-alarm') do
-  it { should have_ok_action('arn:aws:sns:ap-northeast-1:1234567890:sns_alert') }
-end
-```
-
-
-### belong_to_metric
-
-```ruby
-describe cloudwatch_alarm('my-cloudwatch-alarm') do
-  it { should belong_to_metric('NumberOfProcesses').namespace('my-cloudwatch-namespace') }
-end
-```
-
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
-## <a name="ses_identity">ses_identity</a>
-
-SesIdentity resource type.
-
-### exist
-
-```ruby
-describe ses_identity('example.com') do
-  it { should exist }
-end
-```
-
-
-### have_dkim_tokens
-
-
-### have_identity_policy
-
-```ruby
-describe ses_identity('example.com') do
-  it { should have_identity_policy('my-identity-policy-name') }
-end
-```
-
-### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)
-## <a name="network_acl">network_acl</a>
-
-NetworkAcl resource type.
-
-### exist
-
-```ruby
-describe network_acl('my-network-acl') do
-  it { should exist }
-end
-```
-
-
-### have_subnet
-
-```ruby
-describe network_acl('my-network-acl') do
-  it { should have_subnet('my-subnet') }
-end
-```
-
-
-### belong_to_vpc
-
-```ruby
-describe network_acl('my-network-acl') do
-  it { should belong_to_vpc('my-vpc') }
-end
-```
-
-
-### its(:inbound), its(:outbound), its(:inbound_entries_count), its(:outbound_entries_count)
-
-```ruby
-describe network_acl('my-network-acl') do
-  its(:inbound) { should be_allowed(80).protocol('tcp').source('123.0.456.789/32') }
-  its(:inbound) { should be_denied.rule_number('*').source('0.0.0.0/0') }
-  its(:outbound) { should be_allowed.protocol('ALL').source('0.0.0.0/0') }
-  its(:inbound_entries_count) { should eq 3 }
-  its(:outbound_entries_count) { should eq 2 }
-end
-```
-
-
-### its(:inbound_entries_count), its(:outbound_entries_count), its(:network_acl_id), its(:vpc_id), its(:is_default)
-### :unlock: Advanced use
-
-`network_acl` can use `Aws::EC2::NetworkAcl` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/NetworkAcl.html).
-
-```ruby
-describe network_acl('my-network-acl') do
-  its('vpc.id') { should eq 'vpc-ab123cde' }
-end
-```
-
-or
-
-```ruby
-describe network_acl('my-network-acl') do
-  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
-end
-```
-
-## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
-
-DirectconnectVirtualInterface resource type.
-
-```ruby
-describe directconnect_virtual_interface('my-directconnect-virtual-interface') do
-  it { should exist }
-  it { should be_available }
-  its(:connection_id) { should eq 'dxcon-abcd5fgh' }
-  its(:virtual_interface_id) { should eq 'dxvif-aabbccdd' }
-  its(:amazon_address) { should eq '170.252.252.1/30' }
-  its(:customer_address) { should eq '123.456.789.2/30' }
-  its(:virtual_gateway_id) { should eq 'vgw-d234e5f6' }
-end
-```
-
-
-### exist
-
-```ruby
-describe directconnect_virtual_interface('my-directconnect-virtual-interface') do
-  it { should exist }
-end
-```
-
-
-### be_confirming, be_verifying, be_pending, be_available, be_deleting, be_deleted, be_rejected
-
-```ruby
-describe directconnect_virtual_interface('my-directconnect-virtual-interface') do
-  it { should exist }
-  it { should be_available }
-end
-```
-
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id)
-## <a name="nat_gateway">nat_gateway</a>
-
-NatGateway resource type.
-
-### exist
-
-```ruby
-describe nat_gateway('nat-7ff7777f') do
-  it { should exist }
-end
-```
-
-
-### be_pending, be_failed, be_available, be_deleting, be_deleted
-
-```ruby
-describe nat_gateway('nat-7ff7777f') do
-  it { should be_available }
-end
-```
-
-
-### have_eip
-
-```ruby
-describe nat_gateway('nat-7ff7777f') do
-  it { should have_eip('123.0.456.789') }
-end
-```
-
-
-### belong_to_vpc
-
-```ruby
-describe nat_gateway('nat-7ff7777f') do
-  it { should belong_to_vpc('my-vpc') }
-end
-```
-
-### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message)

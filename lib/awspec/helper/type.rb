@@ -1,13 +1,14 @@
 module Awspec
   module Helper
     module Type
+      require 'awspec/type/base'
+
       TYPES = %w(
-        base ec2 rds rds_db_parameter_group security_group
-        vpc s3_bucket route53_hosted_zone autoscaling_group subnet
-        route_table ebs elb lambda iam_user iam_group iam_role
-        iam_policy elasticache elasticache_cache_parameter_group
-        cloudwatch_alarm ses_identity network_acl directconnect_virtual_interface
-        nat_gateway
+        autoscaling_group cloudwatch_alarm directconnect_virtual_interface
+        ebs ec2 elasticache elasticache_cache_parameter_group elb iam_group
+        iam_policy iam_role iam_user lambda nat_gateway network_acl rds
+        rds_db_parameter_group route53_hosted_zone route_table
+        s3_bucket security_group ses_identity subnet vpc
       )
 
       TYPES.each do |type|

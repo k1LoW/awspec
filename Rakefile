@@ -8,7 +8,7 @@ end
 
 require 'awspec'
 
-types = Awspec::Helper::Type::TYPES.reject { |type| type == 'base' }.map do |type|
+types = Awspec::Helper::Type::TYPES.map do |type|
   'spec:' + type
 end
 

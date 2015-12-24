@@ -7,6 +7,13 @@ module Awspec::Helper
                                                               })
         res[:auto_scaling_groups].first if res[:auto_scaling_groups].count == 1
       end
+
+      def find_launch_configuration(id)
+        res = autoscaling_client.describe_launch_configurations({
+                                                                  launch_configuration_names: [id]
+                                                                })
+        res[:launch_configurations].first if res[:launch_configurations].count == 1
+      end
     end
   end
 end

@@ -13,6 +13,7 @@
 | [iam_role](#iam_role)
 | [iam_user](#iam_user)
 | [lambda](#lambda)
+| [launch_configuration](#launch_configuration)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [rds](#rds)
@@ -611,6 +612,28 @@ end
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
 ### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version)
+## <a name="launch_configuration">launch_configuration</a>
+
+LaunchConfiguration resource type.
+
+### exist
+
+```ruby
+describe launch_configuration('my-lc') do
+  it { should exist }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe launch_configuration('my-lc') do
+  it { should have_security_group('my-security-group-name') }
+end
+```
+
+### its(:launch_configuration_name), its(:launch_configuration_arn), its(:image_id), its(:key_name), its(:classic_link_vpc_id), its(:user_data), its(:instance_type), its(:kernel_id), its(:ramdisk_id), its(:spot_price), its(:iam_instance_profile), its(:created_time), its(:ebs_optimized), its(:associate_public_ip_address), its(:placement_tenancy)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

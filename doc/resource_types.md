@@ -1,6 +1,7 @@
 # Resource Types
 
-[autoscaling_group](#autoscaling_group)
+[ami](#ami)
+| [autoscaling_group](#autoscaling_group)
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
@@ -25,6 +26,33 @@
 | [ses_identity](#ses_identity)
 | [subnet](#subnet)
 | [vpc](#vpc)
+
+## <a name="ami">ami</a>
+
+AMI resource type.
+
+### exist
+
+```ruby
+describe ami('my-ami') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_available, be_invalid, be_deregistered, be_transient, be_failed, be_error
+
+```ruby
+describe ami('my-ami') do
+  it { should be_available }
+end
+```
+
+
+### its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:sriov_net_support), its(:state_reason), its(:image_owner_alias), its(:name), its(:description), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:hypervisor)
+### :unlock: Advanced use
+
+`ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
 
 ## <a name="autoscaling_group">autoscaling_group</a>
 

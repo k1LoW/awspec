@@ -14,6 +14,7 @@ require 'awspec/helper/finder/elasticache'
 require 'awspec/helper/finder/cloudwatch'
 require 'awspec/helper/finder/ses'
 require 'awspec/helper/finder/directconnect'
+require 'awspec/helper/finder/ami'
 
 module Awspec::Helper
   module Finder
@@ -32,6 +33,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Cloudwatch
     include Awspec::Helper::Finder::Ses
     include Awspec::Helper::Finder::Directconnect
+    include Awspec::Helper::Finder::Ami
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,

@@ -14,14 +14,6 @@ describe ec2('my-ec2') do
 end
 ```
 
-### be_pending
-
-```ruby
-describe ec2('my-ec2') do
-  it { should be_pending }
-end
-```
-
 ### be_pending, be_running, be_shutting_down, be_terminated, be_stopping, be_stopped
 
 ```ruby

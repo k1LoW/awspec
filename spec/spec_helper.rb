@@ -10,4 +10,4 @@ Aws.config.update({
                       'secret')
                   })
 
-Awspec::Helper::CredentialsLoader.load
+Awsecrets.load

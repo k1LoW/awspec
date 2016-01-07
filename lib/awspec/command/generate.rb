@@ -12,7 +12,7 @@ module Awspec
     types.each do |type|
       desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
       define_method type do |*args|
-        Awsecrets.load(options[:profile])
+        Awsecrets.load(profile: options[:profile])
         vpc_id = args.first
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(vpc_id)"
       end
@@ -20,13 +20,13 @@ module Awspec
 
     desc 'route53_hosted_zone [example.com.]', 'Generate route53_hosted_zone spec from Domain name'
     def route53_hosted_zone(hosted_zone)
-      Awsecrets.load(options[:profile])
+      Awsecrets.load(profile: options[:profile])
       puts Awspec::Generator::Spec::Route53HostedZone.new.generate_by_domain_name(hosted_zone)
     end
 
     desc 's3_bucket [backet_name]', 'Generate s3_bucket spec from S3 bucket name. if NO args, Generate all.'
     def s3_bucket(bucket_name = nil)
-      Awsecrets.load(options[:profile])
+      Awsecrets.load(profile: options[:profile])
       if bucket_name
         puts Awspec::Generator::Spec::S3Bucket.new.generate(bucket_name)
       else
@@ -45,7 +45,7 @@ module Awspec
         desc type, "Generate #{type} spec"
       end
       define_method type do
-        Awsecrets.load(options[:profile])
+        Awsecrets.load(profile: options[:profile])
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_all"
       end
     end

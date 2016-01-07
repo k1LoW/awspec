@@ -13,7 +13,7 @@ module Awspec
     def self.generate_spec_helper
       content = <<-'EOF'
 require 'awspec'
-Awspec::Helper::CredentialsLoader.load
+Awsecrets.load
 EOF
       dir = 'spec'
       if File.exist? dir

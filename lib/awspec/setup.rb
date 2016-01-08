@@ -13,7 +13,7 @@ module Awspec
     def self.generate_spec_helper
       content = <<-'EOF'
 require 'awspec'
-Awsecrets.load
+Awsecrets.load(secrets_path: File.expand_path('./secrets.yml', File.dirname(__FILE__)))
 EOF
       dir = 'spec'
       if File.exist? dir

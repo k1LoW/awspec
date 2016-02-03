@@ -35,11 +35,11 @@ module Awspec::Generator
               next
             end
 
-            if permission.from_port == permission.to_port
-              port = permission.from_port
-            else
-              port = "'" + permission.from_port.to_s + '-' + permission.to_port.to_s + "'"
-            end
+            port = if permission.from_port == permission.to_port
+                     permission.from_port
+                   else
+                     "'" + permission.from_port.to_s + '-' + permission.to_port.to_s + "'"
+                   end
 
             protocol = permission.ip_protocol
             permission.ip_ranges.each do |ip_range|

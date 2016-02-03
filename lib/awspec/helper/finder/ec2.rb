@@ -2,6 +2,7 @@ module Awspec::Helper
   module Finder
     module Ec2
       def find_ec2(id)
+        # rubocop:disable Style/GuardClause
         if id.is_a?(Array)
           # Aws::EC2::Client.describe_instances native filters format
           res = ec2_client.describe_instances({
@@ -32,6 +33,7 @@ module Awspec::Helper
         else
           return nil
         end
+        # rubocop:enable Style/GuardClause
         return res[:reservations].first[:instances].first if res[:reservations].count == 1 && \
                                                              res[:reservations].first[:instances].count == 1
       end

@@ -1,6 +1,4 @@
 require 'awspec'
-require 'yaml'
-require 'pp'
 
 Aws.config[:stub_responses] = true
 Aws.config.update({

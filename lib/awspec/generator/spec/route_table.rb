@@ -67,7 +67,6 @@ EOF
         template
       end
 
-      # rubocop:disable Metrics/LineLength
       def route_table_spec_connection_linetemplate
         template = <<-'EOF'
 <%- if connection.tag_name -%>
@@ -78,7 +77,6 @@ it { should have_route('<%= route.destination_cidr_block %>').target(vpc_peering
 EOF
         template
       end
-      # rubocop:enable Metrics/LineLength
 
       def route_table_spec_nat_linetemplate
         template = <<-'EOF'

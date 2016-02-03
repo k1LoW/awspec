@@ -1,3 +1,6 @@
+AllCops:
+  TargetRubyVersion: 2.1
+
 Lint/Eval:
   Enabled: false
 
@@ -25,6 +28,12 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 15
 
+Performance/StringReplacement:
+  Enabled: false
+
+Style/Alias:
+  Enabled: false
+
 Style/BarePercentLiterals:
   Enabled: false
 
@@ -32,6 +41,12 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
   Enabled: false
 
 Style/StabbyLambdaParentheses:

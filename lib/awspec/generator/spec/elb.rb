@@ -22,7 +22,6 @@ module Awspec::Generator
         specs.join("\n")
       end
 
-      # rubocop:disable all
       def elb_spec_template
         template = <<-'EOF'
 describe elb('<%= lb.load_balancer_name %>') do

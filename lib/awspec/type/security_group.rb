@@ -10,11 +10,8 @@ module Awspec::Type
     end
 
     def opened?(port = nil, protocol = nil, cidr = nil)
-      if @inbound
-        return inbound_opened?(port, protocol, cidr)
-      else
-        return outbound_opened?(port, protocol, cidr)
-      end
+      return inbound_opened?(port, protocol, cidr) if @inbound
+      outbound_opened?(port, protocol, cidr)
     end
 
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)

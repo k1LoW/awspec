@@ -27,8 +27,8 @@ end
 
 ```ruby
 describe vpc('vpc-ab123cde') do
-  it { should have_network_acl('acl-1abc2d3e') }
-  it { should have_network_acl('my-network-acl') }
+  it { should have_route_table('rtb-ab123cde') }
+  it { should have_route_table('my-route-table') }
 end
 ```
 

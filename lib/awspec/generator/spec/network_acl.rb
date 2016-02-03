@@ -30,11 +30,11 @@ module Awspec::Generator
         specs = []
         acl.associations.each do |a|
           subnet = find_subnet(a.subnet_id)
-          if subnet.tag_name
-            spec = "it { should have_subnet('" + subnet.tag_name + "') }"
-          else
-            spec = "it { should have_subnet('" + subnet.subnet_id + "') }"
-          end
+          spec = if subnet.tag_name
+                   "it { should have_subnet('" + subnet.tag_name + "') }"
+                 else
+                   "it { should have_subnet('" + subnet.subnet_id + "') }"
+                 end
           specs.push(spec)
         end
         specs
@@ -52,11 +52,11 @@ module Awspec::Generator
           line += ' ' + actions[entry.rule_action.to_sym]
           port_range = entry.port_range
           unless port_range.nil?
-            if port_range.from == port_range.to
-              port = port_range.from.to_s
-            else
-              port = "'" + port_range.from.to_s + '-' + port_range.to.to_s + "'"
-            end
+            port = if port_range.from == port_range.to
+                     port_range.from.to_s
+                   else
+                     "'" + port_range.from.to_s + '-' + port_range.to.to_s + "'"
+                   end
             line += '(' + port + ')'
           end
           line += ".protocol('" + protocols[entry.protocol.to_i] + "')"

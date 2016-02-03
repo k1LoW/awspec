@@ -24,7 +24,6 @@ it { should have_record_set('<%= name %>').<%= type %>('<%= v %>').ttl(<%= recor
 EOF
           v = record_set.resource_records.map { |r| r.value }.join("\n")
           type = record_set.type.downcase
-          return ERB.new(template, nil, '-').result(binding)
         else
           # ALIAS
           dns_name = record_set.alias_target.dns_name
@@ -32,8 +31,8 @@ EOF
           template = <<-'EOF'
 it { should have_record_set('<%= name %>').alias('<%= dns_name %>', '<%= hosted_zone_id %>') }
 EOF
-          return ERB.new(template, nil, '-').result(binding)
         end
+        ERB.new(template, nil, '-').result(binding)
       end
 
       def route53_hosted_zone_spec_template

@@ -280,6 +280,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_tag('Name').value('my-ec2') }
+end
+```
+
+
 ### belong_to_subnet
 
 ```ruby

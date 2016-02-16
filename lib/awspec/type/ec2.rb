@@ -1,6 +1,7 @@
 module Awspec::Type
   class Ec2 < Base
     aws_resource Aws::EC2::Instance
+    tags_allowed
 
     def initialize(id)
       super

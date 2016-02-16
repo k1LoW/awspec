@@ -8,6 +8,7 @@ require 'awspec/matcher/belong_to_db_subnet_group'
 
 # SecurityGroup
 require 'awspec/matcher/be_opened'
+require 'awspec/matcher/be_opened_only'
 
 # Route53
 require 'awspec/matcher/have_record_set'

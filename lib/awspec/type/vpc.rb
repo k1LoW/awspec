@@ -1,6 +1,7 @@
 module Awspec::Type
   class Vpc < Base
     aws_resource Aws::EC2::Vpc
+    tags_allowed
 
     def initialize(id)
       super

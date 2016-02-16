@@ -12,6 +12,8 @@ describe vpc('vpc-ab123cde') do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
   end
+
+  it { should have_tag('Name').value('my-vpc') }
 end
 
 describe vpc('my-vpc') do

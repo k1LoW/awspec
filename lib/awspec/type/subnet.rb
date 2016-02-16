@@ -1,6 +1,7 @@
 module Awspec::Type
   class Subnet < Base
     aws_resource Aws::EC2::Subnet
+    tags_allowed
 
     def initialize(id)
       super

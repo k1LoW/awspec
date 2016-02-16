@@ -14,6 +14,14 @@ describe network_acl('my-network-acl') do
 end
 ```
 
+### have_tag
+
+```ruby
+describe network_acl('my-network-acl') do
+  it { should have_tag('Name').value('my-network-acl') }
+end
+```
+
 ### belong_to_vpc
 
 ```ruby

@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_all
         policies = select_all_attached_policies
-        policies.empty? && fail('Not Found policy')
+        raise 'Not Found policy' if policies.empty?
         ERB.new(policy_spec_template, nil, '-').result(binding).chomp
       end
 

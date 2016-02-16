@@ -1,6 +1,7 @@
 module Awspec::Type
   class RouteTable < Base
     aws_resource Aws::EC2::RouteTable
+    tags_allowed
 
     def initialize(id)
       super

@@ -11,7 +11,7 @@ module Awspec::Generator
           unhealthy_threshold healthy_threshold
         )
         vpc = find_vpc(vpc_id)
-        fail 'Not Found VPC' unless vpc
+        raise 'Not Found VPC' unless vpc
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         lbs = select_elb_by_vpc_id(@vpc_id)

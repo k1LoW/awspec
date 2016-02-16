@@ -14,6 +14,14 @@ describe subnet('my-subnet') do
 end
 ```
 
+### have_tag
+
+```ruby
+describe subnet('my-subnet') do
+  it { should have_tag('Environment').value('QA') }
+end
+```
+
 ### advanced
 
 `subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).

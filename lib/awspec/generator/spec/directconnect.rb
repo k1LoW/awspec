@@ -8,7 +8,7 @@ module Awspec::Generator
 
       def generate_virtual_interface_all
         virtual_interfaces = select_virtual_interfaces
-        virtual_interfaces.empty? && fail('Not Found virtual_interfaces')
+        raise 'Not Found virtual_interfaces' if virtual_interfaces.empty?
         ERB.new(virtual_interface_spec_template, nil, '-').result(binding).chomp
       end
 

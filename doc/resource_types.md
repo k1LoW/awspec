@@ -280,6 +280,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_tag('Name').value('my-ec2') }
+end
+```
+
+
 ### belong_to_subnet
 
 ```ruby
@@ -639,7 +648,7 @@ end
 
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -720,6 +729,15 @@ end
 ```ruby
 describe network_acl('my-network-acl') do
   it { should have_subnet('my-subnet') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe network_acl('my-network-acl') do
+  it { should have_tag('Name').value('my-network-acl') }
 end
 ```
 
@@ -950,6 +968,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe route_table('my-route-table') do
+  it { should have_tag('Name').value('my-route-table') }
+end
+```
+
+
 ### its(:route_table_id), its(:vpc_id)
 ### :unlock: Advanced use
 
@@ -1160,6 +1187,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe subnet('my-subnet') do
+  it { should have_tag('Environment').value('QA') }
+end
+```
+
+
 ### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
 ### :unlock: Advanced use
 
@@ -1217,6 +1253,15 @@ end
 describe vpc('vpc-ab123cde') do
   it { should have_route_table('rtb-ab123cde') }
   it { should have_route_table('my-route-table') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_tag('Stack').value('Networking') }
 end
 ```
 

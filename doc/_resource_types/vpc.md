@@ -32,6 +32,14 @@ describe vpc('vpc-ab123cde') do
 end
 ```
 
+### have_tag
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_tag('Stack').value('Networking') }
+end
+```
+
 ### advanced
 
 `vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).

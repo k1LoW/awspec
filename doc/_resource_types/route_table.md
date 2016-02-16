@@ -26,6 +26,14 @@ describe route_table('my-route-table') do
 end
 ```
 
+### have_tag
+
+```ruby
+describe route_table('my-route-table') do
+  it { should have_tag('Name').value('my-route-table') }
+end
+```
+
 ### advanced
 
 `route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).

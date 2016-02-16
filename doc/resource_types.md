@@ -950,6 +950,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe route_table('my-route-table') do
+  it { should have_tag('Name').value('my-route-table') }
+end
+```
+
+
 ### its(:route_table_id), its(:vpc_id)
 ### :unlock: Advanced use
 

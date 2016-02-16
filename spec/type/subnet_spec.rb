@@ -11,4 +11,5 @@ describe subnet('my-subnet') do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('vpc.id') { should eq 'vpc-ab123cde' }
   end
+  it { should have_tag('Name').value('my-subnet') }
 end

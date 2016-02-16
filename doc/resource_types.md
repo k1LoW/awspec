@@ -1160,6 +1160,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe subnet('my-subnet') do
+  it { should have_tag('Environment').value('QA') }
+end
+```
+
+
 ### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
 ### :unlock: Advanced use
 

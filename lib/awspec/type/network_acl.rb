@@ -1,6 +1,7 @@
 module Awspec::Type
   class NetworkAcl < Base
     aws_resource Aws::EC2::NetworkAcl
+    tags_allowed
 
     def initialize(id)
       super

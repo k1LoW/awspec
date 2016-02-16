@@ -15,4 +15,5 @@ describe network_acl('my-network-acl') do
     its('resource.vpc.id') { should eq 'vpc-ab123cde' }
     its('vpc.id') { should eq 'vpc-ab123cde' }
   end
+  it { should have_tag('Name').value('my-network-acl') }
 end

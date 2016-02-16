@@ -7,4 +7,3 @@ RSpec::Matchers.define :have_tag do |key|
     @value = val
   end
 end
-

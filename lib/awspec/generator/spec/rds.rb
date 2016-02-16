@@ -7,7 +7,7 @@ module Awspec::Generator
           db_instance_identifier db_instance_class multi_az availability_zone
         )
         vpc = find_vpc(vpc_id)
-        fail 'Not Found VPC' unless vpc
+        raise 'Not Found VPC' unless vpc
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         db_instances = select_rds_by_vpc_id(@vpc_id)

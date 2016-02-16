@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_all
         buckets = select_all_buckets
-        buckets.empty? && fail('Not Found Bucket')
+        raise 'Not Found Bucket' if buckets.empty?
         specs = buckets.map do |bucket|
           content(bucket)
         end

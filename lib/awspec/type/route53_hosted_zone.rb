@@ -11,7 +11,8 @@ module Awspec::Type
     def has_record_set?(name, type, value, options = {})
       name.gsub!(/\*/, '\\\052') # wildcard support
       ret = @resource_via_client_record_sets.find do |record_set|
-        next if record_set.type != type.upcase
+        # next if record_set.type != type.upcase
+        next unless record_set.type.casecmp(type) == 0
         options[:ttl] = record_set.ttl unless options[:ttl]
         if !record_set.resource_records.empty?
           v = record_set.resource_records.map { |r| r.value }.join("\n")

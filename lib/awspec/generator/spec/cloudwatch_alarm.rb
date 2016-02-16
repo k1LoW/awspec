@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_all
         alarms = select_all_cloudwatch_alarms
-        alarms.empty? && fail('Not Found alarm')
+        raise 'Not Found alarm' if alarms.empty?
         ERB.new(alarm_spec_template, nil, '-').result(binding).chomp
       end
 

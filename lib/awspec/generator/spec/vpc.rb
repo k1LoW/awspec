@@ -7,7 +7,7 @@ module Awspec::Generator
           vpc_id cidr_block
         )
         vpc = find_vpc(vpc_id)
-        fail 'Not Found VPC' unless vpc
+        raise 'Not Found VPC' unless vpc
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         route_tables = select_route_table_by_vpc_id(@vpc_id)

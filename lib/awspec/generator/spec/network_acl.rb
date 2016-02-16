@@ -6,7 +6,7 @@ module Awspec::Generator
         describes = %w(
         )
         vpc = find_vpc(vpc_id)
-        fail 'Not Found VPC' unless vpc
+        raise 'Not Found VPC' unless vpc
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         network_acls = select_network_acl_by_vpc_id(@vpc_id)

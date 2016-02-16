@@ -1,6 +1,7 @@
 # EC2
 require 'awspec/matcher/belong_to_vpc'
 require 'awspec/matcher/belong_to_subnet'
+require 'awspec/matcher/have_tag'
 
 # RDS
 require 'awspec/matcher/belong_to_db_subnet_group'

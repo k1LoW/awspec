@@ -639,7 +639,7 @@ end
 
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -1217,6 +1217,15 @@ end
 describe vpc('vpc-ab123cde') do
   it { should have_route_table('rtb-ab123cde') }
   it { should have_route_table('my-route-table') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_tag('Stack').value('Networking') }
 end
 ```
 

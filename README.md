@@ -30,9 +30,9 @@ Or install it yourself as:
 
     $ awspec init
 
-### STEP 2. Set AWS credentials
+### STEP 2. Set AWS config
 
-#### 2-1. Use Shared Credentials
+#### 2-1. Use Shared Credentials like AWS CLI
 
 ```sh
 $ aws configure
@@ -40,7 +40,9 @@ $ aws configure
 ...
 ```
 
-#### 2-2. Use spec/secrets.yml
+(See http://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-chap-getting-started.html#config-settings-and-precedence)
+
+#### 2-2. Use secrets.yml
 
 ```sh
 $ cat <<EOF > spec/secrets.yml

@@ -7,5 +7,3 @@ Aws.config.update({
                       'akid',
                       'secret')
                   })
-
-Awsecrets.load

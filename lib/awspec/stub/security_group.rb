@@ -56,6 +56,17 @@ Aws.config[:ec2] = {
               user_id_group_pairs: []
             },
             {
+              from_port: 70_000,
+              to_port: 70_000,
+              ip_protocol: 'tcp',
+              ip_ranges: [
+                {
+                  cidr_ip: '101.456.789.012/32'
+                }
+              ],
+              user_id_group_pairs: []
+            },
+            {
               from_port: 50_000,
               to_port: 50_009,
               ip_protocol: 'tcp',

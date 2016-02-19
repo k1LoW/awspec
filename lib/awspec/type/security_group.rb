@@ -14,6 +14,11 @@ module Awspec::Type
       outbound_opened?(port, protocol, cidr)
     end
 
+    def opened_only?(port = nil, protocol = nil, cidr = nil)
+      return inbound_opened_only?(port, protocol, cidr) if @inbound
+      outbound_opened_only?(port, protocol, cidr)
+    end
+
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)
       @resource_via_client[:ip_permissions].find do |permission|
         next true unless port
@@ -38,6 +43,18 @@ module Awspec::Type
       end
     end
 
+    def inbound_opened_only?(port = nil, protocol = nil, cidr = nil)
+      permissions = @resource_via_client[:ip_permissions].select do |permission|
+        port_between?(port, permission[:from_port], permission[:to_port])
+      end
+      permissions = permissions.select { |permission| permission[:ip_protocol] == protocol }
+      cidrs = []
+      permissions.each do |permission|
+        permission[:ip_ranges].select { |ip_range| cidrs.push(ip_range[:cidr_ip]) }
+      end
+      cidrs == Array(cidr)
+    end
+
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
       @resource_via_client[:ip_permissions_egress].find do |permission|
         next true unless port
@@ -60,6 +77,18 @@ module Awspec::Type
         end
         next true if ret.count > 0
       end
+    end
+
+    def outbound_opened_only?(port = nil, protocol = nil, cidr = nil)
+      permissions = @resource_via_client[:ip_permissions_egress].select do |permission|
+        port_between?(port, permission[:from_port], permission[:to_port])
+      end
+      permissions = permissions.select { |permission| permission[:ip_protocol] == protocol }
+      cidrs = []
+      permissions.each do |permission|
+        permission[:ip_ranges].select { |ip_range| cidrs.push(ip_range[:cidr_ip]) }
+      end
+      cidrs == Array(cidr)
     end
 
     def inbound

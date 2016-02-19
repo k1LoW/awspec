@@ -1109,6 +1109,12 @@ end
 ```
 
 
+### be_inbound_opened_only
+
+### be_opened_only
+
+### be_outbound_opened_only
+
 ### its(:inbound), its(:outbound)
 
 ```ruby

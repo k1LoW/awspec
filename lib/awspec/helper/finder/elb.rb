@@ -5,7 +5,7 @@ module Awspec::Helper
         res = elb_client.describe_load_balancers({
                                                    load_balancer_names: [id]
                                                  })
-        return res[:load_balancer_descriptions].first if res[:load_balancer_descriptions].count == 1
+        res[:load_balancer_descriptions].single_resource(id)
       rescue
         return nil
       end

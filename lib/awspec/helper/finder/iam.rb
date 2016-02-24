@@ -15,7 +15,7 @@ module Awspec::Helper
             (res.next_page? && res = res.next_page) || break
           end
 
-          selected.first if selected.count == 1
+          selected.single_resource(id)
         end
       end
 

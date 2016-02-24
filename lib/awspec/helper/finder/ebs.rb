@@ -5,11 +5,12 @@ module Awspec::Helper
         res = ec2_client.describe_volumes({
                                             filters: [{ name: 'volume-id', values: [volume_id] }]
                                           })
-        return res[:volumes].first if res[:volumes].count == 1
+        resource = res[:volumes].single_resource(volume_id)
+        return resource if resource
         res = ec2_client.describe_volumes({
                                             filters: [{ name: 'tag:Name', values: [volume_id] }]
                                           })
-        return res[:volumes].first if res[:volumes].count == 1
+        res[:volumes].single_resource(volume_id)
       end
 
       def select_ebs_by_instance_id(id)

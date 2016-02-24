@@ -7,7 +7,7 @@ module Awspec::Helper
           next true if virtual_interface.virtual_interface_id == virtual_interface_id
           next true if virtual_interface.virtual_interface_name == virtual_interface_id
         end
-        return ret.first if ret.count == 1
+        ret.single_resource(virtual_interface_id)
       end
 
       def select_virtual_interfaces

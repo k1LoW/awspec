@@ -1,22 +1,21 @@
 module Awspec::Helper
   module Finder
     module SecurityGroup
-      def find_security_group(id)
+      def find_security_group(sg_id)
         res = ec2_client.describe_security_groups({
-                                                    filters: [{ name: 'group-id', values: [id] }]
+                                                    filters: [{ name: 'group-id', values: [sg_id] }]
                                                   })
-
-        return res[:security_groups].first if res[:security_groups].count == 1
+        resource = res[:security_groups].single_resource(sg_id)
+        return resource if resource
         res = ec2_client.describe_security_groups({
-                                                    filters: [{ name: 'group-name', values: [id] }]
+                                                    filters: [{ name: 'group-name', values: [sg_id] }]
                                                   })
-
-        return res[:security_groups].first if res[:security_groups].count == 1
+        resource = res[:security_groups].single_resource(sg_id)
+        return resource if resource
         res = ec2_client.describe_security_groups({
-                                                    filters: [{ name: 'tag:Name', values: [id] }]
+                                                    filters: [{ name: 'tag:Name', values: [sg_id] }]
                                                   })
-
-        return res[:security_groups].first if res[:security_groups].count == 1
+        res[:security_groups].single_resource(sg_id)
       end
 
       def select_security_group_by_vpc_id(vpc_id)

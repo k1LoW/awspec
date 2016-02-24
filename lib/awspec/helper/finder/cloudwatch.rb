@@ -8,9 +8,10 @@ module Awspec::Helper
         return res[:metric_alarms].first if res[:metric_alarms].count == 1
 
         res = cloudwatch_client.describe_alarms
-        res[:metric_alarms].find do |alarm|
+        alarms = res[:metric_alarms].select do |alarm|
           alarm[:alarm_arn] == id
         end
+        alarms.single_resource(id)
       end
 
       def select_all_cloudwatch_alarms

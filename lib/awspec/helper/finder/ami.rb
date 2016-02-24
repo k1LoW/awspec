@@ -5,15 +5,17 @@ module Awspec::Helper
         res = ec2_client.describe_images({
                                            filters: [{ name: 'image-id', values: [image_id] }]
                                          })
-        return res[:images].first if res[:images].count == 1
+        resource = res[:images].single_resource(image_id)
+        return resource if resource
         res = ec2_client.describe_images({
                                            filters: [{ name: 'name', values: [image_id] }]
                                          })
-        return res[:images].first if res[:images].count == 1
+        resource = res[:images].single_resource(image_id)
+        return resource if resource
         res = ec2_client.describe_images({
                                            filters: [{ name: 'tag:Name', values: [image_id] }]
                                          })
-        return res[:images].first if res[:images].count == 1
+        res[:images].single_resource(image_id)
       end
     end
   end

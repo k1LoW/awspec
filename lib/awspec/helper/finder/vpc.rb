@@ -5,33 +5,36 @@ module Awspec::Helper
         res = ec2_client.describe_vpcs({
                                          filters: [{ name: 'vpc-id', values: [id] }]
                                        })
-        return res[:vpcs].first if res[:vpcs].count == 1
+        resource = res[:vpcs].single_resource(id)
+        return resource if resource
         res = ec2_client.describe_vpcs({
                                          filters: [{ name: 'tag:Name', values: [id] }]
                                        })
-        return res[:vpcs].first if res[:vpcs].count == 1
+        res[:vpcs].single_resource(id)
       end
 
       def find_route_table(route_table_id)
         res = ec2_client.describe_route_tables({
                                                  filters: [{ name: 'route-table-id', values: [route_table_id] }]
                                                })
-        return res[:route_tables].first if res[:route_tables].count == 1
+        resource = res[:route_tables].single_resource(route_table_id)
+        return resource if resource
         res = ec2_client.describe_route_tables({
                                                  filters: [{ name: 'tag:Name', values: [route_table_id] }]
                                                })
-        return res[:route_tables].first if res[:route_tables].count == 1
+        res[:route_tables].single_resource(route_table_id)
       end
 
       def find_network_acl(id)
         res = ec2_client.describe_network_acls({
                                                  filters: [{ name: 'network-acl-id', values: [id] }]
                                                })
-        return res[:network_acls].first if res[:network_acls].count == 1
+        resource = res[:network_acls].single_resource(id)
+        return resource if resource
         res = ec2_client.describe_network_acls({
                                                  filters: [{ name: 'tag:Name', values: [id] }]
                                                })
-        return res[:network_acls].first if res[:network_acls].count == 1
+        res[:network_acls].single_resource(id)
       end
 
       def select_route_table_by_vpc_id(vpc_id)
@@ -48,24 +51,6 @@ module Awspec::Helper
         res[:network_acls]
       end
 
-      def find_subnet(subnet_id)
-        res = ec2_client.describe_subnets({
-                                            filters: [{ name: 'subnet-id', values: [subnet_id] }]
-                                          })
-        return res[:subnets].first if res[:subnets].count == 1
-        res = ec2_client.describe_subnets({
-                                            filters: [{ name: 'tag:Name', values: [subnet_id] }]
-                                          })
-        return res[:subnets].first if res[:subnets].count == 1
-      end
-
-      def select_subnet_by_vpc_id(vpc_id)
-        res = ec2_client.describe_subnets({
-                                            filters: [{ name: 'vpc-id', values: [vpc_id] }]
-                                          })
-        res[:subnets]
-      end
-
       def find_vpc_peering_connection(vpc_peering_connection_id)
         res = ec2_client.describe_vpc_peering_connections({
                                                             filters: [
@@ -75,7 +60,8 @@ module Awspec::Helper
                                                               }
                                                             ]
                                                           })
-        return res[:vpc_peering_connections].first if res[:vpc_peering_connections].count == 1
+        resource = res[:vpc_peering_connections].single_resource(vpc_peering_connection_id)
+        return resource if resource
         res = ec2_client.describe_vpc_peering_connections({
                                                             filters: [
                                                               {
@@ -84,7 +70,7 @@ module Awspec::Helper
                                                               }
                                                             ]
                                                           })
-        return res[:vpc_peering_connections].first if res[:vpc_peering_connections].count == 1
+        res[:vpc_peering_connections].single_resource(vpc_peering_connection_id)
       end
     end
   end

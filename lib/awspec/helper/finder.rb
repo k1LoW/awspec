@@ -1,5 +1,6 @@
 require 'aws-sdk'
 require 'awspec/helper/finder/vpc'
+require 'awspec/helper/finder/subnet'
 require 'awspec/helper/finder/ec2'
 require 'awspec/helper/finder/security_group'
 require 'awspec/helper/finder/rds'
@@ -19,6 +20,7 @@ require 'awspec/helper/finder/ami'
 module Awspec::Helper
   module Finder
     include Awspec::Helper::Finder::Vpc
+    include Awspec::Helper::Finder::Subnet
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::SecurityGroup
     include Awspec::Helper::Finder::Rds

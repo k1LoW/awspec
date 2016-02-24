@@ -6,6 +6,9 @@ module Awspec::Helper
         res = rds_client.describe_db_instances({
                                                  db_instance_identifier: id
                                                })
+        if res[:db_instances].count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
+        end
         return res[:db_instances].first if res[:db_instances].count == 1
       end
 

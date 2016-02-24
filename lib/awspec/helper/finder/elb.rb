@@ -5,6 +5,9 @@ module Awspec::Helper
         res = elb_client.describe_load_balancers({
                                                    load_balancer_names: [id]
                                                  })
+        if res[:load_balancer_descriptions].count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
+        end
         return res[:load_balancer_descriptions].first if res[:load_balancer_descriptions].count == 1
       rescue
         return nil

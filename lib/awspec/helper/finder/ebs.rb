@@ -5,10 +5,16 @@ module Awspec::Helper
         res = ec2_client.describe_volumes({
                                             filters: [{ name: 'volume-id', values: [volume_id] }]
                                           })
+        if res[:volumes].count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{volume_id}"
+        end
         return res[:volumes].first if res[:volumes].count == 1
         res = ec2_client.describe_volumes({
                                             filters: [{ name: 'tag:Name', values: [volume_id] }]
                                           })
+        if res[:volumes].count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{volume_id}"
+        end
         return res[:volumes].first if res[:volumes].count == 1
       end
 

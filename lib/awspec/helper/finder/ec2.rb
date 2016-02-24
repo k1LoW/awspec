@@ -33,6 +33,9 @@ module Awspec::Helper
           return nil
         end
         # rubocop:enable Style/GuardClause
+        if res[:reservations].count == 1 && res[:reservations].first[:instances].count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
+        end
         return res[:reservations].first[:instances].first if res[:reservations].count == 1 && \
                                                              res[:reservations].first[:instances].count == 1
       end
@@ -52,11 +55,16 @@ module Awspec::Helper
           res = ec2_client.method(method_name).call({
                                                       filters: [{ name: type + '-gateway-id', values: [gateway_id] }]
                                                     })
-
+          if res[type + '_gateways'].count > 1
+            raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{gateway_id}"
+          end
           return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
           res = ec2_client.method(method_name).call({
                                                       filters: [{ name: 'tag:Name', values: [gateway_id] }]
                                                     })
+          if res[type + '_gateways'].count > 1
+            raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{gateway_id}"
+          end
           return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
         end
       end
@@ -65,22 +73,10 @@ module Awspec::Helper
         res = ec2_client.describe_nat_gateways({
                                                  filter: [{ name: 'nat-gateway-id', values: [gateway_id] }]
                                                })
-        return res['nat_gateways'].first if res['nat_gateways'].count == 1
-      end
-
-      def find_security_group(sg_id)
-        res = ec2_client.describe_security_groups({
-                                                    filters: [{ name: 'group-id', values: [sg_id] }]
-                                                  })
-        return res[:security_groups].first if res[:security_groups].count == 1
-        res = ec2_client.describe_security_groups({
-                                                    filters: [{ name: 'group-name', values: [sg_id] }]
-                                                  })
-        return res[:security_groups].first if res[:security_groups].count == 1
-        res = ec2_client.describe_security_groups({
-                                                    filters: [{ name: 'tag:Name', values: [sg_id] }]
-                                                  })
-        return res[:security_groups].first if res[:security_groups].count == 1
+        if res[:nat_gateways].count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{gateway_id}"
+        end
+        return res[:nat_gateways].first if res[:nat_gateways].count == 1
       end
 
       def select_ec2_by_vpc_id(vpc_id)

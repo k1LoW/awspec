@@ -7,7 +7,10 @@ module Awspec::Helper
           next true if virtual_interface.virtual_interface_id == virtual_interface_id
           next true if virtual_interface.virtual_interface_name == virtual_interface_id
         end
-        return ret.first if ret.count == 1
+        if ret.count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{virtual_interface_id}"
+        end
+        ret.first if ret.count == 1
       end
 
       def select_virtual_interfaces

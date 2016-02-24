@@ -12,10 +12,7 @@ module Awspec::Helper
           end
           (res.next_page? && res = res.next_page) || break
         end
-        if selected.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        selected.first if selected.count == 1
+        selected.single_resource(id)
       end
 
       def select_record_sets_by_hosted_zone_id(id)

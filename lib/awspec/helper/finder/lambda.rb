@@ -12,10 +12,7 @@ module Awspec::Helper
           (res.next_page? && res = res.next_page) || break
         end
 
-        if selected.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        selected.first if selected.count == 1
+        selected.single_resource(id)
       end
 
       def select_event_source_by_function_arn(function_arn)

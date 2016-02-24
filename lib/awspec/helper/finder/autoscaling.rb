@@ -5,20 +5,14 @@ module Awspec::Helper
         res = autoscaling_client.describe_auto_scaling_groups({
                                                                 auto_scaling_group_names: [id]
                                                               })
-        if res[:auto_scaling_groups].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        res[:auto_scaling_groups].first if res[:auto_scaling_groups].count == 1
+        res[:auto_scaling_groups].single_resource(id)
       end
 
       def find_launch_configuration(id)
         res = autoscaling_client.describe_launch_configurations({
                                                                   launch_configuration_names: [id]
                                                                 })
-        if res[:launch_configurations].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        res[:launch_configurations].first if res[:launch_configurations].count == 1
+        res[:launch_configurations].single_resource(id)
       end
     end
   end

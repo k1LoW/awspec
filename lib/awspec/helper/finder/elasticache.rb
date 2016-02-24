@@ -5,10 +5,7 @@ module Awspec::Helper
         res = elasticache_client.describe_cache_clusters({
                                                            cache_cluster_id: id
                                                          })
-        if res[:cache_clusters].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        res[:cache_clusters].first if res[:cache_clusters].count == 1
+        res[:cache_clusters].single_resource(id)
       rescue
         nil
       end
@@ -17,10 +14,7 @@ module Awspec::Helper
         res = elasticache_client.describe_cache_subnet_groups({
                                                                 cache_subnet_group_name: group_name
                                                               })
-        if res[:cache_subnet_groups].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{group_name}"
-        end
-        res[:cache_subnet_groups].first if res[:cache_subnet_groups].count == 1
+        res[:cache_subnet_groups].single_resource(group_name)
       end
     end
   end

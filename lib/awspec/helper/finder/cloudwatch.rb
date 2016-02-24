@@ -11,10 +11,7 @@ module Awspec::Helper
         alarms = res[:metric_alarms].select do |alarm|
           alarm[:alarm_arn] == id
         end
-        if alarms.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        alarms.first if alarms.count == 1
+        alarms.single_resource(id)
       end
 
       def select_all_cloudwatch_alarms

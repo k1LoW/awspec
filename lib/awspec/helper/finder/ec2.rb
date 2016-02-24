@@ -33,11 +33,7 @@ module Awspec::Helper
           return nil
         end
         # rubocop:enable Style/GuardClause
-        if res[:reservations].count == 1 && res[:reservations].first[:instances].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        return res[:reservations].first[:instances].first if res[:reservations].count == 1 && \
-                                                             res[:reservations].first[:instances].count == 1
+        res[:reservations].first[:instances].single_resource(id) if res[:reservations].count == 1
       end
 
       def find_ec2_attribute(id, attribute)
@@ -55,17 +51,12 @@ module Awspec::Helper
           res = ec2_client.method(method_name).call({
                                                       filters: [{ name: type + '-gateway-id', values: [gateway_id] }]
                                                     })
-          if res[type + '_gateways'].count > 1
-            raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{gateway_id}"
-          end
-          return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
+          resource = res[type + '_gateways'].single_resource(gateway_id)
+          return resource if resource
           res = ec2_client.method(method_name).call({
                                                       filters: [{ name: 'tag:Name', values: [gateway_id] }]
                                                     })
-          if res[type + '_gateways'].count > 1
-            raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{gateway_id}"
-          end
-          return res[type + '_gateways'].first if res[type + '_gateways'].count == 1
+          res[type + '_gateways'].single_resource(gateway_id)
         end
       end
 
@@ -73,10 +64,7 @@ module Awspec::Helper
         res = ec2_client.describe_nat_gateways({
                                                  filter: [{ name: 'nat-gateway-id', values: [gateway_id] }]
                                                })
-        if res[:nat_gateways].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{gateway_id}"
-        end
-        return res[:nat_gateways].first if res[:nat_gateways].count == 1
+        res[:nat_gateways].single_resource(gateway_id)
       end
 
       def select_ec2_by_vpc_id(vpc_id)

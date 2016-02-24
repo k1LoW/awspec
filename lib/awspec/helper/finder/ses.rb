@@ -6,10 +6,7 @@ module Awspec::Helper
         ret = res[:identities].select do |identity|
           identity == id
         end
-        if ret.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        ret.first if ret.count == 1
+        ret.single_resource(id)
       end
     end
   end

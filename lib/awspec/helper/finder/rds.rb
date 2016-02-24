@@ -6,10 +6,7 @@ module Awspec::Helper
         res = rds_client.describe_db_instances({
                                                  db_instance_identifier: id
                                                })
-        if res[:db_instances].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
-        end
-        return res[:db_instances].first if res[:db_instances].count == 1
+        res[:db_instances].single_resource(id)
       end
 
       def select_rds_by_vpc_id(vpc_id)

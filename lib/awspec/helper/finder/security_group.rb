@@ -5,24 +5,17 @@ module Awspec::Helper
         res = ec2_client.describe_security_groups({
                                                     filters: [{ name: 'group-id', values: [sg_id] }]
                                                   })
-        if res[:security_groups].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{sg_id}"
-        end
-        return res[:security_groups].first if res[:security_groups].count == 1
+        resource = res[:security_groups].single_resource(sg_id)
+        return resource if resource
         res = ec2_client.describe_security_groups({
                                                     filters: [{ name: 'group-name', values: [sg_id] }]
                                                   })
-        if res[:security_groups].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{sg_id}"
-        end
-        return res[:security_groups].first if res[:security_groups].count == 1
+        resource = res[:security_groups].single_resource(sg_id)
+        return resource if resource
         res = ec2_client.describe_security_groups({
                                                     filters: [{ name: 'tag:Name', values: [sg_id] }]
                                                   })
-        if res[:security_groups].count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{sg_id}"
-        end
-        return res[:security_groups].first if res[:security_groups].count == 1
+        res[:security_groups].single_resource(sg_id)
       end
 
       def select_security_group_by_vpc_id(vpc_id)

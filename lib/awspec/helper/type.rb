@@ -19,18 +19,16 @@ module Awspec
         end
       end
 
-      # deprecated resource type
-      def auto_scaling_group(name)
-        puts ''
-        puts Color.on_red(Color.white('!!! `auto_scaling_group` type is deprecated. use `autoscaling_group` !!!'))
-        Awspec::Type::AutoscalingGroup.new(name)
+      def self.deprecate_resource_type(old_type, new_type)
+        define_method(old_type) do |*args, &block|
+          puts ''
+          warn Color.on_red(Color.white("!!! `#{old_type}` type is deprecated. use `#{new_type}` !!!"))
+          send(new_type, *args, &block)
+        end
       end
 
-      def s3(name)
-        puts ''
-        puts Color.on_red(Color.white('!!! `s3` type is deprecated. use `s3_bucket` !!!'))
-        Awspec::Type::S3Bucket.new(name)
-      end
+      deprecate_resource_type :auto_scaling_group, :autoscaling_group
+      deprecate_resource_type :s3, :s3_bucket
     end
   end
 end

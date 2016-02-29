@@ -20,7 +20,7 @@ RSpec::Matchers.define :have_route do |destination|
   chain :destination do |dest|
     # rubocop:disable Metrics/LineLength
     puts ''
-    puts Color.on_red(Color.white('!!! route_table destination is deprecated. see https://github.com/k1LoW/awspec/pull/65 !!!'))
+    warn Color.on_red(Color.white('!!! route_table destination is deprecated. see https://github.com/k1LoW/awspec/pull/65 !!!'))
     # rubocop:enable Metrics/LineLength
     @use_destination = true
     @destination = dest

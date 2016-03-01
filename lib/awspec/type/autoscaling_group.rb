@@ -3,7 +3,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_autoscaling_group(id)
-      @id = @resource_via_client[:auto_scaling_group_arn] if @resource_via_client
+      @id = @resource_via_client.auto_scaling_group_arn if @resource_via_client
     end
 
     def has_elb?(name)

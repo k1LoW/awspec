@@ -6,7 +6,7 @@ module Awspec::Type
       super
       @inbound = true
       @resource_via_client = find_security_group(id)
-      @id = @resource_via_client[:group_id] if @resource_via_client
+      @id = @resource_via_client.group_id if @resource_via_client
     end
 
     def opened?(port = nil, protocol = nil, cidr = nil)
@@ -20,23 +20,23 @@ module Awspec::Type
     end
 
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @resource_via_client[:ip_permissions].find do |permission|
+      @resource_via_client.ip_permissions.find do |permission|
         next true unless port
-        next true unless permission[:from_port]
-        next true unless permission[:to_port]
-        next false unless port_between?(port, permission[:from_port], permission[:to_port])
-        next false if protocol && permission[:ip_protocol] != protocol
+        next true unless permission.from_port
+        next true unless permission.to_port
+        next false unless port_between?(port, permission.from_port, permission.to_port)
+        next false if protocol && permission.ip_protocol != protocol
         next true unless cidr
-        ret = permission[:ip_ranges].select do |ip_range|
-          ip_range[:cidr_ip] == cidr
+        ret = permission.ip_ranges.select do |ip_range|
+          ip_range.cidr_ip == cidr
         end
         next true if ret.count > 0
-        ret = permission[:user_id_group_pairs].select do |sg|
-          next true if sg[:group_id] == cidr
-          sg2 = find_security_group(sg[:group_id])
-          next true if sg2[:group_name] == cidr
-          sg2[:tags].find do |tag|
-            tag[:key] == 'Name' && tag[:value] == cidr
+        ret = permission.user_id_group_pairs.select do |sg|
+          next true if sg.group_id == cidr
+          sg2 = find_security_group(sg.group_id)
+          next true if sg2.group_name == cidr
+          sg2.tags.find do |tag|
+            tag.key == 'Name' && tag.value == cidr
           end
         end
         next true if ret.count > 0
@@ -44,35 +44,35 @@ module Awspec::Type
     end
 
     def inbound_opened_only?(port = nil, protocol = nil, cidr = nil)
-      permissions = @resource_via_client[:ip_permissions].select do |permission|
-        port_between?(port, permission[:from_port], permission[:to_port])
+      permissions = @resource_via_client.ip_permissions.select do |permission|
+        port_between?(port, permission.from_port, permission.to_port)
       end
-      permissions = permissions.select { |permission| permission[:ip_protocol] == protocol }
+      permissions = permissions.select { |permission| permission.ip_protocol == protocol }
       cidrs = []
       permissions.each do |permission|
-        permission[:ip_ranges].select { |ip_range| cidrs.push(ip_range[:cidr_ip]) }
+        permission.ip_ranges.select { |ip_range| cidrs.push(ip_range.cidr_ip) }
       end
       cidrs == Array(cidr)
     end
 
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @resource_via_client[:ip_permissions_egress].find do |permission|
+      @resource_via_client.ip_permissions_egress.find do |permission|
         next true unless port
-        next true unless permission[:from_port]
-        next true unless permission[:to_port]
-        next false unless port_between?(port, permission[:from_port], permission[:to_port])
-        next false if protocol && permission[:ip_protocol] != protocol
+        next true unless permission.from_port
+        next true unless permission.to_port
+        next false unless port_between?(port, permission.from_port, permission.to_port)
+        next false if protocol && permission.ip_protocol != protocol
         next true unless cidr
-        ret = permission[:ip_ranges].select do |ip_range|
-          ip_range[:cidr_ip] == cidr
+        ret = permission.ip_ranges.select do |ip_range|
+          ip_range.cidr_ip == cidr
         end
         next true if ret.count > 0
-        ret = permission[:user_id_group_pairs].select do |sg|
-          next true if sg[:group_id] == cidr
-          sg2 = find_security_group(sg[:group_id])
-          next true if sg2[:group_name] == cidr
-          sg2[:tags].find do |tag|
-            tag[:key] == 'Name' && tag[:value] == cidr
+        ret = permission.user_id_group_pairs.select do |sg|
+          next true if sg.group_id == cidr
+          sg2 = find_security_group(sg.group_id)
+          next true if sg2.group_name == cidr
+          sg2.tags.find do |tag|
+            tag.key == 'Name' && tag.value == cidr
           end
         end
         next true if ret.count > 0
@@ -80,13 +80,13 @@ module Awspec::Type
     end
 
     def outbound_opened_only?(port = nil, protocol = nil, cidr = nil)
-      permissions = @resource_via_client[:ip_permissions_egress].select do |permission|
-        port_between?(port, permission[:from_port], permission[:to_port])
+      permissions = @resource_via_client.ip_permissions_egress.select do |permission|
+        port_between?(port, permission.from_port, permission.to_port)
       end
-      permissions = permissions.select { |permission| permission[:ip_protocol] == protocol }
+      permissions = permissions.select { |permission| permission.ip_protocol == protocol }
       cidrs = []
       permissions.each do |permission|
-        permission[:ip_ranges].select { |ip_range| cidrs.push(ip_range[:cidr_ip]) }
+        permission.ip_ranges.select { |ip_range| cidrs.push(ip_range.cidr_ip) }
       end
       cidrs == Array(cidr)
     end
@@ -102,23 +102,23 @@ module Awspec::Type
     end
 
     def ip_permissions_count
-      @resource_via_client[:ip_permissions].count
+      @resource_via_client.ip_permissions.count
     end
     alias_method :inbound_permissions_count, :ip_permissions_count
 
     def ip_permissions_egress_count
-      @resource_via_client[:ip_permissions_egress].count
+      @resource_via_client.ip_permissions_egress.count
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
     def inbound_rule_count
-      @resource_via_client[:ip_permissions].reduce(0) do |sum, permission|
+      @resource_via_client.ip_permissions.reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
     end
 
     def outbound_rule_count
-      @resource_via_client[:ip_permissions_egress].reduce(0) do |sum, permission|
+      @resource_via_client.ip_permissions_egress.reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
     end

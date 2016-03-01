@@ -6,7 +6,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_route_table(id)
-      @id = @resource_via_client[:route_table_id] if @resource_via_client
+      @id = @resource_via_client.route_table_id if @resource_via_client
     end
 
     def has_route?(destination,
@@ -29,7 +29,7 @@ module Awspec::Type
       subnet = find_subnet(subnet_id)
       return false unless subnet
       @resource_via_client.associations.find do |a|
-        a[:subnet_id] == subnet[:subnet_id]
+        a.subnet_id == subnet.subnet_id
       end
     end
 

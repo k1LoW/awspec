@@ -15,7 +15,7 @@ module Awspec::Helper
                                               })
         end
         # rubocop:enable Style/GuardClause
-        res[:reservations].first[:instances].single_resource(id) if res[:reservations].count == 1
+        res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
       end
 
       def find_ec2_attribute(id, attribute)
@@ -46,7 +46,7 @@ module Awspec::Helper
         res = ec2_client.describe_nat_gateways({
                                                  filter: [{ name: 'nat-gateway-id', values: [gateway_id] }]
                                                })
-        res[:nat_gateways].single_resource(gateway_id)
+        res.nat_gateways.single_resource(gateway_id)
       end
 
       def select_ec2_by_vpc_id(vpc_id)
@@ -54,8 +54,7 @@ module Awspec::Helper
                                               filters: [{ name: 'vpc-id', values: [vpc_id] }]
                                             })
         instances = []
-        return instances unless res[:reservations].count > 0
-        res[:reservations].each do |reservation|
+        res.reservations.each do |reservation|
           reservation.instances.each do |instance|
             instances.push(instance)
           end
@@ -67,15 +66,14 @@ module Awspec::Helper
         res = ec2_client.describe_addresses({
                                               filters: [{ name: 'instance-id', values: [id] }]
                                             })
-        return [] unless res[:addresses].count > 0
-        res[:addresses]
+        res.addresses
       end
 
       def select_nat_gateway_by_vpc_id(vpc_id)
         res = ec2_client.describe_nat_gateways({
                                                  filter: [{ name: 'vpc-id', values: [vpc_id] }]
                                                })
-        res[:nat_gateways]
+        res.nat_gateways
       end
     end
   end

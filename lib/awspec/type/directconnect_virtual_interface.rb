@@ -3,7 +3,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_virtual_interface(id)
-      @id = @resource_via_client[:virtual_interface_id] if @resource_via_client
+      @id = @resource_via_client.virtual_interface_id if @resource_via_client
     end
 
     STATES = %w(
@@ -13,7 +13,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
-        @resource_via_client[:virtual_interface_state] == state
+        @resource_via_client.virtual_interface_state == state
       end
     end
   end

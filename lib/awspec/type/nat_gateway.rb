@@ -3,7 +3,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_nat_gateway(id)
-      @id = @resource_via_client[:nat_gateway_id] if @resource_via_client
+      @id = @resource_via_client.nat_gateway_id if @resource_via_client
     end
 
     STATES = %w(
@@ -12,7 +12,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
-        @resource_via_client[:state] == state
+        @resource_via_client.state == state
       end
     end
 

@@ -35,7 +35,7 @@ module Awspec::Type
 
     def self.tags_allowed
       define_method :has_tag? do |key, value|
-        tags = @resource_via_client[:tags]
+        tags = @resource_via_client.tags
         return false unless tags
         tags.any? { |t| t['key'] == key && t['value'] == value }
       end

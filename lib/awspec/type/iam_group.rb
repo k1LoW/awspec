@@ -3,13 +3,13 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_iam_group(id)
-      @id = @resource_via_client[:group_id] if @resource_via_client
+      @id = @resource_via_client.group_id if @resource_via_client
     end
 
     def has_iam_user?(user_id)
       user = find_iam_user(user_id)
       return false unless user
-      user_name = user[:user_name]
+      user_name = user.user_name
       groups = select_iam_group_by_user_name(user_name)
       groups.find do |group|
         group.group_id == @id
@@ -17,7 +17,7 @@ module Awspec::Type
     end
 
     def has_iam_policy?(policy_id)
-      policies = select_iam_policy_by_group_name(@resource_via_client[:group_name])
+      policies = select_iam_policy_by_group_name(@resource_via_client.group_name)
       policies.find do |policy|
         policy.policy_arn == policy_id || policy.policy_name == policy_id
       end

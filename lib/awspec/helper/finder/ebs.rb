@@ -5,19 +5,19 @@ module Awspec::Helper
         res = ec2_client.describe_volumes({
                                             filters: [{ name: 'volume-id', values: [volume_id] }]
                                           })
-        resource = res[:volumes].single_resource(volume_id)
+        resource = res.volumes.single_resource(volume_id)
         return resource if resource
         res = ec2_client.describe_volumes({
                                             filters: [{ name: 'tag:Name', values: [volume_id] }]
                                           })
-        res[:volumes].single_resource(volume_id)
+        res.volumes.single_resource(volume_id)
       end
 
       def select_ebs_by_instance_id(id)
         res = find_ec2(id)
         volumes = []
         return volumes unless res
-        res[:block_device_mappings].each do |block|
+        res.block_device_mappings.each do |block|
           volume = find_ebs(block.ebs.volume_id)
           volumes.push(volume) if volume
         end

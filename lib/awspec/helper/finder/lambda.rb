@@ -19,7 +19,7 @@ module Awspec::Helper
         res = lambda_client.list_event_source_mappings({
                                                          function_name: function_arn
                                                        })
-        res[:event_source_mappings]
+        res.event_source_mappings
       end
     end
   end

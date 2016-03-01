@@ -10,7 +10,7 @@ module Awspec::Type
       res = ses_client.list_identity_policies({
                                                 identity: @id
                                               })
-      res[:policy_names].find do |policy_name|
+      res.policy_names.find do |policy_name|
         policy_name == name
       end
     end
@@ -25,7 +25,7 @@ module Awspec::Type
         res = ses_client.get_identity_dkim_attributes({
                                                         identities: [@id]
                                                       })
-        res[:dkim_attributes][@id][attribute.to_sym]
+        res.dkim_attributes[@id][attribute.to_sym]
       end
     end
 
@@ -33,7 +33,7 @@ module Awspec::Type
       res = ses_client.get_identity_dkim_attributes({
                                                       identities: [@id]
                                                     })
-      res[:dkim_attributes][@id][:tokens].include?(token)
+      res.dkim_attributes[@id][:tokens].include?(token)
     end
 
     # notification_attributes
@@ -47,7 +47,7 @@ module Awspec::Type
         res = ses_client.get_identity_notification_attributes({
                                                                 identities: [@id]
                                                               })
-        res[:notification_attributes][@id][attribute.to_sym]
+        res.notification_attributes[@id][attribute.to_sym]
       end
     end
 
@@ -61,7 +61,7 @@ module Awspec::Type
         res = ses_client.get_identity_verification_attributes({
                                                                 identities: [@id]
                                                               })
-        res[:verification_attributes][@id][attribute.to_sym]
+        res.verification_attributes[@id][attribute.to_sym]
       end
     end
   end

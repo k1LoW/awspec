@@ -5,7 +5,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_ebs(id)
-      @id = @resource_via_client[:volume_id] if @resource_via_client
+      @id = @resource_via_client.volume_id if @resource_via_client
     end
 
     STATES = %w(
@@ -14,16 +14,16 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
-        @resource_via_client[:state] == state
+        @resource_via_client.state == state
       end
     end
 
     def attached_to?(instance_id)
       instance = find_ec2(instance_id)
       return false unless instance
-      return false unless @resource_via_client[:attachments]
-      @resource_via_client[:attachments][0][:instance_id] == instance[:instance_id] && \
-        @resource_via_client[:attachments][0][:state] == 'attached'
+      return false unless @resource_via_client.attachments
+      @resource_via_client.attachments.first.instance_id == instance.instance_id && \
+        @resource_via_client.attachments.first.state == 'attached'
     end
   end
 end

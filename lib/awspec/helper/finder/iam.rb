@@ -24,7 +24,7 @@ module Awspec::Helper
           policy_source_arn: policy_arn,
           action_names: [action_name]
         }
-        options.resource_arns = [resource_arn] if resource_arn
+        options[:resource_arns] = [resource_arn] if resource_arn
         res = iam_client.simulate_principal_policy(options)
         res.evaluation_results
       end

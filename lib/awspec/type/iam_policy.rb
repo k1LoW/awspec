@@ -3,7 +3,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_iam_policy(id)
-      @id = @resource_via_client[:policy_id] if @resource_via_client
+      @id = @resource_via_client.policy_id if @resource_via_client
     end
 
     def attachable?
@@ -16,7 +16,7 @@ module Awspec::Type
         user = find_iam_user(user_id)
         return false unless user
         users.any? do |u|
-          u.user_name == user[:user_name]
+          u.user_name == user.user_name
         end
       else
         !users.empty?
@@ -29,7 +29,7 @@ module Awspec::Type
         group = find_iam_group(group_id)
         return false unless group
         groups.any? do |g|
-          g.group_name == group[:group_name]
+          g.group_name == group.group_name
         end
       else
         !groups.empty?
@@ -42,7 +42,7 @@ module Awspec::Type
         role = find_iam_role(role_id)
         return false unless role
         roles.any? do |r|
-          r.role_name == role[:role_name]
+          r.role_name == role.role_name
         end
       else
         !roles.empty?

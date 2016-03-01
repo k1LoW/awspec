@@ -3,11 +3,11 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_lambda(id)
-      @id = @resource_via_client[:function_arn] if @resource_via_client
+      @id = @resource_via_client.function_arn if @resource_via_client
     end
 
     def timeout
-      @resource_via_client[:timeout]
+      @resource_via_client.timeout
     end
 
     def has_event_source?(event_source_arn)

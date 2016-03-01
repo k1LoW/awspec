@@ -2,35 +2,17 @@ module Awspec::Helper
   module Finder
     module Ec2
       def find_ec2(id)
-        if id.is_a?(Array)
-          # Aws::EC2::Client.describe_instances native filters format
+        # instance_id or tag:Name
+        begin
           res = ec2_client.describe_instances({
-                                                filters: id
+                                                instance_ids: [id]
                                               })
-        elsif id.is_a?(Hash)
-          # syntax sugar
-          filters = []
-          id.each do |k, v|
-            filters.push({ name: k, values: Array(v) })
-          end
+        rescue
+          # Aws::EC2::Errors::InvalidInstanceIDMalformed
+          # Aws::EC2::Errors::InvalidInstanceIDNotFound
           res = ec2_client.describe_instances({
-                                                filters: filters
+                                                filters: [{ name: 'tag:Name', values: [id] }]
                                               })
-        elsif id.is_a?(String)
-          # instance_id or tag:Name
-          begin
-            res = ec2_client.describe_instances({
-                                                  instance_ids: [id]
-                                                })
-          rescue
-            # Aws::EC2::Errors::InvalidInstanceIDMalformed
-            # Aws::EC2::Errors::InvalidInstanceIDNotFound
-            res = ec2_client.describe_instances({
-                                                  filters: [{ name: 'tag:Name', values: [id] }]
-                                                })
-          end
-        else
-          return nil
         end
         # rubocop:enable Style/GuardClause
         res[:reservations].first[:instances].single_resource(id) if res[:reservations].count == 1

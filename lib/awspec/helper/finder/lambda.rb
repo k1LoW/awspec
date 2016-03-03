@@ -21,6 +21,10 @@ module Awspec::Helper
                                                        })
         res.event_source_mappings
       end
+
+      def select_all_lambda_functions
+        res = lambda_client.list_functions.functions.flatten
+      end
     end
   end
 end

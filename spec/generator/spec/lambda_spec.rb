@@ -1,5 +1,12 @@
 require 'spec_helper'
-Awspec::Stub.load 'lambda'
+
+describe Awspec::Generator::Spec::Lambda do
+  before do
+    Awspec::Stub.load 'lambda'
+  end
+  let(:lambda) { Awspec::Generator::Spec::Lambda.new }
+  it 'generates spec' do
+    spec = <<-'EOF'
 
 describe lambda('my-lambda-function-name') do
   it { should exist }
@@ -10,7 +17,7 @@ describe lambda('my-lambda-function-name') do
   its(:timeout) { should eq 5 }
   its(:memory_size) { should eq 256 }
 end
-
-describe lambda('not-exist-function') do
-  it { should_not exist }
+EOF
+    expect(lambda.generate_all.to_s).to eq spec
+  end
 end

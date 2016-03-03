@@ -14,6 +14,7 @@ require 'awspec/generator/spec/directconnect'
 require 'awspec/generator/spec/ebs'
 require 'awspec/generator/spec/s3_bucket'
 require 'awspec/generator/spec/nat_gateway'
+require 'awspec/generator/spec/lambda'
 
 # Doc
 require 'awspec/generator/doc/type'

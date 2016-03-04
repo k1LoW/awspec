@@ -11,7 +11,7 @@ describe Awspec::Generator::Spec::Lambda do
 describe lambda('my-lambda-function-name') do
   it { should exist }
   its(:description) { should eq 'My Lambda Function' }
-  its(:runtime) { should eq 'pyhton2.7' }
+  its(:runtime) { should eq 'python2.7' }
   its(:handler) { should eq 'lambda_function.lambda_handler' }
   its(:code_size) { should eq 1234 }
   its(:timeout) { should eq 5 }

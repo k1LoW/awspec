@@ -11,10 +11,9 @@ module Awspec
 
     types.each do |type|
       desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
-      define_method type do |*args|
+      define_method type do |_vpc_id|
         Awsecrets.load(profile: options[:profile])
-        vpc_id = args.first
-        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(vpc_id)"
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(_vpc_id)"
       end
     end
 

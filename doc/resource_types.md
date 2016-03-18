@@ -270,6 +270,24 @@ end
 ```
 
 
+### have_event
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_event('system-reboot') }
+end
+```
+
+
+### have_events
+
+```ruby
+describe ec2('my-ec2') do
+  it { should_not have_events }
+end
+```
+
+
 ### have_security_group
 
 ```ruby

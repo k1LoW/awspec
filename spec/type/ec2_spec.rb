@@ -4,6 +4,8 @@ Awspec::Stub.load 'ec2'
 describe ec2('i-ec12345a') do
   it { should exist }
   it { should be_running }
+  it { should have_event('system-reboot') }
+  it { should have_events }
   it { should_not be_stopped }
   its(:instance_id) { should eq 'i-ec12345a' }
   its(:image_id) { should eq 'ami-abc12def' }

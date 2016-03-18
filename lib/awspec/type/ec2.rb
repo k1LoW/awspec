@@ -60,5 +60,17 @@ module Awspec::Type
         attachment.instance_id == @id
       end
     end
+
+    def has_event?(event_code)
+      status = find_ec2_status(@id)
+      ret = status.events.find do |event|
+        event.code == event_code
+      end
+    end
+
+    def has_events?
+      status = find_ec2_status(@id)
+      status.events.count > 0
+    end
   end
 end

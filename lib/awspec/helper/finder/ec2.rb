@@ -24,6 +24,13 @@ module Awspec::Helper
                                                      })
       end
 
+      def find_ec2_status(id)
+        res = ec2_client.describe_instance_status({
+                                                    instance_ids: [id]
+                                                  })
+        res.instance_statuses.first if res.instance_statuses.count == 1
+      end
+
       # find_internet_gateway find_vpn_gateway find_customer_gateway
       gateway_types = %w(internet vpn customer)
       gateway_types.each do |type|

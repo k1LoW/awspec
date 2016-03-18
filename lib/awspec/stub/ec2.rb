@@ -46,6 +46,29 @@ Aws.config[:ec2] = {
         value: true
       }
     },
+    describe_instance_status: {
+      instance_statuses: [
+        {
+          instance_id: 'i-ec12345a',
+          availability_zone: 'ap-northeast-1c',
+          events: [
+            {
+              code: 'system-reboot',
+              description: 'scheduled reboot'
+            }
+          ],
+          instance_state: {
+            name: 'running'
+          },
+          system_status: {
+            status: 'ok'
+          },
+          instance_status: {
+            status: 'ok'
+          }
+        }
+      ]
+    },
     describe_vpcs: {
       vpcs: [
         {

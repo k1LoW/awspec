@@ -56,6 +56,18 @@ module Awspec::Helper
         res.nat_gateways.single_resource(gateway_id)
       end
 
+      def find_network_interface(interface_id)
+        res = ec2_client.describe_network_interfaces({
+                                                       filters: [
+                                                         {
+                                                           name: 'network-interface-id',
+                                                           values: [interface_id]
+                                                         }
+                                                       ]
+                                                     })
+        res.network_interfaces.single_resource(interface_id)
+      end
+
       def select_ec2_by_vpc_id(vpc_id)
         res = ec2_client.describe_instances({
                                               filters: [{ name: 'vpc-id', values: [vpc_id] }]

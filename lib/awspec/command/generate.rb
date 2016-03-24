@@ -8,7 +8,7 @@ module Awspec
     class_option :secrets_path, default: 'secrets.yml'
 
     types = %w(
-      vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway
+      vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway network_interface
     )
 
     types.each do |type|

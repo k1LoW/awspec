@@ -17,6 +17,7 @@
 | [launch_configuration](#launch_configuration)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
+| [network_interface](#network_interface)
 | [rds](#rds)
 | [rds_db_parameter_group](#rds_db_parameter_group)
 | [route53_hosted_zone](#route53_hosted_zone)
@@ -26,7 +27,6 @@
 | [ses_identity](#ses_identity)
 | [subnet](#subnet)
 | [vpc](#vpc)
-| [network_interface](#network_interface)
 
 ## <a name="ami">ami</a>
 
@@ -802,6 +802,76 @@ describe network_acl('my-network-acl') do
 end
 ```
 
+## <a name="network_interface">network_interface</a>
+
+NetworkInterface resource type.
+
+### exist
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should exist }
+end
+```
+
+
+### be_attached_to
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should be_attached_to('my-ec2') }
+  it { should be_attached_to('my-ec2').as_eth0 }
+end
+```
+
+
+### be_available, be_attaching, be_in_use, be_detaching
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should be_in_use }
+end
+```
+
+
+### have_private_ip_address
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should have_private_ip_address('10.0.1.1').primary }
+  it { should have_private_ip_address('10.0.1.2') }
+  its(:private_ip_addresses_count) { should eq 2 }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should have_security_group('my-security-group-name') }
+end
+```
+
+
+### belong_to_subnet
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should belong_to_subnet('my-subnet') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:network_interface_id), its(:subnet_id), its(:vpc_id), its(:availability_zone), its(:description), its(:owner_id), its(:requester_id), its(:requester_managed), its(:status), its(:mac_address), its(:private_ip_address), its(:private_dns_name), its(:source_dest_check), its(:association), its(:interface_type)
 ## <a name="rds">rds</a>
 
 RDS resource type.
@@ -1309,25 +1379,3 @@ describe vpc('my-vpc') do
   its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
-
-## <a name="network_interface">network_interface</a>
-
-NetworkInterface resource type.
-
-### exist
-
-### be_attached_to
-
-### be_attaching
-
-### be_available
-
-### be_detaching
-
-### be_in_use
-
-### have_private_ip_address
-
-### have_security_group
-
-### its(:network_interface_id), its(:subnet_id), its(:vpc_id), its(:availability_zone), its(:description), its(:owner_id), its(:requester_id), its(:requester_managed), its(:status), its(:mac_address), its(:private_ip_address), its(:private_dns_name), its(:source_dest_check), its(:association), its(:interface_type)

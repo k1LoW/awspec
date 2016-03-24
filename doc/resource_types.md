@@ -26,6 +26,7 @@
 | [ses_identity](#ses_identity)
 | [subnet](#subnet)
 | [vpc](#vpc)
+| [network_interface](#network_interface)
 
 ## <a name="ami">ami</a>
 
@@ -1308,3 +1309,25 @@ describe vpc('my-vpc') do
   its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
+
+## <a name="network_interface">network_interface</a>
+
+NetworkInterface resource type.
+
+### exist
+
+### be_attached_to
+
+### be_attaching
+
+### be_available
+
+### be_detaching
+
+### be_in_use
+
+### have_private_ip_address
+
+### have_security_group
+
+### its(:network_interface_id), its(:subnet_id), its(:vpc_id), its(:availability_zone), its(:description), its(:owner_id), its(:requester_id), its(:requester_managed), its(:status), its(:mac_address), its(:private_ip_address), its(:private_dns_name), its(:source_dest_check), its(:association), its(:interface_type)

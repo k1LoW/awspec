@@ -1,7 +1,7 @@
 RSpec::Matchers.define :belong_to_subnet do |subnet_id|
   match do |type|
-    # EC2
-    if type.instance_of?(Awspec::Type::Ec2)
+    # EC2, NetworkInterface
+    if type.instance_of?(Awspec::Type::Ec2) || type.instance_of?(Awspec::Type::NetworkInterface)
       return true if type.subnet_id == subnet_id
       subnet = type.find_subnet(subnet_id)
       return false unless subnet

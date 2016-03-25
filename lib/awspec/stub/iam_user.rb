@@ -30,6 +30,14 @@ Aws.config[:iam] = {
       is_truncated: false,
       marker: nil
     },
+    get_user_policy: {
+      user_name: 'my-iam-user',
+      policy_name: 'AllowS3BucketAccess',
+      policy_document: '{"Statement": [{"Action": ["s3:ListAllMyBuckets"],' \
+                       '"Effect": "Allow","Resource": "arn:aws:s3:::*"},' \
+                       '{"Action": "s3:*","Effect": "Allow","Resource":' \
+                       '["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]}]}'
+    },
     simulate_principal_policy: {
       evaluation_results: [
         {

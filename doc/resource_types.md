@@ -571,8 +571,8 @@ end
 ### be_attached_to_user
 
 ```ruby
-describe iam_policy('my-iam-policy') do
-  it { should be_attached_to_policy('my-iam-policy') }
+describe iam_policy('my-iam-user') do
+  it { should be_attached_to_user('my-iam-user') }
 end
 ```
 

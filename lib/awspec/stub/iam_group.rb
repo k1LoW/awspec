@@ -39,6 +39,15 @@ Aws.config[:iam] = {
       is_truncated: false,
       marker: nil
     },
+    get_group_policy: {
+      group_name: 'my-iam-group',
+      policy_name: 'InlineEC2FullAccess',
+      policy_document: '{"Statement": [{"Action": "ec2:*","Effect": "Allow",' \
+                       '"Resource": "*"},{"Effect": "Allow","Action": "elasticloadbalancing:*",' \
+                       '"Resource": "*"},{"Effect": "Allow","Action": "cloudwatch:*",' \
+                       '"Resource": "*"},{"Effect": "Allow","Action": "autoscaling:*",' \
+                       '"Resource": "*"}]}'
+    },
     simulate_principal_policy: {
       evaluation_results: [
         {

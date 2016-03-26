@@ -527,6 +527,9 @@ describe iam_group('my-iam-group') do
 end
 ```
 
+
+### have_inline_policy
+
 ### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
 ## <a name="iam_policy">iam_policy</a>
 

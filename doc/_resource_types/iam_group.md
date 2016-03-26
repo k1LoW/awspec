@@ -30,3 +30,39 @@ describe iam_group('my-iam-group') do
   it { should have_iam_user('my-iam-user') }
 end
 ```
+
+### have_inline_group
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should have_inline_policy('InlineEC2FullAccess') }
+  it do
+    should have_inline_policy('InlineEC2FullAccess').policy_document(<<-'DOC')
+{
+  "Statement": [
+    {
+      "Action": "ec2:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "elasticloadbalancing:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "cloudwatch:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "autoscaling:*",
+      "Resource": "*"
+    }
+  ]
+}
+DOC
+  end
+end
+```

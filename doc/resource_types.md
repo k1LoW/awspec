@@ -611,6 +611,35 @@ describe iam_role('my-iam-role') do
 end
 ```
 
+
+### have_inline_policy
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should have_inline_policy('AllowS3BucketAccess') }
+  it do
+    should have_inline_policy('AllowS3BucketAccess').policy_document(<<-'DOC')
+{
+"Statement": [
+    {
+     "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]
+    }
+  ]
+}
+DOC
+  end
+end
+```
+
 ### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
 ## <a name="iam_user">iam_user</a>
 

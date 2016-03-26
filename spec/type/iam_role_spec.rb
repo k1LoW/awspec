@@ -4,6 +4,27 @@ Awspec::Stub.load 'iam_role'
 describe iam_role('my-iam-role') do
   it { should exist }
   it { should have_iam_policy('ReadOnlyAccess') }
+  it { should have_inline_policy('AllowS3BucketAccess') }
+  it do
+    should have_inline_policy('AllowS3BucketAccess').policy_document(<<-'DOC')
+{
+"Statement": [
+    {
+     "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]
+    }
+  ]
+}
+DOC
+  end
   it { should be_allowed_action('ec2:DescribeInstances') }
   it { should be_allowed_action('ec2:DescribeInstances').resource_arn('*') }
 end

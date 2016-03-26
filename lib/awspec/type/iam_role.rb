@@ -12,5 +12,14 @@ module Awspec::Type
         policy.policy_arn == policy_id || policy.policy_name == policy_id
       end
     end
+
+    def has_inline_policy?(policy_name, document = nil)
+      res = iam_client.get_role_policy({
+                                         role_name: @resource_via_client.role_name,
+                                         policy_name: policy_name
+                                       })
+      return JSON.parse(URI.decode(res.policy_document)) == JSON.parse(document) if document
+      res
+    end
   end
 end

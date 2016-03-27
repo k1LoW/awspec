@@ -17,6 +17,7 @@ require 'awspec/generator/spec/nat_gateway'
 require 'awspec/generator/spec/lambda'
 require 'awspec/generator/spec/network_interface'
 require 'awspec/generator/spec/iam_user'
+require 'awspec/generator/spec/iam_group'
 
 # Doc
 require 'awspec/generator/doc/type'

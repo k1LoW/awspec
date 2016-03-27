@@ -64,6 +64,13 @@ module Awspec::Helper
         res.policy_names
       end
 
+      def select_inine_policy_by_group_name(group_name)
+        res = iam_client.list_group_policies({
+                                               group_name: group_name
+                                             })
+        res.policy_names
+      end
+
       def select_all_attached_policies
         selected = []
         res = iam_client.list_policies
@@ -99,6 +106,12 @@ module Awspec::Helper
       def select_all_iam_users
         iam_client.list_users.map do |responce|
           responce.users
+        end.flatten
+      end
+
+      def select_all_iam_groups
+        iam_client.list_groups.map do |responce|
+          responce.groups
         end.flatten
       end
     end

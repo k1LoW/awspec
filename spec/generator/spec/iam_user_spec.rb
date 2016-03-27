@@ -10,7 +10,7 @@ describe Awspec::Generator::Spec::IamUser do
 describe iam_user('my-iam-user') do
   it { should exist }
   its(:arn) { should eq 'arn:aws:iam::123456789012:user/my-iam-user' }
-  its(:create_date) { should eq Time.parse('2014-12-31 15:00:00 UTC') }
+  its(:create_date) { should eq Time.parse('2015-01-02 10:00:00 UTC') }
   it { should have_iam_policy('ReadOnlyAccess') }
   it { should have_inline_policy('AllowS3BucketAccess').document('{"Statement":[{"Action":["s3:ListAllMyBuckets"],"Effect":"Allow","Resource":"arn:aws:s3:::*"},{"Action":"s3:*","Effect":"Allow","Resource":["arn:aws:s3:::my-bucket","arn:aws:s3:::my-bucket/*"]}]}') }
 end

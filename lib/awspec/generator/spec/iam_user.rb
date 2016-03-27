@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_all
         users = select_all_iam_users
-        raise 'Not Found policy' if users.empty?
+        raise 'Not Found IAM User' if users.empty?
         specs = users.map do |user|
           inline_policies = select_inine_policy_by_user_name(user.user_name).map do |policy_name|
             res = iam_client.get_user_policy({

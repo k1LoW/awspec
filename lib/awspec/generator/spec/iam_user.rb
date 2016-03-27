@@ -6,7 +6,7 @@ module Awspec::Generator
         users = select_all_iam_users
         raise 'Not Found IAM User' if users.empty?
         specs = users.map do |user|
-          inline_policies = select_inine_policy_by_user_name(user.user_name).map do |policy_name|
+          inline_policies = select_inline_policy_by_user_name(user.user_name).map do |policy_name|
             res = iam_client.get_user_policy({
                                                user_name: user.user_name,
                                                policy_name: policy_name

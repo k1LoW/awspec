@@ -6,7 +6,7 @@ Aws.config[:iam] = {
         role_name: 'my-iam-role',
         role_id: 'RABCDEFGHI123455689',
         arn: 'arn:aws:iam::123456789012:role/my-iam-role',
-        create_date: Time.local(2015)
+        create_date: Time.new(2015, 1, 2, 9, 00, 00, '+00:00')
       ]
     },
     list_attached_role_policies: {
@@ -15,6 +15,13 @@ Aws.config[:iam] = {
           policy_arn: 'arn:aws:iam::aws:policy/ReadOnlyAccess',
           policy_name: 'ReadOnlyAccess'
         }
+      ],
+      is_truncated: false,
+      marker: nil
+    },
+    list_role_policies: {
+      policy_names: [
+        'AllowS3BucketAccess'
       ],
       is_truncated: false,
       marker: nil

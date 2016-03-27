@@ -6,7 +6,7 @@ Aws.config[:iam] = {
         user_name: 'my-iam-user',
         user_id: 'ABCDEFGHI1234556890',
         arn: 'arn:aws:iam::123456789012:user/my-iam-user',
-        create_date: Time.local(2015)
+        create_date: Time.new(2015, 1, 2, 10, 00, 00, '+00:00')
       ]
     },
     list_groups: {
@@ -15,7 +15,7 @@ Aws.config[:iam] = {
         group_name: 'my-iam-group',
         group_id: 'GABCDEFGHI123455689',
         arn: 'arn:aws:iam::123456789012:group/my-iam-group',
-        create_date: Time.local(2015)
+        create_date: Time.new(2015, 1, 2, 11, 00, 00, '+00:00')
       ]
     },
     list_groups_for_user: {
@@ -25,7 +25,7 @@ Aws.config[:iam] = {
           group_name: 'my-iam-group',
           group_id: 'GABCDEFGHI123455689',
           arn: 'arn:aws:iam::123456789012:group/my-iam-group',
-          create_date: Time.local(2015)
+          create_date: Time.new(2015, 1, 2, 12, 00, 00, '+00:00')
         }
       ]
     },
@@ -35,6 +35,13 @@ Aws.config[:iam] = {
           policy_arn: 'arn:aws:iam::aws:policy/ReadOnlyAccess',
           policy_name: 'ReadOnlyAccess'
         }
+      ],
+      is_truncated: false,
+      marker: nil
+    },
+    list_group_policies: {
+      policy_names: [
+        'InlineEC2FullAccess'
       ],
       is_truncated: false,
       marker: nil

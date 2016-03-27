@@ -16,6 +16,7 @@ require 'awspec/generator/spec/s3_bucket'
 require 'awspec/generator/spec/nat_gateway'
 require 'awspec/generator/spec/lambda'
 require 'awspec/generator/spec/network_interface'
+require 'awspec/generator/spec/iam_user'
 
 # Doc
 require 'awspec/generator/doc/type'

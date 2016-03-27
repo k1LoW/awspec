@@ -36,39 +36,20 @@ module Awspec::Helper
         res.groups
       end
 
-      def select_iam_policy_by_user_name(user_name)
-        res = iam_client.list_attached_user_policies({
-                                                       user_name: user_name
-                                                     })
-        res.attached_policies
-      end
+      %w(user group role).each do |type|
+        define_method 'select_iam_policy_by_' + type + '_name' do |name|
+          res = iam_client.method('list_attached_' + type + '_policies').call({
+                                                                                (type + '_name').to_sym => name
+                                                                              })
+          res.attached_policies
+        end
 
-      def select_iam_policy_by_group_name(group_name)
-        res = iam_client.list_attached_group_policies({
-                                                        group_name: group_name
-                                                      })
-        res.attached_policies
-      end
-
-      def select_iam_policy_by_role_name(role_name)
-        res = iam_client.list_attached_role_policies({
-                                                       role_name: role_name
-                                                     })
-        res.attached_policies
-      end
-
-      def select_inine_policy_by_user_name(user_name)
-        res = iam_client.list_user_policies({
-                                              user_name: user_name
-                                            })
-        res.policy_names
-      end
-
-      def select_inine_policy_by_group_name(group_name)
-        res = iam_client.list_group_policies({
-                                               group_name: group_name
-                                             })
-        res.policy_names
+        define_method 'select_inline_policy_by_' + type + '_name' do |name|
+          res = iam_client.method('list_' + type + '_policies').call({
+                                                                       (type + '_name').to_sym => name
+                                                                     })
+          res.policy_names
+        end
       end
 
       def select_all_attached_policies
@@ -112,6 +93,12 @@ module Awspec::Helper
       def select_all_iam_groups
         iam_client.list_groups.map do |responce|
           responce.groups
+        end.flatten
+      end
+
+      def select_all_iam_roles
+        iam_client.list_roles.map do |responce|
+          responce.roles
         end.flatten
       end
     end

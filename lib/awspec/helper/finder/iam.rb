@@ -57,6 +57,13 @@ module Awspec::Helper
         res.attached_policies
       end
 
+      def select_inine_policy_by_user_name(user_name)
+        res = iam_client.list_user_policies({
+                                              user_name: user_name
+                                            })
+        res.policy_names
+      end
+
       def select_all_attached_policies
         selected = []
         res = iam_client.list_policies
@@ -87,6 +94,12 @@ module Awspec::Helper
       def select_attached_roles(policy_id)
         entities = select_attached_entities(policy_id)
         entities.policy_roles
+      end
+
+      def select_all_iam_users
+        iam_client.list_users.map do |responce|
+          responce.users
+        end.flatten
       end
     end
   end

@@ -30,6 +30,13 @@ Aws.config[:iam] = {
       is_truncated: false,
       marker: nil
     },
+    list_user_policies: {
+      policy_names: [
+        'AllowS3BucketAccess'
+      ],
+      is_truncated: false,
+      marker: nil
+    },
     get_user_policy: {
       user_name: 'my-iam-user',
       policy_name: 'AllowS3BucketAccess',

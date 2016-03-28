@@ -531,6 +531,24 @@ end
 ### have_inline_policy
 
 ### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
+### :unlock: Advanced use
+
+`iam_group` can use `Aws::IAM::Group` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Group.html).
+
+```ruby
+describe iam_group('my-iam-group') do
+  its('users.count) { should eq 5 }
+end
+```
+
+or
+
+```ruby
+describe iam_group('my-iam-group') do
+  its('resource.users.count') { should eq 5 }
+end
+```
+
 ## <a name="iam_policy">iam_policy</a>
 
 IamPolicy resource type.

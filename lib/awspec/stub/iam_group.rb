@@ -46,6 +46,24 @@ Aws.config[:iam] = {
       is_truncated: false,
       marker: nil
     },
+    get_group: {
+      group: {
+        path: '/',
+        group_name: 'my-iam-group',
+        group_id: 'GABCDEFGHI123455689',
+        arn: 'arn:aws:iam::123456789012:group/my-iam-group',
+        create_date: Time.new(2015, 1, 2, 10, 00, 00, '+00:00')
+      },
+      users: [
+        {
+          path: '/',
+          user_name: 'my-iam-user',
+          user_id: 'ABCDEFGHI1234556890',
+          arn: 'arn:aws:iam::123456789012:user/my-iam-user',
+          create_date: Time.new(2015, 1, 2, 10, 00, 00, '+00:00')
+        }
+      ]
+    },
     get_group_policy: {
       group_name: 'my-iam-group',
       policy_name: 'InlineEC2FullAccess',

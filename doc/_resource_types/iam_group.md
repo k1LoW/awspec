@@ -66,3 +66,21 @@ DOC
   end
 end
 ```
+
+### advanced
+
+`iam_group` can use `Aws::IAM::Group` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Group.html).
+
+```ruby
+describe iam_group('my-iam-group') do
+  its('users.count) { should eq 5 }
+end
+```
+
+or
+
+```ruby
+describe iam_group('my-iam-group') do
+  its('resource.users.count') { should eq 5 }
+end
+```

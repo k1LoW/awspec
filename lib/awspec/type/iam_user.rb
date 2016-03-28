@@ -1,5 +1,7 @@
 module Awspec::Type
   class IamUser < Base
+    aws_resource Aws::IAM::User
+
     def initialize(id)
       super
       @resource_via_client = find_iam_user(id)

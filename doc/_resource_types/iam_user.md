@@ -58,3 +58,21 @@ describe iam_user('my-iam-user') do
   it { should belong_to_iam_group('my-iam-group') }
 end
 ```
+
+### advanced
+
+`iam_user` can use `Aws::IAM::User` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/User.html).
+
+```ruby
+describe iam_user('my-iam-user') do
+  its('login_profile.password_reset_required') { should eq false }
+end
+```
+
+or
+
+```ruby
+describe iam_user('my-iam-user') do
+  its('resource.login_profile.password_reset_required') { should eq false }
+end
+```

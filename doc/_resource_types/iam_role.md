@@ -50,3 +50,21 @@ DOC
   end
 end
 ```
+
+### advanced
+
+`iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).
+
+```ruby
+describe iam_role('my-iam-role') do
+  its('attached_policies.count') { should eq 5 }
+end
+```
+
+or
+
+```ruby
+describe iam_role('my-iam-role') do
+  its('resource.attached_policies.count') { should eq 5 }
+end
+```

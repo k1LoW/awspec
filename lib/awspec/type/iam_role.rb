@@ -1,5 +1,7 @@
 module Awspec::Type
   class IamRole < Base
+    aws_resource Aws::IAM::Role
+
     def initialize(id)
       super
       @resource_via_client = find_iam_role(id)

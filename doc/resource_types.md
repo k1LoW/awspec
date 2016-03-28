@@ -658,7 +658,26 @@ DOC
 end
 ```
 
+
 ### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
+### :unlock: Advanced use
+
+`iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).
+
+```ruby
+describe iam_role('my-iam-role') do
+  its('attached_policies.count') { should eq 5 }
+end
+```
+
+or
+
+```ruby
+describe iam_role('my-iam-role') do
+  its('resource.attached_policies.count') { should eq 5 }
+end
+```
+
 ## <a name="iam_user">iam_user</a>
 
 IamUser resource type.

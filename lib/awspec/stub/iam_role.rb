@@ -26,6 +26,15 @@ Aws.config[:iam] = {
       is_truncated: false,
       marker: nil
     },
+    get_role: {
+      role: {
+        path: '/',
+        role_name: 'my-iam-role',
+        role_id: 'RABCDEFGHI123455689',
+        arn: 'arn:aws:iam::123456789012:role/my-iam-role',
+        create_date: Time.new(2015, 1, 2, 9, 00, 00, '+00:00')
+      }
+    },
     get_role_policy: {
       role_name: 'my-iam-role',
       policy_name: 'AllowS3BucketAccess',

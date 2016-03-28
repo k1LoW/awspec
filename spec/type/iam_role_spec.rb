@@ -27,4 +27,8 @@ DOC
   end
   it { should be_allowed_action('ec2:DescribeInstances') }
   it { should be_allowed_action('ec2:DescribeInstances').resource_arn('*') }
+  context 'nested attribute call' do
+    its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
+    its('resource.role_name') { should eq 'my-iam-role' }
+  end
 end

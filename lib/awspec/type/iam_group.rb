@@ -1,5 +1,7 @@
 module Awspec::Type
   class IamGroup < Base
+    aws_resource Aws::IAM::Group
+
     def initialize(id)
       super
       @resource_via_client = find_iam_group(id)

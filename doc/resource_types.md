@@ -710,7 +710,26 @@ describe iam_user('my-iam-user') do
 end
 ```
 
+
 ### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used)
+### :unlock: Advanced use
+
+`iam_user` can use `Aws::IAM::User` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/User.html).
+
+```ruby
+describe iam_user('my-iam-user') do
+  its('login_profile.password_reset_required') { should eq false }
+end
+```
+
+or
+
+```ruby
+describe iam_user('my-iam-user') do
+  its('resource.login_profile.password_reset_required') { should eq false }
+end
+```
+
 ## <a name="lambda">lambda</a>
 
 Lambda resource type.

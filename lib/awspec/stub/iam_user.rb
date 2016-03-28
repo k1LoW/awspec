@@ -37,6 +37,15 @@ Aws.config[:iam] = {
       is_truncated: false,
       marker: nil
     },
+    get_user: {
+      user: {
+        path: '/',
+        user_name: 'my-iam-user',
+        user_id: 'ABCDEFGHI1234556890',
+        arn: 'arn:aws:iam::123456789012:user/my-iam-user',
+        create_date: Time.new(2015, 1, 2, 10, 00, 00, '+00:00')
+      }
+    },
     get_user_policy: {
       user_name: 'my-iam-user',
       policy_name: 'AllowS3BucketAccess',

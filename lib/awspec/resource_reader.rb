@@ -24,7 +24,7 @@ module Awspec
       reboot|start|stop|terminate|
       modify|reset|replace|
       authorize|revoke|
-      deregister
+      deregister|enable_|remove
     /ix
 
     def match_black_list?(name)

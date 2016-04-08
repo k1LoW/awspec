@@ -70,7 +70,7 @@ module Awspec::Type
 
     def has_events?
       status = find_ec2_status(@id)
-      status.events.count > 0
+      !status.nil?
     end
   end
 end

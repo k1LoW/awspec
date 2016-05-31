@@ -49,6 +49,9 @@ Style/MutableConstant:
 Style/MultilineOperationIndentation:
   Enabled: false
 
+Style/MultilineMethodCallBraceLayout:
+  Enabled: false
+
 Style/StabbyLambdaParentheses:
   Enabled: false
 

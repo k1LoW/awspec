@@ -2,24 +2,28 @@ Aws.config[:ec2] = {
   stub_responses: {
     describe_network_acls: {
       network_acls: [
-        { network_acl_id: 'acl-1abc2d3e',
+        {
+          network_acl_id: 'acl-1abc2d3e',
           vpc_id: 'vpc-ab123cde',
           is_default: true,
           entries:
             [
-              { rule_number:  100,
+              {
+                rule_number:  100,
                 protocol: '-1',
                 rule_action: 'allow',
                 egress:  true,
                 cidr_block: '0.0.0.0/0'
               },
-              { rule_number:  32_767,
+              {
+                rule_number:  32_767,
                 protocol: '-1',
                 rule_action: 'deny',
                 egress:  true,
                 cidr_block: '0.0.0.0/0'
               },
-              { rule_number:  2,
+              {
+                rule_number:  2,
                 protocol: '6',
                 rule_action: 'allow',
                 egress:  false,
@@ -28,13 +32,15 @@ Aws.config[:ec2] = {
                   from: 80, to: 80
                 }
               },
-              { rule_number: 100,
+              {
+                rule_number: 100,
                 protocol: '-1',
                 rule_action: 'allow',
                 egress: false,
                 cidr_block: '0.0.0.0/0'
               },
-              { rule_number: 32_767,
+              {
+                rule_number: 32_767,
                 protocol: '-1',
                 rule_action: 'deny',
                 egress: false,

@@ -846,7 +846,7 @@ describe nat_gateway('nat-7ff7777f') do
 end
 ```
 
-### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message), its(:provisioned_bandwidth)
+### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message)
 ## <a name="network_acl">network_acl</a>
 
 NetworkAcl resource type.

@@ -27,6 +27,7 @@
 | [ses_identity](#ses_identity)
 | [subnet](#subnet)
 | [vpc](#vpc)
+| [cloudfront_distribution](#cloudfront_distribution)
 
 ## <a name="ami">ami</a>
 
@@ -1496,3 +1497,9 @@ describe vpc('my-vpc') do
   its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
+
+## <a name="cloudfront_distribution">cloudfront_distribution</a>
+
+CloudfrontDistribution resource type.
+
+### exist

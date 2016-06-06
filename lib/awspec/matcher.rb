@@ -37,3 +37,6 @@ require 'awspec/matcher/be_denied'
 # NetworkInterface
 require 'awspec/matcher/be_attached_to'
 require 'awspec/matcher/have_private_ip_address'
+
+# CloudFront
+require 'awspec/matcher/have_origin'

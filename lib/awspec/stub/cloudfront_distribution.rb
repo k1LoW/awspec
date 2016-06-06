@@ -120,7 +120,7 @@ Aws.config[:cloudfront] = {
                     {
                       id: 'cf-s3-origin-hosting.dev.example.com',
                       domain_name: 'cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com',
-                      origin_path: '',
+                      origin_path: '/img',
                       custom_headers: {
                         quantity: 0,
                         items: []

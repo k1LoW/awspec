@@ -27,6 +27,7 @@
 | [ses_identity](#ses_identity)
 | [subnet](#subnet)
 | [vpc](#vpc)
+| [cloudfront_distribution](#cloudfront_distribution)
 
 ## <a name="ami">ami</a>
 
@@ -1496,3 +1497,58 @@ describe vpc('my-vpc') do
   its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
+
+## <a name="cloudfront_distribution">cloudfront_distribution</a>
+
+CloudfrontDistribution resource type.
+
+### exist
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should exist }
+end
+```
+
+
+### be_in_progress, be_deployed
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should be_deployed }
+end
+```
+
+
+### have_origin
+
+```ruby
+describe cloudfront_distribution('E2CLOUDFRONTXX') do
+  it do
+    should have_origin('cf-s3-origin-hosting.dev.example.com')
+      .domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com')
+      .origin_path('/img')
+      .origin_access_identity('origin-access-identity/cloudfront/E2VVVVVVVVVVVV')
+  end
+end
+```
+
+
+### have_origin_domain_name
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should have_origin_domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com') }
+end
+```
+
+
+### have_origin_domain_name_and_path
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should have_origin_domain_name_and_path('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com/img') }
+end
+```
+
+### its(:id), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id)

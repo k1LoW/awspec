@@ -16,6 +16,7 @@ require 'awspec/helper/finder/cloudwatch'
 require 'awspec/helper/finder/ses'
 require 'awspec/helper/finder/directconnect'
 require 'awspec/helper/finder/ami'
+require 'awspec/helper/finder/cloudfront'
 
 module Awspec::Helper
   module Finder
@@ -36,6 +37,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ses
     include Awspec::Helper::Finder::Directconnect
     include Awspec::Helper::Finder::Ami
+    include Awspec::Helper::Finder::Cloudfront
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -49,7 +51,8 @@ module Awspec::Helper
       elasticache_client: Aws::ElastiCache::Client,
       cloudwatch_client: Aws::CloudWatch::Client,
       ses_client: Aws::SES::Client,
-      directconnect_client: Aws::DirectConnect::Client
+      directconnect_client: Aws::DirectConnect::Client,
+      cloudfront_client: Aws::CloudFront::Client
     }
 
     CLIENTS.each do |method_name, client|

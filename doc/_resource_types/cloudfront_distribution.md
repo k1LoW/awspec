@@ -6,6 +6,14 @@ describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
 end
 ```
 
+### be_in_progress, be_deployed
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should be_deployed }
+end
+```
+
 ### have_origin
 
 ```ruby

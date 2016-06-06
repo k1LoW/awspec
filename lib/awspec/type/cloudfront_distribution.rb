@@ -6,6 +6,16 @@ module Awspec::Type
       @id = @resource_via_client.id if @resource_via_client
     end
 
+    STATUSES = %w(
+      InProgress Deployed
+    )
+
+    STATUSES.each do |status|
+      define_method status.underscore + '?' do
+        @resource_via_client.status == status
+      end
+    end
+
     def has_origin?(origin_id,
                     domain_name: nil,
                     origin_path: nil,

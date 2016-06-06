@@ -3,6 +3,7 @@ Awspec::Stub.load 'cloudfront_distribution'
 
 describe cloudfront_distribution('E2CLOUDFRONTXX') do
   it { should exist }
+  it { should be_deployed }
   it { should have_origin('cf-s3-origin-hosting.dev.example.com') }
   it { should have_origin_domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com') }
   it { should have_origin_domain_name_and_path('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com/img') }

@@ -143,7 +143,7 @@ Aws.config[:ec2] = {
       ]
     },
     describe_classic_link_instances: {
-      instances:[
+      instances: [
         instance_id: 'my-ec2-classic',
         vpc_id: 'my-vpc'
       ]

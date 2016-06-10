@@ -73,5 +73,14 @@ module Awspec::Type
       return false if status.nil?
       status.events.count > 0
     end
+
+    def has_classiclink?(vpc_id = nil)
+      option = {
+        instance_ids: [@id]
+      }
+      option[:filters] = [{ name: 'vpc-id', values: [vpc_id] }] if vpc_id
+      ret = ec2_client.describe_classic_link_instances(option)
+      return ret.instances.count == 1 if vpc_id
+    end
   end
 end

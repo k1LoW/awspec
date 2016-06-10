@@ -36,3 +36,7 @@ describe ec2('my-ec2') do
   it { should be_running }
   it { should have_tag('Name').value('my-ec2') }
 end
+
+describe ec2('my-ec2-classic') do
+  it { should have_classiclink('my-vpc') }
+end

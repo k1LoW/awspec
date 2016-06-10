@@ -253,6 +253,15 @@ end
 ```
 
 
+### have_classiclink
+
+```ruby
+describe ec2('my-ec2-classic') do
+  it { should have_classiclink('my-vpc') }
+end
+```
+
+
 ### have_ebs
 
 ```ruby

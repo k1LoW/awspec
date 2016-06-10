@@ -30,6 +30,15 @@ describe ec2('my-ec2-classic') do
 end
 ```
 
+### have_classiclink_security_group
+
+```ruby
+describe ec2('my-ec2-classic') do
+  it { should have_classiclink_security_group('sg-2a3b4cd5') }
+  it { should have_classiclink_security_group('my-vpc-security-group-name') }
+end
+```
+
 ### have_ebs
 
 ```ruby

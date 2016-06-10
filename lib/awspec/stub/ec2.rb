@@ -145,7 +145,11 @@ Aws.config[:ec2] = {
     describe_classic_link_instances: {
       instances: [
         instance_id: 'my-ec2-classic',
-        vpc_id: 'my-vpc'
+        vpc_id: 'my-vpc',
+        groups: [
+          { group_name: nil, group_id: 'sg-2a3b4cd5' },
+          { group_name: 'my-vpc-security-group-name', group_id: nil }
+        ]
       ]
     }
   }

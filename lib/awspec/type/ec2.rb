@@ -82,5 +82,19 @@ module Awspec::Type
       ret = ec2_client.describe_classic_link_instances(option)
       return ret.instances.count == 1 if vpc_id
     end
+
+    def has_classiclink_security_group?(sg_id)
+      option = {
+        instance_ids: [@id]
+      }
+      classic_link_instances = ec2_client.describe_classic_link_instances(option)
+      return false if classic_link_instances.instances.count == 0
+      instances = classic_link_instances[0]
+      sgs = instances[0].groups
+      ret = sgs.find do |sg|
+        sg.group_id == sg_id || sg.group_name == sg_id
+      end
+      return true if ret
+    end
   end
 end

@@ -19,6 +19,7 @@
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
 | [rds](#rds)
+| [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
 | [route53_hosted_zone](#route53_hosted_zone)
 | [route_table](#route_table)
@@ -1106,6 +1107,27 @@ describe rds('my-rds') do
   its('resource.db_subnet_group.db_subnet_group_name') { should eq 'my-db-subnet-group' }
 end
 ```
+
+## <a name="rds_db_cluster_parameter_group">rds_db_cluster_parameter_group</a>
+
+RdsDbClusterParameterGroup resource type.
+
+```ruby
+describe rds_db_cluster_parameter_group('my-rds-db-cluster-parameter-group') do
+  its(:time_zone) { should eq 'US/Central' }
+  its(:binlog_format) { should eq 'ROW' }
+  its(:character_set_server) { should eq 'utf8mb4' }
+end
+```
+
+### exist
+
+```ruby
+describe rds_db_cluster_parameter_group('my-rds-db-cluster-parameter-group') do
+  it { should exist }
+end
+```
+
 
 ## <a name="rds_db_parameter_group">rds_db_parameter_group</a>
 

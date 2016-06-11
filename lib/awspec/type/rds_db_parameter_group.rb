@@ -19,7 +19,7 @@ module Awspec::Type
     end
 
     def method_missing(name)
-      param_name = name.to_s.tr('_', '-')
+      param_name = name.to_s
       if @parameters.include?(param_name)
         @parameters[param_name].to_s
       else

@@ -59,6 +59,16 @@ module Awspec::Type
       bp ? (JSON.parse(bp.policy.read) == JSON.parse(policy)) : false
     end
 
+    def has_logging_enabled?(target_bucket: nil, target_prefix: nil)
+      bl = find_bucket_logging(@id)
+      le = bl ? bl.logging_enabled : nil
+
+      return false if le.nil?
+      return false if target_bucket && target_bucket != le.target_bucket
+      return false if target_prefix && target_prefix != le.target_prefix
+      true
+    end
+
     private
 
     def cors_rules

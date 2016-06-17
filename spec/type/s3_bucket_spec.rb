@@ -45,6 +45,8 @@ describe s3_bucket('my-bucket') do
     POLICY
   end
 
+  it { should have_logging_enabled(target_bucket: 'my-log-bucket', target_prefix: 'logs/') }
+
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('resource.name') { should eq 'my-bucket' }

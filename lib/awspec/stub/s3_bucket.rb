@@ -57,6 +57,12 @@ Aws.config[:s3] = {
       policy: '{"Version":"2012-10-17","Statement":[{"Sid":"","Effect":"Allow","Principal":' \
               '{"AWS":"arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXX"},' \
               '"Action":"s3:GetObject","Resource":"arn:aws:s3:::my-bucket/*"}]}'
+    },
+    get_bucket_logging: {
+      logging_enabled: {
+        target_bucket: 'my-log-bucket',
+        target_prefix: 'logs/'
+      }
     }
   }
 }

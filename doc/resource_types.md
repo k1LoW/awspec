@@ -1293,6 +1293,15 @@ end
 ```
 
 
+### have_logging_enabled
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_logging_enabled(target_bukcet: 'my-log-bucket', target_prefix: 'logs/') }
+end
+```
+
+
 ### have_object
 
 ```ruby

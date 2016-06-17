@@ -26,6 +26,12 @@ module Awspec::Helper
         nil
       end
 
+      def find_bucket_logging(id)
+        s3_client.get_bucket_logging(bucket: id)
+      rescue Aws::S3::Errors::NoSuchBucket
+        nil
+      end
+
       def select_all_buckets
         s3_client.list_buckets.buckets
       end

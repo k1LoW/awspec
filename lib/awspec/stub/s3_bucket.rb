@@ -58,6 +58,12 @@ Aws.config[:s3] = {
               '[{"Sid":"AllowPublicRead","Effect":"Allow",' \
               '"Principal":"*","Action":"s3:GetObject",' \
               '"Resource":"arn:aws:s3:::my-bucket/*"}]}'
+    },
+    get_bucket_logging: {
+      logging_enabled: {
+        target_bucket: 'my-log-bucket',
+        target_prefix: 'logs/'
+      }
     }
   }
 }

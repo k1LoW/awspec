@@ -70,6 +70,14 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+### have_logging_enabled
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_logging_enabled(target_bukcet: 'my-log-bucket', target_prefix: 'logs/') }
+end
+```
+
 ### advanced
 
 `s3_bucket` can use `Aws::S3::Bucket` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html).

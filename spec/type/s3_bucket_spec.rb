@@ -34,9 +34,9 @@ describe s3_bucket('my-bucket') do
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "AllowPublicRead",
+      "Sid": "",
       "Effect": "Allow",
-      "Principal": "*",
+      "Principal": { "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXX" },
       "Action": "s3:GetObject",
       "Resource": "arn:aws:s3:::my-bucket/*"
     }

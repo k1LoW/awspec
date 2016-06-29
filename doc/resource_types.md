@@ -1297,7 +1297,7 @@ end
 
 ```ruby
 describe s3_bucket('my-bucket') do
-  it { should have_logging_enabled(target_bukcet: 'my-log-bucket', target_prefix: 'logs/') }
+  it { should have_logging_enabled(target_bucket: 'my-log-bucket', target_prefix: 'logs/') }
 end
 ```
 

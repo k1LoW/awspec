@@ -69,6 +69,11 @@ module Awspec::Type
       true
     end
 
+    def has_versioning_enabled?
+      bv = find_bucket_versioning(@id)
+      bv ? (bv.status == 'Enabled') : false
+    end
+
     private
 
     def cors_rules

@@ -1334,6 +1334,15 @@ end
 ```
 
 
+### have_versioning_enabled
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_versioning_enabled }
+end
+```
+
+
 ### its(:acl_grants_count), its(:acl_owner), its(:cors_rules_count), its(:name), its(:creation_date)
 ### :unlock: Advanced use
 

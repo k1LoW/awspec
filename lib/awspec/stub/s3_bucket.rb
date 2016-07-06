@@ -63,6 +63,10 @@ Aws.config[:s3] = {
         target_bucket: 'my-log-bucket',
         target_prefix: 'logs/'
       }
+    },
+    get_bucket_versioning: {
+      status: 'Enabled',
+      mfa_delete: 'Enabled'
     }
   }
 }

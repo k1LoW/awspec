@@ -1,6 +1,6 @@
 module Awspec
   class Toolbox < Thor
-    desc 'docgen > doc/resource_type.md', 'Generate doc/resource_type.md document'
+    desc 'docgen > doc/resource_types.md', 'Generate doc/resource_types.md document'
     def docgen
       puts Awspec::Generator::Doc::Type.generate_doc
     end

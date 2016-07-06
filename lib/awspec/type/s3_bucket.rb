@@ -74,6 +74,11 @@ module Awspec::Type
       bv ? (bv.status == 'Enabled') : false
     end
 
+    def has_mfa_delete_enabled?
+      bv = find_bucket_versioning(@id)
+      bv ? (bv.mfa_delete == 'Enabled') : false
+    end
+
     private
 
     def cors_rules

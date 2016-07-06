@@ -1302,6 +1302,15 @@ end
 ```
 
 
+### have_mfa_delete_enabled
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_mfa_delete_enabled }
+end
+```
+
+
 ### have_object
 
 ```ruby

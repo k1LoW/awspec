@@ -44,6 +44,7 @@ end
 
 ```ruby
 describe s3_bucket('my-bucket') do
+  it do
     should have_policy <<-POLICY
 {
   "Version": "2012-10-17",

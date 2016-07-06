@@ -78,6 +78,14 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+### have_versioning_enabled
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_versioning_enabled }
+end
+```
+
 ### advanced
 
 `s3_bucket` can use `Aws::S3::Bucket` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html).

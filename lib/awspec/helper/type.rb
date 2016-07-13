@@ -9,6 +9,7 @@ module Awspec
         iam_policy iam_role iam_user lambda launch_configuration nat_gateway
         network_acl network_interface rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone
         route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
+        elastictranscoder_pipeline
       )
 
       TYPES.each do |type|

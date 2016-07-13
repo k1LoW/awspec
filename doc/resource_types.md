@@ -29,6 +29,7 @@
 | [subnet](#subnet)
 | [vpc](#vpc)
 | [cloudfront_distribution](#cloudfront_distribution)
+| [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 
 ## <a name="ami">ami</a>
 
@@ -1621,3 +1622,16 @@ end
 ```
 
 ### its(:id), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id)
+## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
+
+ElastictranscoderPipeline resource type.
+
+### exist
+
+### be_active, be_paused
+
+```ruby
+describe elastictranscoder_pipeline('my-elastictranscoder-pipeline') do
+  it { should be_active }
+end
+```

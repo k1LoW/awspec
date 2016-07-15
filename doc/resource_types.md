@@ -2,6 +2,7 @@
 
 [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
+| [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
@@ -89,6 +90,39 @@ end
 ```
 
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:status), its(:new_instances_protected_from_scale_in)
+## <a name="cloudtrail">cloudtrail</a>
+
+Cloudtrail resource type.
+
+### exist
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should exist }
+end
+```
+
+
+### be_multi_region_trail
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should be_multi_region_trail }
+end
+```
+
+
+### have_global_service_events_included
+
+### have_log_file_validation_enabled
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should have_log_file_validation_enabled }
+end
+```
+
+### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id)
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
 
 CloudwatchAlarm resource type.

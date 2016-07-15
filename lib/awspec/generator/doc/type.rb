@@ -17,7 +17,6 @@ EOF
         doc = ERB.new(header, nil, '-').result(binding)
 
         types.map do |type|
-          Awspec::Generator::Doc::Type::Cloudtrail.new
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
         end
         doc.sub(/\n*\z/, '')

@@ -114,6 +114,13 @@ end
 
 ### have_global_service_events_included
 
+```ruby
+describe cloudtrail('my-trail') do
+  it { should have_global_service_events_included }
+end
+```
+
+
 ### have_log_file_validation_enabled
 
 ```ruby

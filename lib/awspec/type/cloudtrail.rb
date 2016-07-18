@@ -19,5 +19,9 @@ module Awspec::Type
     def has_log_file_validation_enabled?
       @resource_via_client.log_file_validation_enabled
     end
+
+    def logging?
+      is_logging?(@id)
+    end
   end
 end

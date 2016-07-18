@@ -10,6 +10,14 @@ module Awspec::Helper
           trail.name == id
         end
       end
+
+      def get_trail_status(id)
+        cloudtrail_client.get_trail_status(name: id)
+      end
+
+      def is_logging?(id)
+        ret = get_trail_status(id).is_logging
+      end
     end
   end
 end

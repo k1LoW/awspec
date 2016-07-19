@@ -6,11 +6,11 @@ describe cloudtrail('my-trail') do
 end
 ```
 
-### include_global_service_events
+### have_global_service_events_included
 
 ```ruby
 describe cloudtrail('my-trail') do
-  it { should include_global_service_events }
+  it { should have_global_service_events_included }
 end
 ```
 

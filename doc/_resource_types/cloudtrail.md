@@ -29,3 +29,11 @@ describe cloudtrail('my-trail') do
   it { should have_log_file_validation_enabled }
 end
 ```
+
+### be_logging
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should be_logging }
+end
+```

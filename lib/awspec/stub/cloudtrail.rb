@@ -9,6 +9,9 @@ Aws.config[:cloudtrail] = {
           log_file_validation_enabled: true
         }
       ]
+    },
+    get_trail_status: {
+      is_logging: true
     }
   }
 }

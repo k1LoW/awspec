@@ -56,7 +56,11 @@ module Awspec::Type
 
     def has_policy?(policy)
       bp = find_bucket_policy(@id)
-      bp ? (JSON.parse(bp.policy.read) == JSON.parse(policy)) : false
+      if bp
+        JSON.parse(bp.policy.read, array_class: Set) == JSON.parse(policy, array_class: Set)
+      else
+        false
+      end
     end
 
     def has_logging_enabled?(target_bucket: nil, target_prefix: nil)

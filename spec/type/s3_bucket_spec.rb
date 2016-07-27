@@ -37,8 +37,11 @@ describe s3_bucket('my-bucket') do
       "Sid": "",
       "Effect": "Allow",
       "Principal": { "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXX" },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::my-bucket/*"
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::my-bucket/*",
+        "arn:aws:s3:::my-bucket"
+      ]
     }
   ]
 }

@@ -54,7 +54,7 @@ end
 ```
 
 
-### its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:sriov_net_support), its(:state_reason), its(:image_owner_alias), its(:name), its(:description), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:hypervisor)
+### its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:sriov_net_support), its(:ena_support), its(:state_reason), its(:image_owner_alias), its(:name), its(:description), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:hypervisor)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
@@ -138,7 +138,7 @@ end
 ```
 
 
-### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id)
+### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id)
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
 
 CloudwatchAlarm resource type.
@@ -400,7 +400,7 @@ end
 ```
 
 
-### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:iam_instance_profile), its(:ebs_optimized), its(:sriov_net_support)
+### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:iam_instance_profile), its(:ebs_optimized), its(:sriov_net_support), its(:ena_support)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -918,7 +918,7 @@ describe nat_gateway('nat-7ff7777f') do
 end
 ```
 
-### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message)
+### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message), its(:provisioned_bandwidth)
 ## <a name="network_acl">network_acl</a>
 
 NetworkAcl resource type.

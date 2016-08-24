@@ -11,10 +11,10 @@ Aws.config[:cloudfront] = {
           [
             {
               id: 'E1ABCDEFG2HIJK',
+              arn: 'arn:aws:cloudfront:ap-northeast-1:1234567890:alarm:my-cloudfront-1',
               status: 'Deployed',
               last_modified_time: Time.new(2015, 1, 2, 10, 00, 00, '+00:00'),
               domain_name: 'abcdefghijklmn.cloudfront.net',
-              arn: 'arn:aws:acm:us-east-1:012345678900:xxxxxx/e1234e56-abcd-1234-5c6e-789ca0123d4b',
               aliases: {
                 quantity: 0,
                 items: []
@@ -107,10 +107,10 @@ Aws.config[:cloudfront] = {
             },
             {
               id: 'E2CLOUDFRONTXX',
+              arn: 'arn:aws:cloudfront:ap-northeast-1:1234567890:alarm:my-cloudfront-2',
               status: 'Deployed',
               last_modified_time: Time.new(2016, 3, 2, 10, 00, 00, '+00:00'),
               domain_name: '123456789zyxw.cloudfront.net',
-              arn: 'arn:aws:acm:us-east-1:012345678900:yyyyyy/e1234e56-abcd-1234-5c6e-789ca0123d4b',
               aliases: {
                 quantity: 1,
                 items: ['cf-s3-origin-hosting.dev.example.com']

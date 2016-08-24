@@ -96,6 +96,10 @@ $ AWS_PROFILE=mycreds bundle exec rake spec
 
 [Resource Types infomation here](doc/resource_types.md)
 
+## awspec AWS key/secrets precedence
+
+Dependent on [awsecrets](https://github.com/k1LoW/awsecrets#awsecrets-config-precedence).
+
 ## References
 
 awspec is inspired by Serverspec.

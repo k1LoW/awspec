@@ -13,6 +13,7 @@ require 'awspec/helper/finder/lambda'
 require 'awspec/helper/finder/iam'
 require 'awspec/helper/finder/elasticache'
 require 'awspec/helper/finder/cloudwatch'
+require 'awspec/helper/finder/cloudwatch_event'
 require 'awspec/helper/finder/ses'
 require 'awspec/helper/finder/directconnect'
 require 'awspec/helper/finder/ami'
@@ -36,6 +37,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Iam
     include Awspec::Helper::Finder::Elasticache
     include Awspec::Helper::Finder::Cloudwatch
+    include Awspec::Helper::Finder::CloudwatchEvent
     include Awspec::Helper::Finder::Ses
     include Awspec::Helper::Finder::Directconnect
     include Awspec::Helper::Finder::Ami
@@ -54,6 +56,7 @@ module Awspec::Helper
       iam_client: Aws::IAM::Client,
       elasticache_client: Aws::ElastiCache::Client,
       cloudwatch_client: Aws::CloudWatch::Client,
+      cloudwatch_event_client: Aws::CloudWatchEvents::Client,
       ses_client: Aws::SES::Client,
       directconnect_client: Aws::DirectConnect::Client,
       cloudfront_client: Aws::CloudFront::Client,

@@ -1442,6 +1442,15 @@ end
 
 ### be_outbound_opened_only
 
+### have_tag
+
+```ruby
+describe security_group('my-security-group-name') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+
 ### its(:inbound), its(:outbound)
 
 ```ruby

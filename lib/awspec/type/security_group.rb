@@ -1,6 +1,7 @@
 module Awspec::Type
   class SecurityGroup < Base
     aws_resource Aws::EC2::SecurityGroup
+    tags_allowed
 
     def initialize(id)
       super

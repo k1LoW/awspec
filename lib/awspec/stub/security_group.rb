@@ -6,6 +6,12 @@ Aws.config[:ec2] = {
           vpc_id: 'vpc-ab123cde',
           group_id: 'sg-1a2b3cd4',
           group_name: 'my-security-group-name',
+          tags: [
+            {
+              key: 'env',
+              value: 'dev'
+            }
+          ],
           ip_permissions: [
             {
               from_port: 80,

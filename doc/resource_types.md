@@ -267,6 +267,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe ebs('my-volume') do
+  it { should have_tag('Name').value('my-volume') }
+end
+```
+
+
 ### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
 ### :unlock: Advanced use
 

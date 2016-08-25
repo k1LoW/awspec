@@ -22,6 +22,14 @@ describe ebs('my-volume') do
 end
 ```
 
+### have_tag
+
+```ruby
+describe ebs('my-volume') do
+  it { should have_tag('Name').value('my-volume') }
+end
+```
+
 ### advanced
 
 `ebs` can use `Aws::EC2::Volume` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html).

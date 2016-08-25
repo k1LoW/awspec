@@ -7,6 +7,7 @@ describe ebs('my-volume') do
   its(:size) { should eq 100 }
   its(:volume_type) { should eq 'gp2' }
   it { should be_attached_to('my-ec2') }
+  it { should have_tag('Name').value('my-volume') }
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('resource.size') { should eq 100 }

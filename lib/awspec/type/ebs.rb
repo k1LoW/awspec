@@ -1,6 +1,7 @@
 module Awspec::Type
   class Ebs < Base
     aws_resource Aws::EC2::Volume
+    tags_allowed
 
     def initialize(id)
       super

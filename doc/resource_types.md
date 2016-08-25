@@ -4,6 +4,7 @@
 | [autoscaling_group](#autoscaling_group)
 | [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
+| [cloudwatch_event](#cloudwatch_event)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
 | [ec2](#ec2)
@@ -188,6 +189,17 @@ end
 ```
 
 ### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
+## <a name="cloudwatch_event">cloudwatch_event</a>
+
+CloudwatchEvent resource type.
+
+### exist
+
+### be_enable
+
+### be_scheduled
+
+### its(:name), its(:arn), its(:event_pattern), its(:state), its(:description), its(:schedule_expression), its(:role_arn)
 ## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
 
 DirectconnectVirtualInterface resource type.

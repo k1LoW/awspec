@@ -24,6 +24,7 @@ describe security_group('sg-1a2b3cd4') do
   # its(:inbound) { should be_opened(22).protocol('tcp').for('my-db-sg') }
   it { should belong_to_vpc('vpc-ab123cde') }
   it { should belong_to_vpc('my-vpc') }
+  it { should have_tag('env').value('dev') }
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('resource.group_name') { should eq 'my-security-group-name' }
@@ -35,6 +36,7 @@ describe security_group('my-security-group-name') do
   its(:outbound) { should be_opened(50_000) }
   its(:inbound) { should be_opened(80) }
   it { should belong_to_vpc('my-vpc') }
+  it { should have_tag('env').value('dev') }
 end
 
 describe security_group('my-security-tag-name') do

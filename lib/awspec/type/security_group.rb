@@ -22,33 +22,14 @@ module Awspec::Type
 
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)
       @resource_via_client.ip_permissions.find do |permission|
-        next true unless port
-        next true unless permission.from_port
-        next true unless permission.to_port
-        next false unless port_between?(port, permission.from_port, permission.to_port)
-        next false if protocol && permission.ip_protocol != protocol
-        next true unless cidr
-        ret = permission.ip_ranges.select do |ip_range|
-          ip_range.cidr_ip == cidr
-        end
-        next true if ret.count > 0
-        ret = permission.user_id_group_pairs.select do |sg|
-          next true if sg.group_id == cidr
-          sg2 = find_security_group(sg.group_id)
-          next true if sg2.group_name == cidr
-          sg2.tags.find do |tag|
-            tag.key == 'Name' && tag.value == cidr
-          end
-        end
-        next true if ret.count > 0
+        cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
     end
 
     def inbound_opened_only?(port = nil, protocol = nil, cidr = nil)
       permissions = @resource_via_client.ip_permissions.select do |permission|
-        port_between?(port, permission.from_port, permission.to_port)
+        protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
-      permissions = permissions.select { |permission| permission.ip_protocol == protocol }
       cidrs = []
       permissions.each do |permission|
         permission.ip_ranges.select { |ip_range| cidrs.push(ip_range.cidr_ip) }
@@ -58,33 +39,14 @@ module Awspec::Type
 
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
       @resource_via_client.ip_permissions_egress.find do |permission|
-        next true unless port
-        next true unless permission.from_port
-        next true unless permission.to_port
-        next false unless port_between?(port, permission.from_port, permission.to_port)
-        next false if protocol && permission.ip_protocol != protocol
-        next true unless cidr
-        ret = permission.ip_ranges.select do |ip_range|
-          ip_range.cidr_ip == cidr
-        end
-        next true if ret.count > 0
-        ret = permission.user_id_group_pairs.select do |sg|
-          next true if sg.group_id == cidr
-          sg2 = find_security_group(sg.group_id)
-          next true if sg2.group_name == cidr
-          sg2.tags.find do |tag|
-            tag.key == 'Name' && tag.value == cidr
-          end
-        end
-        next true if ret.count > 0
+        cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
     end
 
     def outbound_opened_only?(port = nil, protocol = nil, cidr = nil)
       permissions = @resource_via_client.ip_permissions_egress.select do |permission|
-        port_between?(port, permission.from_port, permission.to_port)
+        protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
-      permissions = permissions.select { |permission| permission.ip_protocol == protocol }
       cidrs = []
       permissions.each do |permission|
         permission.ip_ranges.select { |ip_range| cidrs.push(ip_range.cidr_ip) }
@@ -125,6 +87,37 @@ module Awspec::Type
     end
 
     private
+
+    def cidr_opened?(permission, cidr)
+      return true unless cidr
+      ret = permission.ip_ranges.select do |ip_range|
+        ip_range.cidr_ip == cidr
+      end
+      return true if ret.count > 0
+      ret = permission.user_id_group_pairs.select do |sg|
+        next true if sg.group_id == cidr
+        sg2 = find_security_group(sg.group_id)
+        next true if sg2.group_name == cidr
+        sg2.tags.find do |tag|
+          tag.key == 'Name' && tag.value == cidr
+        end
+      end
+      ret.count > 0
+    end
+
+    def protocol_opened?(permission, protocol)
+      return true unless protocol
+      return false if protocol == 'all' && permission.ip_protocol != '-1'
+      return true if permission.ip_protocol == '-1'
+      permission.ip_protocol == protocol
+    end
+
+    def port_opened?(permission, port)
+      return true unless port
+      return true unless permission.from_port
+      return true unless permission.to_port
+      port_between?(port, permission.from_port, permission.to_port)
+    end
 
     def port_between?(port, from_port, to_port)
       if port.is_a?(String) && port.include?('-')

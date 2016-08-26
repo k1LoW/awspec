@@ -82,6 +82,22 @@ Aws.config[:ec2] = {
                 }
               ],
               user_id_group_pairs: []
+            },
+            {
+              from_port: nil,
+              to_port: nil,
+              ip_protocol: '-1',
+              ip_ranges: [],
+              user_id_group_pairs: [
+                {
+                  user_id: '1234567890',
+                  group_name: nil,
+                  group_id: 'sg-3a4b5cd6',
+                  vpc_id: nil,
+                  vpc_peering_connection_id: nil,
+                  peering_status: nil
+                }
+              ]
             }
           ],
           ip_permissions_egress: [

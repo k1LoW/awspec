@@ -30,18 +30,20 @@ module Awspec::Generator
         permissions = { 'inbound' => sg.ip_permissions, 'outbound' => sg.ip_permissions_egress }
         %w(inbound outbound).each do |inout|
           permissions[inout].each do |permission|
-            if permission.ip_protocol.to_i < 0 || permission.from_port.nil?
-              linespecs.push('its(:' + inout + ') { should be_opened }')
-              next
-            end
-
-            port = if permission.from_port == permission.to_port
+            port = if permission.from_port.nil?
+                     nil
+                   elsif permission.from_port == permission.to_port
                      permission.from_port
                    else
                      "'" + permission.from_port.to_s + '-' + permission.to_port.to_s + "'"
                    end
 
-            protocol = permission.ip_protocol
+            protocol = if permission.ip_protocol.to_i < 0
+                         'all'
+                       else
+                         permission.ip_protocol
+                       end
+
             permission.ip_ranges.each do |ip_range|
               target = ip_range.cidr_ip
               linespecs.push(ERB.new(security_group_spec_linetemplate, nil, '-').result(binding))
@@ -58,7 +60,7 @@ module Awspec::Generator
 
       def security_group_spec_linetemplate
         template = <<-'EOF'
-its(:<%= inout %>) { should be_opened(<%= port %>).protocol('<%= protocol %>').for('<%= target %>') }
+its(:<%= inout %>) { should be_opened<%- unless port.nil? -%>(<%= port %>)<%- end -%>.protocol('<%= protocol %>').for('<%= target %>') }
 EOF
         template
       end

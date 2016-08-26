@@ -14,14 +14,17 @@ describe security_group('sg-1a2b3cd4') do
   its(:inbound) { should be_opened_only(60_000).protocol('tcp').for('100.456.789.012/32') }
   its(:inbound) { should be_opened_only(70_000).protocol('tcp').for(['100.456.789.012/32', '101.456.789.012/32']) }
   its(:outbound) { should be_opened_only(50_000).protocol('tcp').for('100.456.789.012/32') }
-  its(:inbound_permissions_count) { should eq 6 }
-  its(:ip_permissions_count) { should eq 6 }
+  its(:inbound) { should be_opened.protocol('all').for('sg-3a4b5cd6') }
+  its(:inbound_permissions_count) { should eq 7 }
+  its(:ip_permissions_count) { should eq 7 }
   its(:outbound_permissions_count) { should eq 1 }
   its(:ip_permissions_egress_count) { should eq 1 }
-  its(:inbound_rule_count) { should eq 7 }
+  its(:inbound_rule_count) { should eq 8 }
   its(:outbound_rule_count) { should eq 1 }
+
   # its(:inbound) { should be_opened(22).protocol('tcp').for('group-name-sg') }
   # its(:inbound) { should be_opened(22).protocol('tcp').for('my-db-sg') }
+
   it { should belong_to_vpc('vpc-ab123cde') }
   it { should belong_to_vpc('my-vpc') }
   it { should have_tag('env').value('dev') }

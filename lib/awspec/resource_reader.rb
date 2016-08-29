@@ -5,7 +5,9 @@ module Awspec
 
     def method_missing_via_black_list(name, delegate_to: nil)
       raise ArguementError, 'delegate_to: must be specified' unless delegate_to
-      raise CalledMethodInBlackList, "Method call #{name.inspect} is black-listed" if match_black_list?(name)
+      if match_black_list?(name) && !match_white_list?(name)
+        raise CalledMethodInBlackList, "Method call #{name.inspect} is black-listed"
+      end
       attr = delegate_to.send(name)
       case attr
       when Aws::Resources::Resource
@@ -29,6 +31,12 @@ module Awspec
 
     def match_black_list?(name)
       BLACK_LIST_RE =~ name
+    end
+
+    WHITE_LIST_RE = /password_reset_required/ix
+
+    def match_white_list?(name)
+      WHITE_LIST_RE =~ name
     end
   end
 

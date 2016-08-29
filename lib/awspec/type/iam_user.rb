@@ -5,7 +5,7 @@ module Awspec::Type
     def initialize(id)
       super
       @resource_via_client = find_iam_user(id)
-      @id = @resource_via_client.user_id if @resource_via_client
+      @id = @resource_via_client.user_name if @resource_via_client
     end
 
     def has_iam_policy?(policy_id)

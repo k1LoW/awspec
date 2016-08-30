@@ -1108,7 +1108,7 @@ end
 
 ```ruby
 describe rds('my-rds') do
-  it { should belong_to_db_subnet_group('my-db-subnet-group') }
+  it { should have_db_parameter_group('my-db-parameter-group') }
 end
 ```
 

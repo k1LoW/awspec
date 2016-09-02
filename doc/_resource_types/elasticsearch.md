@@ -4,14 +4,15 @@
 describe elasticsearch('my-elasticsearch') do
   it { should exist }
 end
-````
+```
+
 ### be_created
 
 ```ruby
 describe elasticsearch('my-elasticsearch') do
   it { should be_created }
 end
-````
+```
 
 ### be_deleted
 
@@ -19,8 +20,8 @@ end
 describe elasticsearch('my-elasticsearch') do
   it { should be_deleted }
 end
-````
- 
+```
+
 ### have_access_policies
 
 ```ruby
@@ -43,4 +44,5 @@ describe elasticsearch('my-elasticsearch') do
   policy
   end
 end
-````
+```
+

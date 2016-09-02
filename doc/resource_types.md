@@ -531,7 +531,8 @@ Elasticsearch resource type.
 describe elasticsearch('my-elasticsearch') do
   it { should exist }
 end
-````
+```
+
 
 ### be_created
 
@@ -539,7 +540,7 @@ end
 describe elasticsearch('my-elasticsearch') do
   it { should be_created }
 end
-````
+```
 
 
 ### be_deleted
@@ -548,8 +549,8 @@ end
 describe elasticsearch('my-elasticsearch') do
   it { should be_deleted }
 end
-````
- 
+```
+
 
 ### have_access_policies
 
@@ -573,6 +574,8 @@ describe elasticsearch('my-elasticsearch') do
   policy
   end
 end
+```
+
 
 ### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:advanced_options)
 ## <a name="elb">elb</a>

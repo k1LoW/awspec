@@ -43,3 +43,4 @@ describe elasticsearch('my-elasticsearch') do
   policy
   end
 end
+````

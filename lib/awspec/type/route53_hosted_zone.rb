@@ -1,16 +1,20 @@
 module Awspec::Type
   class Route53HostedZone < Base
-    def initialize(id)
-      super
-      @resource_via_client = find_hosted_zone(id)
-      @id = @resource_via_client.id if @resource_via_client
-      return unless @id
-      @resource_via_client_record_sets = select_record_sets_by_hosted_zone_id(@id)
+    def resource_via_client
+      @resource_via_client ||= find_hosted_zone(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.id if resource_via_client
+    end
+
+    def resource_via_client_record_sets
+      @resource_via_client_record_sets ||= select_record_sets_by_hosted_zone_id(id)
     end
 
     def has_record_set?(name, type, value, options = {})
       name.gsub!(/\*/, '\\\052') # wildcard support
-      ret = @resource_via_client_record_sets.find do |record_set|
+      ret = resource_via_client_record_sets.find do |record_set|
         # next if record_set.type != type.upcase
         next unless record_set.type.casecmp(type) == 0
         options[:ttl] = record_set[:ttl] unless options[:ttl]

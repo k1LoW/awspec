@@ -3,10 +3,12 @@ module Awspec::Type
     aws_resource Aws::EC2::Subnet
     tags_allowed
 
-    def initialize(id)
-      super
-      @resource_via_client = find_subnet(id)
-      @id = @resource_via_client.subnet_id if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_subnet(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.subnet_id if resource_via_client
     end
 
     STATES = %w(
@@ -15,7 +17,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
-        @resource_via_client.state == state
+        resource_via_client.state == state
       end
     end
   end

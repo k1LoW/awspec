@@ -14,6 +14,7 @@ require 'awspec/ext'
 require 'awspec/generator'
 require 'awspec/toolbox'
 require 'awspec/resource_reader'
+require 'awspec/shared_context'
 
 module Awspec
 end

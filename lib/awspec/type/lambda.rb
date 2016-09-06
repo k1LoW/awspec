@@ -1,17 +1,19 @@
 module Awspec::Type
   class Lambda < Base
-    def initialize(id)
-      super
-      @resource_via_client = find_lambda(id)
-      @id = @resource_via_client.function_arn if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_lambda(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.function_arn if resource_via_client
     end
 
     def timeout
-      @resource_via_client.timeout
+      resource_via_client.timeout
     end
 
     def has_event_source?(event_source_arn)
-      sources = select_event_source_by_function_arn(@id)
+      sources = select_event_source_by_function_arn(id)
       sources.find do |source|
         source.event_source_arn == event_source_arn
       end

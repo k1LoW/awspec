@@ -1,9 +1,16 @@
 module Awspec::Type
   class DirectconnectVirtualInterface < Base
-    def initialize(id)
+    def initialize(name)
       super
-      @resource_via_client = find_virtual_interface(id)
-      @id = @resource_via_client.virtual_interface_id if @resource_via_client
+      @display_name = name
+    end
+
+    def resource_via_client
+      @resource_via_client ||= find_virtual_interface(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.virtual_interface_id if resource_via_client
     end
 
     STATES = %w(
@@ -13,7 +20,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
-        @resource_via_client.virtual_interface_state == state
+        resource_via_client.virtual_interface_state == state
       end
     end
   end

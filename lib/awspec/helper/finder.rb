@@ -22,6 +22,7 @@ require 'awspec/helper/finder/ami'
 require 'awspec/helper/finder/cloudfront'
 require 'awspec/helper/finder/elastictranscoder'
 require 'awspec/helper/finder/cloudtrail'
+require 'awspec/helper/finder/waf'
 
 module Awspec::Helper
   module Finder
@@ -48,6 +49,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Cloudfront
     include Awspec::Helper::Finder::Elastictranscoder
     include Awspec::Helper::Finder::Cloudtrail
+    include Awspec::Helper::Finder::Waf
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -67,7 +69,8 @@ module Awspec::Helper
       cloudfront_client: Aws::CloudFront::Client,
       elastictranscoder_client: Aws::ElasticTranscoder::Client,
       elasticsearch_client: Aws::ElasticsearchService::Client,
-      cloudtrail_client: Aws::CloudTrail::Client
+      cloudtrail_client: Aws::CloudTrail::Client,
+      waf_client: Aws::WAF::Client
     }
 
     CLIENTS.each do |method_name, client|

@@ -34,6 +34,7 @@
 | [vpc](#vpc)
 | [cloudfront_distribution](#cloudfront_distribution)
 | [elastictranscoder_pipeline](#elastictranscoder_pipeline)
+| [waf_web_acl](#waf_web_acl)
 
 ## <a name="ami">ami</a>
 
@@ -1852,3 +1853,22 @@ describe elastictranscoder_pipeline('my-elastictranscoder-pipeline') do
   it { should be_active }
 end
 ```
+
+
+## <a name="waf_web_acl">waf_web_acl</a>
+
+WafWebAcl resource type.
+
+### exist
+
+### have_rule
+
+```ruby
+describe waf_web_acl('my-waf-web-acl') do
+  it { should have_rule('my-waf-web-acl-allowed-ips') }
+  it { should have_rule('my-waf-web-acl-allowed-ips').order(2).action('BLOCK') }
+end
+```
+
+
+### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)

@@ -43,3 +43,6 @@ require 'awspec/matcher/have_origin'
 
 # Kms
 require 'awspec/matcher/have_key_policy'
+
+# WafWebAcl
+require 'awspec/matcher/have_rule'

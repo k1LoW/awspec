@@ -2,10 +2,12 @@ module Awspec::Type
   class IamGroup < Base
     aws_resource Aws::IAM::Group
 
-    def initialize(id)
-      super
-      @resource_via_client = find_iam_group(id)
-      @id = @resource_via_client.group_id if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_iam_group(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.group_id if resource_via_client
     end
 
     def has_iam_user?(user_id)
@@ -19,7 +21,7 @@ module Awspec::Type
     end
 
     def has_iam_policy?(policy_id)
-      policies = select_iam_policy_by_group_name(@resource_via_client.group_name)
+      policies = select_iam_policy_by_group_name(resource_via_client.group_name)
       policies.find do |policy|
         policy.policy_arn == policy_id || policy.policy_name == policy_id
       end
@@ -27,7 +29,7 @@ module Awspec::Type
 
     def has_inline_policy?(policy_name, document = nil)
       res = iam_client.get_group_policy({
-                                          group_name: @resource_via_client.group_name,
+                                          group_name: resource_via_client.group_name,
                                           policy_name: policy_name
                                         })
       return JSON.parse(URI.decode(res.policy_document)) == JSON.parse(document) if document

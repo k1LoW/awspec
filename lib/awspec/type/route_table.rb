@@ -3,10 +3,12 @@ module Awspec::Type
     aws_resource Aws::EC2::RouteTable
     tags_allowed
 
-    def initialize(id)
-      super
-      @resource_via_client = find_route_table(id)
-      @id = @resource_via_client.route_table_id if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_route_table(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.route_table_id if resource_via_client
     end
 
     def has_route?(destination,
@@ -14,7 +16,7 @@ module Awspec::Type
                    instance_id = nil,
                    vpc_peering_connection_id = nil,
                    nat_gateway_id = nil)
-      @resource_via_client.routes.find do |route|
+      resource_via_client.routes.find do |route|
         if destination
           next false unless route.destination_cidr_block == destination
         end
@@ -28,7 +30,7 @@ module Awspec::Type
     def has_subnet?(subnet_id)
       subnet = find_subnet(subnet_id)
       return false unless subnet
-      @resource_via_client.associations.find do |a|
+      resource_via_client.associations.find do |a|
         a.subnet_id == subnet.subnet_id
       end
     end

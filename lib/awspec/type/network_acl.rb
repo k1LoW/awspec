@@ -3,14 +3,16 @@ module Awspec::Type
     aws_resource Aws::EC2::NetworkAcl
     tags_allowed
 
-    def initialize(id)
-      super
-      @resource_via_client = find_network_acl(id)
-      @id = @resource_via_client.network_acl_id if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_network_acl(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.network_acl_id if resource_via_client
     end
 
     def has_subnet?(subnet_id)
-      @resource_via_client.associations.find do |a|
+      resource_via_client.associations.find do |a|
         next true if a.subnet_id == subnet_id
         subnet = find_subnet(subnet_id)
         next false unless subnet
@@ -39,13 +41,13 @@ module Awspec::Type
     end
 
     def inbound_entries_count
-      @resource_via_client.entries.count do |entry|
+      resource_via_client.entries.count do |entry|
         entry.egress == false
       end
     end
 
     def outbound_entries_count
-      @resource_via_client.entries.count do |entry|
+      resource_via_client.entries.count do |entry|
         entry.egress == true
       end
     end
@@ -71,7 +73,7 @@ module Awspec::Type
     private
 
     def entry?(rule_action, port = nil, protocol = nil, cidr = nil, rule_number = nil)
-      @resource_via_client.entries.find do |entry|
+      resource_via_client.entries.find do |entry|
         # egress rule_action
         next false if entry.egress != @egress
         next false if entry.rule_action != rule_action

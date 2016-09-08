@@ -2,10 +2,12 @@ module Awspec::Type
   class Rds < Base
     aws_resource Aws::RDS::DBInstance
 
-    def initialize(id)
-      super
-      @resource_via_client = find_rds(id)
-      @id = @resource_via_client.db_instance_identifier if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_rds(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.db_instance_identifier if resource_via_client
     end
 
     STATES = %w(
@@ -20,12 +22,12 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
-        @resource_via_client.db_instance_status == state
+        resource_via_client.db_instance_status == state
       end
     end
 
     def vpc_id
-      @resource_via_client.db_subnet_group.vpc_id
+      resource_via_client.db_subnet_group.vpc_id
     end
 
     def has_security_group?(sg_id)
@@ -36,14 +38,14 @@ module Awspec::Type
     end
 
     def has_db_parameter_group?(name)
-      pgs = @resource_via_client.db_parameter_groups
+      pgs = resource_via_client.db_parameter_groups
       pgs.find do |pg|
         pg.db_parameter_group_name == name
       end
     end
 
     def has_option_group?(name)
-      ogs = @resource_via_client.option_group_memberships
+      ogs = resource_via_client.option_group_memberships
       ogs.find do |og|
         og.option_group_name == name
       end
@@ -52,14 +54,14 @@ module Awspec::Type
     private
 
     def has_vpc_security_group_id?(sg_id)
-      sgs = @resource_via_client.vpc_security_groups
+      sgs = resource_via_client.vpc_security_groups
       sgs.find do |sg|
         sg.vpc_security_group_id == sg_id
       end
     end
 
     def has_vpc_security_group_name?(sg_id)
-      sgs = @resource_via_client.vpc_security_groups
+      sgs = resource_via_client.vpc_security_groups
       res = ec2_client.describe_security_groups({
                                                   filters: [{ name: 'group-name', values: [sg_id] }]
                                                 })
@@ -70,7 +72,7 @@ module Awspec::Type
     end
 
     def has_vpc_security_group_tag_name?(sg_id)
-      sgs = @resource_via_client.vpc_security_groups
+      sgs = resource_via_client.vpc_security_groups
       res = ec2_client.describe_security_groups({
                                                   filters: [{ name: 'tag:Name', values: [sg_id] }]
                                                 })
@@ -81,7 +83,7 @@ module Awspec::Type
     end
 
     def has_db_security_group_name?(sg_id)
-      sgs = @resource_via_client.db_security_groups
+      sgs = resource_via_client.db_security_groups
       sgs.find do |sg|
         sg.db_security_group_name == sg_id
       end

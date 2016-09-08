@@ -3,10 +3,12 @@ module Awspec::Type
     aws_resource Aws::EC2::Vpc
     tags_allowed
 
-    def initialize(id)
-      super
-      @resource_via_client = find_vpc(id)
-      @id = @resource_via_client.vpc_id if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_vpc(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.vpc_id if resource_via_client
     end
 
     STATES = %w(
@@ -15,20 +17,20 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
-        @resource_via_client.state == state
+        resource_via_client.state == state
       end
     end
 
-    def has_route_table?(id)
-      route_table = find_route_table(id)
+    def has_route_table?(table_id)
+      route_table = find_route_table(table_id)
       return false unless route_table
-      route_table.vpc_id == @id
+      route_table.vpc_id == id
     end
 
-    def has_network_acl?(id)
-      n = find_network_acl(id)
+    def has_network_acl?(table_id)
+      n = find_network_acl(table_id)
       return false unless n
-      n.vpc_id == @id
+      n.vpc_id == id
     end
   end
 end

@@ -3,11 +3,12 @@ module Awspec::Type
     aws_resource Aws::EC2::SecurityGroup
     tags_allowed
 
-    def initialize(id)
-      super
-      @inbound = true
-      @resource_via_client = find_security_group(id)
-      @id = @resource_via_client.group_id if @resource_via_client
+    def resource_via_client
+      @resource_via_client ||= find_security_group(@display_name)
+    end
+
+    def id
+      @id ||= resource_via_client.group_id if resource_via_client
     end
 
     def opened?(port = nil, protocol = nil, cidr = nil)
@@ -21,13 +22,13 @@ module Awspec::Type
     end
 
     def inbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @resource_via_client.ip_permissions.find do |permission|
+      resource_via_client.ip_permissions.find do |permission|
         cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
     end
 
     def inbound_opened_only?(port = nil, protocol = nil, cidr = nil)
-      permissions = @resource_via_client.ip_permissions.select do |permission|
+      permissions = resource_via_client.ip_permissions.select do |permission|
         protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
       cidrs = []
@@ -38,13 +39,13 @@ module Awspec::Type
     end
 
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
-      @resource_via_client.ip_permissions_egress.find do |permission|
+      resource_via_client.ip_permissions_egress.find do |permission|
         cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
     end
 
     def outbound_opened_only?(port = nil, protocol = nil, cidr = nil)
-      permissions = @resource_via_client.ip_permissions_egress.select do |permission|
+      permissions = resource_via_client.ip_permissions_egress.select do |permission|
         protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
       cidrs = []
@@ -65,23 +66,23 @@ module Awspec::Type
     end
 
     def ip_permissions_count
-      @resource_via_client.ip_permissions.count
+      resource_via_client.ip_permissions.count
     end
     alias_method :inbound_permissions_count, :ip_permissions_count
 
     def ip_permissions_egress_count
-      @resource_via_client.ip_permissions_egress.count
+      resource_via_client.ip_permissions_egress.count
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
     def inbound_rule_count
-      @resource_via_client.ip_permissions.reduce(0) do |sum, permission|
+      resource_via_client.ip_permissions.reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
     end
 
     def outbound_rule_count
-      @resource_via_client.ip_permissions_egress.reduce(0) do |sum, permission|
+      resource_via_client.ip_permissions_egress.reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
       end
     end

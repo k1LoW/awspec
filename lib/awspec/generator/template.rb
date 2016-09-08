@@ -16,9 +16,12 @@ module Awspec::Generator
       content = <<-"EOF"
 module Awspec::Type
   class #{@type.camelize} < Base
-    def initialize(id)
-      super
-      # @id = # @FIXME
+    def resource_via_client
+      @resource_via_client ||= # FIXME
+    end
+
+    def id
+     @id ||= # FIXME
     end
   end
 end

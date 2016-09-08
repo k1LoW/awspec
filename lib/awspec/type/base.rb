@@ -9,8 +9,8 @@ module Awspec::Type
 
     attr_reader :id, :resource_via_client
 
-    def initialize(id = nil)
-      @display_name = id
+    def initialize(display_name = nil)
+      @display_name = display_name
       @id = nil
     end
 
@@ -24,18 +24,26 @@ module Awspec::Type
     end
 
     def exists?
-      @id
+      id
+    end
+
+    def id
+      raise 'this method must be override!'
+    end
+
+    def resource_via_client
+      raise 'this method must be override!'
     end
 
     def self.aws_resource(resource)
       define_method :resource do
-        @resource ||= Awspec::ResourceReader.new(resource.new(@id))
+        @resource ||= Awspec::ResourceReader.new(resource.new(id))
       end
     end
 
     def self.tags_allowed
       define_method :has_tag? do |key, value|
-        tags = @resource_via_client.tags
+        tags = resource_via_client.tags
         return false unless tags
         tags.any? { |t| t['key'] == key && t['value'] == value }
       end
@@ -43,8 +51,8 @@ module Awspec::Type
 
     def method_missing(name)
       describe = name.to_sym
-      if @resource_via_client.members.include?(describe)
-        @resource_via_client[describe]
+      if resource_via_client.members.include?(describe)
+        resource_via_client[describe]
       else
         super unless self.respond_to?(:resource)
         method_missing_via_black_list(name, delegate_to: resource)

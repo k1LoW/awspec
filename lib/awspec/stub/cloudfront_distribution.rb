@@ -103,7 +103,8 @@ Aws.config[:cloudfront] = {
                   items: []
                 }
               },
-              web_acl_id: ''
+              web_acl_id: '',
+              http_version: 'http2'
             },
             {
               id: 'E2CLOUDFRONTXX',
@@ -197,7 +198,8 @@ Aws.config[:cloudfront] = {
                   items: []
                 }
               },
-              web_acl_id: ''
+              web_acl_id: '',
+              http_version: 'http1.1'
             }
           ]
       }

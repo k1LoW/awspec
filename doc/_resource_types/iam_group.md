@@ -15,6 +15,15 @@ describe iam_group('my-iam-group') do
 end
 ```
 
+### not_be_allowed_action
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should not_be_allowed_action('ec2:TerminateInstances') }
+  it { should not_be_allowed_action('s3:Delete*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
+
 ### have_iam_policy
 
 ```ruby

@@ -662,6 +662,14 @@ describe iam_group('my-iam-group') do
 end
 ```
 
+### not_be_allowed_action
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should not_be_allowed_action('ec2:TerminateInstances') }
+  it { should not_be_allowed_action('s3:Delete*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
 
 ### have_iam_policy
 
@@ -773,6 +781,14 @@ describe iam_role('my-iam-role') do
 end
 ```
 
+### not_be_allowed_action
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should not_be_allowed_action('ec2:TerminateInstances') }
+  it { should not_be_allowed_action('s3:Delete*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
 
 ### have_iam_policy
 
@@ -843,7 +859,6 @@ describe iam_user('my-iam-user') do
 end
 ```
 
-
 ### be_allowed_action
 
 ```ruby
@@ -853,6 +868,14 @@ describe iam_user('my-iam-user') do
 end
 ```
 
+### not_be_allowed_action
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should not_be_allowed_action('ec2:TerminateInstances') }
+  it { should not_be_allowed_action('s3:Delete*').resource_arn('arn:aws:s3:::my-bucket-name/*') }
+end
+```
 
 ### have_iam_policy
 

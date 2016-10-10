@@ -46,4 +46,5 @@ DOC
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('users.first.user_name') { should eq 'my-iam-user' }
   end
+  it { should_not be_allowed_action('ec2:TerminateInstances') }
 end

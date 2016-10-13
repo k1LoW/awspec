@@ -13,3 +13,8 @@ describe network_interface('eni-12ab3cde') do
   it { should have_private_ip_address('10.0.1.2') }
   its(:private_ip_addresses_count) { should eq 2 }
 end
+
+describe network_interface('my-eni') do
+  it { should exist }
+  it { should have_tag('Name').value('my-eni') }
+end

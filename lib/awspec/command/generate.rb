@@ -36,7 +36,8 @@ module Awspec
     end
 
     types_for_generate_all = %w(
-      iam_policy cloudwatch_alarm directconnect ebs lambda iam_user iam_group iam_role
+      cloudwatch_alarm cloudwatch_event directconnect elasticsearch
+      ebs iam_group iam_policy iam_role iam_user kms lambda
     )
 
     types_for_generate_all.each do |type|

@@ -12,7 +12,7 @@ module Awspec::Helper
         container_instances = []
         loop do
           res = ecs_client.list_container_instances(req)
-          container_instances.push(*res.container_instances)
+          container_instances.push(*res.container_instance_arns)
           break if res.next_token.nil?
           req[:next_token] = res.next_token
         end

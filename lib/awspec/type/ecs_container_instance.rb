@@ -3,7 +3,6 @@ module Awspec::Type
     aws_resource Aws::ECS::Types::ContainerInstance
 
     def initialize(cluster_name, name_or_resource)
-      super
       @cluster_name = cluster_name
       if String===name_or_resource 
         @display_name = name_or_resource
@@ -11,6 +10,7 @@ module Awspec::Type
         @resource_via_client = name_or_resource
         @display_name = uuid
       end
+      super(@display_name)
     end
     
     def resource_via_client

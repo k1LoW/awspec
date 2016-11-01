@@ -53,6 +53,7 @@ module Awspec::Helper
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
+      ecs_client: Aws::ECS::Client,
       rds_client: Aws::RDS::Client,
       route53_client: Aws::Route53::Client,
       s3_client: Aws::S3::Client,

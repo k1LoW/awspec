@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 Awspec::Stub.load 'ecs'
 
 describe ecs_cluster('my-ecs-cluster') do

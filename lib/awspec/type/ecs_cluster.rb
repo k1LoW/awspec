@@ -23,13 +23,14 @@ module Awspec::Type
       resource_via_client.status == 'INACTIVE'
     end
     
+    def container_instance_arns
+      @container_instance_arns ||= list_ecs_container_instances(id)
+    end
+    
     def container_instances
       return @container_instances if @container_instances
-      @container_instances = list_ecs_container_instances(id)
-      unless @container_instances.empty?
-        @container_instances = find_ecs_container_instances(id, @container_instances)
-      end
-      @container_instances
+      arns = container_instance_arns
+      @container_instances ||= arns.empty? ? [] : find_ecs_container_instances(id, arns).map!{|ci| EcsContainerInstance.new(id, ci) }
     end
   end
 end

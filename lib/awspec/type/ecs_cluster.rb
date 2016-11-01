@@ -25,7 +25,7 @@ module Awspec::Type
     
     def container_instances
       return @container_instances if @container_instances
-      @container_instances = list_container_instances
+      @container_instances = list_ecs_container_instances(id)
       unless @container_instances.empty?
         @container_instances = find_ecs_container_instances(id, @container_instances)
       end

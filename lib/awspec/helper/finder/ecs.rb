@@ -27,6 +27,11 @@ module Awspec::Helper
         res = ecs_client.describe_task_definition(task_definition: taskdef)
         res.task_definition
       end
+      
+      def find_ecs_service(service)
+        res = ecs_client.describe_services(services: [service])
+        res.services.first if res.services.count == 1
+      end
     end
   end
 end

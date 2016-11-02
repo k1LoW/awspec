@@ -1,10 +1,10 @@
 module Awspec::Generator
   module Doc
     module Type
-      class EcsContainerInstance < Base
+      class EcsTaskDefinition < Base
         def initialize
           super
-          @type = Awspec::Type::Ecs.new('my-ecs-container-instance')
+          @type = Awspec::Type::Ecs.new('my-ecs-taskdef')
           @matchers = []
           @ignore_matchers = []
           @describes = []

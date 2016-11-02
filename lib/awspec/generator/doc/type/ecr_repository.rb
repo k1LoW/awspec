@@ -1,10 +1,10 @@
 module Awspec::Generator
   module Doc
     module Type
-      class EcsContainerInstance < Base
+      class EcrRepository < Base
         def initialize
           super
-          @type = Awspec::Type::EcsContainerInstance.new('my-ecs-container-instance')
+          @type = Awspec::Type::EcrRepository.new('my-ecr-repository')
           @matchers = []
           @ignore_matchers = []
           @describes = []

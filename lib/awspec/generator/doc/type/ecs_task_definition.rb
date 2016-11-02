@@ -4,7 +4,7 @@ module Awspec::Generator
       class EcsTaskDefinition < Base
         def initialize
           super
-          @type = Awspec::Type::Ecs.new('my-ecs-taskdef')
+          @type = Awspec::Type::EcsTaskDefinition.new('my-ecs-taskdef')
           @matchers = []
           @ignore_matchers = []
           @describes = []

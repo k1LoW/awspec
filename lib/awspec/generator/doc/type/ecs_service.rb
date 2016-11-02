@@ -4,7 +4,7 @@ module Awspec::Generator
       class EcsService < Base
         def initialize
           super
-          @type = Awspec::Type::Ecs.new('my-ecs-service')
+          @type = Awspec::Type::EcsService.new('my-ecs-service')
           @matchers = []
           @ignore_matchers = []
           @describes = []

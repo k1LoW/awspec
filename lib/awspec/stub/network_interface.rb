@@ -33,7 +33,12 @@ Aws.config[:ec2] = {
             delete_on_termination: true
           },
           association: nil,
-          tag_set: [],
+          tag_set: [
+            {
+              key: 'Name',
+              value: 'my-eni'
+            }
+          ],
           private_ip_addresses: [
             {
               private_ip_address: '10.0.1.1',

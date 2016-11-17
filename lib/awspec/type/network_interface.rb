@@ -1,5 +1,7 @@
 module Awspec::Type
   class NetworkInterface < Base
+    tags_allowed
+
     def resource_via_client
       @resource_via_client ||= find_network_interface(@display_name)
     end

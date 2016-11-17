@@ -72,6 +72,11 @@ module Awspec::Helper
                                                          }
                                                        ]
                                                      })
+        resource = res.network_interfaces.single_resource(interface_id)
+        return resource if resource
+        res = ec2_client.describe_network_interfaces({
+                                                       filters: [{ name: 'tag:Name', values: [interface_id] }]
+                                                     })
         res.network_interfaces.single_resource(interface_id)
       end
 

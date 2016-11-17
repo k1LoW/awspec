@@ -1205,6 +1205,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe network_interface('eni-12ab3cde') do
+  it { should have_tag('Name').value('my-eni') }
+end
+```
+
+
 ### belong_to_subnet
 
 ```ruby

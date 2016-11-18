@@ -51,8 +51,8 @@ module Awspec::Helper
 
       def find_vpn_connection(vpn_connection_id)
         res = ec2_client.describe_vpn_connections({
-                                                 filters: [{ name: 'vpn-connection-id', values: [vpn_connection_id] }]
-                                               })
+                                                    filters: [{ name: 'vpn-connection-id', values: [vpn_connection_id] }]
+                                                  })
         res.vpn_connections.single_resource(vpn_connection_id)
       end
 

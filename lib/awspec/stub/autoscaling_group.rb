@@ -29,7 +29,13 @@ Aws.config[:autoscaling] = {
               protected_from_scale_in: false
             }
           ],
-          created_time: Time.local(2015)
+          created_time: Time.local(2015),
+          tags: [
+            {
+              key: 'name',
+              value: 'my-autoscaling-group'
+            }
+          ]
         }
       ]
     }

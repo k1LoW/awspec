@@ -96,6 +96,15 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
+
+### have_tag
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_tag('Name').value('my-group') }
+end
+```
+
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:status), its(:new_instances_protected_from_scale_in)
 ## <a name="cloudtrail">cloudtrail</a>
 

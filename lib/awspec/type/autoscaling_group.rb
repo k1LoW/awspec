@@ -1,6 +1,6 @@
 module Awspec::Type
   class AutoscalingGroup < Base
-    aws_resource Aws::AutoScaling::AutoScalingGroup 
+    aws_resource Aws::AutoScaling::AutoScalingGroup
     tags_allowed
 
     def resource_via_client

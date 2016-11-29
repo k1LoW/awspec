@@ -9,6 +9,6 @@ describe ecs_task_definition('my-ecs-task-definition') do
   its(:status) { should eq 'ACTIVE' }
   its(:family) { should eq 'my-ecs-task-definition' }
   its(:revision) { should eq 8 }
-  its(:task_definition_arn) { should eq "arn:aws:ecs:us-east-1:123456789012:task-definition/my-ecs-task-definition:8" }
+  its(:task_definition_arn) { should eq 'arn:aws:ecs:us-east-1:123456789012:task-definition/my-ecs-task-definition:8' }
   its(:task_role_arn) { should eq 'arn:aws:iam::123456789012:role/my-iam-role' }
 end

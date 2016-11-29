@@ -6,7 +6,7 @@ module Awspec::Type
       super
       @display_name = repository_name
     end
-    
+
     def resource_via_client
       @resource_via_client ||= find_ecr_repository(@display_name)
     end

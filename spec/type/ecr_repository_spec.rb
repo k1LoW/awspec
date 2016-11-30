@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-Awspec::Stub.load 'ecr'
+Awspec::Stub.load 'ecr_repository'
 
 describe ecr_repository('my-ecr-repository') do
   it { should exist }

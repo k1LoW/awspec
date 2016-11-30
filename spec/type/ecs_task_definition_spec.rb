@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-Awspec::Stub.load 'ecs'
+Awspec::Stub.load 'ecs_task_definition'
 
 describe ecs_task_definition('my-ecs-task-definition') do
   it { should exist }

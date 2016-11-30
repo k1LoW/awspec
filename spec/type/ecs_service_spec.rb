@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-Awspec::Stub.load 'ecs'
+Awspec::Stub.load 'ecs_service'
 
 describe ecs_service('my-ecs-service') do
   it { should exist }

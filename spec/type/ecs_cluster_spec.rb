@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-Awspec::Stub.load 'ecs'
+Awspec::Stub.load 'ecs_cluster'
 
 describe ecs_cluster('my-ecs-cluster') do
   it { should exist }

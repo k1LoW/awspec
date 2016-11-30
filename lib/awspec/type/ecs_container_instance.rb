@@ -2,9 +2,10 @@ module Awspec::Type
   class EcsContainerInstance < Base
     aws_resource Aws::ECS::Types::ContainerInstance
 
+    attr_accessor :cluster_name
+
     def initialize(container_instance)
       super
-      @cluster_name = 'default'
       @display_name = container_instance.split('/').last
     end
 
@@ -13,7 +14,11 @@ module Awspec::Type
     end
 
     def id
-      @id ||= resource_via_client.container_instance_arn
+      @id ||= resource_via_client.container_instance_arn if resource_via_client
+    end
+
+    def cluster_name
+      @cluster_name || 'default'
     end
 
     def active?

@@ -25,6 +25,10 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 30
 
+Metrics/ModuleLength:
+  CountComments: false 
+  Max: 200
+
 Metrics/PerceivedComplexity:
   Max: 15
 

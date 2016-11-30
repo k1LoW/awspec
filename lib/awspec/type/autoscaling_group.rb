@@ -1,5 +1,8 @@
 module Awspec::Type
   class AutoscalingGroup < Base
+    aws_resource Aws::AutoScaling::AutoScalingGroup
+    tags_allowed
+
     def resource_via_client
       @resource_via_client ||= find_autoscaling_group(@display_name)
     end

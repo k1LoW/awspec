@@ -1,3 +1,3 @@
 module Awspec
-  VERSION = '0.57.1'
+  VERSION = '0.59.0'
 end

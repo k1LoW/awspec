@@ -8,6 +8,11 @@
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
 | [ec2](#ec2)
+| [ecr_repository](#ecr_repository)
+| [ecs_cluster](#ecs_cluster)
+| [ecs_container_instance](#ecs_container_instance)
+| [ecs_service](#ecs_service)
+| [ecs_task_definition](#ecs_task_definition)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
@@ -454,6 +459,59 @@ describe ec2('my-ec2') do
   its('resource.vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
+
+## <a name="ecr_repository">ecr_repository</a>
+
+EcrRepository resource type.
+
+### exist
+
+
+## <a name="ecs_cluster">ecs_cluster</a>
+
+EcsCluster resource type.
+
+### exist
+
+### be_active
+
+### be_inactive
+
+
+## <a name="ecs_container_instance">ecs_container_instance</a>
+
+EcsContainerInstance resource type.
+
+### exist
+
+### be_active
+
+### be_inactive
+
+
+## <a name="ecs_service">ecs_service</a>
+
+EcsService resource type.
+
+### exist
+
+### be_active
+
+### be_draining
+
+### be_inactive
+
+
+## <a name="ecs_task_definition">ecs_task_definition</a>
+
+EcsTaskDefinition resource type.
+
+### exist
+
+### be_active
+
+### be_inactive
+
 
 ## <a name="elasticache">elasticache</a>
 

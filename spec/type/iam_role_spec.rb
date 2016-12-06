@@ -36,5 +36,6 @@ DOC
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('resource.role_name') { should eq 'my-iam-role' }
+    its('attached_policies.count') { should eq 1 }
   end
 end

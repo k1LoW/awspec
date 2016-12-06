@@ -33,7 +33,7 @@ module Awspec
       BLACK_LIST_RE =~ name
     end
 
-    WHITE_LIST_RE = /password_reset_required/ix
+    WHITE_LIST_RE = /password_reset_required|attached_policies/ix
 
     def match_white_list?(name)
       WHITE_LIST_RE =~ name

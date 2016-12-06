@@ -41,6 +41,9 @@ describe s3_bucket('<%= bucket.name %>') do
 <% grant_specs.each do |line| %>
   <%= line %>
 <% end %>
+<%- if bucket_policy -%>
+  it { should have_policy('<%= bucket_policy %>') }
+<%- end -%>
 end
 EOF
         template
@@ -51,6 +54,7 @@ EOF
       def content(bucket)
         acl = find_bucket_acl(bucket.name)
         grant_specs = generate_grant_specs(acl)
+        bucket_policy = find_bucket_policy(bucket.name).policy.read
         ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
     end

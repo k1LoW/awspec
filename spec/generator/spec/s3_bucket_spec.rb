@@ -14,6 +14,7 @@ describe s3_bucket('my-bucket') do
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
   it { should have_acl_grant(grantee: 'http://acs.amazonaws.com/groups/s3/LogDelivery', permission: 'WRITE') }
   it { should have_acl_grant(grantee: '68f4bb06b094152df53893bfba57760e', permission: 'READ') }
+  it { should have_policy('{"Version":"2012-10-17","Statement":[{"Sid":"","Effect":"Allow","Principal":{"AWS":"arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity XXXXX"},"Action":"s3:*","Resource":["arn:aws:s3:::my-bucket","arn:aws:s3:::my-bucket/*"]}]}') }
 end
 EOF
     expect(s3_bucket.generate_all.to_s).to eq spec

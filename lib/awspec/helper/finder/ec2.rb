@@ -15,7 +15,13 @@ module Awspec::Helper
                                               })
         end
         # rubocop:enable Style/GuardClause
-        res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
+        if res.reservations.count == 1
+          res.reservations.first.instances.single_resource(id)
+        elsif res.reservations.count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
+        else
+          nil
+        end
       end
 
       def find_ec2_attribute(id, attribute)

@@ -8,6 +8,7 @@
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
 | [ec2](#ec2)
+| [ec2_running](#ec2_running)
 | [ecr_repository](#ecr_repository)
 | [ecs_cluster](#ecs_cluster)
 | [ecs_container_instance](#ecs_container_instance)
@@ -459,6 +460,43 @@ describe ec2('my-ec2') do
   its('resource.vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
+
+## <a name="ec2_running">ec2_running</a>
+
+Ec2Running resource type.
+
+### exist
+
+### be_disabled_api_termination
+
+### be_pending
+
+### be_running
+
+### be_shutting_down
+
+### be_stopped
+
+### be_stopping
+
+### be_terminated
+
+### have_classiclink
+
+### have_classiclink_security_group
+
+### have_ebs
+
+### have_eip
+
+### have_event
+
+### have_events
+
+### have_security_group
+
+### have_tag
+
 
 ## <a name="ecr_repository">ecr_repository</a>
 

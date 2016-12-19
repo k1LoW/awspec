@@ -1,7 +1,11 @@
 module Awspec::Helper
   module Finder
     module Ec2
-      def find_ec2(id)
+      def find_running_ec2(id)
+        find_ec2(id, [{ name: 'instance-state-name', values: [ 'pending', 'running' ] }])
+      end
+
+      def find_ec2(id, filters = [])
         # instance_id or tag:Name
         begin
           res = ec2_client.describe_instances({
@@ -10,9 +14,8 @@ module Awspec::Helper
         rescue
           # Aws::EC2::Errors::InvalidInstanceIDMalformed
           # Aws::EC2::Errors::InvalidInstanceIDNotFound
-          res = ec2_client.describe_instances({
-                                                filters: [{ name: 'tag:Name', values: [id] }]
-                                              })
+          filters.append({ name: 'tag:Name', values: [id] })
+          res = ec2_client.describe_instances({filters: filters})
         end
         # rubocop:enable Style/GuardClause
         if res.reservations.count == 1

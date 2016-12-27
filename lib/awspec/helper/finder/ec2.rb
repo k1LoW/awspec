@@ -22,8 +22,6 @@ module Awspec::Helper
           res.reservations.first.instances.single_resource(id)
         elsif res.reservations.count > 1
           raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
-        else
-          nil
         end
       end
 

@@ -1,4 +1,5 @@
 require 'aws-sdk'
+require 'awspec/helper/finder/alb'
 require 'awspec/helper/finder/vpc'
 require 'awspec/helper/finder/subnet'
 require 'awspec/helper/finder/ec2'
@@ -28,6 +29,7 @@ require 'awspec/helper/finder/waf'
 
 module Awspec::Helper
   module Finder
+    include Awspec::Helper::Finder::Alb
     include Awspec::Helper::Finder::Vpc
     include Awspec::Helper::Finder::Subnet
     include Awspec::Helper::Finder::Ec2
@@ -64,6 +66,7 @@ module Awspec::Helper
       s3_client: Aws::S3::Client,
       autoscaling_client: Aws::AutoScaling::Client,
       elb_client: Aws::ElasticLoadBalancing::Client,
+      elbv2_client: Aws::ElasticLoadBalancingV2::Client,
       lambda_client: Aws::Lambda::Client,
       iam_client: Aws::IAM::Client,
       kms_client: Aws::KMS::Client,

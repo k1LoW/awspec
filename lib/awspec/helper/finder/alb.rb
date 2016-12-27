@@ -2,9 +2,7 @@ module Awspec::Helper
   module Finder
     module Alb
       def find_alb(id)
-puts "KSM: find_alb(#{id})"
         res = elbv2_client.describe_load_balancers({names: [id] })
-puts "KSM: all of them:\n#{res.to_yaml}"
         res.load_balancers.first
       rescue
         return nil

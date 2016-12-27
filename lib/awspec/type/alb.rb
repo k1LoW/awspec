@@ -9,7 +9,6 @@ module Awspec::Type
     end
 
     def dns_name
-puts "KSM: dns_name: #{@resource_via_client.dns_name}"
       @resource_via_client.dns_name
     end
   end

@@ -2,7 +2,7 @@ module Awspec::Helper
   module Finder
     module Alb
       def find_alb(id)
-        res = elbv2_client.describe_load_balancers({names: [id] })
+        res = elbv2_client.describe_load_balancers({ names: [id] })
         res.load_balancers.first
       rescue
         return nil

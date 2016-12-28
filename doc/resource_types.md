@@ -1,6 +1,7 @@
 # Resource Types
 
-[ami](#ami)
+[alb](#alb)
+| [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
 | [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
@@ -44,6 +45,13 @@
 | [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
 
+## <a name="alb">alb</a>
+
+Alb resource type.
+
+### exist
+
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:state), its(:type)
 ## <a name="ami">ami</a>
 
 AMI resource type.

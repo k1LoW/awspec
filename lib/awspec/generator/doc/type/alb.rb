@@ -4,7 +4,7 @@ module Awspec::Generator
       class Alb < Base
         def initialize
           super
-          @type_name = 'Alb'
+          @type_name = 'ALB'
           @type = Awspec::Type::Alb.new('my-alb')
           @ret = @type.resource_via_client
           @matchers = []

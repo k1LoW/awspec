@@ -3,7 +3,7 @@ module Awspec::Helper
     module Alb
       def find_alb(id)
         res = elbv2_client.describe_load_balancers({ names: [id] })
-        res.load_balancers.first
+        res.load_balancers.single_resource(id)
       rescue
         return nil
       end

@@ -47,7 +47,7 @@
 
 ## <a name="alb">alb</a>
 
-Alb resource type.
+ALB resource type.
 
 ### exist
 

@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'rspec-its'
   spec.add_runtime_dependency 'aws-sdk', '>= 2.2', '< 2.7'
-  spec.add_runtime_dependency 'awsecrets', '~> 1.5.0'
+  spec.add_runtime_dependency 'awsecrets', '~> 1.8.0'
   spec.add_runtime_dependency 'thor'
   spec.add_runtime_dependency 'activesupport', '~> 4.0'
   spec.add_runtime_dependency 'term-ansicolor'

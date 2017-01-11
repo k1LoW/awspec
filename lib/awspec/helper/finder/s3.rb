@@ -10,31 +10,31 @@ module Awspec::Helper
 
       def find_bucket_acl(id)
         s3_client.get_bucket_acl(bucket: id)
-      rescue Aws::S3::Errors::NoSuchBucket
+      rescue Aws::S3::Errors::ServiceError
         nil
       end
 
       def find_bucket_cors(id)
         s3_client.get_bucket_cors(bucket: id)
-      rescue Aws::S3::Errors::NoSuchBucket
+      rescue Aws::S3::Errors::ServiceError
         nil
       end
 
       def find_bucket_policy(id)
         s3_client.get_bucket_policy(bucket: id)
-      rescue Aws::S3::Errors::NoSuchBucket
+      rescue Aws::S3::Errors::ServiceError
         nil
       end
 
       def find_bucket_logging(id)
         s3_client.get_bucket_logging(bucket: id)
-      rescue Aws::S3::Errors::NoSuchBucket
+      rescue Aws::S3::Errors::ServiceError
         nil
       end
 
       def find_bucket_versioning(id)
         s3_client.get_bucket_versioning(bucket: id)
-      rescue Aws::S3::Errors::NoSuchBucket
+      rescue Aws::S3::Errors::ServiceError
         nil
       end
 

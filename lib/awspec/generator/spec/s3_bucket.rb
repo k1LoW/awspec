@@ -54,7 +54,8 @@ EOF
       def content(bucket)
         acl = find_bucket_acl(bucket.name)
         grant_specs = generate_grant_specs(acl)
-        bucket_policy = find_bucket_policy(bucket.name).policy.read
+        policy = find_bucket_policy(bucket.name)
+        bucket_policy = policy.policy.read if policy
         ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
     end

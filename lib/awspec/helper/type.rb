@@ -4,7 +4,7 @@ module Awspec
       require 'awspec/type/base'
 
       TYPES = %w(
-        ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
+        alb ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
         ebs ec2 ecr_repository ecs_cluster ecs_container_instance ecs_service ecs_task_definition
         elasticache elasticache_cache_parameter_group elasticsearch elb iam_group
         iam_policy iam_role iam_user kms lambda launch_configuration nat_gateway

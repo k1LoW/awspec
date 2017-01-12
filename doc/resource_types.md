@@ -1,6 +1,7 @@
 # Resource Types
 
-[ami](#ami)
+[alb](#alb)
+| [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
 | [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
@@ -8,6 +9,11 @@
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
 | [ec2](#ec2)
+| [ecr_repository](#ecr_repository)
+| [ecs_cluster](#ecs_cluster)
+| [ecs_container_instance](#ecs_container_instance)
+| [ecs_service](#ecs_service)
+| [ecs_task_definition](#ecs_task_definition)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
@@ -35,7 +41,17 @@
 | [cloudfront_distribution](#cloudfront_distribution)
 | [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 | [waf_web_acl](#waf_web_acl)
+| [customer_gateway](#customer_gateway)
+| [vpn_gateway](#vpn_gateway)
+| [vpn_connection](#vpn_connection)
 
+## <a name="alb">alb</a>
+
+ALB resource type.
+
+### exist
+
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:state), its(:type)
 ## <a name="ami">ami</a>
 
 AMI resource type.
@@ -93,6 +109,15 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
+
+### have_tag
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_tag('Name').value('my-group') }
+end
+```
+
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:status), its(:new_instances_protected_from_scale_in)
 ## <a name="cloudtrail">cloudtrail</a>
 
@@ -142,7 +167,7 @@ end
 ```
 
 
-### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id)
+### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id), its(:has_custom_event_selectors)
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
 
 CloudwatchAlarm resource type.
@@ -191,7 +216,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
 end
 ```
 
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
 ## <a name="cloudwatch_event">cloudwatch_event</a>
 
 CloudwatchEvent resource type.
@@ -238,7 +263,7 @@ describe directconnect_virtual_interface('my-directconnect-virtual-interface') d
 end
 ```
 
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id)
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:bgp_peers)
 ## <a name="ebs">ebs</a>
 
 EBS resource type.
@@ -442,6 +467,59 @@ describe ec2('my-ec2') do
   its('resource.vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
+
+## <a name="ecr_repository">ecr_repository</a>
+
+EcrRepository resource type.
+
+### exist
+
+
+## <a name="ecs_cluster">ecs_cluster</a>
+
+EcsCluster resource type.
+
+### exist
+
+### be_active
+
+### be_inactive
+
+
+## <a name="ecs_container_instance">ecs_container_instance</a>
+
+EcsContainerInstance resource type.
+
+### exist
+
+### be_active
+
+### be_inactive
+
+
+## <a name="ecs_service">ecs_service</a>
+
+EcsService resource type.
+
+### exist
+
+### be_active
+
+### be_draining
+
+### be_inactive
+
+
+## <a name="ecs_task_definition">ecs_task_definition</a>
+
+EcsTaskDefinition resource type.
+
+### exist
+
+### be_active
+
+### be_inactive
+
 
 ## <a name="elasticache">elasticache</a>
 
@@ -1015,7 +1093,7 @@ end
 
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:environment), its(:kms_key_arn)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -1308,7 +1386,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).
@@ -1706,7 +1784,7 @@ end
 ```
 
 
-### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
+### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:assign_ipv_6_address_on_creation), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
 ### :unlock: Advanced use
 
 `subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).
@@ -1848,7 +1926,7 @@ describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
 end
 ```
 
-### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version)
+### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled)
 ## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
 
 ElastictranscoderPipeline resource type.
@@ -1881,3 +1959,99 @@ end
 
 
 ### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)
+## <a name="customer_gateway">customer_gateway</a>
+
+CustomerGateway resource type.
+
+### exist
+
+```ruby
+describe customer_gateway('my-customer-gateway') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_available, be_deleting, be_deleted
+
+```ruby
+describe customer_gateway('my-customer-gateway') do
+  it { should be_running }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe customer_gateway('my-customer-gateway') do
+  it { should have_tag('Name').value('my-customer-gateway') }
+end
+```
+
+
+### its(:customer_gateway_id), its(:state), its(:type), its(:ip_address), its(:bgp_asn)
+## <a name="vpn_gateway">vpn_gateway</a>
+
+VpnGateway resource type.
+
+### exist
+
+```ruby
+describe vpn_gateway('my-vpn-gateway') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_available, be_deleting, be_deleted
+
+```ruby
+describe vpn_gateway('my-vpn-gateway') do
+  it { should be_running }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe vpn_gateway('my-vpn-gateway') do
+  it { should have_tag('Name').value('my-vpn-gateway') }
+end
+```
+
+
+### its(:vpn_gateway_id), its(:state), its(:type), its(:availability_zone)
+## <a name="vpn_connection">vpn_connection</a>
+
+VpnConnection resource type.
+
+### exist
+
+```ruby
+describe vpn_connection('my-vpn-connection') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_available, be_deleting, be_deleted
+
+```ruby
+describe vpn_connection('my-vpn-connection') do
+  it { should be_running }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe vpn_connection('my-vpn-connection') do
+  it { should have_tag('Name').value('my-vpn-connection') }
+end
+```
+
+
+### its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id), its(:options)

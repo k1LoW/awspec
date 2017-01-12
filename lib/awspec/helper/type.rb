@@ -4,12 +4,13 @@ module Awspec
       require 'awspec/type/base'
 
       TYPES = %w(
-        ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
-        ebs ec2 elasticache elasticache_cache_parameter_group elasticsearch elb iam_group
+        alb ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
+        ebs ec2 ecr_repository ecs_cluster ecs_container_instance ecs_service ecs_task_definition
+        elasticache elasticache_cache_parameter_group elasticsearch elb iam_group
         iam_policy iam_role iam_user kms lambda launch_configuration nat_gateway
         network_acl network_interface rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone
         route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
-        elastictranscoder_pipeline waf_web_acl
+        elastictranscoder_pipeline waf_web_acl customer_gateway vpn_gateway vpn_connection
       )
 
       TYPES.each do |type|

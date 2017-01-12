@@ -15,7 +15,11 @@ module Awspec::Helper
                                               })
         end
         # rubocop:enable Style/GuardClause
-        res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
+        if res.reservations.count == 1
+          res.reservations.first.instances.single_resource(id)
+        elsif res.reservations.count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
+        end
       end
 
       def find_ec2_attribute(id, attribute)
@@ -47,6 +51,18 @@ module Awspec::Helper
                                                     })
           res[type + '_gateways'].single_resource(gateway_id)
         end
+      end
+
+      def find_vpn_connection(vpn_connection_id)
+        res = ec2_client.describe_vpn_connections({
+                                                    filters: [
+                                                      {
+                                                        name: 'vpn-connection-id',
+                                                        values: [vpn_connection_id]
+                                                      }
+                                                    ]
+                                                  })
+        res.vpn_connections.single_resource(vpn_connection_id)
       end
 
       def find_nat_gateway(gateway_id)

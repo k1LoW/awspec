@@ -21,3 +21,11 @@ describe autoscaling_group('my-auto-scaling-group') do
   it { should have_elb('my-elb') }
 end
 ```
+
+### have_tag
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_tag('Name').value('my-group') }
+end
+```

@@ -11,6 +11,7 @@ describe autoscaling_group('my-auto-scaling-group') do
   its(:health_check_type) { should eq 'EC2' }
   it { should have_ec2('my-ec2') }
   it { should have_elb('my-elb') }
+  it { should have_tag('name').value('my-autoscaling-group') }
 end
 
 # deprecated
@@ -24,4 +25,5 @@ describe auto_scaling_group('my-auto-scaling-group') do
   its(:health_check_type) { should eq 'EC2' }
   it { should have_ec2('my-ec2') }
   it { should have_elb('my-elb') }
+  it { should have_tag('name').value('my-autoscaling-group') }
 end

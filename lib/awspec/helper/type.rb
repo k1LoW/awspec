@@ -5,7 +5,7 @@ module Awspec
 
       TYPES = %w(
         alb ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
-        ebs ec2 ecr_repository ecs_cluster ecs_container_instance ecs_service ecs_task_definition
+        ebs ec2 ec2_running ecr_repository ecs_cluster ecs_container_instance ecs_service ecs_task_definition
         elasticache elasticache_cache_parameter_group elasticsearch elb iam_group
         iam_policy iam_role iam_user kms lambda launch_configuration nat_gateway
         network_acl network_interface rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone

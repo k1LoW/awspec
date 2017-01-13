@@ -16,6 +16,25 @@ module Awspec::Type
       @id ||= resource_via_client.instance_id if resource_via_client
     end
 
+    def public_ip
+      option = {
+        filters: [{ name: 'instance-id', values: [id] }]
+      }
+      ret = ec2_client.describe_addresses(option)
+      addresses = ret.addresses.select { |address|
+        !address.public_ip.nil?
+      }.map { |address| address.public_ip }
+      addresses.first
+    end
+
+    def private_ip
+      option = {
+        filters: [{ name: 'instance-id', values: [id] }]
+      }
+
+      resource_via_client.private_ip_address
+    end
+
     STATES = %w(
       pending running shutting-down
       terminated stopping stopped

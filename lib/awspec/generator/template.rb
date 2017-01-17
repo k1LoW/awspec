@@ -87,9 +87,10 @@ EOF
     def self.put_message
       content = <<-"EOF"
 
-Genarate #{@type.camelize} template files.
+Generate #{@type.camelize} template files.
 
 * !! AND add '#{@type.underscore}' to Awspec::Helper::Type::TYPES in lib/awspec/helper/type.rb *
+* !! AND add '#{@type.underscore}' client to lib/awspec/helper/finder.rb *
 
 EOF
     end

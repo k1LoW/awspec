@@ -4,18 +4,21 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_all
         file_systems = select_all_file_systems
-        raise 'Not Found alarm' if events.empty?
-        ERB.new(file_system_spec_template, nil, '-'.result(binding).chomp)
+        raise 'EFS not found' if file_systems.empty?
+        specs = file_systems.map do |file_system|
+          content = ERB.new(file_system_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        end
+        specs.join("\n")
       end
 
       def file_system_spec_template
         template = <<-'EOF'
-<% file_system.each do |file_system| %>
 describe efs('<%= file_system.file_system_id %>') do
   it { should exist }
-  its(:number_of_mount_targets) { should eq <% file_system.number_of_mount_targets %> }
+  its(:number_of_mount_targets) { should eq <%= file_system.number_of_mount_targets %> }
   its(:life_cycle_state) { should eq '<%= file_system.life_cycle_state %>' }
   its(:performance_mode) { should eq '<%= file_system.performance_mode %>' }
+end
 EOF
         template
       end

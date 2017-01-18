@@ -25,7 +25,7 @@ module Awspec
       puts Awspec::Generator::Spec::Route53HostedZone.new.generate_by_domain_name(hosted_zone)
     end
 
-    desc 's3_bucket [backet_name]', 'Generate s3_bucket spec from S3 bucket name. if NO args, Generate all.'
+    desc 's3_bucket [bucket_name]', 'Generate s3_bucket spec from S3 bucket name. if NO args, Generate all.'
     def s3_bucket(bucket_name = nil)
       Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
       if bucket_name
@@ -36,8 +36,8 @@ module Awspec
     end
 
     types_for_generate_all = %w(
-      cloudwatch_alarm cloudwatch_event directconnect elasticsearch
-      ebs iam_group iam_policy iam_role iam_user kms lambda
+      cloudwatch_alarm cloudwatch_event directconnect ebs efs
+      elasticsearch iam_group iam_policy iam_role iam_user kms lambda
     )
 
     types_for_generate_all.each do |type|

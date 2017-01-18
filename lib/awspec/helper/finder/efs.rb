@@ -15,7 +15,7 @@ module Awspec::Helper
                                                    max_items: 1
                                                  })
         end
-        res.file_systems.first if res
+        res.file_systems.single_resource(id)
       end
 
       def find_tags(id, tag_key)

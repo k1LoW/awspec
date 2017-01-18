@@ -44,6 +44,14 @@ module Awspec::Helper
         end
       end
 
+      def get_name_by_id(id)
+        tag_query = efs_client.describe_tags({
+                                               file_system_id: id
+                                             })
+        name_tag = tag_query.tags.find { |tag| tag.key == 'Name' }
+        return name_tag.value if name_tag
+      end
+
       def select_all_file_systems
         file_systems_query = efs_client.describe_file_systems
         file_systems = file_systems_query.file_systems

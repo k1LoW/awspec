@@ -5,6 +5,7 @@ require 'awspec/helper/finder/subnet'
 require 'awspec/helper/finder/ec2'
 require 'awspec/helper/finder/ecr'
 require 'awspec/helper/finder/ecs'
+require 'awspec/helper/finder/efs'
 require 'awspec/helper/finder/security_group'
 require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
@@ -35,6 +36,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::Ecr
     include Awspec::Helper::Finder::Ecs
+    include Awspec::Helper::Finder::Efs
     include Awspec::Helper::Finder::SecurityGroup
     include Awspec::Helper::Finder::Rds
     include Awspec::Helper::Finder::Route53
@@ -61,6 +63,7 @@ module Awspec::Helper
       ec2_client: Aws::EC2::Client,
       ecr_client: Aws::ECR::Client,
       ecs_client: Aws::ECS::Client,
+      efs_client: Aws::EFS::Client,
       rds_client: Aws::RDS::Client,
       route53_client: Aws::Route53::Client,
       s3_client: Aws::S3::Client,

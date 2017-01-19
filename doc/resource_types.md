@@ -14,6 +14,7 @@
 | [ecs_container_instance](#ecs_container_instance)
 | [ecs_service](#ecs_service)
 | [ecs_task_definition](#ecs_task_definition)
+| [efs](#efs)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
@@ -521,6 +522,28 @@ EcsTaskDefinition resource type.
 ### be_inactive
 
 
+## <a name="efs">efs</a>
+
+EFS resource type.
+
+### exist
+
+```ruby
+describe efs('my-efs') do
+  it { should exist }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe efs('my-efs') do
+  it { should have_tag('my-key').value('my-value') }
+end
+```
+
+### its(:owner_id), its(:creation_token), its(:file_system_id), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

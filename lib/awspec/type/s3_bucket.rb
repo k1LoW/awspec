@@ -80,6 +80,12 @@ module Awspec::Type
       bv ? (bv.status == 'Enabled') : false
     end
 
+    def has_lifecycle_rule?(rule)
+      lifecycle_configuration_rules.any? do |lc_rule|
+        rule.each { |key, value| lc_rule[key] == value }
+      end
+    end
+
     def has_mfa_delete_enabled?
       bv = find_bucket_versioning(id)
       bv ? (bv.mfa_delete == 'Enabled') : false
@@ -90,6 +96,11 @@ module Awspec::Type
     def cors_rules
       cors = find_bucket_cors(id)
       cors ? cors.cors_rules : []
+    end
+
+    def lifecycle_configuration_rules
+      blc = find_bucket_lifecycle_configuration(id)
+      blc ? blc.rules : []
     end
   end
 end

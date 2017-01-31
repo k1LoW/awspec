@@ -71,6 +71,20 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+### have_lifecycle_rule
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it do
+    should have_lifecycle_rule(
+      id: 'MyRuleName',
+      noncurrent_version_expiration: { noncurrent_days: 1 },
+      status: 'Enabled'
+    )
+  end
+end
+```
+
 ### have_logging_enabled
 
 ```ruby

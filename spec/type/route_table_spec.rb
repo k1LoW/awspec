@@ -9,6 +9,7 @@ describe route_table('my-route-table') do
   it { should have_route('0.0.0.0/0').target(gateway: 'my-igw') }
   it { should have_route('192.168.1.0/24').target(instance: 'my-ec2') }
   it { should have_route('192.168.2.0/24').target(vpc_peering_connection: 'my-pcx') }
+  it { should have_route('pl-1a2b3c4d').target(gateway: 'vpce-11bb22cc') }
   context 'with managed NAT' do
     it { should have_route('192.168.3.0/24').target(gateway: 'nat-7ff7777f') }
     it { should have_route('192.168.3.0/24').target(nat: 'nat-7ff7777f') }

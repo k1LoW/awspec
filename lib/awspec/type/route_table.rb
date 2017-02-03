@@ -18,7 +18,7 @@ module Awspec::Type
                    nat_gateway_id = nil)
       resource_via_client.routes.find do |route|
         if destination
-          next false unless route.destination_cidr_block == destination
+          next false unless [route.destination_cidr_block, route.destination_prefix_list_id].include?(destination)
         end
         next target_gateway?(route, gateway_id) if gateway_id
         next target_instance?(route, instance_id) if instance_id

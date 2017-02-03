@@ -4,6 +4,7 @@ Aws.config[:ec2] = {
       security_groups: [
         {
           vpc_id: 'vpc-ab123cde',
+          owner_id: '112233445566',
           group_id: 'sg-1a2b3cd4',
           group_name: 'my-security-group-name',
           tags: [

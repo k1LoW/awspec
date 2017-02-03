@@ -98,7 +98,9 @@ module Awspec::Type
       ret = permission.user_id_group_pairs.select do |sg|
         # Compare the sg group_name if the remote group is in another account.
         # find_security_group call doesn't return info on a remote security group.
-        next true if (sg.user_id != resource_via_client.owner_id) && (sg.group_name == cidr)
+        if (sg.user_id != nil) && (sg.user_id != resource_via_client.owner_id)
+          next (sg.group_name == cidr) || (sg.group_id == cidr)
+        end
         next true if sg.group_id == cidr
         sg2 = find_security_group(sg.group_id)
         next true if sg2.group_name == cidr

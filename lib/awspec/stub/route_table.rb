@@ -115,6 +115,17 @@ Aws.config[:ec2] = {
               network_interface_id: nil,
               vpc_peering_connection_id: nil,
               state: 'active'
+            },
+            {
+              destination_cidr_block: nil,
+              destination_prefix_list_id: 'pl-1a2b3c4d',
+              gateway_id: 'vpce-11bb22cc',
+              instance_id: nil,
+              instance_owner_id: nil,
+              nat_gateway_id: nil,
+              network_interface_id: nil,
+              vpc_peering_connection_id: nil,
+              state: 'active'
             }
           ],
           associations: [

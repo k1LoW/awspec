@@ -4,6 +4,7 @@ Aws.config[:ec2] = {
       security_groups: [
         {
           vpc_id: 'vpc-ab123cde',
+          owner_id: '112233445566',
           group_id: 'sg-1a2b3cd4',
           group_name: 'my-security-group-name',
           tags: [
@@ -108,6 +109,22 @@ Aws.config[:ec2] = {
               ip_ranges: [
                 {
                   cidr_ip: '100.456.789.012/32'
+                }
+              ]
+            },
+            {
+              from_port: 8080,
+              to_port: 8080,
+              ip_protocol: 'tcp',
+              ip_ranges: [],
+              user_id_group_pairs: [
+                {
+                  user_id: '5678901234',
+                  group_name: 'group-in-other-aws-account-with-vpc-peering',
+                  group_id: 'sg-9a8b7c6d',
+                  vpc_id: 'vpc-5b6a7c8f',
+                  vpc_peering_connection_id: 'pcx-f9e8d7c6',
+                  peering_status: 'active'
                 }
               ]
             }

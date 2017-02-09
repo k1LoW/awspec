@@ -2,13 +2,12 @@ module Awspec::Helper
   module Finder
     module Autoscaling
       def find_autoscaling_group(id)
-
         if id.class == Hash
-          tags = autoscaling_client.describe_tags()
+          tags = autoscaling_client.describe_tags
           key_name = id.keys[0]
           value = id[key_name]
-          winner = tags.tags.select{|t| t.key == key_name && t.value == value }.first
-          id = (winner == nil ? value : winner.resource_id)
+          resource = tags.tags.select { |t| t.key == key_name && t.value == value }.first
+          id = resource.nil? ? value : resource.resource_id
         end
 
         res = autoscaling_client.describe_auto_scaling_groups({

@@ -7,6 +7,7 @@ module Awspec::Helper
                                                    file_system_id: id,
                                                    max_items: 1
                                                  })
+          test = 1
         rescue
           # Aws::EFS::Errors::BadRequest (invalid file system ID: my-efs)
           file_system_id = get_id_by_name_tag(id)
@@ -39,8 +40,9 @@ module Awspec::Helper
           tag_query = efs_client.describe_tags({
                                                  file_system_id: fs.file_system_id
                                                })
-          name_tag = tag_query.find { |tag| tag.key == 'Name' }
-          return fs.file_system_id if name_tag.value == name
+          name_tag = nil
+          name_tag = tag_query.tags.find { |tag| tag.key == 'Name' } if tag_query.tags
+          return fs.file_system_id if name_tag && name_tag.value == name
         end
       end
 

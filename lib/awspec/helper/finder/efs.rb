@@ -7,7 +7,6 @@ module Awspec::Helper
                                                    file_system_id: id,
                                                    max_items: 1
                                                  })
-          test = 1
         rescue
           # Aws::EFS::Errors::BadRequest (invalid file system ID: my-efs)
           file_system_id = get_id_by_name_tag(id)

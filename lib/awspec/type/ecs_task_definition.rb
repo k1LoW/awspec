@@ -1,7 +1,5 @@
 module Awspec::Type
   class EcsTaskDefinition < Base
-    aws_resource Aws::ECS::Types::TaskDefinition
-
     def initialize(taskdef)
       super
       @display_name = taskdef
@@ -15,12 +13,12 @@ module Awspec::Type
       @id ||= "#{resource_via_client.family}:#{resource_via_client.revision}" if resource_via_client
     end
 
-    def active?
-      resource_via_client.status == 'ACTIVE'
-    end
+    STATES = %w(ACTIVE INACTIVE)
 
-    def inactive?
-      resource_via_client.status == 'INACTIVE'
+    STATES.each do |state|
+      define_method state.downcase + '?' do
+        resource_via_client.status == state
+      end
     end
   end
 end

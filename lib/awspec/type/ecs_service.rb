@@ -1,7 +1,5 @@
 module Awspec::Type
   class EcsService < Base
-    aws_resource Aws::ECS::Types::Service
-
     def initialize(service)
       super
       @display_name = service
@@ -15,16 +13,12 @@ module Awspec::Type
       @id ||= resource_via_client.service_name if resource_via_client
     end
 
-    def active?
-      resource_via_client.status == 'ACTIVE'
-    end
+    STATES = %w(ACTIVE DRAINING INACTIVE)
 
-    def draining?
-      resource_via_client.status == 'DRAINING'
-    end
-
-    def inactive?
-      resource_via_client.status == 'INACTIVE'
+    STATES.each do |state|
+      define_method state.downcase + '?' do
+        resource_via_client.status == state
+      end
     end
   end
 end

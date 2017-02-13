@@ -4,9 +4,13 @@ module Awspec::Generator
       class EcsCluster < Base
         def initialize
           super
+          @type_name = 'ECS Cluster'
           @type = Awspec::Type::EcsCluster.new('my-ecs-cluster')
-          @matchers = []
-          @ignore_matchers = []
+          @ret = @type.resource_via_client
+          @matchers = [
+            Awspec::Type::EcsCluster::STATES.map { |state| 'be_' + state.downcase }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::EcsCluster::STATES.map { |state| 'be_' + state.downcase }
           @describes = []
         end
       end

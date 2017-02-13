@@ -1,7 +1,5 @@
 module Awspec::Type
   class EcsCluster < Base
-    aws_resource Aws::ECS::Types::Cluster
-
     def initialize(name)
       super
       @display_name = name
@@ -15,19 +13,30 @@ module Awspec::Type
       @id ||= resource_via_client.cluster_name if resource_via_client
     end
 
-    def active?
-      resource_via_client.status == 'ACTIVE'
+    STATES = %w(ACTIVE INACTIVE)
+
+    STATES.each do |state|
+      define_method state.downcase + '?' do
+        resource_via_client.status == state
+      end
     end
 
-    def inactive?
-      resource_via_client.status == 'INACTIVE'
+    def has_container_instance?(uuid)
+      uuid = arn_or_uuid.split('/').last
+      find_ecs_container_instance(id, uuid)
     end
 
+    # deprecated method
     def container_instance_arns
-      @container_instance_arns ||= list_ecs_container_instances(id)
+      puts ''
+      warn Color.on_red(Color.white("!!! `#{__method__}` is deprecated. awspec don't provide complex result !!!"))
+      @container_instance_arns ||= select_ecs_container_instance_arn_by_cluster_name(id)
     end
 
+    # deprecated method
     def container_instances
+      puts ''
+      warn Color.on_red(Color.white("!!! `#{__method__}` is deprecated. awspec don't provide complex result !!!"))
       return @container_instances if @container_instances
       arns = container_instance_arns
       @container_instances ||=

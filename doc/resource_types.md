@@ -476,15 +476,37 @@ EcrRepository resource type.
 ### exist
 
 
-## <a name="ecs_cluster">ecs_cluster</a>
+## <a name="ecs cluster">ecs cluster</a>
 
-EcsCluster resource type.
+ECS Cluster resource type.
 
 ### exist
 
+```ruby
+describe ecs_cluster('my-ecs-cluster') do
+  it { should exist }
+end
+```
+
+
 ### be_active, be_inactive
 
+```ruby
+describe ecs_cluster('my-ecs-cluster') do
+  it { should be_active }
+end
+```
 
+
+### have_container_instance
+
+```ruby
+describe ecs_cluster('my-ecs-cluster') do
+  it { have_container_instance('f2756532-8f13-4d53-87c9-aed50dc94cd7') }
+end
+```
+
+### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count)
 ## <a name="ecs_container_instance">ecs_container_instance</a>
 
 EcsContainerInstance resource type.

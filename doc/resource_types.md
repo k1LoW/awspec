@@ -518,19 +518,28 @@ EcsContainerInstance resource type.
 ### be_inactive
 
 
-## <a name="ecs_service">ecs_service</a>
+## <a name="ecs service">ecs service</a>
 
-EcsService resource type.
+ECS Service resource type.
 
 ### exist
 
-### be_active
+```ruby
+describe ecs_service('my-ecs-service') do
+  it { should exist }
+end
+```
 
-### be_draining
 
-### be_inactive
+### be_active, be_draining, be_inactive
 
+```ruby
+describe ecs_service('my-ecs-service') do
+  it { should be_active }
+end
+```
 
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy)
 ## <a name="ecs task definition">ecs task definition</a>
 
 ECS Task Definition resource type.

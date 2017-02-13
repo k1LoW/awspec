@@ -531,17 +531,28 @@ EcsService resource type.
 ### be_inactive
 
 
-## <a name="ecs_task_definition">ecs_task_definition</a>
+## <a name="ecs task definition">ecs task definition</a>
 
-EcsTaskDefinition resource type.
+ECS Task Definition resource type.
 
 ### exist
 
-### be_active
+```ruby
+describe ecs_task_definition('my-ecs-task-definition') do
+  it { should exist }
+end
+```
 
-### be_inactive
 
+### be_active, be_inactive
 
+```ruby
+describe ecs_task_definition('my-ecs-task-definition') do
+  it { should be_active }
+end
+```
+
+### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:network_mode), its(:revision), its(:status), its(:requires_attributes), its(:placement_constraints)
 ## <a name="efs">efs</a>
 
 EFS resource type.

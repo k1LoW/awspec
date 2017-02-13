@@ -6,7 +6,7 @@ Aws.config[:ecs] = {
           cluster_arn:                           'arn:aws:ecs:us-east-1:123456789012:cluster/my-ecs-cluster',
           cluster_name:                          'my-ecs-cluster',
           status:                                'ACTIVE',
-          registered_container_instances_count:  0,
+          registered_container_instances_count:  2,
           pending_tasks_count:                   0,
           running_tasks_count:                   0,
           active_services_count:                 0
@@ -17,7 +17,8 @@ Aws.config[:ecs] = {
     },
     list_container_instances: {
       container_instance_arns: [
-        'arn:aws:ecs:us-east-1:123456789012:container-instance/f2756532-8f13-4d53-87c9-aed50dc94cd7'
+        'arn:aws:ecs:us-east-1:123456789012:container-instance/f2756532-8f13-4d53-87c9-aed50dc94cd7',
+        'arn:aws:ecs:us-east-1:123456789012:container-instance/abcdr578-9di3-4c87-8h59-abcdei8fjkd9'
       ]
     }
   }

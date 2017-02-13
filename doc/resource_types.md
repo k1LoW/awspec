@@ -482,9 +482,7 @@ EcsCluster resource type.
 
 ### exist
 
-### be_active
-
-### be_inactive
+### be_active, be_inactive
 
 
 ## <a name="ecs_container_instance">ecs_container_instance</a>

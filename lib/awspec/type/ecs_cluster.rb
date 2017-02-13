@@ -21,12 +21,19 @@ module Awspec::Type
       end
     end
 
+    def has_container_instance?(uuid)
+      uuid = arn_or_uuid.split('/').last
+      find_ecs_container_instance(id, uuid)
+    end
+
+    # deprecated method
     def container_instance_arns
       puts ''
       warn Color.on_red(Color.white("!!! `#{__method__}` is deprecated. awspec don't provide complex result !!!"))
-      @container_instance_arns ||= select_ecs_container_instance_arns(id)
+      @container_instance_arns ||= select_ecs_container_instance_arn_by_cluster_name(id)
     end
 
+    # deprecated method
     def container_instances
       puts ''
       warn Color.on_red(Color.white("!!! `#{__method__}` is deprecated. awspec don't provide complex result !!!"))

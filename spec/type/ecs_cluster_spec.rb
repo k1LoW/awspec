@@ -12,4 +12,5 @@ describe ecs_cluster('my-ecs-cluster') do
   its(:running_tasks_count) { should eq 0 }
   its(:pending_tasks_count) { should eq 0 }
   its(:active_services_count) { should eq 0 }
+  it { have_container_instance('f2756532-8f13-4d53-87c9-aed50dc94cd7') }
 end

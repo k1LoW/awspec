@@ -35,14 +35,14 @@ module Awspec::Helper
       def get_id_by_name_tag(name)
         # takes a name tag and iterates inventory and returns file_system obj
         inventory = efs_client.describe_file_systems
-        inventory.file_systems.each do |fs|
+        file_systems = inventory.file_systems.select do |fs|
           tag_query = efs_client.describe_tags({
                                                  file_system_id: fs.file_system_id
                                                })
-          name_tag = nil
           name_tag = tag_query.tags.find { |tag| tag.key == 'Name' } if tag_query.tags
-          return fs.file_system_id if name_tag && name_tag.value == name
+          name_tag && name_tag.value == name
         end
+        file_systems.single_resource(name).file_system_id
       end
 
       def get_name_by_id(id)

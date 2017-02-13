@@ -4,9 +4,13 @@ module Awspec::Generator
       class EcsService < Base
         def initialize
           super
+          @type_name = 'ECS Service'
           @type = Awspec::Type::EcsService.new('my-ecs-service')
-          @matchers = []
-          @ignore_matchers = []
+          @ret = @type.resource_via_client
+          @matchers = [
+            Awspec::Type::EcsService::STATES.map { |state| 'be_' + state.downcase }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::EcsService::STATES.map { |state| 'be_' + state.downcase }
           @describes = []
         end
       end

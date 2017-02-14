@@ -1,14 +1,14 @@
 module Awspec::Helper
   module Finder
     module Ecs
-      def find_ecs_cluster(cluster_name)
-        res = ecs_client.describe_clusters(clusters: [cluster_name])
-        res.clusters.single_resource(cluster_name)
+      def find_ecs_cluster(cluster)
+        res = ecs_client.describe_clusters(clusters: [cluster])
+        res.clusters.single_resource(cluster)
       end
 
-      def find_ecs_container_instance(cluster_name, uuid)
-        res = ecs_client.describe_container_instances(cluster: cluster_name, container_instances: [uuid])
-        res.container_instances.single_resource(uuid)
+      def find_ecs_container_instance(cluster, arn_or_uuid)
+        res = ecs_client.describe_container_instances(cluster: cluster, container_instances: [arn_or_uuid])
+        res.container_instances.single_resource(arn_or_uuid)
       end
 
       def find_ecs_task_definition(taskdef)
@@ -21,8 +21,8 @@ module Awspec::Helper
         res.services.single_resource(service)
       end
 
-      def select_ecs_container_instance_arn_by_cluster_name(cluster_name)
-        req = { cluster: cluster_name }
+      def select_ecs_container_instance_arn_by_cluster_name(cluster)
+        req = { cluster: cluster }
         arns = []
         loop do
           res = ecs_client.list_container_instances(req)
@@ -34,8 +34,8 @@ module Awspec::Helper
       end
 
       # deprecated method
-      def find_ecs_container_instances(cluster_name, container_instances)
-        res = ecs_client.describe_container_instances(cluster: cluster_name, container_instances: container_instances)
+      def find_ecs_container_instances(cluster, container_instances)
+        res = ecs_client.describe_container_instances(cluster: cluster, container_instances: container_instances)
         res.container_instances if res.container_instances
       end
 

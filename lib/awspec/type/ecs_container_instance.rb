@@ -1,8 +1,6 @@
 module Awspec::Type
   class EcsContainerInstance < Base
-    aws_resource Aws::ECS::Types::ContainerInstance
-
-    attr_accessor :cluster_name
+    attr_accessor :cluster
 
     def initialize(container_instance)
       super
@@ -10,23 +8,23 @@ module Awspec::Type
     end
 
     def resource_via_client
-      @resource_via_client ||= find_ecs_container_instances(@cluster_name, [@display_name]).first
+      @resource_via_client ||= find_ecs_container_instance(cluster, @display_name)
     end
 
     def id
       @id ||= resource_via_client.container_instance_arn if resource_via_client
     end
 
-    def cluster_name
-      @cluster_name || 'default'
+    def cluster
+      @cluster || 'default'
     end
 
-    def active?
-      resource_via_client.status == 'ACTIVE'
-    end
+    STATES = %w(ACTIVE INACTIVE)
 
-    def inactive?
-      resource_via_client.status == 'INACTIVE'
+    STATES.each do |state|
+      define_method state.downcase + '?' do
+        resource_via_client.status == state
+      end
     end
   end
 end

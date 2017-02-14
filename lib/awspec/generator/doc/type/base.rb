@@ -56,7 +56,7 @@ module Awspec::Generator
 
         def doc_template
           template = <<-'EOF'
-## <a name="<%= @type_name.underscore %>"><%= @type_name.underscore %></a>
+## <a name="<%= @type_name.gsub(/ /, '_').underscore %>"><%= @type_name.gsub(/ /, '_').underscore %></a>
 
 <%= @type_name %> resource type.
 <%- if @descriptions.include?('first') -%><%= @descriptions['first'] %><%- end -%>

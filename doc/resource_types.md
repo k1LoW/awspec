@@ -476,7 +476,7 @@ EcrRepository resource type.
 ### exist
 
 
-## <a name="ecs cluster">ecs cluster</a>
+## <a name="ecs_cluster">ecs_cluster</a>
 
 ECS Cluster resource type.
 
@@ -507,7 +507,7 @@ end
 ```
 
 ### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count)
-## <a name="ecs container instance">ecs container instance</a>
+## <a name="ecs_container_instance">ecs_container_instance</a>
 
 ECS Container Instance resource type.
 
@@ -532,7 +532,7 @@ end
 
 
 ### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes)
-## <a name="ecs service">ecs service</a>
+## <a name="ecs_service">ecs_service</a>
 
 ECS Service resource type.
 
@@ -554,7 +554,7 @@ end
 ```
 
 ### its(:service_arn), its(:service_name), its(:cluster_arn), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy)
-## <a name="ecs task definition">ecs task definition</a>
+## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
 

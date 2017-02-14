@@ -1,6 +1,6 @@
 module Awspec::Type
   class EcsContainerInstance < Base
-    attr_accessor :cluster_name
+    attr_accessor :cluster
 
     def initialize(container_instance)
       super
@@ -8,15 +8,15 @@ module Awspec::Type
     end
 
     def resource_via_client
-      @resource_via_client ||= find_ecs_container_instance(cluster_name, @display_name)
+      @resource_via_client ||= find_ecs_container_instance(cluster, @display_name)
     end
 
     def id
       @id ||= resource_via_client.container_instance_arn if resource_via_client
     end
 
-    def cluster_name
-      @cluster_name || 'default'
+    def cluster
+      @cluster || 'default'
     end
 
     STATES = %w(ACTIVE INACTIVE)

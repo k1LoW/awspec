@@ -10,12 +10,8 @@ shared_context 'region', :region do
   end
 end
 
-shared_context 'cluster_name', :cluster_name do
+shared_context 'cluster', :cluster do
   before do |example|
-    cluster_name = example.metadata[:cluster_name]
-    example.metadata[:described_class].cluster_name = cluster_name
-  end
-
-  after do
+    example.metadata[:described_class].cluster = example.metadata[:cluster]
   end
 end

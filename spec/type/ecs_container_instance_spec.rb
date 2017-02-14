@@ -12,3 +12,13 @@ describe ecs_container_instance('my-container-instance'), cluster_name: 'my-ecs-
               '/f2756532-8f13-4d53-87c9-aed50dc94cd7'
   end
 end
+
+describe 'ESC Cluster `my-ecs-cluster`' do
+  before do |example|
+    example.metadata[:described_class].cluster_name = 'my-ecs-cluster'
+  end
+  describe ecs_container_instance('my-container-instance') do
+    it { should exist }
+    its(:cluster_name) { should eq 'my-ecs-cluster' }
+  end
+end

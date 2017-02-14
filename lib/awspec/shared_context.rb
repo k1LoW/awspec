@@ -9,3 +9,9 @@ shared_context 'region', :region do
     Aws.config[:region] = @_region
   end
 end
+
+shared_context 'cluster', :cluster do
+  before do |example|
+    example.metadata[:described_class].cluster = example.metadata[:cluster]
+  end
+end

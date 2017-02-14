@@ -507,17 +507,15 @@ end
 ```
 
 ### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count)
-## <a name="ecs_container_instance">ecs_container_instance</a>
+## <a name="ecs container instance">ecs container instance</a>
 
-EcsContainerInstance resource type.
+ECS Container Instance resource type.
 
 ### exist
 
-### be_active
+### be_active, be_inactive
 
-### be_inactive
-
-
+### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes)
 ## <a name="ecs service">ecs service</a>
 
 ECS Service resource type.

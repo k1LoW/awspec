@@ -72,6 +72,15 @@ describe ec2('my-ec2') do
 end
 ```
 
+### have_network_interface
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_network_interface('my-eni') }
+  it { should have_network_interface('eni-12ab3cde') }
+end
+```
+
 ### have_security_group
 
 ```ruby

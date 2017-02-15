@@ -18,6 +18,7 @@ module Awspec::Generator
           subnet = find_subnet(instance.subnet_id)
           eips = select_eip_by_instance_id(instance_id)
           volumes = select_ebs_by_instance_id(instance_id)
+          network_interfaces = select_network_interface_by_instance_id(instance_id)
           content = ERB.new(ec2_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
@@ -64,6 +65,9 @@ describe ec2('<%= instance_id %>') do
 <%- else -%>
   it { should have_ebs('<%= volume.volume_id %>') }
 <%- end -%>
+<% end %>
+<% network_interfaces.each do |interface| %>
+  it { should have_network_interface('<%= interface.network_interface_id %>') }
 <% end %>
 end
 EOF

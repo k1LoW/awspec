@@ -2,6 +2,7 @@
 require 'awspec/matcher/belong_to_vpc'
 require 'awspec/matcher/belong_to_subnet'
 require 'awspec/matcher/have_tag'
+require 'awspec/matcher/have_network_interface'
 
 # RDS
 require 'awspec/matcher/belong_to_db_subnet_group'

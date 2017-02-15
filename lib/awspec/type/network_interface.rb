@@ -20,13 +20,13 @@ module Awspec::Type
       end
     end
 
-    def attached_to?(instance_id, device_index = 0)
+    def attached_to?(instance_id, device_index = nil)
       instance = find_ec2(instance_id)
       return false unless instance
       return false unless resource_via_client.attachment
+      return false if device_index && resource_via_client.attachment.device_index != device_index
       resource_via_client.attachment.instance_id == instance.instance_id && \
-        resource_via_client.attachment.status == 'attached' && \
-        resource_via_client.attachment.device_index == device_index
+        resource_via_client.attachment.status == 'attached'
     end
 
     def has_private_ip_address?(ip_address, primary = nil)

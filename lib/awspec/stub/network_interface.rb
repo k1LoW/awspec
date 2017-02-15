@@ -27,7 +27,7 @@ Aws.config[:ec2] = {
             attachment_id: 'eni-attach-12ab3cde',
             instance_id: 'i-ec12345a',
             instance_owner_id: '1234567890',
-            device_index: 0,
+            device_index: 1,
             status: 'attached',
             attach_time: nil,
             delete_on_termination: true

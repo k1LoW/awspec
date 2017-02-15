@@ -24,7 +24,7 @@ describe ec2('i-ec12345a') do
   it { should have_ebs('vol-123a123b') }
   it { should have_ebs('my-volume') }
   it { should have_network_interface('eni-12ab3cde') }
-  it { should have_network_interface('my-eni') }
+  it { should have_network_interface('my-eni').as_eth1 }
   its(:private_ip_address) { should eq '10.0.1.1' }
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }

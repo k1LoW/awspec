@@ -33,7 +33,10 @@ Aws.config[:ec2] = {
                 {
                   network_interface_id: 'eni-12ab3cde',
                   subnet_id: 'subnet-1234a567',
-                  vpc_id: 'vpc-ab123cde'
+                  vpc_id: 'vpc-ab123cde',
+                  attachment: {
+                    device_index: 1
+                  }
                 }
               ],
               tags: [

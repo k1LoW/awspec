@@ -3,6 +3,7 @@ require 'bundler/gem_tasks'
 begin
   require 'rspec/core/rake_task'
   require 'octorelease'
+  require 'rubocop/rake_task'
 rescue LoadError
 end
 
@@ -15,7 +16,7 @@ end
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
-    task all: ['spec:type', 'spec:core', 'spec:generator_spec', 'spec:generator_doc']
+    task all: ['spec:type', 'spec:core', 'spec:generator_spec', 'spec:generator_doc', 'spec:rubocop']
 
     task type: types
 
@@ -36,5 +37,7 @@ if defined?(RSpec)
     RSpec::Core::RakeTask.new(:generator_doc) do |t|
       t.pattern = 'spec/generator/doc/*_spec.rb'
     end
+
+    RuboCop::RakeTask.new
   end
 end

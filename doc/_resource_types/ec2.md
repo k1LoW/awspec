@@ -78,6 +78,7 @@ end
 describe ec2('my-ec2') do
   it { should have_network_interface('my-eni') }
   it { should have_network_interface('eni-12ab3cde') }
+  it { should have_network_interface('my-eni').as_eth0 }
 end
 ```
 

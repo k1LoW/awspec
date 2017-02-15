@@ -29,6 +29,16 @@ Aws.config[:ec2] = {
                   }
                 }
               ],
+              network_interfaces: [
+                {
+                  network_interface_id: 'eni-12ab3cde',
+                  subnet_id: 'subnet-1234a567',
+                  vpc_id: 'vpc-ab123cde',
+                  attachment: {
+                    device_index: 1
+                  }
+                }
+              ],
               tags: [
                 {
                   key: 'Name',
@@ -150,6 +160,63 @@ Aws.config[:ec2] = {
           { group_name: nil, group_id: 'sg-2a3b4cd5' },
           { group_name: 'my-vpc-security-group-name', group_id: nil }
         ]
+      ]
+    },
+    describe_network_interfaces: {
+      network_interfaces: [
+        {
+          network_interface_id: 'eni-12ab3cde',
+          subnet_id: 'subnet-1234a567',
+          vpc_id: 'vpc-ab123cde',
+          availability_zone: 'ap-northeast-1c',
+          description: '',
+          owner_id: '1234567890',
+          requester_id: nil,
+          requester_managed: false,
+          status: 'in-use',
+          mac_address: '00:11:aa:bb:cc:22',
+          private_ip_address: '10.0.1.1',
+          private_dns_name: nil,
+          source_dest_check: true,
+          groups:
+            [
+              {
+                group_name: 'my-security-group-name',
+                group_id: 'sg-1a2b3cd4'
+              }
+            ],
+          attachment: {
+            attachment_id: 'eni-attach-12ab3cde',
+            instance_id: 'i-ec12345a',
+            instance_owner_id: '1234567890',
+            device_index: 0,
+            status: 'attached',
+            attach_time: nil,
+            delete_on_termination: true
+          },
+          association: nil,
+          tag_set: [
+            {
+              key: 'Name',
+              value: 'my-eni'
+            }
+          ],
+          private_ip_addresses: [
+            {
+              private_ip_address: '10.0.1.1',
+              private_dns_name: nil,
+              primary: true,
+              association: nil
+            },
+            {
+              private_ip_address: '10.0.1.2',
+              private_dns_name: '',
+              primary: false,
+              association: nil
+            }
+          ],
+          interface_type: nil
+        }
       ]
     }
   }

@@ -68,6 +68,15 @@ module Awspec::Type
       end
     end
 
+    def has_network_interface?(network_interface_id, device_index = nil)
+      res = find_network_interface(network_interface_id)
+      interfaces = resource_via_client.network_interfaces
+      ret = interfaces.find do |interface|
+        next false if device_index && interface.attachment.device_index != device_index
+        interface.network_interface_id == res.network_interface_id
+      end
+    end
+
     def has_event?(event_code)
       status = find_ec2_status(id)
       ret = status.events.find do |event|

@@ -68,11 +68,12 @@ module Awspec::Type
       end
     end
 
-    def has_network_interface?(network_interface_id)
+    def has_network_interface?(network_interface_id, device_index = nil)
       res = find_network_interface(network_interface_id)
       interfaces = resource_via_client.network_interfaces
       ret = interfaces.find do |interface|
-        interface.network_interface_id = res.network_interface_id
+        next false if device_index && interface.attachment.device_index != device_index
+        interface.network_interface_id == res.network_interface_id
       end
     end
 

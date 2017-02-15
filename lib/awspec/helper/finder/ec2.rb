@@ -109,6 +109,13 @@ module Awspec::Helper
         res.addresses
       end
 
+      def select_network_interface_by_instance_id(id)
+        res = ec2_client.describe_network_interfaces({
+                                                       filters: [{ name: 'attachment.instance-id', values: [id] }]
+                                                     })
+        res.network_interfaces
+      end
+
       def select_nat_gateway_by_vpc_id(vpc_id)
         res = ec2_client.describe_nat_gateways({
                                                  filter: [{ name: 'vpc-id', values: [vpc_id] }]

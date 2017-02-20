@@ -33,10 +33,8 @@ module Awspec::Type
       end
       return true if ret
       sg2 = find_security_group(sg_id)
-      return false unless sg2.tag_name == sg_id || sg2.group_name == sg_id
-      sgs.find do |sg|
-        sg == sg2.group_name
-      end
+      return true if sg2.tag_name == sg_id || sg2.group_name == sg_id
+      false
     end
 
     def has_subnet?(subnet_id)

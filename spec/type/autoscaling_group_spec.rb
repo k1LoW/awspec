@@ -14,6 +14,11 @@ describe autoscaling_group('my-auto-scaling-group') do
   it { should have_tag('name').value('my-autoscaling-group') }
 end
 
+describe autoscaling_group({ 'name' => 'my-autoscaling-group' }) do
+  it { should exist }
+  it { should have_tag('name').value('my-autoscaling-group') }
+end
+
 # deprecated
 describe auto_scaling_group('my-auto-scaling-group') do
   it { should exist }

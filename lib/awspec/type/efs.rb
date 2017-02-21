@@ -14,7 +14,7 @@ module Awspec::Type
     end
 
     def has_tag?(tag_key, tag_value)
-      tag = find_tags(@display_name, tag_key)
+      tag = find_efs_tags(@display_name, tag_key)
       return nil if tag.value != tag_value
       tag
     end

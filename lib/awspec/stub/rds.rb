@@ -1,9 +1,18 @@
 Aws.config[:rds] = {
   stub_responses: {
+    list_tags_for_resource: {
+      tag_list: [
+        {
+          key: 'Name',
+          value: 'my-rds'
+        }
+      ]
+    },
     describe_db_instances: {
       db_instances: [
         {
           db_instance_identifier: 'my-rds',
+          db_instance_arn: 'arn:aws:rds:ap-northeast-1a:123456789012:db:my-rds',
           db_instance_status: 'available',
           db_instance_class: 'db.t2.medium',
           vpc_security_groups: [

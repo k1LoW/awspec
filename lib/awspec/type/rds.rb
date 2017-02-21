@@ -51,6 +51,12 @@ module Awspec::Type
       end
     end
 
+    def has_tag?(tag_key, tag_value)
+      tag = find_rds_tags(@display_name, tag_key)
+      return nil if tag.value != tag_value
+      tag
+    end
+
     private
 
     def has_vpc_security_group_id?(sg_id)

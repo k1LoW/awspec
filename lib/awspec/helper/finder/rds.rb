@@ -15,6 +15,24 @@ module Awspec::Helper
           db_instance.db_subnet_group.vpc_id == vpc_id
         end
       end
+
+      def find_rds_tags(name_or_arn, tag_key)
+        tag_set = begin
+          raise Aws::RDS::Errors::BadRequest unless name_or_arn.start_with?('arn:')
+
+          rds_client.list_tags_for_resource({ resource_name: name_or_arn })
+        rescue
+          # Aws::RDS::Errors::BadRequest (invalid resource name : my-rds)
+          res = rds_client.describe_db_instances
+          instance = res.db_instances.detect do |db_instance|
+            db_instance.db_instance_identifier == name_or_arn
+          end
+          arn = instance.db_instance_arn
+          rds_client.list_tags_for_resource({ resource_name: arn })
+        end
+        tag_query = tag_set.tag_list.find { |tag| tag.key == tag_key }
+        return tag_query if tag_query
+      end
     end
   end
 end

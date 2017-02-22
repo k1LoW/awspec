@@ -18,7 +18,7 @@ module Awspec::Helper
         res.file_systems.single_resource(id)
       end
 
-      def find_tags(id, tag_key)
+      def find_efs_tags(id, tag_key)
         begin
           tag_set = efs_client.describe_tags({ file_system_id: id })
         rescue

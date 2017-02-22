@@ -51,6 +51,14 @@ module Awspec::Type
       end
     end
 
+    def has_tag?(tag_key, tag_value)
+      arn = resource_via_client.db_instance_arn
+      tag_set = rds_client.list_tags_for_resource({ resource_name: arn })
+      tag_set.tag_list.find do |tag|
+        tag.key == tag_key && tag.value == tag_value
+      end
+    end
+
     private
 
     def has_vpc_security_group_id?(sg_id)

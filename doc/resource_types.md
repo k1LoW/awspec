@@ -1445,6 +1445,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe rds('my-rds') do
+  it { should have_tag('Name').value('my-rds') }
+end
+```
+
+
 ### belong_to_db_subnet_group
 
 ```ruby

@@ -52,7 +52,7 @@ ALB resource type.
 
 ### exist
 
-### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:state), its(:type)
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:state), its(:type), its(:ip_address_type)
 ## <a name="ami">ami</a>
 
 AMI resource type.

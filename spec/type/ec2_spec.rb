@@ -27,6 +27,7 @@ describe ec2('i-ec12345a') do
     its('vpc.id') { should eq 'vpc-ab123cde' }
   end
   it { should have_tag('Name').value('my-ec2') }
+  it { should have_iam_instance_profile('Ec2IamProfileName') }
 end
 
 describe ec2('my-ec2') do

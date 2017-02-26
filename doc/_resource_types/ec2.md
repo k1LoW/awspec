@@ -48,6 +48,14 @@ describe ec2('my-ec2') do
 end
 ```
 
+### have_iam_instance_profile
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_iam_instance_profile('Ec2IamProfileName') }
+end
+```
+
 ### have_tag
 
 ```ruby
@@ -55,7 +63,6 @@ describe ec2('my-ec2') do
   it { should have_tag('Name').value('my-ec2') }
 end
 ```
-
 ### belong_to_subnet
 
 ```ruby

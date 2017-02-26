@@ -91,14 +91,6 @@ describe ec2('my-ec2') do
 end
 ```
 
-### have_iam_instance_profile
-
-```ruby
-describe ec2('My-EC2') do
-  it { should have_iam_instance_profile('Ec2IamProfileName') } #=> Ec2IamProfileName
-end
-```
-
 ### have_tag
 
 ```ruby
@@ -122,6 +114,14 @@ end
 describe ec2('my-ec2') do
   it { should belong_to_vpc('vpc-ab123cde') }
   it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### have_iam_instance_profile
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_iam_instance_profile('Ec2IamProfileName') }
 end
 ```
 

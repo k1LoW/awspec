@@ -15,6 +15,10 @@ Aws.config[:ec2] = {
               state: {
                 name: 'running'
               },
+              iam_instance_profile: {
+                arn: 'arn:aws:iam::123456789012:instance-profile/Ec2IamProfileName',
+                id: 'ABCDEFGHIJKLMNOPQRSTU'
+              },
               security_groups: [
                 {
                   group_id: 'sg-1a2b3cd4',

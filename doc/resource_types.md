@@ -431,6 +431,13 @@ describe ec2('my-ec2') do
 end
 ```
 
+### have_iam_instance_profile
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_iam_instance_profile('Ec2IamProfileName') }
+end
+```
 
 ### have_tag
 

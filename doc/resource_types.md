@@ -45,6 +45,7 @@
 | [customer_gateway](#customer_gateway)
 | [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
+| [ses_send_quota](#ses_send_quota)
 
 ## <a name="alb">alb</a>
 
@@ -2167,3 +2168,8 @@ end
 
 
 ### its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id), its(:options)
+## <a name="ses_send_quota">ses_send_quota</a>
+
+SesSendQuota resource type.
+
+### exist

@@ -8,6 +8,10 @@ module Awspec::Helper
         end
         ret.single_resource(id)
       end
+
+      def get_ses_send_quota(id)
+        ses_client.get_send_quota if sts_client.get_caller_identity['account'] == id
+      end
     end
   end
 end

@@ -1,7 +1,7 @@
 module Awspec::Type
   class SesSendQuota < Base
     def resource_via_client
-      @resource_via_client ||= get_ses_send_quota(@display_name)
+      @resource_via_client ||= find_ses_send_quota
     end
 
     def id

@@ -2173,3 +2173,5 @@ end
 SesSendQuota resource type.
 
 ### exist
+
+### its(:max_24_hour_send), its(:max_send_rate), its(:sent_last_24_hours)

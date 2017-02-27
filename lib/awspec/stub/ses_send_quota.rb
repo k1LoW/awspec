@@ -7,13 +7,3 @@ Aws.config[:ses] = {
     }
   }
 }
-
-Aws.config[:sts] = {
-  stub_responses: {
-    get_caller_identity: {
-      account: '123456789012',
-      arn: 'arn:aws:iam::123456789012:user/Alice',
-      user_id: 'AKIAI44QH8DHBEXAMPLE'
-    }
-  }
-}

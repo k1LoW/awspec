@@ -82,8 +82,7 @@ module Awspec::Helper
       elastictranscoder_client: Aws::ElasticTranscoder::Client,
       elasticsearch_client: Aws::ElasticsearchService::Client,
       cloudtrail_client: Aws::CloudTrail::Client,
-      waf_client: Aws::WAF::Client,
-      sts_client: Aws::STS::Client
+      waf_client: Aws::WAF::Client
     }
 
     CLIENTS.each do |method_name, client|

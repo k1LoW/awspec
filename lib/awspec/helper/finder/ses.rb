@@ -8,6 +8,10 @@ module Awspec::Helper
         end
         ret.single_resource(id)
       end
+
+      def find_ses_send_quota
+        ses_client.get_send_quota
+      end
     end
   end
 end

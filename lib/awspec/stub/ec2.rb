@@ -21,6 +21,10 @@ Aws.config[:ec2] = {
                   group_name: 'my-security-group-name'
                 }
               ],
+              iam_instance_profile: {
+                arn: 'arn:aws:iam::123456789012:instance-profile/Ec2IamProfileName',
+                id: 'ABCDEFGHIJKLMNOPQRSTU'
+              },
               block_device_mappings: [
                 {
                   device_name: '/dev/sda',

@@ -117,6 +117,14 @@ describe ec2('my-ec2') do
 end
 ```
 
+### have_iam_instance_profile
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_iam_instance_profile('Ec2IamProfileName') }
+end
+```
+
 ### advanced
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).

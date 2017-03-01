@@ -11,9 +11,10 @@ module Awspec::Type
       @id ||= resource_via_client.internet_gateway_id if resource_via_client
     end
 
-    def attached_to?(vpc_id)
-      resource_via_client.attachments.first.vpc_id == vpc_id && \
-        resource_via_client.attachments.first.state == 'attached'
+    def attached_to?(vpc)
+      resource_via_client.attachments.find do |a|
+        a.vpc_id == find_vpc(vpc).vpc_id && a.state == 'attached'
+      end
     end
   end
 end

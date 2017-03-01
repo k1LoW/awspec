@@ -1,5 +1,5 @@
 module Awspec::Type
-  class NetworkInterface < Base
+  class NetworkInterface < Resource
     tags_allowed
 
     def resource_via_client

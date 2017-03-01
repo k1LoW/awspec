@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Route53HostedZone < Base
+  class Route53HostedZone < Resource
     def resource_via_client
       @resource_via_client ||= find_hosted_zone(@display_name)
     end

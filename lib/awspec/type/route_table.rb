@@ -1,5 +1,5 @@
 module Awspec::Type
-  class RouteTable < Base
+  class RouteTable < Resource
     aws_resource Aws::EC2::RouteTable
     tags_allowed
 

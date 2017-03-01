@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Vpc < Base
+  class Vpc < Resource
     aws_resource Aws::EC2::Vpc
     tags_allowed
 

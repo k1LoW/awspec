@@ -1,5 +1,5 @@
 module Awspec::Type
-  class NetworkAcl < Base
+  class NetworkAcl < Resource
     aws_resource Aws::EC2::NetworkAcl
     tags_allowed
 

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Ami < Base
+  class Ami < Resource
     aws_resource Aws::EC2::Image
 
     def resource_via_client

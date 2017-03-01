@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Elb < Base
+  class Elb < Resource
     def resource_via_client
       @resource_via_client ||= find_elb(@display_name)
     end

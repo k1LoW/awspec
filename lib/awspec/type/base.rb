@@ -7,13 +7,6 @@ module Awspec::Type
     include Awspec::Helper::Finder
     include Awspec::BlackListForwardable
 
-    attr_reader :id, :resource_via_client
-
-    def initialize(display_name = nil)
-      @display_name = display_name
-      @id = nil
-    end
-
     def to_s
       type = self.class.name.demodulize.underscore
       "#{type} '#{@display_name}'"
@@ -23,22 +16,8 @@ module Awspec::Type
       to_s
     end
 
-    def exists?
-      id
-    end
-
-    def id
-      raise 'this method must be override!'
-    end
-
     def resource_via_client
       raise 'this method must be override!'
-    end
-
-    def self.aws_resource(resource)
-      define_method :resource do
-        @resource ||= Awspec::ResourceReader.new(resource.new(id))
-      end
     end
 
     def self.tags_allowed

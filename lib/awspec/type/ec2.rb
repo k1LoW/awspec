@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Ec2 < Base
+  class Ec2 < Resource
     aws_resource Aws::EC2::Instance
     tags_allowed
 

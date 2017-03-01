@@ -1,5 +1,5 @@
 module Awspec::Type
-  class RdsDbParameterGroup < Base
+  class RdsDbParameterGroup < Resource
     def resource_via_client
       return @resource_via_client if @resource_via_client
 

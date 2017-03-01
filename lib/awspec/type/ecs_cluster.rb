@@ -1,5 +1,5 @@
 module Awspec::Type
-  class EcsCluster < Base
+  class EcsCluster < Resource
     def initialize(name)
       super
       @display_name = name

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class LaunchConfiguration < Base
+  class LaunchConfiguration < Resource
     def resource_via_client
       @resource_via_client ||= find_launch_configuration(@display_name)
     end

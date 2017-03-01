@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'SesSendQuota'
-          @type = Awspec::Type::SesSendQuota.new('my-ses-send-quota')
+          @type = Awspec::Type::SesSendQuota.new
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []

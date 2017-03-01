@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Cloudtrail < Base
+  class Cloudtrail < Resource
     aws_resource Aws::CloudTrail
 
     def resource_via_client

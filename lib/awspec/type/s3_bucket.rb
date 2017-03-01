@@ -1,5 +1,5 @@
 module Awspec::Type
-  class S3Bucket < Base
+  class S3Bucket < Resource
     aws_resource Aws::S3::Bucket
 
     def resource_via_client

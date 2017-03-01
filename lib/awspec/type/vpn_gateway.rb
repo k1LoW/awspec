@@ -1,5 +1,5 @@
 module Awspec::Type
-  class VpnGateway < Base
+  class VpnGateway < Resource
     tags_allowed
 
     def initialize(name)

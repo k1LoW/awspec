@@ -1,5 +1,5 @@
 module Awspec::Type
-  class WafWebAcl < Base
+  class WafWebAcl < Resource
     def resource_via_client
       @resource_via_client ||= find_waf_web_acl(@display_name)
     end

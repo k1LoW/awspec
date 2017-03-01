@@ -1,5 +1,5 @@
 module Awspec::Type
-  class IamGroup < Base
+  class IamGroup < Resource
     aws_resource Aws::IAM::Group
 
     def resource_via_client

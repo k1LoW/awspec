@@ -5,6 +5,7 @@ describe internet_gateway('igw-1ab2cd3e') do
   it { should exist }
   it { should have_tag('Name').value('my-internet-gateway') }
   it { should be_attached_to('vpc-ab123cde') }
+  it { should be_attached_to('my-vpc') }
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
   end

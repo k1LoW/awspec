@@ -16,6 +16,10 @@ end
 describe internet_gateway('igw-1ab2cd3e') do
   it { should be_attached_to('vpc-ab123cde') }
 end
+
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should be_attached_to('my-vpc') }
+end
 ```
 
 ### have_tag

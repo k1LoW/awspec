@@ -45,6 +45,7 @@
 | [customer_gateway](#customer_gateway)
 | [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
+| [internet_gateway](#internet_gateway)
 
 ## <a name="alb">alb</a>
 
@@ -2176,3 +2177,38 @@ end
 
 
 ### its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id), its(:options)
+## <a name="internet_gateway">internet_gateway</a>
+
+InternetGateway resource type.
+
+### exist
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should exist }
+end
+
+describe internet_gateway('my-internet-gateway') do
+  it { should exist }
+end
+```
+
+
+### be_attached_to
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should be_attached_to('vpc-ab123cde') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should have_tag('Name').value('my-internet-gateway') }
+end
+```
+
+### its(:internet_gateway_id)

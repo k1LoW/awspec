@@ -27,6 +27,7 @@ require 'awspec/helper/finder/cloudfront'
 require 'awspec/helper/finder/elastictranscoder'
 require 'awspec/helper/finder/cloudtrail'
 require 'awspec/helper/finder/waf'
+require 'awspec/helper/finder/internet_gateway'
 
 module Awspec::Helper
   module Finder
@@ -58,6 +59,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Elastictranscoder
     include Awspec::Helper::Finder::Cloudtrail
     include Awspec::Helper::Finder::Waf
+    include Awspec::Helper::Finder::InternetGateway
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,

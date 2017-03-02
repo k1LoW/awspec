@@ -55,6 +55,12 @@ module Awspec::Type
       end
     end
 
+    def has_iam_instance_profile?(iam_instance_profile_name)
+      iam = resource_via_client.iam_instance_profile
+      ret = iam.arn.split('/').last == iam_instance_profile_name
+      return true if ret
+    end
+
     def has_ebs?(volume_id)
       blocks = resource_via_client.block_device_mappings
       ret = blocks.find do |block|

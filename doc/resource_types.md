@@ -45,6 +45,7 @@
 | [customer_gateway](#customer_gateway)
 | [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
+| [internet_gateway](#internet_gateway)
 | [ses_send_quota](#ses_send_quota)
 
 ## <a name="alb">alb</a>
@@ -412,6 +413,15 @@ end
 ```
 
 
+### have_iam_instance_profile
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_iam_instance_profile('Ec2IamProfileName') }
+end
+```
+
+
 ### have_network_interface
 
 ```ruby
@@ -462,7 +472,7 @@ end
 ```
 
 
-### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:iam_instance_profile), its(:ebs_optimized), its(:sriov_net_support), its(:ena_support)
+### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:ebs_optimized), its(:sriov_net_support), its(:ena_support)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -2168,6 +2178,45 @@ end
 
 
 ### its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id), its(:options)
+## <a name="internet_gateway">internet_gateway</a>
+
+InternetGateway resource type.
+
+### exist
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should exist }
+end
+
+describe internet_gateway('my-internet-gateway') do
+  it { should exist }
+end
+```
+
+
+### be_attached_to
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should be_attached_to('vpc-ab123cde') }
+end
+
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should be_attached_to('my-vpc') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should have_tag('Name').value('my-internet-gateway') }
+end
+```
+
+### its(:internet_gateway_id)
 ## <a name="ses_send_quota">ses_send_quota</a>
 
 SesSendQuota resource type.

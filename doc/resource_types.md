@@ -2230,30 +2230,6 @@ end
 ```
 
 
-### be_issued
-
-```ruby
-describe acm('example.com') do
-  it { should be_issued }
-end
-```
-
+### be_pending_validation, be_issued, be_inactive, be_expired, be_validation_timed_out, be_revoked, be_failed
 
 ### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:domain_validation_options), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary)
-### :unlock: Advanced use
-
-`acm` can use `Aws::ACM::Types::CertificateDetail` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/ACM/Types/CertificateDetail.html).
-
-```ruby
-describe acm('example.com') do
-  its(:type) { should eq 'AMAZON_ISSUED' }
-end
-```
-
-or
-
-```ruby
-describe acm('example.com') do
-  its('type') { should eq 'AMAZON_ISSUED' }
-end
-```

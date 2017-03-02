@@ -7,8 +7,10 @@ module Awspec::Generator
           @type_name = 'Acm'
           @type = Awspec::Type::Acm.new('example.com')
           @ret = @type.resource_via_client
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::Acm::STATUSES.map { |status| 'be_' + status.downcase }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::Acm::STATUSES.map { |status| 'be_' + status.downcase }
           @describes = []
         end
       end

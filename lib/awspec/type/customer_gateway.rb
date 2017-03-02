@@ -1,5 +1,5 @@
 module Awspec::Type
-  class CustomerGateway < Resource
+  class CustomerGateway < ResourceBase
     tags_allowed
 
     def initialize(name)

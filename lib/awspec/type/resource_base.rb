@@ -3,7 +3,7 @@ require 'awspec/resource_reader'
 require 'awspec/helper/finder'
 
 module Awspec::Type
-  class Resource < Base
+  class ResourceBase < Base
     attr_reader :id, :resource_via_client
 
     def initialize(display_name = nil)

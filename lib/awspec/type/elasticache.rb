@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Elasticache < Resource
+  class Elasticache < ResourceBase
     def initialize(name)
       super
       @display_name = name

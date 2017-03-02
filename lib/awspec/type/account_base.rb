@@ -3,6 +3,6 @@ require 'awspec/resource_reader'
 require 'awspec/helper/finder'
 
 module Awspec::Type
-  class Account < Base
+  class AccountBase < Base
   end
 end

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Subnet < Resource
+  class Subnet < ResourceBase
     aws_resource Aws::EC2::Subnet
     tags_allowed
 

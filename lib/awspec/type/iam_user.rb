@@ -1,5 +1,5 @@
 module Awspec::Type
-  class IamUser < Resource
+  class IamUser < ResourceBase
     aws_resource Aws::IAM::User
 
     def resource_via_client

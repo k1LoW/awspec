@@ -1,5 +1,5 @@
 module Awspec::Type
-  class CloudfrontDistribution < Resource
+  class CloudfrontDistribution < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_cloudfront_distribution(@display_name)
     end

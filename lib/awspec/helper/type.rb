@@ -2,8 +2,8 @@ module Awspec
   module Helper
     module Type
       require 'awspec/type/base'
-      require 'awspec/type/resource'
-      require 'awspec/type/account'
+      require 'awspec/type/resource_base'
+      require 'awspec/type/account_base'
 
       TYPES = %w(
         alb ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
@@ -19,7 +19,7 @@ module Awspec
       TYPES.each do |type|
         require "awspec/type/#{type}"
         define_method type do |*args|
-          if Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::Account'
+          if Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::AccountBase'
             eval "Awspec::Type::#{type.camelize}.new"
           else
             name = args.first

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class EcsService < Resource
+  class EcsService < ResourceBase
     def initialize(service)
       super
       @display_name = service

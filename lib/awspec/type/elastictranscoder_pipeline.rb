@@ -1,5 +1,5 @@
 module Awspec::Type
-  class ElastictranscoderPipeline < Resource
+  class ElastictranscoderPipeline < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_pipeline(@display_name)
     end

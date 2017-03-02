@@ -15,7 +15,7 @@ module Awspec::Generator
       path = 'lib/awspec/type/' + @type.underscore + '.rb'
       content = <<-"EOF"
 module Awspec::Type
-  class #{@type.camelize} < Resource
+  class #{@type.camelize} < ResourceBase
     def resource_via_client
       @resource_via_client ||= # FIXME
     end

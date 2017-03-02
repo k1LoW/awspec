@@ -1,5 +1,5 @@
 module Awspec::Type
-  class SesIdentity < Resource
+  class SesIdentity < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_ses_identity(@display_name)
     end

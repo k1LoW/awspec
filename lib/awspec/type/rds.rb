@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Rds < Resource
+  class Rds < ResourceBase
     aws_resource Aws::RDS::DBInstance
 
     def resource_via_client

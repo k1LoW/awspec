@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Lambda < Resource
+  class Lambda < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_lambda(@display_name)
     end

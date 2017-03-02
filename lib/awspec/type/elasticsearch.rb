@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Elasticsearch < Resource
+  class Elasticsearch < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_elasticsearch_domain(@display_name)
     end

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class IamPolicy < Resource
+  class IamPolicy < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_iam_policy(@display_name)
     end

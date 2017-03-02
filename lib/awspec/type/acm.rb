@@ -8,8 +8,20 @@ module Awspec::Type
       @id = resource_via_client.certificate_arn if resource_via_client
     end
 
-    def issued?
-      resource_via_client.status == 'ISSUED'
+    STATUSES = %w(
+      PENDING_VALIDATION
+      ISSUED
+      INACTIVE
+      EXPIRED
+      VALIDATION_TIMED_OUT
+      REVOKED
+      FAILED
+    )
+
+    STATUSES.each do |status|
+      define_method status.downcase + '?' do
+        resource_via_client.status == status
+      end
     end
   end
 end

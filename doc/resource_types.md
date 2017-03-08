@@ -46,7 +46,6 @@
 | [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
 | [internet_gateway](#internet_gateway)
-| [ses_send_quota](#ses_send_quota)
 
 ## <a name="alb">alb</a>
 
@@ -2217,8 +2216,3 @@ end
 ```
 
 ### its(:internet_gateway_id)
-## <a name="ses_send_quota">ses_send_quota</a>
-
-SesSendQuota resource type.
-
-### its(:max_24_hour_send), its(:max_send_rate), its(:sent_last_24_hours)

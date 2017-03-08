@@ -26,6 +26,12 @@ if defined?(RSpec)
       end
     end
 
+    Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.map do |type|
+      RSpec::Core::RakeTask.new(type) do |t|
+        t.pattern = 'spec/type/' + type + '_spec.rb'
+      end
+    end
+
     RSpec::Core::RakeTask.new(:core) do |t|
       t.pattern = 'spec/core/*_spec.rb'
     end

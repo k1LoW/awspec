@@ -28,6 +28,8 @@ require 'awspec/helper/finder/elastictranscoder'
 require 'awspec/helper/finder/cloudtrail'
 require 'awspec/helper/finder/waf'
 
+require 'awspec/helper/finder/account_attributes'
+
 module Awspec::Helper
   module Finder
     include Awspec::Helper::Finder::Alb
@@ -58,6 +60,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Elastictranscoder
     include Awspec::Helper::Finder::Cloudtrail
     include Awspec::Helper::Finder::Waf
+    include Awspec::Helper::Finder::AccountAttributes
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,

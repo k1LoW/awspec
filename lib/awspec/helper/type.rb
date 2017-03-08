@@ -13,18 +13,30 @@ module Awspec
         network_acl network_interface rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone
         route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
         elastictranscoder_pipeline waf_web_acl customer_gateway vpn_gateway vpn_connection internet_gateway
-        ses_send_quota
+      )
+
+      ACCOUNT_ATTRIBUTES = %w(
+        ec2_account_attributes ses_send_quota
       )
 
       TYPES.each do |type|
         require "awspec/type/#{type}"
         define_method type do |*args|
-          if Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::AccountBase'
-            eval "Awspec::Type::#{type.camelize}.new"
-          else
-            name = args.first
-            eval "Awspec::Type::#{type.camelize}.new(name)"
+          unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::ResourceBase'
+            raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::ResourceBase"
           end
+          name = args.first
+          eval "Awspec::Type::#{type.camelize}.new(name)"
+        end
+      end
+
+      ACCOUNT_ATTRIBUTES.each do |type|
+        require "awspec/type/#{type}"
+        define_method type do |*args|
+          unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::AccountBase'
+            raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountBase"
+          end
+          eval "Awspec::Type::#{type.camelize}.new(*args)"
         end
       end
 

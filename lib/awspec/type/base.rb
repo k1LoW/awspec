@@ -6,6 +6,7 @@ module Awspec::Type
   class Base
     include Awspec::Helper::Finder
     include Awspec::BlackListForwardable
+    attr_accessor :account
 
     def to_s
       type = self.class.name.demodulize.underscore
@@ -14,10 +15,6 @@ module Awspec::Type
 
     def inspect
       to_s
-    end
-
-    def resource_via_client
-      raise 'this method must be override!'
     end
 
     def self.tags_allowed
@@ -33,7 +30,8 @@ module Awspec::Type
     end
 
     def method_missing(name)
-      describe = name.to_sym
+      name = name.to_s if name.class == Symbol
+      describe = name.tr('-', '_').to_sym
       if resource_via_client.members.include?(describe)
         resource_via_client[describe]
       else

@@ -16,7 +16,12 @@ end
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
-    task all: ['spec:type', 'spec:core', 'spec:generator_spec', 'spec:generator_doc', 'spec:rubocop']
+    task all: ['spec:type',
+               'spec:account_attributes',
+               'spec:core',
+               'spec:generator_spec',
+               'spec:generator_doc',
+               'spec:rubocop']
 
     task type: types
 
@@ -26,10 +31,8 @@ if defined?(RSpec)
       end
     end
 
-    Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.map do |type|
-      RSpec::Core::RakeTask.new(type) do |t|
-        t.pattern = 'spec/type/' + type + '_spec.rb'
-      end
+    RSpec::Core::RakeTask.new(:account_attributes) do |t|
+      t.pattern = 'spec/type/account_attributes_spec.rb'
     end
 
     RSpec::Core::RakeTask.new(:core) do |t|

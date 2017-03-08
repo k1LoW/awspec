@@ -3,7 +3,7 @@ module Awspec
     module Type
       require 'awspec/type/base'
       require 'awspec/type/resource_base'
-      require 'awspec/type/account_base'
+      require 'awspec/type/account_attribute_base'
       require 'awspec/type/account_attributes'
 
       TYPES = %w(
@@ -33,11 +33,12 @@ module Awspec
 
       ACCOUNT_ATTRIBUTES.each do |type|
         require "awspec/type/#{type}"
-        define_method type do |*args|
-          unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::AccountBase'
-            raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountBase"
+        define_method type do
+          unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s \
+                 == 'Awspec::Type::AccountAttributeBase'
+            raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountAttributeBase"
           end
-          eval "Awspec::Type::#{type.camelize}.new(*args)"
+          eval "Awspec::Type::#{type.camelize}.new"
         end
       end
 

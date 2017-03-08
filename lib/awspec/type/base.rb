@@ -8,6 +8,10 @@ module Awspec::Type
     include Awspec::BlackListForwardable
     attr_accessor :account
 
+    def resource_via_client
+      raise 'this method must be override!'
+    end
+
     def to_s
       type = self.class.name.demodulize.underscore
       "#{type} '#{@display_name}'"

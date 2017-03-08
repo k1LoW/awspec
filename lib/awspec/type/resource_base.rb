@@ -15,10 +15,6 @@ module Awspec::Type
       raise 'this method must be override!'
     end
 
-    def resource_via_client
-      raise 'this method must be override!'
-    end
-
     def self.aws_resource(resource)
       define_method :resource do
         @resource ||= Awspec::ResourceReader.new(resource.new(id))

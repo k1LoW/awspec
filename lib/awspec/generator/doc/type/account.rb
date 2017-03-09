@@ -1,15 +1,19 @@
 module Awspec::Generator
   module Doc
     module Type
-      class SesSendQuota < AccountAttributeBase
+      class Account < Base
         def initialize
           super
-          @type_name = 'SesSendQuota'
-          @type = Awspec::Type::SesSendQuota.new
+          @type_name = 'Account'
+          @type = Awspec::Type::Account.new
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
           @describes = []
+        end
+
+        def generate_doc
+          '@TODO' + "\n"
         end
       end
     end

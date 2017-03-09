@@ -1,5 +1,5 @@
 require 'spec_helper'
-Awspec::Stub.load 'account_attributes'
+Awspec::Stub.load 'account'
 
 describe 'account resource type' do
   describe account do

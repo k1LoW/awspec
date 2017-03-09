@@ -19,6 +19,21 @@ EOF
         types.map do |type|
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
         end
+
+        # account and attributes
+        attributes = Awspec::Helper::Type::ACCOUNT_ATTRIBUTES
+
+        doc += <<-'EOF'
+
+# Account and Attributes
+
+EOF
+        doc += Awspec::Generator::Doc::Type::Account.new.generate_doc
+
+        attributes.map do |type|
+          doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
+        end
+
         doc.sub(/\n*\z/, '')
       end
     end

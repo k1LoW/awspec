@@ -26,9 +26,14 @@ require 'awspec/generator/spec/iam_role'
 # Doc
 require 'awspec/generator/doc/type'
 require 'awspec/generator/doc/type/base'
+require 'awspec/generator/doc/type/account_attribute_base'
 Awspec::Helper::Type::TYPES.each do |type|
   require 'awspec/generator/doc/type/' + type
 end
+Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
+  require 'awspec/generator/doc/type/' + type
+end
+require 'awspec/generator/doc/type/account'
 
 # Template
 require 'awspec/generator/template'

@@ -4,7 +4,7 @@ module Awspec::Generator
       class SesSendQuota < AccountAttributeBase
         def initialize
           super
-          @type_name = 'SesSendQuota'
+          @type_name = 'SES Send Quota'
           @type = Awspec::Type::SesSendQuota.new
           @ret = @type.resource_via_client
           @matchers = []

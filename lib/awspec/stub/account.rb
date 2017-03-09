@@ -57,6 +57,59 @@ Aws.config[:ec2] = {
     }
   }
 }
+Aws.config[:rds] = {
+  stub_responses: {
+    describe_account_attributes: {
+      account_quotas: [
+        {
+          account_quota_name: 'DBInstances', used: 0, max: 40
+        },
+        {
+          account_quota_name: 'ReservedDBInstances', used: 0, max: 40
+        },
+        {
+          account_quota_name: 'AllocatedStorage', used: 0, max: 100_000
+        },
+        {
+          account_quota_name: 'DBSecurityGroups', used: 0, max: 25
+        },
+        {
+          account_quota_name: 'AuthorizationsPerDBSecurityGroup', used: 0, max: 20
+        },
+        {
+          account_quota_name: 'DBParameterGroups', used: 1, max: 50
+        },
+        {
+          account_quota_name: 'ManualSnapshots', used: 0, max: 100
+        },
+        {
+          account_quota_name: 'EventSubscriptions', used: 0, max: 20
+        },
+        {
+          account_quota_name: 'DBSubnetGroups', used: 1, max: 50
+        },
+        {
+          account_quota_name: 'OptionGroups', used: 0, max: 20
+        },
+        {
+          account_quota_name: 'SubnetsPerDBSubnetGroup', used: 2, max: 20
+        },
+        {
+          account_quota_name: 'ReadReplicasPerMaster', used: 0, max: 5
+        },
+        {
+          account_quota_name: 'DBClusters', used: 0, max: 40
+        },
+        {
+          account_quota_name: 'DBClusterParameterGroups', used: 0, max: 50
+        },
+        {
+          account_quota_name: 'DBClusterRoles', used: 0, max: 5
+        }
+      ]
+    }
+  }
+}
 Aws.config[:ses] = {
   stub_responses: {
     get_send_quota: {

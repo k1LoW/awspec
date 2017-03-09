@@ -17,7 +17,7 @@ module Awspec
       )
 
       ACCOUNT_ATTRIBUTES = %w(
-        ec2_account_attributes ses_send_quota
+        ec2_account_attributes rds_account_attributes ses_send_quota
       )
 
       TYPES.each do |type|

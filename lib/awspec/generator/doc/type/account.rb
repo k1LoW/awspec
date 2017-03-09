@@ -29,6 +29,10 @@ describe account do
   its('<%= key %>.<%= attribute %>') { should eq <%= @ret[key][attribute] %> }
 <%- elsif @ret[key][attribute].is_a?(String) -%>
   its('<%= key %>.<%= attribute %>') { should eq '<%= @ret[key][attribute] %>' }
+<%- elsif @ret[key][attribute].is_a?(Struct) -%>
+<% @ret[key][attribute].members.each do |k| %>
+  its('<%= key %>.<%= attribute %>.<%= k %>') { should eq <%= @ret[key][attribute][k] %> }
+<% end %>
 <%- else -%>
   its('<%= key %>.<%= attribute %>') { should eq <%= @ret[key][attribute] %> }
 <%- end -%>

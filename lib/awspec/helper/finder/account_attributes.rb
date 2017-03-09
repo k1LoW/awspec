@@ -22,8 +22,23 @@ module Awspec::Helper
         attributes.to_struct
       end
 
+      def find_rds_account_attributes
+        attributes = {}
+        rds_client.describe_account_attributes.account_quotas.each do |attr|
+          values = {
+            used: attr[:used],
+            max: attr[:max]
+          }
+          attributes[attr[:account_quota_name].to_sym] = values.to_struct
+        end
+        attributes.to_struct
+      end
+
       def find_ses_send_quota
         ses_client.get_send_quota
+      rescue
+        # Aws::Errors::NoSuchEndpointError
+        nil
       end
     end
   end

@@ -20,7 +20,7 @@ module Awspec::Generator
           end
           @describes += @ret.members.select do |describe|
             if @ret[describe].is_a?(Array)
-              next true unless @ret[describe].first.is_a?(Array) || @ret[describe].first.is_a?(Hash) || @ret[describe].first.is_a?(Struct)
+              next true unless @ret[describe].first.is_a?(Array) || @ret[describe].first.is_a?(Hash) || @ret[describe].first.is_a?(Struct) # rubocop:disable Metrics/LineLength
             else
               next true unless @ret[describe].is_a?(Hash) || @ret[describe].is_a?(Struct)
             end

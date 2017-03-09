@@ -2234,6 +2234,36 @@ describe account do
   its('ec2.max_instances') { should eq 20 }
   its('ec2.vpc_max_elastic_ips') { should eq 5 }
   its('ec2.default_vpc') { should eq 'none' }
+  its('rds.DBInstances.used') { should eq 0 }
+  its('rds.DBInstances.max') { should eq 40 }
+  its('rds.ReservedDBInstances.used') { should eq 0 }
+  its('rds.ReservedDBInstances.max') { should eq 40 }
+  its('rds.AllocatedStorage.used') { should eq 0 }
+  its('rds.AllocatedStorage.max') { should eq 100000 }
+  its('rds.DBSecurityGroups.used') { should eq 0 }
+  its('rds.DBSecurityGroups.max') { should eq 25 }
+  its('rds.AuthorizationsPerDBSecurityGroup.used') { should eq 0 }
+  its('rds.AuthorizationsPerDBSecurityGroup.max') { should eq 20 }
+  its('rds.DBParameterGroups.used') { should eq 1 }
+  its('rds.DBParameterGroups.max') { should eq 50 }
+  its('rds.ManualSnapshots.used') { should eq 0 }
+  its('rds.ManualSnapshots.max') { should eq 100 }
+  its('rds.EventSubscriptions.used') { should eq 0 }
+  its('rds.EventSubscriptions.max') { should eq 20 }
+  its('rds.DBSubnetGroups.used') { should eq 1 }
+  its('rds.DBSubnetGroups.max') { should eq 50 }
+  its('rds.OptionGroups.used') { should eq 0 }
+  its('rds.OptionGroups.max') { should eq 20 }
+  its('rds.SubnetsPerDBSubnetGroup.used') { should eq 2 }
+  its('rds.SubnetsPerDBSubnetGroup.max') { should eq 20 }
+  its('rds.ReadReplicasPerMaster.used') { should eq 0 }
+  its('rds.ReadReplicasPerMaster.max') { should eq 5 }
+  its('rds.DBClusters.used') { should eq 0 }
+  its('rds.DBClusters.max') { should eq 40 }
+  its('rds.DBClusterParameterGroups.used') { should eq 0 }
+  its('rds.DBClusterParameterGroups.max') { should eq 50 }
+  its('rds.DBClusterRoles.used') { should eq 0 }
+  its('rds.DBClusterRoles.max') { should eq 5 }
   its('ses_send_quota.max_24_hour_send') { should eq 200.0 }
   its('ses_send_quota.max_send_rate') { should eq 1.0 }
   its('ses_send_quota.sent_last_24_hours') { should eq 1.0 }
@@ -2242,13 +2272,19 @@ end
 
 
 [ec2_account_attributes](#ec2_account_attributes)
-| [ses_send_quota](#ses_send_quota)## <a name="ec2_account_attributes">ec2_account_attributes</a>
+| [rds_account_attributes](#rds_account_attributes)
+| [ses_send_quota](#ses_send_quota)## <a name="ec2">ec2</a>
 
-Ec2AccountAttributes account attributes.
+EC2 account attributes.
 
 ### its(:supported_platforms), its(:vpc_max_security_groups_per_interface), its(:max_elastic_ips), its(:max_instances), its(:vpc_max_elastic_ips), its(:default_vpc)
+## <a name="rds">rds</a>
+
+RDS account attributes.
+
+
 ## <a name="ses_send_quota">ses_send_quota</a>
 
-SesSendQuota account attributes.
+SES Send Quota account attributes.
 
 ### its(:max_24_hour_send), its(:max_send_rate), its(:sent_last_24_hours)

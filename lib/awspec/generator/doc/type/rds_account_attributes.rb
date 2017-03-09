@@ -1,11 +1,11 @@
 module Awspec::Generator
   module Doc
     module Type
-      class Ec2AccountAttributes < AccountAttributeBase
+      class RdsAccountAttributes < AccountAttributeBase
         def initialize
           super
-          @type_name = 'EC2'
-          @type = Awspec::Type::Ec2AccountAttributes.new
+          @type_name = 'RDS'
+          @type = Awspec::Type::RdsAccountAttributes.new
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []

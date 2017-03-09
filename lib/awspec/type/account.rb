@@ -4,6 +4,10 @@ module Awspec::Type
       attributes = sts_client.get_caller_identity.to_h
       Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
         key = type.gsub(/_account_attributes/, '').to_sym
+        if key == 'ses_send_quota'
+          # https://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html
+          next unless ['us-east-1', 'us-west-2', 'eu-west-1'].include?(Aws.config[:region])
+        end
         eval "attributes[key] = Awspec::Type::#{type.camelize}.new.resource_via_client"
       end
       @resource_via_client ||= attributes.to_struct

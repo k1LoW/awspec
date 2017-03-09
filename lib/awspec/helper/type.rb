@@ -5,6 +5,7 @@ module Awspec
       require 'awspec/type/resource_base'
       require 'awspec/type/account_attribute_base'
       require 'awspec/type/account'
+      require 'awspec/type/account_attribute'
 
       TYPES = %w(
         alb ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
@@ -44,6 +45,10 @@ module Awspec
 
       def account
         Awspec::Type::Account.new
+      end
+
+      def account_attribute(key)
+        Awspec::Type::AccountAttribute.new(key)
       end
 
       def self.deprecate_resource_type(old_type, new_type)

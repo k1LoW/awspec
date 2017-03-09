@@ -34,6 +34,7 @@ Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
   require 'awspec/generator/doc/type/' + type
 end
 require 'awspec/generator/doc/type/account'
+require 'awspec/generator/doc/type/account_attribute'
 
 # Template
 require 'awspec/generator/template'

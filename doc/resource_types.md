@@ -46,6 +46,7 @@
 | [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
 | [internet_gateway](#internet_gateway)
+| [account](#account)
 
 ## <a name="alb">alb</a>
 
@@ -2216,7 +2217,6 @@ end
 ```
 
 ### its(:internet_gateway_id)
-
 # Account and Attributes
 
 ## <a name="account">account</a>
@@ -2271,9 +2271,70 @@ end
 ```
 
 
+## :unlock: Another way: Test with account_attribute type
+
+## <a name="account_attribute">account_attribute</a>
+
+Account Attribute resource type.
+
+```ruby
+describe account_attribute('ec2') do
+  its('supported_platforms') { should eq ["EC2", "VPC"] }
+  its('vpc_max_security_groups_per_interface') { should eq 5 }
+  its('max_elastic_ips') { should eq 5 }
+  its('max_instances') { should eq 20 }
+  its('vpc_max_elastic_ips') { should eq 5 }
+  its('default_vpc') { should eq 'none' }
+end
+ 
+describe account_attribute('rds') do
+  its('DBInstances.used') { should eq 0 }
+  its('DBInstances.max') { should eq 40 }
+  its('ReservedDBInstances.used') { should eq 0 }
+  its('ReservedDBInstances.max') { should eq 40 }
+  its('AllocatedStorage.used') { should eq 0 }
+  its('AllocatedStorage.max') { should eq 100000 }
+  its('DBSecurityGroups.used') { should eq 0 }
+  its('DBSecurityGroups.max') { should eq 25 }
+  its('AuthorizationsPerDBSecurityGroup.used') { should eq 0 }
+  its('AuthorizationsPerDBSecurityGroup.max') { should eq 20 }
+  its('DBParameterGroups.used') { should eq 1 }
+  its('DBParameterGroups.max') { should eq 50 }
+  its('ManualSnapshots.used') { should eq 0 }
+  its('ManualSnapshots.max') { should eq 100 }
+  its('EventSubscriptions.used') { should eq 0 }
+  its('EventSubscriptions.max') { should eq 20 }
+  its('DBSubnetGroups.used') { should eq 1 }
+  its('DBSubnetGroups.max') { should eq 50 }
+  its('OptionGroups.used') { should eq 0 }
+  its('OptionGroups.max') { should eq 20 }
+  its('SubnetsPerDBSubnetGroup.used') { should eq 2 }
+  its('SubnetsPerDBSubnetGroup.max') { should eq 20 }
+  its('ReadReplicasPerMaster.used') { should eq 0 }
+  its('ReadReplicasPerMaster.max') { should eq 5 }
+  its('DBClusters.used') { should eq 0 }
+  its('DBClusters.max') { should eq 40 }
+  its('DBClusterParameterGroups.used') { should eq 0 }
+  its('DBClusterParameterGroups.max') { should eq 50 }
+  its('DBClusterRoles.used') { should eq 0 }
+  its('DBClusterRoles.max') { should eq 5 }
+end
+ 
+describe account_attribute('ses_send_quota') do
+  its('max_24_hour_send') { should eq 200.0 }
+  its('max_send_rate') { should eq 1.0 }
+  its('sent_last_24_hours') { should eq 1.0 }
+end
+ 
+```
+
+
+## :unlock: Another way: Test with separated resource types
+
 [ec2_account_attributes](#ec2_account_attributes)
 | [rds_account_attributes](#rds_account_attributes)
-| [ses_send_quota](#ses_send_quota)## <a name="ec2">ec2</a>
+| [ses_send_quota](#ses_send_quota)
+## <a name="ec2">ec2</a>
 
 EC2 account attributes.
 

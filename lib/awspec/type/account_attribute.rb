@@ -7,9 +7,9 @@ module Awspec::Type
     def resource_via_client
       attributes = nil
       Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
-        key = type.gsub(/_account_attributes/, '').to_sym
+        key = type.gsub(Awspec::Type::Account::REMOVE_SUFFIX_RE, '').to_sym
         next unless key == @key
-        if key == 'ses_send_quota'
+        if key == 'ses'
           # https://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html
           next unless ['us-east-1', 'us-west-2', 'eu-west-1'].include?(Aws.config[:region])
         end

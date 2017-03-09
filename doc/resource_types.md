@@ -3,9 +3,11 @@
 [alb](#alb)
 | [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
+| [cloudfront_distribution](#cloudfront_distribution)
 | [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [cloudwatch_event](#cloudwatch_event)
+| [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
 | [ec2](#ec2)
@@ -18,11 +20,13 @@
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
+| [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 | [elb](#elb)
 | [iam_group](#iam_group)
 | [iam_policy](#iam_policy)
 | [iam_role](#iam_role)
 | [iam_user](#iam_user)
+| [internet_gateway](#internet_gateway)
 | [kms](#kms)
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
@@ -39,13 +43,9 @@
 | [ses_identity](#ses_identity)
 | [subnet](#subnet)
 | [vpc](#vpc)
-| [cloudfront_distribution](#cloudfront_distribution)
-| [elastictranscoder_pipeline](#elastictranscoder_pipeline)
-| [waf_web_acl](#waf_web_acl)
-| [customer_gateway](#customer_gateway)
-| [vpn_gateway](#vpn_gateway)
 | [vpn_connection](#vpn_connection)
-| [internet_gateway](#internet_gateway)
+| [vpn_gateway](#vpn_gateway)
+| [waf_web_acl](#waf_web_acl)
 | [account](#account)
 
 ## <a name="alb">alb</a>
@@ -2264,9 +2264,9 @@ describe account do
   its('rds.DBClusterParameterGroups.max') { should eq 50 }
   its('rds.DBClusterRoles.used') { should eq 0 }
   its('rds.DBClusterRoles.max') { should eq 5 }
-  its('ses_send_quota.max_24_hour_send') { should eq 200.0 }
-  its('ses_send_quota.max_send_rate') { should eq 1.0 }
-  its('ses_send_quota.sent_last_24_hours') { should eq 1.0 }
+  its('ses.max_24_hour_send') { should eq 200.0 }
+  its('ses.max_send_rate') { should eq 1.0 }
+  its('ses.sent_last_24_hours') { should eq 1.0 }
 end
 ```
 
@@ -2320,7 +2320,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.max') { should eq 5 }
 end
  
-describe account_attribute('ses_send_quota') do
+describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }

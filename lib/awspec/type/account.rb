@@ -1,10 +1,14 @@
 module Awspec::Type
   class Account < Base
+    REMOVE_SUFFIX_RE = /
+    _account_attributes|_send_quota
+    /ix
+
     def resource_via_client
       attributes = sts_client.get_caller_identity.to_h
       Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
-        key = type.gsub(/_account_attributes/, '').to_sym
-        if key == 'ses_send_quota'
+        key = type.gsub(REMOVE_SUFFIX_RE, '').to_sym
+        if key == 'ses'
           # https://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html
           next unless ['us-east-1', 'us-west-2', 'eu-west-1'].include?(Aws.config[:region])
         end

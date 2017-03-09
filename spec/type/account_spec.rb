@@ -8,9 +8,9 @@ describe 'Use `account` type' do
     its('rds.DBInstances.used') { should eq 0 }
     its('rds.DBInstances.max') { should eq 40 }
     its('rds.ReservedDBInstances.used') { should eq 0 }
-    its('ses_send_quota.max_24_hour_send') { should eq 200.0 }
-    its('ses_send_quota.max_send_rate') { should eq 1.0 }
-    its('ses_send_quota.sent_last_24_hours') { should eq 1.0 }
+    its('ses.max_24_hour_send') { should eq 200.0 }
+    its('ses.max_send_rate') { should eq 1.0 }
+    its('ses.sent_last_24_hours') { should eq 1.0 }
   end
 end
 
@@ -25,7 +25,7 @@ describe 'Use `account_attribute` type' do
     its('DBInstances.max') { should eq 40 }
   end
 
-  describe account_attribute('ses_send_quota'), region: 'us-east-1' do
+  describe account_attribute('ses'), region: 'us-east-1' do
     its(:max_24_hour_send) { should eq 200.0 }
     its(:max_send_rate) { should eq 1.0 }
     its(:sent_last_24_hours) { should eq 1.0 }

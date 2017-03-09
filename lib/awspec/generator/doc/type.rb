@@ -1,11 +1,12 @@
 module Awspec::Generator
   module Doc
     module Type
+      # rubocop:disable Metrics/MethodLength
       def self.generate_doc
         Aws.config[:stub_responses] = true
         types = Awspec::Helper::Type::TYPES
         types.delete('base')
-        links = types.map do |type|
+        links = types.sort.map do |type|
           '[' + type + '](#' + type + ')'
         end
         links.push('[account](#account)') # add account

@@ -36,7 +36,7 @@ describe account_attribute('<%= key %>') do
 <%- end -%>
 <% end %>
 end
- 
+<%= ' ' %>
 <% end %>
 EOF
           template

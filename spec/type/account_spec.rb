@@ -1,8 +1,8 @@
 require 'spec_helper'
 Awspec::Stub.load 'account_attributes'
 
-describe 'account_attributes resource type' do
-  describe account_attributes do
+describe 'account resource type' do
+  describe account do
     its('ec2.supported_platforms') { should include 'VPC' }
     its('ec2.max_instances') { should eq 20 }
     its('ses_send_quota.max_24_hour_send') { should eq 200.0 }

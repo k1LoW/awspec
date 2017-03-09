@@ -1,5 +1,5 @@
 module Awspec::Type
-  class AccountAttributes < Base
+  class Account < Base
     def resource_via_client
       attributes = {}
       Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|

@@ -1,5 +1,3 @@
-require 'pp'
-
 module Awspec::Generator
   module Doc
     module Type

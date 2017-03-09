@@ -30,6 +30,12 @@ EOF
 EOF
         doc += Awspec::Generator::Doc::Type::Account.new.generate_doc
 
+        links = attributes.map do |type|
+          '[' + type + '](#' + type + ')'
+        end
+
+        doc += links.join("\n| ")
+
         attributes.map do |type|
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
         end

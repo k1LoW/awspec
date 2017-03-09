@@ -14,10 +14,42 @@ Aws.config[:ec2] = {
           ]
         },
         {
+          attribute_name: 'vpc-max-security-groups-per-interface',
+          attribute_values: [
+            {
+              attribute_value: '5'
+            }
+          ]
+        },
+        {
+          attribute_name: 'max-elastic-ips',
+          attribute_values: [
+            {
+              attribute_value: '5'
+            }
+          ]
+        },
+        {
           attribute_name: 'max-instances',
           attribute_values: [
             {
               attribute_value: '20'
+            }
+          ]
+        },
+        {
+          attribute_name: 'vpc-max-elastic-ips',
+          attribute_values: [
+            {
+              attribute_value: '5'
+            }
+          ]
+        },
+        {
+          attribute_name: 'default-vpc',
+          attribute_values: [
+            {
+              attribute_value: 'none'
             }
           ]
         }

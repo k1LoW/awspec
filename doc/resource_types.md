@@ -2219,14 +2219,36 @@ end
 
 # Account and Attributes
 
-@TODO
-## <a name="ec2_account_attributes">ec2_account_attributes</a>
+## <a name="account">account</a>
 
-Ec2AccountAttributes resource type.
+Account resource type.
 
-### its(:supported_platforms), its(:max_instances)
+```ruby
+describe account do
+  its(:user_id) { should eq 'AKIAI44QH8DHBEXAMPLE' }
+  its(:account) { should eq '123456789012' }
+  its(:arn) { should eq 'arn:aws:iam::123456789012:user/Alice' }
+  its('ec2.supported_platforms') { should eq ["EC2", "VPC"] }
+  its('ec2.vpc_max_security_groups_per_interface') { should eq 5 }
+  its('ec2.max_elastic_ips') { should eq 5 }
+  its('ec2.max_instances') { should eq 20 }
+  its('ec2.vpc_max_elastic_ips') { should eq 5 }
+  its('ec2.default_vpc') { should eq 'none' }
+  its('ses_send_quota.max_24_hour_send') { should eq 200.0 }
+  its('ses_send_quota.max_send_rate') { should eq 1.0 }
+  its('ses_send_quota.sent_last_24_hours') { should eq 1.0 }
+end
+```
+
+
+[ec2_account_attributes](#ec2_account_attributes)
+| [ses_send_quota](#ses_send_quota)## <a name="ec2_account_attributes">ec2_account_attributes</a>
+
+Ec2AccountAttributes account attributes.
+
+### its(:supported_platforms), its(:vpc_max_security_groups_per_interface), its(:max_elastic_ips), its(:max_instances), its(:vpc_max_elastic_ips), its(:default_vpc)
 ## <a name="ses_send_quota">ses_send_quota</a>
 
-SesSendQuota resource type.
+SesSendQuota account attributes.
 
 ### its(:max_24_hour_send), its(:max_send_rate), its(:sent_last_24_hours)

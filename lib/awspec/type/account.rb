@@ -1,12 +1,16 @@
 module Awspec::Type
   class Account < Base
     def resource_via_client
-      attributes = {}
+      attributes = sts_client.get_caller_identity.to_h
       Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
         key = type.gsub(/_account_attributes/, '').to_sym
         eval "attributes[key] = Awspec::Type::#{type.camelize}.new.resource_via_client"
       end
       @resource_via_client ||= attributes.to_struct
+    end
+
+    def id
+      @id ||= sts_client.get_caller_identity.account
     end
 
     def method_missing(name)

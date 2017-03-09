@@ -4,7 +4,7 @@ module Awspec::Generator
       class Ec2AccountAttributes < AccountAttributeBase
         def initialize
           super
-          @type_name = 'EC2'
+          @type_name = 'Ec2AccountAttributes'
           @type = Awspec::Type::Ec2AccountAttributes.new
           @ret = @type.resource_via_client
           @matchers = []

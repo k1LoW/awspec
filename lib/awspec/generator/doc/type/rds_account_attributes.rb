@@ -4,7 +4,7 @@ module Awspec::Generator
       class RdsAccountAttributes < AccountAttributeBase
         def initialize
           super
-          @type_name = 'RDS'
+          @type_name = 'RdsAccountAttributes'
           @type = Awspec::Type::RdsAccountAttributes.new
           @ret = @type.resource_via_client
           @matchers = []

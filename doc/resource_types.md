@@ -2367,14 +2367,14 @@ end
 | [rds_account_attributes](#rds_account_attributes)
 | [lambda_account_settings](#lambda_account_settings)
 | [ses_send_quota](#ses_send_quota)
-## <a name="ec2">ec2</a>
+## <a name="ec2_account_attributes">ec2_account_attributes</a>
 
-EC2 account attributes.
+Ec2AccountAttributes account attributes.
 
 ### its(:supported_platforms), its(:vpc_max_security_groups_per_interface), its(:max_elastic_ips), its(:max_instances), its(:vpc_max_elastic_ips), its(:default_vpc)
-## <a name="rds">rds</a>
+## <a name="rds_account_attributes">rds_account_attributes</a>
 
-RDS account attributes.
+RdsAccountAttributes account attributes.
 
 
 ## <a name="lambda_account_settings">lambda_account_settings</a>
@@ -2384,6 +2384,14 @@ LambdaAccountSettings account attributes.
 
 ## <a name="ses_send_quota">ses_send_quota</a>
 
-SES Send Quota account attributes.
+SesSendQuota account attributes.
+
+```ruby
+describe ses_send_quota do
+  its(:max_24_hour_send) { should eq 200.0 }
+  its(:max_send_rate) { should eq 1.0 }
+  its(:sent_last_24_hours) { should eq 1.0 }
+end
+```
 
 ### its(:max_24_hour_send), its(:max_send_rate), its(:sent_last_24_hours)

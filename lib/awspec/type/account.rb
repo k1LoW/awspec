@@ -1,7 +1,7 @@
 module Awspec::Type
   class Account < Base
     REMOVE_SUFFIX_RE = /
-    _account_attributes|_send_quota
+    _account_attributes|_account_settings|_send_quota
     /ix
 
     def resource_via_client
@@ -19,6 +19,10 @@ module Awspec::Type
 
     def id
       @id ||= sts_client.get_caller_identity.account
+    end
+
+    def lambda
+      resource_via_client[:lambda]
     end
 
     def method_missing(name)

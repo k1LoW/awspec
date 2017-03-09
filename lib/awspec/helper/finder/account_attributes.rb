@@ -34,6 +34,22 @@ module Awspec::Helper
         attributes.to_struct
       end
 
+      def find_lambda_account_settings
+        attributes = {}
+        settings = lambda_client.get_account_settings
+        settings.account_limit.members.each do |key|
+          attributes[key] = { limit: settings.account_limit[key] }
+        end
+        settings.account_usage.members.each do |key|
+          if attributes.include?(key)
+            attributes[key][:usage] = settings.account_usage[key]
+          else
+            attributes[key] = { usage: settings.account_usage[key] }
+          end
+        end
+        attributes.to_struct
+      end
+
       def find_ses_send_quota
         ses_client.get_send_quota
       rescue

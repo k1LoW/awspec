@@ -6,8 +6,13 @@ module Awspec
     end
 
     desc 'template [resource_type_name]', 'Generate template files'
+    option :account_attribute, type: :boolean, default: false, aliases: :a
     def template(type)
-      puts Awspec::Generator::Template.generate(type)
+      if options[:account_attribute]
+        puts Awspec::Generator::Template.generate_account_attribute(type)
+      else
+        puts Awspec::Generator::Template.generate(type)
+      end
     end
   end
 end

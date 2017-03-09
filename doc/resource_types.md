@@ -2281,6 +2281,12 @@ describe account do
   its('rds.DBClusterParameterGroups.max') { should eq 50 }
   its('rds.DBClusterRoles.used') { should eq 0 }
   its('rds.DBClusterRoles.max') { should eq 5 }
+  its('lambda.total_code_size.limit') { should eq 80530636800 }
+  its('lambda.total_code_size.usage') { should eq 2034651562 }
+  its('lambda.code_size_unzipped.limit') { should eq 262144000 }
+  its('lambda.code_size_zipped.limit') { should eq 52428800 }
+  its('lambda.concurrent_executions.limit') { should eq 200 }
+  its('lambda.function_count.usage') { should eq 8 }
   its('ses.max_24_hour_send') { should eq 200.0 }
   its('ses.max_send_rate') { should eq 1.0 }
   its('ses.sent_last_24_hours') { should eq 1.0 }
@@ -2337,6 +2343,15 @@ describe account_attribute('rds') do
   its('DBClusterRoles.max') { should eq 5 }
 end
  
+describe account_attribute('lambda') do
+  its('total_code_size.limit') { should eq 80530636800 }
+  its('total_code_size.usage') { should eq 2034651562 }
+  its('code_size_unzipped.limit') { should eq 262144000 }
+  its('code_size_zipped.limit') { should eq 52428800 }
+  its('concurrent_executions.limit') { should eq 200 }
+  its('function_count.usage') { should eq 8 }
+end
+ 
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
@@ -2350,6 +2365,7 @@ end
 
 [ec2_account_attributes](#ec2_account_attributes)
 | [rds_account_attributes](#rds_account_attributes)
+| [lambda_account_settings](#lambda_account_settings)
 | [ses_send_quota](#ses_send_quota)
 ## <a name="ec2">ec2</a>
 
@@ -2359,6 +2375,11 @@ EC2 account attributes.
 ## <a name="rds">rds</a>
 
 RDS account attributes.
+
+
+## <a name="lambda_account_settings">lambda_account_settings</a>
+
+LambdaAccountSettings account attributes.
 
 
 ## <a name="ses_send_quota">ses_send_quota</a>

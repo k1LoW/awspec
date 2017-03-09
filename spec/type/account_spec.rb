@@ -8,6 +8,9 @@ describe 'Use `account` type' do
     its('rds.DBInstances.used') { should eq 0 }
     its('rds.DBInstances.max') { should eq 40 }
     its('rds.ReservedDBInstances.used') { should eq 0 }
+    its('lambda.total_code_size.limit') { should eq 80_530_636_800 }
+    its('lambda.total_code_size.usage') { should eq 2_034_651_562 }
+    its('lambda.function_count.usage') { should eq 8 }
     its('ses.max_24_hour_send') { should eq 200.0 }
     its('ses.max_send_rate') { should eq 1.0 }
     its('ses.sent_last_24_hours') { should eq 1.0 }
@@ -23,6 +26,12 @@ describe 'Use `account_attribute` type' do
   describe account_attribute('rds') do
     its('DBInstances.used') { should eq 0 }
     its('DBInstances.max') { should eq 40 }
+  end
+
+  describe account_attribute('lambda') do
+    its('total_code_size.limit') { should eq 80_530_636_800 }
+    its('total_code_size.usage') { should eq 2_034_651_562 }
+    its('function_count.usage') { should eq 8 }
   end
 
   describe account_attribute('ses'), region: 'us-east-1' do
@@ -41,6 +50,12 @@ describe 'Use separated attribute types' do
   describe rds_account_attributes do
     its('DBInstances.used') { should eq 0 }
     its('DBInstances.max') { should eq 40 }
+  end
+
+  describe lambda_account_settings do
+    its('total_code_size.limit') { should eq 80_530_636_800 }
+    its('total_code_size.usage') { should eq 2_034_651_562 }
+    its('function_count.usage') { should eq 8 }
   end
 
   describe ses_send_quota, region: 'us-east-1' do

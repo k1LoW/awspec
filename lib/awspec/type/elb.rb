@@ -21,9 +21,10 @@ module Awspec::Type
 
     def has_ec2?(id)
       ec2 = find_ec2(id)
+      return nil unless ec2
       resource_via_client.instances.find do |instance|
         instance.instance_id = ec2.instance_id
-      end if ec2
+      end
     end
 
     def has_security_group?(sg_id)

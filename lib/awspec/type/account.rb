@@ -28,7 +28,7 @@ module Awspec::Type
     def method_missing(name)
       name = name.to_s if name.class == Symbol
       describe = name.tr('-', '_').to_sym
-      return nil unless resource_via_client.members.include?(describe)
+      super unless resource_via_client.members.include?(describe)
       resource_via_client[describe]
     end
   end

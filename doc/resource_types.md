@@ -2371,6 +2371,13 @@ end
 
 Ec2AccountAttributes account attributes.
 
+```ruby
+describe ec2_account_attributes do
+  its(:supported_platforms) { should include 'VPC' }
+  its(:max_instances) { should eq 20 }
+end
+```
+
 ### its(:supported_platforms), its(:vpc_max_security_groups_per_interface), its(:max_elastic_ips), its(:max_instances), its(:vpc_max_elastic_ips), its(:default_vpc)
 ## <a name="rds_account_attributes">rds_account_attributes</a>
 
@@ -2380,6 +2387,15 @@ RdsAccountAttributes account attributes.
 ## <a name="lambda_account_settings">lambda_account_settings</a>
 
 LambdaAccountSettings account attributes.
+
+```ruby
+describe lambda_account_settings do
+  its('total_code_size.limit') { should eq 80_530_636_800 }
+  its('total_code_size.usage') { should eq 2_034_651_562 }
+  its('function_count.usage') { should eq 8 }
+end
+```
+
 
 
 ## <a name="ses_send_quota">ses_send_quota</a>

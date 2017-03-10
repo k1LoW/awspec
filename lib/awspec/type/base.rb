@@ -6,12 +6,10 @@ module Awspec::Type
   class Base
     include Awspec::Helper::Finder
     include Awspec::BlackListForwardable
+    attr_accessor :account
 
-    attr_reader :id, :resource_via_client
-
-    def initialize(display_name = nil)
-      @display_name = display_name
-      @id = nil
+    def resource_via_client
+      raise 'this method must be override!'
     end
 
     def to_s
@@ -21,24 +19,6 @@ module Awspec::Type
 
     def inspect
       to_s
-    end
-
-    def exists?
-      id
-    end
-
-    def id
-      raise 'this method must be override!'
-    end
-
-    def resource_via_client
-      raise 'this method must be override!'
-    end
-
-    def self.aws_resource(resource)
-      define_method :resource do
-        @resource ||= Awspec::ResourceReader.new(resource.new(id))
-      end
     end
 
     def self.tags_allowed
@@ -54,8 +34,9 @@ module Awspec::Type
     end
 
     def method_missing(name)
-      describe = name.to_sym
-      if resource_via_client.members.include?(describe)
+      name_str = name.to_s if name.class == Symbol
+      describe = name_str.tr('-', '_').to_sym
+      if !resource_via_client.nil? && resource_via_client.members.include?(describe)
         resource_via_client[describe]
       else
         super unless self.respond_to?(:resource)

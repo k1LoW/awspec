@@ -16,7 +16,12 @@ end
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
-    task all: ['spec:type', 'spec:core', 'spec:generator_spec', 'spec:generator_doc', 'spec:rubocop']
+    task all: ['spec:type',
+               'spec:account',
+               'spec:core',
+               'spec:generator_spec',
+               'spec:generator_doc',
+               'spec:rubocop']
 
     task type: types
 
@@ -24,6 +29,10 @@ if defined?(RSpec)
       RSpec::Core::RakeTask.new(type) do |t|
         t.pattern = 'spec/type/' + type + '_spec.rb'
       end
+    end
+
+    RSpec::Core::RakeTask.new(:account) do |t|
+      t.pattern = 'spec/type/account_spec.rb'
     end
 
     RSpec::Core::RakeTask.new(:core) do |t|

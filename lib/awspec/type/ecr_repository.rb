@@ -1,5 +1,5 @@
 module Awspec::Type
-  class EcrRepository < Base
+  class EcrRepository < ResourceBase
     aws_resource Aws::ECR::Types::Repository
 
     def initialize(repository_name)

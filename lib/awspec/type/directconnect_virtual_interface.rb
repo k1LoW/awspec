@@ -1,5 +1,5 @@
 module Awspec::Type
-  class DirectconnectVirtualInterface < Base
+  class DirectconnectVirtualInterface < ResourceBase
     def initialize(name)
       super
       @display_name = name

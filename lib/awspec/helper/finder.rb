@@ -29,6 +29,8 @@ require 'awspec/helper/finder/cloudtrail'
 require 'awspec/helper/finder/waf'
 require 'awspec/helper/finder/acm'
 
+require 'awspec/helper/finder/account_attributes'
+
 module Awspec::Helper
   module Finder
     include Awspec::Helper::Finder::Alb
@@ -60,6 +62,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Cloudtrail
     include Awspec::Helper::Finder::Waf
     include Awspec::Helper::Finder::Acm
+    include Awspec::Helper::Finder::AccountAttributes
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -85,6 +88,7 @@ module Awspec::Helper
       elasticsearch_client: Aws::ElasticsearchService::Client,
       cloudtrail_client: Aws::CloudTrail::Client,
       waf_client: Aws::WAF::Client,
+      sts_client: Aws::STS::Client,
       acm_client: Aws::ACM::Client
     }
 

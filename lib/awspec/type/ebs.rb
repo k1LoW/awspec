@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Ebs < Base
+  class Ebs < ResourceBase
     aws_resource Aws::EC2::Volume
     tags_allowed
 

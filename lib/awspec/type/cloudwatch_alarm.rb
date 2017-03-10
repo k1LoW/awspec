@@ -1,5 +1,5 @@
 module Awspec::Type
-  class CloudwatchAlarm < Base
+  class CloudwatchAlarm < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_cloudwatch_alarm(@display_name)
     end

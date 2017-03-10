@@ -2,6 +2,10 @@ module Awspec
   module Helper
     module Type
       require 'awspec/type/base'
+      require 'awspec/type/resource_base'
+      require 'awspec/type/account_attribute_base'
+      require 'awspec/type/account'
+      require 'awspec/type/account_attribute'
 
       TYPES = %w(
         alb ami autoscaling_group cloudtrail cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
@@ -13,12 +17,38 @@ module Awspec
         elastictranscoder_pipeline waf_web_acl customer_gateway vpn_gateway vpn_connection internet_gateway acm
       )
 
+      ACCOUNT_ATTRIBUTES = %w(
+        ec2_account_attributes rds_account_attributes lambda_account_settings ses_send_quota
+      )
+
       TYPES.each do |type|
         require "awspec/type/#{type}"
         define_method type do |*args|
+          unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::ResourceBase'
+            raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::ResourceBase"
+          end
           name = args.first
           eval "Awspec::Type::#{type.camelize}.new(name)"
         end
+      end
+
+      ACCOUNT_ATTRIBUTES.each do |type|
+        require "awspec/type/#{type}"
+        define_method type do
+          unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s \
+                 == 'Awspec::Type::AccountAttributeBase'
+            raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountAttributeBase"
+          end
+          eval "Awspec::Type::#{type.camelize}.new"
+        end
+      end
+
+      def account
+        Awspec::Type::Account.new
+      end
+
+      def account_attribute(key)
+        Awspec::Type::AccountAttribute.new(key)
       end
 
       def self.deprecate_resource_type(old_type, new_type)

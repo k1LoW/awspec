@@ -1,5 +1,5 @@
 module Awspec::Type
-  class AutoscalingGroup < Base
+  class AutoscalingGroup < ResourceBase
     aws_resource Aws::AutoScaling::AutoScalingGroup
     tags_allowed
 

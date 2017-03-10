@@ -2383,6 +2383,13 @@ end
 
 RdsAccountAttributes account attributes.
 
+```ruby
+describe rds_account_attributes do
+  its('DBInstances.used') { should eq 0 }
+  its('DBInstances.max') { should eq 40 }
+end
+```
+
 
 ## <a name="lambda_account_settings">lambda_account_settings</a>
 

@@ -47,3 +47,6 @@ require 'awspec/matcher/have_key_policy'
 
 # WafWebAcl
 require 'awspec/matcher/have_rule'
+
+# CloudWatch Logs
+require 'awspec/matcher/have_subscription_filter'

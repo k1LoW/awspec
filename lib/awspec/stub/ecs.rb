@@ -50,10 +50,10 @@ Aws.config[:ecs] = {
               integer_value: 0,
               long_value: 0,
               string_set_value: %w[
-                '2376',
-                '22',
-                '51678',
-                '2375'
+                2376
+                22
+                51678
+                2375
               ]
             }
           ],
@@ -79,11 +79,11 @@ Aws.config[:ecs] = {
               integer_value: 0,
               long_value: 0,
               string_set_value: %w[
-                '2376',
-                '22',
-                '80',
-                '51678',
-                '2375'
+                2376
+                22
+                80
+                51678
+                2375
               ]
             }
           ],

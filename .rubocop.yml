@@ -16,6 +16,9 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 120
 
+Metrics/BlockLength:
+  Max: 60
+
 Metrics/CyclomaticComplexity:
   Max: 15
 
@@ -26,7 +29,7 @@ Metrics/MethodLength:
   Max: 30
 
 Metrics/ModuleLength:
-  CountComments: false 
+  CountComments: false
   Max: 200
 
 Metrics/PerceivedComplexity:
@@ -47,6 +50,9 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/MethodMissing:
+  Enabled: false
+
 Style/MutableConstant:
   Enabled: false
 
@@ -54,6 +60,12 @@ Style/MultilineOperationIndentation:
   Enabled: false
 
 Style/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+Style/NumericPredicate:
   Enabled: false
 
 Style/StabbyLambdaParentheses:

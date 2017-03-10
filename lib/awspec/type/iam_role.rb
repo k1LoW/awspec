@@ -1,5 +1,5 @@
 module Awspec::Type
-  class IamRole < Base
+  class IamRole < ResourceBase
     aws_resource Aws::IAM::Role
 
     def resource_via_client

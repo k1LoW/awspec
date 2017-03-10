@@ -1,5 +1,5 @@
 module Awspec::Type
-  class SecurityGroup < Base
+  class SecurityGroup < ResourceBase
     aws_resource Aws::EC2::SecurityGroup
     tags_allowed
 

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class VpnConnection < Base
+  class VpnConnection < ResourceBase
     tags_allowed
 
     def initialize(name)

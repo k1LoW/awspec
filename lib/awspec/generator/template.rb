@@ -1,7 +1,9 @@
 module Awspec::Generator
+  # rubocop:disable Metrics/ClassLength
   class Template
     def self.generate(type)
       @type = type
+      @account_attribute = false
       @root_path = File.dirname(__FILE__) + '/../../../'
       generate_stub
       generate_type
@@ -11,11 +13,22 @@ module Awspec::Generator
       put_message
     end
 
+    def self.generate_account_attribute(type)
+      @type = type
+      @account_attribute = true
+      @root_path = File.dirname(__FILE__) + '/../../../'
+      generate_type
+      generate_account_attribute_generator_doc
+      generate_resource_type_doc
+      put_message
+    end
+
     def self.generate_type
       path = 'lib/awspec/type/' + @type.underscore + '.rb'
+      base = @account_attribute ? 'AccountAttributeBase' : 'ResourceBase'
       content = <<-"EOF"
 module Awspec::Type
-  class #{@type.camelize} < Base
+  class #{@type.camelize} < #{base}
     def resource_via_client
       @resource_via_client ||= # FIXME
     end
@@ -63,6 +76,30 @@ module Awspec::Generator
           super
           @type_name = '#{@type.camelize}'
           @type = Awspec::Type::#{@type.camelize}.new('my-#{@type.underscore.tr('_', '-')}')
+          @ret = @type.resource_via_client
+          @matchers = []
+          @ignore_matchers = []
+          @describes = []
+        end
+      end
+    end
+  end
+end
+EOF
+      self.file_check_and_puts(path, content)
+    end
+
+    def self.generate_account_attribute_generator_doc
+      path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
+      content = <<-"EOF"
+module Awspec::Generator
+  module Doc
+    module Type
+      class #{@type.camelize} < AccountAttributeBase
+        def initialize
+          super
+          @type_name = '#{@type.camelize}'
+          @type = Awspec::Type::#{@type.camelize}.new
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class CloudwatchEvent < Base
+  class CloudwatchEvent < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_cloudwatch_event(@display_name)
     end

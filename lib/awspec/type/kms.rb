@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Kms < Base
+  class Kms < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_kms_key_by_alias(@display_name)
     end

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class NatGateway < Base
+  class NatGateway < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_nat_gateway(@display_name)
     end

@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Alb < Base
+  class Alb < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_alb(@display_name)
     end

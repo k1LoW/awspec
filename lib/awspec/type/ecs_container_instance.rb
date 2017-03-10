@@ -1,5 +1,5 @@
 module Awspec::Type
-  class EcsContainerInstance < Base
+  class EcsContainerInstance < ResourceBase
     attr_accessor :cluster
 
     def initialize(container_instance)

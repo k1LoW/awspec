@@ -1,5 +1,5 @@
 module Awspec::Type
-  class InternetGateway < Base
+  class InternetGateway < ResourceBase
     aws_resource Aws::EC2::InternetGateway
     tags_allowed
 

@@ -16,7 +16,6 @@ types.each do |type|
     it 'should generate doc' do
       generated = generator.generate_doc
       expect(generated).to include(type)
-      expect(generated).to include('exist')
     end
   end
 end

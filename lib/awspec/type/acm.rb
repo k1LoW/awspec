@@ -1,5 +1,5 @@
 module Awspec::Type
-  class Acm < Base
+  class Acm < ResourceBase
     def resource_via_client
       @resource_via_client ||= find_certificate(@display_name)
     end

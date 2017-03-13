@@ -9,19 +9,19 @@ module Awspec::Type
     end
 
     def has_log_stream?(stream_name)
-      ret = find_cloudwatch_logs_stream(@id).log_stream_name
+      ret = find_cloudwatch_logs_stream_by_log_group_name(@id).log_stream_name
       return true if ret == stream_name
     end
 
-    def has_metric_filter?(filter_name)
-      ret = find_cloudwatch_logs_metric_fileter(@id, filter_name).filter_name
-      return true if ret == filter_name
+    def has_metric_filter?(filter_name_prefix)
+      ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name_prefix).filter_name
+      return true if ret == filter_name_prefix
     end
 
-    def has_subscription_filter?(filter_name, pattern = nil)
-      ret = find_cloudwatch_logs_subscription_fileter(@id, filter_name)
+    def has_subscription_filter?(filter_name_prefix, pattern = nil)
+      ret = find_cloudwatch_logs_subscription_fileter_by_log_group_name(@id, filter_name_prefix)
       return false unless ret.filter_pattern == pattern
-      return true if ret.filter_name == filter_name
+      return true if ret.filter_name == filter_name_prefix
     end
   end
 end

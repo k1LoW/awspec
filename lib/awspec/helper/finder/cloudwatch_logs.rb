@@ -13,21 +13,21 @@ module Awspec::Helper
         cloudwatch_logs_client.describe_log_streams({ log_group_name: id }).log_streams.last
       end
 
-      def find_cloudwatch_logs_metric_fileter_by_log_group_name(id, filter_name_prefix)
+      def find_cloudwatch_logs_metric_fileter_by_log_group_name(id, filter_name)
         cloudwatch_logs_client.describe_metric_filters({
                                                          log_group_name: id,
-                                                         filter_name_prefix: filter_name_prefix
+                                                         filter_name_prefix: filter_name
                                                        }).metric_filters.find do |filter|
-          filter.filter_name == filter_name_prefix
+          filter.filter_name == filter_name
         end
       end
 
-      def find_cloudwatch_logs_subscription_fileter_by_log_group_name(id, filter_name_prefix)
+      def find_cloudwatch_logs_subscription_fileter_by_log_group_name(id, filter_name)
         cloudwatch_logs_client.describe_subscription_filters({
                                                                log_group_name: id,
-                                                               filter_name_prefix: filter_name_prefix
+                                                               filter_name_prefix: filter_name
                                                              }).subscription_filters.find do |filter|
-          filter.filter_name == filter_name_prefix
+          filter.filter_name == filter_name
         end
       end
     end

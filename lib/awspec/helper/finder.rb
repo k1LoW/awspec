@@ -28,6 +28,7 @@ require 'awspec/helper/finder/elastictranscoder'
 require 'awspec/helper/finder/cloudtrail'
 require 'awspec/helper/finder/waf'
 require 'awspec/helper/finder/acm'
+require 'awspec/helper/finder/cloudwatch_logs'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -63,6 +64,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Waf
     include Awspec::Helper::Finder::Acm
     include Awspec::Helper::Finder::AccountAttributes
+    include Awspec::Helper::Finder::CloudwatchLogs
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -89,7 +91,8 @@ module Awspec::Helper
       cloudtrail_client: Aws::CloudTrail::Client,
       waf_client: Aws::WAF::Client,
       sts_client: Aws::STS::Client,
-      acm_client: Aws::ACM::Client
+      acm_client: Aws::ACM::Client,
+      cloudwatch_logs_client: Aws::CloudWatchLogs::Client
     }
 
     CLIENTS.each do |method_name, client|

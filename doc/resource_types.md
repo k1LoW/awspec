@@ -8,6 +8,7 @@
 | [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [cloudwatch_event](#cloudwatch_event)
+| [cloudwatch_logs](#cloudwatch_logs)
 | [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [ebs](#ebs)
@@ -2234,6 +2235,55 @@ end
 ### be_pending_validation, be_issued, be_inactive, be_expired, be_validation_timed_out, be_revoked, be_failed
 
 ### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:domain_validation_options), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary)
+## <a name="cloudwatch_logs">cloudwatch_logs</a>
+
+CloudwatchLogs resource type.
+
+### exist
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should exist }
+end
+```
+
+
+### have_log_stream
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_log_stream('my-cloudwatch-logs-stream') }
+end
+```
+
+
+### have_metric_filter
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_metric_filter('my-cloudwatch-logs-metric-filter') }
+end
+```
+
+
+### have_subscription_filter
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_subscription_filter('my-cloudwatch-logs-subscription-filter') }
+end
+```
+or
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it do
+    should have_subscription_filter('my-cloudwatch-logs-subscription-filter')\
+      .filter_pattern('[host, ident, authuser, date, request, status, bytes]')
+  end
+end
+```
+
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes)
 # Account and Attributes
 
 ## <a name="account">account</a>

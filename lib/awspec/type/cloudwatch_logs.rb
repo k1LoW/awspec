@@ -13,15 +13,15 @@ module Awspec::Type
       return true if ret == stream_name
     end
 
-    def has_metric_filter?(filter_name_prefix)
-      ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name_prefix).filter_name
-      return true if ret == filter_name_prefix
+    def has_metric_filter?(filter_name)
+      ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name).filter_name
+      return true if ret == filter_name
     end
 
-    def has_subscription_filter?(filter_name_prefix, pattern = nil)
-      ret = find_cloudwatch_logs_subscription_fileter_by_log_group_name(@id, filter_name_prefix)
+    def has_subscription_filter?(filter_name, pattern = nil)
+      ret = find_cloudwatch_logs_subscription_fileter_by_log_group_name(@id, filter_name)
       return false unless ret.filter_pattern == pattern
-      return true if ret.filter_name == filter_name_prefix
+      return true if ret.filter_name == filter_name
     end
   end
 end

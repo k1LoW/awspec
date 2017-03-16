@@ -42,6 +42,20 @@ module Awspec::Type
       return ret.addresses.count > 0 unless ip_address
     end
 
+    def has_security_groups?(sg_ids)
+      sgs = resource_via_client.security_groups
+      group_ids = sgs.map { |sg| sg.group_id }
+      group_names = sgs.map { |sg| sg.group_name }
+
+      ret = group_ids == sg_ids || group_names == sg_ids
+      return true if ret
+
+      tags = ec2_client.describe_security_groups({filters: [{name: 'group-id', values: group_ids}]}).security_groups.map { |sg| sg.tags }.flatten
+      group_names =  tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
+      ret = group_names == sg_ids
+      return ret
+    end
+
     def has_security_group?(sg_id)
       sgs = resource_via_client.security_groups
       ret = sgs.find do |sg|

@@ -46,7 +46,7 @@ module Awspec::Type
       return true if (match_group_ids?(sg_ids) || match_group_names?(sg_ids))
 
       group_ids = resource_security_groups.map { |sg| sg.group_id }
-      tags = ec2_client.describe_security_groups({filters: [{name: 'group-id', values: group_ids}]}).security_groups.map { |sg| sg.tags }.flatten
+      tags = select_security_group_by_group_id(group_ids).map { |sg| sg.tags }.flatten
       group_names =  tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
       ret = group_names == sg_ids
       return ret

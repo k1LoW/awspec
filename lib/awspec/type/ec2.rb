@@ -45,9 +45,8 @@ module Awspec::Type
     def has_security_groups?(sg_ids)
       sgs = resource_via_client.security_groups
       group_ids = sgs.map { |sg| sg.group_id }
-      group_names = sgs.map { |sg| sg.group_name }
 
-      ret = group_ids == sg_ids || group_names == sg_ids
+      ret = match_group_ids?(sg_ids) || match_group_names?(sg_ids)
       return true if ret
 
       tags = ec2_client.describe_security_groups({filters: [{name: 'group-id', values: group_ids}]}).security_groups.map { |sg| sg.tags }.flatten
@@ -131,6 +130,20 @@ module Awspec::Type
         sg.group_id == sg_id || sg.group_name == sg_id
       end
       return true if ret
+    end
+
+    private
+
+    def match_group_ids?(sg_ids)
+      sg_ids.sort == resource_security_groups.map { |sg| sg.group_id }.sort
+    end
+
+    def match_group_names?(sg_names)
+      sg_names.sort == resource_security_groups.map { |sg| sg.group_name }.sort
+    end
+
+    def resource_security_groups
+      resource_via_client.security_groups
     end
   end
 end

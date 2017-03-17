@@ -43,13 +43,12 @@ module Awspec::Type
     end
 
     def has_security_groups?(sg_ids)
-      return true if (match_group_ids?(sg_ids) || match_group_names?(sg_ids))
+      return true if match_group_ids?(sg_ids) || match_group_names?(sg_ids)
 
       group_ids = resource_security_groups.map { |sg| sg.group_id }
       tags = select_security_group_by_group_id(group_ids).map { |sg| sg.tags }.flatten
-      group_names =  tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
-      ret = group_names == sg_ids
-      return ret
+      group_names = tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
+      group_names == sg_ids
     end
 
     def has_security_group?(sg_id)

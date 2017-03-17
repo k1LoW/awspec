@@ -51,7 +51,6 @@ describe 'single security group' do
   end
 end
 
-
 describe 'multi security group' do
   before do
     Awspec::Stub.load 'ec2_has_multi_security_groups'

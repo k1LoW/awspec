@@ -1,4 +1,4 @@
-require_relative "../stub/ec2"
+require_relative '../stub/ec2'
 
 stub_responses = Aws.config[:ec2][:stub_responses]
 

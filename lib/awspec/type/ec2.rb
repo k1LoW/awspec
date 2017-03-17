@@ -42,6 +42,15 @@ module Awspec::Type
       return ret.addresses.count > 0 unless ip_address
     end
 
+    def has_security_groups?(sg_ids)
+      return true if match_group_ids?(sg_ids) || match_group_names?(sg_ids)
+
+      group_ids = resource_security_groups.map { |sg| sg.group_id }
+      tags = select_security_group_by_group_id(group_ids).map { |sg| sg.tags }.flatten
+      group_names = tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
+      group_names == sg_ids
+    end
+
     def has_security_group?(sg_id)
       sgs = resource_via_client.security_groups
       ret = sgs.find do |sg|
@@ -117,6 +126,20 @@ module Awspec::Type
         sg.group_id == sg_id || sg.group_name == sg_id
       end
       return true if ret
+    end
+
+    private
+
+    def match_group_ids?(sg_ids)
+      sg_ids.sort == resource_security_groups.map { |sg| sg.group_id }.sort
+    end
+
+    def match_group_names?(sg_names)
+      sg_names.sort == resource_security_groups.map { |sg| sg.group_name }.sort
+    end
+
+    def resource_security_groups
+      resource_via_client.security_groups
     end
   end
 end

@@ -12,19 +12,19 @@ module Awspec::Helper
       end
 
       def select_security_group_by_vpc_id(vpc_id)
-        describe_security_groups({filters: [{ name: 'vpc-id', values: [vpc_id] }]})
+        describe_security_groups({ filters: [{ name: 'vpc-id', values: [vpc_id] }] })
       end
 
       def select_security_group_by_group_id(ids)
-        describe_security_groups({filters: [{ name: 'group-id', values: ids }]})
+        describe_security_groups({ filters: [{ name: 'group-id', values: ids }] })
       end
 
       def select_security_group_by_group_name(names)
-        describe_security_groups({filters: [{ name: 'group-name', values: names }]})
+        describe_security_groups({ filters: [{ name: 'group-name', values: names }] })
       end
 
       def select_security_group_by_tag_name(names)
-        describe_security_groups({filters: [{ name: 'tag:Name', values: names }]})
+        describe_security_groups({ filters: [{ name: 'tag:Name', values: names }] })
       end
 
       def describe_security_groups(param)

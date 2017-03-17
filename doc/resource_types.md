@@ -445,6 +445,16 @@ end
 ```
 
 
+### have_security_groups
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_security_groups(['my-security-group-name-1', 'my-security-group-name-2']) }
+  it { should have_security_groups(['sg-1a2b3cd4', 'sg-5e6f7gh8']) }
+end
+```
+
+
 ### have_tag
 
 ```ruby

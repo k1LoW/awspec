@@ -11,6 +11,7 @@
 | [cloudwatch_logs](#cloudwatch_logs)
 | [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
+| [dynamodb](#dynamodb)
 | [ebs](#ebs)
 | [ec2](#ec2)
 | [ecr_repository](#ecr_repository)
@@ -2284,6 +2285,25 @@ end
 ```
 
 ### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes)
+## <a name="dynamodb">dynamodb</a>
+
+Dynamodb resource type.
+
+### exist
+
+### be_active
+
+### be_creating
+
+### be_deleting
+
+### be_updating
+
+### have_attribute_definition
+
+### have_key_schema
+
+### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn)
 # Account and Attributes
 
 ## <a name="account">account</a>

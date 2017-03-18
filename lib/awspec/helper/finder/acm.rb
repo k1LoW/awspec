@@ -11,6 +11,7 @@ module Awspec::Helper
         acm_client.list_certificates.certificate_summary_list.each do |cert|
           certificates << acm_client.describe_certificate({ certificate_arn: cert.certificate_arn }).certificate
         end
+        certificates
       end
     end
   end

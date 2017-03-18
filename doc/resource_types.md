@@ -2291,7 +2291,21 @@ Dynamodb resource type.
 
 ### exist
 
+```ruby
+describe dynamodb('my-dynamodb-table') do
+  it { should exist }
+end
+```
+
+
 ### be_active
+
+```ruby
+describe dynamodb('my-dynamodb-table') do
+  it { should be_active }
+end
+```
+
 
 ### be_creating
 
@@ -2301,7 +2315,22 @@ Dynamodb resource type.
 
 ### have_attribute_definition
 
+```ruby
+describe dynamodb('my-dynamodb-table') do
+  it { should have_attribute_definition('my-dynamodb-table-attaribute1').attribute_type('S') }
+  it { should have_attribute_definition('my-dynamodb-table-attaribute2').attribute_type('N') }
+end
+```
+
+
 ### have_key_schema
+
+```ruby
+describe dynamodb('my-dynamodb-table') do
+  it { should have_key_schema('my-dynamodb-table-key_schema1').key_type('HASH') }
+  it { should have_key_schema('my-dynamodb-table-key_schema2').key_type('RANGE') }
+end
+```
 
 ### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn)
 # Account and Attributes

@@ -2308,20 +2308,7 @@ end
 ```
 
 
-### be_active
-
-```ruby
-describe dynamodb('my-dynamodb-table') do
-  it { should be_active }
-end
-```
-
-
-### be_creating
-
-### be_deleting
-
-### be_updating
+### be_creating, be_updating, be_deleting, be_active
 
 ### have_attribute_definition
 

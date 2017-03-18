@@ -7,8 +7,10 @@ module Awspec::Generator
           @type_name = 'Dynamodb'
           @type = Awspec::Type::Dynamodb.new('my-dynamodb-table')
           @ret = @type.resource_via_client
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::Dynamodb::STATUSES.map { |status| 'be_' + status.downcase }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::Dynamodb::STATUSES.map { |status| 'be_' + status.downcase }
           @describes = []
         end
       end

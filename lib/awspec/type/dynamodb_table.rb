@@ -1,5 +1,7 @@
 module Awspec::Type
-  class Dynamodb < ResourceBase
+  class DynamodbTable < ResourceBase
+    aws_resource Aws::DynamoDB::Table
+
     def resource_via_client
       @resource_via_client ||= find_dynamodb_table(@display_name)
     end

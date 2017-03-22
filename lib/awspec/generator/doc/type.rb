@@ -18,7 +18,7 @@ module Awspec::Generator
 EOF
         doc = ERB.new(header, nil, '-').result(binding)
 
-        types.map do |type|
+        types.sort.map do |type|
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"
         end
 

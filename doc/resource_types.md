@@ -51,6 +51,22 @@
 | [waf_web_acl](#waf_web_acl)
 | [account](#account)
 
+## <a name="acm">acm</a>
+
+Acm resource type.
+
+### exist
+
+```ruby
+describe acm('example.com') do
+  it { should exist }
+end
+```
+
+
+### be_pending_validation, be_issued, be_inactive, be_expired, be_validation_timed_out, be_revoked, be_failed
+
+### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:domain_validation_options), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary)
 ## <a name="alb">alb</a>
 
 ALB resource type.
@@ -125,6 +141,60 @@ end
 ```
 
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:suspended_processes), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in)
+## <a name="cloudfront_distribution">cloudfront_distribution</a>
+
+CloudfrontDistribution resource type.
+
+### exist
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should exist }
+end
+```
+
+
+### be_in_progress, be_deployed
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should be_deployed }
+end
+```
+
+
+### have_origin
+
+```ruby
+describe cloudfront_distribution('E2CLOUDFRONTXX') do
+  it do
+    should have_origin('cf-s3-origin-hosting.dev.example.com')
+      .domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com')
+      .origin_path('/img')
+      .origin_access_identity('origin-access-identity/cloudfront/E2VVVVVVVVVVVV')
+  end
+end
+```
+
+
+### have_origin_domain_name
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should have_origin_domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com') }
+end
+```
+
+
+### have_origin_domain_name_and_path
+
+```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
+  it { should have_origin_domain_name_and_path('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com/img') }
+end
+```
+
+### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled)
 ## <a name="cloudtrail">cloudtrail</a>
 
 Cloudtrail resource type.
@@ -234,6 +304,87 @@ CloudwatchEvent resource type.
 ### be_scheduled
 
 ### its(:name), its(:arn), its(:event_pattern), its(:state), its(:description), its(:schedule_expression), its(:role_arn)
+## <a name="cloudwatch_logs">cloudwatch_logs</a>
+
+CloudwatchLogs resource type.
+
+### exist
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should exist }
+end
+```
+
+
+### have_log_stream
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_log_stream('my-cloudwatch-logs-stream') }
+end
+```
+
+
+### have_metric_filter
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_metric_filter('my-cloudwatch-logs-metric-filter') }
+end
+```
+
+
+### have_subscription_filter
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_subscription_filter('my-cloudwatch-logs-subscription-filter') }
+end
+```
+or
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it do
+    should have_subscription_filter('my-cloudwatch-logs-subscription-filter')\
+      .filter_pattern('[host, ident, authuser, date, request, status, bytes]')
+  end
+end
+```
+
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes)
+## <a name="customer_gateway">customer_gateway</a>
+
+CustomerGateway resource type.
+
+### exist
+
+```ruby
+describe customer_gateway('my-customer-gateway') do
+  it { should exist }
+end
+```
+
+
+### be_pending, be_available, be_deleting, be_deleted
+
+```ruby
+describe customer_gateway('my-customer-gateway') do
+  it { should be_running }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe customer_gateway('my-customer-gateway') do
+  it { should have_tag('Name').value('my-customer-gateway') }
+end
+```
+
+
+### its(:customer_gateway_id), its(:state), its(:type), its(:ip_address), its(:bgp_asn), its(:tags)
 ## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
 
 DirectconnectVirtualInterface resource type.
@@ -270,6 +421,61 @@ end
 ```
 
 ### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:route_filter_prefixes), its(:bgp_peers)
+## <a name="dynamodb_table">dynamodb_table</a>
+
+DynamodbTable resource type.
+
+### exist
+
+```ruby
+describe dynamodb_table('my-dynamodb-table') do
+  it { should exist }
+end
+```
+
+
+### be_creating, be_updating, be_deleting, be_active
+
+### have_attribute_definition
+
+```ruby
+describe dynamodb_table('my-dynamodb-table') do
+  it { should have_attribute_definition('my-dynamodb-table-attaribute1').attribute_type('S') }
+  it { should have_attribute_definition('my-dynamodb-table-attaribute2').attribute_type('N') }
+end
+```
+
+
+### have_key_schema
+
+```ruby
+describe dynamodb_table('my-dynamodb-table') do
+  it { should have_key_schema('my-dynamodb-table-key_schema1').key_type('HASH') }
+  it { should have_key_schema('my-dynamodb-table-key_schema2').key_type('RANGE') }
+end
+```
+
+
+### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn)
+### :unlock: Advanced use
+
+`dynamodb_table` can use `Aws::DynamoDB::Table` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Table.html).
+
+```ruby
+describe dynamodb_table('my-dynamodb-table') do
+  its('key_schema.first.key_type') { should eq 'HASH' }
+end
+```
+
+or
+
+```ruby
+describe dynamodb_table('my-dynamodb-table') do
+  its('resource.key_schema.first.key_type') { should eq 'HASH' }
+end
+```
+
+
 ## <a name="ebs">ebs</a>
 
 EBS resource type.
@@ -770,6 +976,21 @@ end
 
 
 ### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:advanced_options)
+## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
+
+ElastictranscoderPipeline resource type.
+
+### exist
+
+### be_active, be_paused
+
+```ruby
+describe elastictranscoder_pipeline('my-elastictranscoder-pipeline') do
+  it { should be_active }
+end
+```
+
+
 ## <a name="elb">elb</a>
 
 ELB resource type.
@@ -1110,6 +1331,45 @@ describe iam_user('my-iam-user') do
 end
 ```
 
+## <a name="internet_gateway">internet_gateway</a>
+
+InternetGateway resource type.
+
+### exist
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should exist }
+end
+
+describe internet_gateway('my-internet-gateway') do
+  it { should exist }
+end
+```
+
+
+### be_attached_to
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should be_attached_to('vpc-ab123cde') }
+end
+
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should be_attached_to('my-vpc') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe internet_gateway('igw-1ab2cd3e') do
+  it { should have_tag('Name').value('my-internet-gateway') }
+end
+```
+
+### its(:internet_gateway_id)
 ## <a name="kms">kms</a>
 
 Kms resource type.
@@ -2009,156 +2269,6 @@ describe vpc('my-vpc') do
 end
 ```
 
-## <a name="cloudfront_distribution">cloudfront_distribution</a>
-
-CloudfrontDistribution resource type.
-
-### exist
-
-```ruby
-describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
-  it { should exist }
-end
-```
-
-
-### be_in_progress, be_deployed
-
-```ruby
-describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
-  it { should be_deployed }
-end
-```
-
-
-### have_origin
-
-```ruby
-describe cloudfront_distribution('E2CLOUDFRONTXX') do
-  it do
-    should have_origin('cf-s3-origin-hosting.dev.example.com')
-      .domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com')
-      .origin_path('/img')
-      .origin_access_identity('origin-access-identity/cloudfront/E2VVVVVVVVVVVV')
-  end
-end
-```
-
-
-### have_origin_domain_name
-
-```ruby
-describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
-  it { should have_origin_domain_name('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com') }
-end
-```
-
-
-### have_origin_domain_name_and_path
-
-```ruby
-describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
-  it { should have_origin_domain_name_and_path('cf-s3-origin-hosting.dev.example.com.s3.amazonaws.com/img') }
-end
-```
-
-### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled)
-## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
-
-ElastictranscoderPipeline resource type.
-
-### exist
-
-### be_active, be_paused
-
-```ruby
-describe elastictranscoder_pipeline('my-elastictranscoder-pipeline') do
-  it { should be_active }
-end
-```
-
-
-## <a name="waf_web_acl">waf_web_acl</a>
-
-WafWebAcl resource type.
-
-### exist
-
-### have_rule
-
-```ruby
-describe waf_web_acl('my-waf-web-acl') do
-  it { should have_rule('my-waf-web-acl-allowed-ips') }
-  it { should have_rule('my-waf-web-acl-allowed-ips').order(2).action('BLOCK') }
-end
-```
-
-
-### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)
-## <a name="customer_gateway">customer_gateway</a>
-
-CustomerGateway resource type.
-
-### exist
-
-```ruby
-describe customer_gateway('my-customer-gateway') do
-  it { should exist }
-end
-```
-
-
-### be_pending, be_available, be_deleting, be_deleted
-
-```ruby
-describe customer_gateway('my-customer-gateway') do
-  it { should be_running }
-end
-```
-
-
-### have_tag
-
-```ruby
-describe customer_gateway('my-customer-gateway') do
-  it { should have_tag('Name').value('my-customer-gateway') }
-end
-```
-
-
-### its(:customer_gateway_id), its(:state), its(:type), its(:ip_address), its(:bgp_asn), its(:tags)
-## <a name="vpn_gateway">vpn_gateway</a>
-
-VpnGateway resource type.
-
-### exist
-
-```ruby
-describe vpn_gateway('my-vpn-gateway') do
-  it { should exist }
-end
-```
-
-
-### be_pending, be_available, be_deleting, be_deleted
-
-```ruby
-describe vpn_gateway('my-vpn-gateway') do
-  it { should be_running }
-end
-```
-
-
-### have_tag
-
-```ruby
-describe vpn_gateway('my-vpn-gateway') do
-  it { should have_tag('Name').value('my-vpn-gateway') }
-end
-```
-
-
-### its(:vpn_gateway_id), its(:state), its(:type), its(:availability_zone), its(:vpc_attachments), its(:tags)
 ## <a name="vpn_connection">vpn_connection</a>
 
 VpnConnection resource type.
@@ -2191,32 +2301,24 @@ end
 
 
 ### its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id), its(:tags), its(:vgw_telemetry), its(:options), its(:routes)
-## <a name="internet_gateway">internet_gateway</a>
+## <a name="vpn_gateway">vpn_gateway</a>
 
-InternetGateway resource type.
+VpnGateway resource type.
 
 ### exist
 
 ```ruby
-describe internet_gateway('igw-1ab2cd3e') do
-  it { should exist }
-end
-
-describe internet_gateway('my-internet-gateway') do
+describe vpn_gateway('my-vpn-gateway') do
   it { should exist }
 end
 ```
 
 
-### be_attached_to
+### be_pending, be_available, be_deleting, be_deleted
 
 ```ruby
-describe internet_gateway('igw-1ab2cd3e') do
-  it { should be_attached_to('vpc-ab123cde') }
-end
-
-describe internet_gateway('igw-1ab2cd3e') do
-  it { should be_attached_to('my-vpc') }
+describe vpn_gateway('my-vpn-gateway') do
+  it { should be_running }
 end
 ```
 
@@ -2224,132 +2326,30 @@ end
 ### have_tag
 
 ```ruby
-describe internet_gateway('igw-1ab2cd3e') do
-  it { should have_tag('Name').value('my-internet-gateway') }
+describe vpn_gateway('my-vpn-gateway') do
+  it { should have_tag('Name').value('my-vpn-gateway') }
 end
 ```
 
-### its(:internet_gateway_id)
-## <a name="acm">acm</a>
 
-Acm resource type.
+### its(:vpn_gateway_id), its(:state), its(:type), its(:availability_zone), its(:vpc_attachments), its(:tags)
+## <a name="waf_web_acl">waf_web_acl</a>
+
+WafWebAcl resource type.
 
 ### exist
 
+### have_rule
+
 ```ruby
-describe acm('example.com') do
-  it { should exist }
+describe waf_web_acl('my-waf-web-acl') do
+  it { should have_rule('my-waf-web-acl-allowed-ips') }
+  it { should have_rule('my-waf-web-acl-allowed-ips').order(2).action('BLOCK') }
 end
 ```
 
 
-### be_pending_validation, be_issued, be_inactive, be_expired, be_validation_timed_out, be_revoked, be_failed
-
-### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:domain_validation_options), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary)
-## <a name="cloudwatch_logs">cloudwatch_logs</a>
-
-CloudwatchLogs resource type.
-
-### exist
-
-```ruby
-describe cloudwatch_logs('my-cloudwatch-logs-group') do
-  it { should exist }
-end
-```
-
-
-### have_log_stream
-
-```ruby
-describe cloudwatch_logs('my-cloudwatch-logs-group') do
-  it { should have_log_stream('my-cloudwatch-logs-stream') }
-end
-```
-
-
-### have_metric_filter
-
-```ruby
-describe cloudwatch_logs('my-cloudwatch-logs-group') do
-  it { should have_metric_filter('my-cloudwatch-logs-metric-filter') }
-end
-```
-
-
-### have_subscription_filter
-
-```ruby
-describe cloudwatch_logs('my-cloudwatch-logs-group') do
-  it { should have_subscription_filter('my-cloudwatch-logs-subscription-filter') }
-end
-```
-or
-```ruby
-describe cloudwatch_logs('my-cloudwatch-logs-group') do
-  it do
-    should have_subscription_filter('my-cloudwatch-logs-subscription-filter')\
-      .filter_pattern('[host, ident, authuser, date, request, status, bytes]')
-  end
-end
-```
-
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes)
-## <a name="dynamodb_table">dynamodb_table</a>
-
-DynamodbTable resource type.
-
-### exist
-
-```ruby
-describe dynamodb_table('my-dynamodb-table') do
-  it { should exist }
-end
-```
-
-
-### be_creating, be_updating, be_deleting, be_active
-
-### have_attribute_definition
-
-```ruby
-describe dynamodb_table('my-dynamodb-table') do
-  it { should have_attribute_definition('my-dynamodb-table-attaribute1').attribute_type('S') }
-  it { should have_attribute_definition('my-dynamodb-table-attaribute2').attribute_type('N') }
-end
-```
-
-
-### have_key_schema
-
-```ruby
-describe dynamodb_table('my-dynamodb-table') do
-  it { should have_key_schema('my-dynamodb-table-key_schema1').key_type('HASH') }
-  it { should have_key_schema('my-dynamodb-table-key_schema2').key_type('RANGE') }
-end
-```
-
-
-### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn)
-### :unlock: Advanced use
-
-`dynamodb_table` can use `Aws::DynamoDB::Table` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Table.html).
-
-```ruby
-describe dynamodb_table('my-dynamodb-table') do
-  its('key_schema.first.key_type') { should eq 'HASH' }
-end
-```
-
-or
-
-```ruby
-describe dynamodb_table('my-dynamodb-table') do
-  its('resource.key_schema.first.key_type') { should eq 'HASH' }
-end
-```
-
-
+### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)
 # Account and Attributes
 
 ## <a name="account">account</a>

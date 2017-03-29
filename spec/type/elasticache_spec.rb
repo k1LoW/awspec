@@ -8,4 +8,7 @@ describe elasticache('my-rep-group-001') do
   it { should belong_to_replication_group('my-rep-group') }
   it { should belong_to_cache_subnet_group('my-cache-subnet-group') }
   it { should belong_to_vpc('my-vpc') }
+  it { should have_security_group('sg-da1bc2ef') }
+  it { should have_security_group('group-name-sg') }
+  it { should have_security_group('my-cache-sg') }
 end

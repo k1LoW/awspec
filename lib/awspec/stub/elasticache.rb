@@ -72,6 +72,20 @@ Aws.config[:ec2] = {
           ]
         }
       ]
+    },
+    describe_security_groups: {
+      security_groups: [
+        {
+          group_id: 'sg-da1bc2ef',
+          group_name: 'group-name-sg',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-cache-sg'
+            }
+          ]
+        }
+      ]
     }
   }
 }

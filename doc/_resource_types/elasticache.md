@@ -22,6 +22,16 @@ describe elasticache('my-rep-group-001') do
 end
 ```
 
+### have_security_group
+
+```ruby
+describe elasticache('my-rep-group-001') do
+  it { should have_security_group('sg-da1bc2ef') }
+  it { should have_security_group('group-name-sg') }
+  it { should have_security_group('my-cache-sg') }
+end
+```
+
 ### belong_to_cache_subnet_group
 
 ```ruby

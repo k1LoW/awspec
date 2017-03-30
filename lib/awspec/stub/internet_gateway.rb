@@ -6,7 +6,7 @@ Aws.config[:ec2] = {
         attachments: [
           {
             vpc_id: 'vpc-ab123cde',
-            state: 'attached'
+            state: 'available'
           }
         ],
         tags: [

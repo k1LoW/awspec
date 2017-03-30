@@ -13,7 +13,7 @@ module Awspec::Type
 
     def attached_to?(vpc)
       resource_via_client.attachments.find do |a|
-        a.vpc_id == find_vpc(vpc).vpc_id && a.state == 'attached'
+        a.vpc_id == find_vpc(vpc).vpc_id && a.state == 'available'
       end
     end
   end

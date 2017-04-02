@@ -30,6 +30,18 @@ module Awspec::Helper
           filter.filter_name == filter_name
         end
       end
+
+      def select_all_cloudwatch_logs_log_groups
+        req = {}
+        log_groups = []
+        loop do
+          res = cloudwatch_logs_client.describe_log_groups(req)
+          log_groups.push(*res.log_groups)
+          break if res.next_token.nil?
+          req[:next_token] = res.next_token
+        end
+        log_groups
+      end
     end
   end
 end

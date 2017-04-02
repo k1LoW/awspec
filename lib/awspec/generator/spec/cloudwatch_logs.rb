@@ -55,7 +55,10 @@ module Awspec::Generator
         subscription_filter_lines = []
         subscription_filters.each do |subscription_filter|
           line = "it { should have_subscription_filter('#{subscription_filter.filter_name}')"
-          line += ".filter_pattern('#{subscription_filter.filter_pattern}') }"
+          unless subscription_filter.filter_pattern.empty?
+            line += ".filter_pattern('#{subscription_filter.filter_pattern}')"
+          end
+          line += ' }'
           subscription_filter_lines.push(line)
         end
         subscription_filter_lines

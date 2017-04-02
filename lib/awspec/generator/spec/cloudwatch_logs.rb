@@ -15,26 +15,12 @@ module Awspec::Generator
       end
 
       def generate_log_stream_spec(log_group)
-        req = { log_group_name: log_group }
-        log_streams = []
-        loop do
-          res = cloudwatch_logs_client.describe_log_streams(req)
-          log_streams.push(*res.log_streams)
-          break if res.next_token.nil?
-          req[:next_token] = res.next_token
-        end
-        "it { should have_log_stream('#{log_streams.last.log_stream_name}') }" unless log_streams.last.nil?
+        log_stream = find_cloudwatch_logs_stream_by_log_group_name(log_group)
+        "it { should have_log_stream('#{log_stream.log_stream_name}') }" unless log_stream.nil?
       end
 
       def generate_log_metric_filters_specs(log_group)
-        req = { log_group_name: log_group }
-        metric_filters = []
-        loop do
-          res = cloudwatch_logs_client.describe_metric_filters(req)
-          metric_filters.push(*res.metric_filters)
-          break if res.next_token.nil?
-          req[:next_token] = res.next_token
-        end
+        metric_filters = select_all_cloudwatch_logs_metric_filter(log_group)
         metric_filter_lines = []
         metric_filters.each do |metric_filter|
           line = "it { should have_metric_filter('#{metric_filter.filter_name}') }"
@@ -44,14 +30,7 @@ module Awspec::Generator
       end
 
       def generate_log_subscription_filters_specs(log_group)
-        req = { log_group_name: log_group }
-        subscription_filters = []
-        loop do
-          res = cloudwatch_logs_client.describe_subscription_filters(req)
-          subscription_filters.push(*res.subscription_filters)
-          break if res.next_token.nil?
-          req[:next_token] = res.next_token
-        end
+        subscription_filters = select_all_cloudwatch_logs_subscription_filter(log_group)
         subscription_filter_lines = []
         subscription_filters.each do |subscription_filter|
           line = "it { should have_subscription_filter('#{subscription_filter.filter_name}')"

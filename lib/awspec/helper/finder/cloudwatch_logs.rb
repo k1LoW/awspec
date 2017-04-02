@@ -42,6 +42,27 @@ module Awspec::Helper
         end
         log_groups
       end
+
+      filter_types = %w(metric subscription)
+      filter_types.each do |type|
+        define_method 'select_all_cloudwatch_logs_' + type + '_filter' do |*args|
+          req = { log_group_name: args.first }
+          method_name = 'describe_' + type + '_filters'
+          resources = []
+          loop do
+            res = cloudwatch_logs_client.method(method_name).call(req)
+            case type
+            when 'metric' then
+              resources.push(*res.metric_filters)
+            when 'subscription' then
+              resources.push(*res.subscription_filters)
+            end
+            break if res.next_token.nil?
+            req[:next_token] = res.next_token
+          end
+          resources
+        end
+      end
     end
   end
 end

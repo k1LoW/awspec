@@ -20,7 +20,11 @@ module Awspec::Type
 
     def has_subscription_filter?(filter_name, pattern = nil)
       ret = find_cloudwatch_logs_subscription_fileter_by_log_group_name(@id, filter_name)
-      return false unless ret.filter_pattern == pattern
+      if pattern.nil?
+        return true if ret.filter_name == filter_name
+      else
+        return false unless ret.filter_pattern == pattern
+      end
       return true if ret.filter_name == filter_name
     end
   end

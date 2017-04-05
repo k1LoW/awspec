@@ -27,14 +27,7 @@ describe alb('<%= alb.load_balancer_name %>') do
   its(:load_balancer_name) { should eq '<%= alb.load_balancer_name %>' }
   its(:scheme) { should eq '<%= alb.scheme %>' }
   its(:vpc_id) { should eq '<%= alb.vpc_id %>' }
-  its(:state) { should eq '<%= alb.state.code %>' }
   its(:type) { should eq '<%= alb.type %>' }
-<% alb[:availability_zones].each do |az| %>
-  its(:availability_zones) { should eq '<%= az.subnet_id %>' }
-<% end %>
-<% alb[:security_groups].each do |sg| %>
-  its(:security_groups) { should eq '<%= sg %>' }
-<% end %>
   its(:ip_address_type) { should eq '<%= alb.ip_address_type %>' }
 end
 EOF

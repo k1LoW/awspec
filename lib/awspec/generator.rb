@@ -24,6 +24,7 @@ require 'awspec/generator/spec/iam_group'
 require 'awspec/generator/spec/iam_role'
 require 'awspec/generator/spec/acm'
 require 'awspec/generator/spec/cloudwatch_logs'
+require 'awspec/generator/spec/alb'
 
 # Doc
 require 'awspec/generator/doc/type'

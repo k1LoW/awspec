@@ -3,8 +3,7 @@ Awspec::Stub.load 'alb'
 
 describe alb('my-alb') do
   it { should exist }
-end
-
-describe alb('my-alb') do
-  its(:dns_name) { should eq 'my-load-balancer-123456789.us-west-1.elb.amazonaws.com' }
+  it { should be_active }
+  its(:dns_name) { should eq 'internal-my-elb-1551266724.ap-northeast-1.elb.amazonaws.com' }
+  it { should have_security_group('sg-1a2b3cd4') }
 end

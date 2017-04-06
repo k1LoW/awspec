@@ -7,8 +7,10 @@ module Awspec::Generator
           @type_name = 'ALB'
           @type = Awspec::Type::Alb.new('my-alb')
           @ret = @type.resource_via_client
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::Alb::STATES.map { |state| 'be_' + state }.join(', ')
+          ]
+          @ignore_matchers = Awspec::Type::Alb::STATES.map { |state| 'be_' + state }
           @describes = []
         end
       end

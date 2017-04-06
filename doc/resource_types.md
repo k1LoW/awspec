@@ -73,7 +73,33 @@ ALB resource type.
 
 ### exist
 
-### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:state), its(:type), its(:availability_zones), its(:security_groups), its(:ip_address_type)
+```ruby
+describe alb('my-alb') do
+  it { should exist }
+end
+```
+
+
+### be_active, be_provisioning, be_failed
+
+```ruby
+describe alb('my-alb') do
+  it { should be_active }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe alb('my-alb') do
+  it { should have_security_group('sg-1a2b3cd4') }
+end
+```
+
+
+
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type)
 ## <a name="ami">ami</a>
 
 AMI resource type.

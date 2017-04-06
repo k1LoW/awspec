@@ -10,7 +10,7 @@ module Awspec::Helper
 
       def select_alb_by_vpc_id(vpc_id)
         res = elbv2_client.describe_load_balancers
-        res.load_balancer_descriptions.select do |lb|
+        res.load_balancers.select do |lb|
           lb.vpc_id == vpc_id
         end
       end

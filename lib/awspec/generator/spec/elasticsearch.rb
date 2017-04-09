@@ -4,7 +4,7 @@ module Awspec::Generator
       include Awspec::Helper::Finder
       def generate_all
         domains = select_all_elasticsearch_domains
-        raise 'Not Found alarm' if events.empty?
+        raise 'Not Found Domain' if events.empty?
         ERB.new(domain_spec_template, nil, '-').result(binding).chomp
       end
 

@@ -123,6 +123,13 @@ module Awspec::Helper
         res.nat_gateways
       end
 
+      def select_internet_gateway_by_vpc_id(vpc_id)
+        res = ec2_client.describe_internet_gateways({
+                                                      filters: [{ name: 'attachment.vpc-id', values: [vpc_id] }]
+                                                    })
+        res.internet_gateways
+      end
+
       def select_network_interface_by_vpc_id(vpc_id)
         res = ec2_client.describe_network_interfaces({
                                                        filters: [{ name: 'vpc-id', values: [vpc_id] }]

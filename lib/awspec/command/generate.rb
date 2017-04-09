@@ -9,6 +9,7 @@ module Awspec
 
     types = %w(
       vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway network_interface alb
+      internet_gateway
     )
 
     types.each do |type|

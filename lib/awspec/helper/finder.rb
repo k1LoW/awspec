@@ -98,9 +98,15 @@ module Awspec::Helper
       dynamodb_client: Aws::DynamoDB::Client
     }
 
+    CLIENT_OPTIONS = {
+      http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil
+    }
+
     CLIENTS.each do |method_name, client|
       define_method method_name do
-        eval "@#{method_name} ||= #{client}.new"
+        unless self.methods.include? "@#{method_name}"
+          instance_variable_set("@#{method_name}", client.new(CLIENT_OPTIONS))
+        end
       end
     end
   end

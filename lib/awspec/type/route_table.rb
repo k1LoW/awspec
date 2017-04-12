@@ -42,13 +42,13 @@ module Awspec::Type
       return true if route.gateway_id == gateway_id
       # internet gateway
       igw = find_internet_gateway(gateway_id)
-      return true if igw && igw.tag_name == gateway_id
+      return true if igw && igw.internet_gateway_id == route.gateway_id
       # vpn gateway
       vgw = find_vpn_gateway(gateway_id)
-      return true if vgw && vgw.tag_name == gateway_id
+      return true if vgw && vgw.vpn_gateway_id == route.gateway_id
       # customer gateway
       cgw = find_customer_gateway(gateway_id)
-      return true if cgw && cgw.tag_name == gateway_id
+      return true if cgw && cgw.customer_gateway_id == route.gateway_id
       # nat gateway
       return true if route.nat_gateway_id == gateway_id
       false
@@ -58,7 +58,7 @@ module Awspec::Type
       # instance
       return true if route.instance_id == instance_id
       instance = find_ec2(instance_id)
-      return true if instance && instance.tag_name == instance_id
+      return true if instance && instance.instance_id == route.instance_id
       false
     end
 
@@ -71,7 +71,7 @@ module Awspec::Type
       # vpc_peering_connection_id
       return true if route.vpc_peering_connection_id == vpc_peering_connection_id
       connection = find_vpc_peering_connection(vpc_peering_connection_id)
-      return true if connection && connection.tag_name == vpc_peering_connection_id
+      return true if connection && connection.vpc_peering_connection_id == route.vpc_peering_connection_id
       false
     end
   end

@@ -5,7 +5,7 @@ module Awspec
   class Generate < Thor
     class_option :profile
     class_option :region
-    class_option :secrets_path, default: 'secrets.yml'
+    class_option :secrets_path
 
     types = %w(
       vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway network_interface alb

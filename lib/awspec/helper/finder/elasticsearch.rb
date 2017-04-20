@@ -9,9 +9,9 @@ module Awspec::Helper
       end
 
       def select_all_elasticsearch_domains
-        domain_names = elastisearch_client.list_domain_names
-        domain_names.map do |domain_name|
-          elasticsearch_client.describe_elasticsearch_domain(domain_name)
+        domain_names = elasticsearch_client.list_domain_names.domain_names
+        domain_names.map do |domain|
+          elasticsearch_client.describe_elasticsearch_domain(domain_name: domain.domain_name)
         end
       end
     end

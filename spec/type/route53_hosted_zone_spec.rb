@@ -27,3 +27,18 @@ describe route53_hosted_zone('Z1A2BCDEF34GH5') do
   it { should exist }
   its(:resource_record_set_count) { should eq 6 }
 end
+
+describe route53_hosted_zone('example.com.') do
+  context 'route53_hosted_zone support no order gurantee record value' do
+    ns1 = 'ns-123.awsdns-45.net.
+ns-6789.awsdns-01.org.
+ns-2345.awsdns-67.co.uk.
+ns-890.awsdns-12.com.'
+    it { should have_record_set('example.com.').ns(ns1) }
+    ns2 = 'ns-6789.awsdns-01.org.
+ns-123.awsdns-45.net.
+ns-890.awsdns-12.com.
+ns-2345.awsdns-67.co.uk.'
+    it { should have_record_set('example.com.').ns(ns2) }
+  end
+end

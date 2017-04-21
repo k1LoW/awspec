@@ -21,13 +21,9 @@ module Awspec::Type
                                                  }
                                                ]
                                              })
-      return false unless res[:route_tables].length == 1
-      route_table = res[:route_tables][0]
-
-      name_tag = route_table.tags.select { |tag| tag.key == 'Name' }
-      name = name_tag.nil? ? nil : name_tag[0].value
-
-      route_table.route_table_id == route_table_id || name == route_table_id
+      return false unless res[:route_tables].length > 0
+      associated_route_table = res[:route_tables].first
+      associated_route_table.route_table_id == route_table_id || associated_route_table.tag_name == route_table_id
     end
 
     STATES = %w(

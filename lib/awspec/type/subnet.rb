@@ -21,7 +21,7 @@ module Awspec::Type
                                                  }
                                                ]
                                              })
-      return false unless res[:route_tables].length > 0
+      return false if res[:route_tables].empty?
       associated_route_table = res[:route_tables].first
       associated_route_table.route_table_id == route_table_id || associated_route_table.tag_name == route_table_id
     end

@@ -19,9 +19,9 @@ module Awspec::Type
         next unless record_set.type.casecmp(type) == 0
         options[:ttl] = record_set[:ttl] unless options[:ttl]
         if !record_set.resource_records.empty?
-          v = record_set.resource_records.map { |r| r.value }.join("\n")
+          sorted = record_set.resource_records.map { |r| r.value }.sort.join("\n")
           record_set.name == name && \
-          value == v && \
+          value.split("\n").sort.join("\n") == sorted && \
           record_set.ttl == options[:ttl]
         else
           # ALIAS

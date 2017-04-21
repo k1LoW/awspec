@@ -23,7 +23,7 @@ module Awspec::Type
       ec2 = find_ec2(id)
       return nil unless ec2
       resource_via_client.instances.find do |instance|
-        instance.instance_id = ec2.instance_id
+        instance.instance_id == ec2.instance_id
       end
     end
 

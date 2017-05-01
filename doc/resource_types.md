@@ -20,6 +20,7 @@
 | [ecs_service](#ecs_service)
 | [ecs_task_definition](#ecs_task_definition)
 | [efs](#efs)
+| [eip](#eip)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
@@ -865,6 +866,37 @@ end
 ```
 
 ### its(:owner_id), its(:creation_token), its(:file_system_id), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode)
+## <a name="elastic_ip">elastic_ip</a>
+
+Elastic IP resource type.
+
+### exist
+
+```ruby
+describe eip('123.0.456.789') do
+  it { should exist }
+end
+```
+
+
+### be_associated_to
+
+```ruby
+describe eip('123.0.456.789') do
+  it { should be_associated_to('i-ec12345a') }
+end
+```
+
+
+### belong_to_domain
+
+```ruby
+describe eip('123.0.456.789') do
+  it { should belong_to_domain('vpc') }
+end
+```
+
+
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

@@ -110,8 +110,10 @@ module Awspec::Helper
       end
 
       def select_eip_by_public_ip(id)
-        res = ec2_client.describe_addresses
-        res.addresses.select { |address| address.public_ip == id }
+        res = ec2_client.describe_addresses({
+                                              filters: [{ name: 'public-ip', values: [id] }]
+                                            })
+        res.addresses
       end
 
       def select_network_interface_by_instance_id(id)

@@ -27,6 +27,7 @@ require 'awspec/generator/spec/cloudwatch_logs'
 require 'awspec/generator/spec/alb'
 require 'awspec/generator/spec/internet_gateway'
 require 'awspec/generator/spec/elasticsearch'
+require 'awspec/generator/spec/eip'
 
 # Doc
 require 'awspec/generator/doc/type'

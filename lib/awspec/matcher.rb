@@ -54,3 +54,6 @@ require 'awspec/matcher/have_subscription_filter'
 # DynamoDB
 require 'awspec/matcher/have_attribute_definition'
 require 'awspec/matcher/have_key_schema'
+
+# EIP
+require 'awspec/matcher/belong_to_domain'

@@ -22,8 +22,8 @@ module Awspec::Type
     end
 
     def has_container_instance?(uuid)
-      uuid = arn_or_uuid.split('/').last
-      find_ecs_container_instance(id, uuid)
+      arn_or_uuid = uuid.split('/').last
+      find_ecs_container_instance(id, arn_or_uuid)
     end
 
     # deprecated method

@@ -6,9 +6,9 @@ module Awspec::Helper
         res.clusters.single_resource(cluster)
       end
 
-      def find_ecs_container_instance(cluster, arn_or_uuid)
-        res = ecs_client.describe_container_instances(cluster: cluster, container_instances: [arn_or_uuid])
-        res.container_instances.single_resource(arn_or_uuid)
+      def find_ecs_container_instance(cluster, uuid)
+        res = ecs_client.describe_container_instances(cluster: cluster, container_instances: [uuid])
+        res.container_instances.single_resource(uuid)
       end
 
       def find_ecs_task_definition(taskdef)

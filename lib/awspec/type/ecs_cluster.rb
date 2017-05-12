@@ -21,7 +21,7 @@ module Awspec::Type
       end
     end
 
-    def has_container_instance?(uuid)
+    def has_container_instance?(arn_or_uuid)
       uuid = arn_or_uuid.split('/').last
       find_ecs_container_instance(id, uuid)
     end

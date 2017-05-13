@@ -7,7 +7,7 @@ module Awspec::Type
     end
 
     def id
-      @id ||= resource_via_client.group_id if resource_via_client
+      @id ||= resource_via_client.group_name if resource_via_client
     end
 
     def has_iam_user?(user_id)
@@ -16,7 +16,7 @@ module Awspec::Type
       user_name = user.user_name
       groups = select_iam_group_by_user_name(user_name)
       groups.find do |group|
-        group.group_id == @id
+        group.group_name == id
       end
     end
 

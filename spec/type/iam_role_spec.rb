@@ -26,6 +26,7 @@ describe iam_role('my-iam-role') do
 DOC
   end
   it { should be_allowed_action('ec2:DescribeInstances') }
+  it { should not_be_allowed_action('ec2:TerminateInstances') }
   it { should be_allowed_action('ec2:DescribeInstances').resource_arn('*') }
   it do
     should be_allowed_action('s3:ListBucket')

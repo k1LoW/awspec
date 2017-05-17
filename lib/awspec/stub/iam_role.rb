@@ -51,6 +51,13 @@ Aws.config[:iam] = {
           eval_decision: 'allowed',
           matched_statements: [
           ]
+        },
+        {
+          eval_action_name: 'ec2:TerminateInstances',
+          eval_resource_name: '*',
+          eval_decision: 'denied',
+          matched_statements: [
+          ]
         }
       ],
       is_truncated: false,

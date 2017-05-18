@@ -1,23 +1,21 @@
 module Awspec::Helper
   module Finder
     module Subnet
-      def filter_type_matcher(search_key)
-        deafult = 'tag:Name'
-        case search_key
-        when /subnet-[a-zA-Z0-9]{8}/
-          return 'subnet-id'
-        when %r{[1-9][0-9]{1,2}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}//[0-9]{1,3}}
-          return 'cidrBlock'
-        else
-          return deafult
-        end
-      end
-
-      def find_subnet(search_key)
+      def find_subnet(subnet_id)
         res = ec2_client.describe_subnets({
-                                            filters: [{ name: filter_type_matcher(search_key), values: [search_key] }]
+                                            filters: [{ name: 'subnet-id', values: [subnet_id] }]
                                           })
-        res.subnets.single_resource(search_key)
+        resource = res.subnets.single_resource(subnet_id)
+        return resource if resource
+        res = ec2_client.describe_subnets({
+                                            filters: [{ name: 'tag:Name', values: [subnet_id] }]
+                                          })
+        resource = res.subnets.single_resource(subnet_id)
+        return resource if resource
+        res = ec2_client.describe_subnets({
+                                            filters: [{ name: 'cidrBlock', values: [subnet_id] }]
+                                          })
+        res.subnets.single_resource(subnet_id)
       end
 
       def select_subnet_by_vpc_id(vpc_id)

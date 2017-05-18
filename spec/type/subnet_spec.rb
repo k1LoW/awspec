@@ -13,11 +13,3 @@ describe subnet('my-subnet') do
   end
   it { should have_tag('Name').value('my-subnet') }
 end
-
-describe subnet('subnet-1234a567') do
-  it { should exist }
-end
-
-describe subnet('10.0.1.0/24') do
-  it { should exist }
-end

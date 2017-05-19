@@ -19,5 +19,12 @@ module Awspec::Type
         sg == sg2.group_id
       end
     end
+
+    def has_block_device_mapping?(id)
+      resource_via_client.block_device_mappings.find do |device|
+        return true if device.device_name == id
+        return true if device.virtual_name == id
+      end
+    end
   end
 end

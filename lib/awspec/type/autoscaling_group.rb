@@ -24,5 +24,11 @@ module Awspec::Type
         instance.instance_id = ec2.instance_id
       end
     end
+
+    def has_suspended_process?(id)
+      resource_via_client.suspended_processes.find do |process|
+        process.process_name == id
+      end
+    end
   end
 end

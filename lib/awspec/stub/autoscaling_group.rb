@@ -35,6 +35,11 @@ Aws.config[:autoscaling] = {
               key: 'name',
               value: 'my-autoscaling-group'
             }
+          ],
+          suspended_processes: [
+            {
+              process_name: 'HealthCheck'
+            }
           ]
         }
       ]

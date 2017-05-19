@@ -12,6 +12,7 @@ describe autoscaling_group('my-auto-scaling-group') do
   it { should have_ec2('my-ec2') }
   it { should have_elb('my-elb') }
   it { should have_tag('name').value('my-autoscaling-group') }
+  it { should have_suspended_process('HealthCheck') }
 end
 
 # deprecated

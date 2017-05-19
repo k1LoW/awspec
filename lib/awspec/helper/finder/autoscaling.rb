@@ -15,7 +15,7 @@ module Awspec::Helper
         res.launch_configurations.single_resource(id)
       end
 
-      def select_block_device_mapping(id, device_id)
+      def find_block_device_mapping(id, device_id)
         ret = find_launch_configuration(id).block_device_mappings.select do |device|
           next true if device.device_name == device_id
           next true if device.virtual_name == device_id

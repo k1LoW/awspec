@@ -21,10 +21,11 @@ module Awspec::Type
     end
 
     def has_block_device_mapping?(id)
-      resource_via_client.block_device_mappings.find do |device|
+      ret = resource_via_client.block_device_mappings.select do |device|
         next true if device.device_name == id
         next true if device.virtual_name == id
       end
+      ret.single_resource(id)
     end
   end
 end

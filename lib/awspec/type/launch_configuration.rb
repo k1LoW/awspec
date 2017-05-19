@@ -21,7 +21,7 @@ module Awspec::Type
     end
 
     def has_block_device_mapping?(device_id)
-      ret = select_block_device_mapping(@display_name, device_id)
+      ret = find_block_device_mapping(@display_name, device_id)
       return true if ret
     end
   end

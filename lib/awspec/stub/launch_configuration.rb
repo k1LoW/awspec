@@ -15,7 +15,12 @@ Aws.config[:autoscaling] = {
         instance_type: 'c3.large',
         kernel_id: '',
         ramdisk_id: '',
-        block_device_mappings: [],
+        block_device_mappings: [
+          {
+            virtual_name: 'ephemeral0',
+            device_name: '/dev/sdf'
+          }
+        ],
         instance_monitoring: {
           enabled: true
         },

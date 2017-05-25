@@ -13,14 +13,18 @@ module Awspec::Helper
         res.vpcs.single_resource(id)
       end
 
-      def find_route_table(route_table_id)
+      def vpc_id_filter(vpc_id)
+        vpc_id.nil? ? []:[{ name: 'vpc-id', values: [vpc_id] }]
+      end
+
+      def find_route_table(route_table_id, vpc_id=nil)
         res = ec2_client.describe_route_tables({
-                                                 filters: [{ name: 'route-table-id', values: [route_table_id] }]
+                                                 filters: vpc_id_filter(vpc_id) + [{ name: 'route-table-id', values: [route_table_id] }]
                                                })
         resource = res.route_tables.single_resource(route_table_id)
         return resource if resource
         res = ec2_client.describe_route_tables({
-                                                 filters: [{ name: 'tag:Name', values: [route_table_id] }]
+                                                 filters: vpc_id_filter(vpc_id) + [{ name: 'tag:Name', values: [route_table_id] }]
                                                })
         res.route_tables.single_resource(route_table_id)
       end
@@ -39,14 +43,14 @@ module Awspec::Helper
 
       def select_route_table_by_vpc_id(vpc_id)
         res = ec2_client.describe_route_tables({
-                                                 filters: [{ name: 'vpc-id', values: [vpc_id] }]
+                                                 filters: vpc_id_filter(vpc_id)
                                                })
         res.route_tables
       end
 
       def select_network_acl_by_vpc_id(vpc_id)
         res = ec2_client.describe_network_acls({
-                                                 filters: [{ name: 'vpc-id', values: [vpc_id] }]
+                                                 filters: vpc_id_filter(vpc_id)
                                                })
         res.network_acls
       end

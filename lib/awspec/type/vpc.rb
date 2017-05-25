@@ -22,9 +22,9 @@ module Awspec::Type
     end
 
     def has_route_table?(table_id)
-      route_table = find_route_table(table_id)
+      route_table = find_route_table(table_id, id)
       return false unless route_table
-      route_table.vpc_id == id
+      true
     end
 
     def has_network_acl?(table_id)

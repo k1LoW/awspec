@@ -29,14 +29,14 @@ module Awspec::Helper
         res.route_tables.single_resource(route_table_id)
       end
 
-      def find_network_acl(id)
+      def find_network_acl(id, vpc_id=nil)
         res = ec2_client.describe_network_acls({
-                                                 filters: [{ name: 'network-acl-id', values: [id] }]
+                                                 filters: vpc_id_filter(vpc_id) +[{ name: 'network-acl-id', values: [id] }]
                                                })
         resource = res.network_acls.single_resource(id)
         return resource if resource
         res = ec2_client.describe_network_acls({
-                                                 filters: [{ name: 'tag:Name', values: [id] }]
+                                                 filters: vpc_id_filter(vpc_id) +[{ name: 'tag:Name', values: [id] }]
                                                })
         res.network_acls.single_resource(id)
       end

@@ -2,9 +2,15 @@ module Awspec::Type
   class NetworkAcl < ResourceBase
     aws_resource Aws::EC2::NetworkAcl
     tags_allowed
+    attr_reader :vpc_id
+
+    def initialize(display_name = nil, params = nil)
+      super(display_name, params)
+      @vpc_id = @params.fetch(:vpc_id, nil)
+    end
 
     def resource_via_client
-      @resource_via_client ||= find_network_acl(@display_name)
+      @resource_via_client ||= find_network_acl(@display_name, @vpc_id)
     end
 
     def id

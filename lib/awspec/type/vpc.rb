@@ -28,9 +28,9 @@ module Awspec::Type
     end
 
     def has_network_acl?(table_id)
-      n = find_network_acl(table_id)
+      n = find_network_acl(table_id, id)
       return false unless n
-      n.vpc_id == id
+      true
     end
   end
 end

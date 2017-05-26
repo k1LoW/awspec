@@ -2,7 +2,7 @@ module Awspec::Type
   class EcrRepository < ResourceBase
     aws_resource Aws::ECR::Types::Repository
 
-    def initialize(repository_name)
+    def initialize(repository_name, params = nil)
       super
       @display_name = repository_name
     end

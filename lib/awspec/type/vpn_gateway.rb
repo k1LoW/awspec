@@ -2,7 +2,7 @@ module Awspec::Type
   class VpnGateway < ResourceBase
     tags_allowed
 
-    def initialize(name)
+    def initialize(name, params = nil)
       super
       @display_name = name
     end

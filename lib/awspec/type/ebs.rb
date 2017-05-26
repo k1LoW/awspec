@@ -3,7 +3,7 @@ module Awspec::Type
     aws_resource Aws::EC2::Volume
     tags_allowed
 
-    def initialize(name)
+    def initialize(name, params = nil)
       super
       @display_name = name
     end

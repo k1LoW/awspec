@@ -6,7 +6,7 @@ module Awspec::Type
 
     def initialize(display_name = nil, params = nil)
       super(display_name, params)
-      @vpc_id = @params.fetch(:vpc_id, nil)
+      @vpc_id = params.nil? ? nil : @params.fetch(:vpc_id, nil)
     end
 
     def resource_via_client

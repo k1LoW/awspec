@@ -1,6 +1,6 @@
 module Awspec::Type
   class ElasticacheCacheParameterGroup < ResourceBase
-    def initialize(name)
+    def initialize(name, params = nil)
       super
       @display_name = name
     end

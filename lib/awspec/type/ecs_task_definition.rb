@@ -1,6 +1,6 @@
 module Awspec::Type
   class EcsTaskDefinition < ResourceBase
-    def initialize(taskdef)
+    def initialize(taskdef, params = nil)
       super
       @display_name = taskdef
     end

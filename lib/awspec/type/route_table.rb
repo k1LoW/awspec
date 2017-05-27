@@ -2,15 +2,9 @@ module Awspec::Type
   class RouteTable < ResourceBase
     aws_resource Aws::EC2::RouteTable
     tags_allowed
-    attr_reader :vpc_id
-
-    def initialize(display_name = nil, params = nil)
-      super(display_name, params)
-      @vpc_id = params.nil? ? nil : @params.fetch(:vpc_id, nil)
-    end
 
     def resource_via_client
-      @resource_via_client ||= find_route_table(@display_name, @vpc_id)
+      @resource_via_client ||= find_route_table(@display_name, @params['vpc_id'])
     end
 
     def id

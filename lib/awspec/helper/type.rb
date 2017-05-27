@@ -46,7 +46,7 @@ module Awspec
                  == 'Awspec::Type::AccountAttributeBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountAttributeBase"
           end
-          class_from_string("Awspec::Type::#{type.camelize}").new()
+          class_from_string("Awspec::Type::#{type.camelize}").new
         end
       end
 

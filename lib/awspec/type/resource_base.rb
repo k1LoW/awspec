@@ -2,9 +2,9 @@ module Awspec::Type
   class ResourceBase < Base
     attr_reader :id, :resource_via_client, :params
 
-    def initialize(display_name = nil, params = nil)
+    def initialize(display_name = nil, params = {})
       @display_name = display_name
-      @params = params
+      @params = params.nil? ? {} : params
       @id = nil
     end
 

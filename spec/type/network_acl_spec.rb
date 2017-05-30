@@ -1,7 +1,7 @@
 require 'spec_helper'
 Awspec::Stub.load 'network_acl'
 
-describe network_acl('my-network-acl', 'my-vpc') do
+describe network_acl('my-network-acl', vpc_id: 'my-vpc') do
   it { should exist }
   it { should belong_to_vpc('my-vpc') }
   it { should have_subnet('my-subnet') }

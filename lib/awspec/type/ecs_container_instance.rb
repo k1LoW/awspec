@@ -2,9 +2,9 @@ module Awspec::Type
   class EcsContainerInstance < ResourceBase
     attr_accessor :cluster
 
-    def initialize(container_instance, params = nil)
+    def initialize(params)
       super
-      @display_name = container_instance.split('/').last
+      @display_name = @display_name.split('/').last
     end
 
     def resource_via_client

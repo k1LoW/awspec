@@ -1,10 +1,5 @@
 module Awspec::Type
   class EcsService < ResourceBase
-    def initialize(service, params = nil)
-      super
-      @display_name = service
-    end
-
     def resource_via_client
       @resource_via_client ||= find_ecs_service(@display_name)
     end

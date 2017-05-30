@@ -2,11 +2,6 @@ module Awspec::Type
   class CustomerGateway < ResourceBase
     tags_allowed
 
-    def initialize(name, params = nil)
-      super
-      @display_name = name
-    end
-
     def resource_via_client
       @resource_via_client ||= find_customer_gateway(@display_name)
     end

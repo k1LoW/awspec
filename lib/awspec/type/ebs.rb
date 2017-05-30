@@ -3,11 +3,6 @@ module Awspec::Type
     aws_resource Aws::EC2::Volume
     tags_allowed
 
-    def initialize(name, params = nil)
-      super
-      @display_name = name
-    end
-
     def resource_via_client
       @resource_via_client ||= find_ebs(@display_name)
     end

@@ -1,10 +1,5 @@
 module Awspec::Type
   class Efs < ResourceBase
-    def initialize(file_system_id, params = nil)
-      super
-      @display_name = file_system_id
-    end
-
     def resource_via_client
       @resource_via_client ||= find_efs(@display_name)
     end

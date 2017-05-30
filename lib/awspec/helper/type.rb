@@ -34,8 +34,7 @@ module Awspec
           unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::ResourceBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::ResourceBase"
           end
-          name, params = args.first(2)
-          class_from_string("Awspec::Type::#{type.camelize}").new(name, params)
+          class_from_string("Awspec::Type::#{type.camelize}").new(args.first)
         end
       end
 

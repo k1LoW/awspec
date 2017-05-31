@@ -32,8 +32,18 @@ Aws.config[:autoscaling] = {
           created_time: Time.local(2015),
           tags: [
             {
-              key: 'name',
-              value: 'my-autoscaling-group'
+              key: 'Dept',
+              propagate_at_launch: true,
+              resource_id: 'my-auto-scaling-group',
+              resource_type: 'auto-scaling-group',
+              value: 'Research'
+            },
+            {
+              key: 'Role',
+              propagate_at_launch: true,
+              resource_id: 'my-auto-scaling-group',
+              resource_type: 'auto-scaling-group',
+              value: 'WebServer'
             }
           ],
           suspended_processes: [
@@ -41,6 +51,24 @@ Aws.config[:autoscaling] = {
               process_name: 'HealthCheck'
             }
           ]
+        }
+      ]
+    },
+    describe_tags: {
+      tags: [
+        {
+          key: 'Dept',
+          propagate_at_launch: true,
+          resource_id: 'my-auto-scaling-group',
+          resource_type: 'auto-scaling-group',
+          value: 'Research'
+        },
+        {
+          key: 'Role',
+          propagate_at_launch: true,
+          resource_id: 'my-auto-scaling-group',
+          resource_type: 'auto-scaling-group',
+          value: 'WebServer'
         }
       ]
     }

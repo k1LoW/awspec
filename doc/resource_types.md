@@ -321,7 +321,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
 end
 ```
 
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator)
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile)
 ## <a name="cloudwatch_event">cloudwatch_event</a>
 
 CloudwatchEvent resource type.
@@ -801,7 +801,7 @@ end
 ```
 
 
-### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes)
+### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes), its(:registered_at)
 ## <a name="ecs_service">ecs_service</a>
 
 ECS Service resource type.
@@ -1294,7 +1294,7 @@ end
 ```
 
 
-### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document)
+### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description)
 ### :unlock: Advanced use
 
 `iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).
@@ -1536,7 +1536,7 @@ end
 
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:environment), its(:kms_key_arn)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:environment), its(:kms_key_arn), its(:tracing_config)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -1840,7 +1840,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).

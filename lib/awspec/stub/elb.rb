@@ -20,7 +20,7 @@ Aws.config[:elasticloadbalancing] = {
             healthy_threshold: 2
           },
           security_groups: [
-            'my-lb-security-group-name'
+            'sg-5a2b3cd4'
           ],
           policies: {},
           source_security_group: {},

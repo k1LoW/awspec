@@ -22,14 +22,20 @@ module Awspec
         ec2_account_attributes rds_account_attributes lambda_account_settings ses_send_quota
       )
 
+      def class_from_string(str)
+        str.split('::').inject(Object) do |mod, class_name|
+          mod.const_get(class_name)
+        end
+      end
+
       TYPES.each do |type|
         require "awspec/type/#{type}"
         define_method type do |*args|
           unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::ResourceBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::ResourceBase"
           end
-          name = args.first
-          eval "Awspec::Type::#{type.camelize}.new(name)"
+          name, params = args.first(2)
+          class_from_string("Awspec::Type::#{type.camelize}").new(name, params)
         end
       end
 
@@ -40,7 +46,7 @@ module Awspec
                  == 'Awspec::Type::AccountAttributeBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountAttributeBase"
           end
-          eval "Awspec::Type::#{type.camelize}.new"
+          class_from_string("Awspec::Type::#{type.camelize}").new
         end
       end
 

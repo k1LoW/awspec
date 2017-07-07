@@ -1,6 +1,6 @@
 module Awspec::Type
   class Efs < ResourceBase
-    def initialize(file_system_id)
+    def initialize(file_system_id, params = nil)
       super
       @display_name = file_system_id
     end

@@ -123,7 +123,7 @@ end
 ```
 
 
-### its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:sriov_net_support), its(:ena_support), its(:state_reason), its(:image_owner_alias), its(:name), its(:description), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:tags), its(:hypervisor)
+### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:tags), its(:virtualization_type)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
@@ -413,7 +413,7 @@ end
 ```
 
 
-### its(:customer_gateway_id), its(:state), its(:type), its(:ip_address), its(:bgp_asn), its(:tags)
+### its(:bgp_asn), its(:customer_gateway_id), its(:ip_address), its(:state), its(:type), its(:tags)
 ## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
 
 DirectconnectVirtualInterface resource type.
@@ -545,7 +545,7 @@ end
 ```
 
 
-### its(:volume_id), its(:size), its(:snapshot_id), its(:availability_zone), its(:state), its(:create_time), its(:volume_type), its(:iops), its(:encrypted), its(:kms_key_id)
+### its(:availability_zone), its(:create_time), its(:encrypted), its(:kms_key_id), its(:size), its(:snapshot_id), its(:state), its(:volume_id), its(:iops), its(:volume_type)
 ### :unlock: Advanced use
 
 `ebs` can use `Aws::EC2::Volume` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html).
@@ -720,7 +720,7 @@ end
 ```
 
 
-### its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:product_codes), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address), its(:state_reason), its(:architecture), its(:root_device_type), its(:root_device_name), its(:virtualization_type), its(:instance_lifecycle), its(:spot_instance_request_id), its(:client_token), its(:source_dest_check), its(:hypervisor), its(:ebs_optimized), its(:sriov_net_support), its(:ena_support)
+### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -1600,7 +1600,7 @@ describe nat_gateway('nat-7ff7777f') do
 end
 ```
 
-### its(:vpc_id), its(:subnet_id), its(:nat_gateway_id), its(:create_time), its(:delete_time), its(:state), its(:failure_code), its(:failure_message), its(:provisioned_bandwidth)
+### its(:create_time), its(:delete_time), its(:failure_code), its(:failure_message), its(:nat_gateway_id), its(:provisioned_bandwidth), its(:state), its(:subnet_id), its(:vpc_id)
 ## <a name="network_acl">network_acl</a>
 
 NetworkAcl resource type.
@@ -1654,7 +1654,7 @@ end
 ```
 
 
-### its(:inbound_entries_count), its(:outbound_entries_count), its(:network_acl_id), its(:vpc_id), its(:is_default)
+### its(:inbound_entries_count), its(:outbound_entries_count), its(:is_default), its(:network_acl_id), its(:vpc_id)
 ### :unlock: Advanced use
 
 `network_acl` can use `Aws::EC2::NetworkAcl` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/NetworkAcl.html).
@@ -1751,7 +1751,7 @@ describe network_interface('eni-12ab3cde') do
 end
 ```
 
-### its(:network_interface_id), its(:subnet_id), its(:vpc_id), its(:availability_zone), its(:description), its(:owner_id), its(:requester_id), its(:requester_managed), its(:status), its(:mac_address), its(:private_ip_address), its(:private_dns_name), its(:source_dest_check), its(:association), its(:ipv_6_addresses), its(:interface_type)
+### its(:association), its(:availability_zone), its(:description), its(:interface_type), its(:ipv_6_addresses), its(:mac_address), its(:network_interface_id), its(:owner_id), its(:private_dns_name), its(:private_ip_address), its(:requester_id), its(:requester_managed), its(:source_dest_check), its(:status), its(:subnet_id), its(:vpc_id)
 ## <a name="rds">rds</a>
 
 RDS resource type.
@@ -1976,7 +1976,7 @@ end
 ```
 
 
-### its(:route_table_id), its(:vpc_id), its(:propagating_vgws)
+### its(:propagating_vgws), its(:route_table_id), its(:vpc_id)
 ### :unlock: Advanced use
 
 `route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).
@@ -2053,7 +2053,7 @@ describe s3_bucket('my-bucket') do
       id: 'MyRuleName',
       noncurrent_version_expiration: { noncurrent_days: 1 },
       expiration: { days: 2 },
-      transitions: {days: 3, storage_class: 'GLACIER' },
+      transitions: { days: 3, storage_class: 'GLACIER' },
       status: 'Enabled'
     )
   end
@@ -2180,7 +2180,7 @@ end
 ```
 
 
-### its(:inbound_rule_count), its(:outbound_rule_count), its(:inbound_permissions_count), its(:outbound_permissions_count), its(:owner_id), its(:group_name), its(:group_id), its(:description), its(:vpc_id)
+### its(:inbound_rule_count), its(:outbound_rule_count), its(:inbound_permissions_count), its(:outbound_permissions_count), its(:description), its(:group_name), its(:owner_id), its(:group_id), its(:vpc_id)
 ### :unlock: Advanced use
 
 `security_group` can use `Aws::EC2::SecurityGroup` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/SecurityGroup.html).
@@ -2257,7 +2257,7 @@ end
 ```
 
 
-### its(:subnet_id), its(:state), its(:vpc_id), its(:cidr_block), its(:ipv_6_cidr_block_association_set), its(:assign_ipv_6_address_on_creation), its(:available_ip_address_count), its(:availability_zone), its(:default_for_az), its(:map_public_ip_on_launch)
+### its(:availability_zone), its(:available_ip_address_count), its(:cidr_block), its(:default_for_az), its(:map_public_ip_on_launch), its(:state), its(:subnet_id), its(:vpc_id), its(:assign_ipv_6_address_on_creation), its(:ipv_6_cidr_block_association_set)
 ### :unlock: Advanced use
 
 `subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).
@@ -2327,7 +2327,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:state), its(:cidr_block), its(:dhcp_options_id), its(:instance_tenancy), its(:is_default), its(:ipv_6_cidr_block_association_set)
+### its(:cidr_block), its(:dhcp_options_id), its(:state), its(:vpc_id), its(:instance_tenancy), its(:ipv_6_cidr_block_association_set), its(:is_default)
 ### :unlock: Advanced use
 
 `vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).
@@ -2377,7 +2377,7 @@ end
 ```
 
 
-### its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id), its(:tags), its(:vgw_telemetry), its(:options), its(:routes)
+### its(:customer_gateway_configuration), its(:customer_gateway_id), its(:state), its(:type), its(:vpn_connection_id), its(:vpn_gateway_id), its(:options), its(:routes), its(:tags), its(:vgw_telemetry)
 ## <a name="vpn_gateway">vpn_gateway</a>
 
 VpnGateway resource type.
@@ -2409,7 +2409,7 @@ end
 ```
 
 
-### its(:vpn_gateway_id), its(:state), its(:type), its(:availability_zone), its(:vpc_attachments), its(:tags)
+### its(:availability_zone), its(:state), its(:type), its(:vpc_attachments), its(:vpn_gateway_id), its(:tags)
 ## <a name="waf_web_acl">waf_web_acl</a>
 
 WafWebAcl resource type.

@@ -80,7 +80,7 @@ describe s3_bucket('my-bucket') do
       id: 'MyRuleName',
       noncurrent_version_expiration: { noncurrent_days: 1 },
       expiration: { days: 2 },
-      transitions: {days: 3, storage_class: 'GLACIER' },
+      transitions: { days: 3, storage_class: 'GLACIER' },
       status: 'Enabled'
     )
   end

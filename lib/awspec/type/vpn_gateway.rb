@@ -2,11 +2,6 @@ module Awspec::Type
   class VpnGateway < ResourceBase
     tags_allowed
 
-    def initialize(name)
-      super
-      @display_name = name
-    end
-
     def resource_via_client
       @resource_via_client ||= find_vpn_gateway(@display_name)
     end

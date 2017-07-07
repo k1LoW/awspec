@@ -17,3 +17,8 @@ describe network_acl('my-network-acl') do
   end
   it { should have_tag('Name').value('my-network-acl') }
 end
+
+describe network_acl(name: 'my-network-acl', vpc_id: 'my-vpc') do
+  it { should exist }
+  it { should belong_to_vpc('my-vpc') }
+end

@@ -1,10 +1,5 @@
 module Awspec::Type
   class EcsCluster < ResourceBase
-    def initialize(name)
-      super
-      @display_name = name
-    end
-
     def resource_via_client
       @resource_via_client ||= find_ecs_cluster(@display_name)
     end

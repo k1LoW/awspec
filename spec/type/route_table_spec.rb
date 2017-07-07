@@ -22,6 +22,11 @@ describe route_table('my-route-table') do
   it { should have_tag('Name').value('my-route-table') }
 end
 
+describe route_table(name: 'my-route-table', vpc_id: 'my-vpc') do
+  it { should exist }
+  it { should belong_to_vpc('my-vpc') }
+end
+
 # deprecated
 describe route_table('my-route-table') do
   it { should have_route('local').destination('10.0.0.0/16') }

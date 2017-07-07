@@ -1,10 +1,5 @@
 module Awspec::Type
   class DirectconnectVirtualInterface < ResourceBase
-    def initialize(name)
-      super
-      @display_name = name
-    end
-
     def resource_via_client
       @resource_via_client ||= find_virtual_interface(@display_name)
     end

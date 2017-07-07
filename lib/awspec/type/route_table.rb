@@ -4,7 +4,7 @@ module Awspec::Type
     tags_allowed
 
     def resource_via_client
-      @resource_via_client ||= find_route_table(@display_name)
+      @resource_via_client ||= find_route_table(@display_name, @params['vpc_id'])
     end
 
     def id

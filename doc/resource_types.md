@@ -45,6 +45,7 @@
 | [s3_bucket](#s3_bucket)
 | [security_group](#security_group)
 | [ses_identity](#ses_identity)
+| [sqs](#sqs)
 | [subnet](#subnet)
 | [vpc](#vpc)
 | [vpn_connection](#vpn_connection)
@@ -2224,6 +2225,20 @@ end
 ```
 
 ### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)
+## <a name="sqs">sqs</a>
+
+SQS resource type.
+
+### exist
+
+```ruby
+describe sqs('my-queue') do
+  it { should exist }
+  its(:queue_arn) { should eq 'arn:aws:sqs:ap-northeast-1:123456789012:my-queue' }
+end
+```
+
+
 ## <a name="subnet">subnet</a>
 
 Subnet resource type.

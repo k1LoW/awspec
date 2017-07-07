@@ -11,6 +11,7 @@ module Awspec::Type
       res.attributes.each do |key, value|
         attributes[key.underscore] = value
       end
+      attributes['queue_url'] = queue_url
       @resource_via_client ||= attributes
     end
 

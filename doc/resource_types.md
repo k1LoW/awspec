@@ -126,7 +126,7 @@ end
 
 ### have_tag
 
-### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:tags), its(:virtualization_type)
+### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).

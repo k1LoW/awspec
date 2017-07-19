@@ -2239,9 +2239,7 @@ describe sqs('my-queue') do
 end
 ```
 
-### its(:queue_url), its(:queue_arn), its(:visibility_timeout), its(:maximum_message_size), its(:message_retention_period), its(:delay_seconds), its(:receive_message_wait_time_seconds), its(:approximate_number_of_messages), its(:approximate_number_of_messages_not_visible),
-its(:approximate_number_of_messages_delayed), its(:createdtimestamp), its(:last_modified_timestamp)
-
+### its(:queue_arn), its(:approximate_number_of_messages), its(:approximate_number_of_messages_not_visible), its(:approximate_number_of_messages_delayed), its(:created_timestamp), its(:last_modified_timestamp), its(:visibility_timeout), its(:maximum_message_size), its(:message_retention_period), its(:delay_seconds), its(:receive_message_wait_time_seconds), its(:queue_url)
 ## <a name="subnet">subnet</a>
 
 Subnet resource type.
@@ -2520,7 +2518,7 @@ describe account_attribute('ec2') do
   its('vpc_max_elastic_ips') { should eq 5 }
   its('default_vpc') { should eq 'none' }
 end
-
+ 
 describe account_attribute('rds') do
   its('DBInstances.used') { should eq 0 }
   its('DBInstances.max') { should eq 40 }
@@ -2553,7 +2551,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.used') { should eq 0 }
   its('DBClusterRoles.max') { should eq 5 }
 end
-
+ 
 describe account_attribute('lambda') do
   its('total_code_size.limit') { should eq 80530636800 }
   its('total_code_size.usage') { should eq 2034651562 }
@@ -2562,13 +2560,13 @@ describe account_attribute('lambda') do
   its('concurrent_executions.limit') { should eq 200 }
   its('function_count.usage') { should eq 8 }
 end
-
+ 
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }
 end
-
+ 
 ```
 
 

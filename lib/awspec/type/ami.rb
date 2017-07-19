@@ -1,6 +1,7 @@
 module Awspec::Type
   class Ami < ResourceBase
     aws_resource Aws::EC2::Image
+    tags_allowed
 
     def resource_via_client
       @resource_via_client ||= find_ami(@display_name)

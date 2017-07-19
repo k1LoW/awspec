@@ -52,7 +52,7 @@ aws_secret_access_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 EOF
 ```
 
-### STEP 3. Write spec/*_spec.rb
+### STEP 3. Write spec/\*\_spec.rb
 
 ```ruby
 require 'spec_helper'
@@ -67,6 +67,23 @@ describe ec2('my-ec2-tag-name') do
   it { should belong_to_subnet('subnet-1234a567') }
   it { should have_eip('123.0.456.789') }
   it { should be_disabled_api_termination }
+end
+```
+
+#### Using shared_context: region
+
+```ruby
+require 'spec_helper'
+
+describe sqs('my-sqs-queue'), region: 'us-west-2' do
+  it { should exist }
+  its(:queue_url) { should eq 'https://sqs.us-west-2.amazonaws.com/xxxxxxxxxxxx/my-sqs-queue' }
+  its(:queue_arn) { should eq 'arn:aws:sqs:us-west-2:xxxxxxxxxxxx:my-sqs-queue' }
+  its(:visibility_timeout) { should eq '30' }
+  its(:maximum_message_size) { should eq '256000' }
+  its(:message_retention_period) { should eq '86400' }
+  its(:delay_seconds) { should eq '0' }
+  its(:receive_message_wait_time_seconds) { should eq '10' }
 end
 ```
 

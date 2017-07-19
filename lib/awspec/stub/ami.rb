@@ -44,7 +44,12 @@ Aws.config[:ec2] = {
             }
           ],
           virtualization_type: 'hvm',
-          tags: [],
+          tags: [
+            {
+              key: 'stage',
+              value: 'production'
+            }
+          ],
           hypervisor: 'xen'
         }
       ]

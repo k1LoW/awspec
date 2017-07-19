@@ -27,7 +27,7 @@ module Awspec::Helper
           responce.functions
         end.flatten
       end
-  
+
       def lambda_config
         lambda_client.get_function_configuration(function_name: id)
       rescue Aws::Lambda::Errors::ServiceError => e

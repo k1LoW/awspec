@@ -17,6 +17,16 @@ describe lambda('my-lambda-function-name') do
   its(:timeout) { should eq 5 }
   its(:memory_size) { should eq 256 }
 end
+
+describe lambda('my-other-lambda-function-name') do
+  it { should exist }
+  its(:description) { should eq '' }
+  its(:runtime) { should eq '' }
+  its(:handler) { should eq '' }
+  its(:code_size) { should eq  }
+  its(:timeout) { should eq  }
+  its(:memory_size) { should eq  }
+end
 EOF
     expect(lambda.generate_all.to_s).to eq spec
   end

@@ -38,11 +38,5 @@ module Awspec::Type
         source.event_source_arn == event_source_arn
       end
     end
-
-    def lambda_config
-      lambda_client.get_function_configuration(function_name: id)
-    rescue Aws::Lambda::Errors::ServiceError => e
-      puts e
-    end
   end
 end

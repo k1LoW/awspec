@@ -2236,12 +2236,10 @@ SQS resource type.
 ```ruby
 describe sqs('my-queue') do
   it { should exist }
-  its(:queue_url) { should eq 'https://sqs.ap-northeast-1.amazonaws.com/123456789012/my-queue' }
-  its(:queue_arn) { should eq 'arn:aws:sqs:ap-northeast-1:123456789012:my-queue' }
 end
 ```
 
-
+### its(:queue_arn), its(:approximate_number_of_messages), its(:approximate_number_of_messages_not_visible), its(:approximate_number_of_messages_delayed), its(:created_timestamp), its(:last_modified_timestamp), its(:visibility_timeout), its(:maximum_message_size), its(:message_retention_period), its(:delay_seconds), its(:receive_message_wait_time_seconds), its(:queue_url)
 ## <a name="subnet">subnet</a>
 
 Subnet resource type.

@@ -65,6 +65,12 @@ module Awspec::Type
       end
     end
 
+    def has_tag?(key, value)
+      tag = find_bucket_tag(id, key)
+      return nil if tag.value != value
+      tag
+    end
+
     def has_logging_enabled?(target_bucket: nil, target_prefix: nil)
       bl = find_bucket_logging(id)
       le = bl ? bl.logging_enabled : nil

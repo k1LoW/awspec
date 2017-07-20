@@ -67,6 +67,14 @@ Aws.config[:s3] = {
     get_bucket_versioning: {
       status: 'Enabled',
       mfa_delete: 'Enabled'
+    },
+    get_bucket_tagging: {
+      tag_set: [
+        {
+          key: 'env',
+          value: 'dev'
+        }
+      ]
     }
   }
 }

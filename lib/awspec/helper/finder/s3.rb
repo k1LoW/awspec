@@ -32,6 +32,15 @@ module Awspec::Helper
         nil
       end
 
+      def find_bucket_tag(id, tag_key)
+        bucket_tagging = s3_client.get_bucket_tagging(bucket: id)
+        tag_set = bucket_tagging.tag_set
+        tag = tag_set.find { |tag| tag.key == tag_key }
+        rescue Aws::S3::Errors::ServiceError
+          nil
+        return tag if tag
+      end
+
       def find_bucket_versioning(id)
         s3_client.get_bucket_versioning(bucket: id)
       rescue Aws::S3::Errors::ServiceError

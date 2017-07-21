@@ -2115,6 +2115,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+
 ### have_versioning_enabled
 
 ```ruby

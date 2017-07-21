@@ -50,6 +50,8 @@ describe s3_bucket('my-bucket') do
 
   it { should have_logging_enabled(target_bucket: 'my-log-bucket', target_prefix: 'logs/') }
 
+  it { should have_tag('env').value('dev') }
+
   it { should have_versioning_enabled }
 
   it { should have_mfa_delete_enabled }

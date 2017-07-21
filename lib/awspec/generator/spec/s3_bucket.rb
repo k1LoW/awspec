@@ -47,6 +47,9 @@ describe s3_bucket('<%= bucket.name %>') do
 <%- if bucket_policy -%>
   it { should have_policy('<%= bucket_policy %>') }
 <%- end -%>
+<%- if tag -%>
+  it { should have_tag('env').value('dev') }
+<%- end -%>
 end
 EOF
         template
@@ -57,6 +60,7 @@ EOF
       def content(bucket)
         acl = find_bucket_acl(bucket.name)
         grant_specs = generate_grant_specs(acl)
+        tag = find_bucket_tag(bucket.name, 'env')
         policy = find_bucket_policy(bucket.name)
         bucket_policy = policy.policy.read if policy
         ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')

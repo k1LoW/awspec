@@ -62,6 +62,16 @@ module Awspec::Helper
                                                       }
                                                     ]
                                                   })
+        resource = res.vpn_connections.single_resource(vpn_connection_id)
+        return resource if resource
+        res = ec2_client.describe_vpn_connections({
+                                                    filters: [
+                                                      {
+                                                        name: 'tag:Name',
+                                                        values: [vpn_connection_id]
+                                                      }
+                                                    ]
+                                                  })
         res.vpn_connections.single_resource(vpn_connection_id)
       end
 

@@ -8,7 +8,11 @@ Aws.config[:ec2] = {
           customer_gateway_id: 'cgw-cg5692g4',
           vpn_gateway_id: 'vgw-cg5692g4',
           state: 'available',
-          type: "ipsec.1"
+          type: "ipsec.1",
+          tags: [
+            key: 'Name',
+            value: 'my-vpn'
+          ]
         }
       ]
     }

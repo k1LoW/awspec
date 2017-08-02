@@ -21,6 +21,13 @@ module Awspec::Helper
       rescue
         return nil
       end
+
+      def find_alb_target_group(id)
+        res = elbv2_client.describe_target_groups({ names: [id] })
+        res.target_groups.single_resource(id)
+      rescue
+        return nil
+      end
     end
   end
 end

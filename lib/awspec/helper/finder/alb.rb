@@ -14,6 +14,13 @@ module Awspec::Helper
           lb.vpc_id == vpc_id
         end
       end
+
+      def find_alb_listener(arn)
+        res = elbv2_client.describe_listeners({ listener_arns: [arn] })
+        res.listeners.single_resource(arn)
+      rescue
+        return nil
+      end
     end
   end
 end

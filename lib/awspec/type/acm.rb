@@ -5,7 +5,7 @@ module Awspec::Type
     end
 
     def id
-      @id = resource_via_client.certificate_arn if resource_via_client
+      @id ||= resource_via_client.certificate_arn if resource_via_client
     end
 
     STATUSES = %w(

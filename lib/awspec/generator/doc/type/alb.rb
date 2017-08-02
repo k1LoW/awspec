@@ -8,7 +8,8 @@ module Awspec::Generator
           @type = Awspec::Type::Alb.new('my-alb')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::Alb::STATES.map { |state| 'be_' + state }.join(', ')
+            Awspec::Type::Alb::STATES.map { |state| 'be_' + state }.join(', '),
+            'belong_to_vpc'
           ]
           @ignore_matchers = Awspec::Type::Alb::STATES.map { |state| 'be_' + state }
           @describes = []

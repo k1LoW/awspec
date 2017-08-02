@@ -29,3 +29,11 @@ describe alb('my-alb') do
   it { should have_subnet('subnet-1234a567') }
 end
 ```
+
+### belong_to_vpc
+
+```ruby
+describe alb('my-alb') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```

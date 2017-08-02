@@ -22,4 +22,10 @@ describe alb('my-alb') do
 end
 ```
 
+### have_subnet
 
+```ruby
+describe alb('my-alb') do
+  it { should have_subnet('subnet-1234a567') }
+end
+```

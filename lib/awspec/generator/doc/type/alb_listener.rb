@@ -2,6 +2,7 @@ module Awspec::Generator
   module Doc
     module Type
       class AlbListener < Base
+        # rubocop:disable Metrics/LineLength
         def initialize
           super
           @type_name = 'AlbListener'

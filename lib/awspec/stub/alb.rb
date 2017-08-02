@@ -1,15 +1,16 @@
+# rubocop:disable Metrics/LineLength
 Aws.config[:elasticloadbalancingv2] = {
   stub_responses: {
     describe_load_balancers: {
       load_balancers: [
         {
           load_balancer_arn:
-            'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:loadbalancer/app/my-elb/1aa1bb1cc1ddee11',
+            'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:loadbalancer/app/my-alb/1aa1bb1cc1ddee11',
           dns_name:
             'internal-my-elb-1551266724.ap-northeast-1.elb.amazonaws.com',
           canonical_hosted_zone_id: 'A12BCDEDCBA34BC',
           created_time: Time.new(2017, 4, 4, 9, 00, 00, '+00:00'),
-          load_balancer_name: 'my-elb',
+          load_balancer_name: 'my-alb',
           scheme: 'internal',
           vpc_id: 'vpc-ab123cde',
           state:
@@ -34,6 +35,22 @@ Aws.config[:elasticloadbalancingv2] = {
         }
       ],
       next_marker: nil
+    },
+    describe_listeners: {
+      listeners: [
+        {
+          default_actions: [
+            {
+              target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:targetgroup/my-targets/73e2d6bc24d8a067',
+              type: 'forward'
+            }
+          ],
+          listener_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener/app/my-alb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2',
+          load_balancer_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:loadbalancer/app/my-alb/1aa1bb1cc1ddee11',
+          port: 80,
+          protocol: 'HTTP'
+        }
+      ]
     }
   }
 }

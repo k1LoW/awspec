@@ -3,6 +3,7 @@
 [acm](#acm)
 | [alb](#alb)
 | [alb_listener](#alb_listener)
+| [alb_target_group](#alb_target_group)
 | [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
 | [cloudfront_distribution](#cloudfront_distribution)
@@ -117,6 +118,40 @@ AlbListener resource type.
 ### exist
 
 ### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy)
+## <a name="alb_target_group">alb_target_group</a>
+
+AlbTargetGroup resource type.
+
+### exist
+
+### have_ec2
+
+```ruby
+describe alb_target_group('my-alb-target-group') do
+  it { should have_ec2('my-ec2') }
+end
+```
+
+
+### belong_to_alb
+
+```ruby
+describe alb_target_group('my-alb-target-group') do
+  it { should belong_to_alb('my-alb') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe alb_target_group('my-alb-target-group') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+
+### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns)
 ## <a name="ami">ami</a>
 
 AMI resource type.

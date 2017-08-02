@@ -57,3 +57,6 @@ require 'awspec/matcher/have_key_schema'
 
 # EIP
 require 'awspec/matcher/belong_to_domain'
+
+# Alb Target Group
+require 'awspec/matcher/belong_to_alb'

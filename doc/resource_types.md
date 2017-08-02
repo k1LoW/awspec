@@ -100,6 +100,13 @@ end
 ```
 
 
+### have_subnet
+
+```ruby
+describe alb('my-alb') do
+  it { should have_subnet('subnet-1234a567') }
+end
+```
 
 ### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type)
 ## <a name="ami">ami</a>

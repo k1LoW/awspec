@@ -28,5 +28,15 @@ module Awspec::Type
       return true if sgs.include? sg2.group_id
       false
     end
+
+    def has_subnet?(subnet_id)
+      azs = resource_via_client.availability_zones
+      ret = azs.find do |az|
+        az.subnet_id == subnet_id
+      end
+      return true if ret
+      subnet2 = find_subnet(subnet_id)
+      subnet2.subnet_id = subnet_id
+    end
   end
 end

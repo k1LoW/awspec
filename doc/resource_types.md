@@ -2,6 +2,7 @@
 
 [acm](#acm)
 | [alb](#alb)
+| [alb_listener](#alb_listener)
 | [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
 | [cloudfront_distribution](#cloudfront_distribution)
@@ -109,6 +110,13 @@ end
 ```
 
 ### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type)
+## <a name="alb_listener">alb_listener</a>
+
+AlbListener resource type.
+
+### exist
+
+### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy)
 ## <a name="ami">ami</a>
 
 AMI resource type.

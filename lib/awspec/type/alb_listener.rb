@@ -29,7 +29,8 @@ module Awspec::Type
         end
         true
       end
-      ret.single_resource("rule_id = #{rule_id}, priority = #{priority}, conditions = #{conditions}, actions = #{actions}")
+      ret.single_resource("rule_id = #{rule_id}, priority = #{priority}, \
+conditions = #{conditions}, actions = #{actions}")
     end
   end
 end

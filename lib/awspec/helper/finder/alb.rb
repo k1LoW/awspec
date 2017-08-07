@@ -28,6 +28,17 @@ module Awspec::Helper
       rescue
         return nil
       end
+
+      def select_rule_by_alb_listener_id(id)
+        selected = []
+        next_marker = nil
+        loop do
+          res = elbv2_client.describe_rules(marker: next_marker, listener_arn: id)
+          selected += res.rules unless res.nil?
+          (res.nil? && next_marker = res.next_marker) || break
+        end
+        selected
+      end
     end
   end
 end

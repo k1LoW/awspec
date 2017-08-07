@@ -45,7 +45,7 @@ require 'awspec/matcher/have_origin'
 # Kms
 require 'awspec/matcher/have_key_policy'
 
-# WafWebAcl
+# WafWebAcl / AlbListener
 require 'awspec/matcher/have_rule'
 
 # CloudWatch Logs

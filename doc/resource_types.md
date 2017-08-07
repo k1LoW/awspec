@@ -162,6 +162,16 @@ AlbTargetGroup resource type.
 
 ### exist
 
+```ruby
+describe alb_target_group('my-alb-target-group') do
+  it { should exist }
+  its(:health_check_path) { should eq '/' }
+  its(:health_check_port) { should eq 'traffic-port' }
+  its(:health_check_protocol) { should eq 'HTTP' }
+end
+```
+
+
 ### have_ec2
 
 ```ruby
@@ -2528,6 +2538,16 @@ end
 WafWebAcl resource type.
 
 ### exist
+
+```ruby
+describe waf_web_acl('my-waf-web-acl') do
+  it { should exist }
+  its(:default_action) { should eq 'BLOCK' }
+  it { should have_rule('my-waf-web-acl-allowed-ips') }
+  it { should have_rule('my-waf-web-acl-allowed-ips').order(2).action('BLOCK') }
+end
+```
+
 
 ### have_rule
 

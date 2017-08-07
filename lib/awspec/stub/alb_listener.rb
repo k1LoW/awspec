@@ -81,6 +81,31 @@ Aws.config[:elasticloadbalancingv2] = {
         {
           actions: [
             {
+              target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/55556bc24d8a067/55556bc24d8a067',
+              type: 'forward'
+            }
+          ],
+          conditions: [
+            {
+              field: 'host-header',
+              values: [
+                'admin.example.com'
+              ]
+            },
+            {
+              field: 'path-pattern',
+              values: [
+                '/admin/*'
+              ]
+            }
+          ],
+          is_default: false,
+          priority: '50',
+          rule_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener-rule/app/my-alb/1aa1bb1cc1ddee11/7777778efc522ab2/7777778efc522ab2'
+        },
+        {
+          actions: [
+            {
               target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067',
               type: 'forward'
             }

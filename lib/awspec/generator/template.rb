@@ -116,7 +116,7 @@ EOF
     def self.generate_resource_type_doc
       path = 'doc/_resource_types/' + @type.underscore + '.md'
       content = <<-"EOF"
-# exist
+### exist
 EOF
       self.file_check_and_puts(path, content)
     end

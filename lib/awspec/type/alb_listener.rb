@@ -15,7 +15,7 @@ module Awspec::Type
         actions = [actions] if actions.is_a?(Hash)
         next false if !rule_id.nil? && rule.rule_arn != rule_id
         next false if !priority.nil? && rule.priority != priority
-        next false if !conditions.nil? && rule.conditions.map(&:to_h) != conditions
+        next false if !conditions.nil? && rule.conditions.map(&:to_h).sort_by(&:to_s) != conditions.sort_by(&:to_s)
         unless actions.nil?
           actions = actions.map do |action|
             if action.key?(:target_group_name)
@@ -25,7 +25,7 @@ module Awspec::Type
             end
             action
           end
-          next false if rule.actions.map(&:to_h) != actions
+          next false if rule.actions.map(&:to_h).sort_by(&:to_s) != actions.sort_by(&:to_s)
         end
         true
       end

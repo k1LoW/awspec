@@ -51,6 +51,66 @@ Aws.config[:elasticloadbalancingv2] = {
           protocol: 'HTTP'
         }
       ]
+    },
+    describe_target_groups: {
+      target_groups: [
+        {
+          health_check_interval_seconds: 30,
+          health_check_path: '/',
+          health_check_port: 'traffic-port',
+          health_check_protocol: 'HTTP',
+          health_check_timeout_seconds: 5,
+          healthy_threshold_count: 5,
+          load_balancer_arns: [
+            'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:loadbalancer/app/my-alb/1aa1bb1cc1ddee11'
+          ],
+          matcher: {
+            http_code: '200'
+          },
+          port: 80,
+          protocol: 'HTTP',
+          target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067',
+          target_group_name: 'my-alb-target-group',
+          unhealthy_threshold_count: 2,
+          vpc_id: 'vpc-ab123cde'
+        }
+      ]
+    },
+    describe_rules: {
+      rules: [
+        {
+          actions: [
+            {
+              target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067',
+              type: 'forward'
+            }
+          ],
+          conditions: [
+            {
+              field: 'path-pattern',
+              values: [
+                '/img/*'
+              ]
+            }
+          ],
+          is_default: false,
+          priority: '10',
+          rule_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener-rule/app/my-alb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2/9683b2d02a6cabee'
+        },
+        {
+          actions: [
+            {
+              target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:targetgroup/my-targets/73e2d6bc24d8a067',
+              type: 'forward'
+            }
+          ],
+          conditions: [
+          ],
+          is_default: true,
+          priority: 'default',
+          rule_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener-rule/app/my-alb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2/defaaaaaaaultbbbb'
+        }
+      ]
     }
   }
 }

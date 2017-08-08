@@ -6,6 +6,7 @@
 | [alb_target_group](#alb_target_group)
 | [ami](#ami)
 | [autoscaling_group](#autoscaling_group)
+| [cloudformation_stack](#cloudformation_stack)
 | [cloudfront_distribution](#cloudfront_distribution)
 | [cloudtrail](#cloudtrail)
 | [cloudwatch_alarm](#cloudwatch_alarm)
@@ -289,6 +290,20 @@ end
 ```
 
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in)
+## <a name="cloudformation_stack">cloudformation_stack</a>
+
+CloudformationStack resource type.
+
+### exist
+
+```ruby
+describe cloudformation_stack('my-cloudformation-stack') do
+  it { should exist }
+  its(:stack_status) { should eq 'UPDATE_COMPLETE' }
+end
+```
+
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:last_updated_time), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.

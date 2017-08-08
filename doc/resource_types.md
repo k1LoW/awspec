@@ -242,6 +242,7 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
+
 ### have_alb_target_group
 
 ```ruby
@@ -265,6 +266,15 @@ end
 ```ruby
 describe autoscaling_group('my-auto-scaling-group') do
   it { should have_elb('my-elb') }
+end
+```
+
+
+### have_launch_configuration
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_launch_configuration('my-lc') }
 end
 ```
 

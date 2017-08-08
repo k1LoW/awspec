@@ -296,6 +296,13 @@ CloudformationStack resource type.
 
 ### exist
 
+```ruby
+describe cloudformation_stack('my-cloudformation-stack') do
+  it { should exist }
+  its(:stack_status) { should eq 'UPDATE_COMPLETE' }
+end
+```
+
 ### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:last_updated_time), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 

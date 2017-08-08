@@ -13,6 +13,7 @@ describe autoscaling_group('my-auto-scaling-group') do
   it { should have_elb('my-elb') }
   it { should have_tag('Dept').value('Research') }
   it { should have_suspended_process('HealthCheck') }
+  it { should have_alb_target_group('my-alb-target-group') }
 end
 
 # deprecated

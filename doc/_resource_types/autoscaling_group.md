@@ -5,6 +5,13 @@ describe autoscaling_group('my-auto-scaling-group') do
   it { should exist }
 end
 ```
+### have_alb_target_group
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_alb_target_group('my-alb-target-group') }
+end
+```
 
 ### have_ec2
 

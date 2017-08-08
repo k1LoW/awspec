@@ -12,7 +12,7 @@ module Awspec::Type
     end
 
     def has_elb?(name)
-      resource_via_client.load_balancer_names.find do |lb_name|
+      resource_via_client.load_balancer_names.one? do |lb_name|
         lb_name == name
       end
     end
@@ -20,14 +20,22 @@ module Awspec::Type
     def has_ec2?(id)
       ec2 = find_ec2(id)
       return nil unless ec2
-      resource_via_client.instances.find do |instance|
+      resource_via_client.instances.one? do |instance|
         instance.instance_id = ec2.instance_id
       end
     end
 
     def has_suspended_process?(id)
-      resource_via_client.suspended_processes.find do |process|
+      resource_via_client.suspended_processes.one? do |process|
         process.process_name == id
+      end
+    end
+
+    def has_alb_target_group?(id)
+      target_group = find_alb_target_group(id)
+      target_groups = select_alb_target_group_by_autoscaling_group_name(@resource_via_client.auto_scaling_group_name)
+      target_groups.one? do |tg|
+        tg.load_balancer_target_group_arn == target_group.target_group_arn
       end
     end
   end

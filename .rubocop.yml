@@ -1,9 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.1
 
-Lint/Eval:
-  Enabled: false
-
 Lint/HandleExceptions:
   Enabled: false
 
@@ -36,6 +33,9 @@ Metrics/PerceivedComplexity:
   Max: 15
 
 Performance/StringReplacement:
+  Enabled: false
+
+Security/Eval:
   Enabled: false
 
 Style/Alias:

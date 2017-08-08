@@ -241,6 +241,14 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
+### have_alb_target_group
+
+```ruby
+describe autoscaling_group('my-auto-scaling-group') do
+  it { should have_alb_target_group('my-alb-target-group') }
+end
+```
+
 
 ### have_ec2
 

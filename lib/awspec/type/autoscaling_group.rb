@@ -31,6 +31,10 @@ module Awspec::Type
       end
     end
 
+    def has_launch_configuration?(name)
+      @resource_via_client.launch_configuration_name == name
+    end
+
     def has_alb_target_group?(id)
       target_group = find_alb_target_group(id)
       target_groups = select_alb_target_group_by_autoscaling_group_name(@resource_via_client.auto_scaling_group_name)

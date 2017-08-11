@@ -17,12 +17,12 @@ module Awspec::Type
       ret = resource_via_client_record_sets.find do |record_set|
         # next if record_set.type != type.upcase
         next unless record_set.type.casecmp(type) == 0
-        options[:ttl] = record_set[:ttl] unless options[:ttl]
         if !record_set.resource_records.empty?
           sorted = record_set.resource_records.map { |r| r.value }.sort.join("\n")
+          ttl = options[:ttl] || record_set[:ttl]
           record_set.name == name && \
           value.split("\n").sort.join("\n") == sorted && \
-          record_set.ttl == options[:ttl]
+          record_set.ttl == ttl
         else
           # ALIAS
           record_set.name == name && \

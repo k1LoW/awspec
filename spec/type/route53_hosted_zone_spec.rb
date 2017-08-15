@@ -42,3 +42,10 @@ ns-2345.awsdns-67.co.uk.'
     it { should have_record_set('example.com.').ns(ns2) }
   end
 end
+
+describe route53_hosted_zone('example.com.') do
+  context 'route53_hosted_zone support without ttl option in multiple ttls' do
+    # TTL of first A record (example.com.) is 3600, but TTL of target A record is 600.
+    it { should have_record_set('www.example.com.').a('123.456.7.890') }
+  end
+end

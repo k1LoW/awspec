@@ -57,6 +57,16 @@ Aws.config[:route53] = {
           ]
         },
         {
+          name: 'www.example.com.',
+          type: 'A',
+          ttl: 600,
+          resource_records: [
+            {
+              value: '123.456.7.890'
+            }
+          ]
+        },
+        {
           name: 'example.com.',
           type: 'NS',
           ttl: 172_800,

@@ -200,7 +200,7 @@ end
 ```
 
 
-### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns)
+### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
 ## <a name="ami">ami</a>
 
 AMI resource type.

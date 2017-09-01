@@ -7,7 +7,7 @@ module Awspec::Type
     end
 
     def id
-      @id ||= resource_via_client.role_id if resource_via_client
+      @id ||= resource_via_client.role_name if resource_via_client
     end
 
     def has_iam_policy?(policy_id)

@@ -3,7 +3,9 @@ module Awspec::Helper
     module Alb
       def find_alb(id)
         res = elbv2_client.describe_load_balancers({ names: [id] })
-        res.load_balancers.single_resource(id)
+        res.load_balancers.select do |lb|
+          lb.type == 'application'
+        end.single_resource(id)
       rescue
         return nil
       end
@@ -11,7 +13,7 @@ module Awspec::Helper
       def select_alb_by_vpc_id(vpc_id)
         res = elbv2_client.describe_load_balancers
         res.load_balancers.select do |lb|
-          lb.vpc_id == vpc_id
+          lb.vpc_id == vpc_id && lb.type == 'application'
         end
       end
 
@@ -24,7 +26,9 @@ module Awspec::Helper
 
       def find_alb_target_group(id)
         res = elbv2_client.describe_target_groups({ names: [id] })
-        res.target_groups.single_resource(id)
+        res.target_groups.select do |tg|
+          %w(HTTP HTTPS).include?(tg.protocol)
+        end.single_resource(id)
       rescue
         return nil
       end

@@ -103,6 +103,7 @@ module Awspec::Type
         end
         next true if sg.group_id == cidr
         sg2 = find_security_group(sg.group_id)
+        next false if sg2.nil?
         next true if sg2.group_name == cidr
         sg2.tags.find do |tag|
           tag.key == 'Name' && tag.value == cidr

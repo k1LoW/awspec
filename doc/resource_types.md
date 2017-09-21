@@ -515,7 +515,7 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes)
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id)
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.

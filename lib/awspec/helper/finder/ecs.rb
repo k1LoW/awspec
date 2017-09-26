@@ -16,8 +16,8 @@ module Awspec::Helper
         res.task_definition
       end
 
-      def find_ecs_service(service)
-        res = ecs_client.describe_services(services: [service])
+      def find_ecs_service(cluster, service)
+        res = ecs_client.describe_services(cluster: cluster, services: [service])
         res.services.single_resource(service)
       end
 

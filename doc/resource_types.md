@@ -303,7 +303,7 @@ describe cloudformation_stack('my-cloudformation-stack') do
 end
 ```
 
-### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn)
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.
@@ -515,7 +515,7 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes)
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id)
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.

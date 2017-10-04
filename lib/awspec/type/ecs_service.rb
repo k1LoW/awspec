@@ -18,7 +18,6 @@ module Awspec::Type
       @cluster || 'default'
     end
 
-
     STATES = %w(ACTIVE DRAINING INACTIVE)
 
     STATES.each do |state|

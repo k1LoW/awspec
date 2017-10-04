@@ -2533,7 +2533,7 @@ end
 ```
 
 
-### its(:customer_gateway_configuration), its(:customer_gateway_id), its(:state), its(:type), its(:vpn_connection_id), its(:vpn_gateway_id), its(:options), its(:routes), its(:vgw_telemetry)
+### its(:customer_gateway_configuration), its(:customer_gateway_id), its(:category), its(:state), its(:type), its(:vpn_connection_id), its(:vpn_gateway_id), its(:options), its(:routes), its(:vgw_telemetry)
 ## <a name="vpn_gateway">vpn_gateway</a>
 
 VpnGateway resource type.

@@ -20,10 +20,10 @@ Aws.config[:ec2] = {
               ip_protocol: 'tcp',
               ip_ranges: [
                 {
-                  cidr_ip: '123.456.789.012/32'
+                  cidr_ip: '123.45.67.0/24'
                 },
                 {
-                  cidr_ip: '456.789.123.456/32'
+                  cidr_ip: '123.45.68.89/32'
                 }
               ],
               user_id_group_pairs: []
@@ -46,7 +46,7 @@ Aws.config[:ec2] = {
               ip_protocol: 'tcp',
               ip_ranges: [
                 {
-                  cidr_ip: '100.456.789.012/32'
+                  cidr_ip: '100.45.67.12/32'
                 }
               ],
               user_id_group_pairs: []
@@ -57,7 +57,7 @@ Aws.config[:ec2] = {
               ip_protocol: 'tcp',
               ip_ranges: [
                 {
-                  cidr_ip: '100.456.789.012/32'
+                  cidr_ip: '100.45.67.89/32'
                 }
               ],
               user_id_group_pairs: []
@@ -68,7 +68,7 @@ Aws.config[:ec2] = {
               ip_protocol: 'tcp',
               ip_ranges: [
                 {
-                  cidr_ip: '101.456.789.012/32'
+                  cidr_ip: '100.45.67.12/32'
                 }
               ],
               user_id_group_pairs: []
@@ -79,7 +79,7 @@ Aws.config[:ec2] = {
               ip_protocol: 'tcp',
               ip_ranges: [
                 {
-                  cidr_ip: '123.456.789.012/32'
+                  cidr_ip: '123.45.67.89/32'
                 }
               ],
               user_id_group_pairs: []
@@ -108,7 +108,7 @@ Aws.config[:ec2] = {
               ip_protocol: 'tcp',
               ip_ranges: [
                 {
-                  cidr_ip: '100.456.789.012/32'
+                  cidr_ip: '100.45.67.12/32'
                 }
               ]
             },

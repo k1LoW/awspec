@@ -32,6 +32,36 @@ Aws.config[:elasticloadbalancingv2] = {
             ],
           security_groups: ['sg-1a2b3cd4'],
           ip_address_type: 'ipv4'
+        },
+        {
+          load_balancer_arn:
+            'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:loadbalancer/net/my-nlb/2aa2bb2cc2ddee22',
+          dns_name:
+            'my-nlb-2aa2bb2cc2ddee22.elb.ap-northeast-1.amazonaws.com',
+          canonical_hosted_zone_id: 'N12BCDEDCBN34BC',
+          created_time: Time.new(2017, 4, 4, 9, 00, 00, '+00:00'),
+          load_balancer_name: 'my-nlb',
+          scheme: 'internet-facing',
+          vpc_id: 'vpc-ab123cde',
+          state:
+            {
+              code: 'active',
+              reason: nil
+            },
+          type: 'network',
+          availability_zones:
+            [
+              {
+                zone_name: 'ap-northeast-1a',
+                subnet_id: 'subnet-7890ne12'
+              },
+              {
+                zone_name: 'ap-northeast-1c',
+                subnet_id: 'subnet-nnnd1234'
+              }
+            ],
+          security_groups: ['sg-5n6b7c89'],
+          ip_address_type: 'ipv4'
         }
       ],
       next_marker: nil

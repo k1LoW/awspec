@@ -92,7 +92,13 @@ module Awspec::Type
     def cidr_opened?(permission, cidr)
       return true unless cidr
       ret = permission.ip_ranges.select do |ip_range|
-        ip_range.cidr_ip == cidr
+        # if the cidr is an IP address then do a true CIDR match
+        if cidr =~ /^\d+\.\d+\.\d+\.\d+/
+          net = IPAddr.new(ip_range.cidr_ip)
+          net.include?(cidr)
+        else
+          ip_range.cidr_ip == cidr
+        end
       end
       return true if ret.count > 0
       ret = permission.user_id_group_pairs.select do |sg|

@@ -24,7 +24,7 @@ module Awspec::Helper
     def method_missing(m, *args, &block)
       begin
         results = client.send(m, *args, &block)
-      rescue Exception => e
+      rescue Exception => e # rubocop:disable Lint/RescueException
         raise unless e.class.to_s == symbol.to_s && backoff < backoff_limit
 
         @backoff = backoff + (iteration * iteration * 0.5)

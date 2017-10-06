@@ -8,6 +8,7 @@ module RSpec::Mocks
   end
 end
 
+# rubocop:disable Metrics/BlockLength
 describe Awspec::Helper::ClientWrap do
   let(:subj) { Awspec::Helper::ClientWrap }
 

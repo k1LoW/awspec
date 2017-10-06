@@ -35,6 +35,8 @@ require 'awspec/helper/finder/cloudformation'
 
 require 'awspec/helper/finder/account_attributes'
 
+require 'awspec/helper/client_wrap'
+
 module Awspec::Helper
   module Finder
     include Awspec::Helper::Finder::Alb
@@ -111,7 +113,10 @@ module Awspec::Helper
     CLIENTS.each do |method_name, client|
       define_method method_name do
         unless self.methods.include? "@#{method_name}"
-          instance_variable_set("@#{method_name}", client.new(CLIENT_OPTIONS))
+          instance_variable_set(
+            "@#{method_name}",
+            Awspec::Helper::ClientWrap.new(client.new(CLIENT_OPTIONS))
+          )
         end
       end
     end

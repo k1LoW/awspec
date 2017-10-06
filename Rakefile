@@ -23,7 +23,8 @@ if defined?(RSpec)
                'spec:core',
                'spec:generator_spec',
                'spec:generator_doc',
-               'spec:rubocop']
+               'spec:rubocop',
+               'spec:helper']
 
     task type: types
 
@@ -47,6 +48,10 @@ if defined?(RSpec)
 
     RSpec::Core::RakeTask.new(:generator_doc) do |t|
       t.pattern = 'spec/generator/doc/*_spec.rb'
+    end
+
+    RSpec::Core::RakeTask.new(:helper) do |t|
+      t.pattern = 'spec/lib/awspec/helper/*_spec.rb'
     end
 
     RuboCop::RakeTask.new

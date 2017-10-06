@@ -8,3 +8,5 @@
 /tmp/
 /spec/secrets.yml
 /.ruby-version
+*.sw*
+*.gem

@@ -50,7 +50,7 @@ module Awspec::Helper
           method_name = 'describe_' + type + '_filters'
           resources = []
           loop do
-            res = cloudwatch_logs_client.method(method_name).call(req)
+            res = cloudwatch_logs_client.send(method_name, req)
             case type
             when 'metric' then
               resources.push(*res.metric_filters)

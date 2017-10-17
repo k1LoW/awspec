@@ -1180,7 +1180,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:advanced_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:advanced_options), its(:log_publishing_options)
 ## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
 
 ElastictranscoderPipeline resource type.
@@ -2565,7 +2565,7 @@ end
 ```
 
 
-### its(:availability_zone), its(:state), its(:type), its(:vpc_attachments), its(:vpn_gateway_id), its(:tags)
+### its(:availability_zone), its(:state), its(:type), its(:vpc_attachments), its(:vpn_gateway_id), its(:amazon_side_asn), its(:tags)
 ## <a name="waf_web_acl">waf_web_acl</a>
 
 WafWebAcl resource type.

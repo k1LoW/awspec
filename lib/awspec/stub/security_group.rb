@@ -127,7 +127,17 @@ Aws.config[:ec2] = {
                   peering_status: 'active'
                 }
               ]
-            }
+            },
+            {
+              from_port: 443,
+              to_port: 443,
+              ip_protocol: 'tcp',
+              prefix_list_ids: [
+                {
+                  prefix_list_id: 'pl-a5321fa3'
+                }
+              ]
+            },
           ]
         }
       ]

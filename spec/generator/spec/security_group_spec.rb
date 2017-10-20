@@ -24,7 +24,7 @@ describe security_group('my-security-group-name') do
   its(:inbound_rule_count) { should eq 8 }
   its(:outbound_rule_count) { should eq 2 }
   its(:inbound_permissions_count) { should eq 7 }
-  its(:outbound_permissions_count) { should eq 2 }
+  its(:outbound_permissions_count) { should eq 3 }
   it { should belong_to_vpc('my-vpc') }
 end
 EOF

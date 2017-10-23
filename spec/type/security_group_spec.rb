@@ -17,7 +17,7 @@ describe security_group('sg-1a2b3cd4') do
   its(:inbound) { should be_opened_only(70_000).protocol('tcp').for(['100.45.67.89/32', '100.45.67.12/32']) }
   its(:outbound) { should be_opened_only(50_000).protocol('tcp').for('100.45.67.12/32') }
   its(:inbound) { should be_opened.protocol('all').for('sg-3a4b5cd6') }
-  its(:outbound) { should be_opened.protocol('tcp').for('pl-a5321fa3')}
+  its(:outbound) { should be_opened.protocol('tcp').for('pl-a5321fa3') }
   its(:inbound_permissions_count) { should eq 7 }
   its(:ip_permissions_count) { should eq 7 }
   its(:outbound_permissions_count) { should eq 3 }

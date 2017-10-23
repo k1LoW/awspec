@@ -137,7 +137,7 @@ Aws.config[:ec2] = {
                   prefix_list_id: 'pl-a5321fa3'
                 }
               ]
-            },
+            }
           ]
         }
       ]

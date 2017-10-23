@@ -6,7 +6,7 @@ Aws.config[:route53] = {
           id: '/hostedzone/Z1A2BCDEF34GH5',
           name: 'example.com.',
           caller_reference: '',
-          resource_record_set_count: 6
+          resource_record_set_count: 8
         }
       ],
       marker: '',
@@ -94,6 +94,28 @@ Aws.config[:route53] = {
             dns_name: 's3-website-us-east-1.amazonaws.com.',
             evaluate_target_health: false
           }
+        },
+        {
+          name: 'example.com.',
+          type: 'CAA',
+          ttl: 600,
+          resource_records: [
+            {
+              value: '0 issue "amazon.com"'
+            },
+            {
+              value: '0 issue "amazontrust.com"'
+            },
+            {
+              value: '0 issue "awstrust.com"'
+            },
+            {
+              value: '0 issuewild "amazonaws.com"'
+            },
+            {
+              value: '0 iodef "mailto:support@example.com"'
+            }
+          ]
         }
       ],
       is_truncated: false,

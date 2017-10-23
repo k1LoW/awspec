@@ -3,7 +3,7 @@ RSpec::Matchers.define :have_record_set do |name|
     hosted_zone.has_record_set?(name, @type, @value, @options)
   end
 
-  %w(soa a txt ns cname mx ptr srv spf aaaa).each do |type|
+  %w(soa a txt ns cname mx ptr srv spf aaaa caa).each do |type|
     chain type do |value|
       @type = type
       @value = value

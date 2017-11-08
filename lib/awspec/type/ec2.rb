@@ -141,5 +141,9 @@ module Awspec::Type
     def resource_security_groups
       resource_via_client.security_groups
     end
+
+    def security_group_count
+      resource_via_client.security_groups.count
+    end
   end
 end

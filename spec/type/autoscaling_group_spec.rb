@@ -17,8 +17,7 @@ describe autoscaling_group('my-auto-scaling-group') do
   it { should have_launch_configuration('my-lc') }
 end
 
-# deprecated
-describe auto_scaling_group('my-auto-scaling-group') do
+describe autoscaling_group('my-auto-scaling-group') do
   it { should exist }
   its(:desired_capacity) { should eq 4 }
   its(:min_size) { should eq 4 }

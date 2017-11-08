@@ -1,5 +1,4 @@
 module Awspec::Type
-  # rubocop:disable Metrics/ClassLength
   class SecurityGroup < ResourceBase
     aws_resource Aws::EC2::SecurityGroup
     tags_allowed

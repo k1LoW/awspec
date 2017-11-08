@@ -1,5 +1,4 @@
 module Awspec::Generator
-  # rubocop:disable Metrics/ClassLength
   class Template
     def self.generate(type)
       @type = type

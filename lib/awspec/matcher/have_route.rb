@@ -1,5 +1,3 @@
-require 'ipaddr'
-
 RSpec::Matchers.define :have_route do |destination|
   match do |route_table|
     if !is_ipaddr?(destination) && @use_destination # for deprecated usage

@@ -98,8 +98,8 @@ module Awspec::Type
       ret = permission.ip_ranges.select do |ip_range|
         # if the cidr is an IP address then do a true CIDR match
         if cidr =~ /^\d+\.\d+\.\d+\.\d+/
-          net = IPAddr.new(ip_range.cidr_ip)
-          net.include?(cidr)
+          net = IPAddress::IPv4.new(ip_range.cidr_ip)
+          net.include?(IPAddress::IPv4.new(cidr))
         else
           ip_range.cidr_ip == cidr
         end

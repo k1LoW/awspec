@@ -4,8 +4,10 @@ Awspec::Stub.load 'security_group'
 describe security_group('sg-1a2b3cd4') do
   it { should exist }
   its(:inbound) { should be_opened(80) }
-  its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.67.128/25') }
   its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.68.89/32') }
+  its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.67.0/25') }
+  its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.67.1/32') }
+  its(:inbound) { should_not be_opened(80).protocol('tcp').for('123.45.0.0/16') }
   its(:inbound) { should be_opened(22) }
   its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
   its(:inbound) { should be_opened('50000-50009').protocol('tcp').for('123.45.67.89/32') }

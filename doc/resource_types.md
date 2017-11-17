@@ -935,7 +935,7 @@ end
 ```
 
 
-### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes), its(:registered_at)
+### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes), its(:registered_at), its(:attachments)
 ## <a name="ecs_service">ecs_service</a>
 
 ECS Service resource type.
@@ -957,7 +957,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
@@ -2065,7 +2065,7 @@ ns-890.awsdns-12.com.'
 end
 ```
 
-### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count)
+### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count), its(:linked_service)
 ## <a name="route_table">route_table</a>
 
 RouteTable resource type.

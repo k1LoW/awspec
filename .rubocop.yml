@@ -1,6 +1,15 @@
 AllCops:
   TargetRubyVersion: 2.1
 
+Layout/IndentHeredoc:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
 Lint/HandleExceptions:
   Enabled: false
 
@@ -56,12 +65,6 @@ Style/MethodMissing:
 Style/MutableConstant:
   Enabled: false
 
-Style/MultilineOperationIndentation:
-  Enabled: false
-
-Style/MultilineMethodCallBraceLayout:
-  Enabled: false
-
 Style/NumericLiteralPrefix:
   Enabled: false
 
@@ -84,4 +87,7 @@ Style/SymbolProc:
   Enabled: false
 
 Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/YodaCondition:
   Enabled: false

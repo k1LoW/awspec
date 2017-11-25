@@ -19,11 +19,11 @@ Lint/UselessAssignment:
 Metrics/AbcSize:
   Max: 50
 
-Metrics/ClassLength:
-  Max: 130
-
 Metrics/BlockLength:
   Max: 60
+
+Metrics/ClassLength:
+  Max: 130
 
 Metrics/CyclomaticComplexity:
   Max: 15
@@ -51,6 +51,9 @@ Style/Alias:
   Enabled: false
 
 Style/BarePercentLiterals:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
   Enabled: false
 
 Style/ClassAndModuleChildren:
@@ -84,9 +87,6 @@ Style/RedundantSelf:
   Enabled: false
 
 Style/SymbolProc:
-  Enabled: false
-
-Style/BracesAroundHashParameters:
   Enabled: false
 
 Style/YodaCondition:

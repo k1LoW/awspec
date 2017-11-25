@@ -9,8 +9,7 @@ module Awspec
         raise CalledMethodInBlackList, "Method call #{name.inspect} is black-listed"
       end
       attr = delegate_to.send(name)
-      case attr
-      when Aws::Resources::Resource
+      if !attr.is_a?(Struct) && attr.class.name.match(/^Aws::/)
         ResourceReader.new(attr)
       else
         attr

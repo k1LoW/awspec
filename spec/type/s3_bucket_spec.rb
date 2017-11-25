@@ -72,8 +72,7 @@ describe s3_bucket('my-bucket') do
   end
 end
 
-# deprecated
-describe s3('my-bucket') do
+describe s3_bucket('my-bucket') do
   it { should exist }
   it { should have_object('path/to/object') }
   its(:acl_grants_count) { should eq 3 }

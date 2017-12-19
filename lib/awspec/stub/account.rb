@@ -117,7 +117,8 @@ Aws.config[:lambda] = {
         total_code_size: 80_530_636_800,
         code_size_unzipped: 262_144_000,
         code_size_zipped: 52_428_800,
-        concurrent_executions: 200
+        concurrent_executions: 200,
+        unreserved_concurrent_executions: 50
       },
       account_usage: {
         total_code_size: 2_034_651_562,

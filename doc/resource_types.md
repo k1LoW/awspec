@@ -289,7 +289,7 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
-### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in)
+### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in)
 ## <a name="cloudformation_stack">cloudformation_stack</a>
 
 CloudformationStack resource type.
@@ -455,7 +455,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
 end
 ```
 
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile)
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile)
 ## <a name="cloudwatch_event">cloudwatch_event</a>
 
 CloudwatchEvent resource type.
@@ -619,7 +619,7 @@ end
 ```
 
 
-### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn)
+### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:table_id), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn), its(:restore_summary)
 ### :unlock: Advanced use
 
 `dynamodb_table` can use `Aws::DynamoDB::Table` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Table.html).
@@ -910,7 +910,7 @@ describe ecs_cluster('my-ecs-cluster') do
 end
 ```
 
-### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count)
+### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics)
 ## <a name="ecs_container_instance">ecs_container_instance</a>
 
 ECS Container Instance resource type.
@@ -957,7 +957,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
@@ -979,7 +979,7 @@ describe ecs_task_definition('my-ecs-task-definition') do
 end
 ```
 
-### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:network_mode), its(:revision), its(:volumes), its(:status), its(:requires_attributes), its(:placement_constraints)
+### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:execution_role_arn), its(:network_mode), its(:revision), its(:volumes), its(:status), its(:requires_attributes), its(:placement_constraints), its(:compatibilities), its(:requires_compatibilities), its(:cpu), its(:memory)
 ## <a name="efs">efs</a>
 
 EFS resource type.
@@ -1180,7 +1180,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:advanced_options), its(:log_publishing_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:encryption_at_rest_options), its(:advanced_options), its(:log_publishing_options)
 ## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
 
 ElastictranscoderPipeline resource type.
@@ -2645,6 +2645,7 @@ describe account do
   its('lambda.code_size_unzipped.limit') { should eq 262144000 }
   its('lambda.code_size_zipped.limit') { should eq 52428800 }
   its('lambda.concurrent_executions.limit') { should eq 200 }
+  its('lambda.unreserved_concurrent_executions.limit') { should eq 50 }
   its('lambda.function_count.usage') { should eq 8 }
   its('ses.max_24_hour_send') { should eq 200.0 }
   its('ses.max_send_rate') { should eq 1.0 }
@@ -2708,6 +2709,7 @@ describe account_attribute('lambda') do
   its('code_size_unzipped.limit') { should eq 262144000 }
   its('code_size_zipped.limit') { should eq 52428800 }
   its('concurrent_executions.limit') { should eq 200 }
+  its('unreserved_concurrent_executions.limit') { should eq 50 }
   its('function_count.usage') { should eq 8 }
 end
  

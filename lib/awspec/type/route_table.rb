@@ -35,6 +35,10 @@ module Awspec::Type
       end
     end
 
+    def route_count
+      resource_via_client.routes.count
+    end
+
     private
 
     def target_gateway?(route, gateway_id)

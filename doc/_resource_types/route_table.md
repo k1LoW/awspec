@@ -34,6 +34,13 @@ describe route_table('my-route-table') do
 end
 ```
 
+### route_count
+```ruby
+describe route_table('my-route-table') do
+  its (:route_count) { should eq 10 }
+end
+```
+
 ### advanced
 
 `route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).

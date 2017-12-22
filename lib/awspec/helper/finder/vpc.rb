@@ -72,6 +72,17 @@ module Awspec::Helper
                                                           })
         res.vpc_peering_connections.single_resource(vpc_peering_connection_id)
       end
+
+      def select_vpc_peering_connection_by_vpc_id(vpc_id, status_code = nil)
+        params = {}
+        params = { filters: [{ name: 'status-code', values: [status_code] }] } if status_code
+        vpc_peering_connections = ec2_client.describe_vpc_peering_connections(params).map do |res|
+          res.vpc_peering_connections
+        end.flatten
+        vpc_peering_connections.select do |conn|
+          conn.accepter_vpc_info.vpc_id == vpc_id || conn.requester_vpc_info.vpc_id == vpc_id
+        end
+      end
     end
   end
 end

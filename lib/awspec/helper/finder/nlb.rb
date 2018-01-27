@@ -29,7 +29,7 @@ module Awspec::Helper
         httpx_res = res.target_groups.select do |tg|
           %w(HTTP HTTPS).include?(tg.protocol)
         end
-        if ! httpx_res || httpx_res.empty?
+        if !httpx_res || httpx_res.empty?
           raise "ERROR: Found no HTTP nor HTTPS -protocol target group named '#{id}'."
         end
         httpx_res.single_resource(id)

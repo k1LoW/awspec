@@ -14,6 +14,16 @@ describe nlb('my-nlb') do
 end
 ```
 
+### have_security_group
+
+Note that NLBs never have security groups. The have_security_group() function always returns false. See https://forums.aws.amazon.com/thread.jspa?threadID=263245 for discussion about the security-group-less-ness of NLBs.
+
+```ruby
+describe nlb('my-nlb') do
+  it { should_not have_security_group('sg-1a2b3cd4') }
+end
+```
+
 ### have_subnet
 
 ```ruby

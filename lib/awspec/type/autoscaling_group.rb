@@ -42,5 +42,12 @@ module Awspec::Type
         tg.load_balancer_target_group_arn == target_group.target_group_arn
       end
     end
+    def has_nlb_target_group?(id)
+      target_group = find_nlb_target_group(id)
+      target_groups = select_lb_target_group_by_autoscaling_group_name(@resource_via_client.auto_scaling_group_name)
+      target_groups.one? do |tg|
+        tg.load_balancer_target_group_arn == target_group.target_group_arn
+      end
+    end
   end
 end

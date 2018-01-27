@@ -19,13 +19,6 @@ module Awspec::Type
     end
 
     def has_security_group?(sg_id)
-      sgs = resource_via_client.security_groups
-      ret = sgs.find do |sg|
-        sg == sg_id
-      end
-      return true if ret
-      sg2 = find_security_group(sg_id)
-      return true if sgs.include? sg2.group_id
       false
     end
 

@@ -26,11 +26,20 @@ module Awspec::Helper
 
       def find_nlb_target_group(id)
         res = elbv2_client.describe_target_groups({ names: [id] })
-        res.target_groups.select do |tg|
+        httpx_res = res.target_groups.select do |tg|
           %w(HTTP HTTPS).include?(tg.protocol)
-        end.single_resource(id)
+        end
+        if not httpx_res or httpx_res.length == 0
+          raise "ERROR: Found no HTTP nor HTTPS -protocol target group named '#{id}'."
+        end
+        httpx_res.single_resource(id)
       rescue
-        return nil
+        # Prefer the HTTP/HTTPS protocol target group, but survive without it:
+        begin
+          res.target_groups.single_resource(id)
+        rescue
+          return nil
+        end
       end
 
       def select_rule_by_nlb_listener_id(id)

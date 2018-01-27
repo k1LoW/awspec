@@ -41,14 +41,14 @@ Aws.config[:elasticloadbalancingv2] = {
           canonical_hosted_zone_id: 'N12BCDEDCBN34BC',
           created_time: Time.new(2017, 4, 4, 9, 00, 00, '+00:00'),
           load_balancer_name: 'my-alb',
-          scheme: 'internet-facing',
+          scheme: 'internal',
           vpc_id: 'vpc-ab123cde',
           state:
             {
               code: 'active',
               reason: nil
             },
-          type: 'network',
+          type: 'application',
           availability_zones:
             [
               {

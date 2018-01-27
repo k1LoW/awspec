@@ -69,7 +69,7 @@ Aws.config[:elasticloadbalancingv2] = {
           },
           port: 80,
           protocol: 'HTTP',
-          target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067',
+          target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:targetgroup/my-nlb-target-group/73e2d6bc24d8a067',
           target_group_name: 'my-nlb-target-group',
           unhealthy_threshold_count: 2,
           vpc_id: 'vpc-ab123cde'
@@ -81,7 +81,7 @@ Aws.config[:elasticloadbalancingv2] = {
         {
           actions: [
             {
-              target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:targetgroup/my-targets/73e2d6bc24d8a067',
+              target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:targetgroup/my-nlb-target-group/73e2d6bc24d8a067',
               type: 'forward'
             }
           ],

@@ -10,7 +10,7 @@ describe nlb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:li
   it do
     should have_rule
       .priority('default')
-      .actions(target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067', type: 'forward')
+      .actions(target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:targetgroup/my-nlb-target-group/73e2d6bc24d8a067', type: 'forward')
   end
   it { should have_rule.actions(target_group_name: 'my-nlb-target-group', type: 'forward') }
 end

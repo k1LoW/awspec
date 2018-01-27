@@ -40,6 +40,7 @@ require 'awspec/helper/client_wrap'
 
 module Awspec::Helper
   module Finder
+    include Awspec::Helper::Finder::Nlb
     include Awspec::Helper::Finder::Alb
     include Awspec::Helper::Finder::Vpc
     include Awspec::Helper::Finder::Subnet

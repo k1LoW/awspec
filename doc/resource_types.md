@@ -1913,6 +1913,17 @@ end
 ```
 
 
+### have_security_group
+
+Note that NLBs never have security groups. The have_security_group() function always returns false. See https://forums.aws.amazon.com/thread.jspa?threadID=263245 for discussion about the security-group-less-ness of NLBs.
+
+```ruby
+describe nlb('my-nlb') do
+  it { should_not have_security_group('sg-1a2b3cd4') }
+end
+```
+
+
 ### have_subnet
 
 ```ruby
@@ -2816,7 +2827,7 @@ describe account_attribute('ec2') do
   its('vpc_max_elastic_ips') { should eq 5 }
   its('default_vpc') { should eq 'none' }
 end
- 
+
 describe account_attribute('rds') do
   its('DBInstances.used') { should eq 0 }
   its('DBInstances.max') { should eq 40 }
@@ -2849,7 +2860,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.used') { should eq 0 }
   its('DBClusterRoles.max') { should eq 5 }
 end
- 
+
 describe account_attribute('lambda') do
   its('total_code_size.limit') { should eq 80530636800 }
   its('total_code_size.usage') { should eq 2034651562 }
@@ -2859,13 +2870,13 @@ describe account_attribute('lambda') do
   its('unreserved_concurrent_executions.limit') { should eq 50 }
   its('function_count.usage') { should eq 8 }
 end
- 
+
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }
 end
- 
+
 ```
 
 

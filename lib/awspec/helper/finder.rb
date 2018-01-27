@@ -1,4 +1,5 @@
 require 'aws-sdk'
+require 'awspec/helper/finder/nlb'
 require 'awspec/helper/finder/alb'
 require 'awspec/helper/finder/vpc'
 require 'awspec/helper/finder/subnet'

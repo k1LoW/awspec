@@ -14,14 +14,6 @@ describe nlb('my-nlb') do
 end
 ```
 
-### have_security_group
-
-```ruby
-describe nlb('my-nlb') do
-  it { should have_security_group('sg-1a2b3cd4') }
-end
-```
-
 ### have_subnet
 
 ```ruby

@@ -40,6 +40,9 @@
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
+| [nlb](#nlb)
+| [nlb_listener](#nlb_listener)
+| [nlb_target_group](#nlb_target_group)
 | [rds](#rds)
 | [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
@@ -278,6 +281,8 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
+
+### have_nlb_target_group
 
 ### have_suspended_process
 
@@ -1886,6 +1891,135 @@ end
 ```
 
 ### its(:association), its(:availability_zone), its(:description), its(:interface_type), its(:ipv_6_addresses), its(:mac_address), its(:network_interface_id), its(:owner_id), its(:private_dns_name), its(:private_ip_address), its(:requester_id), its(:requester_managed), its(:source_dest_check), its(:status), its(:subnet_id), its(:vpc_id)
+## <a name="nlb">nlb</a>
+
+NLB resource type.
+
+### exist
+
+```ruby
+describe nlb('my-nlb') do
+  it { should exist }
+end
+```
+
+
+### be_active, be_provisioning, be_failed
+
+```ruby
+describe nlb('my-nlb') do
+  it { should be_active }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe nlb('my-nlb') do
+  it { should have_security_group('sg-1a2b3cd4') }
+end
+```
+
+
+### have_subnet
+
+```ruby
+describe nlb('my-nlb') do
+  it { should have_subnet('subnet-1234a567') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe nlb('my-nlb') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type)
+## <a name="nlb_listener">nlb_listener</a>
+
+NlbListener resource type.
+
+### exist
+
+```ruby
+describe nlb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener/app/my-nlb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2') do
+  it { should exist }
+  its(:port) { should eq 80 }
+  its(:protocol) { should eq 'HTTP' }
+end
+```
+
+
+### have_rule
+
+```ruby
+describe nlb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener/app/my-nlb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2') do
+  it { should have_rule('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener-rule/app/my-nlb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2/9683b2d02a6cabee') }
+  it do
+    should have_rule.priority('10')
+      .conditions(field: 'path-pattern', values: ['/img/*'])
+      .actions(target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067', type: 'forward')
+  end
+  it do
+    should have_rule.priority('10')
+      .if(field: 'path-pattern', values: ['/img/*'])
+      .then(target_group_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:123456789012:targetgroup/73e2d6bc24d8a067/73e2d6bc24d8a067', type: 'forward')
+  end
+  it { should have_rule.conditions([{ field: 'path-pattern', values: ['/admin/*'] }, { field: 'host-header', values: ['admin.example.com'] }]) }
+  it { should have_rule.actions(target_group_name: 'my-nlb-target-group', type: 'forward') }
+end
+```
+
+### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy)
+## <a name="nlb_target_group">nlb_target_group</a>
+
+NlbTargetGroup resource type.
+
+### exist
+
+```ruby
+describe nlb_target_group('my-nlb-target-group') do
+  it { should exist }
+  its(:health_check_path) { should eq '/' }
+  its(:health_check_port) { should eq 'traffic-port' }
+  its(:health_check_protocol) { should eq 'HTTP' }
+end
+```
+
+
+### have_ec2
+
+```ruby
+describe nlb_target_group('my-nlb-target-group') do
+  it { should have_ec2('my-ec2') }
+end
+```
+
+
+### belong_to_nlb
+
+```ruby
+describe nlb_target_group('my-nlb-target-group') do
+  it { should belong_to_nlb('my-nlb') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe nlb_target_group('my-nlb-target-group') do
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+
+### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
 ## <a name="rds">rds</a>
 
 RDS resource type.

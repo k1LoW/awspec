@@ -18,7 +18,7 @@ module Awspec::Type
       end
     end
 
-    def has_security_group?(sg_id)
+    def has_security_group?(_sg_id)
       false
     end
 

@@ -5,9 +5,6 @@ module Awspec::Generator
       def generate_by_paramater_group(paramater_group)
         @paramater_group = paramater_group
         res = select_all_rds_db_cluster_parameters(@paramater_group)
-        # res = rds_client.describe_db_cluster_parameters({
-        #                                                   db_cluster_parameter_group_name: @paramater_group
-        #                                                 })
         ERB.new(db_cluster_parameter_group_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
 

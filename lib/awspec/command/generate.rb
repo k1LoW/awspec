@@ -36,6 +36,18 @@ module Awspec
       end
     end
 
+    types = %w(
+      rds_db_parameter_group rds_db_cluster_parameter_group
+    )
+
+    types.each do |type|
+      desc type + ' [paramater_name]', "Generate #{type} spec from paramater name."
+      define_method type do |_paramater_name|
+        Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_paramater_group(_paramater_name)"
+      end
+    end
+
     types_for_generate_all = %w(
       cloudwatch_alarm cloudwatch_event directconnect ebs efs
       elasticsearch iam_group iam_policy iam_role iam_user kms lambda

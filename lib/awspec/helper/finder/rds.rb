@@ -20,6 +20,34 @@ module Awspec::Helper
           db_instance.db_subnet_group.vpc_id == vpc_id
         end
       end
+
+      def select_all_rds_db_parameters(paramater_group)
+        parameters = {}
+        res = rds_client.describe_db_parameters({
+                                                  db_parameter_group_name: paramater_group
+                                                })
+        loop do
+          res.parameters.each do |param|
+            parameters[param.parameter_name] = param.parameter_value
+          end
+          (res.next_page? && res = res.next_page) || break
+        end
+        parameters
+      end
+
+      def select_all_rds_db_cluster_parameters(paramater_group)
+        parameters = {}
+        res = rds_client.describe_db_cluster_parameters({
+                                                          db_cluster_parameter_group_name: paramater_group
+                                                        })
+        loop do
+          res.parameters.each do |param|
+            parameters[param.parameter_name] = param.parameter_value
+          end
+          (res.respond_to?(:next_page?) && res.next_page? && res = res.next_page) || break
+        end
+        parameters
+      end
     end
   end
 end

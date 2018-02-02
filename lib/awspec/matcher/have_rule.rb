@@ -1,7 +1,8 @@
 RSpec::Matchers.define :have_rule do |rule_id|
   match do |type|
     return type.has_rule?(rule_id, @priority, @action) if type.instance_of?(Awspec::Type::WafWebAcl)
-    type.has_rule?(rule_id, @priority, @conditions, @actions) if type.instance_of?(Awspec::Type::AlbListener)
+    return type.has_rule?(rule_id, @priority, @conditions, @actions) if type.instance_of?(Awspec::Type::AlbListener)
+    type.has_rule?(rule_id, @priority, @conditions, @actions) if type.instance_of?(Awspec::Type::NlbListener)
   end
 
   chain :priority do |priority|

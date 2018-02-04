@@ -42,5 +42,19 @@ module Awspec::Type
       origin_path = domain_name_and_path.gsub(%r(\A[^/]*), '')
       has_origin?(nil, domain_name: domain_name, origin_path: origin_path)
     end
+
+    def has_custom_response_error_code?(error_code,
+                                        response_page_path: nil,
+                                        response_code: nil,
+                                        error_caching_min_ttl: nil)
+      return false unless [error_code, domain_name].any?
+      resource_via_client.custom_error_responses.items.find do |error|
+        next false if !error_code.nil? && error.error_code != error_code
+        next false if !response_page_path.nil? && error.response_page_path != response_page_path
+        next false if !response_code.nil? && error.response_code != response_code.to_s
+        next false if !error_caching_min_ttl.nil? && error.error_caching_min_ttl != error_caching_min_ttl
+        true
+      end
+    end
   end
 end

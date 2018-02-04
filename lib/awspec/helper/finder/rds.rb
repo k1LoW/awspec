@@ -21,10 +21,10 @@ module Awspec::Helper
         end
       end
 
-      def select_all_rds_db_parameters(paramater_group)
+      def select_all_rds_db_parameters(parameter_group)
         parameters = {}
         res = rds_client.describe_db_parameters({
-                                                  db_parameter_group_name: paramater_group
+                                                  db_parameter_group_name: parameter_group
                                                 })
         loop do
           res.parameters.each do |param|
@@ -35,10 +35,10 @@ module Awspec::Helper
         parameters
       end
 
-      def select_all_rds_db_cluster_parameters(paramater_group)
+      def select_all_rds_db_cluster_parameters(parameter_group)
         parameters = {}
         res = rds_client.describe_db_cluster_parameters({
-                                                          db_cluster_parameter_group_name: paramater_group
+                                                          db_cluster_parameter_group_name: parameter_group
                                                         })
         loop do
           res.parameters.each do |param|

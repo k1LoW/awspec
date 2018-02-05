@@ -334,6 +334,7 @@ end
 ### have_custom_response_error_code
 
 ```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
   it do
     should have_custom_response_error_code(400)
       .error_caching_min_ttl(60)
@@ -350,6 +351,7 @@ end
     should have_custom_response_error_code(500)
       .error_caching_min_ttl(60)
   end
+end
 ```
 
 
@@ -1274,6 +1276,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe elb('my-elb') do
+  it { should have_tag('Name').value('my-elb') }
+  it { should have_tag('my-tag-key').value('my-tag-value') }
+end
+```
+
 ### belong_to_vpc
 
 ```ruby
@@ -1281,6 +1292,7 @@ describe elb('my-elb') do
   it { should belong_to_vpc('my-vpc') }
 end
 ```
+
 
 ### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:backend_server_descriptions), its(:availability_zones), its(:subnets), its(:vpc_id), its(:security_groups), its(:created_time), its(:scheme)
 ## <a name="iam_group">iam_group</a>

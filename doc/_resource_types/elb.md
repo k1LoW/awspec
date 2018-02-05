@@ -47,3 +47,12 @@ describe elb('my-elb') do
   it { should belong_to_vpc('my-vpc') }
 end
 ```
+
+### have_tag
+
+```ruby
+describe elb('my-elb') do
+  it { should have_tag('Name').value('my-elb') }
+  it { should have_tag('my-tag-key').value('my-tag-value') }
+end
+```

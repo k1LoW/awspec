@@ -47,6 +47,9 @@ describe elb('<%= lb.load_balancer_name %>') do
 <% lb[:listener_descriptions].each do |desc| %>
   it { should have_listener(protocol: '<%= desc.listener.protocol %>', port: <%= desc.listener.load_balancer_port %>, instance_protocol: '<%= desc.listener.instance_protocol %>', instance_port: <%= desc.listener.instance_port %>) }
 <% end %>
+<% select_all_elb_tags(lb.load_balancer_name).each do |tag| %>
+  it { should have_tag('<%= tag.key %>').value('<%= tag.value %>') }
+<% end %>
 end
 EOF
         template

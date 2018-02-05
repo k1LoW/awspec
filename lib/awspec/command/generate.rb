@@ -41,10 +41,10 @@ module Awspec
     )
 
     types.each do |type|
-      desc type + ' [paramater_name]', "Generate #{type} spec from paramater name."
-      define_method type do |_paramater_name|
+      desc type + ' [parameter_group_name]', "Generate #{type} spec from parameter group name."
+      define_method type do |_parameter_group_name|
         Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
-        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_paramater_group(_paramater_name)"
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_parameter_group(_parameter_group_name)"
       end
     end
 

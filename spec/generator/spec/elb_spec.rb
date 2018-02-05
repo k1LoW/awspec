@@ -16,6 +16,8 @@ describe elb('my-elb') do
   its(:health_check_unhealthy_threshold) { should eq 10 }
   its(:health_check_healthy_threshold) { should eq 2 }
   it { should have_listener(protocol: 'HTTPS', port: 443, instance_protocol: 'HTTP', instance_port: 80) }
+  it { should have_tag('Name').value('my-elb') }
+  it { should have_tag('my-tag-key').value('my-tag-value') }
 end
 EOF
     expect(elb.generate_by_vpc_id('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec

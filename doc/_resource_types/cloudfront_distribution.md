@@ -17,6 +17,7 @@ end
 ### have_custom_response_error_code
 
 ```ruby
+describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
   it do
     should have_custom_response_error_code(400)
       .error_caching_min_ttl(60)
@@ -33,6 +34,7 @@ end
     should have_custom_response_error_code(500)
       .error_caching_min_ttl(60)
   end
+end
 ```
 
 ### have_origin

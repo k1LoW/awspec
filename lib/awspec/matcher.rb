@@ -41,6 +41,7 @@ require 'awspec/matcher/have_private_ip_address'
 
 # CloudFront
 require 'awspec/matcher/have_origin'
+require 'awspec/matcher/have_custom_response_error_code'
 
 # Kms
 require 'awspec/matcher/have_key_policy'

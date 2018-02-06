@@ -37,6 +37,23 @@ Aws.config[:elasticloadbalancing] = {
           vpc_id: 'vpc-ab123cde'
         }
       ]
+    },
+    describe_tags: {
+      tag_descriptions: [
+        {
+          load_balancer_name: 'my-elb',
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-elb'
+            },
+            {
+              key: 'my-tag-key',
+              value: 'my-tag-value'
+            }
+          ]
+        }
+      ]
     }
   }
 }

@@ -57,5 +57,12 @@ module Awspec::Type
           listener.instance_protocol == instance_protocol && listener.instance_port == instance_port
       end
     end
+
+    def has_tag?(tag_key, tag_value)
+      tag_set = select_all_elb_tags(@id)
+      tag_set.find do |tag|
+        tag.key == tag_key && tag.value == tag_value
+      end
+    end
   end
 end

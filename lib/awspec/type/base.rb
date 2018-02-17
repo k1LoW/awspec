@@ -43,5 +43,7 @@ module Awspec::Type
         method_missing_via_black_list(name, delegate_to: resource)
       end
     end
+
+    undef :timeout
   end
 end

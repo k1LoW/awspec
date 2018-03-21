@@ -28,7 +28,16 @@ Or install it yourself as:
 
 ### STEP 1. Generate awspec init files
 
+If you're starting on a fresh RSpec project, you can use awspec to generate your init files:
+
     $ awspec init
+    
+If you're working on an exisitng RSpec project, you will need to add the following lines to your `spec_helper.rb` file:
+
+```ruby
+require 'awspec'
+Awsecrets.load(secrets_path: File.expand_path('./secrets.yml', File.dirname(__FILE__)))
+```
 
 ### STEP 2. Set AWS config
 

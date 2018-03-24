@@ -647,8 +647,7 @@ describe dynamodb_table('my-dynamodb-table') do
 end
 ```
 
-
-### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:table_id), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn), its(:restore_summary)
+### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn)
 ### :unlock: Advanced use
 
 `dynamodb_table` can use `Aws::DynamoDB::Table` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Table.html).
@@ -986,7 +985,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.

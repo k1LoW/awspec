@@ -87,8 +87,20 @@ module Awspec::Type
     end
 
     def has_lifecycle_rule?(rule)
-      lifecycle_configuration_rules.any? do |lc_rule|
-        rule.each { |key, value| lc_rule[key] == value }
+      lc_rule = lifecycle_configuration_rules.select { |r| r[:id] == rule[:id] }
+      return false if lc_rule == []
+
+      rule.all? do |key, value|
+        lc_rule.each do |r|
+          return false if value.is_a?(String) && r[key] != value
+          if value.is_a?(Hash)
+            return false if r[key].to_h != value
+          end
+          if value.is_a?(Array)
+            return false if r[key].map(&:to_h) != value
+          end
+          true
+        end
       end
     end
 

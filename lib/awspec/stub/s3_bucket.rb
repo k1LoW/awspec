@@ -75,6 +75,47 @@ Aws.config[:s3] = {
           value: 'dev'
         }
       ]
+    },
+    get_bucket_lifecycle_configuration: {
+      rules: [
+        {
+          id: 'MyRuleName',
+          status: 'Enabled',
+          transitions: [
+            {
+              days: 3,
+              storage_class: 'GLACIER'
+            }
+          ],
+          expiration: {
+            days: 2
+          },
+          noncurrent_version_expiration: {
+            noncurrent_days: 1
+          }
+        },
+        {
+          id: 'MyRuleName2',
+          prefix: '123/',
+          status: 'Enabled',
+          transitions: [
+            {
+              days: 5,
+              storage_class: 'STANDARD_IA'
+            },
+            {
+              days: 10,
+              storage_class: 'GLACIER'
+            }
+          ],
+          expiration: {
+            days: 3
+          },
+          noncurrent_version_expiration: {
+            noncurrent_days: 2
+          }
+        }
+      ]
     }
   }
 }

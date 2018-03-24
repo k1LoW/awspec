@@ -80,7 +80,18 @@ describe s3_bucket('my-bucket') do
       id: 'MyRuleName',
       noncurrent_version_expiration: { noncurrent_days: 1 },
       expiration: { days: 2 },
-      transitions: { days: 3, storage_class: 'GLACIER' },
+      transitions: [{ days: 3, storage_class: 'GLACIER' }],
+      status: 'Enabled'
+    )
+  end
+
+  it do
+    should have_lifecycle_rule(
+      id: 'MyRuleName2',
+      prefix: '123/',
+      noncurrent_version_expiration: { noncurrent_days: 2 },
+      expiration: { days: 3 },
+      transitions: [{ days: 5, storage_class: 'STANDARD_IA' }, { days: 10, storage_class: 'GLACIER' }],
       status: 'Enabled'
     )
   end

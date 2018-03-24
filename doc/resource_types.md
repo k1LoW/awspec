@@ -986,7 +986,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
@@ -2357,7 +2357,18 @@ describe s3_bucket('my-bucket') do
       id: 'MyRuleName',
       noncurrent_version_expiration: { noncurrent_days: 1 },
       expiration: { days: 2 },
-      transitions: { days: 3, storage_class: 'GLACIER' },
+      transitions: [{ days: 3, storage_class: 'GLACIER' }],
+      status: 'Enabled'
+    )
+  end
+
+  it do
+    should have_lifecycle_rule(
+      id: 'MyRuleName2',
+      prefix: '123/',
+      noncurrent_version_expiration: { noncurrent_days: 2 },
+      expiration: { days: 3 },
+      transitions: [{ days: 5, storage_class: 'STANDARD_IA' }, { days: 10, storage_class: 'GLACIER' }],
       status: 'Enabled'
     )
   end

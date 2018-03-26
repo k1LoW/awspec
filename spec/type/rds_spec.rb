@@ -17,7 +17,7 @@ describe rds('my-rds') do
   it { should have_db_parameter_group('default.mysql5.6') }
   it do
     should have_db_parameter_group('default.mysql5.6')\
-      .parameter_apply_status('pending')
+      .parameter_apply_status('pending-reboot')
   end
   it do
     should have_db_parameter_group('custom.mysql5.6')\

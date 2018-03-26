@@ -19,6 +19,10 @@ end
 ```ruby
 describe rds('my-rds') do
   it { should have_db_parameter_group('my-db-parameter-group') }
+  it do
+    should have_db_parameter_group('custom.mysql5.6')\
+      .parameter_apply_status('in-sync')
+  end
 end
 ```
 
@@ -27,6 +31,10 @@ end
 ```ruby
 describe rds('my-rds') do
   it { should have_option_group('default:mysql-5-6') }
+  it do
+    should have_option_group('default:mysql-5-6')\
+      .status('in-sync')
+  end
 end
 ```
 

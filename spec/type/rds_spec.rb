@@ -15,7 +15,23 @@ describe rds('my-rds') do
   it { should belong_to_subnet('subnet-8901b123') }
   it { should belong_to_subnet('db-subnet-a') }
   it { should have_db_parameter_group('default.mysql5.6') }
+  it do
+    should have_db_parameter_group('default.mysql5.6')\
+      .parameter_apply_status('pending')
+  end
+  it do
+    should have_db_parameter_group('custom.mysql5.6')\
+      .parameter_apply_status('in-sync')
+  end
   it { should have_option_group('default:mysql-5-6') }
+  it do
+    should have_option_group('default:mysql-5-6')\
+      .status('in-sync')
+  end
+  it do
+    should have_option_group('custom:mysql-5-6')\
+      .status('in-sync')
+  end
   it { should have_tag('Name').value('my-rds') }
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }

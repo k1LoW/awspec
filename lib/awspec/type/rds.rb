@@ -37,17 +37,26 @@ module Awspec::Type
       return true if has_db_security_group_name?(sg_id)
     end
 
-    def has_db_parameter_group?(name)
+    def has_db_parameter_group?(name, parameter_apply_status = nil)
       pgs = resource_via_client.db_parameter_groups
       pgs.find do |pg|
-        pg.db_parameter_group_name == name
+        if parameter_apply_status.nil?
+          pg.db_parameter_group_name == name
+        else
+          pg.db_parameter_group_name == name && \
+            pg.parameter_apply_status == parameter_apply_status
+        end
       end
     end
 
-    def has_option_group?(name)
+    def has_option_group?(name, status = nil)
       ogs = resource_via_client.option_group_memberships
       ogs.find do |og|
-        og.option_group_name == name
+        if status.nil?
+          og.option_group_name == name
+        else
+          og.option_group_name == name && og.status == status
+        end
       end
     end
 

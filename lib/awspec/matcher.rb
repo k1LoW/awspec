@@ -6,6 +6,8 @@ require 'awspec/matcher/have_network_interface'
 
 # RDS
 require 'awspec/matcher/belong_to_db_subnet_group'
+require 'awspec/matcher/have_db_parameter_group'
+require 'awspec/matcher/have_option_group'
 
 # SecurityGroup
 require 'awspec/matcher/be_opened'

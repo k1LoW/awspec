@@ -34,18 +34,22 @@ Aws.config[:rds] = {
           },
           db_parameter_groups: [
             {
-              db_parameter_group_name: 'default.mysql5.6'
+              db_parameter_group_name: 'default.mysql5.6',
+              parameter_apply_status: 'pending-reboot'
             },
             {
-              db_parameter_group_name: 'custom.mysql5.6'
+              db_parameter_group_name: 'custom.mysql5.6',
+              parameter_apply_status: 'in-sync'
             }
           ],
           option_group_memberships: [
             {
-              option_group_name: 'default:mysql-5-6'
+              option_group_name: 'default:mysql-5-6',
+              status: 'in-sync'
             },
             {
-              option_group_name: 'custom:mysql-5-6'
+              option_group_name: 'custom:mysql-5-6',
+              status: 'in-sync'
             }
           ],
           availability_zone: 'ap-northeast-1a',

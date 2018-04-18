@@ -48,10 +48,10 @@ describe rds('<%= instance_id %>') do
 <%- end -%>
   it { should belong_to_db_subnet_group('<%= db_instance.db_subnet_group.db_subnet_group_name %>') }
 <% db_instance.db_parameter_groups.each do |pg| %>
-  it { should have_db_parameter_group('<%= pg.db_parameter_group_name %>') }
+  it { should have_db_parameter_group('<%= pg.db_parameter_group_name %>').parameter_apply_status('<%= pg.parameter_apply_status %>') }
 <% end %>
 <% db_instance.option_group_memberships.each do |og| %>
-  it { should have_option_group('<%= og.option_group_name %>') }
+  it { should have_option_group('<%= og.option_group_name %>').status('<%= og.status %>') }
 <% end %>
 end
 EOF

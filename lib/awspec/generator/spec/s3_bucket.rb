@@ -38,9 +38,14 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
         transitions_rule.each do |line|
           elements = []
           line.each do |k, v|
-            # v.is_a?(Numeric) ? elements << "#{k}: #{v}" : elements << "#{k}: '#{v}'"
-            elements << "#{k}: #{v}" if v.is_a?(Numeric)
-            elements << "#{k}: '#{v}'" if v.is_a?(String)
+            elements << case v
+                        when Numeric
+                          "#{k}: #{v}"
+                        when String
+                          "#{k}: '#{v}'"
+                        else
+                          "#{k}: '#{v.inspect}'"
+                        end
           end
           rules << '{ ' + elements.join(', ') + ' }'
         end

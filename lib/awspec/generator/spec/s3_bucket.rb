@@ -33,6 +33,53 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
         template
       end
 
+      def generate_lifecycle_rule_transitions_spec(transitions_rule)
+        rules = []
+        transitions_rule.each do |line|
+          elements = []
+          line.each do |k, v|
+            elements << case v
+                        when Numeric
+                          "#{k}: #{v}"
+                        when String
+                          "#{k}: '#{v}'"
+                        else
+                          "#{k}: '#{v.inspect}'"
+                        end
+          end
+          rules << '{ ' + elements.join(', ') + ' }'
+        end
+        '[' + rules.join(', ') + ']'
+      end
+
+      def generate_lifecycle_rule_specs(lifecycle_rule)
+        return [] unless lifecycle_rule
+        linespecs = []
+        lifecycle_rule.rules.each do |rule|
+          transitions = generate_lifecycle_rule_transitions_spec(rule.transitions.map(&:to_h))
+          template = <<-EOF
+it do
+    should have_lifecycle_rule(
+      id: '<%= rule.id %>',
+      <%- if rule.prefix -%>
+      prefix: '<%= rule.prefix %>',
+      <%- end -%>
+      <%- rule.noncurrent_version_expiration.to_h.each do |k, v| -%>
+      noncurrent_version_expiration: { <%= k %>: <%= v %> },
+      <%- end -%>
+      <%- rule.expiration.to_h.each do |k, v| -%>
+      expiration: { <%= k %>: <%= v %> },
+      <%- end -%>
+      transitions: <%= transitions %>,
+      status: '<%= rule.status %>'
+    )
+  end
+          EOF
+          linespecs.push(ERB.new(template, nil, '-').result(binding))
+        end
+        linespecs
+      end
+
       def bucket_spec_template
         template = <<-'EOF'
 describe s3_bucket('<%= bucket.name %>') do
@@ -50,6 +97,11 @@ describe s3_bucket('<%= bucket.name %>') do
 <%- if tag -%>
   it { should have_tag('env').value('dev') }
 <%- end -%>
+<%- if lifecycle_rule -%>
+<% lifecycle_specs.each do |line| %>
+  <%= line %>
+<% end %>
+<%- end -%>
 end
 EOF
         template
@@ -63,6 +115,8 @@ EOF
         tag = find_bucket_tag(bucket.name, 'env')
         policy = find_bucket_policy(bucket.name)
         bucket_policy = policy.policy.read if policy
+        lifecycle_rule = find_bucket_lifecycle_configuration(bucket.name)
+        lifecycle_specs = generate_lifecycle_rule_specs(lifecycle_rule) if lifecycle_rule
         ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
     end

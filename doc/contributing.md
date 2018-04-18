@@ -17,7 +17,7 @@
 3. Fill files with code.
 4. Generate [doc/resource_types.md](doc/resource_types.md) (`bundle exec bin/toolbox docgen > doc/resource_types.md`)
 5. Run test (`bundle exec rake spec`)
-6. Push to the branch (`git push origin add-type-redshift`)
+6. Push to the branch (`git push origin add-type-cf-limit`)
 7. Create a new Pull Request
 
 ## Append resource type document (ex. VPC resource `be_available`)

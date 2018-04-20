@@ -61,7 +61,7 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
 it do
     should have_lifecycle_rule(
       id: '<%= rule.id %>',
-      <%- if rule.filter&.prefix -%>
+      <%- if rule.filter && rule.filter.prefix -%>
       filter: { prefix: '<%= rule.filter.prefix %>' },
       <%- end -%>
       <%- rule.noncurrent_version_expiration.to_h.each do |k, v| -%>

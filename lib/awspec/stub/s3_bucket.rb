@@ -96,7 +96,9 @@ Aws.config[:s3] = {
         },
         {
           id: 'MyRuleName2',
-          prefix: '123/',
+          filter: {
+            prefix: '123/'
+          },
           status: 'Enabled',
           transitions: [
             {

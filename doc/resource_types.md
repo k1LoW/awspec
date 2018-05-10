@@ -43,6 +43,8 @@
 | [nlb](#nlb)
 | [nlb_listener](#nlb_listener)
 | [nlb_target_group](#nlb_target_group)
+| [organizations_account](#organizations_account)
+| [organizations_organization](#organizations_organization)
 | [rds](#rds)
 | [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
@@ -883,7 +885,7 @@ end
 ```
 
 
-### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type)
+### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -2056,6 +2058,43 @@ end
 
 
 ### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
+## <a name="organizations_account">organizations_account</a>
+
+OrganizationsAccount resource type.
+
+### exist
+
+```ruby
+describe organizations_account('Master Account') do
+  it { should exist }
+end
+
+describe organizations_account('Member Account') do
+  it { should exist }
+end
+```
+
+
+## <a name="organizations_organization">organizations_organization</a>
+
+OrganizationsOrganization resource type.
+
+### exist
+
+```ruby
+describe organizations_organization('o-exampleorgid') do
+  it { should exist }
+end
+```
+
+
+### be_service_control_policy_enabled
+
+### be_service_control_policy_pending_disable
+
+### be_service_control_policy_pending_enable
+
+### its(:id), its(:arn), its(:feature_set), its(:master_account_arn), its(:master_account_id), its(:master_account_email)
 ## <a name="rds">rds</a>
 
 RDS resource type.

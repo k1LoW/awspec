@@ -80,7 +80,7 @@ Style/StabbyLambdaParentheses:
 Style/PercentLiteralDelimiters:
   Enabled: false
 
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: false
 
 Style/RedundantSelf:
@@ -90,4 +90,7 @@ Style/SymbolProc:
   Enabled: false
 
 Style/YodaCondition:
+  Enabled: false
+
+Layout/EndOfLine:
   Enabled: false

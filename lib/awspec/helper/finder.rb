@@ -33,6 +33,8 @@ require 'awspec/helper/finder/cloudwatch_logs'
 require 'awspec/helper/finder/dynamodb'
 require 'awspec/helper/finder/sqs'
 require 'awspec/helper/finder/cloudformation'
+require 'awspec/helper/finder/organizations_organization'
+require 'awspec/helper/finder/organizations_account'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -75,6 +77,8 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Dynamodb
     include Awspec::Helper::Finder::Sqs
     include Awspec::Helper::Finder::Cloudformation
+    include Awspec::Helper::Finder::OrganizationsOrganization
+    include Awspec::Helper::Finder::OrganizationsAccount
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -105,7 +109,8 @@ module Awspec::Helper
       cloudwatch_logs_client: Aws::CloudWatchLogs::Client,
       dynamodb_client: Aws::DynamoDB::Client,
       sqs_client: Aws::SQS::Client,
-      cloudformation_client: Aws::CloudFormation::Client
+      cloudformation_client: Aws::CloudFormation::Client,
+      organizations_client: Aws::Organizations::Client
     }
 
     CLIENT_OPTIONS = {

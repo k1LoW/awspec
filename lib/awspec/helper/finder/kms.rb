@@ -17,7 +17,7 @@ module Awspec::Helper
           found = res.aliases.find { |key_alias| key_alias.alias_name == alias_name }
           (found.nil? && next_marker = res.next_marker) || break
         end
-        
+
         find_kms_key(found.target_key_id) if found
       end
 
@@ -30,7 +30,7 @@ module Awspec::Helper
           all_aliases.concat(res.aliases)
           next_marker = res.next_marker || break
         end
-        
+
         all_aliases
       end
     end

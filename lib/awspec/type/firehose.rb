@@ -7,7 +7,6 @@ module Awspec::Type
     end
 
     def resource_via_client
-      puts 'hello ' + @delivery_stream_name
       @resource_via_client ||= find_delivery_stream(@delivery_stream_name)
     end
 

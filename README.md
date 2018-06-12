@@ -1,4 +1,4 @@
-# awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec) [![Scrutinizer](https://img.shields.io/scrutinizer/g/k1LoW/awspec.svg)](https://scrutinizer-ci.com/g/k1LoW/awspec/) [![Gemnasium](https://img.shields.io/gemnasium/k1LoW/awspec.svg)](https://gemnasium.com/k1LoW/awspec)
+# awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec) [![Scrutinizer](https://img.shields.io/scrutinizer/g/k1LoW/awspec.svg)](https://scrutinizer-ci.com/g/k1LoW/awspec/)
 
 ![Logo](./awspec-logo.png)
 
@@ -31,7 +31,7 @@ Or install it yourself as:
 If you're starting on a fresh RSpec project, you can use awspec to generate your init files:
 
     $ awspec init
-    
+
 If you're working on an exisitng RSpec project, you will need to add the following lines to your `spec_helper.rb` file:
 
 ```ruby

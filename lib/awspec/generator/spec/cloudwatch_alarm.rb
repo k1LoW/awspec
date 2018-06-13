@@ -28,6 +28,7 @@ describe cloudwatch_alarm('<%= alarm.alarm_name %>') do
   its(:period) { should eq <%= alarm.period %> }
   its(:unit) { should eq '<%= alarm.unit %>' }
   its(:evaluation_periods)  { should eq <%= alarm.evaluation_periods %> }
+  its(:datapoints_to_alarm)  { should eq <%= alarm.datapoints_to_alarm %> }
   its(:threshold)  { should eq <%= alarm.threshold %> }
   its(:comparison_operator)  { should eq '<%= alarm.comparison_operator %>' }
 end

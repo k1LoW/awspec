@@ -987,7 +987,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds), its(:scheduling_strategy)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
@@ -1296,7 +1296,6 @@ end
 
 
 ### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:backend_server_descriptions), its(:availability_zones), its(:subnets), its(:vpc_id), its(:security_groups), its(:created_time), its(:scheme)
-
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.
@@ -1310,7 +1309,6 @@ end
 ```
 
 ### its(:delivery_stream_name), its(:delivery_stream_arn), its(:delivery_stream_status), its(:delivery_stream_type), its(:version_id), its(:create_timestamp), its(:last_update_timestamp), its(:source), its(:destinations), its(:has_more_destinations)
-
 ## <a name="iam_group">iam_group</a>
 
 IamGroup resource type.
@@ -2168,7 +2166,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:enabled_cloudwatch_logs_exports)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:enabled_cloudwatch_logs_exports), its(:processor_features)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).

@@ -19,6 +19,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
   its(:period) { should eq 300 }
   its(:unit) { should eq 'Seconds' }
   its(:evaluation_periods)  { should eq 1 }
+  its(:datapoints_to_alarm)  { should eq 1 }
   its(:threshold)  { should eq 5.0 }
   its(:comparison_operator)  { should eq 'LessThanOrEqualToThreshold' }
 end

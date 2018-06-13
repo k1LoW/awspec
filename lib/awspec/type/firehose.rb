@@ -1,6 +1,5 @@
 module Awspec::Type
   class Firehose < ResourceBase
-
     def initialize(name)
       super
       @delivery_stream_name = name

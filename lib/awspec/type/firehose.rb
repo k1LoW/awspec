@@ -11,7 +11,7 @@ module Awspec::Type
     end
 
     def id
-     @id ||= @delivery_stream_name if resource_via_client
+      @id ||= @delivery_stream_name if resource_via_client
     end
   end
 end

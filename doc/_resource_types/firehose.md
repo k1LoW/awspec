@@ -21,3 +21,11 @@ describe firehose('my-firehose') do
   it { should have_source_type('DirectPut') }
 end
 ```
+
+### have_splunk_destination
+
+```ruby
+describe firehose('my-firehose') do
+  it { should have_splunk_destination }
+end
+```

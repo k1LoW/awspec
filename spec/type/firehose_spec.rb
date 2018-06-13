@@ -12,3 +12,7 @@ end
 describe firehose('my-firehose') do
   it { should have_source_type('DirectPut') }
 end
+
+describe firehose('my-firehose') do
+  it { should have_splunk_destination }
+end

@@ -24,5 +24,11 @@ module Awspec::Type
     def has_source_type?(type)
       resource_via_client.delivery_stream_type == type
     end
+
+    # TODO: Add one per destination type
+    def has_splunk_destination?
+      resource_via_client.destinations[0] &&
+        resource_via_client.destinations[0].splunk_destination_description
+    end
   end
 end

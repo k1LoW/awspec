@@ -7,7 +7,12 @@ Aws.config[:firehose] = {
         delivery_stream_status: 'ACTIVE',
         delivery_stream_type: 'DirectPut',
         version_id: '1',
-        destinations: [],
+        destinations: [
+          {
+            destination_id: 'destination-001',
+            splunk_destination_description: {}
+          }
+        ],
         has_more_destinations: false
       }
     }

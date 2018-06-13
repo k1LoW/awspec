@@ -29,6 +29,7 @@
 | [elasticsearch](#elasticsearch)
 | [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 | [elb](#elb)
+| [firehose](#firehose)
 | [iam_group](#iam_group)
 | [iam_policy](#iam_policy)
 | [iam_role](#iam_role)

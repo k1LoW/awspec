@@ -8,3 +8,7 @@ end
 describe firehose('my-firehose') do
   it { should be_active }
 end
+
+describe firehose('my-firehose') do
+  it { should have_source_type('DirectPut') }
+end

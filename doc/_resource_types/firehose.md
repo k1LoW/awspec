@@ -6,7 +6,7 @@ describe firehose('my-firehose') do
 end
 ```
 
-### be_active, be_creating, be_deleting
+### be_active
 
 ```ruby
 describe firehose('my-firehose') do
@@ -14,4 +14,10 @@ describe firehose('my-firehose') do
 end
 ```
 
-### meow
+### have_source_type
+
+```ruby
+describe firehose('my-firehose') do
+  it { should have_source_type('DirectPut') }
+end
+```

@@ -20,5 +20,9 @@ module Awspec::Type
         resource_via_client.delivery_stream_status == state
       end
     end
+
+    def has_source_type?(type)
+      resource_via_client.delivery_stream_type == type
+    end
   end
 end

@@ -4,7 +4,7 @@ Aws.config[:firehose] = {
       delivery_stream_description: {
         delivery_stream_name: 'my-firehose',
         delivery_stream_arn: 'arn:aws:firehose:partition-1:1234567890:deliverystream/my-firehose',
-        delivery_stream_status: 'Active',
+        delivery_stream_status: 'ACTIVE',
         delivery_stream_type: 'DirectPut',
         version_id: '1',
         destinations: [],

@@ -1322,15 +1322,6 @@ end
 
 ### be_deleting
 
-### have_source_type
-
-```ruby
-describe firehose('my-firehose') do
-  it { should have_source_type('DirectPut') }
-end
-```
-
-
 ### have_splunk_destination
 
 ```ruby
@@ -1339,7 +1330,16 @@ describe firehose('my-firehose') do
 end
 ```
 
+
 ### its(:delivery_stream_name), its(:delivery_stream_arn), its(:delivery_stream_status), its(:delivery_stream_type), its(:version_id), its(:create_timestamp), its(:last_update_timestamp), its(:source), its(:has_more_destinations)
+### :unlock: Advanced use
+
+```ruby
+describe firehose('my-firehose') do
+  its(:delivery_stream_type) { should be_eql('DirectPut') }
+end
+```
+
 ## <a name="iam_group">iam_group</a>
 
 IamGroup resource type.

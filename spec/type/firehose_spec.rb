@@ -10,7 +10,7 @@ describe firehose('my-firehose') do
 end
 
 describe firehose('my-firehose') do
-  it { should have_source_type('DirectPut') }
+  its(:delivery_stream_type) { should be_eql('DirectPut') }
 end
 
 describe firehose('my-firehose') do

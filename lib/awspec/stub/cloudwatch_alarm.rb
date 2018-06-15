@@ -30,6 +30,7 @@ Aws.config[:cloudwatch] = {
           period: 300,
           unit: 'Seconds',
           evaluation_periods: 1,
+          datapoints_to_alarm: 1,
           threshold: 5.0,
           comparison_operator: 'LessThanOrEqualToThreshold'
         }

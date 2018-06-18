@@ -29,6 +29,7 @@
 | [elasticsearch](#elasticsearch)
 | [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 | [elb](#elb)
+| [firehose](#firehose)
 | [iam_group](#iam_group)
 | [iam_policy](#iam_policy)
 | [iam_role](#iam_role)
@@ -1295,6 +1296,50 @@ end
 
 
 ### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:backend_server_descriptions), its(:availability_zones), its(:subnets), its(:vpc_id), its(:security_groups), its(:created_time), its(:scheme)
+## <a name="firehose">firehose</a>
+
+Firehose resource type.
+
+### exist
+
+```ruby
+describe firehose('my-firehose') do
+  it { should exist }
+end
+```
+
+
+### be_active
+
+```ruby
+describe firehose('my-firehose') do
+  it { should be_active }
+end
+```
+
+
+### be_creating
+
+### be_deleting
+
+### have_splunk_destination
+
+```ruby
+describe firehose('my-firehose') do
+  it { should have_splunk_destination }
+end
+```
+
+
+### its(:delivery_stream_name), its(:delivery_stream_arn), its(:delivery_stream_status), its(:delivery_stream_type), its(:version_id), its(:create_timestamp), its(:last_update_timestamp), its(:source), its(:has_more_destinations)
+### :unlock: Advanced use
+
+```ruby
+describe firehose('my-firehose') do
+  its(:delivery_stream_type) { should be_eql('DirectPut') }
+end
+```
+
 ## <a name="iam_group">iam_group</a>
 
 IamGroup resource type.

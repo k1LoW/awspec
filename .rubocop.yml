@@ -41,6 +41,9 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 15
 
+Naming/PredicateName:
+  Enabled: false
+
 Performance/StringReplacement:
   Enabled: false
 
@@ -78,9 +81,6 @@ Style/StabbyLambdaParentheses:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/PredicateName:
   Enabled: false
 
 Style/RedundantSelf:

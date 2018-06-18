@@ -10,6 +10,10 @@ Aws.config[:firehose] = {
         destinations: [
           {
             destination_id: 'destination-001',
+            elasticsearch_destination_description: {}
+          },
+          {
+            destination_id: 'destination-002',
             splunk_destination_description: {}
           }
         ],

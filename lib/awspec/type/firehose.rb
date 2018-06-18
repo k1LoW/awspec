@@ -21,10 +21,10 @@ module Awspec::Type
       end
     end
 
-    # TODO: Add one per destination type
     def has_splunk_destination?
-      resource_via_client.destinations[0] &&
-        resource_via_client.destinations[0].splunk_destination_description
+      resource_via_client.destinations.find do |dest|
+        dest.splunk_destination_description
+      end
     end
   end
 end

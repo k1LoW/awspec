@@ -53,6 +53,7 @@
 | [security_group](#security_group)
 | [ses_identity](#ses_identity)
 | [sqs](#sqs)
+| [ssm_parameter](#ssm_parameter)
 | [subnet](#subnet)
 | [vpc](#vpc)
 | [vpn_connection](#vpn_connection)
@@ -1390,7 +1391,7 @@ end
 
 ```ruby
 describe iam_group('my-iam-group') do
-  its('users.count) { should eq 5 }
+  its('users.count') { should eq 5 }
 end
 ```
 
@@ -2197,7 +2198,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:enabled_cloudwatch_logs_exports), its(:processor_features)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).
@@ -2614,6 +2615,48 @@ end
 ```
 
 ### its(:queue_arn), its(:approximate_number_of_messages), its(:approximate_number_of_messages_not_visible), its(:approximate_number_of_messages_delayed), its(:created_timestamp), its(:last_modified_timestamp), its(:visibility_timeout), its(:maximum_message_size), its(:message_retention_period), its(:delay_seconds), its(:receive_message_wait_time_seconds), its(:queue_url)
+## <a name="ssm_parameter">ssm_parameter</a>
+
+SsmParameter resource type.
+
+### exist
+
+```ruby
+describe ssm_parameter('my-parameter') do
+  it { should exist }
+end
+```
+
+
+### be_encrypted
+
+```ruby
+describe ssm_parameter('my-parameter') do
+  it { should be_encrypted }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe ssm_parameter('my-parameter') do
+  it { should have_tag('my-key').value('my-value') }
+end
+```
+
+
+### its(:name), its(:type), its(:key_id), its(:last_modified_date), its(:last_modified_user), its(:description), its(:allowed_pattern), its(:version)
+### :unlock: Advanced use
+
+```ruby
+describe ssm_parameter('my-parameter') do
+  its(:key_id) { should be_eql('6a81f446-27b0-4d51-a04f-af7ddeea2e22') }
+  its(:description) { should be_eql('Some string description') }
+  its(:version) { should be_eql(1) }
+end
+```
+
 ## <a name="subnet">subnet</a>
 
 Subnet resource type.

@@ -34,6 +34,7 @@ require 'awspec/helper/finder/cloudwatch_logs'
 require 'awspec/helper/finder/dynamodb'
 require 'awspec/helper/finder/sqs'
 require 'awspec/helper/finder/cloudformation'
+require 'awspec/helper/finder/ssm_parameter'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -76,6 +77,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::CloudwatchLogs
     include Awspec::Helper::Finder::Dynamodb
     include Awspec::Helper::Finder::Sqs
+    include Awspec::Helper::Finder::SsmParameter
     include Awspec::Helper::Finder::Cloudformation
 
     CLIENTS = {
@@ -108,6 +110,7 @@ module Awspec::Helper
       cloudwatch_logs_client: Aws::CloudWatchLogs::Client,
       dynamodb_client: Aws::DynamoDB::Client,
       sqs_client: Aws::SQS::Client,
+      ssm_client: Aws::SSM::Client,
       cloudformation_client: Aws::CloudFormation::Client
     }
 

@@ -73,7 +73,7 @@ end
 
 ```ruby
 describe iam_group('my-iam-group') do
-  its('users.count) { should eq 5 }
+  its('users.count') { should eq 5 }
 end
 ```
 

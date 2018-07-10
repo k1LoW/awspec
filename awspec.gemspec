@@ -34,5 +34,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rubocop', '~> 0.49.0'
-  spec.add_development_dependency 'parser', '>= 2.5', '!= 2.5.1.1'
 end

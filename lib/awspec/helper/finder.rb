@@ -35,6 +35,7 @@ require 'awspec/helper/finder/dynamodb'
 require 'awspec/helper/finder/sqs'
 require 'awspec/helper/finder/cloudformation'
 require 'awspec/helper/finder/ssm_parameter'
+require 'awspec/helper/finder/kinesis'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -79,6 +80,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Sqs
     include Awspec::Helper::Finder::SsmParameter
     include Awspec::Helper::Finder::Cloudformation
+    include Awspec::Helper::Finder::Kinesis
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -111,7 +113,8 @@ module Awspec::Helper
       dynamodb_client: Aws::DynamoDB::Client,
       sqs_client: Aws::SQS::Client,
       ssm_client: Aws::SSM::Client,
-      cloudformation_client: Aws::CloudFormation::Client
+      cloudformation_client: Aws::CloudFormation::Client,
+      kinesis_client: Aws::Kinesis::Client
     }
 
     CLIENT_OPTIONS = {

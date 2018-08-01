@@ -1,3 +1,5 @@
+DEBUG resource_via_client
+DEBUG resource_via_client <#<struct Aws::Kinesis::Types::DescribeStreamSummaryOutput stream_description_summary=#<struct Aws::Kinesis::Types::StreamDescriptionSummary stream_name="my-kinesis", stream_arn="arn:aws:kinesis:us-east-2:194648440784:stream/my-kinesis-staging-default-aws-resources", stream_status="ACTIVE", retention_period_hours=24, stream_creation_timestamp=2018-06-14 14:39:37 -0400, enhanced_monitoring=[#<struct Aws::Kinesis::Types::EnhancedMetrics shard_level_metrics=["IncomingBytes", "OutgoingRecords", "IteratorAgeMilliseconds", "IncomingRecords", "ReadProvisionedThroughputExceeded", "WriteProvisionedThroughputExceeded", "OutgoingBytes"]>], encryption_type="KMS", key_id="arn:aws:kms:us-east-2:194648440784:alias/my-kinesis-staging-default-key", open_shard_count=1>>>
 # Resource Types
 
 [acm](#acm)
@@ -35,6 +37,7 @@
 | [iam_role](#iam_role)
 | [iam_user](#iam_user)
 | [internet_gateway](#internet_gateway)
+| [kinesis](#kinesis)
 | [kms](#kms)
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
@@ -614,7 +617,7 @@ describe directconnect_virtual_interface('my-directconnect-virtual-interface') d
 end
 ```
 
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers)
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2)
 ## <a name="dynamodb_table">dynamodb_table</a>
 
 DynamodbTable resource type.
@@ -1660,6 +1663,19 @@ end
 ```
 
 ### its(:internet_gateway_id)
+## <a name="kinesis">kinesis</a>
+
+Kinesis resource type.
+
+### exist
+
+```ruby
+describe kinesis('my-kinesis') do
+  it { should exist }
+end
+```
+
+
 ## <a name="kms">kms</a>
 
 Kms resource type.

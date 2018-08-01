@@ -31,6 +31,7 @@ require 'awspec/generator/spec/elasticsearch'
 require 'awspec/generator/spec/eip'
 require 'awspec/generator/spec/rds_db_parameter_group'
 require 'awspec/generator/spec/rds_db_cluster_parameter_group'
+require 'awspec/generator/spec/codebuild'
 
 # Doc
 require 'awspec/generator/doc/type'

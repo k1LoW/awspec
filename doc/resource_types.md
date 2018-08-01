@@ -12,6 +12,7 @@
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [cloudwatch_event](#cloudwatch_event)
 | [cloudwatch_logs](#cloudwatch_logs)
+| [codebuild](#codebuild)
 | [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [dynamodb_table](#dynamodb_table)
@@ -547,6 +548,13 @@ end
 ```
 
 ### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id)
+## <a name="codebuild">codebuild</a>
+
+Codebuild resource type.
+
+### exist
+
+
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.
@@ -614,7 +622,7 @@ describe directconnect_virtual_interface('my-directconnect-virtual-interface') d
 end
 ```
 
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers)
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2)
 ## <a name="dynamodb_table">dynamodb_table</a>
 
 DynamodbTable resource type.

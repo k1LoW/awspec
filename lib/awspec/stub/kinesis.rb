@@ -17,15 +17,15 @@ Aws.config[:kinesis] = {
         stream_creation_timestamp: Time.at(1_529_001_577),
         enhanced_monitoring: [
           {
-            shard_level_metrics: [
-              'IncomingBytes',
-              'OutgoingRecords',
-              'IteratorAgeMilliseconds',
-              'IncomingRecords',
-              'ReadProvisionedThroughputExceeded',
-              'WriteProvisionedThroughputExceeded',
-              'OutgoingBytes'
-            ]
+            shard_level_metrics: %w(
+              IncomingBytes
+              OutgoingRecords
+              IteratorAgeMilliseconds
+              IncomingRecords
+              ReadProvisionedThroughputExceeded
+              WriteProvisionedThroughputExceeded
+              OutgoingBytes
+            )
           }
         ],
         encryption_type: 'KMS',

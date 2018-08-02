@@ -1,5 +1,3 @@
-DEBUG resource_via_client
-DEBUG resource_via_client <#<struct Aws::Kinesis::Types::DescribeStreamSummaryOutput stream_description_summary=#<struct Aws::Kinesis::Types::StreamDescriptionSummary stream_name="my-kinesis", stream_arn="arn:aws:kinesis:us-east-2:194648440784:stream/my-kinesis-staging-default-aws-resources", stream_status="ACTIVE", retention_period_hours=24, stream_creation_timestamp=2018-06-14 14:39:37 -0400, enhanced_monitoring=[#<struct Aws::Kinesis::Types::EnhancedMetrics shard_level_metrics=["IncomingBytes", "OutgoingRecords", "IteratorAgeMilliseconds", "IncomingRecords", "ReadProvisionedThroughputExceeded", "WriteProvisionedThroughputExceeded", "OutgoingBytes"]>], encryption_type="KMS", key_id="arn:aws:kms:us-east-2:194648440784:alias/my-kinesis-staging-default-key", open_shard_count=1>>>
 # Resource Types
 
 [acm](#acm)
@@ -1675,7 +1673,7 @@ describe kinesis('my-kinesis') do
 end
 ```
 
-
+### its(:stream_name), its(:stream_arn), its(:stream_status), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count)
 ## <a name="kms">kms</a>
 
 Kms resource type.

@@ -13,6 +13,7 @@
 | [cloudwatch_alarm](#cloudwatch_alarm)
 | [cloudwatch_event](#cloudwatch_event)
 | [cloudwatch_logs](#cloudwatch_logs)
+| [codebuild](#codebuild)
 | [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [dynamodb_table](#dynamodb_table)
@@ -561,6 +562,13 @@ end
 ```
 
 ### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id)
+## <a name="codebuild">codebuild</a>
+
+Codebuild resource type.
+
+### exist
+
+
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.

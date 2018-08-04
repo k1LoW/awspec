@@ -1695,7 +1695,7 @@ describe kinesis('my-kinesis') do
 end
 ```
 
-### its(:stream_name), its(:stream_arn), its(:stream_status), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count)
+### its(:stream_name), its(:stream_arn), its(:stream_status), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count), its(:consumer_count)
 ## <a name="kms">kms</a>
 
 Kms resource type.

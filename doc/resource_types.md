@@ -37,6 +37,7 @@
 | [iam_role](#iam_role)
 | [iam_user](#iam_user)
 | [internet_gateway](#internet_gateway)
+| [kinesis](#kinesis)
 | [kms](#kms)
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
@@ -1682,6 +1683,19 @@ end
 ```
 
 ### its(:internet_gateway_id)
+## <a name="kinesis">kinesis</a>
+
+Kinesis resource type.
+
+### exist
+
+```ruby
+describe kinesis('my-kinesis') do
+  it { should exist }
+end
+```
+
+### its(:stream_name), its(:stream_arn), its(:stream_status), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count)
 ## <a name="kms">kms</a>
 
 Kms resource type.

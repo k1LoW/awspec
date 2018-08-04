@@ -119,7 +119,7 @@ module Awspec::Helper
       ssm_client: Aws::SSM::Client,
       cloudformation_client: Aws::CloudFormation::Client,
       codebuild_client: Aws::CodeBuild::Client,
-      apigateway_client: Aws::APIGateway::Client
+      apigateway_client: Aws::APIGateway::Client,
       kinesis_client: Aws::Kinesis::Client
     }
 

@@ -36,6 +36,7 @@ require 'awspec/helper/finder/sqs'
 require 'awspec/helper/finder/cloudformation'
 require 'awspec/helper/finder/ssm_parameter'
 require 'awspec/helper/finder/codebuild'
+require 'awspec/helper/finder/apigateway'
 require 'awspec/helper/finder/kinesis'
 
 require 'awspec/helper/finder/account_attributes'
@@ -82,6 +83,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::SsmParameter
     include Awspec::Helper::Finder::Cloudformation
     include Awspec::Helper::Finder::Codebuild
+    include Awspec::Helper::Finder::Apigateway
     include Awspec::Helper::Finder::Kinesis
 
     CLIENTS = {
@@ -117,6 +119,7 @@ module Awspec::Helper
       ssm_client: Aws::SSM::Client,
       cloudformation_client: Aws::CloudFormation::Client,
       codebuild_client: Aws::CodeBuild::Client,
+      apigateway_client: Aws::APIGateway::Client
       kinesis_client: Aws::Kinesis::Client
     }
 

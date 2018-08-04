@@ -5,6 +5,7 @@
 | [alb_listener](#alb_listener)
 | [alb_target_group](#alb_target_group)
 | [ami](#ami)
+| [apigateway](#apigateway)
 | [autoscaling_group](#autoscaling_group)
 | [cloudformation_stack](#cloudformation_stack)
 | [cloudfront_distribution](#cloudfront_distribution)
@@ -236,6 +237,19 @@ end
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
 
+## <a name="apigateway">apigateway</a>
+
+Apigateway resource type.
+
+### exist
+
+```ruby
+describe apigateway('my-apigateway') do
+  it { should exist }
+end
+```
+
+### its(:id), its(:name), its(:description), its(:created_date), its(:version), its(:warnings), its(:binary_media_types), its(:minimum_compression_size), its(:api_key_source), its(:policy)
 ## <a name="autoscaling_group">autoscaling_group</a>
 
 AutoscalingGroup resource type.

@@ -7,6 +7,9 @@
 | [ami](#ami)
 | [apigateway](#apigateway)
 | [autoscaling_group](#autoscaling_group)
+| [batch_compute_environment](#batch_compute_environment)
+| [batch_job_definition](#batch_job_definition)
+| [batch_job_queue](#batch_job_queue)
 | [cloudformation_stack](#cloudformation_stack)
 | [cloudfront_distribution](#cloudfront_distribution)
 | [cloudtrail](#cloudtrail)
@@ -313,6 +316,45 @@ end
 ```
 
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn)
+## <a name="batch_compute_environment">batch_compute_environment</a>
+
+BatchComputeEnvironment resource type.
+
+### exist
+
+```ruby
+describe batch_compute_environment('my-batch-compute-environment') do
+  it { should exist }
+end
+```
+
+### its(:compute_environment_name), its(:compute_environment_arn), its(:ecs_cluster_arn), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role)
+## <a name="batch_job_definition">batch_job_definition</a>
+
+BatchJobDefinition resource type.
+
+### exist
+
+```ruby
+describe batch_job_definition('my-batch-job-definition') do
+  it { should exist }
+end
+```
+
+### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:parameters), its(:retry_strategy), its(:timeout)
+## <a name="batch_job_queue">batch_job_queue</a>
+
+BatchJobQueue resource type.
+
+### exist
+
+```ruby
+describe batch_job_queue('my-batch-job-queue') do
+  it { should exist }
+end
+```
+
+### its(:job_queue_name), its(:job_queue_arn), its(:state), its(:status), its(:status_reason), its(:priority)
 ## <a name="cloudformation_stack">cloudformation_stack</a>
 
 CloudformationStack resource type.
@@ -637,7 +679,7 @@ describe directconnect_virtual_interface('my-directconnect-virtual-interface') d
 end
 ```
 
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2)
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:mtu), its(:jumbo_frame_capable), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2)
 ## <a name="dynamodb_table">dynamodb_table</a>
 
 DynamodbTable resource type.
@@ -1234,7 +1276,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options)
 ## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
 
 ElastictranscoderPipeline resource type.

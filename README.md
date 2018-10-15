@@ -97,6 +97,7 @@ end
 ```
 
 ### STEP 4. Run tests
+Add gem "rake" in your Gemfile if you are starting a blank project.
 
     $ bundle exec rake spec
 
@@ -106,6 +107,11 @@ Generate spec from AWS resources already exists.
 
 ```sh
 $ awspec generate ec2 vpc-ab123cde >> spec/ec2_spec.rb
+```
+
+Make sure you have added in your spec file
+```ruby
+require 'spec_helper'
 ```
 
 ### Advanced Tips: Use Shared Credentials (~/.aws/config ~/.aws/credentials)

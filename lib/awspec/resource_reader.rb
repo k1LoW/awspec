@@ -4,7 +4,7 @@ module Awspec
     end
 
     def method_missing_via_black_list(name, delegate_to: nil)
-      raise ArguementError, 'delegate_to: must be specified' unless delegate_to
+      raise ArgumentError, 'delegate_to: must be specified' unless delegate_to
       if match_black_list?(name) && !match_white_list?(name)
         raise CalledMethodInBlackList, "Method call #{name.inspect} is black-listed"
       end
@@ -44,6 +44,10 @@ module Awspec
 
     def initialize(resource)
       @resource_via_client = resource
+    end
+
+    def describe_time_to_live(*args)
+        @resource_via_client.send('describe_time_to_live', *args)
     end
 
     def method_missing(name)

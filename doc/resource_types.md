@@ -637,7 +637,7 @@ describe directconnect_virtual_interface('my-directconnect-virtual-interface') d
 end
 ```
 
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2)
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:mtu), its(:jumbo_frame_capable), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2)
 ## <a name="dynamodb_table">dynamodb_table</a>
 
 DynamodbTable resource type.
@@ -1234,7 +1234,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options)
 ## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
 
 ElastictranscoderPipeline resource type.

@@ -9,7 +9,7 @@ module Awspec::Type
     end
 
     def has_log_stream?(stream_name)
-      ret = find_cloudwatch_logs_stream_by_log_group_name(@id).log_stream_name
+      ret = find_cloudwatch_logs_stream_by_log_group_name(id).log_stream_name
       return true if ret == stream_name
     end
 

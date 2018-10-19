@@ -14,6 +14,7 @@ require 'awspec/helper/finder/s3'
 require 'awspec/helper/finder/autoscaling'
 require 'awspec/helper/finder/ebs'
 require 'awspec/helper/finder/elb'
+require 'awspec/helper/finder/elastic_beanstalk'
 require 'awspec/helper/finder/firehose'
 require 'awspec/helper/finder/lambda'
 require 'awspec/helper/finder/iam'
@@ -53,6 +54,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ecr
     include Awspec::Helper::Finder::Ecs
     include Awspec::Helper::Finder::Efs
+    include Awspec::Helper::Finder::ElasticBeanstalk
     include Awspec::Helper::Finder::Firehose
     include Awspec::Helper::Finder::SecurityGroup
     include Awspec::Helper::Finder::Rds
@@ -96,6 +98,7 @@ module Awspec::Helper
       route53_client: Aws::Route53::Client,
       s3_client: Aws::S3::Client,
       autoscaling_client: Aws::AutoScaling::Client,
+      elastic_beanstalk_client: Aws::ElasticBeanstalk::Client,
       elb_client: Aws::ElasticLoadBalancing::Client,
       elbv2_client: Aws::ElasticLoadBalancingV2::Client,
       lambda_client: Aws::Lambda::Client,

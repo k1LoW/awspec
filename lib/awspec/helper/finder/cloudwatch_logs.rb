@@ -10,7 +10,7 @@ module Awspec::Helper
       end
 
       def find_cloudwatch_logs_stream_by_log_group_name(id)
-        cloudwatch_logs_client.describe_log_streams({ log_group_name: id }).log_streams.last
+        cloudwatch_logs_client.describe_log_streams({ log_group_name: id }).log_streams
       end
 
       def find_cloudwatch_logs_metric_fileter_by_log_group_name(id, filter_name)

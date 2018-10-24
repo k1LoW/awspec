@@ -23,9 +23,9 @@ module Awspec::Type
 
     def has_compute_environment_order?(arn, order)
       resource_via_client.compute_environment_order.each do |res|
-        return true if res.compute_environment == arn and res.order == order
+        return true if res.compute_environment == arn && res.order == order
       end
-      return false
+      false
     end
   end
 end

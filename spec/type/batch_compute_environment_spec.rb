@@ -24,7 +24,9 @@ describe batch_compute_environment('my-batch-compute-environment') do
   its('compute_resources.subnets') { should include 'subnet-1a95556d' }
   its('compute_resources.subnets') { should include 'subnet-978f6dce' }
   its('compute_resources.tags') { should include('name' => 'Batch Instance - P2OnDemand') }
-  its(:ecs_cluster_arn) { should eq 'arn:aws:ecs:us-east-1:012345678910:cluster/P2OnDemand_Batch_2c06f29d-d1fe-3a49-879d' }
+  its(:ecs_cluster_arn) do
+    should eq 'arn:aws:ecs:us-east-1:012345678910:cluster/P2OnDemand_Batch_2c06f29d-d1fe-3a49-879d'
+  end
   its(:service_role) { should eq 'arn:aws:iam::012345678910:role/AWSBatchServiceRole' }
   its(:status) { should eq 'VALID' }
   its(:status_reason) { should eq 'ComputeEnvironment Healthy' }

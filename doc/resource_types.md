@@ -328,6 +328,32 @@ describe batch_compute_environment('my-batch-compute-environment') do
 end
 ```
 
+
+### be_disabled
+
+### be_enabled
+
+### be_enabled, be_disabled
+
+```ruby
+describe batch_compute_environment('my-batch-compute-environment') do
+  it { should be_enabled }
+end
+```
+
+
+### be_managed
+
+### be_managed, be_unmanaged
+
+```ruby
+describe batch_compute_environment('my-batch-compute-environment') do
+  it { should be_managed }
+end
+```
+
+### be_unmanaged
+
 ### its(:compute_environment_name), its(:compute_environment_arn), its(:ecs_cluster_arn), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role)
 ## <a name="batch_job_definition">batch_job_definition</a>
 
@@ -351,6 +377,19 @@ BatchJobQueue resource type.
 ```ruby
 describe batch_job_queue('my-batch-job-queue') do
   it { should exist }
+end
+```
+
+
+### be_disabled
+
+### be_enabled
+
+### have_compute_environment_order
+
+```ruby
+describe batch_job_queue('my-batch-job-queue') do
+  it { should have_compute_environment_order('arn:aws:batch:us-east-1:012345678910:compute-environment/C4OnDemand', 1) }
 end
 ```
 

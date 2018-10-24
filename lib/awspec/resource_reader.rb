@@ -47,7 +47,7 @@ module Awspec
     end
 
     def describe_time_to_live(*args)
-        @resource_via_client.send('describe_time_to_live', *args)
+      @resource_via_client.send('describe_time_to_live', *args)
     end
 
     def method_missing(name)

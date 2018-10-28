@@ -29,6 +29,7 @@
 | [ecs_task_definition](#ecs_task_definition)
 | [efs](#efs)
 | [eip](#eip)
+| [eks](#eks)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
@@ -1168,6 +1169,27 @@ end
 ```
 
 
+## <a name="eks">eks</a>
+
+Eks resource type.
+
+### exist
+
+```ruby
+describe eks('my-eks') do
+  it { should exist }
+end
+```
+
+### be_active, be_creating
+
+```ruby
+describe eks('my-eks') do
+  it { should be_active }
+end
+```
+
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:status), its(:client_request_token), its(:platform_version)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

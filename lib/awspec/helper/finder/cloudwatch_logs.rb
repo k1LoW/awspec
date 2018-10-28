@@ -9,8 +9,25 @@ module Awspec::Helper
         end
       end
 
-      def find_cloudwatch_logs_stream_by_log_group_name(id)
-        cloudwatch_logs_client.describe_log_streams({ log_group_name: id }).log_streams.last
+      def find_cloudwatch_logs_stream_by_log_group_name(id, stream_name)
+        req = {
+          log_group_name: id,
+          log_stream_name_prefix: stream_name
+        }
+        ret = nil
+        loop do
+          res = cloudwatch_logs_client.describe_log_streams(req)
+          res.log_streams.find do |log_stream|
+            if log_stream[:log_stream_name] == stream_name
+              ret = log_stream[:log_stream_name]
+              break
+            end
+          end
+          break if ret.present?
+          break if res.next_token.nil?
+          req[:next_token] = res.next_token
+        end
+        ret
       end
 
       def find_cloudwatch_logs_metric_fileter_by_log_group_name(id, filter_name)

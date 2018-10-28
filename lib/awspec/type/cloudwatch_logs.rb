@@ -9,10 +9,8 @@ module Awspec::Type
     end
 
     def has_log_stream?(stream_name)
-      ret = find_cloudwatch_logs_stream_by_log_group_name(id).find { |lg|
-        lg.log_stream_name == stream_name
-      }
-      return true unless ret.nil?
+      ret = find_cloudwatch_logs_stream_by_log_group_name(@id, stream_name)
+      return true if ret == stream_name
     end
 
     def has_metric_filter?(filter_name)

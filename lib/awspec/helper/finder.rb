@@ -45,7 +45,6 @@ require 'awspec/helper/finder/sns_topic'
 require 'awspec/helper/finder/account_attributes'
 require 'awspec/helper/client_wrap'
 
-
 module Awspec::Helper
   module Finder
     include Awspec::Helper::Finder::Nlb

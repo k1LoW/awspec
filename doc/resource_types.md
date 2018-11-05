@@ -7,6 +7,9 @@
 | [ami](#ami)
 | [apigateway](#apigateway)
 | [autoscaling_group](#autoscaling_group)
+| [batch_compute_environment](#batch_compute_environment)
+| [batch_job_definition](#batch_job_definition)
+| [batch_job_queue](#batch_job_queue)
 | [cloudformation_stack](#cloudformation_stack)
 | [cloudfront_distribution](#cloudfront_distribution)
 | [cloudtrail](#cloudtrail)
@@ -26,6 +29,7 @@
 | [ecs_task_definition](#ecs_task_definition)
 | [efs](#efs)
 | [eip](#eip)
+| [eks](#eks)
 | [elasticache](#elasticache)
 | [elasticache_cache_parameter_group](#elasticache_cache_parameter_group)
 | [elasticsearch](#elasticsearch)
@@ -313,6 +317,84 @@ end
 ```
 
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn)
+## <a name="batch_compute_environment">batch_compute_environment</a>
+
+BatchComputeEnvironment resource type.
+
+### exist
+
+```ruby
+describe batch_compute_environment('my-batch-compute-environment') do
+  it { should exist }
+end
+```
+
+
+### be_disabled
+
+### be_enabled
+
+### be_enabled, be_disabled
+
+```ruby
+describe batch_compute_environment('my-batch-compute-environment') do
+  it { should be_enabled }
+end
+```
+
+
+### be_managed
+
+### be_managed, be_unmanaged
+
+```ruby
+describe batch_compute_environment('my-batch-compute-environment') do
+  it { should be_managed }
+end
+```
+
+### be_unmanaged
+
+### its(:compute_environment_name), its(:compute_environment_arn), its(:ecs_cluster_arn), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role)
+## <a name="batch_job_definition">batch_job_definition</a>
+
+BatchJobDefinition resource type.
+
+### exist
+
+```ruby
+describe batch_job_definition('my-batch-job-definition') do
+  it { should exist }
+end
+```
+
+### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:parameters), its(:retry_strategy), its(:timeout)
+## <a name="batch_job_queue">batch_job_queue</a>
+
+BatchJobQueue resource type.
+
+### exist
+
+```ruby
+describe batch_job_queue('my-batch-job-queue') do
+  it { should exist }
+end
+```
+
+
+### be_disabled
+
+### be_enabled
+
+### have_compute_environment_order
+
+```ruby
+describe batch_job_queue('my-batch-job-queue') do
+  it { should have_compute_environment_order('arn:aws:batch:us-east-1:012345678910:compute-environment/C4OnDemand', 1) }
+end
+```
+
+### its(:job_queue_name), its(:job_queue_arn), its(:state), its(:status), its(:status_reason), its(:priority)
 ## <a name="cloudformation_stack">cloudformation_stack</a>
 
 CloudformationStack resource type.
@@ -908,7 +990,7 @@ end
 ```
 
 
-### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options)
+### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -1087,6 +1169,27 @@ end
 ```
 
 
+## <a name="eks">eks</a>
+
+Eks resource type.
+
+### exist
+
+```ruby
+describe eks('my-eks') do
+  it { should exist }
+end
+```
+
+### be_active, be_creating
+
+```ruby
+describe eks('my-eks') do
+  it { should be_active }
+end
+```
+
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:status), its(:client_request_token), its(:platform_version)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

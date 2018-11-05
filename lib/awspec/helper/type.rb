@@ -8,10 +8,11 @@ module Awspec
       require 'awspec/type/account_attribute'
 
       TYPES = %w(
-        alb alb_listener alb_target_group ami apigateway autoscaling_group cloudtrail
+        alb alb_listener alb_target_group ami apigateway autoscaling_group
+        batch_compute_environment batch_job_definition batch_job_queue cloudtrail
         cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
         ebs ec2 ecr_repository ecs_cluster ecs_container_instance ecs_service ecs_task_definition
-        efs elasticache elasticache_cache_parameter_group elasticsearch elb firehose iam_group
+        efs eks elasticache elasticache_cache_parameter_group elasticsearch elb firehose iam_group
         iam_policy iam_role iam_user kinesis kms lambda launch_configuration nat_gateway
         network_acl network_interface nlb nlb_listener nlb_target_group
         rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone

@@ -17,7 +17,7 @@ module Awspec
         rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone
         route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
         elastictranscoder_pipeline waf_web_acl customer_gateway vpn_gateway vpn_connection internet_gateway acm
-        cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack codebuild
+        cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack codebuild sns_topic
       )
 
       ACCOUNT_ATTRIBUTES = %w(

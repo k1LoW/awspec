@@ -41,9 +41,10 @@ require 'awspec/helper/finder/apigateway'
 require 'awspec/helper/finder/kinesis'
 require 'awspec/helper/finder/batch'
 require 'awspec/helper/finder/eks'
+require 'awspec/helper/finder/sns_topic'
 require 'awspec/helper/finder/account_attributes'
 require 'awspec/helper/client_wrap'
-require 'awspec/helper/finder/sns'
+
 
 module Awspec::Helper
   module Finder

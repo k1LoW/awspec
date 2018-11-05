@@ -15,7 +15,7 @@ module Awspec::Generator
       end
 
       def generate_log_stream_spec(log_group)
-        log_stream = find_cloudwatch_logs_stream_by_log_group_name(log_group)
+        log_stream = last_cloudwatch_logs_stream_by_log_group_name(log_group)
         "it { should have_log_stream('#{log_stream.log_stream_name}') }" unless log_stream.nil?
       end
 

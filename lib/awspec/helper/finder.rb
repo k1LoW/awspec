@@ -90,7 +90,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Kinesis
     include Awspec::Helper::Finder::Batch
     include Awspec::Helper::Finder::Eks
-    include Awspec::Helper::Finder::SNS
+    include Awspec::Helper::Finder::SNSTopic
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,

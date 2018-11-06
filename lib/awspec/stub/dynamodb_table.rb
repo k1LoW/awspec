@@ -10,11 +10,11 @@ Aws.config[:dynamodb] = {
         },
         attribute_definitions: [
           {
-            attribute_name: 'my-dynamodb-table-attaribute1',
+            attribute_name: 'my-dynamodb-table-attribute1',
             attribute_type: 'S'
           },
           {
-            attribute_name: 'my-dynamodb-table-attaribute2',
+            attribute_name: 'my-dynamodb-table-attribute2',
             attribute_type: 'N'
           }
         ],

@@ -1,6 +1,5 @@
 module Awspec::Type
   class SnsTopic < ResourceBase
-
     def initialize(name)
       super
       @topic_name = name

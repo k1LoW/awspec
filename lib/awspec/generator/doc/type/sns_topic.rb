@@ -1,11 +1,11 @@
 module Awspec::Generator
   module Doc
     module Type
-      class Sns < Base
+      class SnsTopic < Base
         def initialize
           super
-          @type_name = 'Sns'
-          @type = Awspec::Type::Sns.new('my-sns')
+          @type_name = 'SnsTopic'
+          @type = Awspec::Type::SnsTopic.new('my-sns')
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []

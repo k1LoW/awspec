@@ -89,20 +89,20 @@ module Awspec::Helper
       end
 
       def select_all_iam_users
-        iam_client.list_users.map do |responce|
-          responce.users
+        iam_client.list_users.map do |response|
+          response.users
         end.flatten
       end
 
       def select_all_iam_groups
-        iam_client.list_groups.map do |responce|
-          responce.groups
+        iam_client.list_groups.map do |response|
+          response.groups
         end.flatten
       end
 
       def select_all_iam_roles
-        iam_client.list_roles.map do |responce|
-          responce.roles
+        iam_client.list_roles.map do |response|
+          response.roles
         end.flatten
       end
     end

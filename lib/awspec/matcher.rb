@@ -70,3 +70,6 @@ require 'awspec/matcher/belong_to_nlb'
 # VPC
 require 'awspec/matcher/be_connected_to_vpc'
 require 'awspec/matcher/have_vpc_peering_connection'
+
+# SNSTopic
+require 'awspec/matcher/include_subscribed'

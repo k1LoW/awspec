@@ -28,9 +28,18 @@ module Awspec::Helper
         end
       end
 
-      def find_sns_topic(topic_name)
-        response = sns_client.get_topic_attributes({ topic_arn: topic_name })
+      def find_sns_topic(topic_arn)
+        response = sns_client.get_topic_attributes({ topic_arn: topic_arn })
         SnsTopic.new(response.attributes)
+      end
+
+      def find_sns_topic_subs(topic_arn)
+        response = sns_client.list_subscriptions_by_topic({ topic_arn: topic_arn })
+        subscriptions = {}
+        response.subscriptions.each do |subscribed|
+          subscriptions[subscribed['subscription_arn'].to_sym] = subscribed
+        end
+        subscriptions
       end
     end
   end

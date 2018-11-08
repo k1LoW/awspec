@@ -15,20 +15,19 @@ module Awspec::Type
       @id ||= resource_via_client.topic_arn if resource_via_client
     end
 
-    def list_subscriptions()
-      if @subscriptions.nil?
-        @subscriptions = find_sns_topic_subs(@topic_arn)
-      end
+    def list_subscriptions
+      @subscriptions = find_sns_topic_subs(@topic_arn) if @subscriptions.nil?
       @subscriptions
     end
 
     def subscribed(subscribed_arn)
       subs_key = subscribed_arn.to_sym
-      if @subscriptions.has_key?(subs_key)
-        return @subscriptions[subs_key]
-      else
+
+      unless @subscriptions.key?(subs_key)
         raise "'#{subscribed_arn}' is not a valid subscription ARN"
       end
+
+      @subscriptions[subs_key]
     end
 
     def method_missing(method_name)

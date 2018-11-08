@@ -16,10 +16,11 @@ describe sns_topic(topic_arn) do
   let(:sub) { subject.subscribed(subscribed) }
 
   describe "#subscribed #{subscribed}" do
-    #it { expect(sub.protocol).to eq 'lambda' }
-    it { expect(sub).to have_attributes(:protocol => 'lambda',
-                                        :owner => '123456789',
-                                        :endpoint => 'arn:aws:lambda:us-east-1:123456789:function:foobar',
-                                        :topic_arn => 'arn:aws:sns:us-east-1:123456789:foobar') }
+    it do
+      expect(sub).to have_attributes({  protocol: 'lambda',
+                                        owner: '123456789',
+                                        endpoint: 'arn:aws:lambda:us-east-1:123456789:function:foobar',
+                                        topic_arn: 'arn:aws:sns:us-east-1:123456789:foobar' })
+    end
   end
 end

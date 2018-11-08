@@ -5,7 +5,7 @@ module Awspec::Helper
         # to make testing results easier to the eyes instead of using Rspec
         # include matcher for hashes
         attr_reader :policy, :owner, :pending_subscriptions, :topic_arn, :effective_delivery_policy,
-                    :display_name, :confirmed_subscriptions, :deleted_subscriptions
+                    :display_name, :confirmed_subscriptions, :deleted_subscriptions, :name
 
         def initialize(attribs)
           @policy = attribs['Policy']
@@ -16,10 +16,11 @@ module Awspec::Helper
           @display_name = attribs['DisplayName']
           @confirmed_subscriptions = attribs['SubscriptionsConfirmed'].to_i
           @deleted_subscriptions = attribs['SubscriptionsDeleted'].to_i
+          @name = attribs['TopicArn'].split(':')[-1]
         end
 
         def to_s
-          output = ['SnsTopic:']
+          output = ["SnsTopic: #{self.name}"]
           self.instance_variables.each do |attrib|
             tmp = attrib.to_s.sub('@', '')
             output << "  #{tmp} = #{self.send(tmp)}"

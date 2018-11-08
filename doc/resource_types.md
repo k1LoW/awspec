@@ -2730,6 +2730,15 @@ SnsTopic resource type.
 
 ### exist
 
+```ruby
+describe sns_topic(topic_arn) do
+  it { should exist }
+end
+```
+
+
+### have_subscription
+
 
 ## <a name="sqs">sqs</a>
 

@@ -1,5 +1,5 @@
-RSpec::Matchers.define :include_subscribed do |subscriber_arn|
+RSpec::Matchers.define :include_subscribed do |subscribed_arn|
   match do |sns_topic|
-    sns_topic.list_subscriptions.key?(subscriber_arn.to_sym)
+    sns_topic.has_subscription?(subscribed_arn)
   end
 end

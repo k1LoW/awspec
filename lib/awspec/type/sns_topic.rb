@@ -3,7 +3,12 @@ module Awspec::Type
     def initialize(topic_arn)
       super
       @topic_arn = topic_arn
+      # lazy instantiation
       @subscriptions = nil
+    end
+
+    def subscriptions
+      @subscriptions.keys
     end
 
     def resource_via_client
@@ -15,24 +20,28 @@ module Awspec::Type
       @id ||= resource_via_client.topic_arn if resource_via_client
     end
 
-    def list_subscriptions
-      @subscriptions = find_sns_topic_subs(@topic_arn) if @subscriptions.nil?
-      @subscriptions
+    def has_subscription?(subscribed_arn)
+      fetch_subscriptions
+      @subscriptions.key?(subscribed_arn.to_sym)
     end
 
     def subscribed(subscribed_arn)
       subs_key = subscribed_arn.to_sym
-
-      unless @subscriptions.key?(subs_key)
-        raise "'#{subscribed_arn}' is not a valid subscription ARN"
-      end
-
+      fetch_subscriptions
+      raise "'#{subscribed_arn}' is not a valid subscription ARN" unless @subscriptions.key?(subs_key)
       @subscriptions[subs_key]
     end
 
     def method_missing(method_name)
       # delegates the method invocation to Awspec::Helper::Finder::SnsTopic::SnsTopic class
       @resource_via_client.send method_name
+    end
+
+    private
+
+    def fetch_subscriptions
+      @subscriptions = find_sns_topic_subs(@topic_arn) if @subscriptions.nil?
+      @subscriptions
     end
   end
 end

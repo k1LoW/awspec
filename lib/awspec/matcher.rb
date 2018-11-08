@@ -73,3 +73,4 @@ require 'awspec/matcher/have_vpc_peering_connection'
 
 # SNSTopic
 require 'awspec/matcher/include_subscribed'
+require 'awspec/matcher/have_subscription_attributes'

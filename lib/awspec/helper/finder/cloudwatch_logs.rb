@@ -9,6 +9,10 @@ module Awspec::Helper
         end
       end
 
+      def last_cloudwatch_logs_stream_by_log_group_name(id)
+        cloudwatch_logs_client.describe_log_streams({ log_group_name: id }).log_streams.last
+      end
+
       def find_cloudwatch_logs_stream_by_log_group_name(id, stream_name)
         req = {
           log_group_name: id,

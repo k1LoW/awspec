@@ -37,6 +37,7 @@ describe 'single security group' do
     end
     it { should have_tag('Name').value('my-ec2') }
     it { should have_iam_instance_profile('Ec2IamProfileName') }
+    it { should have_credit_specification('unlimited') }
   end
 
   describe ec2('my-ec2') do

@@ -222,6 +222,14 @@ Aws.config[:ec2] = {
           interface_type: nil
         }
       ]
+    },
+    describe_instance_credit_specifications: {
+      instance_credit_specifications: [
+        {
+          instance_id: 'i-ec12345a',
+          cpu_credits: 'unlimited'
+        }
+      ]
     }
   }
 }

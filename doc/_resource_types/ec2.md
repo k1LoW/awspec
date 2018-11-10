@@ -39,6 +39,16 @@ describe ec2('my-ec2-classic') do
 end
 ```
 
+### have_credit_specification
+
+The credit option for CPU usage of T2 or T3 instance.
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_credit_specification('unlimited') }
+end
+```
+
 ### have_ebs
 
 ```ruby

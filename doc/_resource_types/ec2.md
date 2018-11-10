@@ -134,7 +134,7 @@ describe ec2('my-ec2') do
 end
 ```
 
-### Advanced
+### advanced
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
 

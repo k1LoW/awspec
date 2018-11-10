@@ -993,6 +993,64 @@ end
 
 
 ### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification)
+### :unlock: Advanced use
+
+`ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
+
+```ruby
+describe ec2('my-ec2') do
+  its('vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+or
+
+```ruby
+describe ec2('my-ec2') do
+  its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+#### Awspec::DuplicatedResourceTypeError exception
+
+EC2 resources might have the same tag value and if you try to search for a
+specific instance using that tag/tag value you might found multiples results
+and receive a `Awspec::DuplicatedResourceTypeError` exception as result.
+
+To avoid such situations, you will want to use EC2 instances ID's and then use
+those ID's to test whatever you need.
+
+There are several different ways to provide such ID's, like using [Terraform output](https://www.terraform.io/docs/configuration/outputs.html) or even the
+AWS SDK directly:
+
+```ruby
+require 'awspec'
+require 'aws-sdk-ec2'
+
+tag_name = 'tag:Name'
+tag_value = 'foobar'
+servers = {}
+ec2 = Aws::EC2::Resource.new
+ec2.instances({filters: [{name: "#{tag_name}",
+                          values: ["#{tag_value}"]}]}).each do |i|
+  servers.store(i.id, i.subnet_id)
+end
+
+if servers.size == 0
+  raise "Could not find any EC2 instance with #{tag_name} = #{tag_value}!"
+end
+
+servers.each_pair do |instance_id, subnet_id|
+  describe ec2(instance_id) do
+    it { should exist }
+    it { should be_running }
+    its(:image_id) { should eq 'ami-12345foobar' }
+    its(:instance_type) { should eq 't2.micro' }
+    it { should belong_to_subnet(subnet_id) }
+  end
+end
+```
+
 ## <a name="ecr_repository">ecr_repository</a>
 
 EcrRepository resource type.
@@ -2354,7 +2412,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:listener_endpoint)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).

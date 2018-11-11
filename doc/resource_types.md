@@ -35,6 +35,7 @@
 | [elasticsearch](#elasticsearch)
 | [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 | [elb](#elb)
+| [emr](#emr)
 | [firehose](#firehose)
 | [iam_group](#iam_group)
 | [iam_policy](#iam_policy)
@@ -1423,6 +1424,39 @@ end
 
 
 ### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:backend_server_descriptions), its(:availability_zones), its(:subnets), its(:vpc_id), its(:security_groups), its(:created_time), its(:scheme)
+## <a name="emr">emr</a>
+
+Emr resource type.
+
+### exist
+
+```ruby
+describe emr('my-emr') do
+  it { should exist }
+end
+```
+
+### be_healthy
+
+```ruby
+describe emr('my-emr') do
+  it { should be_healthy }
+end
+```
+
+### be_ok
+
+### be_ready
+
+### be_running, be_waiting, be_starting, be_bootstrapping
+
+```ruby
+describe emr('my-emr') do
+  it { should be_running }
+end
+```
+
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.

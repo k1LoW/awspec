@@ -3,6 +3,10 @@ Awspec::Stub.load 'account'
 
 describe 'Use `account` type' do
   describe account do
+    its(:id) { should eq '123456789012' }
+    its(:account) { should eq '123456789012' }
+    its(:arn) { should eq 'arn:aws:iam::123456789012:user/Alice' }
+    its(:user_id) { should eq 'AKIAI44QH8DHBEXAMPLE' }
     its('ec2.supported_platforms') { should include 'VPC' }
     its('ec2.max_instances') { should eq 20 }
     its('rds.DBInstances.used') { should eq 0 }

@@ -132,6 +132,11 @@ module Awspec::Type
       return true if ret
     end
 
+    def has_credit_specification?(cpu_credits)
+      ret = find_ec2_credit_specifications(id)
+      ret.cpu_credits == cpu_credits
+    end
+
     private
 
     def match_group_ids?(sg_ids)

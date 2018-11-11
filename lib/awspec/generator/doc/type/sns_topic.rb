@@ -12,7 +12,7 @@ module Awspec::Generator
             'have_subscription_attributes'
           ]
           @ignore_matchers = []
-          @describes = []
+          @describes = %w(policy owner pending_subscriptions topic_arn effective_delivery_policy display_name confirmed_subscriptions deleted_subscriptions name)
         end
       end
     end

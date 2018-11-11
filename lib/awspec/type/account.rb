@@ -21,6 +21,10 @@ module Awspec::Type
       @id ||= sts_client.get_caller_identity.account
     end
 
+    def account
+      id
+    end
+
     def lambda
       resource_via_client[:lambda]
     end

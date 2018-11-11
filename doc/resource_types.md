@@ -35,6 +35,7 @@
 | [elasticsearch](#elasticsearch)
 | [elastictranscoder_pipeline](#elastictranscoder_pipeline)
 | [elb](#elb)
+| [emr](#emr)
 | [firehose](#firehose)
 | [iam_group](#iam_group)
 | [iam_policy](#iam_policy)
@@ -885,6 +886,17 @@ end
 ```
 
 
+### have_credit_specification
+
+The credit option for CPU usage of T2 or T3 instance.
+
+```ruby
+describe ec2('my-ec2') do
+  it { should have_credit_specification('unlimited') }
+end
+```
+
+
 ### have_ebs
 
 ```ruby
@@ -1007,6 +1019,46 @@ or
 ```ruby
 describe ec2('my-ec2') do
   its('resource.vpc.id') { should eq 'vpc-ab123cde' }
+end
+```
+
+#### Awspec::DuplicatedResourceTypeError exception
+
+EC2 resources might have the same tag value and if you try to search for a
+specific instance using that tag/tag value you might found multiples results
+and receive a `Awspec::DuplicatedResourceTypeError` exception as result.
+
+To avoid such situations, you will want to use EC2 instances ID's and then use
+those ID's to test whatever you need.
+
+There are several different ways to provide such ID's, like using [Terraform output](https://www.terraform.io/docs/configuration/outputs.html) or even the
+AWS SDK directly:
+
+```ruby
+require 'awspec'
+require 'aws-sdk-ec2'
+
+tag_name = 'tag:Name'
+tag_value = 'foobar'
+servers = {}
+ec2 = Aws::EC2::Resource.new
+ec2.instances({filters: [{name: "#{tag_name}",
+                          values: ["#{tag_value}"]}]}).each do |i|
+  servers.store(i.id, i.subnet_id)
+end
+
+if servers.size == 0
+  raise "Could not find any EC2 instance with #{tag_name} = #{tag_value}!"
+end
+
+servers.each_pair do |instance_id, subnet_id|
+  describe ec2(instance_id) do
+    it { should exist }
+    it { should be_running }
+    its(:image_id) { should eq 'ami-12345foobar' }
+    its(:instance_type) { should eq 't2.micro' }
+    it { should belong_to_subnet(subnet_id) }
+  end
 end
 ```
 
@@ -1424,6 +1476,39 @@ end
 
 
 ### its(:health_check_target), its(:health_check_interval), its(:health_check_timeout), its(:health_check_unhealthy_threshold), its(:health_check_healthy_threshold), its(:load_balancer_name), its(:dns_name), its(:canonical_hosted_zone_name), its(:canonical_hosted_zone_name_id), its(:backend_server_descriptions), its(:availability_zones), its(:subnets), its(:vpc_id), its(:security_groups), its(:created_time), its(:scheme)
+## <a name="emr">emr</a>
+
+Emr resource type.
+
+### exist
+
+```ruby
+describe emr('my-emr') do
+  it { should exist }
+end
+```
+
+### be_healthy
+
+```ruby
+describe emr('my-emr') do
+  it { should be_healthy }
+end
+```
+
+### be_ok
+
+### be_ready
+
+### be_running, be_waiting, be_starting, be_bootstrapping
+
+```ruby
+describe emr('my-emr') do
+  it { should be_running }
+end
+```
+
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.

@@ -28,6 +28,13 @@ module Awspec::Helper
                                                      })
       end
 
+      def find_ec2_credit_specifications(id)
+        res = ec2_client.describe_instance_credit_specifications({
+                                                                   instance_ids: [id]
+                                                                 })
+        res.instance_credit_specifications.first if res.instance_credit_specifications.count == 1
+      end
+
       def find_ec2_status(id)
         res = ec2_client.describe_instance_status({
                                                     instance_ids: [id]

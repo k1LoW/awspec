@@ -19,6 +19,7 @@ module Awspec::Generator
           eips = select_eip_by_instance_id(instance_id)
           volumes = select_ebs_by_instance_id(instance_id)
           network_interfaces = select_network_interface_by_instance_id(instance_id)
+          credit_specification = find_ec2_credit_specifications(instance_id)
           content = ERB.new(ec2_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
@@ -69,6 +70,9 @@ describe ec2('<%= instance_id %>') do
 <% network_interfaces.each do |interface| %>
   it { should have_network_interface('<%= interface.network_interface_id %>') }
 <% end %>
+<%- if credit_specification.cpu_credits -%>
+  it { should have_credit_specification('<%= credit_specification.cpu_credits %>') }
+<%- end -%>
 end
 EOF
         template

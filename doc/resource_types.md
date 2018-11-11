@@ -60,6 +60,7 @@
 | [s3_bucket](#s3_bucket)
 | [security_group](#security_group)
 | [ses_identity](#ses_identity)
+| [sns_topic](#sns_topic)
 | [sqs](#sqs)
 | [ssm_parameter](#ssm_parameter)
 | [subnet](#subnet)
@@ -2826,6 +2827,22 @@ end
 ```
 
 ### its(:dkim_enabled), its(:dkim_verification_status), its(:bounce_topic), its(:complaint_topic), its(:delivery_topic), its(:forwarding_enabled), its(:verification_status), its(:verification_token)
+## <a name="sns_topic">sns_topic</a>
+
+SnsTopic resource type.
+
+### exist
+
+```ruby
+describe sns_topic(topic_arn) do
+  it { should exist }
+end
+```
+
+
+### have_subscription
+
+
 ## <a name="sqs">sqs</a>
 
 SQS resource type.

@@ -40,6 +40,7 @@ require 'awspec/helper/finder/apigateway'
 require 'awspec/helper/finder/kinesis'
 require 'awspec/helper/finder/batch'
 require 'awspec/helper/finder/eks'
+require 'awspec/helper/finder/sns_topic'
 require 'awspec/helper/finder/emr'
 
 require 'awspec/helper/finder/account_attributes'
@@ -90,6 +91,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Kinesis
     include Awspec::Helper::Finder::Batch
     include Awspec::Helper::Finder::Eks
+    include Awspec::Helper::Finder::SNSTopic
     include Awspec::Helper::Finder::Emr
 
     CLIENTS = {
@@ -129,6 +131,7 @@ module Awspec::Helper
       kinesis_client: Aws::Kinesis::Client,
       batch_client: Aws::Batch::Client,
       eks_client: Aws::EKS::Client,
+      sns_client: Aws::SNS::Client
       emr_client: Aws::EMR::Client
     }
 

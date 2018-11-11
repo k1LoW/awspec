@@ -131,7 +131,7 @@ module Awspec::Helper
       kinesis_client: Aws::Kinesis::Client,
       batch_client: Aws::Batch::Client,
       eks_client: Aws::EKS::Client,
-      sns_client: Aws::SNS::Client
+      sns_client: Aws::SNS::Client,
       emr_client: Aws::EMR::Client
     }
 

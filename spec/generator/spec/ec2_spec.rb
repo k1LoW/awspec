@@ -21,6 +21,7 @@ describe ec2('my-ec2') do
   it { should have_eip('123.0.456.789') }
   it { should have_ebs('my-volume') }
   it { should have_network_interface('eni-12ab3cde') }
+  it { should have_credit_specification('unlimited') }
 end
 EOF
     expect(ec2.generate_by_vpc_id('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec

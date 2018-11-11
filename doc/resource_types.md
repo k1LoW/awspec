@@ -2881,7 +2881,7 @@ end
 ```
 
 
-
+### its(:policy), its(:owner), its(:pending_subscriptions), its(:topic_arn), its(:effective_delivery_policy), its(:display_name), its(:confirmed_subscriptions), its(:deleted_subscriptions), its(:name)
 ### :unlock: Advanced use
 
 You may want to validate the subscriptions too. For that, you probably will want to  use the methods `subscriptions` (that will return a list of the subscriptions ARN as symbols) and `has_subscription?` (that expects a SNS Topic subscription as parameter and will return `true` of `false` if it exists as a subscription) of the class `Awspec::Type::SnsTopic` to build the fixture in order to use the matcher `have_subscription_attributes`.

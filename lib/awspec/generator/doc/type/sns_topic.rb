@@ -7,7 +7,10 @@ module Awspec::Generator
           @type_name = 'SnsTopic'
           @type = Awspec::Type::SnsTopic.new('my-sns')
           @ret = @type.resource_via_client
-          @matchers = []
+          @matchers = [
+            'include_subscribed',
+            'have_subscription_attributes'
+          ]
           @ignore_matchers = []
           @describes = []
         end

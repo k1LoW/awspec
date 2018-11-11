@@ -151,3 +151,43 @@ describe ec2('my-ec2') do
   its('resource.vpc.id') { should eq 'vpc-ab123cde' }
 end
 ```
+
+#### Awspec::DuplicatedResourceTypeError exception
+
+EC2 resources might have the same tag value and if you try to search for a
+specific instance using that tag/tag value you might found multiples results
+and receive a `Awspec::DuplicatedResourceTypeError` exception as result.
+
+To avoid such situations, you will want to use EC2 instances ID's and then use
+those ID's to test whatever you need.
+
+There are several different ways to provide such ID's, like using [Terraform output](https://www.terraform.io/docs/configuration/outputs.html) or even the
+AWS SDK directly:
+
+```ruby
+require 'awspec'
+require 'aws-sdk-ec2'
+
+tag_name = 'tag:Name'
+tag_value = 'foobar'
+servers = {}
+ec2 = Aws::EC2::Resource.new
+ec2.instances({filters: [{name: "#{tag_name}",
+                          values: ["#{tag_value}"]}]}).each do |i|
+  servers.store(i.id, i.subnet_id)
+end
+
+if servers.size == 0
+  raise "Could not find any EC2 instance with #{tag_name} = #{tag_value}!"
+end
+
+servers.each_pair do |instance_id, subnet_id|
+  describe ec2(instance_id) do
+    it { should exist }
+    it { should be_running }
+    its(:image_id) { should eq 'ami-12345foobar' }
+    its(:instance_type) { should eq 't2.micro' }
+    it { should belong_to_subnet(subnet_id) }
+  end
+end
+```

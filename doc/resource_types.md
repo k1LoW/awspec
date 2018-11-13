@@ -410,7 +410,7 @@ describe cloudformation_stack('my-cloudformation-stack') do
 end
 ```
 
-### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information)
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.
@@ -1544,7 +1544,7 @@ end
 ```
 
 
-### its(:delivery_stream_name), its(:delivery_stream_arn), its(:delivery_stream_status), its(:delivery_stream_encryption_configuration), its(:delivery_stream_type), its(:version_id), its(:create_timestamp), its(:last_update_timestamp), its(:source), its(:has_more_destinations)
+### its(:delivery_stream_name), its(:delivery_stream_arn), its(:delivery_stream_status), its(:delivery_stream_type), its(:version_id), its(:create_timestamp), its(:last_update_timestamp), its(:source), its(:has_more_destinations)
 ### :unlock: Advanced use
 
 ```ruby
@@ -2839,6 +2839,9 @@ describe sns_topic(topic_arn) do
 end
 ```
 
+
+### have_subscription
+
 ### have_subscription_attributes
 
 ```ruby
@@ -3249,7 +3252,7 @@ describe account_attribute('ec2') do
   its('vpc_max_elastic_ips') { should eq 5 }
   its('default_vpc') { should eq 'none' }
 end
-
+ 
 describe account_attribute('rds') do
   its('DBInstances.used') { should eq 0 }
   its('DBInstances.max') { should eq 40 }
@@ -3282,7 +3285,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.used') { should eq 0 }
   its('DBClusterRoles.max') { should eq 5 }
 end
-
+ 
 describe account_attribute('lambda') do
   its('total_code_size.limit') { should eq 80530636800 }
   its('total_code_size.usage') { should eq 2034651562 }
@@ -3292,13 +3295,13 @@ describe account_attribute('lambda') do
   its('unreserved_concurrent_executions.limit') { should eq 50 }
   its('function_count.usage') { should eq 8 }
 end
-
+ 
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }
 end
-
+ 
 ```
 
 

@@ -60,6 +60,18 @@ describe sns_topic(topic_arn) do
 end
 ```
 
+### subscriptions
+
+More like a helper method for fixtures. You could add any logic required to
+identify a specific method.
+
+```ruby
+let (:subscriber) do
+  all = subject.subscriptions
+  return all[0].to_s # keys are stored as symbols
+end
+```
+
 ### include_subscribed
 
 ```ruby

@@ -10,6 +10,15 @@ module Awspec::Helper
         return nil
       end
 
+      def find_elb_attribute(id)
+        res = elb_client.describe_load_balancer_attributes({
+                                                             load_balancer_name: id
+                                                           })
+        res.load_balancer_attributes
+      rescue
+        return nil
+      end
+
       def select_elb_by_vpc_id(vpc_id)
         res = elb_client.describe_load_balancers
         res.load_balancer_descriptions.select do |lb|

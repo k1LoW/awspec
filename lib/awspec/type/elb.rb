@@ -64,5 +64,31 @@ module Awspec::Type
         tag.key == tag_key && tag.value == tag_value
       end
     end
+
+    # load_balancer_attributes
+    def load_balancer_attributes
+      @load_balancer_attributes ||= find_elb_attribute(@id)
+    end
+
+    def cross_zone_load_balancing_enabled?
+      load_balancer_attributes.cross_zone_load_balancing.enabled
+    end
+
+    def has_access_log?(s3_bucket_name:, s3_bucket_prefix:, emit_interval:)
+      return false unless load_balancer_attributes.access_log.enabled
+      access_log = load_balancer_attributes.access_log
+      access_log.emit_interval == emit_interval && \
+        access_log.s3_bucket_name == s3_bucket_name && access_log.s3_bucket_prefix == s3_bucket_prefix
+    end
+
+    def has_connection_draining?(timeout:)
+      return false unless load_balancer_attributes.connection_draining.enabled
+      connection_draining = load_balancer_attributes.connection_draining
+      connection_draining.timeout == timeout
+    end
+
+    def idle_timeout
+      load_balancer_attributes.connection_settings.idle_timeout
+    end
   end
 end

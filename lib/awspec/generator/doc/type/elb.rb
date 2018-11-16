@@ -12,6 +12,7 @@ module Awspec::Generator
           @describes = %w(
             health_check_target health_check_interval health_check_timeout
             health_check_unhealthy_threshold health_check_healthy_threshold
+            idle_timeout
           )
         end
       end

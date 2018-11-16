@@ -54,6 +54,26 @@ Aws.config[:elasticloadbalancing] = {
           ]
         }
       ]
+    },
+    describe_load_balancer_attributes: {
+      load_balancer_attributes: {
+        access_log: {
+          enabled: true,
+          s3_bucket_name: 'my-loadbalancer-logs',
+          s3_bucket_prefix: 'my-app',
+          emit_interval: 5
+        },
+        connection_draining: {
+          enabled: false,
+          timeout: 300
+        },
+        connection_settings: {
+          idle_timeout: 60
+        },
+        cross_zone_load_balancing: {
+          enabled: false
+        }
+      }
     }
   }
 }

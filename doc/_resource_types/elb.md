@@ -56,3 +56,27 @@ describe elb('my-elb') do
   it { should have_tag('my-tag-key').value('my-tag-value') }
 end
 ```
+
+### be_cross_zone_load_balancing_enabled
+
+```ruby
+describe elb('my-elb') do
+  it { should be_cross_zone_load_balancing_enabled }
+end
+```
+
+### have_access_log
+
+```ruby
+describe elb('my-elb') do
+  it { should have_access_log(s3_bucket_name: 'my-loadbalancer-logs', s3_bucket_prefix: 'my-app', emit_interval: 5) }
+end
+```
+
+### have_connection_draining
+
+```ruby
+describe elb('my-elb') do
+  it { should have_connection_draining(timeout: 300) }
+end
+```

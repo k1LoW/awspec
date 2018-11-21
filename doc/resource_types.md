@@ -379,7 +379,7 @@ describe batch_job_definition('my-batch-job-definition') do
 end
 ```
 
-### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:parameters), its(:retry_strategy), its(:timeout)
+### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties)
 ## <a name="batch_job_queue">batch_job_queue</a>
 
 BatchJobQueue resource type.
@@ -497,7 +497,7 @@ describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
 end
 ```
 
-### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled)
+### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:origin_groups), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled)
 ## <a name="cloudtrail">cloudtrail</a>
 
 Cloudtrail resource type.
@@ -546,7 +546,7 @@ end
 ```
 
 
-### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id), its(:has_custom_event_selectors)
+### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id), its(:has_custom_event_selectors), its(:is_organization_trail)
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
 
 CloudwatchAlarm resource type.
@@ -595,7 +595,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
 end
 ```
 
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile)
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile), its(:metrics)
 ## <a name="cloudwatch_event">cloudwatch_event</a>
 
 CloudwatchEvent resource type.

@@ -24,6 +24,11 @@ module Awspec::Type
       end
     end
 
+    def has_domain_name?(domain)
+      resource_via_client.domain_name == domain && \
+      resource_via_client.certificate_arn == id
+    end
+
     def has_domain_validation_option?(domain_name:, validation_method:, validation_status: nil)
       resource_via_client.domain_validation_options.find do |domain_validation_option|
         validation_status ||= domain_validation_option.validation_status

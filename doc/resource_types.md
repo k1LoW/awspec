@@ -85,6 +85,8 @@ end
 
 ### be_pending_validation, be_issued, be_inactive, be_expired, be_validation_timed_out, be_revoked, be_failed
 
+### have_domain_name
+
 ### have_domain_validation_option
 
 ```ruby

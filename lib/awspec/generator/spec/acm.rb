@@ -16,12 +16,21 @@ describe acm('<%= certificate.domain_name %>') do
 <%- if certificate.status == 'ISSUED' -%>
   it { should be_issued }
 <% end -%>
+  it { should have_domain_name('<%= certificate.domain_name %>') }
+  its(:certificate_arn) { should eq '<%= certificate.certificate_arn %>' }
   its(:type) { should eq '<%= certificate.type %>' }
 <%- certificate.domain_validation_options.each do |domain_validation_option| -%>
 <%- unless domain_validation_option.validation_status.nil? -%>
-  it { should have_domain_validation_option(domain_name: '<%= domain_validation_option.domain_name %>', validation_method: '<%= domain_validation_option.validation_method%>', validation_status: '<%= domain_validation_option.validation_status %>') }
+  it do
+    should have_domain_validation_option(domain_name: '<%= domain_validation_option.domain_name %>',
+                                         validation_method: '<%= domain_validation_option.validation_method%>',
+                                         validation_status: '<%= domain_validation_option.validation_status %>')
+  end
 <%- else -%>
-  it { should have_domain_validation_option(domain_name: '<%= domain_validation_option.domain_name %>', validation_method: '<%= domain_validation_option.validation_method%>') }
+  it do
+    should have_domain_validation_option(domain_name: '<%= domain_validation_option.domain_name %>',
+                                         validation_method: '<%= domain_validation_option.validation_method%>')
+  end
 <%- end -%>
 <%- end -%>
 end

@@ -7,6 +7,11 @@ module Awspec::Helper
         end
         res.single_resource(queue_name)
       end
+
+      def find_tags_for_queue(queue_url)
+        res = sqs_client.list_queue_tags({ queue_url: queue_url })
+        res.tags
+      end
     end
   end
 end

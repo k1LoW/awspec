@@ -2955,6 +2955,8 @@ describe sqs('my-queue') do
 end
 ```
 
+### have_tag
+
 ### its(:queue_arn), its(:approximate_number_of_messages), its(:approximate_number_of_messages_not_visible), its(:approximate_number_of_messages_delayed), its(:created_timestamp), its(:last_modified_timestamp), its(:visibility_timeout), its(:maximum_message_size), its(:message_retention_period), its(:delay_seconds), its(:receive_message_wait_time_seconds), its(:queue_url)
 ## <a name="ssm_parameter">ssm_parameter</a>
 

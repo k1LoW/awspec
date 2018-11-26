@@ -20,6 +20,11 @@ Aws.config[:sqs] = {
         'DelaySeconds' => '0',
         'ReceiveMessageWaitTimeSeconds' => '0'
       }
+    },
+    list_queue_tags: {
+      tags: {
+        'Name' => 'my-queue'
+      }
     }
   }
 }

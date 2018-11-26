@@ -27,5 +27,11 @@ module Awspec::Type
         super
       end
     end
+
+    def has_tag?(tag_key, tag_value)
+      @tag_set ||= find_tags_for_queue(@id)
+      return nil if @tag_set[tag_key] != tag_value
+      true
+    end
   end
 end

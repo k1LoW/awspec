@@ -8,6 +8,7 @@ module Awspec::Type
     end
 
     def subscriptions
+      fetch_subscriptions
       @subscriptions.keys
     end
 

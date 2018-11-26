@@ -60,6 +60,18 @@ describe sns_topic(topic_arn) do
 end
 ```
 
+### subscriptions
+
+More like a helper method for fixtures. You could add any logic required to
+identify a specific method.
+
+```ruby
+let (:subscriber) do
+  all = subject.subscriptions
+  return all[0].to_s # keys are stored as symbols
+end
+```
+
 ### include_subscribed
 
 ```ruby
@@ -67,6 +79,26 @@ describe sns_topic(topic_arn) do
   it { should include_subscribed(subscribed) }
 end
 ```
+
+### have_subscription
+
+```ruby
+describe sns_topic(topic_arn) do
+  let(:subscription_arn) do
+      subscription_arn: subscribed, # this is required
+  end
+
+  describe '#subscribed' do
+    it do
+      should have_subscription(subscribed)
+    end
+  end
+end
+```
+
+An [automatic matcher](https://www.rubydoc.info/github/rspec/rspec-expectations/RSpec/Matchers) created due the predicate `has_subscription?` existing method of `Awspec::Type::SnsTopic` class.
+
+It validates if a given AWS SNS ARN subscription exists in the SNS Topic.
 
 ### have_subscription_attributes
 

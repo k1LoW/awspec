@@ -13,13 +13,18 @@ describe sns_topic(topic_arn) do
   its(:topic_arn) { should eq topic_arn }
   its(:display_name) { should eq 'Useless' }
   its(:deleted_subscriptions) { should eq 0 }
-  it { should include_subscribed(subscribed) }
+  its(:subscriptions) { should eql([:"arn:aws:sns:us-east-1:123456789:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"]) }
+  its(:id) { should eq 'arn:aws:sns:us-east-1:123456789:foobar' }
 
   let(:expected_attribs) do
     { protocol: 'lambda',
       owner: '123456789',
       subscription_arn: subscribed, # this is required
       endpoint: 'arn:aws:lambda:us-east-1:123456789:function:foobar' }
+  end
+
+  describe '#include_subscribed' do
+    it { should include_subscribed(subscribed) }
   end
 
   describe '#subscribed' do

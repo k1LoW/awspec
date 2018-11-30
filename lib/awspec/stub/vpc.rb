@@ -100,6 +100,15 @@ Aws.config[:ec2] = {
           ]
         }
       ]
+    },
+    describe_vpc_attribute: {
+      vpc_id: 'vpc-bcd1235e',
+      enable_dns_hostnames: {
+        value: true
+      },
+      enable_dns_support: {
+        value: false
+      }
     }
   }
 }

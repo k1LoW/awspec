@@ -3114,6 +3114,16 @@ end
 ```
 
 
+### have_vpc_attribute
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_vpc_attribute('enableDnsHostnames') }
+  it { should_not have_vpc_attribute('enableDnsSupport') }
+end
+```
+
+
 ### have_vpc_peering_connection
 
 ```ruby

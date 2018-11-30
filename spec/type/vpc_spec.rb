@@ -14,6 +14,8 @@ describe vpc('vpc-ab123cde') do
   it { should have_vpc_peering_connection('pcx-c56789de') }
   it { should have_vpc_peering_connection('pcx-c56789de').as_accepter }
   it { should_not have_vpc_peering_connection('pcx-c56789de').as_requester }
+  it { should have_vpc_attribute('enableDnsHostnames') }
+  it { should_not have_vpc_attribute('enableDnsSupport') }
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }

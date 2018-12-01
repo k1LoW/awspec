@@ -225,7 +225,7 @@ end
 ```
 
 
-### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
+### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_enabled), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
 ## <a name="ami">ami</a>
 
 AMI resource type.
@@ -608,7 +608,7 @@ CloudwatchEvent resource type.
 
 ### be_scheduled
 
-### its(:name), its(:arn), its(:event_pattern), its(:state), its(:description), its(:schedule_expression), its(:role_arn)
+### its(:name), its(:arn), its(:event_pattern), its(:state), its(:description), its(:schedule_expression), its(:role_arn), its(:managed_by)
 ## <a name="cloudwatch_logs">cloudwatch_logs</a>
 
 CloudwatchLogs resource type.
@@ -768,7 +768,7 @@ end
 ```
 
 
-### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:table_id), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn), its(:restore_summary), its(:sse_description)
+### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:table_id), its(:billing_mode_summary), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn), its(:restore_summary), its(:sse_description)
 ### :unlock: Advanced use
 
 `dynamodb_table` can use `Aws::DynamoDB::Table` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Table.html).
@@ -1014,7 +1014,7 @@ end
 ```
 
 
-### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification)
+### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:elastic_inference_accelerator_associations), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification), its(:hibernation_options), its(:licenses)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -1157,7 +1157,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds), its(:scheduling_strategy), its(:tags), its(:created_by), its(:enable_ecs_managed_tags), its(:propagate_tags)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:platform_version), its(:task_definition), its(:task_sets), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds), its(:scheduling_strategy), its(:deployment_controller), its(:tags), its(:created_by), its(:enable_ecs_managed_tags), its(:propagate_tags)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
@@ -1909,7 +1909,7 @@ describe internet_gateway('igw-1ab2cd3e') do
 end
 ```
 
-### its(:internet_gateway_id)
+### its(:internet_gateway_id), its(:owner_id)
 ## <a name="kinesis">kinesis</a>
 
 Kinesis resource type.
@@ -2018,7 +2018,7 @@ end
 
 This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:environment), its(:kms_key_arn), its(:tracing_config), its(:master_arn), its(:revision_id)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:environment), its(:kms_key_arn), its(:tracing_config), its(:master_arn), its(:revision_id), its(:layers)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -2136,7 +2136,7 @@ end
 ```
 
 
-### its(:inbound_entries_count), its(:outbound_entries_count), its(:is_default), its(:network_acl_id), its(:vpc_id)
+### its(:inbound_entries_count), its(:outbound_entries_count), its(:is_default), its(:network_acl_id), its(:vpc_id), its(:owner_id)
 ### :unlock: Advanced use
 
 `network_acl` can use `Aws::EC2::NetworkAcl` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/NetworkAcl.html).
@@ -2364,7 +2364,7 @@ end
 ```
 
 
-### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
+### its(:target_group_arn), its(:target_group_name), its(:protocol), its(:port), its(:vpc_id), its(:health_check_protocol), its(:health_check_port), its(:health_check_enabled), its(:health_check_interval_seconds), its(:health_check_timeout_seconds), its(:healthy_threshold_count), its(:unhealthy_threshold_count), its(:health_check_path), its(:load_balancer_arns), its(:target_type)
 ## <a name="rds">rds</a>
 
 RDS resource type.
@@ -2597,7 +2597,7 @@ end
 ```
 
 
-### its(:propagating_vgws), its(:route_table_id), its(:vpc_id)
+### its(:propagating_vgws), its(:route_table_id), its(:vpc_id), its(:owner_id)
 ### :unlock: Advanced use
 
 `route_table` can use `Aws::EC2::RouteTable` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/RouteTable.html).
@@ -3033,7 +3033,7 @@ end
 ```
 
 
-### its(:availability_zone), its(:available_ip_address_count), its(:cidr_block), its(:default_for_az), its(:map_public_ip_on_launch), its(:state), its(:subnet_id), its(:vpc_id), its(:assign_ipv_6_address_on_creation), its(:ipv_6_cidr_block_association_set)
+### its(:availability_zone), its(:availability_zone_id), its(:available_ip_address_count), its(:cidr_block), its(:default_for_az), its(:map_public_ip_on_launch), its(:state), its(:subnet_id), its(:vpc_id), its(:owner_id), its(:assign_ipv_6_address_on_creation), its(:ipv_6_cidr_block_association_set), its(:subnet_arn)
 ### :unlock: Advanced use
 
 `subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).
@@ -3114,6 +3114,16 @@ end
 ```
 
 
+### have_vpc_attribute
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_vpc_attribute('enableDnsHostnames') }
+  it { should_not have_vpc_attribute('enableDnsSupport') }
+end
+```
+
+
 ### have_vpc_peering_connection
 
 ```ruby
@@ -3125,7 +3135,7 @@ end
 ```
 
 
-### its(:cidr_block), its(:dhcp_options_id), its(:state), its(:vpc_id), its(:instance_tenancy), its(:ipv_6_cidr_block_association_set), its(:cidr_block_association_set), its(:is_default)
+### its(:cidr_block), its(:dhcp_options_id), its(:state), its(:vpc_id), its(:owner_id), its(:instance_tenancy), its(:ipv_6_cidr_block_association_set), its(:cidr_block_association_set), its(:is_default)
 ### :unlock: Advanced use
 
 `vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).

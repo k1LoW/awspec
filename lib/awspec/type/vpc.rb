@@ -58,5 +58,9 @@ module Awspec::Type
               connection
             end
     end
+
+    def has_vpc_attribute?(vpc_attribute)
+      find_vpc_attribute(resource_via_client.vpc_id, vpc_attribute)
+    end
   end
 end

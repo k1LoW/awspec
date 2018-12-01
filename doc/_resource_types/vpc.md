@@ -60,6 +60,15 @@ describe vpc('vpc-ab123cde') do
 end
 ```
 
+### have_vpc_attribute
+
+```ruby
+describe vpc('vpc-ab123cde') do
+  it { should have_vpc_attribute('enableDnsHostnames') }
+  it { should_not have_vpc_attribute('enableDnsSupport') }
+end
+```
+
 ### advanced
 
 `vpc` can use `Aws::EC2::Vpc` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Vpc.html).

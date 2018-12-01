@@ -14,6 +14,8 @@ describe vpc('my-vpc') do
   its(:cidr_block) { should eq '10.0.0.0/16' }
   it { should have_route_table('my-route-table') }
   it { should have_network_acl('my-network-acl') }
+  it { should have_vpc_attribute('enableDnsHostnames') }
+  it { should_not have_vpc_attribute('enableDnsSupport') }
 end
 EOF
     expect(vpc.generate_by_vpc_id('my-vpc').to_s.gsub(/\n/, "\n")).to eq spec

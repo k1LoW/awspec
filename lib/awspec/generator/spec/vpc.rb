@@ -12,6 +12,7 @@ module Awspec::Generator
         @vpc_tag_name = vpc.tag_name
         route_tables = select_route_table_by_vpc_id(@vpc_id)
         network_acls = select_network_acl_by_vpc_id(@vpc_id)
+        vpc_attributes = select_vpc_attribute(@vpc_id)
         spec = ERB.new(vpc_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
 
@@ -46,6 +47,13 @@ describe vpc('<%= @vpc_id %>') do
   it { should have_network_acl('<%= network_acl.tag_name %>') }
 <%- else -%>
   it { should have_network_acl('<%= network_acl.network_acl_id %>') }
+<%- end -%>
+<% end %>
+<% vpc_attributes.each do |vpc_attribute| %>
+<%- if vpc_attribute[1] -%>
+  it { should have_vpc_attribute('<%= vpc_attribute[0] %>') }
+<%- else -%>
+  it { should_not have_vpc_attribute('<%= vpc_attribute[0] %>') }
 <%- end -%>
 <% end %>
 end

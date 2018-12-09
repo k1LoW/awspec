@@ -1763,7 +1763,7 @@ end
 ```
 
 
-### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:tags), its(:max_session_duration), its(:permissions_boundary)
+### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:max_session_duration), its(:permissions_boundary), its(:tags)
 ### :unlock: Advanced use
 
 `iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).
@@ -1852,7 +1852,7 @@ end
 ```
 
 
-### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used), its(:tags), its(:permissions_boundary)
+### its(:path), its(:user_name), its(:user_id), its(:arn), its(:create_date), its(:password_last_used), its(:permissions_boundary), its(:tags)
 ### :unlock: Advanced use
 
 `iam_user` can use `Aws::IAM::User` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/User.html).

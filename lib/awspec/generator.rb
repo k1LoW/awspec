@@ -32,6 +32,7 @@ require 'awspec/generator/spec/eip'
 require 'awspec/generator/spec/rds_db_parameter_group'
 require 'awspec/generator/spec/rds_db_cluster_parameter_group'
 require 'awspec/generator/spec/codebuild'
+require 'awspec/generator/spec/autoscaling_group'
 
 # Doc
 require 'awspec/generator/doc/type'

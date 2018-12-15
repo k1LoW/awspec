@@ -40,8 +40,12 @@ describe autoscaling_group('<%= autoscaling_group.auto_scaling_group_name %>') d
 <% autoscaling_group[:load_balancer_names].each do |desc| %>
   it { should have_elb('<%= desc %>') }
 <% end %>
-<% autoscaling_group[:target_group_arns].each do |desc| %>
-  it { should have_alb_target_group('<%= desc.sub(/^.*targetgroup\/(.[^\/]*).*$/, '\1') %>') }
+<% autoscaling_group[:target_group_arns].join(",").gsub(/arn:.+?:targetgroup\/(.[^\/]*)\/.[^,]*/, '\1').split(",").each do |desc| %>
+  <%- if not find_alb_target_group(desc).nil? -%>
+  it { should have_alb_target_group('<%= desc %>') }
+  <%- elsif not find_nlb_target_group(desc).nil? -%>
+  it { should have_nlb_target_group('<%= desc %>') }
+  <%- end -%>
 <% end %>
 end
 EOF

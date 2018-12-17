@@ -13,8 +13,8 @@ module Awspec
         cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
         ebs ec2 ecr_repository ecs_cluster ecs_container_instance ecs_service ecs_task_definition
         efs eks elasticache elasticache_cache_parameter_group elasticsearch elb emr firehose iam_group
-        iam_policy iam_role iam_user kinesis kms lambda launch_configuration nat_gateway
-        network_acl network_interface nlb nlb_listener nlb_target_group
+        iam_policy iam_role iam_user kinesis kms lambda launch_configuration launch_template launch_template_version
+        nat_gateway network_acl network_interface nlb nlb_listener nlb_target_group
         rds rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone
         route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
         elastictranscoder_pipeline waf_web_acl customer_gateway vpn_gateway vpn_connection internet_gateway acm

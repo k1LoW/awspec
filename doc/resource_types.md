@@ -46,6 +46,8 @@
 | [kms](#kms)
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
+| [launch_template](#launch_template)
+| [launch_template_version](#launch_template_version)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
@@ -2043,6 +2045,81 @@ end
 ```
 
 ### its(:launch_configuration_name), its(:launch_configuration_arn), its(:image_id), its(:key_name), its(:security_groups), its(:classic_link_vpc_id), its(:classic_link_vpc_security_groups), its(:user_data), its(:instance_type), its(:kernel_id), its(:ramdisk_id), its(:spot_price), its(:iam_instance_profile), its(:created_time), its(:ebs_optimized), its(:associate_public_ip_address), its(:placement_tenancy)
+## <a name="launch_template">launch_template</a>
+
+LaunchTemplate resource type.
+
+### exist
+
+```ruby
+# launch_template_id or launch_template_name
+describe launch_template('my-launch-template') do
+  it { should exist }
+  its(:default_version_number) { should eq 1 }
+  its(:latest_version_number) { should eq 2 }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe launch_template('my-launch-template') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+
+### have_version_number
+
+```ruby
+describe launch_template('my-launch-template') do
+  it { should have_version_number(2) }
+end
+```
+
+### its(:launch_template_id), its(:launch_template_name), its(:create_time), its(:created_by), its(:default_version_number), its(:latest_version_number), its(:tags)
+## <a name="launch_template_version">launch_template_version</a>
+
+LaunchTemplateVersion resource type.
+
+### exist
+
+```ruby
+# launch_template_id or launch_template_name.
+describe launch_template_version('my-launch-template') do
+  it { should exist }
+  its(:launch_template_name) { should eq 'my-launch-template' }
+  its(:version_number) { should eq 1 }
+  its(:version_description) { should eq nil }
+  its(:default_version) { should eq true }
+  its('launch_template_data.image_id') { should eq 'ami-12345foobar' }
+  its('launch_template_data.instance_type') { should eq 't2.micro' }
+end
+```
+
+#### specify version
+
+Specify "default", "latest" or version_number.
+If not specified version "default".
+
+```ruby
+# version_number
+describe launch_template_version('my-launch-template:2') do
+  it { should exist }
+  its(:version_number) { should eq 2 }
+  its(:default_version) { should eq false }
+end
+
+# latest
+describe launch_template_version('my-launch-template:latest') do
+  it { should exist }
+  its(:version_number) { should eq 3 }
+  its(:default_version) { should eq false }
+end
+```
+
+### its(:launch_template_id), its(:launch_template_name), its(:version_number), its(:version_description), its(:create_time), its(:created_by), its(:default_version)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

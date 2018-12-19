@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.1'
   spec.add_runtime_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'rspec-its'
-  spec.add_runtime_dependency 'aws-sdk', '>= 2.2', '< 2.11'
+  spec.add_runtime_dependency 'aws-sdk', '>= 2.2', '< 3'
   spec.add_runtime_dependency 'awsecrets', '~> 1.14'
   spec.add_runtime_dependency 'thor'
   spec.add_runtime_dependency 'activesupport', '~> 4.0'

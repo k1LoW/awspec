@@ -75,9 +75,7 @@ module Awspec::Type
     private
 
     def check_existence
-      if resource_via_client.nil?
-        raise Awspec::NoExistingResource.new("The policy with display name #{id} does not exist")
-      end
+      raise Awspec::NoExistingResource, "The policy with display name #{id} does not exist" if resource_via_client.nil?
     end
   end
 end

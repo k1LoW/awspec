@@ -1,3 +1,5 @@
+require 'awspec/error'
+
 module Awspec::Type
   class IamPolicy < ResourceBase
     def resource_via_client
@@ -8,11 +10,28 @@ module Awspec::Type
       @id ||= resource_via_client.policy_id if resource_via_client
     end
 
+    def attachment_count
+      check_existence
+      resource_via_client.attachment_count
+    end
+
+    def policy_id
+      check_existence
+      resource_via_client.policy_id
+    end
+
+    def policy_name
+      check_existence
+      resource_via_client.policy_name
+    end
+
     def attachable?
+      check_existence
       resource_via_client.is_attachable
     end
 
     def attached_to_user?(user_id = nil)
+      check_existence
       users = select_attached_users(id)
       if user_id
         user = find_iam_user(user_id)
@@ -26,6 +45,7 @@ module Awspec::Type
     end
 
     def attached_to_group?(group_id = nil)
+      check_existence
       groups = select_attached_groups(@id)
       if group_id
         group = find_iam_group(group_id)
@@ -39,6 +59,7 @@ module Awspec::Type
     end
 
     def attached_to_role?(role_id = nil)
+      check_existence
       roles = select_attached_roles(@id)
       if role_id
         role = find_iam_role(role_id)
@@ -48,6 +69,14 @@ module Awspec::Type
         end
       else
         !roles.empty?
+      end
+    end
+
+    private
+
+    def check_existence
+      if resource_via_client.nil?
+        raise Awspec::NoExistingResource.new("The policy with display name #{id} does not exist")
       end
     end
   end

@@ -3,4 +3,6 @@ module Awspec
   end
   class InvalidAccountError < StandardError
   end
+  class NoExistingResource < StandardError
+  end
 end

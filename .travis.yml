@@ -1,13 +1,18 @@
 language: ruby
-rvm:
-  - 2.5.3
-  - 2.4.5
-  - 2.3.8
-  - 2.2.10
-  - 2.1.10
-
+matrix:
+  include:
+    - rvm: 2.5.3
+      env: RUBYGEMS_VERSION=
+    - rvm: 2.4.5
+      env: RUBYGEMS_VERSION=
+    - rvm: 2.3.8
+      env: RUBYGEMS_VERSION=
+    - rvm: 2.2.10
+      env: RUBYGEMS_VERSION=2.7.8
+    - rvm: 2.1.10
+      env: RUBYGEMS_VERSION=2.7.8
 before_install:
-  - gem update --system
+  - gem update --system ${RUBYGEMS_VERSION}
   - gem pristine bundler
 
 script:

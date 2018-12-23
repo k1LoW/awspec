@@ -3244,7 +3244,7 @@ end
 ```
 
 
-### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)
+### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name), its(:web_acl_arn)
 # Account and Attributes
 
 ## <a name="account">account</a>

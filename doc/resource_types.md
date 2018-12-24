@@ -3283,7 +3283,7 @@ end
 ```
 
 
-### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name), its(:web_acl_arn)
+### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)
 # Account and Attributes
 
 ## <a name="account">account</a>

@@ -16,5 +16,18 @@ module Awspec::Type
         return true if launch_template_version.version_number.to_s == version_number.to_s
       end
     end
+
+    # launch_template_versions
+    launch_template_versions = %w(
+      $Default $Latest
+    )
+    launch_template_versions.each do |launch_template_version|
+      define_method launch_template_version do
+        res = ec2_client.describe_launch_template_versions({
+                                                             launch_template_id: @id,
+                                                             versions: [launch_template_version]
+                                                           }).launch_template_versions.first
+      end
+    end
   end
 end

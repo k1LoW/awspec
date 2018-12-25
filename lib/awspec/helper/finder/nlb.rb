@@ -24,6 +24,17 @@ module Awspec::Helper
         return nil
       end
 
+      def select_nlb_listener_by_nlb_arn(arn)
+        selected = []
+        next_marker = nil
+        loop do
+          res = elbv2_client.describe_listeners({ marker: next_marker, load_balancer_arn: arn })
+          selected += res.listeners unless res.nil?
+          (res.nil? && next_marker = res.next_marker) || break
+        end
+        selected
+      end
+
       def find_nlb_target_group(id)
         res = elbv2_client.describe_target_groups({ names: [id] })
         httpx_res = res.target_groups.select do |tg|

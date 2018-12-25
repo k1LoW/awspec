@@ -34,6 +34,7 @@ require 'awspec/generator/spec/rds_db_cluster_parameter_group'
 require 'awspec/generator/spec/codebuild'
 require 'awspec/generator/spec/autoscaling_group'
 require 'awspec/generator/spec/alb_listener'
+require 'awspec/generator/spec/nlb_listener'
 
 # Doc
 require 'awspec/generator/doc/type'

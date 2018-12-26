@@ -1,5 +1,6 @@
 module Awspec::Type
   class LaunchTemplate < ResourceBase
+    attr_accessor :version
     tags_allowed
 
     def resource_via_client
@@ -18,16 +19,16 @@ module Awspec::Type
     end
 
     # launch_template_versions
-    launch_template_versions = %w(
-      $Default $Latest
-    )
-    launch_template_versions.each do |launch_template_version|
-      define_method launch_template_version do
-        res = ec2_client.describe_launch_template_versions({
-                                                             launch_template_id: @id,
-                                                             versions: [launch_template_version]
-                                                           }).launch_template_versions.first
+    define_method 'launch_template_version' do
+      if @version.nil? || @version == 'default'
+        @version = '$Default'
+      elsif @version == 'latest'
+        @version = '$Latest'
       end
+      res = ec2_client.describe_launch_template_versions({
+                                                           launch_template_id: @id,
+                                                           versions: [@version.to_s]
+                                                         }).launch_template_versions.first
     end
   end
 end

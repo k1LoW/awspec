@@ -2050,19 +2050,37 @@ LaunchTemplate resource type.
 
 ### exist
 
+You can set launch template version ( default: $Default ).
+
 ```ruby
 # launch_template_id or launch_template_name
 describe launch_template('my-launch-template') do
   it { should exist }
   its(:default_version_number) { should eq 1 }
   its(:latest_version_number) { should eq 2 }
-  its('$Default.launch_template_data.image_id') { should eq 'ami-12345foobar' }
-  its('$Default.launch_template_data.instance_type') { should eq 't2.micro' }
-  its('$Latest.launch_template_data.image_id') { should eq 'ami-12345foobar' }
-  its('$Latest.launch_template_data.instance_type') { should eq 't2.small' }
+  its('launch_template_version.launch_template_data.image_id') { should eq 'ami-12345foobar' }
+  its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
 end
 ```
 
+#### specify version
+ 
+Specify "latest" or version_number.
+ 
+```ruby
+# version_number
+describe launch_template('my-launch-template'), version: 2 do
+  it { should exist }
+  its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
+end
+
+# latest
+describe launch_template('my-launch-template'), version: 'latest' do
+  it { should exist }
+  its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
+end
+```
+ 
 
 ### have_tag
 
@@ -3283,7 +3301,7 @@ end
 ```
 
 
-### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name)
+### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name), its(:web_acl_arn)
 # Account and Attributes
 
 ## <a name="account">account</a>

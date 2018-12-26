@@ -23,3 +23,9 @@ shared_context 'cluster', :cluster do
     example.metadata[:described_class].cluster = example.metadata[:cluster]
   end
 end
+
+shared_context 'version', :version do
+  before do |example|
+    example.metadata[:described_class].version = example.metadata[:version]
+  end
+end

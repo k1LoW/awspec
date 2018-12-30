@@ -46,6 +46,7 @@
 | [kms](#kms)
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
+| [launch_template](#launch_template)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
@@ -2043,6 +2044,62 @@ end
 ```
 
 ### its(:launch_configuration_name), its(:launch_configuration_arn), its(:image_id), its(:key_name), its(:security_groups), its(:classic_link_vpc_id), its(:classic_link_vpc_security_groups), its(:user_data), its(:instance_type), its(:kernel_id), its(:ramdisk_id), its(:spot_price), its(:iam_instance_profile), its(:created_time), its(:ebs_optimized), its(:associate_public_ip_address), its(:placement_tenancy)
+## <a name="launch_template">launch_template</a>
+
+LaunchTemplate resource type.
+
+### exist
+
+You can set launch template version ( default: $Default ).
+
+```ruby
+# launch_template_id or launch_template_name
+describe launch_template('my-launch-template') do
+  it { should exist }
+  its(:default_version_number) { should eq 1 }
+  its(:latest_version_number) { should eq 2 }
+  its('launch_template_version.launch_template_data.image_id') { should eq 'ami-12345foobar' }
+  its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
+end
+```
+
+#### specify version
+ 
+Specify "latest" or version_number.
+ 
+```ruby
+# version_number
+describe launch_template('my-launch-template'), version: 2 do
+  it { should exist }
+  its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
+end
+
+# latest
+describe launch_template('my-launch-template'), version: 'latest' do
+  it { should exist }
+  its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
+end
+```
+ 
+
+### have_tag
+
+```ruby
+describe launch_template('my-launch-template') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+
+### have_version_number
+
+```ruby
+describe launch_template('my-launch-template') do
+  it { should have_version_number(2) }
+end
+```
+
+### its(:launch_template_id), its(:launch_template_name), its(:create_time), its(:created_by), its(:default_version_number), its(:latest_version_number), its(:tags)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

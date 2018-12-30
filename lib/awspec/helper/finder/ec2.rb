@@ -162,6 +162,31 @@ module Awspec::Helper
                                                      })
         res.network_interfaces
       end
+
+      def find_launch_template(id)
+        # launch_template_id or launch_template_name
+        begin
+          res = ec2_client.describe_launch_templates({
+                                                       launch_template_ids: [id]
+                                                     })
+        rescue
+          res = ec2_client.describe_launch_templates({
+                                                       launch_template_names: [id]
+                                                     })
+        end
+        res.launch_templates.single_resource(id)
+      end
+
+      def find_launch_template_versions(id)
+        # launch_template_id or launch_template_name
+        res = ec2_client.describe_launch_template_versions({
+                                                             launch_template_id: id
+                                                           })
+      rescue
+        res = ec2_client.describe_launch_template_versions({
+                                                             launch_template_name: id
+                                                           })
+      end
     end
   end
 end

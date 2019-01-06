@@ -6,6 +6,10 @@ Aws.config[:kms] = {
           alias_arn: 'arn:aws:kms:us-east-1:1234567890:alias/my-kms-key',
           alias_name: 'alias/my-kms-key',
           target_key_id: 'b9989d41-eeaa-401f-8616-00546948aa92'
+        },
+        {
+          alias_arn: 'arn:aws:kms:us-east-1:1234567890:alias/aws/example',
+          alias_name: 'alias/aws/example'
         }
       ]
     },

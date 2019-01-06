@@ -14,7 +14,7 @@ module Awspec::Generator
 describe kms('<%= kms_alias.alias_name.split('/').last %>') do
   it { should exist }
 <% if find_kms_key(kms_alias.target_key_id).enabled -%>
-  it { should be_enable }
+  it { should be_enabled }
 <% end -%>
 end
 <% end %>

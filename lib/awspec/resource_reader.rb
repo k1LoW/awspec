@@ -46,6 +46,7 @@ module Awspec
       @resource_via_client = resource
     end
 
+    # TODO: this method is specific to DynamoDB and probably should be moved somewhere else
     def describe_time_to_live(*args)
       @resource_via_client.send('describe_time_to_live', *args)
     end

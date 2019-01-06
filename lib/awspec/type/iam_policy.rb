@@ -10,21 +10,6 @@ module Awspec::Type
       @id ||= resource_via_client.policy_id if resource_via_client
     end
 
-    def attachment_count
-      check_existence
-      resource_via_client.attachment_count
-    end
-
-    def policy_id
-      check_existence
-      resource_via_client.policy_id
-    end
-
-    def policy_name
-      check_existence
-      resource_via_client.policy_name
-    end
-
     def attachable?
       check_existence
       resource_via_client.is_attachable
@@ -75,7 +60,7 @@ module Awspec::Type
     private
 
     def check_existence
-      raise Awspec::NoExistingResource, "The policy with display name #{id} does not exist" if resource_via_client.nil?
+      raise Awspec::NoExistingResource.new(self.class, @display_name) if resource_via_client.nil?
     end
   end
 end

@@ -56,6 +56,8 @@
 | [rds](#rds)
 | [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
+| [redshift](#redshift)
+| [redshift_cluster_parameter_group](#redshift_cluster_parameter_group)
 | [route53_hosted_zone](#route53_hosted_zone)
 | [route_table](#route_table)
 | [s3_bucket](#s3_bucket)
@@ -2573,6 +2575,101 @@ end
 
 ```ruby
 describe rds_db_parameter_group('my-rds-db-parameter-group') do
+  it { should exist }
+end
+```
+
+
+## <a name="redshift">redshift</a>
+
+Redshift resource type.
+
+### exist
+
+```ruby
+describe redshift('my-redshift') do
+  it { should exist }
+end
+```
+
+
+### be_available, be_cancelling_resize, be_creating, be_deleting, be_final_snapshot, be_hardware_failure, be_incompatible_hsm, be_incompatible_network, be_incompatible_parameters, be_incompatible_restore, be_modifying, be_rebooting, be_renaming, be_resizing, be_rotating_keys, be_storage_full, be_updating_hsm
+
+```ruby
+describe redshift('my-redshift') do
+  it { should be_available }
+end
+```
+
+
+### have_cluster_parameter_group
+
+```ruby
+describe redshift('my-redshift') do
+  it { should have_cluster_parameter_group('my-pg') }
+  it do
+    should have_cluster_parameter_group('my-pg')\
+      .parameter_apply_status('in-sync')
+  end
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe redshift('my-redshift') do
+  it { should have_security_group('sg-1a2b3c4d') }
+  it { should have_security_group('group-name-sg') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe redshift('my-redshift') do
+  it { should have_tag('Name').value('my-cluster') }
+end
+```
+
+
+### belong_to_cluster_subnet_group
+
+```ruby
+describe redshift('my-redshift') do
+  it { should belong_to_cluster_subnet_group('my-sg') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe redshift('my-redshift') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:vpc_id), its(:cluster_identifier), its(:node_type), its(:cluster_status), its(:modify_status), its(:master_username), its(:db_name), its(:endpoint), its(:cluster_create_time), its(:automated_snapshot_retention_period), its(:manual_snapshot_retention_period), its(:cluster_security_groups), its(:cluster_subnet_group_name), its(:vpc_id), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:cluster_version), its(:allow_version_upgrade), its(:number_of_nodes), its(:publicly_accessible), its(:encrypted), its(:restore_status), its(:data_transfer_progress), its(:hsm_status), its(:cluster_snapshot_copy_status), its(:cluster_public_key), its(:cluster_nodes), its(:elastic_ip_status), its(:cluster_revision_number), its(:kms_key_id), its(:enhanced_vpc_routing), its(:iam_roles), its(:pending_actions), its(:maintenance_track_name), its(:elastic_resize_number_of_node_options), its(:deferred_maintenance_windows), its(:snapshot_schedule_identifier), its(:snapshot_schedule_state), its(:resize_info)
+## <a name="redshift_cluster_parameter_group">redshift_cluster_parameter_group</a>
+
+RedshiftClusterParameterGroup resource type.
+
+```ruby
+describe redshift_cluster_parameter_group('my-redshift-cluster-parameter-group') do
+  its(:datestyle) { should eq 'ISO, MDY' }
+  its(:query_group) { should eq 'default' }
+  its(:require_ssl) { should eq 'false' }
+end
+```
+
+
+### exist
+
+```ruby
+describe redshift_cluster_parameter_group('my-redshift-cluster-parameter-group') do
   it { should exist }
 end
 ```

@@ -9,7 +9,7 @@ module Awspec
 
     types = %w(
       vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway network_interface alb nlb
-      internet_gateway autoscaling_group alb_listener nlb_listener
+      internet_gateway autoscaling_group alb_listener nlb_listener redshift
     )
 
     types.each do |type|
@@ -37,7 +37,7 @@ module Awspec
     end
 
     types = %w(
-      rds_db_parameter_group rds_db_cluster_parameter_group
+      rds_db_parameter_group rds_db_cluster_parameter_group redshift_cluster_parameter_group
     )
 
     types.each do |type|

@@ -1,3 +1,5 @@
+require 'awspec/error'
+
 module Awspec::Type
   class IamPolicy < ResourceBase
     def resource_via_client
@@ -9,10 +11,12 @@ module Awspec::Type
     end
 
     def attachable?
+      check_existence
       resource_via_client.is_attachable
     end
 
     def attached_to_user?(user_id = nil)
+      check_existence
       users = select_attached_users(id)
       if user_id
         user = find_iam_user(user_id)
@@ -26,6 +30,7 @@ module Awspec::Type
     end
 
     def attached_to_group?(group_id = nil)
+      check_existence
       groups = select_attached_groups(@id)
       if group_id
         group = find_iam_group(group_id)
@@ -39,6 +44,7 @@ module Awspec::Type
     end
 
     def attached_to_role?(role_id = nil)
+      check_existence
       roles = select_attached_roles(@id)
       if role_id
         role = find_iam_role(role_id)
@@ -49,6 +55,12 @@ module Awspec::Type
       else
         !roles.empty?
       end
+    end
+
+    private
+
+    def check_existence
+      raise Awspec::NoExistingResource.new(self.class, @display_name) if resource_via_client.nil?
     end
   end
 end

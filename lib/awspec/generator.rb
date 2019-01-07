@@ -35,6 +35,7 @@ require 'awspec/generator/spec/codebuild'
 require 'awspec/generator/spec/autoscaling_group'
 require 'awspec/generator/spec/alb_listener'
 require 'awspec/generator/spec/nlb_listener'
+require 'awspec/generator/spec/redshift'
 
 # Doc
 require 'awspec/generator/doc/type'

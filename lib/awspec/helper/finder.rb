@@ -42,6 +42,7 @@ require 'awspec/helper/finder/batch'
 require 'awspec/helper/finder/eks'
 require 'awspec/helper/finder/sns_topic'
 require 'awspec/helper/finder/emr'
+require 'awspec/helper/finder/redshift'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -93,6 +94,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Eks
     include Awspec::Helper::Finder::SNSTopic
     include Awspec::Helper::Finder::Emr
+    include Awspec::Helper::Finder::Redshift
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -132,7 +134,8 @@ module Awspec::Helper
       batch_client: Aws::Batch::Client,
       eks_client: Aws::EKS::Client,
       sns_client: Aws::SNS::Client,
-      emr_client: Aws::EMR::Client
+      emr_client: Aws::EMR::Client,
+      redshift_client: Aws::Redshift::Client
     }
 
     CLIENT_OPTIONS = {

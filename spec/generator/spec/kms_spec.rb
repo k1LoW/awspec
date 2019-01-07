@@ -10,7 +10,7 @@ describe 'Awspec::Generator::Spec::Kms' do
 
 describe kms('my-kms-key') do
   it { should exist }
-  it { should be_enable }
+  it { should be_enabled }
 end
 EOF
     expect(kms.generate_all.to_s.gsub(/\n/, "\n")).to eq spec

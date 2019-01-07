@@ -49,5 +49,11 @@ module Awspec::Type
     end
 
     undef :timeout
+
+    private
+
+    def check_existence
+      raise Awspec::NoExistingResource.new(self.class, @display_name) if resource_via_client.nil?
+    end
   end
 end

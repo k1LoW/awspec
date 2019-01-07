@@ -9,6 +9,7 @@ module Awspec::Type
     end
 
     def timeout
+      check_existence
       resource_via_client.timeout
     end
 

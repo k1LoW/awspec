@@ -36,6 +36,7 @@ require 'awspec/generator/spec/autoscaling_group'
 require 'awspec/generator/spec/alb_listener'
 require 'awspec/generator/spec/nlb_listener'
 require 'awspec/generator/spec/redshift'
+require 'awspec/generator/spec/redshift_cluster_parameter_group'
 
 # Doc
 require 'awspec/generator/doc/type'

@@ -37,7 +37,7 @@ module Awspec
     end
 
     types = %w(
-      rds_db_parameter_group rds_db_cluster_parameter_group
+      rds_db_parameter_group rds_db_cluster_parameter_group redshift_cluster_parameter_group
     )
 
     types.each do |type|

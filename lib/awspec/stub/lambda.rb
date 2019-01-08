@@ -19,22 +19,22 @@ Aws.config[:lambda] = {
           revision_id: '8d01897515-bcb0-43c7-9b14-e6d14fyyff4d',
           layers: nil,
           tracing_config:
-            #<struct Aws::Lambda::Types::TracingConfigResponse mode="PassThrough">
+            # <struct Aws::Lambda::Types::TracingConfigResponse mode="PassThrough">
             {
               mode: 'PassThrough'
             },
           environment:
-            #<struct Aws::Lambda::Types::EnvironmentResponse
+            # <struct Aws::Lambda::Types::EnvironmentResponse
             {
-            variables:
-              {
-                'ENDPOINT_URL' => 'https://foobar.sns.us-east-1.vpce.amazonaws.com',
-                'ENV_NAME' => 'QA',
-                'LOG_LEVEL' => 'DEBUG',
-                'FOOBAR_TOPIC' => 'arn:aws:sns:us-east-1:123456789:FoobarManager',
-                'RESOLVER1' => '10.196.138.1',
-                'RESOLVER2' => '10.196.136.2'
-              },
+              variables:
+                {
+                  'ENDPOINT_URL' => 'https://foobar.sns.us-east-1.vpce.amazonaws.com',
+                  'ENV_NAME' => 'QA',
+                  'LOG_LEVEL' => 'DEBUG',
+                  'FOOBAR_TOPIC' => 'arn:aws:sns:us-east-1:123456789:FoobarManager',
+                  'RESOLVER1' => '10.196.138.1',
+                  'RESOLVER2' => '10.196.136.2'
+                },
               error: nil
             }
         }

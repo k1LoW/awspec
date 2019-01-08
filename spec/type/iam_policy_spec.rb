@@ -28,5 +28,4 @@ describe iam_policy('unknow-iam-policy') do
       expect { subject.send(method_name, 'foobar') }.to raise_error(Awspec::NoExistingResource)
     end
   end
-
 end

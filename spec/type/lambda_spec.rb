@@ -2,6 +2,15 @@ require 'spec_helper'
 require 'awspec/error'
 Awspec::Stub.load 'lambda'
 
+EXPECTED = {
+  'ENDPOINT_URL' => 'https://foobar.sns.us-east-1.vpce.amazonaws.com',
+  'ENV_NAME' => 'QA',
+  'FOOBAR_TOPIC' => 'arn:aws:sns:us-east-1:123456789:FoobarManager',
+  'LOG_LEVEL' => 'DEBUG',
+  'RESOLVER1' => '10.196.138.1',
+  'RESOLVER2' => '10.196.136.2'
+}
+
 describe lambda('my-lambda-function-name') do
   it { should exist }
   its(:description) { should eq 'My Lambda Function' }
@@ -14,14 +23,24 @@ describe lambda('my-lambda-function-name') do
   its(:code_sha_256) { should eq 'LAI9GRLpJD/dq2D7Uopwaeh354tsd8fQsSI6eSH0xOIs=' }
   its(:version) { should eq '$LATEST' }
   its(:role) { should eq 'arn:aws:iam::123456789:role/foobarVPCRole' }
-  its(:kms_key_arn) { should be nil }
+  its(:kms_key_arn) { should be_nil }
   its(:revision_id) { should eq '8d01897515-bcb0-43c7-9b14-e6d14fyyff4d' }
   its(:layers) { should be nil }
+  its(:tracing_config) { should have_attributes('mode' => 'PassThrough') }
+  it { should have_env_vars }
+
+  EXPECTED.each_pair do |key, value|
+    context "environment variable #{key}" do
+      it { should have_env_var(key) }
+      it { should have_env_var_value(key, value) }
+    end
+  end
 end
 
 describe lambda('not-exist-function') do
   it { should_not exist }
-  methods = %w(description runtime handler code_size timeout memory_size last_modified code_sha_256 version RESOLVER1 kms_key_arn revision_id layers)
+  methods = %w(environment description runtime handler code_size timeout memory_size last_modified code_sha_256 version
+               kms_key_arn revision_id layers tracing_config)
   methods.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do
       expect { subject.send(method_name) }.to raise_error(Awspec::NoExistingResource)

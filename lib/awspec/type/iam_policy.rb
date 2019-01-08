@@ -56,6 +56,5 @@ module Awspec::Type
         !roles.empty?
       end
     end
-
   end
 end

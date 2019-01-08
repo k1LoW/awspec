@@ -78,3 +78,8 @@ require 'awspec/matcher/have_subscription_attributes'
 # Redshift
 require 'awspec/matcher/belong_to_cluster_subnet_group'
 require 'awspec/matcher/have_cluster_parameter_group'
+
+# Lambda
+require 'awspec/matcher/have_env_vars'
+require 'awspec/matcher/have_env_var'
+require 'awspec/matcher/have_env_var_value'

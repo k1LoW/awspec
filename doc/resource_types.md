@@ -2017,11 +2017,42 @@ end
 ```
 
 
+### have_env_var
+
+Useful to validate if there is a specific environment variable declared in the Lambda. You probably will want to use it with `have_env_var_value`.
+
+## have_env_var_value
+
+Validates if a specific environment variable has the expected value. More useful to use with `have_env_var` because if the variable isn't available, it will fail without notifying that the variable is missing.
+
+```ruby
+expected.each_pair do |key, value|
+  context "environment variable #{key}" do
+    it { should have_env_var(key) }
+    it { should have_env_var_value(key, value) }
+  end
+end
+```
+
+`expected` would be a hash that has the environment variables names as keys.
+
+
+### have_env_vars
+
+Useful to validate if there are environment variables configured in the Lambda:
+
+```ruby
+describe lambda('my-lambda-function-name') do
+  it { should have_env_vars() }
+end
+```
+
+
 ### have_event_source
 
-This matcher does not support Amazon S3 event sources. ( [See SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method) )
+This matcher does not support Amazon S3 event sources ([see SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method)).
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:environment), its(:kms_key_arn), its(:tracing_config), its(:master_arn), its(:revision_id), its(:layers)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.

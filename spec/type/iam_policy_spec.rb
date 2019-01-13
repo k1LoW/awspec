@@ -16,25 +16,16 @@ end
 
 describe iam_policy('unknow-iam-policy') do
   it { should_not exist }
-  it do
-    expect { subject.attachment_count }.to raise_error(Awspec::NoExistingResource)
+  methods = %w(attachment_count policy_id policy_name attachable?)
+  methods.each do |method_name|
+    it "#{method_name} raises Awspec::NoExistingResource" do
+      expect { subject.send(method_name) }.to raise_error(Awspec::NoExistingResource)
+    end
   end
-  it do
-    expect { subject.policy_id }.to raise_error(Awspec::NoExistingResource)
-  end
-  it do
-    expect { subject.policy_name }.to raise_error(Awspec::NoExistingResource)
-  end
-  it do
-    expect { subject.attachable? }.to raise_error(Awspec::NoExistingResource)
-  end
-  it do
-    expect { subject.attached_to_user?('foobar') }.to raise_error(Awspec::NoExistingResource)
-  end
-  it do
-    expect { subject.attached_to_group?('foobar') }.to raise_error(Awspec::NoExistingResource)
-  end
-  it do
-    expect { subject.attached_to_role?('foobar') }.to raise_error(Awspec::NoExistingResource)
+  methods_with_param = %w(attached_to_user? attached_to_group? attached_to_role?)
+  methods_with_param.each do |method_name|
+    it "#{method_name} raises Awspec::NoExistingResource" do
+      expect { subject.send(method_name, 'foobar') }.to raise_error(Awspec::NoExistingResource)
+    end
   end
 end

@@ -7,7 +7,7 @@ module Awspec::Generator
           @type_name = 'Lambda'
           @type = Awspec::Type::Lambda.new('my-lambda-function-name')
           @ret = @type.resource_via_client
-          @matchers = []
+          @matchers = %w(have_env_var have_env_vars)
           @ignore_matchers = []
           @describes = []
         end

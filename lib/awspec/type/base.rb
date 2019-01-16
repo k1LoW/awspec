@@ -22,6 +22,10 @@ module Awspec::Type
       to_s
     end
 
+    def respond_to_missing?(method, include_private = false)
+      resource_via_client.respond_to?(method) || super unless resource_via_client.nil?
+    end
+
     def self.tags_allowed
       define_method :has_tag? do |key, value|
         begin

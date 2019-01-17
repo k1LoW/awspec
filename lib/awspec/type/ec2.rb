@@ -17,6 +17,7 @@ module Awspec::Type
     end
 
     def security_group_count
+      check_existence
       resource_via_client.security_groups.count
     end
 
@@ -27,6 +28,7 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do
+        check_existence
         resource_via_client.state.name == state
       end
     end
@@ -56,6 +58,7 @@ module Awspec::Type
     end
 
     def has_security_group?(sg_id)
+      check_existence
       sgs = resource_via_client.security_groups
       ret = sgs.find do |sg|
         sg.group_id == sg_id || sg.group_name == sg_id
@@ -69,12 +72,14 @@ module Awspec::Type
     end
 
     def has_iam_instance_profile?(iam_instance_profile_name)
+      check_existence
       iam = resource_via_client.iam_instance_profile
       ret = iam.arn.split('/').last == iam_instance_profile_name
       return true if ret
     end
 
     def has_ebs?(volume_id)
+      check_existence
       blocks = resource_via_client.block_device_mappings
       ret = blocks.find do |block|
         next false unless block.ebs
@@ -89,6 +94,7 @@ module Awspec::Type
 
     def has_network_interface?(network_interface_id, device_index = nil)
       res = find_network_interface(network_interface_id)
+      check_existence
       interfaces = resource_via_client.network_interfaces
       ret = interfaces.find do |interface|
         next false if device_index && interface.attachment.device_index != device_index
@@ -148,6 +154,7 @@ module Awspec::Type
     end
 
     def resource_security_groups
+      check_existence
       resource_via_client.security_groups
     end
   end

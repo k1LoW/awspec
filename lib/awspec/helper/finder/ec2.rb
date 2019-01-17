@@ -7,15 +7,16 @@ module Awspec::Helper
           res = ec2_client.describe_instances({
                                                 instance_ids: [id]
                                               })
-        rescue
-          # Aws::EC2::Errors::InvalidInstanceIDMalformed
-          # Aws::EC2::Errors::InvalidInstanceIDNotFound
+        rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
           res = ec2_client.describe_instances({
                                                 filters: [{ name: 'tag:Name', values: [id] }]
                                               })
         end
         # rubocop:enable Style/GuardClause
-        if res.reservations.count == 1
+
+        if res.reservations.count == 0
+          nil
+        elsif res.reservations.count == 1
           res.reservations.first.instances.single_resource(id)
         elsif res.reservations.count > 1
           raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"

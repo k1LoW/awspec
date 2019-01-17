@@ -1,3 +1,5 @@
+require 'awspec/helper/all_states'
+
 module Awspec::Type
   class Ec2 < ResourceBase
     aws_resource Aws::EC2::Instance
@@ -6,6 +8,16 @@ module Awspec::Type
     def initialize(name)
       super
       @display_name = name
+    end
+
+    # required by Awspec::Generator::Doc::Type
+    STATES = Awspec::Helper::AllStates::EC2_STATES
+
+    Awspec::Helper::AllStates.ec2_states_checks.each do |method_name, state|
+      define_method method_name do
+        check_existence
+        resource_via_client.state.name == state
+      end
     end
 
     def resource_via_client
@@ -19,18 +31,6 @@ module Awspec::Type
     def security_group_count
       check_existence
       resource_via_client.security_groups.count
-    end
-
-    STATES = %w(
-      pending running shutting-down
-      terminated stopping stopped
-    )
-
-    STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
-        check_existence
-        resource_via_client.state.name == state
-      end
     end
 
     def disabled_api_termination?
@@ -50,7 +50,6 @@ module Awspec::Type
 
     def has_security_groups?(sg_ids)
       return true if match_group_ids?(sg_ids) || match_group_names?(sg_ids)
-
       group_ids = resource_security_groups.map { |sg| sg.group_id }
       tags = select_security_group_by_group_id(group_ids).map { |sg| sg.tags }.flatten
       group_names = tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
@@ -139,8 +138,7 @@ module Awspec::Type
     end
 
     def has_credit_specification?(cpu_credits)
-      ret = find_ec2_credit_specifications(id)
-      ret.cpu_credits == cpu_credits
+      find_ec2_credit_specifications(id).cpu_credits == cpu_credits
     end
 
     private

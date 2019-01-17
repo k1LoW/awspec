@@ -72,12 +72,12 @@ describe ec2('non-existing-ec2') do
   end
 
   it { should_not exist }
-  methods = %w(running? instance_id image_id public_ip_address private_ip_address have_eip security_group_count resource_security_groups)
+  methods = %w(running? instance_id image_id public_ip_address private_ip_address have_eip
+               security_group_count resource_security_groups)
 
   methods.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do
       expect { subject.send(method_name) }.to raise_error(Awspec::NoExistingResource)
     end
   end
-
 end

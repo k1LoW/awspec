@@ -19,7 +19,7 @@ module Awspec
         route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
         elastictranscoder_pipeline waf_web_acl customer_gateway vpn_gateway vpn_connection internet_gateway acm
         cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack codebuild sns_topic redshift
-        redshift_cluster_parameter_group codedeploy
+        redshift_cluster_parameter_group codedeploy codedeploy_deployment_group
       )
 
       ACCOUNT_ATTRIBUTES = %w(

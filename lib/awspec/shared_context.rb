@@ -29,3 +29,9 @@ shared_context 'version', :version do
     example.metadata[:described_class].version = example.metadata[:version]
   end
 end
+
+shared_context 'application_name', :application_name do
+  before do |example|
+    example.metadata[:described_class].application_name = example.metadata[:application_name]
+  end
+end

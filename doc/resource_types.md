@@ -17,6 +17,7 @@
 | [cloudwatch_event](#cloudwatch_event)
 | [cloudwatch_logs](#cloudwatch_logs)
 | [codebuild](#codebuild)
+| [codedeploy](#codedeploy)
 | [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [dynamodb_table](#dynamodb_table)
@@ -668,6 +669,13 @@ Codebuild resource type.
 ### exist
 
 
+## <a name="codedeploy">codedeploy</a>
+
+Codedeploy resource type.
+
+### exist
+
+### its(:application_id), its(:application_name), its(:create_time), its(:linked_to_git_hub), its(:git_hub_account_name), its(:compute_platform)
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.

@@ -683,7 +683,22 @@ CodedeployDeploymentGroup resource type.
 
 ### exist
 
+You can set the `application_name` (default: `default`).
+
+```ruby
+describe codedeploy_deployment_group('my-codedeploy-deployment-group'), application_name: 'my-codedeploy-application' do
+  it { should exist }
+end
+```
+
+
 ### have_autoscaling_group
+
+```ruby
+describe codedeploy_deployment_group('my-codedeploy-deployment-group'), application_name: 'my-codedeploy-application' do
+  it { should have_autoscaling_group('my-autoscaling-group') }
+end
+```
 
 ### its(:application_name), its(:deployment_group_id), its(:deployment_group_name), its(:deployment_config_name), its(:on_premises_instance_tag_filters), its(:service_role_arn), its(:target_revision), its(:trigger_configurations), its(:alarm_configuration), its(:deployment_style), its(:load_balancer_info), its(:last_successful_deployment), its(:last_attempted_deployment), its(:ec2_tag_set), its(:on_premises_tag_set), its(:compute_platform), its(:ecs_services)
 ## <a name="customer_gateway">customer_gateway</a>

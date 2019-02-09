@@ -30,16 +30,52 @@ module Awspec::Helper
       end
 
       def find_sns_topic(topic_arn)
-        response = sns_client.get_topic_attributes({ topic_arn: topic_arn })
-        SnsTopic.new(response.attributes)
+        # Find a SNS topic by searching from it's ARN.
+        # Expects as parameter the SNS topic ARN.
+        # Returns a Awspec::Helper::Finder::SNSTopic::SnsTopic if the topic is
+        # found, nil otherwise.
+        # If the SNS topic does not exist, AWS SDK throws an exception
+        # which is acceptable in some cases, but in others will generate a
+        # NoMethodFound during tests execution.
+        # In order to avoid that and follow a uniform interface, the exception
+        # will be captured and nil will be returned instead.
+        # By convention, the returned object will be checked (see check_existence
+        # method from Awspec::Type::Base class for an example) and an exception
+        # Awspec::NoExistingResource will be raised.
+        begin
+          response = sns_client.get_topic_attributes({ topic_arn: topic_arn })
+          puts response
+          topic = SnsTopic.new(response.attributes)
+        rescue Aws::SNS::Errors::NotFound
+          topic = nil
+        end
+
+        topic
       end
 
       def find_sns_topic_subs(topic_arn)
-        response = sns_client.list_subscriptions_by_topic({ topic_arn: topic_arn })
-        subscriptions = {}
-        response.subscriptions.each do |subscribed|
-          subscriptions[subscribed['subscription_arn'].to_sym] = subscribed
+        # Find a SNS topic subscribers by searching from it's ARN.
+        # Expects as parameter the SNS topic ARN.
+        # Returns a map (with keys as the subscribed ARN and the value instances
+        # of respective objects) if the topic is found, nil otherwise.
+        # If the SNS topic does not exist, AWS SDK throws an exception
+        # which is acceptable in some cases, but in others will generate a
+        # NoMethodFound during tests execution.
+        # In order to avoid that and follow a uniform interface, the exception
+        # will be captured and nil will be returned instead.
+        # By convention, the returned object will be checked (see check_existence
+        # method from Awspec::Type::Base class for an example) and an exception
+        # Awspec::NoExistingResource will be raised.
+        begin
+          response = sns_client.list_subscriptions_by_topic({ topic_arn: topic_arn })
+          subscriptions = {}
+          response.subscriptions.each do |subscribed|
+            subscriptions[subscribed['subscription_arn'].to_sym] = subscribed
+          end
+        rescue Aws::SNS::Errors::NotFound
+          subscriptions = nil
         end
+
         subscriptions
       end
     end

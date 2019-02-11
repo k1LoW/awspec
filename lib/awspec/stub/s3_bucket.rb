@@ -118,6 +118,18 @@ Aws.config[:s3] = {
           }
         }
       ]
+    },
+    get_bucket_encryption: {
+      server_side_encryption_configuration: {
+        rules: [
+          {
+            apply_server_side_encryption_by_default: {
+              sse_algorithm: 'aws:kms',
+              kms_master_key_id: '[FILTERED]'
+            }
+          }
+        ]
+      }
     }
   }
 }

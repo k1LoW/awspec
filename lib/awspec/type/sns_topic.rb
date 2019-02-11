@@ -34,6 +34,7 @@ module Awspec::Type
     end
 
     def method_missing(method_name)
+      check_existence
       # delegates the method invocation to Awspec::Helper::Finder::SnsTopic::SnsTopic class
       @resource_via_client.send method_name
     end
@@ -42,6 +43,7 @@ module Awspec::Type
 
     def fetch_subscriptions
       @subscriptions = find_sns_topic_subs(@topic_arn) if @subscriptions.nil?
+      raise Awspec::NoExistingResource.new(self.class, @display_name) if @subscriptions.nil?
       @subscriptions
     end
   end

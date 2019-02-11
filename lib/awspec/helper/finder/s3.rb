@@ -56,6 +56,13 @@ module Awspec::Helper
         nil
       end
 
+      def find_bucket_server_side_encryption(id)
+        res = s3_client.get_bucket_encryption(bucket: id)
+        res.server_side_encryption_configuration
+      rescue Aws::S3::Errors::ServiceError
+        nil
+      end
+
       def select_all_buckets
         s3_client.list_buckets.buckets
       end

@@ -56,6 +56,8 @@ describe s3_bucket('my-bucket') do
 
   it { should have_mfa_delete_enabled }
 
+  it { should have_server_side_encryption(algorithm: 'aws:kms') }
+
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }
     its('resource.name') { should eq 'my-bucket' }

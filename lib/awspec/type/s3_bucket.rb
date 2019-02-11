@@ -109,6 +109,14 @@ module Awspec::Type
       bv ? (bv.mfa_delete == 'Enabled') : false
     end
 
+    def has_server_side_encryption?(algorithm:)
+      configuration = find_bucket_server_side_encryption(id)
+      return false unless configuration
+
+      sse_algorithm = configuration.rules[0].apply_server_side_encryption_by_default.sse_algorithm
+      sse_algorithm ? (sse_algorithm == algorithm) : false
+    end
+
     private
 
     def cors_rules

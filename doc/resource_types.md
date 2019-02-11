@@ -2962,6 +2962,16 @@ end
 ```
 
 
+### have_server_side_encryption
+
+```
+describe s3_bucket('my-bucket') do
+  it { should have_server_side_encryption(algorithm: "AES256") }
+  it { should have_server_side_encryption(algorithm: "aws:kms") }
+end
+```
+
+
 ### have_tag
 
 ```ruby

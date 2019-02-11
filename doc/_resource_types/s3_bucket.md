@@ -130,6 +130,15 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+### have_server_side_encryption
+
+```
+describe s3_bucket('my-bucket') do
+  it { should have_server_side_encryption(algorithm: "AES256") }
+  it { should have_server_side_encryption(algorithm: "aws:kms") }
+end
+```
+
 ### advanced
 
 `s3_bucket` can use `Aws::S3::Bucket` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html).

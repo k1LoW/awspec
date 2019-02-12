@@ -44,7 +44,6 @@ module Awspec::Helper
         # Awspec::NoExistingResource will be raised.
         begin
           response = sns_client.get_topic_attributes({ topic_arn: topic_arn })
-          puts response
           topic = SnsTopic.new(response.attributes)
         rescue Aws::SNS::Errors::NotFound
           topic = nil

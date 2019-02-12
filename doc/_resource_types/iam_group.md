@@ -31,7 +31,7 @@ describe iam_group('my-iam-group') do
 end
 ```
 
-### have_inline_group
+### have_inline_policy
 
 ```ruby
 describe iam_group('my-iam-group') do

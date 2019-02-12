@@ -51,6 +51,14 @@ DOC
 end
 ```
 
+You can test absence of inline policies.
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should_not have_inline_policy }
+end
+```
+
 ### advanced
 
 `iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).

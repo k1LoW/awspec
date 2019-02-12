@@ -1798,6 +1798,14 @@ DOC
 end
 ```
 
+You can test absence of inline policies.
+
+```ruby
+describe iam_role('my-iam-role') do
+  it { should_not have_inline_policy }
+end
+```
+
 
 ### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:max_session_duration), its(:permissions_boundary), its(:tags)
 ### :unlock: Advanced use
@@ -1875,6 +1883,14 @@ describe iam_user('my-iam-user') do
 }
 DOC
   end
+end
+```
+
+You can test absence of inline policies.
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should_not have_inline_policy }
 end
 ```
 

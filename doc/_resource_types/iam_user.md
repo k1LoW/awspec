@@ -51,6 +51,14 @@ DOC
 end
 ```
 
+You can test absence of inline policies.
+
+```ruby
+describe iam_user('my-iam-user') do
+  it { should_not have_inline_policy }
+end
+```
+
 ### belong_to_iam_group
 
 ```ruby

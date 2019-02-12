@@ -5,6 +5,7 @@ describe iam_group('my-iam-group') do
   it { should exist }
   it { should have_iam_user('my-iam-user') }
   it { should have_iam_policy('ReadOnlyAccess') }
+  it { should have_inline_policy }
   it { should have_inline_policy('InlineEC2FullAccess') }
   it do
     should have_inline_policy('InlineEC2FullAccess').policy_document(<<-'DOC')

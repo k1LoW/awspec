@@ -28,12 +28,21 @@ module Awspec::Type
     end
 
     def has_inline_policy?(policy_name, document = nil)
+      return has_any_inline_policies? unless policy_name
+
       res = iam_client.get_group_policy({
                                           group_name: id,
                                           policy_name: policy_name
                                         })
       return JSON.parse(URI.decode(res.policy_document)) == JSON.parse(document) if document
       res
+    end
+
+    private
+
+    def has_any_inline_policies?
+      res = iam_client.list_group_policies(group_name: id)
+      !res.policy_names.empty?
     end
   end
 end

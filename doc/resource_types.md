@@ -1670,6 +1670,49 @@ end
 
 ### have_inline_policy
 
+```ruby
+describe iam_group('my-iam-group') do
+  it { should have_inline_policy('InlineEC2FullAccess') }
+  it do
+    should have_inline_policy('InlineEC2FullAccess').policy_document(<<-'DOC')
+{
+  "Statement": [
+    {
+      "Action": "ec2:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "elasticloadbalancing:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "cloudwatch:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "autoscaling:*",
+      "Resource": "*"
+    }
+  ]
+}
+DOC
+  end
+end
+```
+
+You can test absence of inline policies.
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should_not have_inline_policy }
+end
+```
+
+
 ### its(:path), its(:group_name), its(:group_id), its(:arn), its(:create_date)
 ### :unlock: Advanced use
 

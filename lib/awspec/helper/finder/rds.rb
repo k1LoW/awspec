@@ -37,14 +37,16 @@ module Awspec::Helper
 
       def select_all_rds_db_cluster_parameters(parameter_group)
         parameters = {}
-        res = rds_client.describe_db_cluster_parameters({
-                                                          db_cluster_parameter_group_name: parameter_group
-                                                        })
+        next_marker = nil
         loop do
+          res = rds_client.describe_db_cluster_parameters({
+                                                            marker: next_marker,
+                                                            db_cluster_parameter_group_name: parameter_group
+                                                          })
           res.parameters.each do |param|
             parameters[param.parameter_name] = param.parameter_value
           end
-          (res.respond_to?(:next_page?) && res.next_page? && res = res.next_page) || break
+          (res.marker.present? && next_marker = res.marker) || break
         end
         parameters
       end

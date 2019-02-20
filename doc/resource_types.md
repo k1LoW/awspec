@@ -1237,7 +1237,7 @@ describe efs('my-efs') do
 end
 ```
 
-### its(:owner_id), its(:creation_token), its(:file_system_id), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps), its(:tags)
+### its(:owner_id), its(:creation_token), its(:file_system_id), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps)
 ## <a name="elastic_ip">elastic_ip</a>
 
 Elastic IP resource type.

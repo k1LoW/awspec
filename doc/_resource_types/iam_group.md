@@ -31,7 +31,7 @@ describe iam_group('my-iam-group') do
 end
 ```
 
-### have_inline_group
+### have_inline_policy
 
 ```ruby
 describe iam_group('my-iam-group') do
@@ -64,6 +64,14 @@ describe iam_group('my-iam-group') do
 }
 DOC
   end
+end
+```
+
+You can test absence of inline policies.
+
+```ruby
+describe iam_group('my-iam-group') do
+  it { should_not have_inline_policy }
 end
 ```
 

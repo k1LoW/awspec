@@ -13,7 +13,17 @@ Aws.config[:efs] = {
           number_of_mount_targets: 1,
           life_cycle_state: 'available',
           owner_id: '123456789012',
-          performance_mode: 'generalPurpose'
+          performance_mode: 'generalPurpose',
+          tags: [
+            {
+              value: 'my-value',
+              key: 'my-key'
+            },
+            {
+              value: 'my-efs',
+              key: 'Name'
+            }
+          ]
         }
       ]
     },

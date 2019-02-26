@@ -49,6 +49,7 @@
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
 | [launch_template](#launch_template)
+| [mq](#mq)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
@@ -2225,6 +2226,48 @@ end
 ```
 
 ### its(:launch_template_id), its(:launch_template_name), its(:create_time), its(:created_by), its(:default_version_number), its(:latest_version_number), its(:tags)
+## <a name="mq">mq</a>
+
+MQ resource type.
+
+### exist
+
+```ruby
+describe mq('my-mq') do
+  it { should exist }
+end
+```
+
+
+### be_running, be_reboot_in_progress, be_creation_in_progress, be_creation_failed, be_deletion_in_progress
+
+```ruby
+describe mq('my-mq') do
+  it { should be_running }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe mq('my-mq') do
+  it { should have_security_group('sg-788eab237e47f1472') }
+  it { should have_security_group('mq-group-name-sg') }
+  it { should have_security_group('my-mq-sg') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe mq('my-mq') do
+  it { should have_tag('Name').value('my-mq') }
+end
+```
+
+### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:publicly_accessible), its(:security_groups), its(:subnet_ids)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

@@ -44,6 +44,7 @@ require 'awspec/helper/finder/sns_topic'
 require 'awspec/helper/finder/emr'
 require 'awspec/helper/finder/redshift'
 require 'awspec/helper/finder/codedeploy'
+require 'awspec/helper/finder/mq'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -97,6 +98,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Emr
     include Awspec::Helper::Finder::Redshift
     include Awspec::Helper::Finder::Codedeploy
+    include Awspec::Helper::Finder::Mq
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -138,7 +140,8 @@ module Awspec::Helper
       sns_client: Aws::SNS::Client,
       emr_client: Aws::EMR::Client,
       redshift_client: Aws::Redshift::Client,
-      codedeploy_client: Aws::CodeDeploy::Client
+      codedeploy_client: Aws::CodeDeploy::Client,
+      mq_client: Aws::MQ::Client
     }
 
     CLIENT_OPTIONS = {

@@ -37,7 +37,7 @@ end
 invalid_topic_arn = 'arn:aws:sns:us-east-1:123456789:invalid'
 
 describe sns_topic(invalid_topic_arn) do
-  context 'Issue https://github.com/k1LoW/awspec/issues/445 is stil open' do
+  context 'Issue https://github.com/k1LoW/awspec/issues/445 is still open' do
     it 'it does not exists'
     it ':name raises Awspec::NoExistingResource'
     it ':confirmed_subscriptions raises Awspec::NoExistingResource'

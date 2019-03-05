@@ -14,11 +14,13 @@ module Awspec::Type
 
     STATES.each do |state|
       define_method state + '?' do
+        check_existence
         resource_via_client.state.code == state
       end
     end
 
     def has_security_group?(sg_id)
+      check_existence
       sgs = resource_via_client.security_groups
       ret = sgs.find do |sg|
         sg == sg_id
@@ -30,6 +32,7 @@ module Awspec::Type
     end
 
     def has_subnet?(subnet_id)
+      check_existence
       azs = resource_via_client.availability_zones
       ret = azs.find do |az|
         az.subnet_id == subnet_id

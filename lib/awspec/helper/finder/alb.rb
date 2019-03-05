@@ -6,7 +6,7 @@ module Awspec::Helper
         res.load_balancers.select do |lb|
           lb.type == 'application'
         end.single_resource(id)
-      rescue
+      rescue Aws::ElasticLoadBalancingV2::Errors::LoadBalancerNotFound
         return nil
       end
 

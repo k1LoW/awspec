@@ -26,7 +26,6 @@ module Awspec::Helper
         results = client.send(m, *args, &block)
       rescue Exception => e # rubocop:disable Lint/RescueException
         raise unless e.class.to_s == symbol.to_s && backoff < backoff_limit
-
         @backoff = backoff + (iteration * iteration * 0.5)
         @iteration += 1
         sleep backoff

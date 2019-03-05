@@ -148,6 +148,14 @@ module Awspec::Helper
       http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil
     }
 
+    # define_method below will "hide" any exception that comes from bad
+    # setup of AWS client, so let's try first to create a instance
+    begin
+      Aws::EC2::Client.new(CLIENT_OPTIONS)
+    rescue => e
+      raise "Ops... there is something wrong with AWS client configuration => #{e}"
+    end
+
     CLIENTS.each do |method_name, client|
       define_method method_name do
         unless self.methods.include? "@#{method_name}"

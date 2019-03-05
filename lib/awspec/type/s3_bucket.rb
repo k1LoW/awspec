@@ -1,7 +1,5 @@
 module Awspec::Type
   class S3Bucket < ResourceBase
-    aws_resource Aws::S3::Bucket
-
     def resource_via_client
       @resource_via_client ||= find_bucket(@display_name)
     end
@@ -11,16 +9,12 @@ module Awspec::Type
     end
 
     def has_object?(key)
-      res = s3_client.head_object({
-                                    bucket: id,
-                                    key: key.sub(%r(\A/), '')
-                                  })
-      res
-    rescue
-      false
+      check_existence
+      head_object(id, key)
     end
 
     def has_acl_grant?(grantee:, permission:)
+      check_existence
       @acl = find_bucket_acl(id)
       @acl.grants.find do |grant|
         grant.permission == permission &&
@@ -29,11 +23,13 @@ module Awspec::Type
     end
 
     def acl_owner
+      check_existence
       @acl = find_bucket_acl(id)
       @acl.owner.display_name
     end
 
     def acl_grants_count
+      check_existence
       @acl = find_bucket_acl(id)
       @acl.grants.count
     end
@@ -57,7 +53,9 @@ module Awspec::Type
     end
 
     def has_policy?(policy)
+      check_existence
       bp = find_bucket_policy(id)
+
       if bp
         JSON.parse(bp.policy.read, array_class: Set) == JSON.parse(policy, array_class: Set)
       else
@@ -66,12 +64,14 @@ module Awspec::Type
     end
 
     def has_tag?(key, value)
+      check_existence
       tag = find_bucket_tag(id, key)
       return nil if tag.value != value
       tag
     end
 
     def has_logging_enabled?(target_bucket: nil, target_prefix: nil)
+      check_existence
       bl = find_bucket_logging(id)
       le = bl ? bl.logging_enabled : nil
 
@@ -82,11 +82,13 @@ module Awspec::Type
     end
 
     def has_versioning_enabled?
+      check_existence
       bv = find_bucket_versioning(id)
       bv ? (bv.status == 'Enabled') : false
     end
 
     def has_lifecycle_rule?(rule)
+      check_existence
       lc_rule = lifecycle_configuration_rules.select { |r| r[:id] == rule[:id] }
       return false if lc_rule == []
 
@@ -105,11 +107,13 @@ module Awspec::Type
     end
 
     def has_mfa_delete_enabled?
+      check_existence
       bv = find_bucket_versioning(id)
       bv ? (bv.mfa_delete == 'Enabled') : false
     end
 
     def has_server_side_encryption?(algorithm:)
+      check_existence
       configuration = find_bucket_server_side_encryption(id)
       return false unless configuration
 
@@ -120,8 +124,9 @@ module Awspec::Type
     private
 
     def cors_rules
-      cors = find_bucket_cors(id)
-      cors ? cors.cors_rules : []
+      check_existence
+      @cors ||= find_bucket_cors(id)
+      @cors ? @cors.cors_rules : []
     end
 
     def lifecycle_configuration_rules

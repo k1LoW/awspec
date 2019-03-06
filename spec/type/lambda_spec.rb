@@ -37,7 +37,7 @@ describe lambda('my-lambda-function-name') do
   end
 end
 
-describe lambda('not-exist-function') do
+describe lambda('no-existing-function') do
   it { should_not exist }
   methods = %w(environment description runtime handler code_size timeout memory_size last_modified code_sha_256 version
                kms_key_arn revision_id layers tracing_config)

@@ -29,3 +29,11 @@ describe nat_gateway('nat-7ff7777f') do
   it { should belong_to_vpc('my-vpc') }
 end
 ```
+
+### have_tag
+
+```ruby
+describe nat_gateway('nat-7ff7777f') do
+  it { should have_tag('Name').value('my-nat-gateway') }
+end
+```

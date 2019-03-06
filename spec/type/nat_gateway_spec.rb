@@ -6,4 +6,5 @@ describe nat_gateway('nat-7ff7777f') do
   it { should be_available }
   it { should have_eip('123.0.456.789') }
   it { should belong_to_vpc('my-vpc') }
+  it { should have_tag('Name').value('my-nat-gateway') }
 end

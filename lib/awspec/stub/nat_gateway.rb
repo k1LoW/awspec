@@ -11,6 +11,12 @@ Aws.config[:ec2] = {
             allocation_id: 'unknown',
             private_ip: 'unknown',
             network_interface_id: 'unknown'
+          ],
+          tags: [
+            {
+              key: 'Name',
+              value: 'my-nat-gateway'
+            }
           ]
         }
       ],

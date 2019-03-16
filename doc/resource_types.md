@@ -74,6 +74,7 @@
 | [vpn_connection](#vpn_connection)
 | [vpn_gateway](#vpn_gateway)
 | [waf_web_acl](#waf_web_acl)
+| [wafregional_web_acl](#wafregional_web_acl)
 | [account](#account)
 
 ## <a name="acm">acm</a>
@@ -3579,6 +3580,33 @@ end
 describe waf_web_acl('my-waf-web-acl') do
   it { should have_rule('my-waf-web-acl-allowed-ips') }
   it { should have_rule('my-waf-web-acl-allowed-ips').order(2).action('BLOCK') }
+end
+```
+
+
+### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name), its(:web_acl_arn)
+## <a name="wafregional_web_acl">wafregional_web_acl</a>
+
+WafregionalWebAcl resource type.
+
+### exist
+
+```ruby
+describe wafregional_web_acl('my-wafregional-web-acl') do
+  it { should exist }
+  its(:default_action) { should eq 'BLOCK' }
+  it { should have_rule('my-wafregional-web-acl-allowed-ips') }
+  it { should have_rule('my-wafregional-web-acl-allowed-ips').order(2).action('BLOCK') }
+end
+```
+
+
+### have_rule
+
+```ruby
+describe wafregional_web_acl('my-wafregional-web-acl') do
+  it { should have_rule('my-wafregional-web-acl-allowed-ips') }
+  it { should have_rule('my-wafregional-web-acl-allowed-ips').order(2).action('BLOCK') }
 end
 ```
 

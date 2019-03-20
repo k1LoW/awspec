@@ -4,6 +4,8 @@ Awspec::Stub.load 'route53_hosted_zone'
 describe route53_hosted_zone('example.com.') do
   it { should exist }
   its(:resource_record_set_count) { should eq 8 }
+  it { should have_record_set('example.com.') }
+  it { should have_record_set('example.com.').type('a') }
   it { should have_record_set('example.com.').a('123.456.7.890') }
   it { should have_record_set('*.example.com.').cname('example.com') }
   it { should have_record_set('example.com.').mx('10 mail.example.com') }

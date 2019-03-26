@@ -126,7 +126,7 @@ $ AWS_PROFILE=mycreds bundle exec rake spec
 
 ## Support AWS Resources
 
-[Resource Types infomation here](doc/resource_types.md)
+[Resource Types information here](doc/resource_types.md)
 
 ## awspec AWS key/secrets precedence
 

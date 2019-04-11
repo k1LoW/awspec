@@ -1291,7 +1291,7 @@ describe eks('my-eks') do
 end
 ```
 
-### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:status), its(:client_request_token), its(:platform_version)
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:logging), its(:status), its(:client_request_token), its(:platform_version)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

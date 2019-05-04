@@ -3331,7 +3331,7 @@ end
 ```
 
 
-### its(:name), its(:type), its(:key_id), its(:last_modified_date), its(:last_modified_user), its(:description), its(:allowed_pattern), its(:version)
+### its(:name), its(:type), its(:key_id), its(:last_modified_date), its(:last_modified_user), its(:description), its(:allowed_pattern), its(:version), its(:tier), its(:policies)
 ### :unlock: Advanced use
 
 ```ruby

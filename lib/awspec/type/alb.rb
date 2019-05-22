@@ -1,5 +1,6 @@
 module Awspec::Type
   class Alb < ResourceBase
+    tags_allowed
     def resource_via_client
       @resource_via_client ||= find_alb(@display_name)
     end
@@ -37,6 +38,16 @@ module Awspec::Type
       return true if ret
       subnet2 = find_subnet(subnet_id)
       subnet2.subnet_id = subnet_id
+    end
+
+    def has_tag?(key, value)
+      alb_arn = resource_via_client.load_balancers.find do |lb|
+        lb.load_balancer_name == 'aws-nbl-test'
+      end.load_balancer_arn
+
+      tag = find_alb_tags(alb_arn)
+      return true if tag
+      false
     end
   end
 end

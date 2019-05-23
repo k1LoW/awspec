@@ -10,4 +10,5 @@ describe alb('my-alb') do
   it { should have_subnet('subnet-1234a567') }
   it { should have_subnet('my-subnet') }
   it { should belong_to_vpc('my-vpc') }
+  it { should have_tag('environment').value('dev') }
 end

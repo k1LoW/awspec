@@ -40,14 +40,12 @@ module Awspec::Type
       subnet2.subnet_id = subnet_id
     end
 
-    def has_tag?(key, value)
-      alb_arn = resource_via_client.load_balancers.find do |lb|
-        lb.load_balancer_name == 'aws-nbl-test'
-      end.load_balancer_arn
-
-      tag = find_alb_tags(alb_arn)
-      return true if tag
-      false
+    def has_tag?(tag_key, tag_value)
+      alb_arn = resource_via_client.load_balancer_arn
+      tag_set = select_all_alb_tags(alb_arn)
+      tag_set.find do |tag|
+        tag.key == tag_key && tag.value == tag_value
+      end
     end
   end
 end

@@ -274,7 +274,7 @@ describe apigateway('my-apigateway') do
 end
 ```
 
-### its(:id), its(:name), its(:description), its(:created_date), its(:version), its(:warnings), its(:binary_media_types), its(:minimum_compression_size), its(:api_key_source), its(:policy)
+### its(:id), its(:name), its(:description), its(:created_date), its(:version), its(:warnings), its(:binary_media_types), its(:minimum_compression_size), its(:api_key_source), its(:policy), its(:tags)
 ## <a name="autoscaling_group">autoscaling_group</a>
 
 AutoscalingGroup resource type.

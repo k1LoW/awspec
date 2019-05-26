@@ -1240,7 +1240,7 @@ end
 ```
 
 ### its(:owner_id), its(:creation_token), its(:file_system_id), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps)
-## <a name="elastic_ip">elastic_ip</a>
+## <a name="eip">eip</a>
 
 Elastic IP resource type.
 
@@ -2191,9 +2191,9 @@ end
 ```
 
 #### specify version
- 
+
 Specify "latest" or version_number.
- 
+
 ```ruby
 # version_number
 describe launch_template('my-launch-template'), version: 2 do
@@ -2207,7 +2207,7 @@ describe launch_template('my-launch-template'), version: 'latest' do
   its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
 end
 ```
- 
+
 
 ### have_tag
 
@@ -3690,7 +3690,7 @@ describe account_attribute('ec2') do
   its('vpc_max_elastic_ips') { should eq 5 }
   its('default_vpc') { should eq 'none' }
 end
- 
+
 describe account_attribute('rds') do
   its('DBInstances.used') { should eq 0 }
   its('DBInstances.max') { should eq 40 }
@@ -3723,7 +3723,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.used') { should eq 0 }
   its('DBClusterRoles.max') { should eq 5 }
 end
- 
+
 describe account_attribute('lambda') do
   its('total_code_size.limit') { should eq 80530636800 }
   its('total_code_size.usage') { should eq 2034651562 }
@@ -3733,13 +3733,13 @@ describe account_attribute('lambda') do
   its('unreserved_concurrent_executions.limit') { should eq 50 }
   its('function_count.usage') { should eq 8 }
 end
- 
+
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }
 end
- 
+
 ```
 
 

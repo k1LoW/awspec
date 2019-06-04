@@ -10,7 +10,7 @@ module Awspec::Generator
           @matchers = [
             Awspec::Type::Alb::STATES.map { |state| 'be_' + state }.join(', '),
             'belong_to_vpc',
-            'have_tag'
+            # 'have_tag'
           ]
           @ignore_matchers = Awspec::Type::Alb::STATES.map { |state| 'be_' + state }
           @describes = []

@@ -506,7 +506,7 @@ describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
 end
 ```
 
-### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:origin_groups), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled)
+### its(:id), its(:arn), its(:status), its(:last_modified_time), its(:domain_name), its(:origin_groups), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled), its(:alias_icp_recordals)
 ## <a name="cloudtrail">cloudtrail</a>
 
 Cloudtrail resource type.
@@ -1173,7 +1173,7 @@ end
 ```
 
 
-### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes), its(:registered_at), its(:attachments), its(:tags)
+### its(:container_instance_arn), its(:ec2_instance_id), its(:version), its(:version_info), its(:status), its(:status_reason), its(:agent_connected), its(:running_tasks_count), its(:pending_tasks_count), its(:agent_update_status), its(:attributes), its(:registered_at), its(:attachments), its(:tags)
 ## <a name="ecs_service">ecs_service</a>
 
 ECS Service resource type.

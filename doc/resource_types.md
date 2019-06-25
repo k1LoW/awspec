@@ -144,6 +144,15 @@ end
 ```
 
 
+### have_tag
+
+```ruby
+describe alb('my-alb') do
+  it { should have_tag('environment').value('dev') }
+end
+```
+
+
 ### belong_to_vpc
 
 ```ruby

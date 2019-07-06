@@ -13,6 +13,16 @@ module Awspec::Helper
         nil
       end
 
+      def head_object(id, key)
+        res = s3_client.head_object({
+                                      bucket: id,
+                                      key: key.sub(%r(\A/), '')
+                                    })
+        res.data.class == Aws::S3::Types::HeadObjectOutput
+      rescue Aws::S3::Errors::NotFound
+        false
+      end
+
       def find_bucket_cors(id)
         s3_client.get_bucket_cors(bucket: id)
       rescue Aws::S3::Errors::ServiceError

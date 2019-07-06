@@ -23,7 +23,7 @@ module Awspec::Helper
       end
 
       def select_all_lambda_functions
-        res = lambda_client.list_functions.map do |response|
+        lambda_client.list_functions.map do |response|
           response.functions
         end.flatten
       end

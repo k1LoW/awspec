@@ -2,8 +2,7 @@ module Awspec::Helper
   module Finder
     module Codebuild
       def find_codebuild_project(id)
-        res = codebuild_client.list_projects({ sort_by: id })
-        projects = res.projects.select do |project|
+        projects = select_all_codebuild_projects.select do |project|
           project == id
         end
         projects.single_resource(id)

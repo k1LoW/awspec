@@ -14,9 +14,15 @@ module Awspec::Type
 
     def has_record_set?(name, type, value, options = {})
       name = name.gsub(/\*/, '\\\052') # wildcard support
-      ret = resource_via_client_record_sets.find do |record_set|
-        # next if record_set.type != type.upcase
-        next unless record_set.type.casecmp(type) == 0
+
+      record_sets = resource_via_client_record_sets.select { |record| record.name == name }
+      # Check if the given record is registered regardless of type and value
+      return !record_sets.empty? if (type || value).nil?
+
+      record_sets.select! { |record_set| record_set.type.casecmp(type) == 0 }
+      return !record_sets.empty? unless value
+
+      record_sets.each do |record_set|
         if !record_set.resource_records.empty?
           sorted = record_set.resource_records.map { |r| r.value }.sort.join("\n")
           ttl = options[:ttl] || record_set[:ttl]

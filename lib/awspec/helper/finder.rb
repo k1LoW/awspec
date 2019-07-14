@@ -29,6 +29,7 @@ require 'awspec/helper/finder/cloudfront'
 require 'awspec/helper/finder/elastictranscoder'
 require 'awspec/helper/finder/cloudtrail'
 require 'awspec/helper/finder/waf'
+require 'awspec/helper/finder/wafregional'
 require 'awspec/helper/finder/acm'
 require 'awspec/helper/finder/cloudwatch_logs'
 require 'awspec/helper/finder/dynamodb'
@@ -82,6 +83,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Elastictranscoder
     include Awspec::Helper::Finder::Cloudtrail
     include Awspec::Helper::Finder::Waf
+    include Awspec::Helper::Finder::WafRegional
     include Awspec::Helper::Finder::Acm
     include Awspec::Helper::Finder::AccountAttributes
     include Awspec::Helper::Finder::CloudwatchLogs
@@ -125,6 +127,7 @@ module Awspec::Helper
       elasticsearch_client: Aws::ElasticsearchService::Client,
       cloudtrail_client: Aws::CloudTrail::Client,
       waf_client: Aws::WAF::Client,
+      wafregional_client: Aws::WAFRegional::Client,
       sts_client: Aws::STS::Client,
       acm_client: Aws::ACM::Client,
       cloudwatch_logs_client: Aws::CloudWatchLogs::Client,

@@ -85,10 +85,21 @@ module Awspec::Helper
       end
 
       def find_nat_gateway(gateway_id)
-        res = ec2_client.describe_nat_gateways({
-                                                 filter: [{ name: 'nat-gateway-id', values: [gateway_id] }]
-                                               })
-        res.nat_gateways.single_resource(gateway_id)
+        # nat_gateway_id or tag:Name
+        begin
+          res = ec2_client.describe_nat_gateways({
+                                                   nat_gateway_ids: [gateway_id]
+                                                 })
+        rescue
+          res = ec2_client.describe_nat_gateways({
+                                                   filter: [{ name: 'tag:Name', values: [gateway_id] }]
+                                                 })
+        end
+        if res.nat_gateways.count == 1
+          res.nat_gateways.single_resource(gateway_id)
+        elsif res.nat_gateways.count > 1
+          raise Awspec::DuplicatedResourceTypeError, "Duplicate nat_gateways matching id or tag #{gateway_id}"
+        end
       end
 
       def find_network_interface(interface_id)

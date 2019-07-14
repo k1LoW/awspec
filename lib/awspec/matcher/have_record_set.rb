@@ -29,4 +29,8 @@ RSpec::Matchers.define :have_record_set do |name|
     @options = {} if @options.nil?
     @options[:ttl] = ttl
   end
+
+  chain :type do |type|
+    @type = type
+  end
 end

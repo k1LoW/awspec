@@ -1,5 +1,6 @@
 module Awspec::Type
   class Alb < ResourceBase
+    tags_allowed
     def resource_via_client
       @resource_via_client ||= find_alb(@display_name)
     end
@@ -40,6 +41,14 @@ module Awspec::Type
       return true if ret
       subnet2 = find_subnet(subnet_id)
       subnet2.subnet_id = subnet_id
+    end
+
+    def has_tag?(tag_key, tag_value)
+      alb_arn = resource_via_client.load_balancer_arn
+      tag_set = select_all_alb_tags(alb_arn)
+      tag_set.find do |tag|
+        tag.key == tag_key && tag.value == tag_value
+      end
     end
   end
 end

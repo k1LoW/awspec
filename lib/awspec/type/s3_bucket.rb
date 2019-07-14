@@ -1,5 +1,7 @@
 module Awspec::Type
   class S3Bucket < ResourceBase
+    aws_resource Aws::S3::Bucket
+
     def resource_via_client
       @resource_via_client ||= find_bucket(@display_name)
     end

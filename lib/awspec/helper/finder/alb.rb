@@ -54,6 +54,15 @@ module Awspec::Helper
         end
         selected
       end
+
+      def select_all_alb_tags(id)
+        res = elbv2_client.describe_tags({ resource_arns: [id] })
+        res.tag_descriptions.select do |resource|
+          resource.resource_arn == id
+        end.first.tags
+      rescue
+        return nil
+      end
     end
   end
 end

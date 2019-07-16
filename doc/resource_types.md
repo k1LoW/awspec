@@ -613,7 +613,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
 end
 ```
 
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile), its(:metrics)
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile), its(:metrics), its(:threshold_metric_id)
 ## <a name="cloudwatch_event">cloudwatch_event</a>
 
 CloudwatchEvent resource type.
@@ -624,7 +624,7 @@ CloudwatchEvent resource type.
 
 ### be_scheduled
 
-### its(:name), its(:arn), its(:event_pattern), its(:state), its(:description), its(:schedule_expression), its(:role_arn), its(:managed_by)
+### its(:name), its(:arn), its(:event_pattern), its(:state), its(:description), its(:schedule_expression), its(:role_arn), its(:managed_by), its(:event_bus_name)
 ## <a name="cloudwatch_logs">cloudwatch_logs</a>
 
 CloudwatchLogs resource type.

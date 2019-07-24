@@ -1157,7 +1157,7 @@ describe ecs_cluster('my-ecs-cluster') do
 end
 ```
 
-### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics), its(:tags)
+### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics), its(:tags), its(:settings)
 ## <a name="ecs_container_instance">ecs_container_instance</a>
 
 ECS Container Instance resource type.
@@ -2277,7 +2277,7 @@ describe mq('my-mq') do
 end
 ```
 
-### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:publicly_accessible), its(:security_groups), its(:subnet_ids)
+### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:publicly_accessible), its(:security_groups), its(:subnet_ids)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

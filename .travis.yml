@@ -1,4 +1,7 @@
 language: ruby
+env:
+  global:
+    DISABLE_AWS_CLIENT_CHECK: true
 matrix:
   include:
     - rvm: 2.6.2

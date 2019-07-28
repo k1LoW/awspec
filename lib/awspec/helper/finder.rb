@@ -153,10 +153,12 @@ module Awspec::Helper
 
     # define_method below will "hide" any exception that comes from bad
     # setup of AWS client, so let's try first to create a instance
-    begin
-      Aws::EC2::Client.new(CLIENT_OPTIONS)
-    rescue => e
-      raise "Ops... there is something wrong with AWS client configuration => #{e}"
+    unless ENV['DISABLE_AWS_CLIENT_CHECK'] == 'true'
+      begin
+        Aws::EC2::Client.new(CLIENT_OPTIONS)
+      rescue => e
+        raise "Ops... there is something wrong with AWS client configuration => #{e}"
+      end
     end
 
     CLIENTS.each do |method_name, client|

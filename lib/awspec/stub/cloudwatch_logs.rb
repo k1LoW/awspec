@@ -29,6 +29,13 @@ Aws.config[:cloudwatchlogs] = {
           filter_pattern: '[host, ident, authuser, date, request, status, bytes]'
         }
       ]
+    },
+    list_tags_log_group: {
+      tags: {
+        "key_one" => "value_one",
+        "key_two" => "value_two"
+      }
     }
+
   }
 }

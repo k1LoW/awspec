@@ -537,6 +537,7 @@ describe cloudtrail('my-trail') do
 end
 ```
 
+
 ### be_multi_region_trail
 
 ```ruby
@@ -563,6 +564,14 @@ describe cloudtrail('my-trail') do
 end
 ```
 
+
+### have_tag
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should have_tag('Name').value('my-trail') }
+end
+```
 
 ### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id), its(:has_custom_event_selectors), its(:is_organization_trail)
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
@@ -670,6 +679,15 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
     should have_subscription_filter('my-cloudwatch-logs-subscription-filter')\
       .filter_pattern('[host, ident, authuser, date, request, status, bytes]')
   end
+end
+```
+
+
+### have_tag
+
+```ruby
+describe cloudwatch_logsl('my-cloudwatch-logs-group') do
+  it { should have_tag('Name').value('my-cloudwatch-logs-group') }
 end
 ```
 

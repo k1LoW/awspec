@@ -32,8 +32,8 @@ Aws.config[:cloudwatchlogs] = {
     },
     list_tags_log_group: {
       tags: {
-        "key_one" => "value_one",
-        "key_two" => "value_two"
+        'key_one' => 'value_one',
+        'key_two' => 'value_two'
       }
     }
 

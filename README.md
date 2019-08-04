@@ -96,6 +96,33 @@ describe sqs('my-sqs-queue'), region: 'us-west-2' do
 end
 ```
 
+#### Using terraform outputs as identifier
+
+Especially in cases, where resources created by terraform have the same names (e.g. created by VPC module), it is helpful to use terraform outputs as unique identifiers.
+
+```terraform
+output "my_ec2_instance" {
+    value = aws_instance.my_instance.id
+}
+```
+
+```ruby
+require 'spec_helper'
+
+my_ec2_instance = `terraform output my_ec2_instance`.strip
+
+describe ec2(my_ec2_instance) do
+  it { should be_running }
+  its(:image_id) { should eq 'ami-abc12def' }
+  its(:public_ip_address) { should eq '123.0.456.789' }
+  it { should have_security_group('my-security-group-name') }
+  it { should belong_to_vpc('my-vpc') }
+  it { should belong_to_subnet('subnet-1234a567') }
+  it { should have_eip('123.0.456.789') }
+  it { should be_disabled_api_termination }
+end
+```
+
 ### STEP 4. Run tests
 Add gem "rake" in your Gemfile if you are starting a blank project.
 

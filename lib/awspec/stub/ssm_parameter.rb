@@ -1,6 +1,6 @@
 Aws.config[:ssm] = {
   stub_responses: {
-    describe_parameters: {
+    find_ssm_parameter: {
       parameters: [
         {
           name: 'my-parameter',

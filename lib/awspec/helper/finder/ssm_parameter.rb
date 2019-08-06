@@ -2,15 +2,9 @@ module Awspec::Helper
   module Finder
     module SsmParameter
       def find_ssm_parameter(name)
-        ssm_client.describe_parameters(
-          {
-            filters:  [
-              {
-                key: 'Name',
-                values: [name]
-              }
-            ]
-          }).parameters[0]
+        ssm_client.get_parameter({
+          name: name, with_decryption: false,
+        }).parameter
       end
 
       def find_parameter_tag(id, tag_key)

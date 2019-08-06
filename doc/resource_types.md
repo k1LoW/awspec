@@ -3340,13 +3340,13 @@ end
 ```
 
 
-### its(:name), its(:type), its(:key_id), its(:last_modified_date), its(:last_modified_user), its(:description), its(:allowed_pattern), its(:version), its(:tier), its(:policies)
+### its(:name), its(:type), its(:value), its(:version), its(:selector), its(:source_result), its(:last_modified_date), its(:arn)
 ### :unlock: Advanced use
 
 ```ruby
 describe ssm_parameter('my-parameter') do
-  its(:key_id) { should be_eql('6a81f446-27b0-4d51-a04f-af7ddeea2e22') }
-  its(:description) { should be_eql('Some string description') }
+  its(:arn) { should be_eql('arn:aws:ssm:REGION:ACCOUNT_ID:parameter/my-parameter') }
+  its(:name) { should be_eql('my-parameter') }
   its(:version) { should be_eql(1) }
 end
 ```

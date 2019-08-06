@@ -3,8 +3,8 @@ module Awspec::Helper
     module SsmParameter
       def find_ssm_parameter(name)
         ssm_client.get_parameter({
-          name: name, with_decryption: false,
-        }).parameter
+                                   name: name, with_decryption: false
+                                 }).parameter
       end
 
       def find_parameter_tag(id, tag_key)

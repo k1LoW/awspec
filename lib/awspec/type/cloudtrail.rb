@@ -25,5 +25,11 @@ module Awspec::Type
     def logging?
       is_logging?(id)
     end
+
+    def has_tag?(tag_key, tag_value)
+      get_trail_tags(resource_via_client.trail_arn).find do |tag|
+        tag.key == tag_key && tag.value == tag_value
+      end
+    end
   end
 end

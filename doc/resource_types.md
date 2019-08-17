@@ -537,6 +537,7 @@ describe cloudtrail('my-trail') do
 end
 ```
 
+
 ### be_multi_region_trail
 
 ```ruby
@@ -563,6 +564,14 @@ describe cloudtrail('my-trail') do
 end
 ```
 
+
+### have_tag
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should have_tag('Name').value('my-trail') }
+end
+```
 
 ### its(:name), its(:s3_bucket_name), its(:s3_key_prefix), its(:sns_topic_name), its(:sns_topic_arn), its(:include_global_service_events), its(:is_multi_region_trail), its(:home_region), its(:trail_arn), its(:log_file_validation_enabled), its(:cloud_watch_logs_log_group_arn), its(:cloud_watch_logs_role_arn), its(:kms_key_id), its(:has_custom_event_selectors), its(:is_organization_trail)
 ## <a name="cloudwatch_alarm">cloudwatch_alarm</a>
@@ -673,6 +682,15 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
+
+### have_tag
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_tag('Name').value('my-cloudwatch-logs-group') }
+end
+```
+
 ### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id)
 ## <a name="codebuild">codebuild</a>
 
@@ -743,7 +761,7 @@ end
 ```
 
 
-### its(:bgp_asn), its(:customer_gateway_id), its(:ip_address), its(:state), its(:type), its(:tags)
+### its(:bgp_asn), its(:customer_gateway_id), its(:ip_address), its(:certificate_arn), its(:state), its(:type), its(:tags)
 ## <a name="directconnect_virtual_interface">directconnect_virtual_interface</a>
 
 DirectconnectVirtualInterface resource type.

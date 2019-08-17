@@ -64,6 +64,7 @@
 | [route53_hosted_zone](#route53_hosted_zone)
 | [route_table](#route_table)
 | [s3_bucket](#s3_bucket)
+| [secretsmanager](#secretsmanager)
 | [security_group](#security_group)
 | [ses_identity](#ses_identity)
 | [sns_topic](#sns_topic)
@@ -3150,6 +3151,28 @@ describe s3_bucket('my-bucket') do
 end
 ```
 
+## <a name="secretsmanager">secretsmanager</a>
+
+Secretsmanager resource type.
+
+### exist
+
+```ruby
+describe secretsmanager('my-secret') do
+  it { should exist }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe secretsmanager('my-secret') do
+  it { should have_tag('Name').value('my-secret') }
+end
+```
+
+### its(:arn), its(:name), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:owning_service)
 ## <a name="security_group">security_group</a>
 
 SecurityGroup resource type.

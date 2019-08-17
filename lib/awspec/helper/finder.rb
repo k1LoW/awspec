@@ -46,6 +46,7 @@ require 'awspec/helper/finder/emr'
 require 'awspec/helper/finder/redshift'
 require 'awspec/helper/finder/codedeploy'
 require 'awspec/helper/finder/mq'
+require 'awspec/helper/finder/secretsmanager'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -101,6 +102,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Redshift
     include Awspec::Helper::Finder::Codedeploy
     include Awspec::Helper::Finder::Mq
+    include Awspec::Helper::Finder::Secretsmanager
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -144,7 +146,8 @@ module Awspec::Helper
       emr_client: Aws::EMR::Client,
       redshift_client: Aws::Redshift::Client,
       codedeploy_client: Aws::CodeDeploy::Client,
-      mq_client: Aws::MQ::Client
+      mq_client: Aws::MQ::Client,
+      secretsmanager_client: Aws::SecretsManager::Client
     }
 
     CLIENT_OPTIONS = {

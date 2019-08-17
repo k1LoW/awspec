@@ -3145,6 +3145,15 @@ describe secretsmanager('my-secret') do
 end
 ```
 
+
+### have_tag
+
+```ruby
+describe secretsmanager('my-secret') do
+  it { should have_tag('Name').value('my-secret') }
+end
+```
+
 ### its(:arn), its(:name), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:owning_service)
 ## <a name="security_group">security_group</a>
 

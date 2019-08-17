@@ -5,7 +5,7 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'Secretsmanager'
-          @type = Awspec::Type::Secretsmanager.new('my-secrets-manager')
+          @type = Awspec::Type::Secretsmanager.new('my-secret')
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []

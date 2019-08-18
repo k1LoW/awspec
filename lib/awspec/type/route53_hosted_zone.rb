@@ -22,7 +22,7 @@ module Awspec::Type
       record_sets.select! { |record_set| record_set.type.casecmp(type) == 0 }
       return !record_sets.empty? if value.nil? && options.nil? || value.nil? && options.empty?
 
-      return match_failover_record(record_sets, name, value, options) if options.dig(:record_type)
+      return match_failover_record(record_sets, name, value, options) if options[:record_type]
 
       record_sets.each do |record_set|
         return match_record(record_set, name, value, options) unless record_set.resource_records.empty?
@@ -44,7 +44,7 @@ module Awspec::Type
     def match_record(record_set, name, value, options)
       sorted = record_set.resource_records.map { |r| r.value }.sort.join("\n")
 
-      if !options.empty? && options.dig(:ttl)
+      if !options.empty? && options[:ttl]
         return (record_set.name == name && \
           value.split("\n").sort.join("\n") == sorted && \
           record_set.ttl == options[:ttl])

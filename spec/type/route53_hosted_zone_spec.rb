@@ -7,6 +7,8 @@ describe route53_hosted_zone('example.com.') do
   it { should have_record_set('example.com.') }
   it { should have_record_set('example.com.').type('a') }
   it { should have_record_set('example.com.').a('123.456.7.890') }
+  it { should have_record_set('failover.example.com.').a('123.456.7.891').failover('PRIMARY') }
+  it { should have_record_set('failover.example.com.').a('123.456.7.892').failover('SECONDARY') }
   it { should have_record_set('*.example.com.').cname('example.com') }
   it { should have_record_set('example.com.').mx('10 mail.example.com') }
   it { should have_record_set('mail.example.com.').a('123.456.7.890').ttl(3600) }
@@ -15,7 +17,20 @@ ns-6789.awsdns-01.org.
 ns-2345.awsdns-67.co.uk.
 ns-890.awsdns-12.com.'
   it { should have_record_set('example.com.').ns(ns) }
-  it { should have_record_set('s3.example.com.').alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL') }
+  it do
+    should have_record_set('s3.example.com.')\
+      .alias('abcdefghijklmn.cloudfront.net.', 'Z2FDTNDATAQYW2')\
+      .failover('PRIMARY')
+  end
+  it do
+    should have_record_set('s3.example.com.')\
+      .alias('s3-website-us-east-1.amazonaws.com.', 'Z2ABCDEFGHIJKL')\
+      .failover('SECONDARY')
+  end
+  it do
+    should have_record_set('alias.example.com.')\
+      .alias('opqrstuvwxyz.cloudfront.net.', 'Z2FDTNDATAQYW2')
+  end
   caa = '0 issue "amazon.com"
 0 issue "amazontrust.com"
 0 issue "awstrust.com"

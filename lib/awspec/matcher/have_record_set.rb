@@ -33,4 +33,9 @@ RSpec::Matchers.define :have_record_set do |name|
   chain :type do |type|
     @type = type
   end
+
+  chain :failover do |record_type|
+    @options = {} if @options.nil?
+    @options[:record_type] = record_type
+  end
 end

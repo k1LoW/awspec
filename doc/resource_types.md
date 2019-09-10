@@ -1319,7 +1319,7 @@ describe eks('my-eks') do
 end
 ```
 
-### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:logging), its(:status), its(:client_request_token), its(:platform_version)
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.
@@ -2296,7 +2296,7 @@ describe mq('my-mq') do
 end
 ```
 
-### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:publicly_accessible), its(:security_groups), its(:subnet_ids)
+### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:pending_security_groups), its(:publicly_accessible), its(:security_groups), its(:subnet_ids)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

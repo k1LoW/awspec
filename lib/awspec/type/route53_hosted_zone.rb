@@ -16,8 +16,10 @@ module Awspec::Type
       name = name.gsub(/\*/, '\\\052') # wildcard support
 
       record_sets = resource_via_client_record_sets.select { |record| record.name == name }
+      return false if record_sets.empty?
+
       # Check if the given record is registered regardless of type and value
-      return !record_sets.empty? if type.nil? && value.nil? && options.nil?
+      return true if type.nil? && value.nil? && options.nil?
 
       record_sets.select! { |record_set| record_set.type.casecmp(type) == 0 }
       return !record_sets.empty? if value.nil? && options.nil? || value.nil? && options.empty?

@@ -6,7 +6,8 @@
 2. Generate template files (`bundle exec bin/toolbox template redshift`)
 3. Fill files with code.
 4. `bundle update` to update gems.
-5. Generate [doc/resource_types.md](doc/resource_types.md) (`bundle exec rake generate_docs`)
+5. Generate [doc/resource_types.md](resource_types.md) (`bundle exec bin/toolbox docgen > doc/resource_types.md`)
+5. Generate [doc/resource_types.md](resource_types.md) (`bundle exec rake generate_docs`)
 6. Run test (`bundle exec rake spec`)
 7. Push to the branch (`git push origin add-type-redshift`)
 8. Create a new Pull Request
@@ -24,7 +25,7 @@ Maybe, your `aws-sdk-ruby` is not latest. Please exec `bundle update` and `bundl
 1. Create your feature branch (`git checkout -b add-type-cf-limit`)
 2. Generate template files (`bundle exec bin/toolbox template cloudformation_account_attributes -a`) **with -a option**
 3. Fill files with code.
-4. Generate [doc/resource_types.md](doc/resource_types.md) (`bundle exec rake generate_docs`)
+4. Generate [doc/resource_types.md](resource_types.md) (`bundle exec rake generate_docs`)
 5. Run test (`bundle exec rake spec`)
 6. Push to the branch (`git push origin add-type-cf-limit`)
 7. Create a new Pull Request

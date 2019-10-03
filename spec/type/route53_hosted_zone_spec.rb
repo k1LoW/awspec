@@ -12,6 +12,8 @@ describe route53_hosted_zone('example.com.') do
   it { should have_record_set('*.example.com.').cname('example.com') }
   it { should have_record_set('example.com.').mx('10 mail.example.com') }
   it { should have_record_set('mail.example.com.').a('123.456.7.890').ttl(3600) }
+  it { should_not have_record_set('notexist.example.com.') }
+  it { should_not have_record_set('notexist.example.com.').a('123.456.7.890').ttl(3600) }
   ns = 'ns-123.awsdns-45.net.
 ns-6789.awsdns-01.org.
 ns-2345.awsdns-67.co.uk.

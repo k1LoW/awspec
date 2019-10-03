@@ -6,7 +6,6 @@
 2. Generate template files (`bundle exec bin/toolbox template redshift`)
 3. Fill files with code.
 4. `bundle update` to update gems.
-5. Generate [doc/resource_types.md](resource_types.md) (`bundle exec bin/toolbox docgen > doc/resource_types.md`)
 5. Generate [doc/resource_types.md](resource_types.md) (`bundle exec rake generate_docs`)
 6. Run test (`bundle exec rake spec`)
 7. Push to the branch (`git push origin add-type-redshift`)

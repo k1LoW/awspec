@@ -1,7 +1,11 @@
+require 'singleton'
+
 require 'awspec/error'
 
 module Awspec
   class Config
+    include Singleton
+
     def initialize
       @config = {
         client_backoff: 0.0,

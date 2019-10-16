@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Awspec::Config do
   context 'given the Config object' do
+    let(:subject) { Awspec::Config.instance }
+
     it 'should have the default configurations for an awspec client' do
       expect(subject[:client_backoff]).to be(0.0)
       expect(subject[:client_backoff_limit]).to be(30.0)

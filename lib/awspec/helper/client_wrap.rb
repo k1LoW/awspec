@@ -1,14 +1,17 @@
+require 'awspec/config'
+
 module Awspec::Helper
   class ClientWrap
     attr_reader :client, :backoff, :iteration, :backoff_limit, :symbol
     def initialize(real_client = nil, args = {})
       raise ArgumentError, 'Client can not be nil' if real_client.nil?
+      config = Awspec::Config.instance
       @client        = real_client
-      @backoff       = args.key?(:backoff) ? args[:backoff] : 0.0
+      @backoff       = config[:client_backoff]
       @orig_backoff  = @backoff
-      @iteration     = args.key?(:iteration) ? args[:iteration] : 1
+      @iteration     = config[:client_iteration]
       @orig_iter     = @iteration
-      @backoff_limit = args.key?(:backoff_limit) ? args[:backoff_limit] : 30.0
+      @backoff_limit = config[:client_backoff_limit]
       # build the symbol we'll use to compare to any errors caught in method_missing
       # below.
       @symbol = real_client.class.to_s.split('::').shift(2).push('Errors', 'RequestLimitExceeded').join('::').to_sym

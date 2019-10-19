@@ -151,6 +151,29 @@ $ awspec generate ec2 vpc-ab123cde --profile mycreds
 $ AWS_PROFILE=mycreds bundle exec rake spec
 ```
 
+### Advanced Tips: Configuring the AWS client retries
+
+The [`ClientWrap` class](https://github.com/k1LoW/awspec/blob/master/lib/awspec/helper/client_wrap.rb)
+provides mechanisms for retrying AWS API calls when it receives a
+`RequestLimitExceeded` error. `ClientWrap` implements a backoff algorithm
+where the client will sleep for successively longer periods of time until the
+algorithm has calculated a backoff greater than or equal to the
+`backoff_limit`, at which point it will give up and re-raise the error. You
+can see the full implementation in `ClientWrap#method_missing`.
+
+You can configure this retry and backoff logic in your `spec_helper.rb`:
+
+```ruby
+require 'awspec'
+
+# These are the defaults, but you can change them.
+Awspec.configure do |config|
+  config.client_backoff 0.0
+  config.client_backoff_limit 30
+  config.client_iteration 1
+end
+```
+
 ## Support AWS Resources
 
 [Resource Types information here](doc/resource_types.md)

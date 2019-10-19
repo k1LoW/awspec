@@ -10,7 +10,7 @@ module Awspec
       @config = {
         client_backoff: 0.0,
         client_backoff_limit: 30.0,
-        client_iteration: 1,
+        client_iteration: 1
       }
     end
 
@@ -30,8 +30,8 @@ module Awspec
       @config.fetch(key)
     end
 
-    def method_missing(method_name, *args)
-      raise UnknownConfiguration.new("'#{method_name}' is not a valid configuration for Awspec.")
+    def method_missing(method_name, *_args)
+      raise UnknownConfiguration, "'#{method_name}' is not a valid configuration for Awspec."
     end
   end
 end

@@ -34,4 +34,8 @@ module Awspec
       raise UnknownConfiguration, "'#{method_name}' is not a valid configuration for Awspec."
     end
   end
+
+  def self.configure
+    yield(Config.instance)
+  end
 end

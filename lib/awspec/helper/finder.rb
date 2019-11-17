@@ -158,7 +158,7 @@ module Awspec::Helper
       begin
         Aws::EC2::Client.new(CLIENT_OPTIONS)
       rescue => e
-        raise "Ops, there is something wrong with AWS client configuration => #{e}"
+        raise "Oops, there is something wrong with AWS client configuration => #{e}"
       end
     end
 

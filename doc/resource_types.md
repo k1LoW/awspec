@@ -1388,7 +1388,7 @@ describe elasticache('my-rep-group-001') do
 end
 ```
 
-### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_security_groups), its(:cache_subnet_group_name), its(:cache_nodes), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window), its(:auth_token_enabled), its(:transit_encryption_enabled), its(:at_rest_encryption_enabled)
+### its(:cache_cluster_id), its(:configuration_endpoint), its(:client_download_landing_page), its(:cache_node_type), its(:engine), its(:engine_version), its(:cache_cluster_status), its(:num_cache_nodes), its(:preferred_availability_zone), its(:cache_cluster_create_time), its(:preferred_maintenance_window), its(:notification_configuration), its(:cache_security_groups), its(:cache_subnet_group_name), its(:cache_nodes), its(:auto_minor_version_upgrade), its(:replication_group_id), its(:snapshot_retention_limit), its(:snapshot_window), its(:auth_token_enabled), its(:auth_token_last_modified_date), its(:transit_encryption_enabled), its(:at_rest_encryption_enabled)
 ## <a name="elasticache_cache_parameter_group">elasticache_cache_parameter_group</a>
 
 ElasticacheCacheParameterGroup resource type.

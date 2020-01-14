@@ -1,7 +1,6 @@
 Aws.config[:redshift] = {
   stub_responses: {
     describe_cluster_parameters: {
-      marker: '',
       parameters: [
         {
           parameter_name: 'datestyle',

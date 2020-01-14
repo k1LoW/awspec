@@ -1,7 +1,6 @@
 Aws.config[:elastictranscoder] = {
   stub_responses: {
     list_pipelines: {
-      next_page_token: '',
       pipelines: [
         {
           id: '12345678901234-a0bc4d',
@@ -57,7 +56,8 @@ Aws.config[:elastictranscoder] = {
             permissions: []
           }
         }
-      ]
+      ],
+      next_page_token: nil
     }
   }
 }

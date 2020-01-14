@@ -17,7 +17,7 @@ module Awspec::Type
         res.parameters.each do |param|
           parameters[param.parameter_name] = param.parameter_value
         end
-        break if res.marker.empty?
+        break if res.marker.nil?
         res = elasticache_client.describe_cache_parameters({
                                                              cache_parameter_group_name: @display_name,
                                                              marker: res.marker

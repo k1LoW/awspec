@@ -24,7 +24,7 @@ module Awspec::Helper
           res.parameters.each do |param|
             parameters[param.parameter_name] = param.parameter_value
           end
-          break if res.marker.empty?
+          break if res.marker.nil?
           res = redshift_client.describe_cluster_parameters({
                                                               parameter_group_name: parameter_group,
                                                               marker: res.marker

@@ -1,7 +1,6 @@
 Aws.config[:elasticache] = {
   stub_responses: {
     describe_cache_parameters: {
-      marker: '',
       parameters: [
         {
           parameter_name: 'activerehashing',

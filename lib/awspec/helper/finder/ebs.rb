@@ -30,7 +30,7 @@ module Awspec::Helper
 
         loop do
           selected += res.volumes.select { |v| v.attachments.count > 0 }
-          break if res.next_token.empty?
+          break if res.next_token.nil?
           res = ec2_client.describe_volumes({
                                               next_token: res.next_token
                                             })

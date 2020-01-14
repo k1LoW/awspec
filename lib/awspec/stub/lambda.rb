@@ -1,7 +1,6 @@
 Aws.config[:lambda] = {
   stub_responses: {
     list_functions: {
-      next_marker: '',
       functions: [
         {
           function_name: 'my-lambda-function-name',

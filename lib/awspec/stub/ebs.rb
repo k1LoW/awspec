@@ -41,6 +41,7 @@ Aws.config[:ec2] = {
       ]
     },
     describe_volumes: {
+      next_token: '',
       volumes: [
         {
           volume_id: 'vpc-ab123cde',

@@ -1,6 +1,7 @@
 Aws.config[:rds] = {
   stub_responses: {
     describe_db_parameters: {
+      marker: '',
       parameters: [
         {
           parameter_name: 'basedir',

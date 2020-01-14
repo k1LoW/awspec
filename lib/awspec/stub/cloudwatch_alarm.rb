@@ -2,6 +2,7 @@
 Aws.config[:cloudwatch] = {
   stub_responses: {
     describe_alarms: {
+      next_token: '',
       metric_alarms: [
         {
           alarm_name: 'my-cloudwatch-alarm',

@@ -8,7 +8,10 @@ module Awspec::Helper
           selected += res.distribution_list.items.select do |item|
             item.id == id || item.domain_name == id
           end
-          (res.next_page? && res = res.next_page) || break
+          break unless res.distribution_list.is_truncated
+          res = cloudfront_client.list_distributions({
+                                                       marker: res.distribution_list.next_marker
+                                                     })
         end
 
         selected.single_resource(id)

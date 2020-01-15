@@ -20,7 +20,10 @@ module Awspec::Helper
 
         loop do
           selected += res.metric_alarms
-          (res.next_page? && res = res.next_page) || break
+          break if res.next_token.nil?
+          res = cloudwatch_client.describe_alarms({
+                                                    next_token: res.next_token
+                                                  })
         end
 
         selected

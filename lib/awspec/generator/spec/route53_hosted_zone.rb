@@ -6,10 +6,22 @@ module Awspec::Generator
         hosted_zone = find_hosted_zone(id)
         raise 'Not Found Route53 Hosted Zone' unless hosted_zone
         id = hosted_zone[:id]
+        selected = []
         res = @route53_client.list_resource_record_sets({
                                                           hosted_zone_id: id
                                                         })
-        resource_record_sets = res.resource_record_sets.map do |record_set|
+        loop do
+          selected += res.resource_record_sets
+          break unless res.is_truncated
+
+          res = @route53_client.list_resource_record_sets({
+                                                            hosted_zone_id: id,
+                                                            start_record_name: res.next_record_name,
+                                                            start_record_type: res.next_record_type
+                                                          })
+        end
+
+        resource_record_sets = selected.map do |record_set|
           generate_linespec(record_set)
         end
 

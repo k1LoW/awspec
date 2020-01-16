@@ -17,7 +17,11 @@ module Awspec::Type
         res.parameters.each do |param|
           parameters[param.parameter_name] = param.parameter_value
         end
-        (res.next_page? && res = res.next_page) || break
+        break if res.marker.nil?
+        res = elasticache_client.describe_cache_parameters({
+                                                             cache_parameter_group_name: @display_name,
+                                                             marker: res.marker
+                                                           })
       end
       @resource_via_client ||= parameters
     end

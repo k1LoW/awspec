@@ -30,7 +30,11 @@ module Awspec::Helper
           res.parameters.each do |param|
             parameters[param.parameter_name] = param.parameter_value
           end
-          (res.next_page? && res = res.next_page) || break
+          break if res.marker.nil?
+          res = rds_client.describe_db_parameters({
+                                                    db_parameter_group_name: parameter_group,
+                                                    marker: res.marker
+                                                  })
         end
         parameters
       end

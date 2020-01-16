@@ -12,7 +12,12 @@ module Awspec::Helper
             selected += res[type.pluralize].select do |u|
               u[type + '_name'] == id || u[type + '_id'] == id || u.arn == id
             end
-            (res.next_page? && res = res.next_page) || break
+
+            break unless res.is_truncated
+            res = iam_client.send(
+              'list_' + type.pluralize,
+              { marker => res.marker }
+            )
           end
 
           selected.single_resource(id)
@@ -62,7 +67,10 @@ module Awspec::Helper
 
         loop do
           selected += res.policies.select { |p| p.attachment_count > 0 }
-          (res.next_page? && res = res.next_page) || break
+          break unless res.is_truncated
+          res = iam_client.list_policies({
+                                           marker: res.marker
+                                         })
         end
 
         selected

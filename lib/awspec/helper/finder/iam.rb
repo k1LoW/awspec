@@ -13,6 +13,7 @@ module Awspec::Helper
               u[type + '_name'] == id || u[type + '_id'] == id || u.arn == id
             end
 
+            break if res.marker.nil?
             break unless res.is_truncated
             res = iam_client.send(
               'list_' + type.pluralize,
@@ -67,6 +68,7 @@ module Awspec::Helper
 
         loop do
           selected += res.policies.select { |p| p.attachment_count > 0 }
+          break if res.marker.nil?
           break unless res.is_truncated
           res = iam_client.list_policies({
                                            marker: res.marker

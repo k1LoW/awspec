@@ -6,7 +6,7 @@ module Awspec::Helper
         res.load_balancers.select do |lb|
           lb.type == 'application'
         end.single_resource(id)
-      rescue
+      rescue Aws::ElasticLoadBalancingV2::Errors::LoadBalancerNotFound
         return nil
       end
 
@@ -20,7 +20,7 @@ module Awspec::Helper
       def find_alb_listener(arn)
         res = elbv2_client.describe_listeners({ listener_arns: [arn] })
         res.listeners.single_resource(arn)
-      rescue
+      rescue StandardError
         return nil
       end
 
@@ -40,7 +40,7 @@ module Awspec::Helper
         res.target_groups.select do |tg|
           %w(HTTP HTTPS).include?(tg.protocol)
         end.single_resource(id)
-      rescue
+      rescue StandardError
         return nil
       end
 
@@ -60,7 +60,7 @@ module Awspec::Helper
         res.tag_descriptions.select do |resource|
           resource.resource_arn == id
         end.first.tags
-      rescue
+      rescue StandardError
         return nil
       end
     end

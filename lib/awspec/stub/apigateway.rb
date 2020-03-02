@@ -83,7 +83,7 @@ Aws.config[:apigateway] = {
         {
           path: '/zambonis/123'
         }
-    ]
+      ]
     }
   }
 }

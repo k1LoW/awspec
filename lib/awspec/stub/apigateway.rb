@@ -70,6 +70,20 @@ Aws.config[:apigateway] = {
           }
         }
       ]
+    },
+    get_resources: {
+      position: '1',
+      items: [
+        {
+          path: '/proxy'
+        },
+        {
+          path: '/zambonis'
+        },
+        {
+          path: '/zambonis/123'
+        }
+    ]
     }
   }
 }

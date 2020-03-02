@@ -11,5 +11,14 @@ module Awspec::Type
     def id
       @id ||= resource_via_client.id if resource_via_client
     end
+
+    def has_path?(path)
+      check_existence
+      all_resources = find_api_resources_by_id(@id)
+      all_resources.each do |resource|
+        return true if resource.path == path
+      end
+      false
+    end
   end
 end

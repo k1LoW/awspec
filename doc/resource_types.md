@@ -284,6 +284,8 @@ describe apigateway('my-apigateway') do
 end
 ```
 
+### have_integration_path
+
 ### have_path
 
 ### its(:id), its(:name), its(:description), its(:created_date), its(:version), its(:warnings), its(:binary_media_types), its(:minimum_compression_size), its(:api_key_source), its(:policy), its(:tags)
@@ -1321,7 +1323,7 @@ describe eks('my-eks') do
 end
 ```
 
-### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags)
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

@@ -16,6 +16,8 @@ describe apigateway('ohx0shePof') do
   it { should have_path('/proxy') }
   it { should have_path('/zambonis') }
   it { should have_path('/zambonis/123') }
+  it { should have_integration_path('/hockey') }
+  it { should have_integration_path('/zambonis/{arena}') }
 end
 
 describe apigateway('my-apigateway') do

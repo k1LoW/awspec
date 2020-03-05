@@ -75,10 +75,20 @@ Aws.config[:apigateway] = {
       position: '1',
       items: [
         {
-          path: '/proxy'
+          path: '/proxy',
+          resource_methods: {
+            'GET' => {
+              method_integration: { uri: 'http://127.0.0.1:8080/hockey' }
+            }
+          }
         },
         {
-          path: '/zambonis'
+          path: '/zambonis',
+          resource_methods: {
+            'POST' => {
+              method_integration: { uri: 'http://127.0.0.1:8080/zambonis/{arena}' }
+            }
+          }
         },
         {
           path: '/zambonis/123'

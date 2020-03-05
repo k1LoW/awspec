@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 module Awspec::Type
   class Apigateway < ResourceBase
     aws_resource Aws::APIGateway::Client
@@ -12,11 +14,26 @@ module Awspec::Type
       @id ||= resource_via_client.id if resource_via_client
     end
 
+    def api_resources
+      @api_resources.nil? ? @api_resources = find_api_resources_by_id(@id) : @api_resources
+    end
+
     def has_path?(path)
       check_existence
-      all_resources = find_api_resources_by_id(@id)
-      all_resources.each do |resource|
+      self.api_resources.each do |resource|
         return true if resource.path == path
+      end
+      false
+    end
+
+    def has_integration_path?(path)
+      check_existence
+      self.api_resources.each do |resource|
+        next if resource.resource_methods.nil?
+        resource.resource_methods.each do |_, value|
+          uri = Addressable::URI.parse(value.method_integration.uri)
+          return true if uri.path == path
+        end
       end
       false
     end

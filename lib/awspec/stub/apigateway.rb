@@ -78,7 +78,8 @@ Aws.config[:apigateway] = {
           path: '/proxy',
           resource_methods: {
             'GET' => {
-              method_integration: { uri: 'http://127.0.0.1:8080/hockey' }
+              http_method: 'GET',
+              method_integration: { http_method: 'POST', uri: 'http://127.0.0.1:8080/hockey' }
             }
           }
         },
@@ -86,7 +87,8 @@ Aws.config[:apigateway] = {
           path: '/zambonis',
           resource_methods: {
             'POST' => {
-              method_integration: { uri: 'http://127.0.0.1:8080/zambonis/{arena}' }
+              http_method: 'POST',
+              method_integration: { http_method: 'POST', uri: 'http://127.0.0.1:8080/zambonis/{arena}' }
             }
           }
         },

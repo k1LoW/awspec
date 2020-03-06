@@ -21,21 +21,39 @@ module Awspec::Type
     def has_path?(path)
       check_existence
       self.api_resources.each do |resource|
-        return true if resource.path == path
+        return resource if resource.path == path
       end
-      false
+      nil
     end
 
     def has_integration_path?(path)
       check_existence
       self.api_resources.each do |resource|
         next if resource.resource_methods.nil?
-        resource.resource_methods.each do |_, value|
-          uri = Addressable::URI.parse(value.method_integration.uri)
-          return true if uri.path == path
+        resource.resource_methods.each do |_, method|
+          uri = Addressable::URI.parse(method.method_integration.uri)
+          return resource if uri.path == path
         end
       end
-      false
+      nil
+    end
+
+    def has_method?(path, http_method)
+      check_existence
+      resource_to_check = has_path?(path)
+      return nil if resource_to_check.nil?
+      resource_to_check.resource_methods.each do |_, method|
+        return resource_to_check if method.http_method == http_method
+      end
+    end
+
+    def has_integration_method?(integration_path, http_method)
+      check_existence
+      integration_resource_to_check = has_integration_path?(integration_path)
+      return nil if integration_resource_to_check.nil?
+      integration_resource_to_check.resource_methods.each do |_, method|
+        return integration_resource_to_check if method.method_integration.http_method == http_method
+      end
     end
   end
 end

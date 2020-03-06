@@ -284,7 +284,11 @@ describe apigateway('my-apigateway') do
 end
 ```
 
+### have_integration_method
+
 ### have_integration_path
+
+### have_method
 
 ### have_path
 

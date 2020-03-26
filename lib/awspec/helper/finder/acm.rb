@@ -3,8 +3,8 @@ module Awspec::Helper
     module Acm
       def find_certificate(id)
         selected = []
+        req = {}
         loop do
-          req = {}
           res = acm_client.list_certificates(req)
           selected += res.certificate_summary_list.select do |c|
             c.certificate_arn == id || c.domain_name == id
@@ -19,8 +19,8 @@ module Awspec::Helper
 
       def select_all_certificates
         certs = []
+        req = {}
         loop do
-          req = {}
           res = acm_client.list_certificates(req)
           res.certificate_summary_list.each do |c|
             certs << c.certificate_arn

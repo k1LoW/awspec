@@ -1,16 +1,14 @@
 Aws.config[:ssm] = {
   stub_responses: {
-    describe_parameters: {
-      parameters: [
-        {
-          name: 'my-parameter',
-          type: 'SecureString',
-          key_id: 'alias/aws/ssm',
-          description: 'Some description',
-          version: 1,
-          next_token: nil
-        }
-      ]
+    get_parameter: {
+      parameter:
+      {
+        name: 'my-parameter',
+        type: 'SecureString',
+        version: 1,
+        arn: 'arn:aws:ssm:REGION:ACCOUNT_ID:parameter/my-parameter',
+        value: 'encrypted'
+      }
     }
   }
 }

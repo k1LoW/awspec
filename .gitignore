@@ -1,0 +1,7 @@
+.idea/
+.rakeTasks
+Gemfile.lock
+awspec-api_gateway_extended-1.2.3.gem
+lib/awspec/.DS_Store
+lib/awspec/helper/.DS_Store
+vendor/

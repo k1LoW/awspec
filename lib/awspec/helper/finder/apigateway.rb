@@ -25,7 +25,7 @@ module Awspec::Helper
 
       def find_api_resources_by_id(api_id)
         all_resources = []
-        apigateway_client.get_resources(rest_api_id: api_id, limit: 500).each do |response|
+        apigateway_client.get_resources(rest_api_id: api_id, limit: 500, embed: ['methods']).each do |response|
           all_resources += response.items
         end
         all_resources != [] ? all_resources : nil

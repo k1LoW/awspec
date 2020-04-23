@@ -18,10 +18,15 @@ describe apigateway('ohx0shePof') do
   it { should have_path('/zambonis/123') }
   it { should have_integration_path('/hockey') }
   it { should have_integration_path('/zambonis/{arena}') }
+  it { should have_integration_path('/ListUsers') }
   it { should have_method('/zambonis', 'POST') }
   it { should have_integration_method('/zambonis/{arena}', 'POST') }
   it { should have_method('/proxy', 'GET') }
   it { should have_integration_method('/hockey', 'POST') }
+  it { should have_method('/zambonis/123', 'POST') }
+  it { should have_method('/zambonis/123', 'GET') }
+  it { should have_integration_method('/ListUsers', 'AWS') }
+  it { should have_integration_method('/SignUp', 'AWS') }
 end
 
 describe apigateway('my-apigateway') do

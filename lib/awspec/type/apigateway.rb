@@ -31,6 +31,10 @@ module Awspec::Type
       self.api_resources.each do |resource|
         next if resource.resource_methods.nil?
         resource.resource_methods.each do |_, method|
+          if method.method_integration.http_method == 'AWS'
+            aws_path = method.method_integration.uri.match(%r{(\/[^\?]+)\??.*$}).captures[0]
+            return resource if aws_path == path
+          end
           uri = Addressable::URI.parse(method.method_integration.uri)
           return resource if uri.path == path
         end
@@ -45,6 +49,7 @@ module Awspec::Type
       resource_to_check.resource_methods.each do |_, method|
         return resource_to_check if method.http_method == http_method
       end
+      nil
     end
 
     def has_integration_method?(integration_path, http_method)
@@ -54,6 +59,7 @@ module Awspec::Type
       integration_resource_to_check.resource_methods.each do |_, method|
         return integration_resource_to_check if method.method_integration.http_method == http_method
       end
+      nil
     end
   end
 end

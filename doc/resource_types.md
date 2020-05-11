@@ -1620,7 +1620,7 @@ describe emr('my-emr') do
 end
 ```
 
-### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:step_concurrency_level), its(:outpost_arn)
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.

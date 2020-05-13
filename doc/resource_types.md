@@ -284,6 +284,14 @@ describe apigateway('my-apigateway') do
 end
 ```
 
+### have_integration_method
+
+### have_integration_path
+
+### have_method
+
+### have_path
+
 ### its(:id), its(:name), its(:description), its(:created_date), its(:version), its(:warnings), its(:binary_media_types), its(:minimum_compression_size), its(:api_key_source), its(:policy), its(:tags)
 ## <a name="autoscaling_group">autoscaling_group</a>
 
@@ -3381,7 +3389,7 @@ end
 ```
 
 
-### its(:name), its(:type), its(:key_id), its(:last_modified_date), its(:last_modified_user), its(:description), its(:allowed_pattern), its(:version), its(:tier), its(:policies)
+### its(:name), its(:type), its(:key_id), its(:last_modified_date), its(:last_modified_user), its(:description), its(:allowed_pattern), its(:version), its(:tier), its(:policies), its(:data_type)
 ### :unlock: Advanced use
 
 ```ruby
@@ -3425,7 +3433,7 @@ end
 ```
 
 
-### its(:availability_zone), its(:availability_zone_id), its(:available_ip_address_count), its(:cidr_block), its(:default_for_az), its(:map_public_ip_on_launch), its(:state), its(:subnet_id), its(:vpc_id), its(:owner_id), its(:assign_ipv_6_address_on_creation), its(:ipv_6_cidr_block_association_set), its(:subnet_arn), its(:outpost_arn)
+### its(:availability_zone), its(:availability_zone_id), its(:available_ip_address_count), its(:cidr_block), its(:default_for_az), its(:map_public_ip_on_launch), its(:map_customer_owned_ip_on_launch), its(:customer_owned_ipv_4_pool), its(:state), its(:subnet_id), its(:vpc_id), its(:owner_id), its(:assign_ipv_6_address_on_creation), its(:ipv_6_cidr_block_association_set), its(:subnet_arn), its(:outpost_arn)
 ### :unlock: Advanced use
 
 `subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).

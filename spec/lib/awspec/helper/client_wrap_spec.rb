@@ -159,6 +159,5 @@ describe Awspec::Helper::ClientWrap do
         expect(res).to eq 'done'
       end
     end
-
   end
 end

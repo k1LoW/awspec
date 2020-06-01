@@ -11,7 +11,7 @@ describe security_group('sg-1a2b3cd4') do
   its(:inbound) { should be_opened(22) }
   its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
   its(:inbound) { should be_opened('50000-50009').protocol('tcp').for('123.45.67.89/32') }
-  its(:inbound) { should_not be_opened('50000-50019').protocol('tcp').for('123.45.67.89/32') }
+  its(:inbound) { should_not be_opened('50010-50019').protocol('tcp').for('123.45.67.89/32') }
   its(:outbound) { should be_opened(50_000) }
   its(:outbound) { should be_opened(8080).protocol('tcp').for('sg-9a8b7c6d') }
   its(:outbound) { should be_opened(8080).protocol('tcp').for('group-in-other-aws-account-with-vpc-peering') }

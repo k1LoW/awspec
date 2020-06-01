@@ -11,7 +11,7 @@ describe security_group('sg-1a2b3cd4') do
   its(:inbound) { should be_opened(22) }
   its(:inbound) { should be_opened(22).protocol('tcp').for('sg-5a6b7cd8') }
   its(:inbound) { should be_opened('50000-50009').protocol('tcp').for('123.45.67.89/32') }
-  its(:inbound) { should_not be_opened('50010-50019').protocol('tcp').for('123.45.67.89/32') }
+  its(:inbound) { should_not be_opened('50000-50019').protocol('tcp').for('123.45.67.89/32') }
   its(:outbound) { should be_opened(50_000) }
   its(:outbound) { should be_opened(8080).protocol('tcp').for('sg-9a8b7c6d') }
   its(:outbound) { should be_opened(8080).protocol('tcp').for('group-in-other-aws-account-with-vpc-peering') }
@@ -27,6 +27,21 @@ describe security_group('sg-1a2b3cd4') do
   its(:inbound_rule_count) { should eq 8 }
   its(:outbound_rule_count) { should eq 2 }
 
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 80, to_port: 80, ip_range: "123.45.67.0/24" })}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 80, to_port: 80, ip_range: "123.45.68.89/32" })}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 22, to_port: 22, group_pair: { group_id: "sg-5a6b7cd8" }})}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 22, to_port: 22, group_pair: { group_name: "group-name-sg" }})}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 60000, to_port: 60000, ip_range: "100.45.67.12/32" })}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 70000, to_port: 70000, ip_range: "100.45.67.89/32" })}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 70000, to_port: 70000, ip_range: "100.45.67.12/32" })}
+  it { should have_inbound_rule( { ip_protocol: "tcp", from_port: 50000, to_port: 50009, ip_range: "123.45.67.89/32" })}
+  it { should have_inbound_rule( { ip_protocol: "all", group_pair: {group_id: "sg-3a4b5cd6", user_id: "1234567890" }})}
+  it { should have_outbound_rule( { ip_protocol: "tcp", from_port: 50000, to_port: 50000, ip_range: "100.45.67.12/32" })}
+  it { should have_outbound_rule( { ip_protocol: "tcp", from_port: 8080, to_port: 8080, group_pair: {group_id: "sg-9a8b7c6d", user_id: "5678901234", vpc_id: "vpc-5b6a7c8f", vpc_peering_connection_id: "pcx-f9e8d7c6", peering_status: "active" }})}
+  it { should have_outbound_rule( { ip_protocol: "tcp", from_port: 443, to_port: 443, prefix_list_id: "pl-a5321fa3" })}
+  
+
+  
   # its(:inbound) { should be_opened(22).protocol('tcp').for('group-name-sg') }
   # its(:inbound) { should be_opened(22).protocol('tcp').for('my-db-sg') }
 

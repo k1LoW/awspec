@@ -75,38 +75,14 @@ module Awspec::Type
     end
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
-
     def has_inbound_rule?(rule)
-      return resource_via_client.ip_permissions.find do |permission|
-        
-        result = true
+      rule[:ip_protocol] = '-1' if rule[:ip_protocol] == 'all'
 
-        result = false unless permission.ip_protocol == (rule[:ip_protocol]=="all" ? "-1" : rule[:ip_protocol])
-        result = false unless permission.ip_protocol == "-1" || permission.from_port == rule[:from_port]
-        result = false unless permission.ip_protocol == "-1" || permission.to_port == rule[:to_port]
-
-        if result
-          if rule[:ip_range]
-            result = permission.ip_ranges.find do | ip_range|
-              ip_range.cidr_ip == rule[:ip_range]
-            end
-          elsif rule[:group_pair]
-            result = permission.user_id_group_pairs.find do |pair|
-              result_g = true
-              result_g = false unless pair.group_id == rule[:group_pair][:group_id] || rule[:group_pair][:group_id].nil?
-              result_g = false unless pair.group_name == rule[:group_pair][:group_name] || rule[:group_pair][:group_name].nil?
-              result_g = false unless pair.user_id == rule[:group_pair][:user_id] || rule[:group_pair][:user_id].nil?
-              result_g = false unless pair.vpc_id == rule[:group_pair][:vpc_id] || rule[:group_pair][:vpc_id].nil?
-              result_g = false unless pair.vpc_peering_connection_id == rule[:group_pair][:vpc_peering_connection_id] || rule[:group_pair][:vpc_peering_connection_id].nil?
-              result_g = false unless pair.peering_status == rule[:group_pair][:peering_status] || rule[:group_pair][:peering_status].nil?
-              result_g
-            end
-          end
-        end
-        result
+      resource_via_client.ip_permissions.find do |permission|
+        sg_rule_match?(permission, rule)
       end
     end
-    
+
     def inbound_rule_count
       resource_via_client.ip_permissions.reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
@@ -114,36 +90,13 @@ module Awspec::Type
     end
 
     def has_outbound_rule?(rule)
-      return resource_via_client.ip_permissions_egress.find do |permission|
-        
-        result = true
-        
-        result = false unless permission.ip_protocol == (rule[:ip_protocol]=="all" ? "-1" : rule[:ip_protocol])
-        result = false unless permission.ip_protocol == "-1" || permission.from_port == rule[:from_port]
-        result = false unless permission.ip_protocol == "-1" || permission.to_port == rule[:to_port]
+      rule[:ip_protocol] = '-1' if rule[:ip_protocol] == 'all'
 
-        if result
-          if rule[:ip_range]
-            result = permission.ip_ranges.find do | ip_range|
-              ip_range.cidr_ip == rule[:ip_range]
-            end
-          elsif rule[:group_pair]
-            result = permission.user_id_group_pairs.find do |pair|
-              result_g = true
-              result_g = false unless pair.group_id == rule[:group_pair][:group_id] || rule[:group_pair][:group_id].nil?
-              result_g = false unless pair.group_name == rule[:group_pair][:group_name] || rule[:group_pair][:group_name].nil?
-              result_g = false unless pair.user_id == rule[:group_pair][:user_id] || rule[:group_pair][:user_id].nil?
-              result_g = false unless pair.vpc_id == rule[:group_pair][:vpc_id] || rule[:group_pair][:vpc_id].nil?
-              result_g = false unless pair.vpc_peering_connection_id == rule[:group_pair][:vpc_peering_connection_id] || rule[:group_pair][:vpc_peering_connection_id].nil?
-              result_g = false unless pair.peering_status == rule[:group_pair][:peering_status] || rule[:group_pair][:peering_status].nil?
-              result_g
-            end
-          end
-        end
-        result
+      resource_via_client.ip_permissions_egress.find do |permission|
+        sg_rule_match?(permission, rule)
       end
     end
-    
+
     def outbound_rule_count
       resource_via_client.ip_permissions_egress.reduce(0) do |sum, permission|
         sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
@@ -206,6 +159,35 @@ module Awspec::Type
       else
         port.between?(from_port, to_port)
       end
+    end
+
+    def sg_rule_match?(permission, rule)
+      return false unless permission.ip_protocol == rule[:ip_protocol]
+      return false unless permission.ip_protocol == '-1' || permission.from_port == rule[:from_port]
+      return false unless permission.ip_protocol == '-1' || permission.to_port == rule[:to_port]
+
+      if rule[:ip_range]
+        return false unless permission.ip_ranges.find do |ip_range|
+          ip_range.cidr_ip == rule[:ip_range]
+        end
+      elsif rule[:group_pair]
+        return false unless permission.user_id_group_pairs.find do |pair|
+          group_pair_match?(pair, rule[:group_pair])
+        end
+      end
+      true
+    end
+
+    def group_pair_match?(actual_pair, rule_pair)
+      return false unless actual_pair.group_id == rule_pair[:group_id] || rule_pair[:group_id].nil?
+      return false unless actual_pair.group_name == rule_pair[:group_name] || rule_pair[:group_name].nil?
+      return false unless actual_pair.user_id == rule_pair[:user_id] || rule_pair[:user_id].nil?
+      return false unless actual_pair.vpc_id == rule_pair[:vpc_id] || rule_pair[:vpc_id].nil?
+      return false unless
+        actual_pair.vpc_peering_connection_id == rule_pair[:vpc_peering_connection_id] ||
+        rule_pair[:vpc_peering_connection_id].nil?
+      return false unless actual_pair.peering_status == rule_pair[:peering_status] || rule_pair[:peering_status].nil?
+      true
     end
   end
 end

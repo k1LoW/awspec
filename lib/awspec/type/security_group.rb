@@ -76,8 +76,6 @@ module Awspec::Type
     alias_method :outbound_permissions_count, :ip_permissions_egress_count
 
     def has_inbound_rule?(rule)
-      rule[:ip_protocol] = '-1' if rule[:ip_protocol] == 'all'
-
       resource_via_client.ip_permissions.find do |permission|
         sg_rule_match?(permission, rule)
       end
@@ -90,8 +88,6 @@ module Awspec::Type
     end
 
     def has_outbound_rule?(rule)
-      rule[:ip_protocol] = '-1' if rule[:ip_protocol] == 'all'
-
       resource_via_client.ip_permissions_egress.find do |permission|
         sg_rule_match?(permission, rule)
       end
@@ -162,6 +158,7 @@ module Awspec::Type
     end
 
     def sg_rule_match?(permission, rule)
+      rule[:ip_protocol] = '-1' if rule[:ip_protocol] == 'all'
       return false unless permission.ip_protocol == rule[:ip_protocol]
       return false unless permission.ip_protocol == '-1' || permission.from_port == rule[:from_port]
       return false unless permission.ip_protocol == '-1' || permission.to_port == rule[:to_port]

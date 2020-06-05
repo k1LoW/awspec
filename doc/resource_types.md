@@ -198,7 +198,7 @@ describe alb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:li
 end
 ```
 
-### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy)
+### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy), its(:alpn_policy)
 ## <a name="alb_target_group">alb_target_group</a>
 
 AlbTargetGroup resource type.
@@ -1620,7 +1620,7 @@ describe emr('my-emr') do
 end
 ```
 
-### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level)
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.
@@ -2591,7 +2591,7 @@ describe nlb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:li
 end
 ```
 
-### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy)
+### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy), its(:alpn_policy)
 ## <a name="nlb_target_group">nlb_target_group</a>
 
 NlbTargetGroup resource type.
@@ -3199,6 +3199,10 @@ end
 ### be_opened_only
 
 ### be_outbound_opened_only
+
+### have_inbound_rule
+
+### have_outbound_rule
 
 ### have_tag
 

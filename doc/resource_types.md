@@ -50,6 +50,7 @@
 | [launch_configuration](#launch_configuration)
 | [launch_template](#launch_template)
 | [mq](#mq)
+| [msk](#msk)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
@@ -2182,7 +2183,7 @@ end
 
 This matcher does not support Amazon S3 event sources ([see SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method)).
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -2305,6 +2306,30 @@ end
 ```
 
 ### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:pending_host_instance_type), its(:pending_security_groups), its(:publicly_accessible), its(:security_groups), its(:storage_type), its(:subnet_ids)
+## <a name="msk">msk</a>
+
+Msk resource type.
+
+### exist
+
+```ruby
+describe msk('my-msk') do
+  it { should exist }
+end
+```
+
+
+### be_active
+
+### be_creating
+
+### be_deleting
+
+### be_failed
+
+### be_updating
+
+### its(:active_operation_arn), its(:client_authentication), its(:cluster_arn), its(:cluster_name), its(:creation_time), its(:current_version), its(:enhanced_monitoring), its(:number_of_broker_nodes), its(:state), its(:zookeeper_connect_string)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

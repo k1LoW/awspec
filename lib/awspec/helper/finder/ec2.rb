@@ -43,7 +43,7 @@ module Awspec::Helper
       end
 
       # find_internet_gateway find_vpn_gateway find_customer_gateway
-      gateway_types = %w(internet vpn customer)
+      gateway_types = %w(internet vpn customer transit)
       gateway_types.each do |type|
         define_method 'find_' + type + '_gateway' do |*args|
           gateway_id = args.first
@@ -197,6 +197,15 @@ module Awspec::Helper
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_name: id
                                                            })
+      end
+
+      def find_tgw_attachments_by_tgw_id(tgw_id)
+        res = ec2_client.describe_transit_gateway_attachments({
+                                                                filters: [
+                                                                  { name: 'transit-gateway-id', values: [tgw_id] }
+                                                                ]
+                                                              })
+        res.transit_gateway_attachments
       end
     end
   end

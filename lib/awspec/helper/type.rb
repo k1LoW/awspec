@@ -20,7 +20,7 @@ module Awspec
         elastictranscoder_pipeline waf_web_acl wafregional_web_acl customer_gateway vpn_gateway vpn_connection
         internet_gateway acm cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack
         codebuild sns_topic redshift redshift_cluster_parameter_group codedeploy codedeploy_deployment_group
-        secretsmanager
+        secretsmanager transit_gateway
       )
 
       ACCOUNT_ATTRIBUTES = %w(

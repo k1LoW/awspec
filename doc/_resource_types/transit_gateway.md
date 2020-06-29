@@ -1,7 +1,7 @@
 ### exist
 
 ```ruby
-describe tgw('tgw-1234567890abcdefg') do
+describe transit_gateway('tgw-1234567890abcdefg') do
   it { should exist }
   it { should have_tag('Name').value('my-tgw') }
   it { should have_attachment('tgw-attach-1234567890abcdefg') }
@@ -17,7 +17,7 @@ end
 ```
 
 ```ruby
-describe tgw('my-tgw') do
+describe transit_gateway('my-tgw') do
   it { should exist }
   its(:transit_gateway_id) { should eq 'tgw-1234567890abcdefg' }
 end

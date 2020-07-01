@@ -51,6 +51,7 @@
 | [launch_configuration](#launch_configuration)
 | [launch_template](#launch_template)
 | [mq](#mq)
+| [msk](#msk)
 | [nat_gateway](#nat_gateway)
 | [network_acl](#network_acl)
 | [network_interface](#network_interface)
@@ -72,6 +73,7 @@
 | [sqs](#sqs)
 | [ssm_parameter](#ssm_parameter)
 | [subnet](#subnet)
+| [transit_gateway](#transit_gateway)
 | [vpc](#vpc)
 | [vpn_connection](#vpn_connection)
 | [vpn_gateway](#vpn_gateway)
@@ -2318,6 +2320,30 @@ end
 ```
 
 ### its(:vpc_id), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:pending_engine_version), its(:pending_host_instance_type), its(:pending_security_groups), its(:publicly_accessible), its(:security_groups), its(:storage_type), its(:subnet_ids)
+## <a name="msk">msk</a>
+
+Msk resource type.
+
+### exist
+
+```ruby
+describe msk('my-msk') do
+  it { should exist }
+end
+```
+
+
+### be_active
+
+### be_creating
+
+### be_deleting
+
+### be_failed
+
+### be_updating
+
+### its(:active_operation_arn), its(:client_authentication), its(:cluster_arn), its(:cluster_name), its(:creation_time), its(:current_version), its(:enhanced_monitoring), its(:number_of_broker_nodes), its(:state), its(:zookeeper_connect_string)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.
@@ -3469,6 +3495,40 @@ describe subnet('my-subnet') do
 end
 ```
 
+## <a name="transit_gateway">transit_gateway</a>
+
+TransitGateway resource type.
+
+### exist
+
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should exist }
+  it { should have_tag('Name').value('my-tgw') }
+  it { should have_attachment('tgw-attach-1234567890abcdefg') }
+  its('options.amazon_side_asn') { should eq 64_516 }
+  its('options.auto_accept_shared_attachments') { should eq 'enable' }
+  its('options.default_route_table_association') { should eq 'enable' }
+  its('options.default_route_table_propagation') { should eq 'enable' }
+  its('options.dns_support') { should eq 'enable' }
+  its('options.vpn_ecmp_support') { should eq 'enable' }
+  its('options.association_default_route_table_id') { should eq 'tgw-rtb-0123456789abcdefg' }
+  its('options.propagation_default_route_table_id') { should eq 'tgw-rtb-0123456789abcdefg' }
+end
+```
+
+```ruby
+describe transit_gateway('my-tgw') do
+  it { should exist }
+  its(:transit_gateway_id) { should eq 'tgw-1234567890abcdefg' }
+end
+```
+
+### have_attachment
+
+### have_tag
+
+### its(:transit_gateway_id), its(:transit_gateway_arn), its(:state), its(:owner_id), its(:description), its(:creation_time)
 ## <a name="vpc">vpc</a>
 
 VPC resource type.

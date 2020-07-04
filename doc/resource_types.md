@@ -20,6 +20,7 @@
 | [codedeploy](#codedeploy)
 | [codedeploy_deployment_group](#codedeploy_deployment_group)
 | [cognito_identity_pool](#cognito_identity_pool)
+| [cognito_user_pool](#cognito_user_pool)
 | [customer_gateway](#customer_gateway)
 | [directconnect_virtual_interface](#directconnect_virtual_interface)
 | [dynamodb_table](#dynamodb_table)
@@ -754,6 +755,19 @@ describe cognito_identity_pool('my-cognito-identity-pool') do
 end
 ```
 ### its(:identity_pool_id), its(:identity_pool_name)
+## <a name="cognito_user_pool">cognito_user_pool</a>
+
+CognitoUserPool resource type.
+
+### exist
+
+```ruby
+### its(:identity_pool_id), its(:identity_pool_name)
+describe cognito_user_pool('my-cognito-user-pool') do
+  it { should exist }
+end
+```
+### its(:id), its(:name), its(:status), its(:last_modified_date), its(:creation_date)
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.

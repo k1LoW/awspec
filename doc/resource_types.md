@@ -762,7 +762,6 @@ CognitoUserPool resource type.
 ### exist
 
 ```ruby
-### its(:identity_pool_id), its(:identity_pool_name)
 describe cognito_user_pool('my-cognito-user-pool') do
   it { should exist }
 end

@@ -47,6 +47,7 @@ require 'awspec/helper/finder/redshift'
 require 'awspec/helper/finder/codedeploy'
 require 'awspec/helper/finder/mq'
 require 'awspec/helper/finder/secretsmanager'
+require 'awspec/helper/finder/cognito_user_pool'
 require 'awspec/helper/finder/msk'
 
 require 'awspec/helper/finder/account_attributes'
@@ -104,6 +105,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Codedeploy
     include Awspec::Helper::Finder::Mq
     include Awspec::Helper::Finder::Secretsmanager
+    include Awspec::Helper::Finder::CognitoUserPool
     include Awspec::Helper::Finder::Msk
 
     CLIENTS = {
@@ -150,6 +152,7 @@ module Awspec::Helper
       codedeploy_client: Aws::CodeDeploy::Client,
       mq_client: Aws::MQ::Client,
       secretsmanager_client: Aws::SecretsManager::Client,
+      cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client,
       msk_client: Aws::Kafka::Client
     }
 

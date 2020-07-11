@@ -1303,7 +1303,7 @@ describe efs('my-efs') do
 end
 ```
 
-### its(:owner_id), its(:creation_token), its(:file_system_id), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps)
+### its(:owner_id), its(:creation_token), its(:file_system_id), its(:file_system_arn), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps)
 ## <a name="elastic_ip">elastic_ip</a>
 
 Elastic IP resource type.
@@ -3232,7 +3232,7 @@ describe secretsmanager('my-secret') do
 end
 ```
 
-### its(:arn), its(:name), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:owning_service)
+### its(:arn), its(:name), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:owning_service), its(:created_date)
 ## <a name="security_group">security_group</a>
 
 SecurityGroup resource type.

@@ -11,4 +11,5 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
     should have_subscription_filter('my-cloudwatch-logs-subscription-filter')\
       .filter_pattern('[host, ident, authuser, date, request, status, bytes]')
   end
+  it { should have_tag('key_one').value('value_one') }
 end

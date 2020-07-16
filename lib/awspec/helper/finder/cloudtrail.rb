@@ -15,6 +15,12 @@ module Awspec::Helper
         cloudtrail_client.get_trail_status(name: id)
       end
 
+      def get_trail_tags(arn)
+        cloudtrail_client.list_tags(
+          resource_id_list: [arn]
+        )[:resource_tag_list].first[:tags_list]
+      end
+
       def is_logging?(id)
         ret = get_trail_status(id).is_logging
       end

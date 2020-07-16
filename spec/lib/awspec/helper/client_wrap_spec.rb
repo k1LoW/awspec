@@ -5,6 +5,8 @@ module RSpec::Mocks
   module Errors
     class RequestLimitExceeded < RuntimeError
     end
+    class Throttling < RuntimeError
+    end
   end
 end
 
@@ -38,7 +40,19 @@ describe Awspec::Helper::ClientWrap do
     end
 
     context 'given optional args' do
-      let(:client) { subj.new('client', backoff: 1.0, iteration: 2, backoff_limit: 10) }
+      before(:all) do
+        config = Awspec::Config.instance
+        config.client_backoff(1.0)
+        config.client_backoff_limit(10)
+        config.client_iteration(2)
+      end
+
+      after(:all) do
+        config = Awspec::Config.instance
+        config.client_backoff(0.0)
+        config.client_backoff_limit(30.0)
+        config.client_iteration(1)
+      end
 
       it 'should set the backoff attribute' do
         expect(client.backoff).to eq 1.0
@@ -82,6 +96,10 @@ describe Awspec::Helper::ClientWrap do
     context 'given the client raises ::RequestLimitExceeded error' do
       let(:client) { double 'fake' }
 
+      before(:all) { Awspec::Config.instance.client_backoff_limit(1) }
+
+      after(:all) { Awspec::Config.instance.client_backoff_limit(30.0) }
+
       it 'should be called multiple times in a sleep loop, and re-raise the exception if it is not cleared' do
         calls = 0
         allow(client).to receive(:test_me) do
@@ -89,7 +107,7 @@ describe Awspec::Helper::ClientWrap do
           raise RSpec::Mocks::Errors::RequestLimitExceeded
         end
 
-        foo = subj.new(client, backoff_limit: 1)
+        foo = subj.new(client)
         expect { foo.test_me }.to raise_error(RSpec::Mocks::Errors::RequestLimitExceeded)
         expect(foo.backoff).to eq(2.5)
         expect(foo.iteration).to eq(3)
@@ -103,7 +121,40 @@ describe Awspec::Helper::ClientWrap do
           raise RSpec::Mocks::Errors::RequestLimitExceeded, 'Fail' if calls == 1
           'done'
         end
-        foo = subj.new(client, backoff_limit: 1)
+        foo = subj.new(client)
+        expect { res = foo.test_me }.to_not raise_error
+        expect(res).to eq 'done'
+      end
+    end
+    context 'given the client raises ::Throttling error' do
+      let(:client) { double 'fake' }
+
+      before(:all) { Awspec::Config.instance.client_backoff_limit(1) }
+
+      after(:all) { Awspec::Config.instance.client_backoff_limit(30.0) }
+
+      it 'should be called multiple times in a sleep loop, and re-raise the exception if it is not cleared' do
+        calls = 0
+        allow(client).to receive(:test_me) do
+          calls += 1
+          raise RSpec::Mocks::Errors::Throttling
+        end
+
+        foo = subj.new(client)
+        expect { foo.test_me }.to raise_error(RSpec::Mocks::Errors::Throttling)
+        expect(foo.backoff).to eq(2.5)
+        expect(foo.iteration).to eq(3)
+      end
+
+      it 'return as expected once the error is cleared' do
+        calls = 0
+        res = ''
+        allow(client).to receive(:test_me) do
+          calls += 1
+          raise RSpec::Mocks::Errors::Throttling, 'Fail' if calls == 1
+          'done'
+        end
+        foo = subj.new(client)
         expect { res = foo.test_me }.to_not raise_error
         expect(res).to eq 'done'
       end

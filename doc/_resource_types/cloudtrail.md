@@ -37,3 +37,11 @@ describe cloudtrail('my-trail') do
   it { should be_logging }
 end
 ```
+
+### have_tag
+
+```ruby
+describe cloudtrail('my-trail') do
+  it { should have_tag('Name').value('my-trail') }
+end
+```

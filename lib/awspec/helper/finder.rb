@@ -46,6 +46,10 @@ require 'awspec/helper/finder/emr'
 require 'awspec/helper/finder/redshift'
 require 'awspec/helper/finder/codedeploy'
 require 'awspec/helper/finder/mq'
+require 'awspec/helper/finder/secretsmanager'
+require 'awspec/helper/finder/cognito_user_pool'
+require 'awspec/helper/finder/msk'
+require 'awspec/helper/finder/cognito_identity_pool'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -101,6 +105,10 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Redshift
     include Awspec::Helper::Finder::Codedeploy
     include Awspec::Helper::Finder::Mq
+    include Awspec::Helper::Finder::Secretsmanager
+    include Awspec::Helper::Finder::CognitoUserPool
+    include Awspec::Helper::Finder::Msk
+    include Awspec::Helper::Finder::CognitoIdentityPool
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -144,23 +152,22 @@ module Awspec::Helper
       emr_client: Aws::EMR::Client,
       redshift_client: Aws::Redshift::Client,
       codedeploy_client: Aws::CodeDeploy::Client,
-      mq_client: Aws::MQ::Client
+      mq_client: Aws::MQ::Client,
+      secretsmanager_client: Aws::SecretsManager::Client,
+      msk_client: Aws::Kafka::Client,
+      cognito_identity_client: Aws::CognitoIdentity::Client,
+      cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client
     }
 
     CLIENT_OPTIONS = {
       http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil
     }
 
-    # disable this check if running on Travis CI, see .travis.yml for details
-    unless ENV['DISABLE_AWS_CLIENT_CHECK'] == 'true'
-      # define_method below will "hide" any exception that comes from bad
-      # setup of AWS client, so let's try first to create a instance
-      begin
-        Aws::EC2::Client.new(CLIENT_OPTIONS)
-      rescue => e
-        raise "Oops, there is something wrong with AWS client configuration => #{e}"
-      end
-    end
+    check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')
+
+    # define_method below will "hide" any exception that comes from bad
+    # setup of AWS client, so let's try first to create a instance
+    Awsecrets.load if check_configuration
 
     CLIENTS.each do |method_name, client|
       define_method method_name do

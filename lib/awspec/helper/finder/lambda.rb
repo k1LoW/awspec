@@ -9,7 +9,10 @@ module Awspec::Helper
           selected += res.functions.select do |function|
             function.function_name == id || function.function_arn == id
           end
-          (res.next_page? && res = res.next_page) || break
+          break if res.next_marker.nil?
+          res = lambda_client.list_functions({
+                                               marker: res.next_marker
+                                             })
         end
 
         selected.single_resource(id)

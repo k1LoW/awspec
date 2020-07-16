@@ -27,6 +27,28 @@ Aws.config[:route53] = {
           ]
         },
         {
+          name: 'failover.example.com.',
+          type: 'A',
+          ttl: 3600,
+          resource_records: [
+            {
+              value: '123.456.7.891'
+            }
+          ],
+          failover: 'PRIMARY'
+        },
+        {
+          name: 'failover.example.com.',
+          type: 'A',
+          ttl: 3600,
+          resource_records: [
+            {
+              value: '123.456.7.892'
+            }
+          ],
+          failover: 'SECONDARY'
+        },
+        {
           name: '\052.example.com.',
           type: 'CNAME',
           ttl: 3600,
@@ -92,6 +114,28 @@ Aws.config[:route53] = {
           alias_target: {
             hosted_zone_id: 'Z2ABCDEFGHIJKL',
             dns_name: 's3-website-us-east-1.amazonaws.com.',
+            evaluate_target_health: false
+          },
+          failover: 'SECONDARY'
+        },
+        {
+          name: 's3.example.com.',
+          type: 'A',
+          resource_records: [],
+          alias_target: {
+            hosted_zone_id: 'Z2FDTNDATAQYW2',
+            dns_name: 'abcdefghijklmn.cloudfront.net.',
+            evaluate_target_health: false
+          },
+          failover: 'PRIMARY'
+        },
+        {
+          name: 'alias.example.com.',
+          type: 'A',
+          resource_records: [],
+          alias_target: {
+            hosted_zone_id: 'Z2FDTNDATAQYW2',
+            dns_name: 'opqrstuvwxyz.cloudfront.net.',
             evaluate_target_health: false
           }
         },

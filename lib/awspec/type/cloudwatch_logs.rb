@@ -27,5 +27,11 @@ module Awspec::Type
       end
       return true if ret.filter_name == filter_name
     end
+
+    def has_tag?(tag_key, tag_value)
+      find_tags_by_log_group_name(resource_via_client.log_group_name).find do |key, value|
+        key == tag_key && value == tag_value
+      end
+    end
   end
 end

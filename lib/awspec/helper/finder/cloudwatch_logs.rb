@@ -64,6 +64,10 @@ module Awspec::Helper
         log_groups
       end
 
+      def find_tags_by_log_group_name(id)
+        cloudwatch_logs_client.list_tags_log_group(log_group_name: id)[:tags]
+      end
+
       filter_types = %w(metric subscription)
       filter_types.each do |type|
         define_method 'select_all_cloudwatch_logs_' + type + '_filter' do |*args|

@@ -10,7 +10,11 @@ module Awspec::Helper
               selected.push(hosted_zone)
             end
           end
-          (res.next_page? && res = res.next_page) || break
+
+          break unless res.is_truncated
+          res = route53_client.list_hosted_zones({
+                                                   marker: res.next_marker
+                                                 })
         end
         selected.single_resource(id)
       end
@@ -22,7 +26,13 @@ module Awspec::Helper
                                                        })
         loop do
           selected += res.resource_record_sets
-          (res.next_page? && res = res.next_page) || break
+          break unless res.is_truncated
+
+          res = route53_client.list_resource_record_sets({
+                                                           hosted_zone_id: id,
+                                                           start_record_name: res.next_record_name,
+                                                           start_record_type: res.next_record_type
+                                                         })
         end
         selected
       end

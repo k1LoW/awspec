@@ -38,3 +38,11 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
   end
 end
 ```
+
+### have_tag
+
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it { should have_tag('Name').value('my-cloudwatch-logs-group') }
+end
+```

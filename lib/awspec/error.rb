@@ -25,4 +25,8 @@ module Awspec
       super message
     end
   end
+
+  # Let the user know the configuration they provided is not known.
+  class UnknownConfiguration < StandardError
+  end
 end

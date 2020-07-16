@@ -57,3 +57,8 @@ if defined?(RSpec)
     RuboCop::RakeTask.new
   end
 end
+
+task :generate_docs do
+  docs = Awspec::Generator::Doc::Type.generate_doc
+  File.write('doc/resource_types.md', docs + "\n")
+end

@@ -14,5 +14,9 @@ module Awspec::Type
     def id
       @id ||= resource_via_client.repository_name if resource_via_client
     end
+
+    def policy_text
+      @policy_text ||= get_policy_text(@display_name)
+    end
   end
 end

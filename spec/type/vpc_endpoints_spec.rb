@@ -9,7 +9,7 @@ describe vpc_endpoints('vpce-abc123') do
   its(:vpc_endpoint_type) { should eq 'Gateway' }
 end
 
-describe vpc_endpoints('vpce-123456789abcdefgh') do
+describe vpc_endpoints('vpce-abc124') do
   it { should exist }
   it { should be_available }
   it { should belong_to_vpc('vpc-abc123') }

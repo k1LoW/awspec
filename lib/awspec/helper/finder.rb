@@ -2,6 +2,7 @@ require 'aws-sdk'
 require 'awspec/helper/finder/nlb'
 require 'awspec/helper/finder/alb'
 require 'awspec/helper/finder/vpc'
+require 'awspec/helper/finder/vpc_endpoints'
 require 'awspec/helper/finder/subnet'
 require 'awspec/helper/finder/ec2'
 require 'awspec/helper/finder/ecr'
@@ -60,6 +61,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Nlb
     include Awspec::Helper::Finder::Alb
     include Awspec::Helper::Finder::Vpc
+    include Awspec::Helper::Finder::VpcEndpoints
     include Awspec::Helper::Finder::Subnet
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::Ecr

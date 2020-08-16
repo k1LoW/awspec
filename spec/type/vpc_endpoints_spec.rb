@@ -12,7 +12,7 @@ end
 describe vpc_endpoints('vpce-abc124') do
   it { should exist }
   it { should be_available }
-  it { should belong_to_vpc('vpc-abc123') }
+  it { should belong_to_vpc('vpc-12345678') }
   it { should have_subnet('subnet-abc123') }
   its(:vpc_endpoint_type) { should eq 'Interface' }
 end

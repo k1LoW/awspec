@@ -76,6 +76,7 @@
 | [subnet](#subnet)
 | [transit_gateway](#transit_gateway)
 | [vpc](#vpc)
+| [vpc_endpoints](#vpc_endpoints)
 | [vpn_connection](#vpn_connection)
 | [vpn_gateway](#vpn_gateway)
 | [waf_web_acl](#waf_web_acl)
@@ -2784,7 +2785,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:associated_roles), its(:listener_endpoint), its(:max_allocated_storage)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:replica_mode), its(:license_model), its(:iops), its(:character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:associated_roles), its(:listener_endpoint), its(:max_allocated_storage)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).
@@ -3643,6 +3644,86 @@ describe vpc('my-vpc') do
   its('resource.route_tables.first.route_table_id') { should eq 'rtb-a12bcd34' }
 end
 ```
+
+## <a name="vpc_endpoints">vpc_endpoints</a>
+
+VpcEndpoints resource type.
+
+### exist
+
+```ruby
+describe vpc_endpoints('my-vpc-endpoint') do
+  it { should exist }
+end
+```
+
+describe vpc_endpoints('vpce-05907f23265b25f20'), region: $tfvars["region"]["value"] do
+  it { should exist }
+  it { should be_available }
+  it { should have_subnet('subnet-040e19eabf3226f99') }
+  it { should belong_to_vpc('vpc-00af9dcc0134b48e0') }
+  its(:private_dns_enabled) { should eq true }
+  its(:vpc_endpoint_type) { should eq 'Interface' }
+  its(:service_name) { should eq 'com.amazonaws.eu-west-1.codebuild' }
+end
+
+
+### be_available
+
+### be_deleted
+
+### be_deleting
+
+### be_expired
+
+### be_failed
+
+### be_pending
+
+### be_pendingacceptance
+
+### be_rejected
+
+### have_route_table
+
+```ruby
+describe vpc_endpoints('my-vpc-endpoint') do
+  it { should have_route_table('rtb-abc123') }
+end
+```
+
+
+### have_subnet
+
+```ruby
+describe vpc_endpoints('my-vpc-endpoint') do
+  it { should have_subnet('subnet-abc123') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe vpc_endpoints('my-vpc-endpoint') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+
+
+### :unlock: Advanced use
+
+`vpc_endpoints` can use `Aws::EC2::Types::VpcEndpoint` resource (see https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/EC2/Types/VpcEndpoint.html).
+
+```ruby
+describe vpc_endpoints('my-vpc-endpoint') do
+  its(:private_dns_enabled) { should eq true }
+  its(:vpc_endpoint_type) { should eq 'Interface' }
+  its(:service_name) { should eq 'com.amazonaws.eu-west-1.codebuild' }
+end
+```
+
 
 ## <a name="vpn_connection">vpn_connection</a>
 

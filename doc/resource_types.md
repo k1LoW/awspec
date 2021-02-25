@@ -411,7 +411,7 @@ describe batch_job_definition('my-batch-job-definition') do
 end
 ```
 
-### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties), its(:tags)
+### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties), its(:tags), its(:propagate_tags), its(:platform_capabilities)
 ## <a name="batch_job_queue">batch_job_queue</a>
 
 BatchJobQueue resource type.
@@ -931,7 +931,7 @@ end
 ```
 
 
-### its(:availability_zone), its(:create_time), its(:encrypted), its(:kms_key_id), its(:outpost_arn), its(:size), its(:snapshot_id), its(:state), its(:volume_id), its(:iops), its(:volume_type), its(:fast_restored), its(:multi_attach_enabled)
+### its(:availability_zone), its(:create_time), its(:encrypted), its(:kms_key_id), its(:outpost_arn), its(:size), its(:snapshot_id), its(:state), its(:volume_id), its(:iops), its(:volume_type), its(:fast_restored), its(:multi_attach_enabled), its(:throughput)
 ### :unlock: Advanced use
 
 `ebs` can use `Aws::EC2::Volume` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html).
@@ -1282,7 +1282,7 @@ describe ecs_task_definition('my-ecs-task-definition') do
 end
 ```
 
-### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:execution_role_arn), its(:network_mode), its(:revision), its(:volumes), its(:status), its(:requires_attributes), its(:placement_constraints), its(:compatibilities), its(:requires_compatibilities), its(:cpu), its(:memory), its(:inference_accelerators), its(:pid_mode), its(:ipc_mode), its(:proxy_configuration)
+### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:execution_role_arn), its(:network_mode), its(:revision), its(:volumes), its(:status), its(:requires_attributes), its(:placement_constraints), its(:compatibilities), its(:requires_compatibilities), its(:cpu), its(:memory), its(:inference_accelerators), its(:pid_mode), its(:ipc_mode), its(:proxy_configuration), its(:registered_at), its(:deregistered_at), its(:registered_by)
 ## <a name="efs">efs</a>
 
 EFS resource type.
@@ -1504,7 +1504,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options), its(:domain_endpoint_options), its(:advanced_security_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options), its(:domain_endpoint_options), its(:advanced_security_options), its(:auto_tune_options)
 ## <a name="elastictranscoder_pipeline">elastictranscoder_pipeline</a>
 
 ElastictranscoderPipeline resource type.
@@ -1847,7 +1847,7 @@ describe iam_policy('my-iam-user') do
 end
 ```
 
-### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:permissions_boundary_usage_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date)
+### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:permissions_boundary_usage_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date), its(:tags)
 ## <a name="iam_role">iam_role</a>
 
 IamRole resource type.
@@ -2211,7 +2211,7 @@ end
 
 This matcher does not support Amazon S3 event sources ([see SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method)).
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:package_type), its(:image_config_response), its(:signing_profile_version_arn), its(:signing_job_arn)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -2785,7 +2785,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:replica_mode), its(:license_model), its(:iops), its(:character_set_name), its(:nchar_character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:associated_roles), its(:listener_endpoint), its(:max_allocated_storage), its(:tag_list)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:replica_mode), its(:license_model), its(:iops), its(:character_set_name), its(:nchar_character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:associated_roles), its(:listener_endpoint), its(:max_allocated_storage), its(:tag_list), its(:db_instance_automated_backups_replications), its(:customer_owned_ip_enabled), its(:aws_backup_recovery_point_arn)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).
@@ -2917,7 +2917,7 @@ describe redshift('my-redshift') do
 end
 ```
 
-### its(:vpc_id), its(:cluster_identifier), its(:node_type), its(:cluster_status), its(:cluster_availability_status), its(:modify_status), its(:master_username), its(:db_name), its(:endpoint), its(:cluster_create_time), its(:automated_snapshot_retention_period), its(:manual_snapshot_retention_period), its(:cluster_security_groups), its(:cluster_subnet_group_name), its(:vpc_id), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:cluster_version), its(:allow_version_upgrade), its(:number_of_nodes), its(:publicly_accessible), its(:encrypted), its(:restore_status), its(:data_transfer_progress), its(:hsm_status), its(:cluster_snapshot_copy_status), its(:cluster_public_key), its(:cluster_nodes), its(:elastic_ip_status), its(:cluster_revision_number), its(:kms_key_id), its(:enhanced_vpc_routing), its(:iam_roles), its(:pending_actions), its(:maintenance_track_name), its(:elastic_resize_number_of_node_options), its(:deferred_maintenance_windows), its(:snapshot_schedule_identifier), its(:snapshot_schedule_state), its(:expected_next_snapshot_schedule_time), its(:expected_next_snapshot_schedule_time_status), its(:next_maintenance_window_start_time), its(:resize_info)
+### its(:vpc_id), its(:cluster_identifier), its(:node_type), its(:cluster_status), its(:cluster_availability_status), its(:modify_status), its(:master_username), its(:db_name), its(:endpoint), its(:cluster_create_time), its(:automated_snapshot_retention_period), its(:manual_snapshot_retention_period), its(:cluster_security_groups), its(:cluster_subnet_group_name), its(:vpc_id), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:cluster_version), its(:allow_version_upgrade), its(:number_of_nodes), its(:publicly_accessible), its(:encrypted), its(:restore_status), its(:data_transfer_progress), its(:hsm_status), its(:cluster_snapshot_copy_status), its(:cluster_public_key), its(:cluster_nodes), its(:elastic_ip_status), its(:cluster_revision_number), its(:kms_key_id), its(:enhanced_vpc_routing), its(:iam_roles), its(:pending_actions), its(:maintenance_track_name), its(:elastic_resize_number_of_node_options), its(:deferred_maintenance_windows), its(:snapshot_schedule_identifier), its(:snapshot_schedule_state), its(:expected_next_snapshot_schedule_time), its(:expected_next_snapshot_schedule_time_status), its(:next_maintenance_window_start_time), its(:resize_info), its(:availability_zone_relocation_status), its(:cluster_namespace_arn)
 ## <a name="redshift_cluster_parameter_group">redshift_cluster_parameter_group</a>
 
 RedshiftClusterParameterGroup resource type.

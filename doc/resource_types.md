@@ -743,7 +743,7 @@ describe codedeploy_deployment_group('my-codedeploy-deployment-group'), applicat
 end
 ```
 
-### its(:application_name), its(:deployment_group_id), its(:deployment_group_name), its(:deployment_config_name), its(:on_premises_instance_tag_filters), its(:service_role_arn), its(:target_revision), its(:trigger_configurations), its(:alarm_configuration), its(:deployment_style), its(:load_balancer_info), its(:last_successful_deployment), its(:last_attempted_deployment), its(:ec2_tag_set), its(:on_premises_tag_set), its(:compute_platform), its(:ecs_services)
+### its(:application_name), its(:deployment_group_id), its(:deployment_group_name), its(:deployment_config_name), its(:on_premises_instance_tag_filters), its(:service_role_arn), its(:target_revision), its(:trigger_configurations), its(:alarm_configuration), its(:deployment_style), its(:outdated_instances_strategy), its(:load_balancer_info), its(:last_successful_deployment), its(:last_attempted_deployment), its(:ec2_tag_set), its(:on_premises_tag_set), its(:compute_platform), its(:ecs_services)
 ## <a name="cognito_identity_pool">cognito_identity_pool</a>
 
 CognitoIdentityPool resource type.
@@ -1213,7 +1213,7 @@ describe ecs_cluster('my-ecs-cluster') do
 end
 ```
 
-### its(:cluster_arn), its(:cluster_name), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics), its(:tags), its(:settings), its(:capacity_providers), its(:default_capacity_provider_strategy), its(:attachments), its(:attachments_status)
+### its(:cluster_arn), its(:cluster_name), its(:configuration), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics), its(:tags), its(:settings), its(:capacity_providers), its(:default_capacity_provider_strategy), its(:attachments), its(:attachments_status)
 ## <a name="ecs_container_instance">ecs_container_instance</a>
 
 ECS Container Instance resource type.
@@ -1260,7 +1260,7 @@ describe ecs_service('my-ecs-service') do
 end
 ```
 
-### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:capacity_provider_strategy), its(:platform_version), its(:task_definition), its(:task_sets), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds), its(:scheduling_strategy), its(:deployment_controller), its(:tags), its(:created_by), its(:enable_ecs_managed_tags), its(:propagate_tags)
+### its(:service_arn), its(:service_name), its(:cluster_arn), its(:load_balancers), its(:service_registries), its(:status), its(:desired_count), its(:running_count), its(:pending_count), its(:launch_type), its(:capacity_provider_strategy), its(:platform_version), its(:task_definition), its(:task_sets), its(:role_arn), its(:created_at), its(:placement_constraints), its(:placement_strategy), its(:network_configuration), its(:health_check_grace_period_seconds), its(:scheduling_strategy), its(:deployment_controller), its(:tags), its(:created_by), its(:enable_ecs_managed_tags), its(:propagate_tags), its(:enable_execute_command)
 ## <a name="ecs_task_definition">ecs_task_definition</a>
 
 ECS Task Definition resource type.
@@ -1304,7 +1304,7 @@ describe efs('my-efs') do
 end
 ```
 
-### its(:owner_id), its(:creation_token), its(:file_system_id), its(:file_system_arn), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps)
+### its(:owner_id), its(:creation_token), its(:file_system_id), its(:file_system_arn), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps), its(:availability_zone_name), its(:availability_zone_id)
 ## <a name="elastic_ip">elastic_ip</a>
 
 Elastic IP resource type.
@@ -3233,7 +3233,7 @@ describe secretsmanager('my-secret') do
 end
 ```
 
-### its(:arn), its(:name), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:owning_service), its(:created_date)
+### its(:arn), its(:name), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:owning_service), its(:created_date), its(:primary_region), its(:replication_status)
 ## <a name="security_group">security_group</a>
 
 SecurityGroup resource type.

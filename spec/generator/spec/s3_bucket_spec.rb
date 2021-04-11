@@ -35,6 +35,7 @@ describe s3_bucket('my-bucket') do
       status: 'Enabled'
     )
   end
+  it { should have_location('us-east-1') }
 end
 EOF
     expect(s3_bucket.generate_all.to_s).to eq spec

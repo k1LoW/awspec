@@ -24,6 +24,11 @@ module Awspec::Type
       end
     end
 
+    def has_location?(location)
+      check_existence
+      find_bucket_location(id) == location
+    end
+
     def acl_owner
       check_existence
       @acl = find_bucket_acl(id)

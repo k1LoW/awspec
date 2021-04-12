@@ -11,7 +11,7 @@ module Awspec::Generator
                                                role_name: role.role_name,
                                                policy_name: policy_name
                                              })
-            document = JSON.generate(JSON.parse(URI.decode(res.policy_document)))
+            document = JSON.generate(JSON.parse(URI.decode_www_form_component(res.policy_document)))
             "it { should have_inline_policy('#{policy_name}').policy_document('#{document}') }"
           end
           content = ERB.new(iam_role_spec_template, nil, '-').result(binding).gsub(/^\n/, '')

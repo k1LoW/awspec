@@ -3114,6 +3114,15 @@ end
 ```
 
 
+### have_location
+
+```ruby
+describe s3_bucket('my-bucket') do
+  it { should have_location('us-east-1') }
+end
+```
+
+
 ### have_logging_enabled
 
 ```ruby

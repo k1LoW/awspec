@@ -119,6 +119,9 @@ Aws.config[:s3] = {
         }
       ]
     },
+    get_bucket_location: {
+      location_constraint: 'us-east-1'
+    },
     get_bucket_encryption: {
       server_side_encryption_configuration: {
         rules: [

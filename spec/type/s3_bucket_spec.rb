@@ -10,6 +10,7 @@ describe s3_bucket('my-bucket') do
   it { should have_acl_grant(grantee: 'my-bucket-owner', permission: 'FULL_CONTROL') }
   it { should have_acl_grant(grantee: 'http://acs.amazonaws.com/groups/s3/LogDelivery', permission: 'WRITE') }
   it { should have_acl_grant(grantee: '68f4bb06b094152df53893bfba57760e', permission: 'READ') }
+  it { should have_location('us-east-1') }
 
   it do
     should have_cors_rule(

@@ -102,6 +102,9 @@ describe s3_bucket('<%= bucket.name %>') do
   <%= line %>
 <% end %>
 <%- end -%>
+<%- if location -%>
+  it { should have_location('<%= location %>') }
+<%- end -%>
 end
 EOF
         template
@@ -117,6 +120,7 @@ EOF
         bucket_policy = policy.policy.read if policy
         lifecycle_rule = find_bucket_lifecycle_configuration(bucket.name)
         lifecycle_specs = generate_lifecycle_rule_specs(lifecycle_rule) if lifecycle_rule
+        location = find_bucket_location(bucket.name)
         ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
     end

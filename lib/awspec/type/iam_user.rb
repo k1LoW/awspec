@@ -24,7 +24,7 @@ module Awspec::Type
                                          user_name: resource_via_client.user_name,
                                          policy_name: policy_name
                                        })
-      return JSON.parse(URI.decode(res.policy_document)) == JSON.parse(document) if document
+      return JSON.parse(URI.decode_www_form_component(res.policy_document)) == JSON.parse(document) if document
       res
     end
 

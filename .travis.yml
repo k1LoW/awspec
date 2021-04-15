@@ -1,6 +1,8 @@
 language: ruby
 matrix:
   include:
+    - rvm: 2.7.3
+      env: RUBYGEMS_VERSION=
     - rvm: 2.6.2
       env: RUBYGEMS_VERSION=
     - rvm: 2.5.3

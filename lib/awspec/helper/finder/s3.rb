@@ -37,7 +37,11 @@ module Awspec::Helper
 
       def find_bucket_location(id)
         bucket_location = s3_client.get_bucket_location(bucket: id)
-        bucket_location.location_constraint
+        if bucket_location.location_constraint.nil? || bucket_location.location_constraint.empty?
+          'us-east-1'
+        else
+          bucket_location.location_constraint
+        end
       rescue Aws::S3::Errors::ServiceError
         nil
       end

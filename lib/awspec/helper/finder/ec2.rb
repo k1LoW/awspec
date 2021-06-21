@@ -7,15 +7,16 @@ module Awspec::Helper
           res = ec2_client.describe_instances({
                                                 instance_ids: [id]
                                               })
-        rescue
-          # Aws::EC2::Errors::InvalidInstanceIDMalformed
-          # Aws::EC2::Errors::InvalidInstanceIDNotFound
+        rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
           res = ec2_client.describe_instances({
                                                 filters: [{ name: 'tag:Name', values: [id] }]
                                               })
         end
         # rubocop:enable Style/GuardClause
-        if res.reservations.count == 1
+
+        if res.reservations.count == 0
+          nil
+        elsif res.reservations.count == 1
           res.reservations.first.instances.single_resource(id)
         elsif res.reservations.count > 1
           raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
@@ -43,7 +44,7 @@ module Awspec::Helper
       end
 
       # find_internet_gateway find_vpn_gateway find_customer_gateway
-      gateway_types = %w(internet vpn customer transit)
+      gateway_types = %w(internet vpn customer)
       gateway_types.each do |type|
         define_method 'find_' + type + '_gateway' do |*args|
           gateway_id = args.first
@@ -85,21 +86,10 @@ module Awspec::Helper
       end
 
       def find_nat_gateway(gateway_id)
-        # nat_gateway_id or tag:Name
-        begin
-          res = ec2_client.describe_nat_gateways({
-                                                   nat_gateway_ids: [gateway_id]
-                                                 })
-        rescue
-          res = ec2_client.describe_nat_gateways({
-                                                   filter: [{ name: 'tag:Name', values: [gateway_id] }]
-                                                 })
-        end
-        if res.nat_gateways.count == 1
-          res.nat_gateways.single_resource(gateway_id)
-        elsif res.nat_gateways.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicate nat_gateways matching id or tag #{gateway_id}"
-        end
+        res = ec2_client.describe_nat_gateways({
+                                                 filter: [{ name: 'nat-gateway-id', values: [gateway_id] }]
+                                               })
+        res.nat_gateways.single_resource(gateway_id)
       end
 
       def find_network_interface(interface_id)
@@ -197,15 +187,6 @@ module Awspec::Helper
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_name: id
                                                            })
-      end
-
-      def find_tgw_attachments_by_tgw_id(tgw_id)
-        res = ec2_client.describe_transit_gateway_attachments({
-                                                                filters: [
-                                                                  { name: 'transit-gateway-id', values: [tgw_id] }
-                                                                ]
-                                                              })
-        res.transit_gateway_attachments
       end
     end
   end

@@ -273,7 +273,7 @@ end
 
 ### have_tag
 
-### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:platform_details), its(:usage_operation), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode)
+### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:platform_details), its(:usage_operation), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:deprecation_time)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
@@ -360,7 +360,7 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
-### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:mixed_instances_policy), its(:min_size), its(:max_size), its(:desired_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn), its(:max_instance_lifetime), its(:capacity_rebalance), its(:warm_pool_configuration), its(:warm_pool_size)
+### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:mixed_instances_policy), its(:min_size), its(:max_size), its(:desired_capacity), its(:predicted_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn), its(:max_instance_lifetime), its(:capacity_rebalance), its(:warm_pool_configuration), its(:warm_pool_size)
 ## <a name="batch_compute_environment">batch_compute_environment</a>
 
 BatchComputeEnvironment resource type.
@@ -1372,7 +1372,7 @@ end
 
 ### be_active, be_inactive
 
-### its(:nodegroup_name), its(:nodegroup_arn), its(:cluster_name), its(:version), its(:release_version), its(:created_at), its(:modified_at), its(:status), its(:capacity_type), its(:scaling_config), its(:instance_types), its(:subnets), its(:remote_access), its(:ami_type), its(:node_role), its(:labels), its(:resources), its(:disk_size), its(:health), its(:launch_template), its(:tags)
+### its(:nodegroup_name), its(:nodegroup_arn), its(:cluster_name), its(:version), its(:release_version), its(:created_at), its(:modified_at), its(:status), its(:capacity_type), its(:scaling_config), its(:instance_types), its(:subnets), its(:remote_access), its(:ami_type), its(:node_role), its(:labels), its(:taints), its(:resources), its(:disk_size), its(:health), its(:update_config), its(:launch_template), its(:tags)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.
@@ -2178,7 +2178,7 @@ DOC
 end
 ```
 
-### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:encryption_algorithms), its(:signing_algorithms)
+### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days)
 ## <a name="lambda">lambda</a>
 
 Lambda resource type.
@@ -2422,7 +2422,7 @@ end
 ```
 
 
-### its(:create_time), its(:delete_time), its(:failure_code), its(:failure_message), its(:nat_gateway_id), its(:provisioned_bandwidth), its(:state), its(:subnet_id), its(:vpc_id)
+### its(:create_time), its(:delete_time), its(:failure_code), its(:failure_message), its(:nat_gateway_id), its(:provisioned_bandwidth), its(:state), its(:subnet_id), its(:vpc_id), its(:connectivity_type)
 ## <a name="network_acl">network_acl</a>
 
 NetworkAcl resource type.
@@ -2801,7 +2801,7 @@ end
 ```
 
 
-### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:replica_mode), its(:license_model), its(:iops), its(:character_set_name), its(:nchar_character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:associated_roles), its(:listener_endpoint), its(:max_allocated_storage), its(:tag_list), its(:db_instance_automated_backups_replications), its(:customer_owned_ip_enabled), its(:aws_backup_recovery_point_arn)
+### its(:vpc_id), its(:db_instance_identifier), its(:db_instance_class), its(:engine), its(:db_instance_status), its(:master_username), its(:db_name), its(:endpoint), its(:allocated_storage), its(:instance_create_time), its(:preferred_backup_window), its(:backup_retention_period), its(:db_security_groups), its(:availability_zone), its(:preferred_maintenance_window), its(:pending_modified_values), its(:latest_restorable_time), its(:multi_az), its(:engine_version), its(:auto_minor_version_upgrade), its(:read_replica_source_db_instance_identifier), its(:read_replica_db_instance_identifiers), its(:read_replica_db_cluster_identifiers), its(:replica_mode), its(:license_model), its(:iops), its(:character_set_name), its(:nchar_character_set_name), its(:secondary_availability_zone), its(:publicly_accessible), its(:status_infos), its(:storage_type), its(:tde_credential_arn), its(:db_instance_port), its(:db_cluster_identifier), its(:storage_encrypted), its(:kms_key_id), its(:dbi_resource_id), its(:ca_certificate_identifier), its(:domain_memberships), its(:copy_tags_to_snapshot), its(:monitoring_interval), its(:enhanced_monitoring_resource_arn), its(:monitoring_role_arn), its(:promotion_tier), its(:db_instance_arn), its(:timezone), its(:iam_database_authentication_enabled), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:enabled_cloudwatch_logs_exports), its(:processor_features), its(:deletion_protection), its(:associated_roles), its(:listener_endpoint), its(:max_allocated_storage), its(:tag_list), its(:db_instance_automated_backups_replications), its(:customer_owned_ip_enabled), its(:aws_backup_recovery_point_arn), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:activity_stream_mode), its(:activity_stream_engine_native_audit_fields_included)
 ### :unlock: Advanced use
 
 `rds` can use `Aws::RDS::DBInstance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/RDS/DBInstance.html).

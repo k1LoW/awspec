@@ -11,7 +11,7 @@ module Awspec::Type
     end
 
     # required by Awspec::Generator::Doc::Type
-    STATES = Awspec::Helper::AllStates::EC2_STATES
+    STATES = Awspec::Helper::States::EC2_STATES
 
     Awspec::Helper::AllStates.ec2_states_checks.each do |method_name, state|
       define_method method_name do

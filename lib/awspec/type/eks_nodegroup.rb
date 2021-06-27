@@ -2,8 +2,13 @@ module Awspec::Type
   class EKSNodeEC2
     attr_reader :state
 
-    def initialize(state)
+    def initialize(id, state)
+      @id = id
       @state = state
+    end
+
+    def to_s
+      "ID: #{@id}, State: #{@state}"
     end
   end
 
@@ -34,7 +39,7 @@ module Awspec::Type
       running_counter = 0
 
       ec2_instances.each do |ec2|
-        running_counter += 1 if ec2.state.eql('running')
+        running_counter += 1 if ec2.state.eql?('running')
         break if running_counter == min_expected
       end
 
@@ -52,7 +57,7 @@ module Awspec::Type
     private
 
     def find_nodes
-      return @ec2_instances if @ec2_instances.empty?
+      return @ec2_instances if ! @ec2_instances.empty?
 
       # the tags below are standard for EKS node groups instances
       result = ec2_client.describe_instances(
@@ -65,7 +70,7 @@ module Awspec::Type
       )
       result.reservations.each do |reservation|
         reservation.instances.each do |instance|
-          @ec2_instances.append(EKSNodeEC2.new(instance.state.name))
+          @ec2_instances.append(EKSNodeEC2.new(instance.instance_id, instance.state.name))
         end
       end
 

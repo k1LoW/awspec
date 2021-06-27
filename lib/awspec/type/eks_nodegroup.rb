@@ -1,10 +1,19 @@
 module Awspec::Type
+  class EKSNodeEC2
+    attr_reader :state
+
+    def initialize(state)
+      @state = state
+    end
+  end
+
   class EksNodegroup < ResourceBase
     attr_accessor :cluster
 
     def initialize(group_name)
       super
       @group_name = group_name
+      @ec2_instances = []
     end
 
     def resource_via_client
@@ -19,12 +28,48 @@ module Awspec::Type
       @cluster || 'default'
     end
 
+    def ready?
+      min_expected = resource_via_client.scaling_config.min_size
+      ec2_instances = find_nodes
+      running_counter = 0
+
+      ec2_instances.each do |ec2|
+        running_counter += 1 if ec2.state.eql('running')
+        break if running_counter == min_expected
+      end
+
+      running_counter >= min_expected
+    end
+
     STATES = %w(ACTIVE INACTIVE)
 
     STATES.each do |state|
       define_method state.downcase + '?' do
         resource_via_client.status == state
       end
+    end
+
+    private
+
+    def find_nodes
+      return @ec2_instances if @ec2_instances.length > 0
+
+      # the tags below are standard for EKS node groups instances
+      result = ec2_client.describe_instances(
+        {
+          filters: [
+            { name: 'tag:eks:cluster-name', values: [cluster] },
+            { name: 'tag:eks:nodegroup-name', values: [@group_name] }
+          ]
+        }
+      )
+      result.reservations.each do |reservation|
+        reservation.instances.each do |instance|
+          @ec2_instances.append(EKSNodeEC2.new(instance.state.name))
+        end
+      end
+
+      return @ec2_instances
     end
   end
 end

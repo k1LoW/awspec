@@ -52,7 +52,7 @@ module Awspec::Type
     private
 
     def find_nodes
-      return @ec2_instances if @ec2_instances.length > 0
+      return @ec2_instances if @ec2_instances.empty?
 
       # the tags below are standard for EKS node groups instances
       result = ec2_client.describe_instances(
@@ -69,7 +69,7 @@ module Awspec::Type
         end
       end
 
-      return @ec2_instances
+      @ec2_instances
     end
   end
 end

@@ -3515,7 +3515,7 @@ end
 ```
 
 
-### its(:availability_zone), its(:availability_zone_id), its(:available_ip_address_count), its(:cidr_block), its(:default_for_az), its(:map_public_ip_on_launch), its(:map_customer_owned_ip_on_launch), its(:customer_owned_ipv_4_pool), its(:state), its(:subnet_id), its(:vpc_id), its(:owner_id), its(:assign_ipv_6_address_on_creation), its(:ipv_6_cidr_block_association_set), its(:subnet_arn), its(:outpost_arn)
+
 ### :unlock: Advanced use
 
 `subnet` can use `Aws::EC2::Subnet` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Subnet.html).

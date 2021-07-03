@@ -12,7 +12,7 @@ module Awspec::Helper
       #
       # It is intended to be used internally by the +find_subnet+ function only.
       #
-      # Many of the method expected a symbol to search through the cache to
+      # Many of the methods expect a symbol to search through the cache to
       # avoid having to call +to_sym+ multiple times.
 
       class SubnetCache

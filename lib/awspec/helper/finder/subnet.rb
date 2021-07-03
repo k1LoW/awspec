@@ -80,8 +80,7 @@ module Awspec::Helper
         end
       end
 
-      # Try to locate a {Aws::EC2::Types::Subnet}[https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/EC2/Types/Subnet.html]
-      # with a given subnet ID.
+      # Try to locate a +Aws::EC2::Types::Subnet+ with a given subnet ID.
       #
       # A subnet ID might be multiple things, like the
       # +Aws::EC2::Types::Subnet.subnet_id+, or a IPv4 CIDR or the value for the

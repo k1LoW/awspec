@@ -1,4 +1,3 @@
-require 'aws-sdk'
 require 'awspec/resource_reader'
 require 'awspec/helper/finder'
 require 'awspec/error'

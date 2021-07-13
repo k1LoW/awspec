@@ -34,5 +34,9 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
 
+    - name: Install xml lib
+      run: gem install ox
+      if: matrix.ruby-version == '3.0'
+
     - name: Run tests
       run: bundle exec rake spec

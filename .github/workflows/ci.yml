@@ -9,6 +9,7 @@ jobs:
   test:
     name: Test
     strategy:
+      fail-fast: false
       matrix:
         ruby-version:
           - '2.1'

@@ -6,8 +6,31 @@ on:
   pull_request:
 
 jobs:
+  doc:
+    name: Document
+    runs-on: ubuntu-latest
+    env:
+      DISABLE_AWS_CLIENT_CHECK: true
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+        bundler-cache: true
+
+    - name: Generate document
+      run: bundle exec bin/toolbox docgen > doc/resource_types.md
+
+    - uses: EndBug/add-and-commit@v7
+      with:
+        default_author: github_actions
+        add: 'doc/resource_types.md'
   test:
     name: Test
+    needs: [ doc ]
     strategy:
       fail-fast: false
       matrix:

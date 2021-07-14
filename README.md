@@ -1,4 +1,4 @@
-# awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![Travis](https://img.shields.io/travis/k1LoW/awspec.svg)](https://travis-ci.org/k1LoW/awspec)
+# awspec [![Gem](https://img.shields.io/gem/v/awspec.svg)](https://rubygems.org/gems/awspec) [![CI](https://github.com/k1LoW/awspec/actions/workflows/ci.yml/badge.svg)](https://github.com/k1LoW/awspec/actions)
 
 ![Logo](./awspec-logo.png)
 

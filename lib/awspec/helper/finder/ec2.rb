@@ -23,20 +23,28 @@ module Awspec::Helper
                                                 })
           end
         else
-          res = ec2_client.describe_instances({
-                                                filters: [{ name: 'tag:Name', values: [id] }]
-                                              })
+          begin
+            res = ec2_client.describe_instances({
+                                                  filters: [{ name: 'tag:Name', values: [id] }]
+                                                })
+          rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
+            res = ec2_client.describe_instances({
+                                                  instance_ids: [id]
+                                                })
+            if res.reservations.count > 1
+              STDERR.puts "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
+            end
+          end
         end
 
-        # rubocop:enable Style/GuardClause
+        return nil if res.reservations.count == 0
+        return res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
+        raise Awspec::DuplicatedResourceTypeError, dup_ec2_instance(id) if res.reservations.count > 1
+        raise "Unexpected condition of having reservations = #{res.reservations.count}"
+      end
 
-        if res.reservations.count == 0
-          nil
-        elsif res.reservations.count == 1
-          res.reservations.first.instances.single_resource(id)
-        elsif res.reservations.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
-        end
+      def dup_ec2_instance(id)
+        "Duplicate instances matching id or tag #{id}"
       end
 
       def find_ec2_attribute(id, attribute)

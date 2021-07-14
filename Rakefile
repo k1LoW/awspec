@@ -18,12 +18,12 @@ end
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
-    task all: ['spec:type',
+    task all: ['spec:rubocop',
+               'spec:type',
                'spec:account',
                'spec:core',
                'spec:generator_spec',
                'spec:generator_doc',
-               'spec:rubocop',
                'spec:helper']
 
     task type: types

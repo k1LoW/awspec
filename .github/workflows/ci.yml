@@ -19,7 +19,7 @@ jobs:
           - '2.5'
           - '2.6'
           - '2.7'
-          - '3.0'
+          # - '3.0'
     runs-on: ubuntu-latest
     env:
       DISABLE_AWS_CLIENT_CHECK: true

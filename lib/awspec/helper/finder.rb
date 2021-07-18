@@ -166,6 +166,12 @@ module Awspec::Helper
       http_wire_trace: ENV['http_wire_trace'] || false
     }
 
+    check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')
+
+    # define_method below will "hide" any exception that comes from bad
+    # setup of AWS client, so let's try first to create a instance
+    Awsecrets.load if check_configuration
+
     CLIENTS.each do |method_name, client|
       define_method method_name do
         unless self.methods.include? "@#{method_name}"

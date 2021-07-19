@@ -15,10 +15,9 @@ module Awspec::Type
   end
 
   class EksNodegroup < ResourceBase
-
     # the tags below are standard for EKS node groups instances
-    @@eks_cluster_tag = 'tag:eks:cluster-name'
-    @@eks_nodegroup_tag = 'tag:eks:nodegroup-name'
+    EKS_CLUSTER_TAG = 'tag:eks:cluster-name'
+    EKS_NODEGROUP_TAG = 'tag:eks:nodegroup-name'
 
     attr_accessor :cluster
 
@@ -40,11 +39,11 @@ module Awspec::Type
       @cluster || 'default'
     end
 
-    def belong_to_subnets(subnets)
-    end
-
-    def has_security_group(sec_group)
-    end
+    # def belong_to_subnets(subnets)
+    # end
+    #
+    # def has_security_group(sec_group)
+    # end
 
     def ready?
       min_expected = resource_via_client.scaling_config.min_size
@@ -71,13 +70,13 @@ module Awspec::Type
     private
 
     def find_nodes
-      return @ec2_instances if ! @ec2_instances.empty?
+      return @ec2_instances unless @ec2_instances.empty?
 
       result = ec2_client.describe_instances(
         {
           filters: [
-            { name: @@eks_cluster_tag, values: [cluster] },
-            { name: @@eks_nodegroup_tag, values: [@group_name] }
+            { name: EKS_CLUSTER_TAG, values: [cluster] },
+            { name: EKS_NODEGROUP_TAG, values: [@group_name] }
           ]
         }
       )

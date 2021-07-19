@@ -10,7 +10,7 @@ Aws.config[:eks] = {
         created_at: Time.parse('2018-10-28 00:23:32 -0400'),
         node_role: 'arn:aws:iam::012345678910:role/eks-nodegroup-role',
         status: 'ACTIVE',
-        scaling_config: {:min_size => 1, :desired_size => 2, :max_size => 3}
+        scaling_config: { min_size: 1, desired_size: 2, max_size: 3 }
       }
     }
   }
@@ -71,6 +71,6 @@ Aws.config[:ec2] = {
           ]
         }
       ]
-    },
+    }
   }
 }

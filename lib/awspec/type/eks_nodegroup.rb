@@ -51,7 +51,6 @@ module Awspec::Type
       running_counter = 0
 
       ec2_instances.each do |ec2|
-        puts ec2
         running_counter += 1 if ec2.state.eql?('running')
         break if running_counter == min_expected
       end

@@ -11,4 +11,6 @@ describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
   its('scaling_config.min_size') { should eq 1 }
   its('scaling_config.desired_size') { should eq 2 }
   its('scaling_config.max_size') { should eq 3 }
+  it { should belong_to_subnets('subnet-1234a567') }
+  it { should_not belong_to_subnets('subnet-1234a567YYY', 'subnet-1234a567ZZZ') }
 end

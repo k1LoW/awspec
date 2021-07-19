@@ -1,3 +1,5 @@
+require 'set'
+
 module Awspec::Type
   class EKSNodeEC2
     attr_reader :state, :subnet_id, :sec_groups
@@ -39,9 +41,11 @@ module Awspec::Type
       @cluster || 'default'
     end
 
-    # def belong_to_subnets(subnets)
-    # end
-    #
+    def subnets
+      ec2_instances = find_nodes
+      Set.new(ec2_instances.map { |ec2| ec2.subnet_id })
+    end
+
     # def has_security_group(sec_group)
     # end
 

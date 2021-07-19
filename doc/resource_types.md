@@ -1384,7 +1384,7 @@ end
 
 ### be_ready
 
-This matcher might not be exactly you are expecting: it is different from what
+This matcher *might* not be exactly you are expecting: it is different from what
 you can see when looking at the AWS console at the Node Groups configuration
 and check if the nodes Status is "Ready".
 
@@ -1393,7 +1393,7 @@ What you seeing over there is
 you would if using `kubectl`.
 
 This matcher cannot do the same because it would involve using the Kubernetes
-API: the AWS Ruby SDK currently doesn't expose this information.
+API, currently the AWS Ruby SDK **doesn't expose** this information.
 
 What you can get from `be_ready` matcher is asserting that you have **at least**
 the number of EC2 instances (the nodes in your EKS Node Group) are actually
@@ -1402,7 +1402,7 @@ can be running but without communication with the cluster or any order issue
 regarding the Kubernetes configuration.
 
 Although it might look an incomplete assertion, definitely the Node Group
-"Status" won't be "Active" if the EC2 instances associated with it are not
+"Status" won't be "Ready" if the EC2 instances associated with it are not
 running.
 
 So, using this assertion like the sample below:

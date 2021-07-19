@@ -9,7 +9,8 @@ Aws.config[:eks] = {
         nodegroup_arn: 'arn:aws:eks:us-west-2:012345678910:nodegroup/my-cluster/my-nodegroup/08bd000a',
         created_at: Time.parse('2018-10-28 00:23:32 -0400'),
         node_role: 'arn:aws:iam::012345678910:role/eks-nodegroup-role',
-        status: 'ACTIVE'
+        status: 'ACTIVE',
+        scaling_config: {:min_size => 1, :desired_size => 2, :max_size => 3}
       }
     }
   }

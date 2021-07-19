@@ -1370,13 +1370,23 @@ describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
 end
 ```
 
+### scaling_config
+
+```ruby
+describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
+  its('scaling_config.min_size') { should eq 1 }
+  its('scaling_config.desired_size') { should eq 2 }
+  its('scaling_config.max_size') { should eq 3 }
+end
+```
+
 ### be_active, be_inactive
 
 ### be_ready
 
-This matcher is not exactly you are expecting: it is different from what you can
-see when looking at the AWS console at the Node Groups configuration and check
-if the nodes Status is "Ready".
+This matcher might not be exactly you are expecting: it is different from what
+you can see when looking at the AWS console at the Node Groups configuration
+and check if the nodes Status is "Ready".
 
 What you seeing over there is
 [actually the same thing](https://aws.amazon.com/premiumsupport/knowledge-center/eks-node-status-ready/)
@@ -2306,9 +2316,9 @@ end
 ```
 
 #### specify version
- 
+
 Specify "latest" or version_number.
- 
+
 ```ruby
 # version_number
 describe launch_template('my-launch-template'), version: 2 do
@@ -2322,7 +2332,7 @@ describe launch_template('my-launch-template'), version: 'latest' do
   its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
 end
 ```
- 
+
 
 ### have_tag
 
@@ -3978,7 +3988,7 @@ describe account_attribute('ec2') do
   its('vpc_max_elastic_ips') { should eq 5 }
   its('default_vpc') { should eq 'none' }
 end
- 
+
 describe account_attribute('rds') do
   its('DBInstances.used') { should eq 0 }
   its('DBInstances.max') { should eq 40 }
@@ -4011,7 +4021,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.used') { should eq 0 }
   its('DBClusterRoles.max') { should eq 5 }
 end
- 
+
 describe account_attribute('lambda') do
   its('total_code_size.limit') { should eq 80530636800 }
   its('total_code_size.usage') { should eq 2034651562 }
@@ -4021,13 +4031,13 @@ describe account_attribute('lambda') do
   its('unreserved_concurrent_executions.limit') { should eq 50 }
   its('function_count.usage') { should eq 8 }
 end
- 
+
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }
 end
- 
+
 ```
 
 

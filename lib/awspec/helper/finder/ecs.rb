@@ -36,7 +36,7 @@ module Awspec::Helper
       # deprecated method
       def find_ecs_container_instances(cluster, container_instances)
         res = ecs_client.describe_container_instances(cluster: cluster, container_instances: container_instances)
-        res.container_instances if res.container_instances # lint test
+        res.container_instances if res.container_instances # rubocop:disable Style/UnneededCondition
       end
 
       alias_method :list_ecs_container_instances, :select_ecs_container_instance_arn_by_cluster_name # deprecated method

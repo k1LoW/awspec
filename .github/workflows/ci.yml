@@ -21,7 +21,13 @@ jobs:
         bundler-cache: true
 
     - name: Run rubocop
-      run: bundle exec rubocop
+      uses: reviewdog/action-rubocop@v1
+      with:
+        rubocop_version: 0.57.2
+        rubocop_extensions: rubocop:0.57.2
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        fail_on_error: true
 
   test:
     name: Test

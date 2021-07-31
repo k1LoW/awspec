@@ -18,8 +18,7 @@ end
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
-    task all: ['spec:rubocop',
-               'spec:type',
+    task all: ['spec:type',
                'spec:account',
                'spec:core',
                'spec:generator_spec',

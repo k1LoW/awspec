@@ -18,7 +18,7 @@ EOF
       dir = 'spec'
       if File.exist? dir
         unless File.directory? dir
-          $stderr.puts '!! #{dir} already exists and is not a directory'
+          $stderr.puts "!! #{dir} already exists and is not a directory"
         end
       else
         FileUtils.mkdir dir

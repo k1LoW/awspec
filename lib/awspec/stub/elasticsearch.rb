@@ -1,4 +1,3 @@
-
 Aws.config[:elasticsearchservice] = {
   stub_responses: {
     list_domain_names: {

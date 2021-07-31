@@ -108,8 +108,8 @@ module Awspec::Type
           if value.is_a?(Array)
             return false if r[key].map(&:to_h) != value
           end
-          true
         end
+        true
       end
     end
 

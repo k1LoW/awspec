@@ -23,7 +23,6 @@ if defined?(RSpec)
                'spec:core',
                'spec:generator_spec',
                'spec:generator_doc',
-               'spec:rubocop',
                'spec:helper']
 
     task type: types

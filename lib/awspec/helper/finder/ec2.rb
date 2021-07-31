@@ -12,7 +12,6 @@ module Awspec::Helper
                                                 filters: [{ name: 'tag:Name', values: [id] }]
                                               })
         end
-        # rubocop:enable Style/GuardClause
 
         if res.reservations.count == 0
           nil

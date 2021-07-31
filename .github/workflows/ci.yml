@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+
+    - name: Run rubocop
+      uses: reviewdog/action-rubocop@v1
+      with:
+        rubocop_version: 0.57.2
+        rubocop_extensions: rubocop:0.57.2
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        fail_on_error: true
+
+  test:
+    name: Test
+    needs: [ lint ]
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '2.1'
+          - '2.2'
+          - '2.3'
+          - '2.4'
+          - '2.5'
+          - '2.6'
+          - '2.7'
+          # - '3.0'
+    runs-on: ubuntu-latest
+    env:
+      DISABLE_AWS_CLIENT_CHECK: true
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
+
+    - name: Install xml lib
+      run: gem install ox
+      if: matrix.ruby-version == '3.0'
+
+    - name: Generate document
+      run: bundle exec bin/toolbox docgen > doc/resource_types.md
+
+    - name: Run tests
+      run: bundle exec rake spec

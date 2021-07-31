@@ -62,7 +62,7 @@ module Awspec::Type
     end
 
     def has_security_group?(sec_group)
-      if @sec_groups.empty? or @sec_groups_ids.empty?
+      if @sec_groups.empty? || @sec_groups_ids.empty?
         ec2_instances = find_nodes
 
         ec2_instances.each do |ec2|

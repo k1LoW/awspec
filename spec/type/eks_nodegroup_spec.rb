@@ -16,5 +16,5 @@ describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
   it { should have_security_group('sg-1a2b3cd4') }
   it { should have_security_group('my-security-group-name') }
   it { should_not have_security_group('sg-zyx') }
-  it { should_not have_security_group('my-other-security-group-name') }  
+  it { should_not have_security_group('my-other-security-group-name') }
 end

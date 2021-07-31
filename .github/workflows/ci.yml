@@ -6,8 +6,32 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+
+    - name: Run rubocop
+      uses: reviewdog/action-rubocop@v1
+      with:
+        rubocop_version: 0.57.2
+        rubocop_extensions: rubocop:0.57.2
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        fail_on_error: true
+
   test:
     name: Test
+    needs: [ lint ]
     strategy:
       fail-fast: false
       matrix:

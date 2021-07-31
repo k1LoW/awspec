@@ -73,7 +73,7 @@ module Awspec::Type
         end
       end
 
-      @sec_groups.member?(sec_group) or @sec_groups_ids.member?(sec_group)
+      @sec_groups.member?(sec_group) || @sec_groups_ids.member?(sec_group)
     end
 
     def ready?

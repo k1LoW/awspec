@@ -1370,15 +1370,6 @@ describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
 end
 ```
 
-### scaling_config
-
-```ruby
-describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
-  its('scaling_config.min_size') { should eq 1 }
-  its('scaling_config.desired_size') { should eq 2 }
-  its('scaling_config.max_size') { should eq 3 }
-end
-```
 
 ### be_active, be_inactive
 
@@ -1393,7 +1384,7 @@ What you seeing over there is
 you would if using `kubectl`.
 
 This matcher cannot do the same because it would involve using the Kubernetes
-API, currently the AWS Ruby SDK **doesn't expose** this information.
+API: the AWS Ruby SDK currently doesn't expose this information.
 
 What you can get from `be_ready` matcher is asserting that you have **at least**
 the number of EC2 instances (the nodes in your EKS Node Group) are actually
@@ -1402,7 +1393,7 @@ can be running but without communication with the cluster or any order issue
 regarding the Kubernetes configuration.
 
 Although it might look an incomplete assertion, definitely the Node Group
-"Status" won't be "Ready" if the EC2 instances associated with it are not
+"Status" won't be "Active" if the EC2 instances associated with it are not
 running.
 
 So, using this assertion like the sample below:
@@ -1416,7 +1407,16 @@ end
 Will pass if at least the minimum expected (see `scaling_config`) number of EC2
 instances are running.
 
-### its(:nodegroup_name), its(:nodegroup_arn), its(:cluster_name), its(:version), its(:release_version), its(:created_at), its(:modified_at), its(:status), its(:capacity_type), its(:scaling_config), its(:instance_types), its(:subnets), its(:remote_access), its(:ami_type), its(:node_role), its(:labels), its(:taints), its(:resources), its(:disk_size), its(:health), its(:update_config), its(:launch_template), its(:tags)
+### have_security_group
+
+```ruby
+describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
+  it { should have_security_group('sg-1a2b3cd4') }
+end
+```
+
+
+### its(:nodegroup_name), its(:nodegroup_arn), its(:cluster_name), its(:version), its(:release_version), its(:created_at), its(:modified_at), its(:status), its(:capacity_type), its(:instance_types), its(:subnets), its(:remote_access), its(:ami_type), its(:node_role), its(:labels), its(:taints), its(:resources), its(:disk_size), its(:health), its(:update_config), its(:launch_template), its(:tags)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.
@@ -2316,9 +2316,9 @@ end
 ```
 
 #### specify version
-
+ 
 Specify "latest" or version_number.
-
+ 
 ```ruby
 # version_number
 describe launch_template('my-launch-template'), version: 2 do
@@ -2332,7 +2332,7 @@ describe launch_template('my-launch-template'), version: 'latest' do
   its('launch_template_version.launch_template_data.instance_type') { should eq 't2.micro' }
 end
 ```
-
+ 
 
 ### have_tag
 
@@ -2617,7 +2617,7 @@ describe network_interface('eni-12ab3cde') do
 end
 ```
 
-### its(:association), its(:availability_zone), its(:description), its(:interface_type), its(:ipv_6_addresses), its(:mac_address), its(:network_interface_id), its(:outpost_arn), its(:owner_id), its(:private_dns_name), its(:private_ip_address), its(:ipv_4_prefixes), its(:ipv_6_prefixes), its(:requester_id), its(:requester_managed), its(:source_dest_check), its(:status), its(:subnet_id), its(:vpc_id)
+### its(:association), its(:availability_zone), its(:description), its(:interface_type), its(:ipv_6_addresses), its(:mac_address), its(:network_interface_id), its(:outpost_arn), its(:owner_id), its(:private_dns_name), its(:private_ip_address), its(:requester_id), its(:requester_managed), its(:source_dest_check), its(:status), its(:subnet_id), its(:vpc_id)
 ## <a name="nlb">nlb</a>
 
 NLB resource type.
@@ -3988,7 +3988,7 @@ describe account_attribute('ec2') do
   its('vpc_max_elastic_ips') { should eq 5 }
   its('default_vpc') { should eq 'none' }
 end
-
+ 
 describe account_attribute('rds') do
   its('DBInstances.used') { should eq 0 }
   its('DBInstances.max') { should eq 40 }
@@ -4021,7 +4021,7 @@ describe account_attribute('rds') do
   its('DBClusterRoles.used') { should eq 0 }
   its('DBClusterRoles.max') { should eq 5 }
 end
-
+ 
 describe account_attribute('lambda') do
   its('total_code_size.limit') { should eq 80530636800 }
   its('total_code_size.usage') { should eq 2034651562 }
@@ -4031,13 +4031,13 @@ describe account_attribute('lambda') do
   its('unreserved_concurrent_executions.limit') { should eq 50 }
   its('function_count.usage') { should eq 8 }
 end
-
+ 
 describe account_attribute('ses') do
   its('max_24_hour_send') { should eq 200.0 }
   its('max_send_rate') { should eq 1.0 }
   its('sent_last_24_hours') { should eq 1.0 }
 end
-
+ 
 ```
 
 

@@ -5,6 +5,25 @@ describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
   it { should exist }
 end
 ```
+
+### have_security_group
+
+```ruby
+describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
+  it { should have_security_group('sg-1a2b3cd4') }
+end
+```
+
+### scaling_config
+
+```ruby
+describe eks_nodegroup('my-eks-nodegroup'), cluster: 'my-cluster' do
+  its('scaling_config.min_size') { should eq 1 }
+  its('scaling_config.desired_size') { should eq 2 }
+  its('scaling_config.max_size') { should eq 3 }
+end
+```
+
 ### be_active, be_creating
 
 ```ruby
@@ -15,9 +34,9 @@ end
 
 ### be_ready
 
-This matcher is not exactly you are expecting: it is different from what you can
-see when looking at the AWS console at the Node Groups configuration and check
-if the nodes Status is "Ready".
+This matcher *might* not be exactly you are expecting: it is different from what
+you can see when looking at the AWS console at the Node Groups configuration
+and check if the nodes Status is "Ready".
 
 What you seeing over there is
 [actually the same thing](https://aws.amazon.com/premiumsupport/knowledge-center/eks-node-status-ready/)

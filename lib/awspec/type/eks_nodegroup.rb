@@ -115,10 +115,10 @@ module Awspec::Type
           sec_groups = []
 
           instance.security_groups.map do |sg|
-            sec_groups.append(EksNodeSecGroup.new(sg.group_id, sg.group_name))
+            sec_groups.push(EksNodeSecGroup.new(sg.group_id, sg.group_name))
           end
 
-          @ec2_instances.append(
+          @ec2_instances.push(
             EksNodeEC2.new(
               instance.instance_id,
               instance.state.name,

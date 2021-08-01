@@ -3,23 +3,48 @@ module Awspec::Helper
     module Ec2
       def find_ec2(id)
         # instance_id or tag:Name
-        begin
-          res = ec2_client.describe_instances({
-                                                instance_ids: [id]
-                                              })
-        rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
-          res = ec2_client.describe_instances({
-                                                filters: [{ name: 'tag:Name', values: [id] }]
-                                              })
+
+        # First tries to search by using an educated guess, based on the
+        # references below:
+        # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html
+        # https://docs.chef.io/inspec/resources/aws_ec2_instance/
+        # This should be faster then just first trying ID when the parameter is
+        # clearly not one
+
+        # https://medium.com/@Bakku1505/ruby-start-with-end-with-vs-regular-expressions-59728be0859e
+        if id.start_with?('i-') && id.length == 19 && id =~ /^i-[0-9a-f]/
+          begin
+            res = ec2_client.describe_instances({
+                                                  instance_ids: [id]
+                                                })
+          rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
+            res = ec2_client.describe_instances({
+                                                  filters: [{ name: 'tag:Name', values: [id] }]
+                                                })
+          end
+        else
+          begin
+            res = ec2_client.describe_instances({
+                                                  filters: [{ name: 'tag:Name', values: [id] }]
+                                                })
+          rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
+            res = ec2_client.describe_instances({
+                                                  instance_ids: [id]
+                                                })
+            if res.reservations.count > 1
+              STDERR.puts "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
+            end
+          end
         end
 
-        if res.reservations.count == 0
-          nil
-        elsif res.reservations.count == 1
-          res.reservations.first.instances.single_resource(id)
-        elsif res.reservations.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
-        end
+        return nil if res.reservations.count == 0
+        return res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
+        raise Awspec::DuplicatedResourceTypeError, dup_ec2_instance(id) if res.reservations.count > 1
+        raise "Unexpected condition of having reservations = #{res.reservations.count}"
+      end
+
+      def dup_ec2_instance(id)
+        "Duplicate instances matching id or tag #{id}"
       end
 
       def find_ec2_attribute(id, attribute)

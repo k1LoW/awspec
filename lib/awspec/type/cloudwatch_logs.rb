@@ -14,10 +14,7 @@ module Awspec::Type
     end
 
     def has_metric_filter?(filter_name, pattern = nil)
-      # ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name).filter_name
       ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name)
-      # binding.pry
-      # return true if ret == filter_name
       if pattern.nil?
         return true if ret.filter_name == filter_name
       else

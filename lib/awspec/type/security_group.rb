@@ -4,6 +4,9 @@ module Awspec::Type
     aws_resource Aws::EC2::SecurityGroup
     tags_allowed
 
+    DEFAULT_PROTOCOL = '-1'
+    DEFAULT_ROUTE = '0.0.0.0/0'
+
     def resource_via_client
       @resource_via_client ||= find_security_group(@display_name)
     end
@@ -22,10 +25,17 @@ module Awspec::Type
       outbound_opened_only?(port, protocol, cidr)
     end
 
-    def inbound_opened?(port = nil, protocol = nil, cidr = nil)
+    def inbound_opened?(port, protocol, cidr = DEFAULT_ROUTE)
+      # https://stackoverflow.com/questions/39021545/how-to-specify-all-ports-in-security-group-cloudformation
+      raise Awspec::MissingPortSpecification, DEFAULT_PROTOCOL if port.nil? && protocol != DEFAULT_PROTOCOL
+      # a security group will accept everything from itself
+      return true if cidr == id
+
       resource_via_client.ip_permissions.find do |permission|
-        cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
+        return true if cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
+
+      false
     end
 
     def inbound_opened_only?(port = nil, protocol = nil, cidr = nil)
@@ -40,6 +50,12 @@ module Awspec::Type
     end
 
     def outbound_opened?(port = nil, protocol = nil, cidr = nil)
+      # https://stackoverflow.com/questions/39021545/how-to-specify-all-ports-in-security-group-cloudformation
+      raise Awspec::MissingPortSpecification, DEFAULT_PROTOCOL if port.nil? && protocol != DEFAULT_PROTOCOL
+
+      # a security group will accept everything from itself
+      return true if cidr == id
+
       resource_via_client.ip_permissions_egress.find do |permission|
         cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
       end
@@ -103,11 +119,13 @@ module Awspec::Type
     private
 
     def cidr_opened?(permission, cidr)
-      return true unless cidr
+      return false if cidr.nil?
+
       ret = permission.prefix_list_ids.select do |prefix_list_id|
         prefix_list_id.prefix_list_id == cidr
       end
       return true if ret.count > 0
+
       ret = permission.ip_ranges.select do |ip_range|
         # if the cidr is an IP address then do a true CIDR match
         if cidr =~ /^\d+\.\d+\.\d+\.\d+/
@@ -118,6 +136,7 @@ module Awspec::Type
         end
       end
       return true if ret.count > 0
+
       ret = permission.user_id_group_pairs.select do |sg|
         # Compare the sg group_name if the remote group is in another account.
         # find_security_group call doesn't return info on a remote security group.
@@ -136,25 +155,32 @@ module Awspec::Type
     end
 
     def protocol_opened?(permission, protocol)
-      return true unless protocol
       return false if protocol == 'all' && permission.ip_protocol != '-1'
       return true if permission.ip_protocol == '-1'
       permission.ip_protocol == protocol
     end
 
     def port_opened?(permission, port)
-      return true unless port
       return true unless permission.from_port
       return true unless permission.to_port
       port_between?(port, permission.from_port, permission.to_port)
     end
 
     def port_between?(port, from_port, to_port)
-      if port.is_a?(String) && port.include?('-')
+      if port.is_a?(String) && port.include?('-') && port =~ /^\d+-\d+$/
         f, t = port.split('-')
         from_port == f.to_i && to_port == t.to_i
       else
-        port.between?(from_port, to_port)
+        if port.is_a?(String)
+          if port =~ /^\d+$/
+            converted = port.to_i
+            converted.between?(from_port, to_port)
+          else
+            raise Awspec::InvalidPortRange.new(port, from_port, to_port)
+          end
+        else
+          port.between?(from_port, to_port)
+        end
       end
     end
 

@@ -29,4 +29,18 @@ module Awspec
   # Let the user know the configuration they provided is not known.
   class UnknownConfiguration < StandardError
   end
+
+  class MissingPortSpecification < StandardError
+    def initialize(default_protocol)
+      msg = "Port must be specificed unless protocol is #{default_protocol}"
+      super msg
+    end
+  end
+
+  class InvalidPortRange < StandardError
+    def initialize(port, from_port, to_port)
+      msg = "Found a port range from #{from_port} to #{to_port}, but cannot compare it with '#{port}'"
+      super msg
+    end
+  end
 end

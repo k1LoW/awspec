@@ -18,7 +18,8 @@ Aws.config[:cloudwatchlogs] = {
     describe_metric_filters: {
       metric_filters: [
         {
-          filter_name: 'my-cloudwatch-logs-metric-filter'
+          filter_name: 'my-cloudwatch-logs-metric-filter',
+          filter_pattern: '[date, error]'
         }
       ]
     },

@@ -678,6 +678,15 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
   it { should have_metric_filter('my-cloudwatch-logs-metric-filter') }
 end
 ```
+or
+```ruby
+describe cloudwatch_logs('my-cloudwatch-logs-group') do
+  it do
+    should have_metric_filter('my-cloudwatch-logs-metric-filter')
+      .filter_pattern('[date, error]')
+ end
+end
+```
 
 
 ### have_subscription_filter

@@ -4,8 +4,6 @@
 
 RSpec tests for your AWS resources.
 
-[![Join the chat at https://gitter.im/k1LoW/awspec](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k1LoW/awspec?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [Resource Types](doc/resource_types.md) | [Contributing](doc/contributing.md)
 
 ## Installation

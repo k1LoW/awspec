@@ -56,6 +56,7 @@ require 'awspec/matcher/have_rule'
 
 # CloudWatch Logs
 require 'awspec/matcher/have_subscription_filter'
+require 'awspec/matcher/have_metric_filter'
 
 # DynamoDB
 require 'awspec/matcher/have_attribute_definition'

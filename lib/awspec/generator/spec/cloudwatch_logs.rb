@@ -23,7 +23,11 @@ module Awspec::Generator
         metric_filters = select_all_cloudwatch_logs_metric_filter(log_group)
         metric_filter_lines = []
         metric_filters.each do |metric_filter|
-          line = "it { should have_metric_filter('#{metric_filter.filter_name}') }"
+          line = "it { should have_metric_filter('#{metric_filter.filter_name}')"
+          unless metric_filter.filter_pattern.empty?
+            line += ".filter_pattern('#{metric_filter.filter_pattern}')"
+          end
+          line += ' }'
           metric_filter_lines.push(line)
         end
         metric_filter_lines

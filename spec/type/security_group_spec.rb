@@ -126,13 +126,18 @@ describe security_group('sg-1a2b3cd4') do
   it { should have_outbound_rule({ ip_protocol: 'tcp', from_port: 443, to_port: 443, prefix_list_id: 'pl-a5321fa3' }) }
 end
 
-# describe security_group('my-security-group-name') do
-#   it { should exist }
-#   its(:outbound) { should be_opened(50_000) }
-#   its(:inbound) { should be_opened(80) }
-#   it { should belong_to_vpc('my-vpc') }
-#   it { should have_tag('env').value('dev') }
-# end
+describe security_group('my-security-group-name') do
+  it { should exist }
+  its(:outbound) { should_not be_opened(50_000) }
+  its(:outbound) { should_not be_opened(50_000).protocol('tcp') }
+  its(:outbound) { should be_opened(50_000).protocol('tcp').target('100.45.67.12/32') }
+  its(:inbound) { should_not be_opened(80) }
+  its(:inbound) { should_not be_opened(80).protocol('tcp') }
+  its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.67.0/24') }
+  its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.68.89/32') }
+  it { should belong_to_vpc('my-vpc') }
+  it { should have_tag('env').value('dev') }
+end
 #
 # describe security_group('my-security-tag-name') do
 #   its(:outbound) { should be_opened(50_000) }

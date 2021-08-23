@@ -119,7 +119,7 @@ module Awspec::Type
     private
 
     def cidr_opened?(permission, cidr)
-      return false if cidr.nil?
+      cidr = DEFAULT_ROUTE if cidr.nil?
 
       ret = permission.prefix_list_ids.select do |prefix_list_id|
         prefix_list_id.prefix_list_id == cidr

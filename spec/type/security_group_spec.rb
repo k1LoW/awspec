@@ -55,10 +55,10 @@ describe security_group('sg-1a2b3cd4') do
 
   its(:inbound_permissions_count) { should eq 7 }
   its(:ip_permissions_count) { should eq 7 }
-  its(:outbound_permissions_count) { should eq 3 }
-  its(:ip_permissions_egress_count) { should eq 3 }
+  its(:outbound_permissions_count) { should eq 4 }
+  its(:ip_permissions_egress_count) { should eq 4 }
   its(:inbound_rule_count) { should eq 8 }
-  its(:outbound_rule_count) { should eq 2 }
+  its(:outbound_rule_count) { should eq 3 }
 
   it { should belong_to_vpc('vpc-ab123cde') }
   it { should belong_to_vpc('my-vpc') }
@@ -131,6 +131,8 @@ describe security_group('my-security-group-name') do
   its(:outbound) { should_not be_opened(50_000) }
   its(:outbound) { should_not be_opened(50_000).protocol('tcp') }
   its(:outbound) { should be_opened(50_000).protocol('tcp').target('100.45.67.12/32') }
+  its(:outbound) { should be_opened(443).protocol('tcp').target('0.0.0.0/0') }
+  its(:outbound) { should be_opened(443).protocol('tcp') }
   its(:inbound) { should_not be_opened(80) }
   its(:inbound) { should_not be_opened(80).protocol('tcp') }
   its(:inbound) { should be_opened(80).protocol('tcp').for('123.45.67.0/24') }
@@ -138,9 +140,3 @@ describe security_group('my-security-group-name') do
   it { should belong_to_vpc('my-vpc') }
   it { should have_tag('env').value('dev') }
 end
-#
-# describe security_group('my-security-tag-name') do
-#   its(:outbound) { should be_opened(50_000) }
-#   its(:inbound) { should be_opened(80) }
-#   it { should belong_to_vpc('my-vpc') }
-# end

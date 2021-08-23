@@ -113,6 +113,16 @@ Aws.config[:ec2] = {
               ]
             },
             {
+              from_port: 443,
+              to_port: 443,
+              ip_protocol: 'tcp',
+              ip_ranges: [
+                {
+                  cidr_ip: '0.0.0.0/0'
+                }
+              ]
+            },
+            {
               from_port: 8080,
               to_port: 8080,
               ip_protocol: 'tcp',

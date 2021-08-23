@@ -171,17 +171,12 @@ module Awspec::Type
       if port.is_a?(String) && port.include?('-') && port =~ /^\d+-\d+$/
         f, t = port.split('-')
         from_port == f.to_i && to_port == t.to_i
+      elsif port.is_a?(String)
+        raise Awspec::InvalidPortRange.new(port, from_port, to_port) unless port =~ /^\d+$/
+        converted = port.to_i
+        converted.between?(from_port, to_port)
       else
-        if port.is_a?(String)
-          if port =~ /^\d+$/
-            converted = port.to_i
-            converted.between?(from_port, to_port)
-          else
-            raise Awspec::InvalidPortRange.new(port, from_port, to_port)
-          end
-        else
-          port.between?(from_port, to_port)
-        end
+        port.between?(from_port, to_port)
       end
     end
 

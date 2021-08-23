@@ -32,7 +32,8 @@ module Awspec::Type
       return true if cidr == id
 
       resource_via_client.ip_permissions.find do |permission|
-        return true if cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(permission, port)
+        return true if cidr_opened?(permission, cidr) && protocol_opened?(permission, protocol) && port_opened?(
+          permission, port)
       end
 
       false

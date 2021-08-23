@@ -42,7 +42,8 @@ describe security_group('sg-1a2b3cd4') do
   it do
     # only way found to force and test the exception
     subject.outbound
-    expect { subject.opened?(nil, 'tcp', 'pl-a5321fa3') }.to raise_error(Awspec::MissingPortSpecification, /protocol\sis\s-1$/)
+    expect { subject.opened?(nil, 'tcp', 'pl-a5321fa3') }.to raise_error(
+      Awspec::MissingPortSpecification, /protocol\sis\s-1$/)
   end
   its(:outbound) { should be_opened('443').protocol('tcp').for('pl-a5321fa3') }
   its(:outbound) { should be_opened(443).protocol('tcp').for('pl-a5321fa3') }

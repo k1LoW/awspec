@@ -20,11 +20,12 @@ describe security_group('my-security-group-name') do
   its(:inbound) { should be_opened('50000-50009').protocol('tcp').for('123.45.67.89/32') }
   its(:inbound) { should be_opened.protocol('all').for('sg-3a4b5cd6') }
   its(:outbound) { should be_opened(50000).protocol('tcp').for('100.45.67.12/32') }
+  its(:outbound) { should be_opened(443).protocol('tcp').for('0.0.0.0/0') }
   its(:outbound) { should be_opened(8080).protocol('tcp').for('group-in-other-aws-account-with-vpc-peering') }
   its(:inbound_rule_count) { should eq 8 }
-  its(:outbound_rule_count) { should eq 2 }
+  its(:outbound_rule_count) { should eq 3 }
   its(:inbound_permissions_count) { should eq 7 }
-  its(:outbound_permissions_count) { should eq 3 }
+  its(:outbound_permissions_count) { should eq 4 }
   it { should belong_to_vpc('my-vpc') }
 end
 EOF

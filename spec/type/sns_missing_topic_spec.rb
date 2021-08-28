@@ -1,7 +1,9 @@
 require 'spec_helper'
 
-TOPIC_ARN = 'arn:aws:sns:us-east-1:123456789:invalid'
-TOPIC_SUBS_ARN = 'arn:aws:sns:us-east-1:123456789:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca'
+OWNER = '123456789'
+REGION = 'us-east-1'
+TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:invalid"
+TOPIC_SUBS_ARN = "arn:aws:sns:us-east-1:#{OWNER}:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"
 
 Awspec::Stub.load 'sns_topic_error'
 
@@ -16,15 +18,16 @@ describe sns_topic(TOPIC_ARN) do
   its(:subscriptions) { will raise_error(Awspec::NoExistingResource) }
   its(:id) { will_not raise_error }
   its(:id) { should be_nil }
+
   it 'include_subscribed matcher raises Awspec::NoExistingResource' do
     expect { should include_subscribed(TOPIC_SUBS_ARN) }.to raise_error(Awspec::NoExistingResource)
   end
 
   let(:expected_attribs) do
     { protocol: 'lambda',
-      owner: '123456789',
+      owner: OWNER,
       subscription_arn: TOPIC_SUBS_ARN, # this is required
-      endpoint: 'arn:aws:lambda:us-east-1:123456789:function:foobar' }
+      endpoint: "arn:aws:lambda:#{REGION}:#{OWNER}:function:foobar" }
   end
 
   it 'have_subscription_attributes matcher raises Awspec::NoExistingResource' do

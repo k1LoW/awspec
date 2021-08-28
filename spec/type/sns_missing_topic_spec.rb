@@ -16,8 +16,8 @@ describe sns_topic(TOPIC_ARN) do
   its(:subscriptions) { will raise_error(Awspec::NoExistingResource) }
   its(:id) { will_not raise_error }
   its(:id) { should be_nil }
-  it 'has_subscription raises Awspec::NoExistingResource' do
-    expect { subject.has_subscription?(TOPIC_SUBS_ARN) }.to raise_error(Awspec::NoExistingResource)
+  it 'include_subscribed matcher raises Awspec::NoExistingResource' do
+    expect { should include_subscribed(TOPIC_SUBS_ARN) }.to raise_error(Awspec::NoExistingResource)
   end
 
   let(:expected_attribs) do
@@ -27,7 +27,7 @@ describe sns_topic(TOPIC_ARN) do
       endpoint: 'arn:aws:lambda:us-east-1:123456789:function:foobar' }
   end
 
-  it 'have_subscription_attributes raises Awspec::NoExistingResource' do
+  it 'have_subscription_attributes matcher raises Awspec::NoExistingResource' do
     expect { should have_subscription_attributes(expected_attribs) }.to raise_error(Awspec::NoExistingResource)
   end
 end

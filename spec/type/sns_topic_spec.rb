@@ -33,21 +33,3 @@ describe sns_topic(topic_arn) do
     end
   end
 end
-
-invalid_topic_arn = 'arn:aws:sns:us-east-1:123456789:invalid'
-
-describe sns_topic(invalid_topic_arn) do
-  context 'Issue https://github.com/k1LoW/awspec/issues/445 is still open' do
-    it 'it does not exists'
-    it ':name raises Awspec::NoExistingResource'
-    it ':confirmed_subscriptions raises Awspec::NoExistingResource'
-    it ':pending_subscriptions raises Awspec::NoExistingResource'
-    it ':topic_arn raises Awspec::NoExistingResource'
-    it ':display_name raises Awspec::NoExistingResource'
-    it ':deleted_subscriptions raises Awspec::NoExistingResource'
-    it ':subscriptions raises Awspec::NoExistingResource'
-    it ':id raises Awspec::NoExistingResource'
-    it 'matcher include_subscribed raises Awspec::NoExistingResource'
-    it 'matcher have_subscription_attributes raises Awspec::NoExistingResource'
-  end
-end

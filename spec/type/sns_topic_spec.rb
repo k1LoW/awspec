@@ -1,12 +1,4 @@
 require 'spec_helper'
-
-OWNER = '123456789'
-REGION = 'us-east-1'
-TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:foobar"
-SUBSCRIBED = "arn:aws:sns:#{REGION}:#{OWNER}:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"
-ENDPOINT = "arn:aws:lambda:#{REGION}:#{OWNER}:function:foobar"
-DISPLAY_NAME = 'Useless'
-
 Awspec::Stub.load 'sns_topic'
 
 describe sns_topic(TOPIC_ARN) do

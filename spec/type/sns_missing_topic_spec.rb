@@ -1,10 +1,4 @@
 require 'spec_helper'
-
-OWNER = '123456789'
-REGION = 'us-east-1'
-TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:invalid"
-TOPIC_SUBS_ARN = "arn:aws:sns:us-east-1:#{OWNER}:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"
-
 Awspec::Stub.load 'sns_topic_error'
 
 describe sns_topic(TOPIC_ARN) do

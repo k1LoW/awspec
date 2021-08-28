@@ -1,3 +1,10 @@
+OWNER = '123456789'
+REGION = 'us-east-1'
+TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:foobar"
+DISPLAY_NAME = 'Useless'
+SUBSCRIBED = "arn:aws:sns:#{REGION}:#{OWNER}:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"
+ENDPOINT = "arn:aws:lambda:#{REGION}:#{OWNER}:function:foobar"
+
 Aws.config[:sns] = {
   stub_responses: {
     get_topic_attributes: {

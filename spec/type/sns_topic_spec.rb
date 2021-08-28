@@ -1,30 +1,31 @@
 require 'spec_helper'
 Awspec::Stub.load 'sns_topic'
 
-# based on values from lib/awspec/sub/sns_topic.rb
-topic_arn = 'arn:aws:sns:us-east-1:123456789:foobar'
-subscribed = 'arn:aws:sns:us-east-1:123456789:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca'
+OWNER = '123456789'
+REGION = 'us-east-1'
+TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:foobar"
+SUBSCRIBED = "arn:aws:sns:#{REGION}:#{OWNER}:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"
 
-describe sns_topic(topic_arn) do
+describe sns_topic(TOPIC_ARN) do
   it { should exist }
   its(:name) { should eq 'foobar' }
   its(:confirmed_subscriptions) { should eq 1 }
   its(:pending_subscriptions) { should eq 0 }
-  its(:topic_arn) { should eq topic_arn }
+  its(:topic_arn) { should eq TOPIC_ARN }
   its(:display_name) { should eq 'Useless' }
   its(:deleted_subscriptions) { should eq 0 }
-  its(:subscriptions) { should eql([:"arn:aws:sns:us-east-1:123456789:Foobar:3dbf4999-b3e2-4345-bd11-c34c9784ecca"]) }
-  its(:id) { should eq 'arn:aws:sns:us-east-1:123456789:foobar' }
+  its(:subscriptions) { should eql([SUBSCRIBED.to_sym]) }
+  its(:id) { should eq TOPIC_ARN }
 
   let(:expected_attribs) do
     { protocol: 'lambda',
-      owner: '123456789',
-      subscription_arn: subscribed, # this is required
-      endpoint: 'arn:aws:lambda:us-east-1:123456789:function:foobar' }
+      owner: OWNER,
+      subscription_arn: SUBSCRIBED, # this is required
+      endpoint: "arn:aws:lambda:#{REGION}:#{OWNER}:function:foobar" }
   end
 
   describe '#include_subscribed' do
-    it { should include_subscribed(subscribed) }
+    it { should include_subscribed(SUBSCRIBED) }
   end
 
   describe '#subscribed' do

@@ -27,13 +27,6 @@ describe sns_topic(TOPIC_ARN) do
       endpoint: ENDPOINT }
   end
 
-  describe '#include_subscribed' do
-    it { should include_subscribed(SUBSCRIBED) }
-  end
-
-  describe '#subscribed' do
-    it do
-      should have_subscription_attributes(expected_attribs)
-    end
-  end
+  it { should include_subscribed(SUBSCRIBED) }
+  it { should have_subscription_attributes(expected_attribs) }
 end

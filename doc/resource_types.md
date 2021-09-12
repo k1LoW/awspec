@@ -1366,7 +1366,7 @@ describe eks('my-eks') do
 end
 ```
 
-### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:kubernetes_network_config), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config)
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:kubernetes_network_config), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config), its(:connector_config)
 ## <a name="eks_nodegroup">eks_nodegroup</a>
 
 EksNodegroup resource type.

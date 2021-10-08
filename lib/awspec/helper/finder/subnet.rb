@@ -49,6 +49,11 @@ module Awspec::Helper
           @subnet_ids.key?(subnet_id_symbol)
         end
 
+        # Check if a IPv4 CIDR (as a symbol) exists in the cache.
+        def has_cidr?(cidr_symbol)
+          @by_cidr.key?(cidr_symbol)
+        end
+
         # Return a +Aws::EC2::Types::Subnet+ that matches the given CIDR.
         def subnet_by_cidr(cidr_symbol)
           @subnet_ids[@by_cidr[cidr_symbol]]
@@ -109,7 +114,7 @@ module Awspec::Helper
 
         id_key = subnet_id.to_sym
         return cache.subnet_by_id(id_key) if subnet_id.start_with?('subnet-') && cache.has_subnet?(id_key)
-        return cache.subnet_by_cidr(id_key) if cache.is_cidr?(subnet_id) && cache.by_cidr.key?(id_key)
+        return cache.subnet_by_cidr(id_key) if cache.is_cidr?(subnet_id) && cache.has_cidr?(id_key)
         cache.subnet_by_tag(id_key)
       end
     end

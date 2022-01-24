@@ -52,7 +52,7 @@ module Awspec::Type
       end
     end
 
-    undef :timeout
+    undef :timeout if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('3.1.0')
 
     private
 

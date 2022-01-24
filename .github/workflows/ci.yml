@@ -17,14 +17,12 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7
+        ruby-version: 3.1
         bundler-cache: true
 
     - name: Run rubocop
       uses: reviewdog/action-rubocop@v1
       with:
-        rubocop_version: 0.57.2
-        rubocop_extensions: rubocop:0.57.2
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: github-pr-review
         fail_on_error: true

@@ -49,8 +49,7 @@ Aws.config[:iam] = {
           eval_action_name: 'ec2:DescribeInstances',
           eval_resource_name: '*',
           eval_decision: 'allowed',
-          matched_statements: [
-          ]
+          matched_statements: []
         }
       ],
       is_truncated: false,

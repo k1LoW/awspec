@@ -14,6 +14,7 @@ module Awspec::Type
         sg == sg_id
       end
       return true if ret
+
       sg2 = find_security_group(sg_id)
       sgs.find do |sg|
         sg == sg2.group_id

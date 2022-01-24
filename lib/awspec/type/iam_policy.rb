@@ -21,6 +21,7 @@ module Awspec::Type
       if user_id
         user = find_iam_user(user_id)
         return false unless user
+
         users.any? do |u|
           u.user_name == user.user_name
         end
@@ -35,6 +36,7 @@ module Awspec::Type
       if group_id
         group = find_iam_group(group_id)
         return false unless group
+
         groups.any? do |g|
           g.group_name == group.group_name
         end
@@ -49,6 +51,7 @@ module Awspec::Type
       if role_id
         role = find_iam_role(role_id)
         return false unless role
+
         roles.any? do |r|
           r.role_name == role.role_name
         end

@@ -34,6 +34,7 @@ module Awspec::Type
           tags = resource_via_client.tag_set
         end
         return false unless tags
+
         tags.any? { |t| t['key'] == key && t['value'] == value }
       end
     end

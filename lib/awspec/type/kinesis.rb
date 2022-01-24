@@ -17,6 +17,7 @@ module Awspec::Type
 
     def resource_via_client
       return @resource_via_client unless @resource_via_client.nil?
+
       @resource_via_client = find_kinesis_by_stream_name(@display_name)
     end
 

@@ -7,6 +7,7 @@ module Awspec::Helper
                                        })
         resource = res.vpcs.single_resource(id)
         return resource if resource
+
         res = ec2_client.describe_vpcs({
                                          filters: [{ name: 'tag:Name', values: [id] }]
                                        })
@@ -19,6 +20,7 @@ module Awspec::Helper
                                                })
         resource = res.route_tables.single_resource(route_table_id)
         return resource if resource
+
         res = ec2_client.describe_route_tables({
                                                  filters: [{ name: 'tag:Name', values: [route_table_id] }]
                                                })
@@ -31,6 +33,7 @@ module Awspec::Helper
                                                })
         resource = res.network_acls.single_resource(id)
         return resource if resource
+
         res = ec2_client.describe_network_acls({
                                                  filters: [{ name: 'tag:Name', values: [id] }]
                                                })
@@ -62,6 +65,7 @@ module Awspec::Helper
                                                           })
         resource = res.vpc_peering_connections.single_resource(vpc_peering_connection_id)
         return resource if resource
+
         res = ec2_client.describe_vpc_peering_connections({
                                                             filters: [
                                                               {

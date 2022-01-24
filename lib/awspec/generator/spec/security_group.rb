@@ -8,6 +8,7 @@ module Awspec::Generator
         )
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         sgs = select_security_group_by_vpc_id(@vpc_id)

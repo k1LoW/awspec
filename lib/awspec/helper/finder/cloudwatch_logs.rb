@@ -29,6 +29,7 @@ module Awspec::Helper
           end
           break if ret.present?
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         ret
@@ -59,6 +60,7 @@ module Awspec::Helper
           res = cloudwatch_logs_client.describe_log_groups(req)
           log_groups.push(*res.log_groups)
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         log_groups
@@ -83,6 +85,7 @@ module Awspec::Helper
               resources.push(*res.subscription_filters)
             end
             break if res.next_token.nil?
+
             req[:next_token] = res.next_token
           end
           resources

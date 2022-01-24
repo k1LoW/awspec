@@ -33,8 +33,8 @@ module Awspec::Type
       READY_STATES.include?(resource_via_client.status.state)
     end
 
-    alias_method :healthy?, :ok?
-    alias_method :ready?, :ok?
-    alias_method :bootstrapping?, :starting?
+    alias healthy? ok?
+    alias ready? ok?
+    alias bootstrapping? starting?
   end
 end

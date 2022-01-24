@@ -5,6 +5,7 @@ module RSpec::Mocks
   module Errors
     class RequestLimitExceeded < RuntimeError
     end
+
     class Throttling < RuntimeError
     end
   end
@@ -119,6 +120,7 @@ describe Awspec::Helper::ClientWrap do
         allow(client).to receive(:test_me) do
           calls += 1
           raise RSpec::Mocks::Errors::RequestLimitExceeded, 'Fail' if calls == 1
+
           'done'
         end
         foo = subj.new(client)
@@ -152,6 +154,7 @@ describe Awspec::Helper::ClientWrap do
         allow(client).to receive(:test_me) do
           calls += 1
           raise RSpec::Mocks::Errors::Throttling, 'Fail' if calls == 1
+
           'done'
         end
         foo = subj.new(client)

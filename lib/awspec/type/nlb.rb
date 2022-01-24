@@ -28,6 +28,7 @@ module Awspec::Type
         az.subnet_id == subnet_id
       end
       return true if ret
+
       subnet2 = find_subnet(subnet_id)
       subnet2.subnet_id = subnet_id
     end

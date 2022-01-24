@@ -115,6 +115,7 @@ module Awspec::Helper
         id_key = subnet_id.to_sym
         return cache.subnet_by_id(id_key) if subnet_id.start_with?('subnet-') && cache.has_subnet?(id_key)
         return cache.subnet_by_cidr(id_key) if cache.is_cidr?(subnet_id) && cache.has_cidr?(id_key)
+
         cache.subnet_by_tag(id_key)
       end
     end

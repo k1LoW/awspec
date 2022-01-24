@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         aliases = select_all_kms_aliases.select { |kms_alias| customer_managed_key?(kms_alias) }
         raise 'Not Found alias' if aliases.empty?
+
         ERB.new(keys_spec_template, nil, '-').result(binding).chomp
       end
 

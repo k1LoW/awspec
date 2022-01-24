@@ -51,6 +51,7 @@ module Awspec::Helper
             end
           end
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         selected

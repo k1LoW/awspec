@@ -14,6 +14,7 @@ module Awspec::Helper
             end
 
             break unless res.is_truncated
+
             res = iam_client.send(
               'list_' + type.pluralize,
               { marker: res.marker }
@@ -68,6 +69,7 @@ module Awspec::Helper
         loop do
           selected += res.policies.select { |p| p.attachment_count > 0 }
           break unless res.is_truncated
+
           res = iam_client.list_policies({
                                            marker: res.marker
                                          })

@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         events = select_all_cloudwatch_events
         raise 'Not Found event' if events.empty?
+
         ERB.new(event_spec_template, nil, '-').result(binding).chomp
       end
 

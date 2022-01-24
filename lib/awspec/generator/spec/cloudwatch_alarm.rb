@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         alarms = select_all_cloudwatch_alarms
         raise 'Not Found alarm' if alarms.empty?
+
         ERB.new(alarm_spec_template, nil, '-').result(binding).chomp
       end
 

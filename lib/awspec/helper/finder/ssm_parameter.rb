@@ -10,7 +10,8 @@ module Awspec::Helper
                 values: [name]
               }
             ]
-          }).parameters[0]
+          }
+        ).parameters[0]
       end
 
       def find_parameter_tag(id, tag_key)

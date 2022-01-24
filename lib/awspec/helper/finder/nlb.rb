@@ -43,6 +43,7 @@ module Awspec::Helper
         if !httpx_res || httpx_res.empty?
           raise "ERROR: Found no HTTP nor HTTPS -protocol target group named '#{id}'."
         end
+
         httpx_res.single_resource(id)
       rescue
         # Prefer the HTTP/HTTPS protocol target group, but survive without it:

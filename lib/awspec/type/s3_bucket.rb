@@ -74,6 +74,7 @@ module Awspec::Type
       check_existence
       tag = find_bucket_tag(id, key)
       return nil if tag.value != value
+
       tag
     end
 
@@ -85,6 +86,7 @@ module Awspec::Type
       return false if le.nil?
       return false if target_bucket && target_bucket != le.target_bucket
       return false if target_prefix && target_prefix != le.target_prefix
+
       true
     end
 
@@ -102,6 +104,7 @@ module Awspec::Type
       rule.all? do |key, value|
         lc_rule.each do |r|
           return false if value.is_a?(String) && r[key] != value
+
           if value.is_a?(Hash)
             return false if r[key].to_h != value
           end

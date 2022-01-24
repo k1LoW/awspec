@@ -17,6 +17,7 @@ module Awspec::Generator
           @matchers.sort! do |a, b|
             ret = sort_num(a) <=> sort_num(b)
             next ret if ret != 0
+
             a.casecmp(b)
           end
           if @ret.respond_to?(:members)
@@ -57,6 +58,7 @@ module Awspec::Generator
             next 'exist' if 'exists?' == method.to_s
             next 'have_' + Regexp.last_match[1] if /\Ahas_(.+)\?\z/ =~ method.to_s
             next 'be_' + Regexp.last_match[1] if /\A(.+)\?\z/ =~ method.to_s
+
             method.to_s
           end
         end

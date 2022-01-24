@@ -71,8 +71,7 @@ Aws.config[:ecs] = {
           status: 'ACTIVE'
         }
       ],
-      failures: [
-      ]
+      failures: []
     }
   }
 }

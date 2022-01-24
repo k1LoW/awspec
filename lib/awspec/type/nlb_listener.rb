@@ -15,11 +15,13 @@ module Awspec::Type
         actions = [actions] if actions.is_a?(Hash)
         next false if !rule_id.nil? && rule.rule_arn != rule_id
         next false if !priority.nil? && rule.priority != priority
+
         unless conditions.nil?
           next false unless conditions.map do |condition|
             rule_conds = rule.conditions.select { |rule_cond| rule_cond[:field] == condition[:field] }
             next if rule_conds.empty?
             next unless rule_conds.reject { |rule_cond| condition[:values] == rule_cond[:values] }.empty?
+
             condition
           end.compact.size == conditions.size
         end

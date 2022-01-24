@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         file_systems = select_all_file_systems
         raise 'EFS not found' if file_systems.empty?
+
         specs = file_systems.map do |file_system|
           file_system.name = get_name_by_id(file_system.file_system_id)
           content = ERB.new(file_system_spec_template, nil, '-').result(binding).gsub(/^\n/, '')

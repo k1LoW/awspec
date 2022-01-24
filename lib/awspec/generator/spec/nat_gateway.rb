@@ -7,6 +7,7 @@ module Awspec::Generator
         )
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         nat_gateways = select_nat_gateway_by_vpc_id(@vpc_id)

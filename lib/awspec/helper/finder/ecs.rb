@@ -28,6 +28,7 @@ module Awspec::Helper
           res = ecs_client.list_container_instances(req)
           arns.push(*res.container_instance_arns)
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         arns
@@ -36,10 +37,10 @@ module Awspec::Helper
       # deprecated method
       def find_ecs_container_instances(cluster, container_instances)
         res = ecs_client.describe_container_instances(cluster: cluster, container_instances: container_instances)
-        res.container_instances if res.container_instances # rubocop:disable Style/UnneededCondition
+        res.container_instances if res.container_instances
       end
 
-      alias_method :list_ecs_container_instances, :select_ecs_container_instance_arn_by_cluster_name # deprecated method
+      alias list_ecs_container_instances select_ecs_container_instance_arn_by_cluster_name # deprecated method
     end
   end
 end

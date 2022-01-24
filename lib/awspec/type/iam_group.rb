@@ -13,6 +13,7 @@ module Awspec::Type
     def has_iam_user?(user_id)
       user = find_iam_user(user_id)
       return false unless user
+
       user_name = user.user_name
       groups = select_iam_group_by_user_name(user_name)
       groups.find do |group|
@@ -35,6 +36,7 @@ module Awspec::Type
                                           policy_name: policy_name
                                         })
       return JSON.parse(URI.decode_www_form_component(res.policy_document)) == JSON.parse(document) if document
+
       res
     end
 

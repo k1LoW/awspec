@@ -3,6 +3,7 @@ RSpec::Matchers.define :have_subscription_attributes do |expected_attribs|
     unless expected_attribs.key?(:subscription_arn)
       raise '"subscription_arn" is the only required attribute to validate'
     end
+
     subscribed = sns_topic.subscribed(expected_attribs[:subscription_arn])
     temp = subscribed.to_h
     to_remove = temp.keys - expected_attribs.keys

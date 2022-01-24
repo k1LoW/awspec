@@ -1,35 +1,57 @@
 AllCops:
-  TargetRubyVersion: 2.1
-
-Layout/IndentHeredoc:
-  Enabled: false
-
-Layout/MultilineOperationIndentation:
-  Enabled: false
-
-Layout/MultilineMethodCallBraceLayout:
-  Enabled: false
+  SuggestExtensions: false
 
 Layout/ClosingHeredocIndentation:
   Enabled: false
 
-Layout/SpaceInsideArrayLiteralBrackets:
+Layout/HashAlignment:
   Enabled: false
 
-Lint/HandleExceptions:
+Layout/HeredocIndentation:
   Enabled: false
+  
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Lint/DuplicateMethods:
+  Exclude:
+    - 'lib/awspec/type/codedeploy_deployment_group.rb'
+    - 'lib/awspec/type/ecs_container_instance.rb'
+    - 'lib/awspec/type/ecs_service.rb'
+    - 'lib/awspec/type/eks_nodegroup.rb'
+    - 'lib/awspec/type/resource_base.rb'
+
+Lint/ErbNewArguments:
+  Enabled: false
+
+# Configuration parameters: MaximumRangeSize.
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+Lint/MissingSuper:
+  Exclude:
+    - 'lib/awspec/generator/doc/type/account_attribute.rb'
+    - 'lib/awspec/generator/doc/type/account_attribute_base.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'lib/awspec/type/resource_base.rb'
+
+# Configuration parameters: AllowComments, AllowNil.
+Lint/SuppressedException:
+  Exclude:
+    - 'Rakefile'
+
+# Configuration parameters: IgnoredPatterns.
+# IgnoredPatterns: (?-mix:(exactly|at_least|at_most)\(\d+\)\.times)
+Lint/UnreachableLoop:
+  Exclude:
+    - 'lib/awspec/type/nat_gateway.rb'
+    - 'lib/awspec/type/route53_hosted_zone.rb'
 
 Lint/UselessAssignment:
   Enabled: false
 
-Lint/DuplicateMethods:
-  Enabled: false
-
-Lint/MissingCopEnableDirective:
-  Enabled: false
-
 Metrics/AbcSize:
-  Max: 50
+  Max: 60
 
 Metrics/BlockLength:
   Max: 60
@@ -38,101 +60,332 @@ Metrics/ClassLength:
   Max: 130
 
 Metrics/CyclomaticComplexity:
-  Max: 15
-
-Metrics/LineLength:
-  Max: 120
+  Max: 30
 
 Metrics/MethodLength:
   Max: 30
 
 Metrics/ModuleLength:
-  CountComments: false
   Max: 200
 
+Metrics/ParameterLists:
+  MaxOptionalParameters: 4
+
 Metrics/PerceivedComplexity:
-  Max: 15
-
-Naming/UncommunicativeMethodParamName:
-  Enabled: false
-
-Naming/PredicateName:
-  Enabled: false
+  Max: 30
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
-Performance/StringReplacement:
+# Offense count: 4
+# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
+# AllowedNames: at, by, db, id, in, io, ip, of, on, os, pp, to
+Naming/MethodParameterName:
+  Exclude:
+    - 'lib/awspec/generator/spec/security_group.rb'
+    - 'lib/awspec/helper/client_wrap.rb'
+    - 'lib/awspec/type/network_acl.rb'
+
+Naming/PredicateName:
+  Enabled: false
+
+Naming/VariableNumber:
   Enabled: false
 
 Security/Eval:
-  Enabled: false
+  Exclude:
+    - 'lib/awspec/command/generate.rb'
+    - 'lib/awspec/generator/doc/type.rb'
+    - 'lib/awspec/helper/type.rb'
+    - 'lib/awspec/type/account.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'spec/generator/doc/type_spec.rb'
 
-Style/Alias:
-  Enabled: false
+# Offense count: 4
+# Cop supports --auto-correct.
+Style/CaseLikeIf:
+  Exclude:
+    - 'lib/awspec/generator/spec/alb_listener.rb'
+    - 'lib/awspec/generator/spec/nlb_listener.rb'
+    - 'lib/awspec/type/vpc.rb'
 
-Style/BarePercentLiterals:
-  Enabled: false
-
-Style/BracesAroundHashParameters:
-  Enabled: false
-
+# Offense count: 280
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
   Enabled: false
 
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoredMethods.
+# IgnoredMethods: ==, equal?, eql?
+Style/ClassEqualityComparison:
+  Exclude:
+    - 'lib/awspec/helper/finder/s3.rb'
+    - 'lib/awspec/type/account.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'lib/awspec/type/base.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
+# SupportedStyles: assign_to_condition, assign_inside_condition
+Style/ConditionalAssignment:
+  Exclude:
+    - 'lib/awspec/helper/finder/account_attributes.rb'
+
+# Offense count: 299
+# Configuration parameters: AllowedConstants.
 Style/Documentation:
   Enabled: false
 
-Style/MethodMissingSuper:
-  Enabled: false
-
-Style/MissingRespondToMissing:
-  Enabled: false
-
-Style/MutableConstant:
-  Enabled: false
-
-Style/NumericLiteralPrefix:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
-Style/StabbyLambdaParentheses:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/RedundantSelf:
-  Enabled: false
-
-Style/SymbolProc:
-  Enabled: false
-
-Style/YodaCondition:
-  Enabled: false
-
-Style/RescueStandardError:
-  Enabled: false
-
-Style/RedundantReturn:
-  Enabled: false
-
-Style/ConditionalAssignment:
-  Enabled: false
-
+# Offense count: 10
+# Cop supports --auto-correct.
 Style/EvalWithLocation:
+  Exclude:
+    - 'lib/awspec/command/generate.rb'
+    - 'lib/awspec/generator/doc/type.rb'
+    - 'lib/awspec/helper/type.rb'
+    - 'lib/awspec/type/account.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'spec/generator/doc/type_spec.rb'
+
+# Offense count: 549
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, always_true, never
+Style/FrozenStringLiteralComment:
   Enabled: false
 
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/GlobalStdStream:
+  Exclude:
+    - 'lib/awspec/helper/finder/ec2.rb'
+
+# Offense count: 37
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+# SupportedShorthandSyntax: always, never, either
+Style/HashSyntax:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/HashTransformKeys:
+  Exclude:
+    - 'lib/awspec/type/network_acl.rb'
+
+# Offense count: 6
+# Cop supports --auto-correct.
+Style/IfUnlessModifier:
+  Exclude:
+    - 'lib/awspec/ext/array.rb'
+    - 'lib/awspec/generator/spec/cloudwatch_logs.rb'
+    - 'lib/awspec/generator/spec/route_table.rb'
+    - 'lib/awspec/helper/finder/nlb.rb'
+    - 'lib/awspec/matcher/be_attached_to.rb'
+    - 'lib/awspec/setup.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/KeywordParametersOrder:
+  Exclude:
+    - 'lib/awspec/type/s3_bucket.rb'
+
+# Offense count: 12
+Style/MissingRespondToMissing:
+  Exclude:
+    - 'lib/awspec/config.rb'
+    - 'lib/awspec/helper/client_wrap.rb'
+    - 'lib/awspec/resource_reader.rb'
+    - 'lib/awspec/type/account.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'lib/awspec/type/elasticache_cache_parameter_group.rb'
+    - 'lib/awspec/type/rds_db_cluster_parameter_group.rb'
+    - 'lib/awspec/type/rds_db_parameter_group.rb'
+    - 'lib/awspec/type/redshift_cluster_parameter_group.rb'
+    - 'lib/awspec/type/sns_topic.rb'
+    - 'lib/awspec/type/sqs.rb'
+
+# Offense count: 1
 Style/MixinUsage:
   Exclude:
     - 'lib/awspec/helper.rb'
 
+# Offense count: 6
+# Cop supports --auto-correct.
+Style/MultilineWhenThen:
+  Exclude:
+    - 'lib/awspec/helper/finder/cloudwatch_logs.rb'
+    - 'lib/awspec/helper/finder/vpc.rb'
+
+# Offense count: 54
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: literals, strict
+Style/MutableConstant:
+  Enabled: false
+
+# Offense count: 65
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedOctalStyle.
+# SupportedOctalStyles: zero_with_o, zero_only
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+# Offense count: 11
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IgnoredMethods.
+# SupportedStyles: predicate, comparison
+Style/NumericPredicate:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/awspec/generator/spec/security_group.rb'
+    - 'lib/awspec/helper/finder/ebs.rb'
+    - 'lib/awspec/helper/finder/ec2.rb'
+    - 'lib/awspec/helper/finder/iam.rb'
+    - 'lib/awspec/type/ec2.rb'
+    - 'lib/awspec/type/route53_hosted_zone.rb'
+    - 'lib/awspec/type/security_group.rb'
+
+# Offense count: 109
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+# Offense count: 50
+# Cop supports --auto-correct.
+Style/RedundantAssignment:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/RedundantCondition:
+  Exclude:
+    - 'lib/awspec/helper/finder/ecs.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/RedundantRegexpEscape:
+  Exclude:
+    - 'lib/awspec/type/apigateway.rb'
+
+# Offense count: 10
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
+  Exclude:
+    - 'lib/awspec/helper/finder/alb.rb'
+    - 'lib/awspec/helper/finder/elb.rb'
+    - 'lib/awspec/helper/finder/nlb.rb'
+    - 'lib/awspec/type/rds_db_parameter_group.rb'
+
+# Offense count: 19
+# Cop supports --auto-correct.
+Style/RedundantSelf:
+  Exclude:
+    - 'lib/awspec/ext/array.rb'
+    - 'lib/awspec/ext/hash.rb'
+    - 'lib/awspec/generator/template.rb'
+    - 'lib/awspec/helper/client_wrap.rb'
+    - 'lib/awspec/helper/finder.rb'
+    - 'lib/awspec/helper/finder/sns_topic.rb'
+    - 'lib/awspec/type/apigateway.rb'
+    - 'lib/awspec/type/base.rb'
+
+# Offense count: 19
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: implicit, explicit
+Style/RescueStandardError:
+  Exclude:
+    - 'lib/awspec/helper/finder/account_attributes.rb'
+    - 'lib/awspec/helper/finder/ec2.rb'
+    - 'lib/awspec/helper/finder/efs.rb'
+    - 'lib/awspec/helper/finder/elasticache.rb'
+    - 'lib/awspec/helper/finder/elasticsearch.rb'
+    - 'lib/awspec/helper/finder/elb.rb'
+    - 'lib/awspec/helper/finder/kms.rb'
+    - 'lib/awspec/helper/finder/mq.rb'
+    - 'lib/awspec/helper/finder/nlb.rb'
+    - 'lib/awspec/helper/finder/rds.rb'
+    - 'lib/awspec/helper/finder/redshift.rb'
+    - 'lib/awspec/matcher/have_route.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods.
+# AllowedMethods: present?, blank?, presence, try, try!
+Style/SafeNavigation:
+  Exclude:
+    - 'lib/awspec/type/elasticache.rb'
+
+# Offense count: 9
+# Cop supports --auto-correct.
+# Configuration parameters: AllowModifier.
+Style/SoleNestedConditional:
+  Exclude:
+    - 'lib/awspec/type/account.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'lib/awspec/type/alb_listener.rb'
+    - 'lib/awspec/type/network_acl.rb'
+    - 'lib/awspec/type/nlb_listener.rb'
+    - 'lib/awspec/type/route_table.rb'
+    - 'lib/awspec/type/s3_bucket.rb'
+
+# Offense count: 7
+# Cop supports --auto-correct.
 Style/StderrPuts:
   Exclude:
     - 'lib/awspec/generator/template.rb'
+    - 'lib/awspec/helper/finder/ec2.rb'
     - 'lib/awspec/setup.rb'
 
-Style/IfUnlessModifier:
+# Offense count: 151
+# Cop supports --auto-correct.
+# Configuration parameters: Mode.
+Style/StringConcatenation:
   Enabled: false
+
+# Offense count: 14
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
+# IgnoredMethods: respond_to, define_method
+Style/SymbolProc:
+  Exclude:
+    - 'lib/awspec/generator/spec/route53_hosted_zone.rb'
+    - 'lib/awspec/helper/finder/iam.rb'
+    - 'lib/awspec/helper/finder/lambda.rb'
+    - 'lib/awspec/helper/finder/vpc.rb'
+    - 'lib/awspec/type/ec2.rb'
+    - 'lib/awspec/type/eks_nodegroup.rb'
+    - 'lib/awspec/type/firehose.rb'
+    - 'lib/awspec/type/route53_hosted_zone.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArrayLiteral:
+  Exclude:
+    - 'lib/awspec/generator/doc/type/alb.rb'
+
+# Offense count: 11
+# Cop supports --auto-correct.
+# Configuration parameters: WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  EnforcedStyle: percent
+  MinSize: 4
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: forbid_for_all_comparison_operators, forbid_for_equality_operators_only, require_for_all_comparison_operators, require_for_equality_operators_only
+Style/YodaCondition:
+  Exclude:
+    - 'lib/awspec/generator/doc/type/base.rb'

@@ -9,6 +9,7 @@ module Awspec::Type
       Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
         key = type.gsub(Awspec::Type::Account::REMOVE_SUFFIX_RE, '').to_sym
         next unless key == @key
+
         if key == 'ses'
           # https://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html
           next unless ['us-east-1', 'us-west-2', 'eu-west-1'].include?(Aws.config[:region])

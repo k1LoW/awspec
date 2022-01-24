@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_by_domain_name(id)
         hosted_zone = find_hosted_zone(id)
         raise 'Not Found Route53 Hosted Zone' unless hosted_zone
+
         id = hosted_zone[:id]
         selected = []
         res = @route53_client.list_resource_record_sets({

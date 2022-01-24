@@ -30,6 +30,7 @@ module Awspec::Type
       instance = find_ec2(instance_id)
       return false unless instance
       return false unless resource_via_client.attachments
+
       resource_via_client.attachments.first.instance_id == instance.instance_id && \
         resource_via_client.attachments.first.state == 'attached'
     end

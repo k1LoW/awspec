@@ -129,8 +129,7 @@ Aws.config[:elasticloadbalancingv2] = {
               type: 'forward'
             }
           ],
-          conditions: [
-          ],
+          conditions: [],
           is_default: true,
           priority: 'default',
           rule_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener-rule/app/my-alb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2/defaaaaaaaultbbbb'

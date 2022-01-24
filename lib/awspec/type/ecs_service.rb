@@ -1,6 +1,7 @@
 module Awspec::Type
   class EcsService < ResourceBase
     attr_accessor :cluster
+
     def initialize(service)
       super
       @display_name = service

@@ -14,8 +14,10 @@ module Awspec::Type
     def has_subnet?(subnet_id)
       resource_via_client.associations.find do |a|
         next true if a.subnet_id == subnet_id
+
         subnet = find_subnet(subnet_id)
         next false unless subnet
+
         next a.subnet_id == subnet.subnet_id
       end
     end
@@ -77,15 +79,18 @@ module Awspec::Type
         # egress rule_action
         next false if entry.egress != @egress
         next false if entry.rule_action != rule_action
+
         # protocol
         unless protocol.nil?
           next false unless protocol_match?(protocol, entry.protocol)
         end
         # cidr
         next false if !cidr.nil? && entry.cidr_block != cidr
+
         # rule_number
         rule_number = 32_767 if rule_number == '*'
         next false if !rule_number.nil? && entry.rule_number != rule_number
+
         # port
         unless entry.port_range.nil?
           next false unless port_between?(port, entry.port_range.from, entry.port_range.to)

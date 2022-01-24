@@ -40,6 +40,7 @@ module Awspec::Helper
         return nil if res.reservations.count == 0
         return res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
         raise Awspec::DuplicatedResourceTypeError, dup_ec2_instance(id) if res.reservations.count > 1
+
         raise "Unexpected condition of having reservations = #{res.reservations.count}"
       end
 
@@ -79,6 +80,7 @@ module Awspec::Helper
           )
           resource = res[type + '_gateways'].single_resource(gateway_id)
           return resource if resource
+
           res = ec2_client.send(
             method_name,
             { filters: [{ name: 'tag:Name', values: [gateway_id] }] }
@@ -98,6 +100,7 @@ module Awspec::Helper
                                                   })
         resource = res.vpn_connections.single_resource(vpn_connection_id)
         return resource if resource
+
         res = ec2_client.describe_vpn_connections({
                                                     filters: [
                                                       {
@@ -138,6 +141,7 @@ module Awspec::Helper
                                                      })
         resource = res.network_interfaces.single_resource(interface_id)
         return resource if resource
+
         res = ec2_client.describe_network_interfaces({
                                                        filters: [{ name: 'tag:Name', values: [interface_id] }]
                                                      })

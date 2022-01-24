@@ -12,8 +12,7 @@ Aws.config[:ecs] = {
           active_services_count:                 0
         }
       ],
-      failures: [
-      ]
+      failures: []
     },
     list_container_instances: {
       container_instance_arns: [
@@ -92,8 +91,7 @@ Aws.config[:ecs] = {
           status: 'ACTIVE'
         }
       ],
-      failures: [
-      ]
+      failures: []
     }
   }
 }

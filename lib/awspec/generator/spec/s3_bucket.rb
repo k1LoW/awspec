@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         buckets = select_all_buckets
         raise 'Not Found Bucket' if buckets.empty?
+
         specs = buckets.map do |bucket|
           content(bucket)
         end
@@ -18,6 +19,7 @@ module Awspec::Generator
 
       def generate_grant_specs(acl)
         return [] unless acl
+
         linespecs = []
         acl.grants.each do |grant|
           linespecs.push(ERB.new(grant_linetemplate, nil, '-').result(binding))
@@ -54,6 +56,7 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
 
       def generate_lifecycle_rule_specs(lifecycle_rule)
         return [] unless lifecycle_rule
+
         linespecs = []
         lifecycle_rule.rules.each do |rule|
           transitions = generate_lifecycle_rule_transitions_spec(rule.transitions.map(&:to_h))

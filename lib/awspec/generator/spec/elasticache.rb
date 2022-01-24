@@ -9,9 +9,11 @@ module Awspec::Generator
           res = elasticache_client.describe_cache_clusters(opt)
           clusters.push(*res.cache_clusters)
           break if res.marker.nil?
+
           opt = { marker: res.marker }
         end
         raise 'Not Found Cache Clusters' if clusters.empty?
+
         ERB.new(cache_clusters_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
 

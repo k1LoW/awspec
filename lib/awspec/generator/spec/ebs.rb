@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         volumes = select_all_attached_ebs
         raise 'Not Found EBS' if volumes.empty?
+
         specs = volumes.map do |volume|
           attachment_specs = generate_attachment_specs(volume)
           content = ERB.new(ebs_spec_template, nil, '-').result(binding).gsub(/^\n/, '')

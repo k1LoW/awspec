@@ -20,6 +20,7 @@ module Awspec::Type
     def has_tag?(key, value)
       tag = find_parameter_tag(id, key)
       return nil if tag.value != value
+
       tag
     end
   end

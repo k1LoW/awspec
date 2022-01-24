@@ -50,6 +50,7 @@ module Awspec::Type
 
     def has_security_groups?(sg_ids)
       return true if match_group_ids?(sg_ids) || match_group_names?(sg_ids)
+
       group_ids = resource_security_groups.map { |sg| sg.group_id }
       tags = select_security_group_by_group_id(group_ids).map { |sg| sg.tags }.flatten
       group_names = tags.select { |tag| tag.key == 'Name' }.map { |tag| tag.value }
@@ -63,8 +64,10 @@ module Awspec::Type
         sg.group_id == sg_id || sg.group_name == sg_id
       end
       return true if ret
+
       sg2 = find_security_group(sg_id)
       return false unless sg2.tag_name == sg_id
+
       sgs.find do |sg|
         sg.group_id == sg2.group_id
       end
@@ -82,9 +85,11 @@ module Awspec::Type
       blocks = resource_via_client.block_device_mappings
       ret = blocks.find do |block|
         next false unless block.ebs
+
         block.ebs.volume_id == volume_id
       end
       return true if ret
+
       blocks2 = find_ebs(volume_id)
       blocks2.attachments.find do |attachment|
         attachment.instance_id == id
@@ -97,6 +102,7 @@ module Awspec::Type
       interfaces = resource_via_client.network_interfaces
       ret = interfaces.find do |interface|
         next false if device_index && interface.attachment.device_index != device_index
+
         interface.network_interface_id == res.network_interface_id
       end
     end
@@ -111,6 +117,7 @@ module Awspec::Type
     def has_events?
       status = find_ec2_status(id)
       return false if status.nil?
+
       status.events.count > 0
     end
 
@@ -129,6 +136,7 @@ module Awspec::Type
       }
       classic_link_instances = ec2_client.describe_classic_link_instances(option)
       return false if classic_link_instances.instances.count == 0
+
       instances = classic_link_instances[0]
       sgs = instances[0].groups
       ret = sgs.find do |sg|

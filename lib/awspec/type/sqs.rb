@@ -2,6 +2,7 @@ module Awspec::Type
   class Sqs < ResourceBase
     def resource_via_client
       return @resource_via_client if @resource_via_client
+
       queue_url = id
       attributes = {}
       res = sqs_client.get_queue_attributes({
@@ -31,6 +32,7 @@ module Awspec::Type
     def has_tag?(tag_key, tag_value)
       @tag_set ||= find_tags_for_queue(@id)
       return nil if @tag_set[tag_key] != tag_value
+
       true
     end
   end

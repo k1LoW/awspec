@@ -22,6 +22,7 @@ module Awspec::Type
     def has_ec2?(id)
       ec2 = find_ec2(id)
       return nil unless ec2
+
       resource_via_client.instances.find do |instance|
         instance.instance_id == ec2.instance_id
       end
@@ -33,8 +34,10 @@ module Awspec::Type
         sg == sg_id
       end
       return true if ret
+
       sg2 = find_security_group(sg_id)
       return true if sgs.include? sg2.group_id
+
       false
     end
 
@@ -44,6 +47,7 @@ module Awspec::Type
         s == subnet_id
       end
       return true if ret
+
       res = find_subnet(subnet_id)
       ret = subnets.find do |s|
         s == res.subnet_id
@@ -76,6 +80,7 @@ module Awspec::Type
 
     def has_access_log?(s3_bucket_name:, s3_bucket_prefix:, emit_interval:)
       return false unless load_balancer_attributes.access_log.enabled
+
       access_log = load_balancer_attributes.access_log
       access_log.emit_interval == emit_interval && \
         access_log.s3_bucket_name == s3_bucket_name && access_log.s3_bucket_prefix == s3_bucket_prefix
@@ -83,6 +88,7 @@ module Awspec::Type
 
     def has_connection_draining?(timeout:)
       return false unless load_balancer_attributes.connection_draining.enabled
+
       connection_draining = load_balancer_attributes.connection_draining
       connection_draining.timeout == timeout
     end

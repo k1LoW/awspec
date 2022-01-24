@@ -30,6 +30,7 @@ module Awspec::Type
     def method_missing(name)
       param_name = name.to_sym
       return @params[param_name] if @params.include?(param_name)
+
       raise InvalidRdsDbParameter, name
     end
   end
@@ -37,6 +38,7 @@ module Awspec::Type
   class RdsDbParameterGroup < ResourceBase
     def resource_via_client
       return @resource_via_client if @resource_via_client
+
       @resource_via_client ||= select_all_rds_db_parameters(@display_name)
     end
 

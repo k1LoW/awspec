@@ -33,6 +33,7 @@ module Awspec
           unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::ResourceBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::ResourceBase"
           end
+
           name = args.first
           eval "Awspec::Type::#{type.camelize}.new(name)"
         end
@@ -45,6 +46,7 @@ module Awspec
                  == 'Awspec::Type::AccountAttributeBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountAttributeBase"
           end
+
           eval "Awspec::Type::#{type.camelize}.new"
         end
       end

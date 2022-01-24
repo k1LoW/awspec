@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         roles = select_all_iam_roles
         raise 'Not Found IAM Role' if roles.empty?
+
         specs = roles.map do |role|
           inline_policies = select_inline_policy_by_role_name(role.role_name).map do |policy_name|
             res = iam_client.get_role_policy({

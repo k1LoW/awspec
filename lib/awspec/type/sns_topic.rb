@@ -30,6 +30,7 @@ module Awspec::Type
       subs_key = subscribed_arn.to_sym
       fetch_subscriptions
       raise "'#{subscribed_arn}' is not a valid subscription ARN" unless @subscriptions.key?(subs_key)
+
       @subscriptions[subs_key]
     end
 
@@ -44,6 +45,7 @@ module Awspec::Type
     def fetch_subscriptions
       @subscriptions = find_sns_topic_subs(@topic_arn) if @subscriptions.nil?
       raise Awspec::NoExistingResource.new(self.class, @display_name) if @subscriptions.nil?
+
       @subscriptions
     end
   end

@@ -12,6 +12,7 @@ module Awspec::Helper
           end
 
           break unless res.is_truncated
+
           res = route53_client.list_hosted_zones({
                                                    marker: res.next_marker
                                                  })

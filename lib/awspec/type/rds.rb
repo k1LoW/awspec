@@ -83,6 +83,7 @@ module Awspec::Type
                                                   filters: [{ name: 'group-name', values: [sg_id] }]
                                                 })
       return false unless res.security_groups.count == 1
+
       sgs.find do |sg|
         sg.vpc_security_group_id == res.security_groups.first.group_id
       end
@@ -94,6 +95,7 @@ module Awspec::Type
                                                   filters: [{ name: 'tag:Name', values: [sg_id] }]
                                                 })
       return false unless res.security_groups.count == 1
+
       sgs.find do |sg|
         sg.vpc_security_group_id == res.security_groups.first.group_id
       end

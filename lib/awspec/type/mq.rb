@@ -44,6 +44,7 @@ module Awspec::Type
       res = select_security_group_by_group_name([sg_id])
 
       return false unless res.count == 1
+
       has_vpc_security_group_id?(res.first.group_id)
     end
 
@@ -51,6 +52,7 @@ module Awspec::Type
       res = select_security_group_by_tag_name([sg_id])
 
       return false unless res.count == 1
+
       has_vpc_security_group_id?(res.first.group_id)
     end
   end

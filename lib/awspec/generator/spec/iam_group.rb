@@ -5,6 +5,7 @@ module Awspec::Generator
       def generate_all
         groups = select_all_iam_groups
         raise 'Not Found IAM Group' if groups.empty?
+
         specs = groups.map do |group|
           inline_policies = select_inline_policy_by_group_name(group.group_name).map do |policy_name|
             res = iam_client.get_group_policy({

@@ -43,7 +43,7 @@ jobs:
           - '2.5'
           - '2.6'
           - '2.7'
-          # - '3.0'
+          - '3.0'
     runs-on: ubuntu-latest
     env:
       DISABLE_AWS_CLIENT_CHECK: true
@@ -58,9 +58,8 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
 
-    - name: Install xml lib
-      run: gem install ox
-      if: matrix.ruby-version == '3.0'
+    - name: Show Ruby version
+      run: ruby -v
 
     - name: Generate document
       run: bundle exec bin/toolbox docgen > doc/resource_types.md

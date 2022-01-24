@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 Aws.config[:autoscaling] = {
   stub_responses: {
     describe_auto_scaling_groups: {

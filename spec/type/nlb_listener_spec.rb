@@ -1,7 +1,7 @@
 require 'spec_helper'
 Awspec::Stub.load 'nlb_listener'
 
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 describe nlb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener/app/my-nlb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2') do
   it { should exist }
   its(:port) { should eq 80 }

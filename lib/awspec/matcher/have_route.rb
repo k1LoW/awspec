@@ -16,10 +16,10 @@ RSpec::Matchers.define :have_route do |destination|
   end
 
   chain :destination do |dest|
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     puts ''
     warn Color.on_red(Color.white('!!! route_table destination is deprecated. see https://github.com/k1LoW/awspec/pull/65 !!!'))
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
     @use_destination = true
     @destination = dest
   end

@@ -2,7 +2,7 @@ module Awspec::Generator
   module Doc
     module Type
       class NlbListener < Base
-        # rubocop:disable Metrics/LineLength
+        # rubocop:disable Layout/LineLength
         def initialize
           super
           @type_name = 'NlbListener'

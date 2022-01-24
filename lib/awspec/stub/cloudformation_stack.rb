@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 Aws.config[:cloudformation] = {
   stub_responses: {
     describe_stacks: {

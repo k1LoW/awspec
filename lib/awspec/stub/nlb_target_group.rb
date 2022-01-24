@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 Aws.config[:elasticloadbalancingv2] = {
   stub_responses: {
     describe_load_balancers: {

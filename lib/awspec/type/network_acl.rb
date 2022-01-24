@@ -54,7 +54,7 @@ module Awspec::Type
       end
     end
 
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     PROTOCOLS = { 'ALL' => -1, 'HOPOPT' => 0, 'ICMP' => 1, 'IGMP' => 2, 'GGP' => 3, 'IPv4' => 4, 'ST' => 5, 'TCP' => 6, 'CBT' => 7, 'EGP' => 8, 'IGP' => 9, 'BBN-RCC-MON' => 10,
                   'NVP-II' => 11, 'PUP' => 12, 'ARGUS' => 13, 'EMCON' => 14, 'XNET' => 15, 'CHAOS' => 16, 'UDP' => 17, 'MUX' => 18, 'DCN-MEAS' => 19, 'HMP' => 20,
                   'PRM' => 21, 'XNS-IDP' => 22, 'TRUNK-1' => 23, 'TRUNK-2' => 24, 'LEAF-1' => 25, 'LEAF-2' => 26, 'RDP' => 27, 'IRTP' => 28, 'ISO-TP4' => 29, 'NETBLT' => 30,
@@ -70,7 +70,7 @@ module Awspec::Type
                   'SMP' => 121, 'SM' => 122, 'PTP' => 123, 'ISIS over IPv4' => 124, 'FIRE' => 125, 'CRTP' => 126, 'CRUDP' => 127, 'SSCOPMCE' => 128, 'IPLT' => 129, 'SPS' => 130,
                   'PIPE' => 131, 'SCTP' => 132, 'FC' => 133, 'RSVP-E2E-IGNORE' => 134, 'Mobility Header' => 135, 'UDPLite' => 136, 'MPLS-in-IP' => 137, 'manet' => 138, 'HIP' => 139, 'Shim6' => 140,
                   'WESP' => 141, 'ROHC' => 142, '253' => 253, '254' => 254 }
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
 
     private
 

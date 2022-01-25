@@ -131,12 +131,6 @@ Style/NumericLiteralPrefix:
 Style/NumericPredicate:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/RedundantRegexpEscape:
-  Exclude:
-    - 'lib/awspec/type/apigateway.rb'
-
 # Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMultipleReturnValues.

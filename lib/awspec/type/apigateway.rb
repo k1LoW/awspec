@@ -36,7 +36,7 @@ module Awspec::Type
 
         resource.resource_methods.each do |_, method|
           if method.method_integration.http_method == 'AWS'
-            aws_path = method.method_integration.uri.match(%r{(\/[^\?]+)\??.*$}).captures[0] # Matches for ARN type path
+            aws_path = method.method_integration.uri.match(%r{(/[^?]+)\??.*$}).captures[0] # Matches for ARN type path
             return resource if aws_path == path
           end
           uri = Addressable::URI.parse(method.method_integration.uri)

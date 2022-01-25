@@ -110,22 +110,8 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 10
-# Cop supports --auto-correct.
 Style/EvalWithLocation:
-  Exclude:
-    - 'lib/awspec/command/generate.rb'
-    - 'lib/awspec/generator/doc/type.rb'
-    - 'lib/awspec/helper/type.rb'
-    - 'lib/awspec/type/account.rb'
-    - 'lib/awspec/type/account_attribute.rb'
-    - 'spec/generator/doc/type_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/GlobalStdStream:
-  Exclude:
-    - 'lib/awspec/helper/finder/ec2.rb'
+  Enabled: false
 
 # Offense count: 37
 # Cop supports --auto-correct.

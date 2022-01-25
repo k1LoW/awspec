@@ -11,7 +11,7 @@ EXPECTED = {
   'LOG_LEVEL' => 'DEBUG',
   'RESOLVER1' => '10.196.138.1',
   'RESOLVER2' => '10.196.136.2'
-}
+}.freeze
 
 describe lambda('my-lambda-function-name') do
   it { should exist }

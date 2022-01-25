@@ -13,8 +13,8 @@ module Awspec::Type
       @resource_via_client ||= find_emr_cluster(@id)
     end
 
-    STARTING_STATES = %w(STARTING BOOTSTRAPPING)
-    READY_STATES = %w(RUNNING WAITING)
+    STARTING_STATES = %w(STARTING BOOTSTRAPPING).freeze
+    READY_STATES = %w(RUNNING WAITING).freeze
     STATES = (READY_STATES + STARTING_STATES)
 
     STATES.each do |state|

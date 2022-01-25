@@ -13,7 +13,7 @@ module Awspec::Type
     STATES = %w(
       running reboot-in-progress creation-in-progress
       creation-failed deletion-in-progress
-    )
+    ).freeze
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

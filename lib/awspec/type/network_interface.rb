@@ -14,7 +14,7 @@ module Awspec::Type
 
     STATES = %w(
       available attaching in-use detaching
-    )
+    ).freeze
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

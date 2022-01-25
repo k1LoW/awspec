@@ -91,7 +91,7 @@ module Awspec::Type
       running_counter >= min_expected
     end
 
-    STATES = %w(ACTIVE INACTIVE)
+    STATES = %w(ACTIVE INACTIVE).freeze
 
     STATES.each do |state|
       define_method state.downcase + '?' do

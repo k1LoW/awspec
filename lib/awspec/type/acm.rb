@@ -18,7 +18,7 @@ module Awspec::Type
       VALIDATION_TIMED_OUT
       REVOKED
       FAILED
-    )
+    ).freeze
 
     STATUSES.each do |status|
       define_method status.downcase + '?' do

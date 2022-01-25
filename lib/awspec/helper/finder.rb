@@ -161,12 +161,12 @@ module Awspec::Helper
       msk_client: Aws::Kafka::Client,
       cognito_identity_client: Aws::CognitoIdentity::Client,
       cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client
-    }
+    }.freeze
 
     CLIENT_OPTIONS = {
       http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil,
       http_wire_trace: ENV['http_wire_trace'] || false
-    }
+    }.freeze
 
     check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')
 

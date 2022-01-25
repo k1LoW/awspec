@@ -14,7 +14,7 @@ module Awspec::Type
 
     STATES = %w(
       pending failed available deleting deleted
-    )
+    ).freeze
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

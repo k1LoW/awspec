@@ -16,7 +16,7 @@ module Awspec::Type
       incompatible-network incompatible-parameters incompatible-restore
       modifying rebooting renaming resizing rotating-keys
       storage-full updating-hsm
-    )
+    ).freeze
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

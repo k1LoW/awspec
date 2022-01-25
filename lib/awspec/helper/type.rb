@@ -23,11 +23,11 @@ module Awspec
         internet_gateway acm cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack
         codebuild sns_topic redshift redshift_cluster_parameter_group codedeploy codedeploy_deployment_group
         secretsmanager msk transit_gateway cognito_identity_pool cognito_user_pool vpc_endpoints
-      )
+      ).freeze
 
       ACCOUNT_ATTRIBUTES = %w(
         ec2_account_attributes rds_account_attributes lambda_account_settings ses_send_quota
-      )
+      ).freeze
 
       TYPES.each do |type|
         require "awspec/type/#{type}"

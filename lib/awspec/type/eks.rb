@@ -15,7 +15,7 @@ module Awspec::Type
       @id ||= resource_via_client.name if resource_via_client
     end
 
-    STATES = %w(ACTIVE CREATING)
+    STATES = %w(ACTIVE CREATING).freeze
 
     STATES.each do |state|
       define_method state.downcase + '?' do

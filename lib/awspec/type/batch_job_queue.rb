@@ -15,7 +15,7 @@ module Awspec::Type
       @id ||= resource_via_client.job_queue_name if resource_via_client
     end
 
-    STATES = %w(ENABLED DISABLED)
+    STATES = %w(ENABLED DISABLED).freeze
 
     STATES.each do |state|
       define_method state.downcase + '?' do

@@ -122,13 +122,6 @@ Style/MixinUsage:
   Exclude:
     - 'lib/awspec/helper.rb'
 
-# Offense count: 54
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Enabled: false
-
 # Offense count: 65
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedOctalStyle.

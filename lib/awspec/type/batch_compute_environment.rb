@@ -15,7 +15,7 @@ module Awspec::Type
       @id ||= resource_via_client.compute_environment_name if resource_via_client
     end
 
-    STATES = %w(ENABLED DISABLED)
+    STATES = %w(ENABLED DISABLED).freeze
 
     STATES.each do |state|
       define_method state.downcase + '?' do
@@ -23,7 +23,7 @@ module Awspec::Type
       end
     end
 
-    TYPES = %w(MANAGED UNMANAGED)
+    TYPES = %w(MANAGED UNMANAGED).freeze
 
     TYPES.each do |type|
       define_method type.downcase + '?' do

@@ -22,7 +22,7 @@ module Awspec::Generator
       end
 
       def alb_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe alb('<%= alb.load_balancer_name %>') do
   it { should exist }
   its(:load_balancer_arn) { should eq '<%= alb.load_balancer_arn %>' }
@@ -34,7 +34,6 @@ describe alb('<%= alb.load_balancer_name %>') do
   its(:ip_address_type) { should eq '<%= alb.ip_address_type %>' }
 end
 EOF
-        template
       end
     end
   end

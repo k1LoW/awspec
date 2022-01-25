@@ -12,7 +12,7 @@ module Awspec::Generator
       end
 
       def alarm_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% alarms.each do |alarm| %>
 describe cloudwatch_alarm('<%= alarm.alarm_name %>') do
   it { should exist }
@@ -39,7 +39,6 @@ describe cloudwatch_alarm('<%= alarm.alarm_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

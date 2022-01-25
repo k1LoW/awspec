@@ -58,54 +58,49 @@ module Awspec::Generator
       end
 
       def route_table_spec_gateway_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 it { should have_route('<%= destination %>').target(gateway: '<%= route.gateway_id %>') }
 EOF
-        template
       end
 
       def route_table_spec_instance_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if instance.tag_name -%>
 it { should have_route('<%= route.destination_cidr_block %>').target(instance: '<%= instance.tag_name %>') }
 <%- else -%>
 it { should have_route('<%= route.destination_cidr_block %>').target(instance: '<%= route.instance_id %>') }
 <%- end -%>
 EOF
-        template
       end
 
       def route_table_spec_connection_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if connection.tag_name -%>
 it { should have_route('<%= route.destination_cidr_block %>').target(vpc_peering_connection: '<%= connection.tag_name %>') }
 <%- else -%>
 it { should have_route('<%= route.destination_cidr_block %>').target(vpc_peering_connection: '<%= route.vpc_peering_connection_id %>') }
 <%- end -%>
 EOF
-        template
       end
 
       def route_table_spec_nat_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 it { should have_route('<%= route.destination_cidr_block %>').target(nat: '<%= route.nat_gateway_id %>') }
 EOF
-        template
       end
 
       def route_table_spec_subnet_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if subnet.tag_name -%>
 it { should have_subnet('<%= subnet.tag_name %>') }
 <%- else -%>
 it { should have_subnet('<%= subnet.subnet_id %>') }
 <%- end -%>
 EOF
-        template
       end
 
       def route_table_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if route_table_tag_name -%>
 describe route_table('<%= route_table_tag_name %>') do
 <%- else -%>
@@ -125,7 +120,6 @@ describe route_table('<%= route_table_id %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

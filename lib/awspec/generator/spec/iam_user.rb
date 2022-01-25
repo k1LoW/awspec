@@ -23,7 +23,7 @@ module Awspec::Generator
       end
 
       def iam_user_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe iam_user('<%= user.user_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= user.arn %>' }
@@ -35,7 +35,6 @@ describe iam_user('<%= user.user_name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

@@ -23,7 +23,7 @@ module Awspec::Generator
       end
 
       def autoscaling_group_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe autoscaling_group('<%= autoscaling_group.auto_scaling_group_name %>') do
   it { should exist }
 <% describes.each do |describe| %>
@@ -52,7 +52,6 @@ describe autoscaling_group('<%= autoscaling_group.auto_scaling_group_name %>') d
 <% end %>
 end
 EOF
-        template
       end
     end
   end

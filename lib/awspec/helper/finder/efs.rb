@@ -57,8 +57,7 @@ module Awspec::Helper
 
       def select_all_file_systems
         file_systems_query = efs_client.describe_file_systems
-        file_systems = file_systems_query.file_systems
-        file_systems
+        file_systems_query.file_systems
       end
     end
   end

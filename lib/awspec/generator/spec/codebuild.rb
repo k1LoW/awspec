@@ -12,14 +12,13 @@ module Awspec::Generator
       end
 
       def codebuild_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% projects.each do |project| %>
 describe codebuild('<%= project %>') do
   it { should exist }
 end
 <% end %>
 EOF
-        template
       end
     end
   end

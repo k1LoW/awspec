@@ -23,7 +23,7 @@ module Awspec::Generator
       end
 
       def iam_group_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe iam_group('<%= group.group_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= group.arn %>' }
@@ -35,7 +35,6 @@ describe iam_group('<%= group.group_name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

@@ -16,7 +16,7 @@ module Awspec::Generator
       end
 
       def virtual_interface_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% virtual_interfaces.each do |interface| %>
 describe directconnect_virtual_interface('<%= interface.virtual_interface_name %>') do
   it { should exist }
@@ -29,7 +29,6 @@ describe directconnect_virtual_interface('<%= interface.virtual_interface_name %
 end
 <% end %>
 EOF
-        template
       end
     end
   end

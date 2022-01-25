@@ -59,7 +59,7 @@ EOF
       end
 
       def route53_hosted_zone_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe route53_hosted_zone('<%= hosted_zone.name %>') do
   it { should exist }
   its(:resource_record_set_count) { should eq <%= hosted_zone.resource_record_set_count %> }
@@ -68,7 +68,6 @@ describe route53_hosted_zone('<%= hosted_zone.name %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

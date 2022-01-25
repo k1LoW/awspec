@@ -51,7 +51,7 @@ module Awspec::Generator
       end
 
       def cloudwatch_logs_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe cloudwatch_logs('<%= log_group.log_group_name %>') do
   it { should exist }
 <%- unless log_group.retention_in_days.nil? -%>
@@ -68,7 +68,6 @@ describe cloudwatch_logs('<%= log_group.log_group_name %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

@@ -12,7 +12,7 @@ module Awspec::Generator
       end
 
       def acm_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% certificates.each do |certificate| %>
 describe acm('<%= certificate.domain_name %>') do
   it { should exist }
@@ -39,7 +39,6 @@ describe acm('<%= certificate.domain_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

@@ -66,7 +66,7 @@ module Awspec::Generator
         end
 
         def doc_template
-          template = <<-'EOF'
+          <<-'EOF'
 ## <a name="<%= @type_name.gsub(/ /, '_').underscore %>"><%= @type_name.gsub(/ /, '_').underscore %></a>
 
 <%= @type_name %> resource type.
@@ -82,7 +82,6 @@ module Awspec::Generator
 <%= @descriptions['advanced'] %><%- end -%>
 
 EOF
-          template
         end
 
         def sort_num(str)

@@ -12,7 +12,7 @@ module Awspec::Generator
       end
 
       def event_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% events.each do |event| %>
 describe cloudwatch_event('<%= event.name %>') do
   it { should exist }
@@ -23,7 +23,6 @@ describe cloudwatch_event('<%= event.name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

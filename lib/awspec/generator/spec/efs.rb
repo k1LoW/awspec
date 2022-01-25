@@ -16,7 +16,7 @@ module Awspec::Generator
       end
 
       def file_system_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe efs('<%= file_system.name %>') do
   it { should exist }
   its(:number_of_mount_targets) { should eq <%= file_system.number_of_mount_targets %> }
@@ -24,7 +24,6 @@ describe efs('<%= file_system.name %>') do
   its(:performance_mode) { should eq '<%= file_system.performance_mode %>' }
 end
 EOF
-        template
       end
     end
   end

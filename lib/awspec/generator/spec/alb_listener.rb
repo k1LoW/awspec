@@ -80,7 +80,7 @@ module Awspec::Generator
       end
 
       def alb_listener_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe alb_listener('<%= listener.listener_arn %>') do
   it { should exist }
   <%- describes.each do |describe| -%>
@@ -106,7 +106,6 @@ describe alb_listener('<%= listener.listener_arn %>') do
   <%- end -%>
 end
 EOF
-        template
       end
     end
   end

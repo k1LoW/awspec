@@ -22,7 +22,7 @@ module Awspec::Generator
       end
 
       def nlb_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe nlb('<%= nlb.load_balancer_name %>') do
   it { should exist }
   its(:load_balancer_arn) { should eq '<%= nlb.load_balancer_arn %>' }
@@ -34,7 +34,6 @@ describe nlb('<%= nlb.load_balancer_name %>') do
   its(:ip_address_type) { should eq '<%= nlb.ip_address_type %>' }
 end
 EOF
-        template
       end
     end
   end

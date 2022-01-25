@@ -23,7 +23,7 @@ module Awspec::Generator
       end
 
       def subnet_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if subnet_tag_name -%>
 describe subnet('<%= subnet_tag_name %>') do
 <%- else -%>
@@ -43,7 +43,6 @@ describe subnet('<%= subnet_id %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

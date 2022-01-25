@@ -21,7 +21,7 @@ module Awspec::Generator
       end
 
       def nat_gateway_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe nat_gateway('<%= nat_gateway_id %>') do
   it { should exist }
   it { should be_<%= nat_gateway.state %> }
@@ -35,7 +35,6 @@ describe nat_gateway('<%= nat_gateway_id %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

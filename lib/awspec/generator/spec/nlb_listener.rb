@@ -80,7 +80,7 @@ module Awspec::Generator
       end
 
       def nlb_listener_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe nlb_listener('<%= listener.listener_arn %>') do
   it { should exist }
   <%- describes.each do |describe| -%>
@@ -106,7 +106,6 @@ describe nlb_listener('<%= listener.listener_arn %>') do
   <%- end -%>
 end
 EOF
-        template
       end
     end
   end

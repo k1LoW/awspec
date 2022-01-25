@@ -10,7 +10,7 @@ module Awspec::Generator
         end
 
         def doc_template
-          template = <<-'EOF'
+          <<-'EOF'
 ## <a name="<%= @type_name.gsub(/ /, '_').underscore %>"><%= @type_name.gsub(/ /, '_').underscore %></a>
 
 <%= @type_name %> account attributes.
@@ -26,7 +26,6 @@ module Awspec::Generator
 <%= @descriptions['advanced'] %><%- end -%>
 
 EOF
-          template
         end
       end
     end

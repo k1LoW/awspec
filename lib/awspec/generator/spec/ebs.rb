@@ -25,18 +25,17 @@ module Awspec::Generator
       end
 
       def attachment_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if instance.tag_name -%>
 it { should be_attached_to('<%= instance.tag_name %>') }
 <%- else -%>
 it { should be_attached_to('<%= instance.instance_id %>') }
 <%- end -%>
 EOF
-        template
       end
 
       def ebs_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if volume.tag_name -%>
 describe ebs('<%= volume.tag_name %>') do
 <%- else -%>
@@ -51,7 +50,6 @@ describe ebs('<%= volume.volume_id %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

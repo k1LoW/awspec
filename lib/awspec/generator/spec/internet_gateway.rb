@@ -21,7 +21,7 @@ module Awspec::Generator
       end
 
       def internet_gateway_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe internet_gateway('<%= internet_gateway_id %>') do
   it { should exist }
 <%- if @vpc_tag_name -%>
@@ -31,7 +31,6 @@ describe internet_gateway('<%= internet_gateway_id %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

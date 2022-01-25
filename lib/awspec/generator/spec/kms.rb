@@ -12,7 +12,7 @@ module Awspec::Generator
       end
 
       def keys_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% aliases.each do |kms_alias| %>
 describe kms('<%= kms_alias.alias_name.split('/').last %>') do
   it { should exist }
@@ -22,7 +22,6 @@ describe kms('<%= kms_alias.alias_name.split('/').last %>') do
 end
 <% end %>
 EOF
-        template
       end
 
       private

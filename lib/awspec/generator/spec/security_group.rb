@@ -62,14 +62,13 @@ module Awspec::Generator
       end
 
       def security_group_spec_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 its(:<%= inout %>) { should be_opened<%- unless port.nil? -%>(<%= port %>)<%- end -%>.protocol('<%= protocol %>').for('<%= target %>') }
 EOF
-        template
       end
 
       def security_group_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe security_group('<%= sg.group_name %>') do
   it { should exist }
 <% describes.each do |describe| %>
@@ -91,7 +90,6 @@ describe security_group('<%= sg.group_name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

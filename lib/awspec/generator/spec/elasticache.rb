@@ -20,7 +20,7 @@ module Awspec::Generator
       end
 
       def cache_clusters_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% clusters.each do |cluster| %>
 describe elasticache('<%= cluster.cache_cluster_id %>') do
   it { should exist }
@@ -40,7 +40,6 @@ describe elasticache('<%= cluster.cache_cluster_id %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

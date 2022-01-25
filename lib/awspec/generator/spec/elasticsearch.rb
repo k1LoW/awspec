@@ -12,7 +12,7 @@ module Awspec::Generator
       end
 
       def domain_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% domains.each do |domain| %>
 describe elasticsearch('<%= domain.domain_status.domain_name %>') do
   it { should exist }
@@ -37,7 +37,6 @@ describe elasticsearch('<%= domain.domain_status.domain_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

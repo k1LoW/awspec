@@ -12,7 +12,7 @@ module Awspec::Generator
       end
 
       def lambda_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% lambda_functions.each do |function| %>
 describe lambda('<%= function.function_name %>') do
   it { should exist }
@@ -25,7 +25,6 @@ describe lambda('<%= function.function_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

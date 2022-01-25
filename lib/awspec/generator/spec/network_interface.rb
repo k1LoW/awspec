@@ -41,12 +41,11 @@ module Awspec::Generator
         return unless interface.subnet_id
 
         subnet = find_subnet(interface.subnet_id)
-        subnet_spec = if subnet.tag_name
-                        "it { should belong_to_subnet('#{subnet.tag_name}') }"
-                      else
-                        "it { should belong_to_subnet('#{subnet.subnet_id}') }"
-                      end
-        subnet_spec
+        if subnet.tag_name
+          "it { should belong_to_subnet('#{subnet.tag_name}') }"
+        else
+          "it { should belong_to_subnet('#{subnet.subnet_id}') }"
+        end
       end
 
       def generate_linespecs(interface)
@@ -61,7 +60,7 @@ module Awspec::Generator
       end
 
       def network_interface_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe network_interface('<%= network_interface_id %>') do
   it { should exist }
   it { should be_<%= interface.status.tr('-', '_') %> }
@@ -78,7 +77,6 @@ describe network_interface('<%= network_interface_id %>') do
   its(:private_ip_addresses_count) { should eq <%= interface.private_ip_addresses.count %> }
 end
 EOF
-        template
       end
     end
   end

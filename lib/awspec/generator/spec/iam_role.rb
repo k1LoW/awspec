@@ -23,7 +23,7 @@ module Awspec::Generator
       end
 
       def iam_role_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe iam_role('<%= role.role_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= role.arn %>' }
@@ -35,7 +35,6 @@ describe iam_role('<%= role.role_name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

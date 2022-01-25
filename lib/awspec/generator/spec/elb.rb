@@ -26,7 +26,7 @@ module Awspec::Generator
       end
 
       def elb_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe elb('<%= lb.load_balancer_name %>') do
   it { should exist }
 <% describes.each do |describe| %>
@@ -55,7 +55,6 @@ describe elb('<%= lb.load_balancer_name %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

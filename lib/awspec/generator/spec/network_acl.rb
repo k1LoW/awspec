@@ -74,7 +74,7 @@ module Awspec::Generator
       end
 
       def network_acl_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if network_acl_tag_name -%>
 describe network_acl('<%= network_acl_tag_name %>') do
 <%- else -%>
@@ -92,7 +92,6 @@ describe network_acl('<%= network_acl_id %>') do
   its(:outbound_entries_count) { should eq <%= inbound_entries_count %> }
 end
 EOF
-        template
       end
     end
   end

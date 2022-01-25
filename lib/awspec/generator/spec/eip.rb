@@ -17,7 +17,7 @@ module Awspec::Generator
       end
 
       def eip_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% eips.each do |eip| %>
 describe eip('<%= eip.public_ip %>') do
   it { should exist }
@@ -26,7 +26,6 @@ describe eip('<%= eip.public_ip %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

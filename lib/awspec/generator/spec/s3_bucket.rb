@@ -31,10 +31,9 @@ module Awspec::Generator
 
       def grant_linetemplate
         grantee = 'grant.grantee.display_name || grant.grantee.uri || grant.grantee.id'
-        template = <<-EOF
+        <<-EOF
 it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.permission %>') }
         EOF
-        template
       end
 
       def generate_lifecycle_rule_transitions_spec(transitions_rule)
@@ -86,7 +85,7 @@ it do
       end
 
       def bucket_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe s3_bucket('<%= bucket.name %>') do
   it { should exist }
 <%- if acl -%>
@@ -112,7 +111,6 @@ describe s3_bucket('<%= bucket.name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
 
       private

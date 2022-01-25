@@ -131,12 +131,6 @@ Style/NumericLiteralPrefix:
 Style/NumericPredicate:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/RedundantCondition:
-  Exclude:
-    - 'lib/awspec/helper/finder/ecs.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/RedundantRegexpEscape:

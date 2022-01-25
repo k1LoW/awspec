@@ -105,7 +105,7 @@ module Awspec::Type
       if a.match(/\A\d+\z/) && a.to_i >= 0
         return false unless b.to_i == a.to_i
       else
-        lower_h = PROTOCOLS.map { |k, v| [k.downcase, v] }.to_h
+        lower_h = PROTOCOLS.transform_keys(&:downcase)
         return false unless lower_h.key?(a.downcase)
         return false unless b.to_i == lower_h[a.downcase]
       end

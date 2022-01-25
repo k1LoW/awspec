@@ -62,9 +62,9 @@ describe 'multi security group' do
 
   describe ec2('i-ec12345a') do
     its(:security_group_count) { should eq 2 }
-    it { should have_security_groups(['sg-1a2b3cd4', 'sg-5e6f7gh8']) }
-    it { should have_security_groups(['my-security-group-name', 'my-security-group-name-2']) }
-    it { should have_security_groups(['my-security-group-tag-name', 'my-security-group-tag-name-2']) }
+    it { should have_security_groups(%w[sg-1a2b3cd4 sg-5e6f7gh8]) }
+    it { should have_security_groups(%w[my-security-group-name my-security-group-name-2]) }
+    it { should have_security_groups(%w[my-security-group-tag-name my-security-group-tag-name-2]) }
   end
 end
 

@@ -3,10 +3,10 @@
 Aws.config[:kinesis] = {
   stub_responses: {
     list_streams: {
-      stream_names: [
-        'my-kinesis',
-        'second-stream',
-        'third-stream'
+      stream_names: %w[
+        my-kinesis
+        second-stream
+        third-stream
       ],
       has_more_streams: false
     },

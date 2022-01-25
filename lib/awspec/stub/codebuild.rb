@@ -3,9 +3,9 @@
 Aws.config[:codebuild] = {
   stub_responses: {
     list_projects: {
-      projects: [
-        'my-codebuild1',
-        'my-codebuild2'
+      projects: %w[
+        my-codebuild1
+        my-codebuild2
       ]
     }
   }

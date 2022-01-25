@@ -16,9 +16,9 @@ Aws.config[:eks] = {
           security_group_ids: [
             'sg-6979fe18'
           ],
-          subnet_ids: [
-            'subnet-6782e71e',
-            'subnet-e7e761ac'
+          subnet_ids: %w[
+            subnet-6782e71e
+            subnet-e7e761ac
           ],
           vpc_id: 'vpc-950809ec'
         },

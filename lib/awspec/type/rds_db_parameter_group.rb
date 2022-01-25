@@ -26,7 +26,7 @@ module Awspec::Type
     end
 
     def to_s
-      return "RdsDBParameters = #{@params}"
+      "RdsDBParameters = #{@params}"
     end
 
     def method_missing(name)

@@ -9,7 +9,7 @@ module Awspec::Helper
           lb.type == 'network'
         end.single_resource(id)
       rescue
-        return nil
+        nil
       end
 
       def select_nlb_by_vpc_id(vpc_id)
@@ -23,7 +23,7 @@ module Awspec::Helper
         res = elbv2_client.describe_listeners({ listener_arns: [arn] })
         res.listeners.single_resource(arn)
       rescue
-        return nil
+        nil
       end
 
       def select_nlb_listener_by_nlb_arn(arn)
@@ -52,7 +52,7 @@ module Awspec::Helper
         begin
           res.target_groups.single_resource(id)
         rescue
-          return nil
+          nil
         end
       end
 

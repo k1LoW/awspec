@@ -57,7 +57,7 @@ module Awspec::Generator
             method.to_s.include?('?')
           end
           methods.map! do |method|
-            next 'exist' if 'exists?' == method.to_s
+            next 'exist' if method.to_s == 'exists?'
             next "have_#{Regexp.last_match[1]}" if /\Ahas_(.+)\?\z/ =~ method.to_s
             next "be_#{Regexp.last_match[1]}" if /\A(.+)\?\z/ =~ method.to_s
 

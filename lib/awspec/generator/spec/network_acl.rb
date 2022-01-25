@@ -34,9 +34,9 @@ module Awspec::Generator
         acl.associations.each do |a|
           subnet = find_subnet(a.subnet_id)
           spec = if subnet.tag_name
-                   "it { should have_subnet('" + subnet.tag_name + "') }"
+                   "it { should have_subnet('#{subnet.tag_name}') }"
                  else
-                   "it { should have_subnet('" + subnet.subnet_id + "') }"
+                   "it { should have_subnet('#{subnet.subnet_id}') }"
                  end
           specs.push(spec)
         end
@@ -50,23 +50,23 @@ module Awspec::Generator
           line = ''
           inout = 'inbound'
           inout = 'outbound' if entry.egress
-          line += 'its(:' + inout + ') { should'
+          line += "its(:#{inout}) { should"
           actions = { allow: 'be_allowed', deny: 'be_denied' }
-          line += ' ' + actions[entry.rule_action.to_sym]
+          line += " #{actions[entry.rule_action.to_sym]}"
           port_range = entry.port_range
           unless port_range.nil?
             port = if port_range.from == port_range.to
                      port_range.from.to_s
                    else
-                     "'" + port_range.from.to_s + '-' + port_range.to.to_s + "'"
+                     "'#{port_range.from}-#{port_range.to}'"
                    end
-            line += '(' + port + ')'
+            line += "(#{port})"
           end
-          line += ".protocol('" + protocols[entry.protocol.to_i] + "')"
-          line += ".source('" + entry.cidr_block + "')"
+          line += ".protocol('#{protocols[entry.protocol.to_i]}')"
+          line += ".source('#{entry.cidr_block}')"
           rule_number = entry.rule_number.to_i
           rule_number = "'*'" if rule_number == 32_767
-          line += '.rule_number(' + rule_number.to_s + ')'
+          line += ".rule_number(#{rule_number})"
           line += ' }'
           linespecs.push(line)
         end

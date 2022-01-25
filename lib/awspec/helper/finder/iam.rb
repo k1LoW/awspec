@@ -6,19 +6,19 @@ module Awspec::Helper
       # find_iam_user, find_iam_group find_iam_role find_iam_policy
       role_types = %w[user group role policy]
       role_types.each do |type|
-        define_method 'find_iam_' + type do |*args|
+        define_method "find_iam_#{type}" do |*args|
           id = args.first
           selected = []
-          res = iam_client.send('list_' + type.pluralize)
+          res = iam_client.send("list_#{type.pluralize}")
           loop do
             selected += res[type.pluralize].select do |u|
-              u[type + '_name'] == id || u[type + '_id'] == id || u.arn == id
+              u["#{type}_name"] == id || u["#{type}_id"] == id || u.arn == id
             end
 
             break unless res.is_truncated
 
             res = iam_client.send(
-              'list_' + type.pluralize,
+              "list_#{type.pluralize}",
               { marker: res.marker }
             )
           end
@@ -47,18 +47,18 @@ module Awspec::Helper
       end
 
       %w[user group role].each do |type|
-        define_method 'select_iam_policy_by_' + type + '_name' do |name|
+        define_method "select_iam_policy_by_#{type}_name" do |name|
           res = iam_client.send(
-            'list_attached_' + type + '_policies',
-            { (type + '_name').to_sym => name }
+            "list_attached_#{type}_policies",
+            { "#{type}_name".to_sym => name }
           )
           res.attached_policies
         end
 
-        define_method 'select_inline_policy_by_' + type + '_name' do |name|
+        define_method "select_inline_policy_by_#{type}_name" do |name|
           res = iam_client.send(
-            'list_' + type + '_policies',
-            { (type + '_name').to_sym => name }
+            "list_#{type}_policies",
+            { "#{type}_name".to_sym => name }
           )
           res.policy_names
         end

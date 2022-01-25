@@ -137,12 +137,6 @@ Style/SafeNavigation:
 Style/SoleNestedConditional:
   Enabled: false
 
-# Offense count: 151
-# Cop supports --auto-correct.
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Enabled: false
-
 # Offense count: 14
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.

@@ -8,7 +8,7 @@ module Awspec::Helper
         selected = []
         loop do
           res.hosted_zones.each do |hosted_zone|
-            if hosted_zone[:name] == id || hosted_zone[:id] == '/hostedzone/' + id || hosted_zone[:id] == id
+            if hosted_zone[:name] == id || hosted_zone[:id] == "/hostedzone/#{id}" || hosted_zone[:id] == id
               selected.push(hosted_zone)
             end
           end

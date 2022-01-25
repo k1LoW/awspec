@@ -10,9 +10,9 @@ module Awspec::Generator
           @type = Awspec::Type::EcsService.new('my-ecs-service')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::EcsService::STATES.map { |state| 'be_' + state.downcase }.join(', ')
+            Awspec::Type::EcsService::STATES.map { |state| "be_#{state.downcase}" }.join(', ')
           ]
-          @ignore_matchers = Awspec::Type::EcsService::STATES.map { |state| 'be_' + state.downcase }
+          @ignore_matchers = Awspec::Type::EcsService::STATES.map { |state| "be_#{state.downcase}" }
           @describes = []
         end
       end

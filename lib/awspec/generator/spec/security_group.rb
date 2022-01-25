@@ -38,7 +38,7 @@ module Awspec::Generator
                    elsif permission.from_port == permission.to_port
                      permission.from_port
                    else
-                     "'" + permission.from_port.to_s + '-' + permission.to_port.to_s + "'"
+                     "'#{permission.from_port}-#{permission.to_port}'"
                    end
 
             protocol = if permission.ip_protocol.to_i < 0

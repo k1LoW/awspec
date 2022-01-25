@@ -10,11 +10,11 @@ module Awspec::Generator
           @type = Awspec::Type::Redshift.new('my-redshift')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::Redshift::STATES.map { |state| 'be_' + state.tr('-', '_') }.join(', '),
+            Awspec::Type::Redshift::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', '),
             'belong_to_vpc',
             'belong_to_cluster_subnet_group'
           ]
-          @ignore_matchers = Awspec::Type::Redshift::STATES.map { |state| 'be_' + state.tr('-', '_') }
+          @ignore_matchers = Awspec::Type::Redshift::STATES.map { |state| "be_#{state.tr('-', '_')}" }
           @describes = %w[vpc_id]
         end
       end

@@ -34,7 +34,7 @@ module Awspec::Type
     ]
 
     STATES.each do |state|
-      define_method state + '?' do
+      define_method "#{state}?" do
         resource_via_client.state == state
       end
     end

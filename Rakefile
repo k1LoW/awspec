@@ -14,7 +14,7 @@ end
 require 'awspec'
 
 types = Awspec::Helper::Type::TYPES.map do |type|
-  'spec:' + type
+  "spec:#{type}"
 end
 
 if defined?(RSpec)
@@ -31,7 +31,7 @@ if defined?(RSpec)
 
     Awspec::Helper::Type::TYPES.map do |type|
       RSpec::Core::RakeTask.new(type) do |t|
-        t.pattern = 'spec/type/' + type + '_spec.rb'
+        t.pattern = "spec/type/#{type}_spec.rb"
       end
     end
 
@@ -61,5 +61,5 @@ end
 
 task :generate_docs do
   docs = Awspec::Generator::Doc::Type.generate_doc
-  File.write('doc/resource_types.md', docs + "\n")
+  File.write('doc/resource_types.md', "#{docs}\n")
 end

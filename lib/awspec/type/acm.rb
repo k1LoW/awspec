@@ -21,7 +21,7 @@ module Awspec::Type
     ]
 
     STATUSES.each do |status|
-      define_method status.downcase + '?' do
+      define_method "#{status.downcase}?" do
         resource_via_client.status == status
       end
     end

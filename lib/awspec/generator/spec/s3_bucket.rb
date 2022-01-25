@@ -50,9 +50,9 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
                           "#{k}: '#{v.inspect}'"
                         end
           end
-          rules << '{ ' + elements.join(', ') + ' }'
+          rules << "{ #{elements.join(', ')} }"
         end
-        '[' + rules.join(', ') + ']'
+        "[#{rules.join(', ')}]"
       end
 
       def generate_lifecycle_rule_specs(lifecycle_rule)

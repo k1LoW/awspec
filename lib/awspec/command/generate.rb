@@ -15,7 +15,7 @@ module Awspec
     ]
 
     types.each do |type|
-      desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
+      desc "#{type} [vpc_id]", "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
       define_method type do |_vpc_id|
         Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(_vpc_id)"
@@ -43,7 +43,7 @@ module Awspec
     ]
 
     types.each do |type|
-      desc type + ' [parameter_group_name]', "Generate #{type} spec from parameter group name."
+      desc "#{type} [parameter_group_name]", "Generate #{type} spec from parameter group name."
       define_method type do |_parameter_group_name|
         Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_parameter_group(_parameter_group_name)"

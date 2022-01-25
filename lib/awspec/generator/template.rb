@@ -5,7 +5,7 @@ module Awspec::Generator
     def self.generate(type)
       @type = type
       @account_attribute = false
-      @root_path = File.dirname(__FILE__) + '/../../../'
+      @root_path = "#{File.dirname(__FILE__)}/../../../"
       generate_stub
       generate_type
       generate_type_spec
@@ -17,7 +17,7 @@ module Awspec::Generator
     def self.generate_account_attribute(type)
       @type = type
       @account_attribute = true
-      @root_path = File.dirname(__FILE__) + '/../../../'
+      @root_path = "#{File.dirname(__FILE__)}/../../../"
       generate_type
       generate_account_attribute_generator_doc
       generate_resource_type_doc
@@ -25,7 +25,7 @@ module Awspec::Generator
     end
 
     def self.generate_type
-      path = 'lib/awspec/type/' + @type.underscore + '.rb'
+      path = "lib/awspec/type/#{@type.underscore}.rb"
       base = @account_attribute ? 'AccountAttributeBase' : 'ResourceBase'
       content = <<-"EOF"
 module Awspec::Type
@@ -44,7 +44,7 @@ EOF
     end
 
     def self.generate_stub
-      path = 'lib/awspec/stub/' + @type.underscore + '.rb'
+      path = "lib/awspec/stub/#{@type.underscore}.rb"
       content = <<-"EOF"
 # Aws.config[:ec2] = {
 #   stub_responses: true
@@ -54,7 +54,7 @@ EOF
     end
 
     def self.generate_type_spec
-      path = 'spec/type/' + @type.underscore + '_spec.rb'
+      path = "spec/type/#{@type.underscore}_spec.rb"
       content = <<-"EOF"
 require 'spec_helper'
 Awspec::Stub.load '#{@type.underscore}'
@@ -67,7 +67,7 @@ EOF
     end
 
     def self.generate_generator_doc
-      path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
+      path = "lib/awspec/generator/doc/type/#{@type.underscore}.rb"
       content = <<-"EOF"
 module Awspec::Generator
   module Doc
@@ -91,7 +91,7 @@ EOF
     end
 
     def self.generate_account_attribute_generator_doc
-      path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
+      path = "lib/awspec/generator/doc/type/#{@type.underscore}.rb"
       content = <<-"EOF"
 module Awspec::Generator
   module Doc
@@ -115,7 +115,7 @@ EOF
     end
 
     def self.generate_resource_type_doc
-      path = 'doc/_resource_types/' + @type.underscore + '.md'
+      path = "doc/_resource_types/#{@type.underscore}.md"
       content = <<-"EOF"
 ### exist
 EOF

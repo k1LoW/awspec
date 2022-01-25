@@ -74,9 +74,9 @@ module Awspec::Helper
 
       filter_types = %w[metric subscription]
       filter_types.each do |type|
-        define_method 'select_all_cloudwatch_logs_' + type + '_filter' do |*args|
+        define_method "select_all_cloudwatch_logs_#{type}_filter" do |*args|
           req = { log_group_name: args.first }
-          method_name = 'describe_' + type + '_filters'
+          method_name = "describe_#{type}_filters"
           resources = []
           loop do
             res = cloudwatch_logs_client.send(method_name, req)

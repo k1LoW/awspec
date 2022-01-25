@@ -16,7 +16,7 @@ module Awspec::Type
     ]
 
     health_check_options.each do |option|
-      define_method 'health_check_' + option do
+      define_method "health_check_#{option}" do
         resource_via_client.health_check[option]
       end
     end

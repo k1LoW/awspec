@@ -19,7 +19,7 @@ module Awspec::Type
     ]
 
     STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
+      define_method "#{state.tr('-', '_')}?" do
         resource_via_client.cluster_status == state
       end
     end

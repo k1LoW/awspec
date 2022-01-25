@@ -32,11 +32,11 @@ module Awspec::Generator
             end
           end
           its = @describes.map do |describe|
-            'its(:' + describe.to_s + ')'
+            "its(:#{describe})"
           end
 
           @descriptions = {}
-          merge_file = File.dirname(__FILE__) + '/../../../../../doc/_resource_types/' + type_name.underscore + '.md'
+          merge_file = "#{File.dirname(__FILE__)}/../../../../../doc/_resource_types/#{type_name.underscore}.md"
           if File.exist?(merge_file)
             matcher = nil
             File.foreach(merge_file) do |line|
@@ -58,8 +58,8 @@ module Awspec::Generator
           end
           methods.map! do |method|
             next 'exist' if 'exists?' == method.to_s
-            next 'have_' + Regexp.last_match[1] if /\Ahas_(.+)\?\z/ =~ method.to_s
-            next 'be_' + Regexp.last_match[1] if /\A(.+)\?\z/ =~ method.to_s
+            next "have_#{Regexp.last_match[1]}" if /\Ahas_(.+)\?\z/ =~ method.to_s
+            next "be_#{Regexp.last_match[1]}" if /\A(.+)\?\z/ =~ method.to_s
 
             method.to_s
           end

@@ -15,7 +15,7 @@ module Awspec::Type
     ]
 
     STATUSES.each do |status|
-      define_method status.underscore + '?' do
+      define_method "#{status.underscore}?" do
         resource_via_client.status == status
       end
     end

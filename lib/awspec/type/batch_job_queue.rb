@@ -18,7 +18,7 @@ module Awspec::Type
     STATES = %w[ENABLED DISABLED]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.state == state
       end
     end

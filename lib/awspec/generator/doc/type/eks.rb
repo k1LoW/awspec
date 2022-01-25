@@ -10,9 +10,9 @@ module Awspec::Generator
           @type = Awspec::Type::Eks.new('my-eks')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::Eks::STATES.map { |state| 'be_' + state.downcase }.join(', ')
+            Awspec::Type::Eks::STATES.map { |state| "be_#{state.downcase}" }.join(', ')
           ]
-          @ignore_matchers = Awspec::Type::Eks::STATES.map { |state| 'be_' + state.downcase }
+          @ignore_matchers = Awspec::Type::Eks::STATES.map { |state| "be_#{state.downcase}" }
 
           @describes = []
         end

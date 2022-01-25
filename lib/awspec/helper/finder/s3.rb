@@ -18,7 +18,7 @@ module Awspec::Helper
                                       bucket: id,
                                       key: key.sub(%r(\A/), '')
                                     })
-        res.data.class == Aws::S3::Types::HeadObjectOutput
+        res.data.instance_of?(Aws::S3::Types::HeadObjectOutput)
       rescue Aws::S3::Errors::NotFound
         false
       end

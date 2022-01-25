@@ -101,31 +101,11 @@ Security/Eval:
     - 'lib/awspec/type/account_attribute.rb'
     - 'spec/generator/doc/type_spec.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
 Style/CaseLikeIf:
-  Exclude:
-    - 'lib/awspec/generator/spec/alb_listener.rb'
-    - 'lib/awspec/generator/spec/nlb_listener.rb'
-    - 'lib/awspec/type/vpc.rb'
-
-# Offense count: 280
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
   Enabled: false
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoredMethods.
-# IgnoredMethods: ==, equal?, eql?
-Style/ClassEqualityComparison:
-  Exclude:
-    - 'lib/awspec/helper/finder/s3.rb'
-    - 'lib/awspec/type/account.rb'
-    - 'lib/awspec/type/account_attribute.rb'
-    - 'lib/awspec/type/base.rb'
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 # Offense count: 1
 # Cop supports --auto-correct.

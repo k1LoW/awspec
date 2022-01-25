@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :belong_to_subnet do |subnet_id|
   match do |type|
     # EC2, NetworkInterface

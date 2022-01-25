@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class IamGroup < ResourceBase
     aws_resource Aws::IAM::Group

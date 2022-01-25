@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class IamUser < ResourceBase
     aws_resource Aws::IAM::User

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec
   class Stub
     def self.load(type)

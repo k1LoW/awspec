@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:iam] = {
   stub_responses: {
     list_users: {

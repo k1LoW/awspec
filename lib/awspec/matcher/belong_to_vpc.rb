@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :belong_to_vpc do |vpc_id|
   match do |type|
     return true if type.vpc_id == vpc_id

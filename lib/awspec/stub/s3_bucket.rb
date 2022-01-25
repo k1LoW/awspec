@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:s3] = {
   stub_responses: {
     list_buckets: {

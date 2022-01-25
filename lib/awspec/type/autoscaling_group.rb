@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class AutoscalingGroup < ResourceBase
     aws_resource Aws::AutoScaling::AutoScalingGroup

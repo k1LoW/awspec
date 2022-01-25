@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class SnsTopic < ResourceBase
     def initialize(topic_arn)

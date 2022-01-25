@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Array
   def single_resource(id = nil)
     if self.count > 1

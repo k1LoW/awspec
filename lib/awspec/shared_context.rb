@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_context 'region', :region do
   before do |example|
     region = example.metadata[:region]

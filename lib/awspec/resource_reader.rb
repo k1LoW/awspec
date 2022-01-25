@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec
   module BlackListForwardable
     class CalledMethodInBlackList < StandardError

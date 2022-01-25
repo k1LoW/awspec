@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class RdsAccountAttributes < AccountAttributeBase
     def resource_via_client

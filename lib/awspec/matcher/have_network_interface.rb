@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_network_interface do |network_interface_id|
   match do |type|
     type.has_network_interface?(network_interface_id, @device_index)

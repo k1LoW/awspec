@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_origin do |origin_id|
   match do |cloudfront_distribution|
     cloudfront_distribution.has_origin?(origin_id,

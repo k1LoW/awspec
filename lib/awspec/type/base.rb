@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk'
 require 'awspec/resource_reader'
 require 'awspec/helper/finder'

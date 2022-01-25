@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Ami < ResourceBase
     aws_resource Aws::EC2::Image

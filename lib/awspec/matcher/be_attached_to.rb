@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :be_attached_to do |instance_id|
   match do |type|
     # NetworkInterface

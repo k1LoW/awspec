@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   # rubocop:disable Metrics/ClassLength
   class SecurityGroup < ResourceBase

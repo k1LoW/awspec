@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Rds < ResourceBase
     aws_resource Aws::RDS::DBInstance

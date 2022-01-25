@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class S3Bucket < ResourceBase
     aws_resource Aws::S3::Bucket

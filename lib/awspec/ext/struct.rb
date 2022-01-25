@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Struct
   def tag_name
     tag = self[:tags].find do |t|

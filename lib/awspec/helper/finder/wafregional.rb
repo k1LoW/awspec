@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module WafRegional

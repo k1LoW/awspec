@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk'
 require 'awspec/helper/finder/nlb'
 require 'awspec/helper/finder/alb'

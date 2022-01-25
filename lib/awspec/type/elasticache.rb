@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Elasticache < ResourceBase
     def initialize(name)

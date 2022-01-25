@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_rule do |rule_id|
   match do |type|
     return type.has_rule?(rule_id, @priority, @action) if type.instance_of?(Awspec::Type::WafWebAcl)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Vpc < ResourceBase
     aws_resource Aws::EC2::Vpc

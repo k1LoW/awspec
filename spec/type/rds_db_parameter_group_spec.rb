@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'rds_db_parameter_group'
 

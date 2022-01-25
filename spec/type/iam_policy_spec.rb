@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'awspec/error'
 Awspec::Stub.load 'iam_policy'

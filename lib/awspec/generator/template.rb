@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   class Template
     def self.generate(type)

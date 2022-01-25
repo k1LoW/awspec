@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_subscription_attributes do |expected_attribs|
   match do |sns_topic|
     unless expected_attribs.key?(:subscription_arn)

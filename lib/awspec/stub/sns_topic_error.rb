@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OWNER = '123456789'
 REGION = 'us-east-1'
 TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:invalid"

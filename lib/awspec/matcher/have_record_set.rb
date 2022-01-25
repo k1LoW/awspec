@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_record_set do |name|
   match do |hosted_zone|
     hosted_zone.has_record_set?(name, @type, @value, @options)

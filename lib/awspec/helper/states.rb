@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module States
     EC2_STATES = %w(pending running shutting-down terminated stopping stopped)

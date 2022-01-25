@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class CodedeployDeploymentGroup < ResourceBase
     attr_accessor :application_name

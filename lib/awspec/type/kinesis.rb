@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Kinesis < ResourceBase
     aws_resource Aws::Kinesis::Client

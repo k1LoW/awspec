@@ -107,8 +107,6 @@ Style/CaseLikeIf:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-# Offense count: 299
-# Configuration parameters: AllowedConstants.
 Style/Documentation:
   Enabled: false
 
@@ -122,13 +120,6 @@ Style/EvalWithLocation:
     - 'lib/awspec/type/account.rb'
     - 'lib/awspec/type/account_attribute.rb'
     - 'spec/generator/doc/type_spec.rb'
-
-# Offense count: 549
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
 
 # Offense count: 1
 # Cop supports --auto-correct.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class DynamodbTable < ResourceBase
     aws_resource Aws::DynamoDB::Table

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_custom_response_error_code do |error_code|
   match do |cloudfront_distribution|
     cloudfront_distribution.has_custom_response_error_code?(error_code,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Efs < ResourceBase
     def initialize(file_system_id)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :belong_to_nlb do |nlb_arn|
   match do |type|
     return true if type.load_balancer_arns.include?(nlb_arn)

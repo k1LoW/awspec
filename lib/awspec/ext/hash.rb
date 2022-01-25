@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Hash
   def to_struct
     st = Struct.new(*self.keys)

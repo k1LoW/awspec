@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rubocop:disable Layout/LineLength
 Aws.config[:elasticloadbalancingv2] = {
   stub_responses: {

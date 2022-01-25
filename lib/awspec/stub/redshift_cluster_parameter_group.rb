@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:redshift] = {
   stub_responses: {
     describe_cluster_parameters: {

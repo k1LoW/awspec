@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:ssm] = {
   stub_responses: {
     describe_parameters: {

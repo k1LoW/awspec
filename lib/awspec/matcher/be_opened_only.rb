@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :be_opened_only do |port|
   match do |sg|
     sg.opened_only?(port, @protocol, @cidr)

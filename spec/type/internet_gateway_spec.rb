@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'internet_gateway'
 

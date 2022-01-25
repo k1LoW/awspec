@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:kafka] = {
   stub_responses: {
     list_clusters: {

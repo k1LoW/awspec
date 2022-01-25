@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class CustomerGateway < ResourceBase
     tags_allowed

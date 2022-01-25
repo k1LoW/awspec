@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Route53HostedZone < ResourceBase
     def resource_via_client

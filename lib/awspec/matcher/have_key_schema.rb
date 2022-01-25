@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_key_schema do |attribute_name|
   match do |attribute|
     attribute.has_key_schema?(attribute_name, @key_type)

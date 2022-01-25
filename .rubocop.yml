@@ -131,34 +131,11 @@ Style/NumericLiteralPrefix:
 Style/NumericPredicate:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods.
-# AllowedMethods: present?, blank?, presence, try, try!
 Style/SafeNavigation:
-  Exclude:
-    - 'lib/awspec/type/elasticache.rb'
+  Enabled: false
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: AllowModifier.
 Style/SoleNestedConditional:
-  Exclude:
-    - 'lib/awspec/type/account.rb'
-    - 'lib/awspec/type/account_attribute.rb'
-    - 'lib/awspec/type/alb_listener.rb'
-    - 'lib/awspec/type/network_acl.rb'
-    - 'lib/awspec/type/nlb_listener.rb'
-    - 'lib/awspec/type/route_table.rb'
-    - 'lib/awspec/type/s3_bucket.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
-Style/StderrPuts:
-  Exclude:
-    - 'lib/awspec/generator/template.rb'
-    - 'lib/awspec/helper/finder/ec2.rb'
-    - 'lib/awspec/setup.rb'
+  Enabled: false
 
 # Offense count: 151
 # Cop supports --auto-correct.

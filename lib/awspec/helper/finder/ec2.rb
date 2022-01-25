@@ -34,7 +34,7 @@ module Awspec::Helper
                                                   instance_ids: [id]
                                                 })
             if res.reservations.count > 1
-              $stderr.puts "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
+              warn "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
             end
           end
         end

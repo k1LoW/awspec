@@ -135,7 +135,7 @@ EOF
 
     def self.file_check_and_puts(path, content)
       if File.exist? @root_path + path
-        $stderr.puts "!! #{path} already exists"
+        warn "!! #{path} already exists"
       else
         File.open(@root_path + path, 'w') do |f|
           f.puts content

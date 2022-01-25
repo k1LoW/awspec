@@ -137,28 +137,8 @@ Style/SafeNavigation:
 Style/SoleNestedConditional:
   Enabled: false
 
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
-# IgnoredMethods: respond_to, define_method
 Style/SymbolProc:
-  Exclude:
-    - 'lib/awspec/generator/spec/route53_hosted_zone.rb'
-    - 'lib/awspec/helper/finder/iam.rb'
-    - 'lib/awspec/helper/finder/lambda.rb'
-    - 'lib/awspec/helper/finder/vpc.rb'
-    - 'lib/awspec/type/ec2.rb'
-    - 'lib/awspec/type/eks_nodegroup.rb'
-    - 'lib/awspec/type/firehose.rb'
-    - 'lib/awspec/type/route53_hosted_zone.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'lib/awspec/generator/doc/type/alb.rb'
+  Enabled: false
 
 # Offense count: 11
 # Cop supports --auto-correct.

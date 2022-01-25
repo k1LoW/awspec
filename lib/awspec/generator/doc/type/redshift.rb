@@ -15,7 +15,7 @@ module Awspec::Generator
             'belong_to_cluster_subnet_group'
           ]
           @ignore_matchers = Awspec::Type::Redshift::STATES.map { |state| 'be_' + state.tr('-', '_') }
-          @describes = %w(vpc_id)
+          @describes = %w[vpc_id]
         end
       end
     end

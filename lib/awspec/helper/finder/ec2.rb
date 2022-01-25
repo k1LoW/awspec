@@ -71,7 +71,7 @@ module Awspec::Helper
       end
 
       # find_internet_gateway find_vpn_gateway find_customer_gateway
-      gateway_types = %w(internet vpn customer transit)
+      gateway_types = %w[internet vpn customer transit]
       gateway_types.each do |type|
         define_method 'find_' + type + '_gateway' do |*args|
           gateway_id = args.first

@@ -13,10 +13,10 @@ module Awspec::Type
       @id ||= resource_via_client.vpc_endpoint_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       pendingacceptance pending available deleting
       deleted rejected failed expired
-    )
+    ]
 
     STATES.each do |state|
       define_method state + '?' do

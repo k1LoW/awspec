@@ -13,10 +13,10 @@ module Awspec::Type
       @id ||= resource_via_client.image_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       pending available invalid deregistered
       transient failed error
-    )
+    ]
 
     STATES.each do |state|
       define_method state + '?' do

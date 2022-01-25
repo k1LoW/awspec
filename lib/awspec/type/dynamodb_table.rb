@@ -12,12 +12,12 @@ module Awspec::Type
       @id ||= resource_via_client.table_name if resource_via_client
     end
 
-    STATUSES = %w(
+    STATUSES = %w[
       CREATING
       UPDATING
       DELETING
       ACTIVE
-    )
+    ]
 
     STATUSES.each do |status|
       define_method status.downcase + '?' do

@@ -15,10 +15,10 @@ module Awspec::Type
       @id ||= resource_via_client.cluster_arn if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       active creating updating
       deleting failed
-    )
+    ]
 
     STATES.each do |state|
       define_method state + '?' do

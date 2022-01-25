@@ -40,7 +40,7 @@ module Awspec::Helper
       def find_alb_target_group(id)
         res = elbv2_client.describe_target_groups({ names: [id] })
         res.target_groups.select do |tg|
-          %w(HTTP HTTPS).include?(tg.protocol)
+          %w[HTTP HTTPS].include?(tg.protocol)
         end.single_resource(id)
       rescue StandardError
         return nil

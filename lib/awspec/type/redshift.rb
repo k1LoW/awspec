@@ -10,13 +10,13 @@ module Awspec::Type
       @id ||= resource_via_client.cluster_identifier if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       available cancelling-resize creating deleting
       final-snapshot hardware-failure incompatible-hsm
       incompatible-network incompatible-parameters incompatible-restore
       modifying rebooting renaming resizing rotating-keys
       storage-full updating-hsm
-    )
+    ]
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

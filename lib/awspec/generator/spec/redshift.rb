@@ -5,12 +5,12 @@ module Awspec::Generator
     class Redshift
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           node_type master_username db_name availability_zone
           allow_version_upgrade number_of_nodes publicly_accessible encrypted
           kms_key_id enhanced_vpc_routing pending_actions maintenance_track_name
           elastic_resize_number_of_node_options
-        )
+        ]
 
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc

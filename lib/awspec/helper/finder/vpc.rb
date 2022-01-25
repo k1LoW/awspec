@@ -102,9 +102,9 @@ module Awspec::Helper
 
       def select_vpc_attribute(vpc_id)
         attributes = {}
-        vpc_attributes = %w(
+        vpc_attributes = %w[
           enableDnsHostnames enableDnsSupport
-        )
+        ]
         vpc_attributes.each do |vpc_attribute|
           res = ec2_client.describe_vpc_attribute({ vpc_id: vpc_id, attribute: vpc_attribute })
           attributes[vpc_attribute] = case vpc_attribute

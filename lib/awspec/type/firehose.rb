@@ -15,7 +15,7 @@ module Awspec::Type
       @id ||= @delivery_stream_name if resource_via_client
     end
 
-    STATES = %w(ACTIVE CREATING DELETING)
+    STATES = %w[ACTIVE CREATING DELETING]
 
     STATES.each do |state|
       define_method state.downcase + '?' do

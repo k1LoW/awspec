@@ -10,10 +10,10 @@ module Awspec::Type
       @id ||= resource_via_client.load_balancer_name if resource_via_client
     end
 
-    health_check_options = %w(
+    health_check_options = %w[
       target interval timeout
       unhealthy_threshold healthy_threshold
-    )
+    ]
 
     health_check_options.each do |option|
       define_method 'health_check_' + option do

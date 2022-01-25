@@ -5,9 +5,9 @@ module Awspec::Generator
     class SecurityGroup
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           group_id group_name
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
 
@@ -31,7 +31,7 @@ module Awspec::Generator
       def generate_linespecs(sg)
         linespecs = []
         permissions = { 'inbound' => sg.ip_permissions, 'outbound' => sg.ip_permissions_egress }
-        %w(inbound outbound).each do |inout|
+        %w[inbound outbound].each do |inout|
           permissions[inout].each do |permission|
             port = if permission.from_port.nil?
                      nil

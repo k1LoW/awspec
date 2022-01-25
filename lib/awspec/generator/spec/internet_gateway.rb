@@ -5,8 +5,8 @@ module Awspec::Generator
     class InternetGateway
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
-        )
+        describes = %w[
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
 

@@ -5,9 +5,9 @@ module Awspec::Generator
     class Rds
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           db_instance_identifier db_instance_class multi_az availability_zone
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
 

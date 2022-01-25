@@ -10,9 +10,9 @@ module Awspec::Type
       @id ||= resource_via_client.load_balancer_name if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       active provisioning failed
-    )
+    ]
 
     STATES.each do |state|
       define_method state + '?' do

@@ -18,9 +18,9 @@ module Awspec::Type
       @id ||= resource_via_client.volume_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       creating available in-use deleting deleted error
-    )
+    ]
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

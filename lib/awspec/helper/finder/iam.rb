@@ -4,7 +4,7 @@ module Awspec::Helper
   module Finder
     module Iam
       # find_iam_user, find_iam_group find_iam_role find_iam_policy
-      role_types = %w(user group role policy)
+      role_types = %w[user group role policy]
       role_types.each do |type|
         define_method 'find_iam_' + type do |*args|
           id = args.first
@@ -46,7 +46,7 @@ module Awspec::Helper
         res.groups
       end
 
-      %w(user group role).each do |type|
+      %w[user group role].each do |type|
         define_method 'select_iam_policy_by_' + type + '_name' do |name|
           res = iam_client.send(
             'list_attached_' + type + '_policies',

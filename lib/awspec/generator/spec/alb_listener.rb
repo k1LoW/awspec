@@ -5,9 +5,9 @@ module Awspec::Generator
     class AlbListener
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           load_balancer_arn port protocol ssl_policy
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
 

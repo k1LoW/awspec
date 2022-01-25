@@ -29,9 +29,9 @@ module Awspec::Type
       associated_route_table.route_table_id == route_table_id || associated_route_table.tag_name == route_table_id
     end
 
-    STATES = %w(
+    STATES = %w[
       available pending
-    )
+    ]
 
     STATES.each do |state|
       define_method state + '?' do

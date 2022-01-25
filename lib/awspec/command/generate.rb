@@ -9,10 +9,10 @@ module Awspec
     class_option :region
     class_option :secrets_path
 
-    types = %w(
+    types = %w[
       vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway network_interface alb nlb
       internet_gateway autoscaling_group alb_listener nlb_listener redshift
-    )
+    ]
 
     types.each do |type|
       desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
@@ -38,9 +38,9 @@ module Awspec
       end
     end
 
-    types = %w(
+    types = %w[
       rds_db_parameter_group rds_db_cluster_parameter_group redshift_cluster_parameter_group
-    )
+    ]
 
     types.each do |type|
       desc type + ' [parameter_group_name]', "Generate #{type} spec from parameter group name."
@@ -50,14 +50,14 @@ module Awspec
       end
     end
 
-    types_for_generate_all = %w(
+    types_for_generate_all = %w[
       cloudwatch_alarm cloudwatch_event directconnect ebs efs
       elasticsearch iam_group iam_policy iam_role iam_user kms lambda
       acm cloudwatch_logs eip codebuild elasticache
-    )
+    ]
 
     types_for_generate_all.each do |type|
-      if %w(iam_policy ebs).include?(type)
+      if %w[iam_policy ebs].include?(type)
         desc type, "Generate attached #{type} spec"
       else
         desc type, "Generate #{type} spec"

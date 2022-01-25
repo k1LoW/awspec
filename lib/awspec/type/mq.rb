@@ -10,10 +10,10 @@ module Awspec::Type
       @id ||= resource_via_client.broker_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       running reboot-in-progress creation-in-progress
       creation-failed deletion-in-progress
-    )
+    ]
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

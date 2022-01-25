@@ -19,7 +19,7 @@ Aws.config[:cloudformation] = {
           disable_rollback: false,
           notification_arns: [],
           timeout_in_minutes: nil,
-          capabilities: %w(CAPABILITY_IAM CAPABILITY_NAMED_IAM),
+          capabilities: %w[CAPABILITY_IAM CAPABILITY_NAMED_IAM],
           outputs:
             [
               {

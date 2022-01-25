@@ -21,7 +21,7 @@ module Awspec::Type
       @cluster || 'default'
     end
 
-    STATES = %w(ACTIVE DRAINING INACTIVE)
+    STATES = %w[ACTIVE DRAINING INACTIVE]
 
     STATES.each do |state|
       define_method state.downcase + '?' do

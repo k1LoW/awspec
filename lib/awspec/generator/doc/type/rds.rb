@@ -16,7 +16,7 @@ module Awspec::Generator
             'belong_to_db_subnet_group'
           ]
           @ignore_matchers = Awspec::Type::Rds::STATES.map { |state| 'be_' + state.tr('-', '_') }
-          @describes = %w(vpc_id)
+          @describes = %w[vpc_id]
         end
       end
     end

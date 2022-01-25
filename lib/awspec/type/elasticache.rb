@@ -15,12 +15,12 @@ module Awspec::Type
       @id ||= resource_via_client.cache_cluster_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       available creating deleted deleting
       incompatible-network modifying
       rebooting-cache-cluster-nodes restore-failed
       snapshotting
-    )
+    ]
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

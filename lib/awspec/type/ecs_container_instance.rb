@@ -21,7 +21,7 @@ module Awspec::Type
       @cluster || 'default'
     end
 
-    STATES = %w(ACTIVE INACTIVE)
+    STATES = %w[ACTIVE INACTIVE]
 
     STATES.each do |state|
       define_method state.downcase + '?' do

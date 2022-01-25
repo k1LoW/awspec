@@ -10,9 +10,9 @@ module Awspec::Type
       @id ||= resource_via_client.id if resource_via_client
     end
 
-    STATUSES = %w(
+    STATUSES = %w[
       Active Paused
-    )
+    ]
 
     STATUSES.each do |status|
       define_method status.underscore + '?' do

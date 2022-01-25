@@ -12,7 +12,7 @@ module Awspec::Type
       @id ||= resource_via_client.db_instance_identifier if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       available backing-up creating deleting
       failed inaccessible-encryption-credentials
       incompatible-credentials incompatible-network
@@ -20,7 +20,7 @@ module Awspec::Type
       incompatible-restore maintenance
       modifying rebooting renaming resetting-master-credentials
       restore-error storage-full upgrading
-    )
+    ]
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

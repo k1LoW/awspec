@@ -5,9 +5,9 @@ module Awspec::Generator
     class Vpc
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           vpc_id cidr_block
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
 

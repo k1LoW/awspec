@@ -20,9 +20,9 @@ module Awspec::Type
     end
 
     # dkim_attributes
-    dkim_attributes = %w(
+    dkim_attributes = %w[
       dkim_enabled dkim_verification_status
-    )
+    ]
 
     dkim_attributes.each do |attribute|
       define_method attribute do
@@ -41,10 +41,10 @@ module Awspec::Type
     end
 
     # notification_attributes
-    notification_attributes = %w(
+    notification_attributes = %w[
       bounce_topic complaint_topic delivery_topic
       forwarding_enabled
-    )
+    ]
 
     notification_attributes.each do |attribute|
       define_method attribute do
@@ -56,9 +56,9 @@ module Awspec::Type
     end
 
     # verification_attributes
-    verification_attributes = %w(
+    verification_attributes = %w[
       verification_status verification_token
-    )
+    ]
 
     verification_attributes.each do |attribute|
       define_method attribute do

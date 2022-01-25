@@ -15,10 +15,10 @@ module Awspec::Type
       @id ||= resource_via_client.virtual_interface_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       confirming verifying pending available
       deleting deleted rejected
-    )
+    ]
 
     STATES.each do |state|
       define_method state + '?' do

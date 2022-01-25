@@ -18,7 +18,7 @@ module Awspec::Helper
       def head_object(id, key)
         res = s3_client.head_object({
                                       bucket: id,
-                                      key: key.sub(%r(\A/), '')
+                                      key: key.sub(%r{\A/}, '')
                                     })
         res.data.instance_of?(Aws::S3::Types::HeadObjectOutput)
       rescue Aws::S3::Errors::NotFound

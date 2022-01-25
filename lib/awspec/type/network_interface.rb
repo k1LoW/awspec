@@ -12,9 +12,9 @@ module Awspec::Type
       @id ||= resource_via_client.network_interface_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       available attaching in-use detaching
-    )
+    ]
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

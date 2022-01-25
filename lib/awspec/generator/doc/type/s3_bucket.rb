@@ -10,7 +10,7 @@ module Awspec::Generator
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
-          @describes = %w(acl_grants_count acl_owner cors_rules_count)
+          @describes = %w[acl_grants_count acl_owner cors_rules_count]
         end
       end
     end

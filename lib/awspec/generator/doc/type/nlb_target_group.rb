@@ -9,7 +9,7 @@ module Awspec::Generator
           @type_name = 'NlbTargetGroup'
           @type = Awspec::Type::NlbTargetGroup.new('my-nlb-target-group')
           @ret = @type.resource_via_client
-          @matchers = %w(belong_to_nlb belong_to_vpc)
+          @matchers = %w[belong_to_nlb belong_to_vpc]
           @ignore_matchers = []
           @describes = []
         end

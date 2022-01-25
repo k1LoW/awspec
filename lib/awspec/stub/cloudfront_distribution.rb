@@ -65,10 +65,10 @@ Aws.config[:cloudfront] = {
                 min_ttl: 0,
                 allowed_methods: {
                   quantity: 2,
-                  items: %w(HEAD GET),
+                  items: %w[HEAD GET],
                   cached_methods: {
                     quantity: 2,
-                    items: %w(HEAD GET)
+                    items: %w[HEAD GET]
                   }
                 },
                 smooth_streaming: false,
@@ -161,10 +161,10 @@ Aws.config[:cloudfront] = {
                 min_ttl: 0,
                 allowed_methods: {
                   quantity: 2,
-                  items: %w(HEAD GET),
+                  items: %w[HEAD GET],
                   cached_methods: {
                     quantity: 2,
-                    items: %w(HEAD GET)
+                    items: %w[HEAD GET]
                   }
                 },
                 smooth_streaming: false,

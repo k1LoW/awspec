@@ -5,10 +5,10 @@ module Awspec::Generator
     class Ec2
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           instance_id image_id private_dns_name public_dns_name
           instance_type private_ip_address public_ip_address
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
 

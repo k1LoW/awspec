@@ -10,9 +10,9 @@ module Awspec::Type
       @id ||= resource_via_client.id if resource_via_client
     end
 
-    STATUSES = %w(
+    STATUSES = %w[
       InProgress Deployed
-    )
+    ]
 
     STATUSES.each do |status|
       define_method status.underscore + '?' do
@@ -42,8 +42,8 @@ module Awspec::Type
     end
 
     def has_origin_domain_name_and_path?(domain_name_and_path)
-      domain_name = domain_name_and_path.gsub(%r(/.*\z), '')
-      origin_path = domain_name_and_path.gsub(%r(\A[^/]*), '')
+      domain_name = domain_name_and_path.gsub(%r{/.*\z}, '')
+      origin_path = domain_name_and_path.gsub(%r{\A[^/]*}, '')
       has_origin?(nil, domain_name: domain_name, origin_path: origin_path)
     end
 

@@ -10,7 +10,7 @@ module Awspec::Type
       @id ||= resource_via_client.certificate_arn if resource_via_client
     end
 
-    STATUSES = %w(
+    STATUSES = %w[
       PENDING_VALIDATION
       ISSUED
       INACTIVE
@@ -18,7 +18,7 @@ module Awspec::Type
       VALIDATION_TIMED_OUT
       REVOKED
       FAILED
-    )
+    ]
 
     STATUSES.each do |status|
       define_method status.downcase + '?' do

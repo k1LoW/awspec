@@ -122,34 +122,14 @@ Style/MixinUsage:
   Exclude:
     - 'lib/awspec/helper.rb'
 
-# Offense count: 54
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
 Style/MutableConstant:
   Enabled: false
 
-# Offense count: 65
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedOctalStyle.
-# SupportedOctalStyles: zero_with_o, zero_only
 Style/NumericLiteralPrefix:
   Enabled: false
 
-# Offense count: 11
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IgnoredMethods.
-# SupportedStyles: predicate, comparison
 Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/awspec/generator/spec/security_group.rb'
-    - 'lib/awspec/helper/finder/ebs.rb'
-    - 'lib/awspec/helper/finder/ec2.rb'
-    - 'lib/awspec/helper/finder/iam.rb'
-    - 'lib/awspec/type/ec2.rb'
-    - 'lib/awspec/type/route53_hosted_zone.rb'
-    - 'lib/awspec/type/security_group.rb'
+  Enabled: false
 
 # Offense count: 109
 # Cop supports --auto-correct.

@@ -40,7 +40,7 @@ module Awspec::Type
   end
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_stub
@@ -50,7 +50,7 @@ EOF
 #   stub_responses: true
 # }
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_type_spec
@@ -63,7 +63,7 @@ describe #{@type.underscore}('my-#{@type.underscore.tr('_', '-')}') do
   it { should exist }
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_generator_doc
@@ -87,7 +87,7 @@ module Awspec::Generator
   end
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_account_attribute_generator_doc
@@ -111,7 +111,7 @@ module Awspec::Generator
   end
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_resource_type_doc
@@ -119,7 +119,7 @@ EOF
       content = <<-"EOF"
 ### exist
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.put_message

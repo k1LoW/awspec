@@ -23,7 +23,7 @@ module Awspec::Type
 
     def has_path?(path)
       check_existence
-      self.api_resources.each do |resource|
+      api_resources.each do |resource|
         return resource if resource.path == path
       end
       nil
@@ -31,7 +31,7 @@ module Awspec::Type
 
     def has_integration_path?(path)
       check_existence
-      self.api_resources.each do |resource|
+      api_resources.each do |resource|
         next if resource.resource_methods.nil?
 
         resource.resource_methods.each do |_, method|

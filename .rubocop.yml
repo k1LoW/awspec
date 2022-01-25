@@ -133,19 +133,6 @@ Style/NumericPredicate:
 
 # Offense count: 19
 # Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'lib/awspec/ext/array.rb'
-    - 'lib/awspec/ext/hash.rb'
-    - 'lib/awspec/generator/template.rb'
-    - 'lib/awspec/helper/client_wrap.rb'
-    - 'lib/awspec/helper/finder.rb'
-    - 'lib/awspec/helper/finder/sns_topic.rb'
-    - 'lib/awspec/type/apigateway.rb'
-    - 'lib/awspec/type/base.rb'
-
-# Offense count: 19
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, explicit
 Style/RescueStandardError:

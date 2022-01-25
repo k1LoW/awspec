@@ -50,7 +50,7 @@ module Awspec::Type
       elsif resource_via_client.nil?
         raise Awspec::NoExistingResource.new(self.class, @display_name)
       else
-        super unless self.respond_to?(:resource)
+        super unless respond_to?(:resource)
         method_missing_via_black_list(name, delegate_to: resource)
       end
     end

@@ -38,7 +38,7 @@ module Awspec::Helper
         @backoff = backoff + (iteration * iteration * 0.5)
         @iteration += 1
         sleep backoff
-        results = self.send(m, *args, &block)
+        results = send(m, *args, &block)
       end
 
       reset_backoff

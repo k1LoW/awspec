@@ -22,10 +22,10 @@ module Awspec::Helper
         end
 
         def to_s
-          output = ["SnsTopic: #{self.name}"]
-          self.instance_variables.each do |attrib|
+          output = ["SnsTopic: #{name}"]
+          instance_variables.each do |attrib|
             tmp = attrib.to_s.sub('@', '')
-            output << "  #{tmp} = #{self.send(tmp)}"
+            output << "  #{tmp} = #{send(tmp)}"
           end
           output.join("\n")
         end

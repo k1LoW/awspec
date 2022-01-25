@@ -30,7 +30,7 @@ RSpec::Matchers.define :have_route do |destination|
 
   def is_ipaddr?(str)
     IPAddr.new(str)
-  rescue
+  rescue StandardError
     false
   end
 end

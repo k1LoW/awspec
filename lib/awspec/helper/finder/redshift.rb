@@ -6,7 +6,7 @@ module Awspec::Helper
       def find_redshift_cluster_identifier(id)
         res = redshift_client.describe_clusters(cluster_identifier: id)
         res.clusters.single_resource(id)
-      rescue
+      rescue StandardError
         nil
       end
 

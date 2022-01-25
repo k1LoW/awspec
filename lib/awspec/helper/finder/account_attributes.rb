@@ -54,7 +54,7 @@ module Awspec::Helper
 
       def find_ses_send_quota
         ses_client.get_send_quota
-      rescue
+      rescue StandardError
         # Aws::Errors::NoSuchEndpointError
         nil
       end

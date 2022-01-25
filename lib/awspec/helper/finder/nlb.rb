@@ -8,7 +8,7 @@ module Awspec::Helper
         res.load_balancers.select do |lb|
           lb.type == 'network'
         end.single_resource(id)
-      rescue
+      rescue StandardError
         nil
       end
 
@@ -22,7 +22,7 @@ module Awspec::Helper
       def find_nlb_listener(arn)
         res = elbv2_client.describe_listeners({ listener_arns: [arn] })
         res.listeners.single_resource(arn)
-      rescue
+      rescue StandardError
         nil
       end
 
@@ -47,11 +47,11 @@ module Awspec::Helper
         end
 
         httpx_res.single_resource(id)
-      rescue
+      rescue StandardError
         # Prefer the HTTP/HTTPS protocol target group, but survive without it:
         begin
           res.target_groups.single_resource(id)
-        rescue
+        rescue StandardError
           nil
         end
       end

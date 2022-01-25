@@ -131,25 +131,6 @@ Style/NumericLiteralPrefix:
 Style/NumericPredicate:
   Enabled: false
 
-# Offense count: 19
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'lib/awspec/helper/finder/account_attributes.rb'
-    - 'lib/awspec/helper/finder/ec2.rb'
-    - 'lib/awspec/helper/finder/efs.rb'
-    - 'lib/awspec/helper/finder/elasticache.rb'
-    - 'lib/awspec/helper/finder/elasticsearch.rb'
-    - 'lib/awspec/helper/finder/elb.rb'
-    - 'lib/awspec/helper/finder/kms.rb'
-    - 'lib/awspec/helper/finder/mq.rb'
-    - 'lib/awspec/helper/finder/nlb.rb'
-    - 'lib/awspec/helper/finder/rds.rb'
-    - 'lib/awspec/helper/finder/redshift.rb'
-    - 'lib/awspec/matcher/have_route.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods.

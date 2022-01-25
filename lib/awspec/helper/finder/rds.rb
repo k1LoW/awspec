@@ -8,7 +8,7 @@ module Awspec::Helper
           res = rds_client.describe_db_instances({
                                                    db_instance_identifier: id
                                                  })
-        rescue
+        rescue StandardError
           res = rds_client.describe_db_instances({
                                                    filters: [{ name: 'db-instance-id', values: [id] }]
                                                  })

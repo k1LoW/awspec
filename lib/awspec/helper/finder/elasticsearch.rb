@@ -6,7 +6,7 @@ module Awspec::Helper
       def find_elasticsearch_domain(id)
         res = elasticsearch_client.describe_elasticsearch_domain(domain_name: id)
         res.domain_status
-      rescue
+      rescue StandardError
         nil
       end
 

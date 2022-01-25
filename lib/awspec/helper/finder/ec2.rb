@@ -120,7 +120,7 @@ module Awspec::Helper
           res = ec2_client.describe_nat_gateways({
                                                    nat_gateway_ids: [gateway_id]
                                                  })
-        rescue
+        rescue StandardError
           res = ec2_client.describe_nat_gateways({
                                                    filter: [{ name: 'tag:Name', values: [gateway_id] }]
                                                  })
@@ -211,7 +211,7 @@ module Awspec::Helper
           res = ec2_client.describe_launch_templates({
                                                        launch_template_ids: [id]
                                                      })
-        rescue
+        rescue StandardError
           res = ec2_client.describe_launch_templates({
                                                        launch_template_names: [id]
                                                      })
@@ -224,7 +224,7 @@ module Awspec::Helper
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_id: id
                                                            })
-      rescue
+      rescue StandardError
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_name: id
                                                            })

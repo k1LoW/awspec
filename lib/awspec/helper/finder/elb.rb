@@ -8,7 +8,7 @@ module Awspec::Helper
                                                    load_balancer_names: [id]
                                                  })
         res.load_balancer_descriptions.single_resource(id)
-      rescue
+      rescue StandardError
         nil
       end
 
@@ -17,7 +17,7 @@ module Awspec::Helper
                                                              load_balancer_name: id
                                                            })
         res.load_balancer_attributes
-      rescue
+      rescue StandardError
         nil
       end
 

@@ -5,7 +5,7 @@ module Awspec::Helper
     module Mq
       def find_broker(broker_id)
         mq_client.describe_broker({ broker_id: broker_id })
-      rescue
+      rescue StandardError
         nil
       end
     end

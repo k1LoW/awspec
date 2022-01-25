@@ -12,7 +12,7 @@ module Awspec::Type
 
     STATUSES = %w(
       InProgress Deployed
-    ).freeze
+    )
 
     STATUSES.each do |status|
       define_method status.underscore + '?' do

@@ -18,7 +18,7 @@ module Awspec::Type
     STATES = %w(
       active creating updating
       deleting failed
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state + '?' do

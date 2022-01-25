@@ -71,7 +71,7 @@ module Awspec::Type
                   'IPX-in-IP' => 111, 'VRRP' => 112, 'PGM' => 113, '114' => 114, 'L2TP' => 115, 'DDX' => 116, 'IATP' => 117, 'STP' => 118, 'SRP' => 119, 'UTI' => 120,
                   'SMP' => 121, 'SM' => 122, 'PTP' => 123, 'ISIS over IPv4' => 124, 'FIRE' => 125, 'CRTP' => 126, 'CRUDP' => 127, 'SSCOPMCE' => 128, 'IPLT' => 129, 'SPS' => 130,
                   'PIPE' => 131, 'SCTP' => 132, 'FC' => 133, 'RSVP-E2E-IGNORE' => 134, 'Mobility Header' => 135, 'UDPLite' => 136, 'MPLS-in-IP' => 137, 'manet' => 138, 'HIP' => 139, 'Shim6' => 140,
-                  'WESP' => 141, 'ROHC' => 142, '253' => 253, '254' => 254 }.freeze
+                  'WESP' => 141, 'ROHC' => 142, '253' => 253, '254' => 254 }
     # rubocop:enable Layout/LineLength
 
     private

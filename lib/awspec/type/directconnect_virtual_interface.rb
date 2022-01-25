@@ -18,7 +18,7 @@ module Awspec::Type
     STATES = %w(
       confirming verifying pending available
       deleting deleted rejected
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state + '?' do

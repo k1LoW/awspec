@@ -15,7 +15,7 @@ module Awspec::Type
       @id ||= resource_via_client.cluster_name if resource_via_client
     end
 
-    STATES = %w(ACTIVE INACTIVE).freeze
+    STATES = %w(ACTIVE INACTIVE)
 
     STATES.each do |state|
       define_method state.downcase + '?' do

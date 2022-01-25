@@ -12,7 +12,7 @@ module Awspec::Type
 
     STATES = %w(
       active provisioning failed
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state + '?' do

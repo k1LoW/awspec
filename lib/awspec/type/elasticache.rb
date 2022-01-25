@@ -20,7 +20,7 @@ module Awspec::Type
       incompatible-network modifying
       rebooting-cache-cluster-nodes restore-failed
       snapshotting
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

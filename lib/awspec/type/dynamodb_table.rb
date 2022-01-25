@@ -17,7 +17,7 @@ module Awspec::Type
       UPDATING
       DELETING
       ACTIVE
-    ).freeze
+    )
 
     STATUSES.each do |status|
       define_method status.downcase + '?' do

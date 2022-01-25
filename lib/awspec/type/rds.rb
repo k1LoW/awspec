@@ -20,7 +20,7 @@ module Awspec::Type
       incompatible-restore maintenance
       modifying rebooting renaming resetting-master-credentials
       restore-error storage-full upgrading
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

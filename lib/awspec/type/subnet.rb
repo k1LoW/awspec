@@ -31,7 +31,7 @@ module Awspec::Type
 
     STATES = %w(
       available pending
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state + '?' do

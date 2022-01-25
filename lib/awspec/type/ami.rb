@@ -16,7 +16,7 @@ module Awspec::Type
     STATES = %w(
       pending available invalid deregistered
       transient failed error
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state + '?' do

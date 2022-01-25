@@ -20,7 +20,7 @@ module Awspec::Type
 
     STATES = %w(
       creating available in-use deleting deleted error
-    ).freeze
+    )
 
     STATES.each do |state|
       define_method state.tr('-', '_') + '?' do

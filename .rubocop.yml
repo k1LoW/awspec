@@ -24,7 +24,6 @@ Lint/DuplicateMethods:
 Lint/ErbNewArguments:
   Enabled: false
 
-# Configuration parameters: MaximumRangeSize.
 Lint/MissingCopEnableDirective:
   Enabled: false
 
@@ -35,13 +34,10 @@ Lint/MissingSuper:
     - 'lib/awspec/type/account_attribute.rb'
     - 'lib/awspec/type/resource_base.rb'
 
-# Configuration parameters: AllowComments, AllowNil.
 Lint/SuppressedException:
   Exclude:
     - 'Rakefile'
 
-# Configuration parameters: IgnoredPatterns.
-# IgnoredPatterns: (?-mix:(exactly|at_least|at_most)\(\d+\)\.times)
 Lint/UnreachableLoop:
   Exclude:
     - 'lib/awspec/type/nat_gateway.rb'
@@ -77,9 +73,6 @@ Metrics/PerceivedComplexity:
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
-# Offense count: 4
-# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
-# AllowedNames: at, by, db, id, in, io, ip, of, on, os, pp, to
 Naming/MethodParameterName:
   Exclude:
     - 'lib/awspec/generator/spec/security_group.rb'
@@ -113,19 +106,11 @@ Style/Documentation:
 Style/EvalWithLocation:
   Enabled: false
 
-# Offense count: 37
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-# SupportedShorthandSyntax: always, never, either
 Style/HashSyntax:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/HashTransformKeys:
-  Exclude:
-    - 'lib/awspec/type/network_acl.rb'
+  Enabled: false
 
 # Offense count: 6
 # Cop supports --auto-correct.

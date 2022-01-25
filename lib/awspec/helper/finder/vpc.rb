@@ -93,9 +93,9 @@ module Awspec::Helper
       def find_vpc_attribute(vpc_id, vpc_attribute)
         res = ec2_client.describe_vpc_attribute({ vpc_id: vpc_id, attribute: vpc_attribute })
         case vpc_attribute
-        when 'enableDnsSupport' then
+        when 'enableDnsSupport'
           res.enable_dns_support.value
-        when 'enableDnsHostnames' then
+        when 'enableDnsHostnames'
           res.enable_dns_hostnames.value
         end
       end
@@ -108,9 +108,9 @@ module Awspec::Helper
         vpc_attributes.each do |vpc_attribute|
           res = ec2_client.describe_vpc_attribute({ vpc_id: vpc_id, attribute: vpc_attribute })
           attributes[vpc_attribute] = case vpc_attribute
-                                      when 'enableDnsHostnames' then
+                                      when 'enableDnsHostnames'
                                         res.enable_dns_hostnames.value
-                                      when 'enableDnsSupport' then
+                                      when 'enableDnsSupport'
                                         res.enable_dns_support.value
                                       end
         end

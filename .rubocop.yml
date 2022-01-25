@@ -115,32 +115,12 @@ Style/HashTransformKeys:
 Style/IfUnlessModifier:
   Enabled: false
 
-# Offense count: 12
 Style/MissingRespondToMissing:
-  Exclude:
-    - 'lib/awspec/config.rb'
-    - 'lib/awspec/helper/client_wrap.rb'
-    - 'lib/awspec/resource_reader.rb'
-    - 'lib/awspec/type/account.rb'
-    - 'lib/awspec/type/account_attribute.rb'
-    - 'lib/awspec/type/elasticache_cache_parameter_group.rb'
-    - 'lib/awspec/type/rds_db_cluster_parameter_group.rb'
-    - 'lib/awspec/type/rds_db_parameter_group.rb'
-    - 'lib/awspec/type/redshift_cluster_parameter_group.rb'
-    - 'lib/awspec/type/sns_topic.rb'
-    - 'lib/awspec/type/sqs.rb'
+  Enabled: false
 
-# Offense count: 1
 Style/MixinUsage:
   Exclude:
     - 'lib/awspec/helper.rb'
-
-# Offense count: 6
-# Cop supports --auto-correct.
-Style/MultilineWhenThen:
-  Exclude:
-    - 'lib/awspec/helper/finder/cloudwatch_logs.rb'
-    - 'lib/awspec/helper/finder/vpc.rb'
 
 # Offense count: 54
 # Cop supports --auto-correct.

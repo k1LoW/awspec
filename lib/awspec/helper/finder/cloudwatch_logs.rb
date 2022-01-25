@@ -81,9 +81,9 @@ module Awspec::Helper
           loop do
             res = cloudwatch_logs_client.send(method_name, req)
             case type
-            when 'metric' then
+            when 'metric'
               resources.push(*res.metric_filters)
-            when 'subscription' then
+            when 'subscription'
               resources.push(*res.subscription_filters)
             end
             break if res.next_token.nil?

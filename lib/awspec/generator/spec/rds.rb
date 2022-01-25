@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Rds
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           db_instance_identifier db_instance_class multi_az availability_zone
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         db_instances = select_rds_by_vpc_id(@vpc_id)

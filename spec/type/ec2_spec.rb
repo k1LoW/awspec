@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'single security group' do
@@ -60,9 +62,9 @@ describe 'multi security group' do
 
   describe ec2('i-ec12345a') do
     its(:security_group_count) { should eq 2 }
-    it { should have_security_groups(['sg-1a2b3cd4', 'sg-5e6f7gh8']) }
-    it { should have_security_groups(['my-security-group-name', 'my-security-group-name-2']) }
-    it { should have_security_groups(['my-security-group-tag-name', 'my-security-group-tag-name-2']) }
+    it { should have_security_groups(%w[sg-1a2b3cd4 sg-5e6f7gh8]) }
+    it { should have_security_groups(%w[my-security-group-name my-security-group-name-2]) }
+    it { should have_security_groups(%w[my-security-group-tag-name my-security-group-tag-name-2]) }
   end
 end
 
@@ -72,8 +74,8 @@ describe ec2('non-existing-ec2') do
   end
 
   it { should_not exist }
-  methods = %w(running? instance_id image_id public_ip_address private_ip_address have_eip
-               security_group_count resource_security_groups)
+  methods = %w[running? instance_id image_id public_ip_address private_ip_address have_eip
+               security_group_count resource_security_groups]
 
   methods.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do

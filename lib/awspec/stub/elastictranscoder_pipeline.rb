@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:elastictranscoder] = {
   stub_responses: {
     list_pipelines: {

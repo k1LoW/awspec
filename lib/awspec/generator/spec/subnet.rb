@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Subnet
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           subnet_id cidr_block
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         subnets = select_subnet_by_vpc_id(@vpc_id)
@@ -20,7 +23,7 @@ module Awspec::Generator
       end
 
       def subnet_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <%- if subnet_tag_name -%>
 describe subnet('<%= subnet_tag_name %>') do
 <%- else -%>
@@ -40,7 +43,6 @@ describe subnet('<%= subnet_id %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

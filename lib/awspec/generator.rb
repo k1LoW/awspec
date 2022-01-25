@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Spec
 require 'awspec/generator/spec/ec2'
 require 'awspec/generator/spec/rds'
@@ -44,10 +46,10 @@ require 'awspec/generator/doc/type'
 require 'awspec/generator/doc/type/base'
 require 'awspec/generator/doc/type/account_attribute_base'
 Awspec::Helper::Type::TYPES.each do |type|
-  require 'awspec/generator/doc/type/' + type
+  require "awspec/generator/doc/type/#{type}"
 end
 Awspec::Helper::Type::ACCOUNT_ATTRIBUTES.each do |type|
-  require 'awspec/generator/doc/type/' + type
+  require "awspec/generator/doc/type/#{type}"
 end
 require 'awspec/generator/doc/type/account'
 require 'awspec/generator/doc/type/account_attribute'

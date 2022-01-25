@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class IamPolicy
@@ -5,6 +7,7 @@ module Awspec::Generator
       def generate_all
         policies = select_all_attached_policies
         raise 'Not Found policy' if policies.empty?
+
         ERB.new(policy_spec_template, nil, '-').result(binding).chomp
       end
 

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class LaunchTemplate < ResourceBase
     attr_accessor :version
+
     tags_allowed
 
     def resource_via_client

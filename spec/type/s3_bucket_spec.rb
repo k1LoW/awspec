@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 's3_bucket'
 
@@ -109,16 +111,16 @@ end
 describe s3_bucket('not-available') do
   it { should_not exist }
 
-  methods = %w(acl_owner acl_grants_count cors_rules_count
+  methods = %w[acl_owner acl_grants_count cors_rules_count
                has_versioning_enabled? has_versioning_enabled?
-               has_mfa_delete_enabled?)
+               has_mfa_delete_enabled?]
   methods.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do
       expect { subject.send(method_name) }.to raise_error(Awspec::NoExistingResource)
     end
   end
 
-  methods_with_params = %w(has_object? has_policy?)
+  methods_with_params = %w[has_object? has_policy?]
   methods_with_params.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do
       expect { subject.send(method_name, 'foo') }.to raise_error(Awspec::NoExistingResource)

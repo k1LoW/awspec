@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class NlbTargetGroup < ResourceBase
     def resource_via_client
@@ -11,6 +13,7 @@ module Awspec::Type
     def has_ec2?(id)
       ec2 = find_ec2(id)
       return nil unless ec2
+
       descriptions = elbv2_client.describe_target_health(
         target_group_arn: resource_via_client.target_group_arn
       ).target_health_descriptions

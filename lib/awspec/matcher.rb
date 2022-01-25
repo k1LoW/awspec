@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # EC2
 require 'awspec/matcher/belong_to_vpc'
 require 'awspec/matcher/belong_to_subnet'

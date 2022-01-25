@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'iam_user'
 
@@ -33,7 +35,8 @@ DOC
     should be_allowed_action('s3:ListBucket')
       .resource_arn('*')
       .context_entries(
-        [{ context_key_name: 's3:prefix', context_key_values: ['/file.txt'], context_key_type: 'string' }])
+        [{ context_key_name: 's3:prefix', context_key_values: ['/file.txt'], context_key_type: 'string' }]
+      )
   end
   context 'nested attribute call' do
     its(:resource) { should be_an_instance_of(Awspec::ResourceReader) }

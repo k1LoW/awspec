@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:efs] = {
   stub_responses: {
     describe_file_systems: {

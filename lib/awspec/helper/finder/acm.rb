@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Acm
@@ -10,6 +12,7 @@ module Awspec::Helper
             c.certificate_arn == id || c.domain_name == id
           end
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
 
@@ -26,6 +29,7 @@ module Awspec::Helper
             certs << c.certificate_arn
           end
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
 

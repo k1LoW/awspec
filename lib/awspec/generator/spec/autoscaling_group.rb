@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class AutoscalingGroup
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           auto_scaling_group_name auto_scaling_group_arn min_size max_size desired_capacity
           default_cooldown availability_zones health_check_type health_check_grace_period
           vpc_zone_identifier termination_policies new_instances_protected_from_scale_in
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         autoscaling_groups = select_autoscaling_group_by_vpc_id(@vpc_id)
@@ -20,7 +23,7 @@ module Awspec::Generator
       end
 
       def autoscaling_group_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe autoscaling_group('<%= autoscaling_group.auto_scaling_group_name %>') do
   it { should exist }
 <% describes.each do |describe| %>
@@ -49,7 +52,6 @@ describe autoscaling_group('<%= autoscaling_group.auto_scaling_group_name %>') d
 <% end %>
 end
 EOF
-        template
       end
     end
   end

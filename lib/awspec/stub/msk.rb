@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:kafka] = {
   stub_responses: {
     list_clusters: {
@@ -6,9 +8,9 @@ Aws.config[:kafka] = {
           active_operation_arn: nil,
           broker_node_group_info: {
             broker_az_distribution: 'DEFAULT',
-            client_subnets: [
-              'subnet-12345678909876543',
-              'subnet-90876543212345678'
+            client_subnets: %w[
+              subnet-12345678909876543
+              subnet-90876543212345678
             ],
             instance_type: 'kafka.t3.small',
             security_groups: [

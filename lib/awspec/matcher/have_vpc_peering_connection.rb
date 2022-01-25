@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_vpc_peering_connection do |vpc_peering_connection_id|
   match do |vpc|
     vpc.has_vpc_peering_connection?(vpc_peering_connection_id, @accepter_or_requester)

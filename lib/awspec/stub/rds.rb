@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:rds] = {
   stub_responses: {
     list_tags_for_resource: {

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:kms] = {
   stub_responses: {
     list_aliases: {

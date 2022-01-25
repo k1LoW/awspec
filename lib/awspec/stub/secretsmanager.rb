@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:secretsmanager] = {
   stub_responses: {
     describe_secret: {

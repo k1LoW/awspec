@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class ElasticacheCacheParameterGroup < ResourceBase
     def initialize(name)
@@ -18,6 +20,7 @@ module Awspec::Type
           parameters[param.parameter_name] = param.parameter_value
         end
         break if res.marker.nil?
+
         res = elasticache_client.describe_cache_parameters({
                                                              cache_parameter_group_name: @display_name,
                                                              marker: res.marker

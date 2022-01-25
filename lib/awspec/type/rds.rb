@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Rds < ResourceBase
     aws_resource Aws::RDS::DBInstance
@@ -10,7 +12,7 @@ module Awspec::Type
       @id ||= resource_via_client.db_instance_identifier if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       available backing-up creating deleting
       failed inaccessible-encryption-credentials
       incompatible-credentials incompatible-network
@@ -18,10 +20,10 @@ module Awspec::Type
       incompatible-restore maintenance
       modifying rebooting renaming resetting-master-credentials
       restore-error storage-full upgrading
-    )
+    ]
 
     STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
+      define_method "#{state.tr('-', '_')}?" do
         resource_via_client.db_instance_status == state
       end
     end
@@ -83,6 +85,7 @@ module Awspec::Type
                                                   filters: [{ name: 'group-name', values: [sg_id] }]
                                                 })
       return false unless res.security_groups.count == 1
+
       sgs.find do |sg|
         sg.vpc_security_group_id == res.security_groups.first.group_id
       end
@@ -94,6 +97,7 @@ module Awspec::Type
                                                   filters: [{ name: 'tag:Name', values: [sg_id] }]
                                                 })
       return false unless res.security_groups.count == 1
+
       sgs.find do |sg|
         sg.vpc_security_group_id == res.security_groups.first.group_id
       end

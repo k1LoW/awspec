@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -8,9 +10,9 @@ module Awspec::Generator
           @type = Awspec::Type::Emr.new('my-emr')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::Emr::STATES.map { |state| 'be_' + state.downcase }.join(', ')
+            Awspec::Type::Emr::STATES.map { |state| "be_#{state.downcase}" }.join(', ')
           ]
-          @ignore_matchers = Awspec::Type::Emr::STATES.map { |state| 'be_' + state.downcase }
+          @ignore_matchers = Awspec::Type::Emr::STATES.map { |state| "be_#{state.downcase}" }
           @describes = []
         end
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Rds
@@ -6,7 +8,7 @@ module Awspec::Helper
           res = rds_client.describe_db_instances({
                                                    db_instance_identifier: id
                                                  })
-        rescue
+        rescue StandardError
           res = rds_client.describe_db_instances({
                                                    filters: [{ name: 'db-instance-id', values: [id] }]
                                                  })
@@ -31,6 +33,7 @@ module Awspec::Helper
             parameters[param.parameter_name] = param.parameter_value
           end
           break if res.marker.nil?
+
           res = rds_client.describe_db_parameters({
                                                     db_parameter_group_name: parameter_group,
                                                     marker: res.marker

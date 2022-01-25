@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Eip < ResourceBase
     def resource_via_client
@@ -10,6 +12,7 @@ module Awspec::Type
 
     def associated_to?(instance_id)
       return false unless resource_via_client.last.instance_id == instance_id
+
       resource_via_client.last.instance_id == instance_id
     end
   end

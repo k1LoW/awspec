@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :belong_to_subnets do |*subnets|
   match do |nodegroup|
     superset = Set.new(subnets)

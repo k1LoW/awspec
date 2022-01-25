@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class BatchComputeEnvironment < ResourceBase
     def initialize(compenv)
@@ -13,18 +15,18 @@ module Awspec::Type
       @id ||= resource_via_client.compute_environment_name if resource_via_client
     end
 
-    STATES = %w(ENABLED DISABLED)
+    STATES = %w[ENABLED DISABLED]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.state == state
       end
     end
 
-    TYPES = %w(MANAGED UNMANAGED)
+    TYPES = %w[MANAGED UNMANAGED]
 
     TYPES.each do |type|
-      define_method type.downcase + '?' do
+      define_method "#{type.downcase}?" do
         resource_via_client.type == type
       end
     end

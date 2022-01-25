@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Kms
       def find_kms_key(key_id)
         kms_client.describe_key(key_id: key_id).key_metadata
-      rescue
+      rescue StandardError
         nil
       end
 

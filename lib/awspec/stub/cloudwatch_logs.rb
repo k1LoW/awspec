@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:cloudwatchlogs] = {
   stub_responses: {
     describe_log_groups: {

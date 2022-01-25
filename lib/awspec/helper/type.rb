@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec
   module Helper
     module Type
@@ -7,7 +9,7 @@ module Awspec
       require 'awspec/type/account'
       require 'awspec/type/account_attribute'
 
-      TYPES = %w(
+      TYPES = %w[
         alb alb_listener alb_target_group ami apigateway autoscaling_group
         batch_compute_environment batch_job_definition batch_job_queue cloudtrail
         cloudwatch_alarm cloudwatch_event directconnect_virtual_interface
@@ -21,11 +23,11 @@ module Awspec
         internet_gateway acm cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack
         codebuild sns_topic redshift redshift_cluster_parameter_group codedeploy codedeploy_deployment_group
         secretsmanager msk transit_gateway cognito_identity_pool cognito_user_pool vpc_endpoints
-      )
+      ]
 
-      ACCOUNT_ATTRIBUTES = %w(
+      ACCOUNT_ATTRIBUTES = %w[
         ec2_account_attributes rds_account_attributes lambda_account_settings ses_send_quota
-      )
+      ]
 
       TYPES.each do |type|
         require "awspec/type/#{type}"
@@ -33,6 +35,7 @@ module Awspec
           unless Object.const_get("Awspec::Type::#{type.camelize}").superclass.to_s == 'Awspec::Type::ResourceBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::ResourceBase"
           end
+
           name = args.first
           eval "Awspec::Type::#{type.camelize}.new(name)"
         end
@@ -45,6 +48,7 @@ module Awspec
                  == 'Awspec::Type::AccountAttributeBase'
             raise "Awspec::Type::#{type.camelize} should extend Awspec::Type::AccountAttributeBase"
           end
+
           eval "Awspec::Type::#{type.camelize}.new"
         end
       end

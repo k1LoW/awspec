@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Lambda
@@ -10,6 +12,7 @@ module Awspec::Helper
             function.function_name == id || function.function_arn == id
           end
           break if res.next_marker.nil?
+
           res = lambda_client.list_functions({
                                                marker: res.next_marker
                                              })

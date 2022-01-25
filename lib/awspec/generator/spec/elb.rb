@@ -1,17 +1,20 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Elb
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           load_balancer_name
-        )
-        health_check_options = %w(
+        ]
+        health_check_options = %w[
           target interval timeout
           unhealthy_threshold healthy_threshold
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         lbs = select_elb_by_vpc_id(@vpc_id)
@@ -23,7 +26,7 @@ module Awspec::Generator
       end
 
       def elb_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe elb('<%= lb.load_balancer_name %>') do
   it { should exist }
 <% describes.each do |describe| %>
@@ -52,7 +55,6 @@ describe elb('<%= lb.load_balancer_name %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

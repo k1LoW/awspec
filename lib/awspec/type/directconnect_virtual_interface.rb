@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class DirectconnectVirtualInterface < ResourceBase
     def initialize(name)
@@ -13,13 +15,13 @@ module Awspec::Type
       @id ||= resource_via_client.virtual_interface_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       confirming verifying pending available
       deleting deleted rejected
-    )
+    ]
 
     STATES.each do |state|
-      define_method state + '?' do
+      define_method "#{state}?" do
         resource_via_client.virtual_interface_state == state
       end
     end

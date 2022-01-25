@@ -1,4 +1,6 @@
-# rubocop:disable Metrics/LineLength
+# frozen_string_literal: true
+
+# rubocop:disable Layout/LineLength
 Aws.config[:autoscaling] = {
   stub_responses: {
     describe_auto_scaling_groups: {
@@ -11,9 +13,9 @@ Aws.config[:autoscaling] = {
           max_size: 20,
           desired_capacity: 4,
           default_cooldown: 300,
-          availability_zones: [
-            'ap-northeast-1a',
-            'ap-northeast-1c'
+          availability_zones: %w[
+            ap-northeast-1a
+            ap-northeast-1c
           ],
           load_balancer_names: [
             'my-elb'

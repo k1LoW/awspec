@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Msk < ResourceBase
     def initialize(name)
@@ -13,13 +15,13 @@ module Awspec::Type
       @id ||= resource_via_client.cluster_arn if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       active creating updating
       deleting failed
-    )
+    ]
 
     STATES.each do |state|
-      define_method state + '?' do
+      define_method "#{state}?" do
         resource_via_client.state == state.upcase
       end
     end

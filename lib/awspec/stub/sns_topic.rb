@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OWNER = '123456789'
 REGION = 'us-east-1'
 TOPIC_ARN = "arn:aws:sns:#{REGION}:#{OWNER}:foobar"
@@ -9,7 +11,7 @@ Aws.config[:sns] = {
   stub_responses: {
     get_topic_attributes: {
       attributes: {
-        # rubocop:disable LineLength
+        # rubocop:disable Layout/LineLength
         'Policy'                  => "{\"Version\":\"2008-10-17\",\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Sid\":\"__default_statement_ID\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":[\"SNS:GetTopicAttributes\",\"SNS:SetTopicAttributes\",\"SNS:AddPermission\",\"SNS:RemovePermission\",\"SNS:DeleteTopic\",\"SNS:Subscribe\",\"SNS:ListSubscriptionsByTopic\",\"SNS:Publish\",\"SNS:Receive\"],\"Resource\":\"arn:aws:sns:#{REGION}:#{OWNER}:foobar-lambda-sample\",\"Condition\":{\"StringEquals\":{\"AWS:SourceOwner\":\"#{OWNER}\"}}}]}",
         'Owner'                   => OWNER,
         'SubscriptionsPending'    => '0',

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class EcsTaskDefinition < ResourceBase
     def initialize(taskdef)
@@ -13,10 +15,10 @@ module Awspec::Type
       @id ||= "#{resource_via_client.family}:#{resource_via_client.revision}" if resource_via_client
     end
 
-    STATES = %w(ACTIVE INACTIVE)
+    STATES = %w[ACTIVE INACTIVE]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.status == state
       end
     end

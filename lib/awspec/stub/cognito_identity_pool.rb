@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:cognitoidentity] = {
   stub_responses: {
     list_identity_pools: {

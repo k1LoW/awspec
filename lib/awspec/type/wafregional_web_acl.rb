@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class WafregionalWebAcl < ResourceBase
     def resource_via_client
@@ -17,6 +19,7 @@ module Awspec::Type
         next false if !priority.nil? && rule.priority != priority
         next false if !action.nil? && rule.action.type != action
         next true if rule.rule_id == rule_id
+
         find_wafregional_rule(rule_id).name == rule_id
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk'
 require 'awspec/helper/finder/nlb'
 require 'awspec/helper/finder/alb'
@@ -174,7 +176,7 @@ module Awspec::Helper
 
     CLIENTS.each do |method_name, client|
       define_method method_name do
-        unless self.methods.include? "@#{method_name}"
+        unless methods.include? "@#{method_name}"
           instance_variable_set(
             "@#{method_name}",
             Awspec::Helper::ClientWrap.new(client.new(CLIENT_OPTIONS))

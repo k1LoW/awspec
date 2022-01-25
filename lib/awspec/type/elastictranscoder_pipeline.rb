@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class ElastictranscoderPipeline < ResourceBase
     def resource_via_client
@@ -8,12 +10,12 @@ module Awspec::Type
       @id ||= resource_via_client.id if resource_via_client
     end
 
-    STATUSES = %w(
+    STATUSES = %w[
       Active Paused
-    )
+    ]
 
     STATUSES.each do |status|
-      define_method status.underscore + '?' do
+      define_method "#{status.underscore}?" do
         resource_via_client.status == status
       end
     end

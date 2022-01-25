@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:elasticache] = {
   stub_responses: {
     describe_cache_parameters: {

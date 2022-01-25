@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'awspec/config'
 
 module Awspec::Helper
   class ClientWrap
     attr_reader :client, :backoff, :iteration, :backoff_limit, :symbol1, :symbol2
+
     def initialize(real_client = nil)
       raise ArgumentError, 'Client can not be nil' if real_client.nil?
+
       config = Awspec::Config.instance
       @client        = real_client
       @backoff       = config[:client_backoff]
@@ -34,7 +38,7 @@ module Awspec::Helper
         @backoff = backoff + (iteration * iteration * 0.5)
         @iteration += 1
         sleep backoff
-        results = self.send(m, *args, &block)
+        results = send(m, *args, &block)
       end
 
       reset_backoff

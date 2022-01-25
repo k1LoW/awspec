@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:route53] = {
   stub_responses: {
     list_hosted_zones: {

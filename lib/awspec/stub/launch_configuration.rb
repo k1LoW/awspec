@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:autoscaling] = {
   stub_responses: {
     describe_launch_configurations: {

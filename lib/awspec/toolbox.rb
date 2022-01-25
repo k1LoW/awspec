@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec
   class Toolbox < Thor
     desc 'docgen > doc/resource_types.md', 'Generate doc/resource_types.md document'

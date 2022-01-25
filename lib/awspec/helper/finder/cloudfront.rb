@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Cloudfront
@@ -9,6 +11,7 @@ module Awspec::Helper
             item.id == id || item.domain_name == id
           end
           break unless res.distribution_list.is_truncated
+
           res = cloudfront_client.list_distributions({
                                                        marker: res.distribution_list.next_marker
                                                      })

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Emr < ResourceBase
     attr_reader :id
@@ -11,12 +13,12 @@ module Awspec::Type
       @resource_via_client ||= find_emr_cluster(@id)
     end
 
-    STARTING_STATES = %w(STARTING BOOTSTRAPPING)
-    READY_STATES = %w(RUNNING WAITING)
+    STARTING_STATES = %w[STARTING BOOTSTRAPPING]
+    READY_STATES = %w[RUNNING WAITING]
     STATES = (READY_STATES + STARTING_STATES)
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.status.state == state
       end
     end
@@ -33,8 +35,8 @@ module Awspec::Type
       READY_STATES.include?(resource_via_client.status.state)
     end
 
-    alias_method :healthy?, :ok?
-    alias_method :ready?, :ok?
-    alias_method :bootstrapping?, :starting?
+    alias healthy? ok?
+    alias ready? ok?
+    alias bootstrapping? starting?
   end
 end

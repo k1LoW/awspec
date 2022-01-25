@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Efs < ResourceBase
     def initialize(file_system_id)
@@ -16,6 +18,7 @@ module Awspec::Type
     def has_tag?(tag_key, tag_value)
       tag = find_efs_tags(@display_name, tag_key)
       return nil if tag.value != tag_value
+
       tag
     end
   end

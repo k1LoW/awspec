@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Cloudwatch
@@ -21,6 +23,7 @@ module Awspec::Helper
         loop do
           selected += res.metric_alarms
           break if res.next_token.nil?
+
           res = cloudwatch_client.describe_alarms({
                                                     next_token: res.next_token
                                                   })

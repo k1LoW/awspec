@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Ami < ResourceBase
     aws_resource Aws::EC2::Image
@@ -11,13 +13,13 @@ module Awspec::Type
       @id ||= resource_via_client.image_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       pending available invalid deregistered
       transient failed error
-    )
+    ]
 
     STATES.each do |state|
-      define_method state + '?' do
+      define_method "#{state}?" do
         resource_via_client.state == state
       end
     end

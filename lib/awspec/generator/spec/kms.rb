@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Kms
@@ -5,11 +7,12 @@ module Awspec::Generator
       def generate_all
         aliases = select_all_kms_aliases.select { |kms_alias| customer_managed_key?(kms_alias) }
         raise 'Not Found alias' if aliases.empty?
+
         ERB.new(keys_spec_template, nil, '-').result(binding).chomp
       end
 
       def keys_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% aliases.each do |kms_alias| %>
 describe kms('<%= kms_alias.alias_name.split('/').last %>') do
   it { should exist }
@@ -19,7 +22,6 @@ describe kms('<%= kms_alias.alias_name.split('/').last %>') do
 end
 <% end %>
 EOF
-        template
       end
 
       private

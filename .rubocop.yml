@@ -112,22 +112,8 @@ Style/HashSyntax:
 Style/HashTransformKeys:
   Enabled: false
 
-# Offense count: 6
-# Cop supports --auto-correct.
 Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/awspec/ext/array.rb'
-    - 'lib/awspec/generator/spec/cloudwatch_logs.rb'
-    - 'lib/awspec/generator/spec/route_table.rb'
-    - 'lib/awspec/helper/finder/nlb.rb'
-    - 'lib/awspec/matcher/be_attached_to.rb'
-    - 'lib/awspec/setup.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/KeywordParametersOrder:
-  Exclude:
-    - 'lib/awspec/type/s3_bucket.rb'
+  Enabled: false
 
 # Offense count: 12
 Style/MissingRespondToMissing:

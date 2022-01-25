@@ -12,11 +12,11 @@ module Awspec::Helper
             attributes[attr[:attribute_name].tr('-', '_').to_sym] = values
           else
             value = values.first
-            if value =~ /\A\d+\z/
-              attributes[attr[:attribute_name].tr('-', '_').to_sym] = value.to_i
-            else
-              attributes[attr[:attribute_name].tr('-', '_').to_sym] = value
-            end
+            attributes[attr[:attribute_name].tr('-', '_').to_sym] = if value =~ /\A\d+\z/
+                                                                      value.to_i
+                                                                    else
+                                                                      value
+                                                                    end
           end
         end
         attributes.to_struct

@@ -7,6 +7,7 @@ begin
   require 'rspec/core'
   require 'rspec/core/rake_task'
   require 'octorelease'
+  require 'parallel'
   require 'rubocop/rake_task'
 rescue LoadError
 end
@@ -20,6 +21,18 @@ end
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
+    task :parallel do
+      Parallel.each(types.concat([
+                                   'spec:account',
+                                   'spec:core',
+                                   'spec:generator_spec',
+                                   'spec:generator_doc',
+                                   'spec:helper'
+                                 ])) do |t|
+        puts ''
+        Rake::Task[t].execute
+      end
+    end
     task all: ['spec:type',
                'spec:account',
                'spec:core',

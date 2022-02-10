@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
 
 jobs:
@@ -64,4 +65,4 @@ jobs:
       run: bundle exec bin/toolbox docgen > doc/resource_types.md
 
     - name: Run tests
-      run: bundle exec rake spec
+      run: bundle exec rake spec:parallel

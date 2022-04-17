@@ -399,7 +399,7 @@ end
 
 ### be_unmanaged
 
-### its(:compute_environment_name), its(:compute_environment_arn), its(:unmanagedv_cpus), its(:ecs_cluster_arn), its(:tags), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role)
+### its(:compute_environment_name), its(:compute_environment_arn), its(:unmanagedv_cpus), its(:ecs_cluster_arn), its(:tags), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role), its(:update_policy)
 ## <a name="batch_job_definition">batch_job_definition</a>
 
 BatchJobDefinition resource type.

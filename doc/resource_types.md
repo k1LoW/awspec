@@ -360,7 +360,7 @@ describe autoscaling_group('my-auto-scaling-group') do
 end
 ```
 
-### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:mixed_instances_policy), its(:min_size), its(:max_size), its(:desired_capacity), its(:predicted_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn), its(:max_instance_lifetime), its(:capacity_rebalance), its(:warm_pool_configuration), its(:warm_pool_size), its(:context), its(:desired_capacity_type)
+### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:mixed_instances_policy), its(:min_size), its(:max_size), its(:desired_capacity), its(:predicted_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn), its(:max_instance_lifetime), its(:capacity_rebalance), its(:warm_pool_configuration), its(:warm_pool_size), its(:context), its(:desired_capacity_type), its(:default_instance_warmup)
 ## <a name="batch_compute_environment">batch_compute_environment</a>
 
 BatchComputeEnvironment resource type.
@@ -2231,7 +2231,7 @@ DOC
 end
 ```
 
-### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days)
+### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms)
 ## <a name="lambda">lambda</a>
 
 Lambda resource type.

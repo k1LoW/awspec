@@ -273,7 +273,7 @@ end
 
 ### have_tag
 
-### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:platform_details), its(:usage_operation), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:deprecation_time)
+### its(:architecture), its(:creation_date), its(:image_id), its(:image_location), its(:image_type), its(:public), its(:kernel_id), its(:owner_id), its(:platform), its(:platform_details), its(:usage_operation), its(:ramdisk_id), its(:state), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:tpm_support), its(:deprecation_time)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
@@ -1127,7 +1127,7 @@ end
 ```
 
 
-### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:elastic_inference_accelerator_associations), its(:outpost_arn), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification), its(:hibernation_options), its(:licenses), its(:metadata_options), its(:enclave_options), its(:boot_mode), its(:platform_details), its(:usage_operation), its(:usage_operation_update_time), its(:private_dns_name_options), its(:ipv_6_address), its(:maintenance_options)
+### its(:ami_launch_index), its(:image_id), its(:instance_id), its(:instance_type), its(:kernel_id), its(:key_name), its(:launch_time), its(:monitoring), its(:placement), its(:platform), its(:private_dns_name), its(:private_ip_address), its(:product_codes), its(:public_dns_name), its(:public_ip_address), its(:ramdisk_id), its(:state_transition_reason), its(:subnet_id), its(:vpc_id), its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:elastic_inference_accelerator_associations), its(:outpost_arn), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification), its(:hibernation_options), its(:licenses), its(:metadata_options), its(:enclave_options), its(:boot_mode), its(:platform_details), its(:usage_operation), its(:usage_operation_update_time), its(:private_dns_name_options), its(:ipv_6_address), its(:tpm_support), its(:maintenance_options)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -1718,7 +1718,7 @@ describe emr('my-emr') do
 end
 ```
 
-### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level), its(:placement_groups)
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level), its(:placement_groups), its(:os_release_label)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.

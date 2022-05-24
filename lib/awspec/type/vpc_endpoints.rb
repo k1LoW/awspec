@@ -27,6 +27,11 @@ module Awspec::Type
     def has_route_table?(route_table_id)
       rts = resource_via_client.route_table_ids
 
+      ret = find_route_table(route_table_id)
+      if ret && rts.include?(ret.route_table_id)
+        return true
+      end
+
       ret = rts.find do |rt|
         rt == route_table_id
       end

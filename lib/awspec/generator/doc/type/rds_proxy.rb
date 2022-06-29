@@ -12,7 +12,7 @@ module Awspec::Generator
           @matchers = [
             Awspec::Type::RdsProxy::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', '),
             'belong_to_vpc',
-            'belong_to_subnet',
+            'belong_to_subnet'
           ]
           @ignore_matchers = Awspec::Type::RdsProxy::STATES.map { |state| "be_#{state.tr('-', '_')}" }
           @describes = %w[vpc_id]

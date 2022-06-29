@@ -9,7 +9,7 @@ module Awspec::Type
     end
 
     def id
-     @id ||= resource_via_client.db_proxy_name if resource_via_client
+      @id ||= resource_via_client.db_proxy_name if resource_via_client
     end
 
     STATES = %w[

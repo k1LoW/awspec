@@ -39,7 +39,7 @@ RSpec::Matchers.define :belong_to_subnet do |subnet_id|
       return true if subnet_ids.include?(subnet_id)
 
       res = type.ec2_client.describe_subnets({
-                                              filters: [{ name: 'tag:Name', values: [subnet_id] }]
+                                               filters: [{ name: 'tag:Name', values: [subnet_id] }]
                                              })
       return false unless res
 

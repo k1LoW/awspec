@@ -57,6 +57,20 @@ module Awspec::Helper
         end
         parameters
       end
+
+      def find_rds_proxy(db_proxy_name)
+        res = rds_client.describe_db_proxies({
+                                               db_proxy_name: db_proxy_name
+                                             })
+        res.db_proxies.single_resource(db_proxy_name)
+      end
+
+      def select_rds_proxy_by_vpc_id(vpc_id)
+        res = rds_client.describe_db_proxies
+        res.db_proxies.select do |db_proxy|
+          db_proxy.vpc_id == vpc_id
+        end
+      end
     end
   end
 end

@@ -63,6 +63,7 @@
 | [rds](#rds)
 | [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
+| [rds_proxy](#rds_proxy)
 | [redshift](#redshift)
 | [redshift_cluster_parameter_group](#redshift_cluster_parameter_group)
 | [route53_hosted_zone](#route53_hosted_zone)
@@ -2915,6 +2916,58 @@ end
 ```
 
 
+## <a name="rds_proxy">rds_proxy</a>
+
+RdsProxy resource type.
+
+### exist
+
+```ruby
+describe rds_proxy('my-rds-proxy') do
+  it { should exist }
+end
+```
+
+
+### be_available, be_creating, be_deleting, be_incompatible_network, be_insufficient_resource_limits, be_modifying, be_reactivating, be_suspended, be_suspending
+
+```ruby
+describe rds_proxy('my-rds-proxy') do
+  it { should be_available }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe rds_proxy('my-rds-proxy') do
+  it { should have_security_group('sg-5a6b7cd8') }
+  it { should have_security_group('my-db-sg') }
+end
+```
+
+
+### belong_to_subnet
+
+```ruby
+describe rds_proxy('my-rds-proxy') do
+  it { should belong_to_subnet('subnet-8901b123') }
+  it { should belong_to_subnet('db-subnet-a') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe rds_proxy('my-rds-proxy') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:vpc_id), its(:db_proxy_name), its(:db_proxy_arn), its(:status), its(:engine_family), its(:vpc_id), its(:vpc_security_group_ids), its(:vpc_subnet_ids), its(:role_arn), its(:endpoint), its(:require_tls), its(:idle_client_timeout), its(:debug_logging), its(:created_date), its(:updated_date)
 ## <a name="redshift">redshift</a>
 
 Redshift resource type.

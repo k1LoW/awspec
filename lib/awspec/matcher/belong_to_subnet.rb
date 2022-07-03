@@ -32,5 +32,22 @@ RSpec::Matchers.define :belong_to_subnet do |subnet_id|
 
       return ret[:subnet_availability_zone][:name] == type.availability_zone if ret
     end
+
+    # RDS Proxy
+    if type.instance_of?(Awspec::Type::RdsProxy)
+      subnet_ids = type.resource_via_client[:vpc_subnet_ids]
+      return true if subnet_ids.include?(subnet_id)
+
+      res = type.ec2_client.describe_subnets({
+                                               filters: [{ name: 'tag:Name', values: [subnet_id] }]
+                                             })
+      return false unless res
+
+      ret = subnet_ids.find do |s|
+        s == res[:subnets][0][:subnet_id]
+      end
+
+      return ret ? true : false
+    end
   end
 end

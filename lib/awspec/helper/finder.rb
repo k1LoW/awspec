@@ -10,6 +10,7 @@ require 'awspec/helper/finder/ec2'
 require 'awspec/helper/finder/ecr'
 require 'awspec/helper/finder/ecs'
 require 'awspec/helper/finder/efs'
+require 'awspec/helper/finder/eip'
 require 'awspec/helper/finder/security_group'
 require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
@@ -70,6 +71,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ecr
     include Awspec::Helper::Finder::Ecs
     include Awspec::Helper::Finder::Efs
+    include Awspec::Helper::Finder::Eip
     include Awspec::Helper::Finder::Firehose
     include Awspec::Helper::Finder::SecurityGroup
     include Awspec::Helper::Finder::Rds

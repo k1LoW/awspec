@@ -163,20 +163,6 @@ module Awspec::Helper
         instances
       end
 
-      def select_eip_by_instance_id(id)
-        res = ec2_client.describe_addresses({
-                                              filters: [{ name: 'instance-id', values: [id] }]
-                                            })
-        res.addresses
-      end
-
-      def select_eip_by_public_ip(id)
-        res = ec2_client.describe_addresses({
-                                              filters: [{ name: 'public-ip', values: [id] }]
-                                            })
-        res.addresses
-      end
-
       def select_network_interface_by_instance_id(id)
         res = ec2_client.describe_network_interfaces({
                                                        filters: [{ name: 'attachment.instance-id', values: [id] }]

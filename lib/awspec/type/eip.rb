@@ -3,7 +3,7 @@
 module Awspec::Type
   class Eip < ResourceBase
     def resource_via_client
-      @resource_via_client ||= select_eip_by_public_ip(@display_name)
+      @resource_via_client ||= select_eip(@display_name)
     end
 
     def id

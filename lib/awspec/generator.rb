@@ -41,6 +41,8 @@ require 'awspec/generator/spec/nlb_listener'
 require 'awspec/generator/spec/redshift'
 require 'awspec/generator/spec/redshift_cluster_parameter_group'
 require 'awspec/generator/spec/rds_proxy'
+require 'awspec/generator/spec/rds_db_cluster'
+require 'awspec/generator/spec/rds_global_cluster'
 
 # Doc
 require 'awspec/generator/doc/type'

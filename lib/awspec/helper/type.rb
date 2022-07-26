@@ -17,8 +17,8 @@ module Awspec
         efs eks eks_nodegroup elasticache elasticache_cache_parameter_group elasticsearch elb emr firehose iam_group
         iam_policy iam_role iam_user kinesis kms lambda launch_configuration launch_template mq nat_gateway
         network_acl network_interface nlb nlb_listener nlb_target_group
-        rds rds_proxy rds_db_cluster_parameter_group rds_db_parameter_group route53_hosted_zone
-        route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
+        rds rds_proxy rds_db_cluster_parameter_group rds_db_parameter_group rds_db_cluster rds_global_cluster
+        route53_hosted_zone route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
         elastictranscoder_pipeline waf_web_acl wafregional_web_acl customer_gateway vpn_gateway vpn_connection
         internet_gateway acm cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack
         codebuild sns_topic redshift redshift_cluster_parameter_group codedeploy codedeploy_deployment_group

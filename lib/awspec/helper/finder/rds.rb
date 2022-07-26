@@ -71,6 +71,20 @@ module Awspec::Helper
           db_proxy.vpc_id == vpc_id
         end
       end
+
+      def find_db_cluster(db_cluster_identifier)
+        res = rds_client.describe_db_clusters({
+                                                db_cluster_identifier: db_cluster_identifier
+                                              })
+        res.db_clusters.single_resource(db_cluster_identifier)
+      end
+
+      def find_global_cluster(global_cluster_identifier)
+        res = rds_client.describe_global_clusters({
+                                                    global_cluster_identifier: global_cluster_identifier
+                                                  })
+        res.global_clusters.single_resource(global_cluster_identifier)
+      end
     end
   end
 end

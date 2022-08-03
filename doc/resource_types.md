@@ -64,6 +64,7 @@
 | [rds_db_cluster](#rds_db_cluster)
 | [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
+| [rds_db_subnet_group](#rds_db_subnet_group)
 | [rds_global_cluster](#rds_global_cluster)
 | [rds_proxy](#rds_proxy)
 | [redshift](#redshift)
@@ -2973,6 +2974,39 @@ end
 ```
 
 
+## <a name="rds_db_subnet_group">rds_db_subnet_group</a>
+
+RdsDbSubnetGroup resource type.
+
+### exist
+
+```ruby
+describe rds_db_subnet_group('my-rds-db-subnet-group') do
+  it { should exist }
+end
+```
+
+
+### belong_to_subnet
+
+```ruby
+describe rds_db_subnet_group('my-rds-db-subnet-group') do
+  it { should belong_to_subnet('subnet-1234a567') }
+  it { should belong_to_subnet('db-subnet-a') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe rds_db_subnet_group('my-rds-db-subnet-group') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:vpc_id), its(:db_subnet_group_name), its(:db_subnet_group_description), its(:vpc_id), its(:subnet_group_status), its(:db_subnet_group_arn), its(:supported_network_types)
 ## <a name="rds_global_cluster">rds_global_cluster</a>
 
 RdsGlobalCluster resource type.

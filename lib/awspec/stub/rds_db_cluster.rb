@@ -86,7 +86,6 @@ Aws.config[:rds] = {
           storage_type: nil,
           iops: nil,
           publicly_accessible: nil,
-          auto_minor_version_upgrade: false,
           monitoring_interval: nil,
           monitoring_role_arn: nil,
           performance_insights_enabled: nil,

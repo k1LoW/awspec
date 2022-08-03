@@ -85,6 +85,13 @@ module Awspec::Helper
                                                   })
         res.global_clusters.single_resource(global_cluster_identifier)
       end
+
+      def find_db_subnet_group(db_subnet_group_name)
+        res = rds_client.describe_db_subnet_groups({
+                                                     db_subnet_group_name: db_subnet_group_name
+                                                   })
+        res.db_subnet_groups.single_resource(db_subnet_group_name)
+      end
     end
   end
 end

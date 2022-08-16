@@ -50,6 +50,18 @@ module Awspec
       end
     end
 
+    types = %w[
+      rds_db_cluster rds_global_cluster
+    ]
+
+    types.each do |type|
+      desc "#{type} [cluster_identifier]", "Generate #{type} spec from cluster identifier."
+      define_method type do |_cluster_identifier|
+        Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate(_cluster_identifier)"
+      end
+    end
+
     types_for_generate_all = %w[
       cloudwatch_alarm cloudwatch_event directconnect ebs efs
       elasticsearch iam_group iam_policy iam_role iam_user kms lambda

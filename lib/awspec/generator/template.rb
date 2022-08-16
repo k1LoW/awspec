@@ -35,7 +35,7 @@ module Awspec::Type
     end
 
     def id
-     @id ||= # FIXME
+      @id ||= # FIXME
     end
   end
 end

@@ -61,8 +61,11 @@
 | [nlb_listener](#nlb_listener)
 | [nlb_target_group](#nlb_target_group)
 | [rds](#rds)
+| [rds_db_cluster](#rds_db_cluster)
 | [rds_db_cluster_parameter_group](#rds_db_cluster_parameter_group)
 | [rds_db_parameter_group](#rds_db_parameter_group)
+| [rds_db_subnet_group](#rds_db_subnet_group)
+| [rds_global_cluster](#rds_global_cluster)
 | [rds_proxy](#rds_proxy)
 | [redshift](#redshift)
 | [redshift_cluster_parameter_group](#redshift_cluster_parameter_group)
@@ -2875,6 +2878,61 @@ describe rds('my-rds') do
 end
 ```
 
+## <a name="rds_db_cluster">rds_db_cluster</a>
+
+RdsDbCluster resource type.
+
+```ruby
+describe rds_db_cluster('my-rds-db-cluster') do
+  its(:db_cluster_parameter_group) { should eq 'default.aurora-mysql5.7' }
+  its(:engine) { should eq 'aurora-mysql' }
+  its(:engine_version) { should eq '5.7.mysql_aurora.2.10.2' }
+  its(:database_name) { should eq 'example_db' }
+  its(:storage_encrypted) { should eq false }
+  its(:deletion_protection) { should eq false }
+end
+```
+
+
+### exist
+
+```ruby
+describe rds_db_cluster('my-rds-db-cluster') do
+  it { should exist }
+end
+```
+
+
+### be_available, be_creating, be_deleting
+
+```ruby
+describe rds_db_cluster('my-rds-db-cluster') do
+  it { should be_available }
+end
+```
+
+
+### have_cluster_member
+
+```ruby
+describe rds_db_cluster('my-rds-db-cluster') do
+  it { should have_cluster_member('my-rds-db-cluster-instance-1') }
+  it { should have_cluster_member('my-rds-db-cluster-instance-1').is_writer(true) }
+  it { should have_cluster_member('my-rds-db-cluster-instance-2').is_writer(false) }
+end
+```
+
+
+### have_security_group
+
+```ruby
+describe rds_db_cluster('my-rds-db-cluster') do
+  it { should have_security_group('sg-5a6b7cd8') }
+  it { should have_security_group('my-db-sg') }
+end
+```
+
+### its(:allocated_storage), its(:availability_zones), its(:backup_retention_period), its(:character_set_name), its(:database_name), its(:db_cluster_identifier), its(:db_cluster_parameter_group), its(:db_subnet_group), its(:status), its(:automatic_restart_time), its(:percent_progress), its(:earliest_restorable_time), its(:endpoint), its(:reader_endpoint), its(:custom_endpoints), its(:multi_az), its(:engine), its(:engine_version), its(:latest_restorable_time), its(:port), its(:master_username), its(:db_cluster_option_group_memberships), its(:preferred_backup_window), its(:preferred_maintenance_window), its(:replication_source_identifier), its(:read_replica_identifiers), its(:hosted_zone_id), its(:storage_encrypted), its(:kms_key_id), its(:db_cluster_resource_id), its(:db_cluster_arn), its(:associated_roles), its(:iam_database_authentication_enabled), its(:clone_group_id), its(:cluster_create_time), its(:earliest_backtrack_time), its(:backtrack_window), its(:backtrack_consumed_change_records), its(:enabled_cloudwatch_logs_exports), its(:capacity), its(:engine_mode), its(:scaling_configuration_info), its(:deletion_protection), its(:http_endpoint_enabled), its(:activity_stream_mode), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:copy_tags_to_snapshot), its(:cross_account_clone), its(:domain_memberships), its(:tag_list), its(:global_write_forwarding_status), its(:global_write_forwarding_requested), its(:pending_modified_values), its(:db_cluster_instance_class), its(:storage_type), its(:iops), its(:publicly_accessible), its(:auto_minor_version_upgrade), its(:monitoring_interval), its(:monitoring_role_arn), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:serverless_v2_scaling_configuration)
 ## <a name="rds_db_cluster_parameter_group">rds_db_cluster_parameter_group</a>
 
 RdsDbClusterParameterGroup resource type.
@@ -2916,6 +2974,83 @@ end
 ```
 
 
+## <a name="rds_db_subnet_group">rds_db_subnet_group</a>
+
+RdsDbSubnetGroup resource type.
+
+### exist
+
+```ruby
+describe rds_db_subnet_group('my-rds-db-subnet-group') do
+  it { should exist }
+end
+```
+
+
+### belong_to_subnet
+
+```ruby
+describe rds_db_subnet_group('my-rds-db-subnet-group') do
+  it { should belong_to_subnet('subnet-1234a567') }
+  it { should belong_to_subnet('db-subnet-a') }
+end
+```
+
+
+### belong_to_vpc
+
+```ruby
+describe rds_db_subnet_group('my-rds-db-subnet-group') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:vpc_id), its(:db_subnet_group_name), its(:db_subnet_group_description), its(:vpc_id), its(:subnet_group_status), its(:db_subnet_group_arn), its(:supported_network_types)
+## <a name="rds_global_cluster">rds_global_cluster</a>
+
+RdsGlobalCluster resource type.
+
+```ruby
+describe rds_global_cluster('my-rds-global-cluster') do
+  its(:engine) { should eq 'aurora-mysql' }
+  its(:engine_version) { should eq '5.7.mysql_aurora.2.10.2' }
+  its(:database_name) { should eq 'example_db' }
+  its(:storage_encrypted) { should eq false }
+  its(:deletion_protection) { should eq false }
+end
+```
+
+
+### exist
+
+```ruby
+describe rds_global_cluster('my-rds-global-cluster') do
+  it { should exist }
+end
+```
+
+
+### be_available, be_creating, be_deleting
+
+```ruby
+describe rds_global_cluster('my-rds-global-cluster') do
+  it { should be_available }
+end
+```
+
+
+### have_cluster_member
+
+```ruby
+describe rds_global_cluster('my-rds-global-cluster') do
+  it { should have_cluster_member('arn:aws:rds:ap-northeast-1:123456789012:cluster:my-primary-cluster') }
+  it { should have_cluster_member('arn:aws:rds:ap-northeast-1:123456789012:cluster:my-primary-cluster').is_writer(true) }
+  it { should have_cluster_member('arn:aws:rds:ap-northeast-3:123456789012:cluster:my-secondary-cluster').is_writer(false) }
+end
+```
+
+### its(:global_cluster_identifier), its(:global_cluster_resource_id), its(:global_cluster_arn), its(:status), its(:engine), its(:engine_version), its(:database_name), its(:storage_encrypted), its(:deletion_protection), its(:failover_state)
 ## <a name="rds_proxy">rds_proxy</a>
 
 RdsProxy resource type.

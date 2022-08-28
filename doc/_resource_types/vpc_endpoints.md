@@ -1,11 +1,6 @@
-### exist
+### first
 
 ```ruby
-describe vpc_endpoints('my-vpc-endpoint') do
-  it { should exist }
-end
-```
-
 describe vpc_endpoints('vpce-05907f23265b25f20'), region: $tfvars["region"]["value"] do
   it { should exist }
   it { should be_available }
@@ -15,11 +10,20 @@ describe vpc_endpoints('vpce-05907f23265b25f20'), region: $tfvars["region"]["val
   its(:vpc_endpoint_type) { should eq 'Interface' }
   its(:service_name) { should eq 'com.amazonaws.eu-west-1.codebuild' }
 end
+```
+
+### exist
+
+```ruby
+describe vpc_endpoints('my-vpc-endpoint') do
+  it { should exist }
+end
+```
 
 ### be_pendingacceptance, be_pending, be_available, be_deleting, be_deleted, be_rejected, be_failed, be_expired
 
 ```ruby
-describe ami('my-ami') do
+describe vpc_endpoints('my-vpc-endpoint') do
   it { should be_available }
 end
 ```

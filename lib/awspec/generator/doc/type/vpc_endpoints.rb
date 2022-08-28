@@ -9,8 +9,11 @@ module Awspec::Generator
           @type_name = 'VpcEndpoints'
           @type = Awspec::Type::VpcEndpoints.new('my-vpc-endpoint')
           @ret = @type.resource_via_client
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::VpcEndpoints::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', '),
+            'belong_to_vpc'
+          ]
+          @ignore_matchers = Awspec::Type::VpcEndpoints::STATES.map { |state| "be_#{state.tr('-', '_')}" }
           @describes = []
         end
       end

@@ -7,7 +7,7 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'VpcEndpoints'
-          @type = Awspec::Type::VpcEndpoints.new('my-vpc-endpoint')
+          @type = Awspec::Type::VpcEndpoints.new('vpce-abc123')
           @ret = @type.resource_via_client
           @matchers = [
             Awspec::Type::VpcEndpoints::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', '),

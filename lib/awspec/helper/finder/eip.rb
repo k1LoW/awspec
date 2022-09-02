@@ -14,12 +14,12 @@ module Awspec::Helper
         res = ec2_client.describe_addresses({
                                               filters: [{ name: 'public-ip', values: [id] }]
                                             })
-        return res.addresses unless res.addresses.empty?
+        return res.addresses.single_resource(id) unless res.addresses.empty?
 
         res = ec2_client.describe_addresses({
                                               filters: [{ name: 'tag:Name', values: [id] }]
                                             })
-        res.addresses
+        res.addresses.single_resource(id)
       end
     end
   end

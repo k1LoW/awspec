@@ -1359,7 +1359,7 @@ describe eip('123.0.456.789') do
 end
 ```
 
-
+### its(:instance_id), its(:public_ip), its(:allocation_id), its(:association_id), its(:domain), its(:network_interface_id), its(:network_interface_owner_id), its(:private_ip_address), its(:public_ipv_4_pool), its(:network_border_group), its(:customer_owned_ip), its(:customer_owned_ipv_4_pool), its(:carrier_ip)
 ## <a name="eks">eks</a>
 
 Eks resource type.

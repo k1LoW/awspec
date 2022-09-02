@@ -4023,7 +4023,7 @@ end
 ```
 
 
-
+### its(:vpc_endpoint_id), its(:vpc_endpoint_type), its(:vpc_id), its(:service_name), its(:state), its(:policy_document), its(:route_table_ids), its(:subnet_ids), its(:groups), its(:ip_address_type), its(:dns_options), its(:private_dns_enabled), its(:requester_managed), its(:network_interface_ids), its(:dns_entries), its(:creation_timestamp), its(:owner_id), its(:last_error)
 ### :unlock: Advanced use
 
 `vpc_endpoints` can use `Aws::EC2::Types::VpcEndpoint` resource (see https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/EC2/Types/VpcEndpoint.html).

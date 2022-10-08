@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 Aws.config[:ecs] = {
   stub_responses: {
     describe_services: {
-      failures: [
-      ],
+      failures: [],
       services: [
         {
           cluster_arn: 'arn:aws:ecs:us-east-1:123456789012:cluster/my-ecs-cluster',
@@ -36,8 +37,7 @@ Aws.config[:ecs] = {
                 'Troubleshooting section of the Amazon ECS Developer Guide.'
             }
           ],
-          load_balancers: [
-          ],
+          load_balancers: [],
           pending_count: 0,
           running_count: 0,
           service_arn: 'arn:aws:ecs:us-east-1:123456789012:service/my-ecs-service',

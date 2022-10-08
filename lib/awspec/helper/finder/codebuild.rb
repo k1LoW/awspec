@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Codebuild
@@ -15,6 +17,7 @@ module Awspec::Helper
           res = codebuild_client.list_projects(req)
           projects.push(*res.projects)
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         projects

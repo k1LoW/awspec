@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 DEFAULT_PROTOCOL = '-1'
 DEFAULT_ROUTE = '0.0.0.0/0'
 

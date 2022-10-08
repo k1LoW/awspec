@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:ecs] = {
   stub_responses: {
     describe_clusters: {
@@ -12,8 +14,7 @@ Aws.config[:ecs] = {
           active_services_count:                 0
         }
       ],
-      failures: [
-      ]
+      failures: []
     },
     list_container_instances: {
       container_instance_arns: [
@@ -91,8 +92,7 @@ Aws.config[:ecs] = {
           status: 'ACTIVE'
         }
       ],
-      failures: [
-      ]
+      failures: []
     },
     describe_task_definition: {
       task_definition: {
@@ -100,24 +100,21 @@ Aws.config[:ecs] = {
           {
             name: 'wordpress',
             cpu: 10,
-            environment: [
-            ],
+            environment: [],
             essential: true,
             image: 'wordpress',
             links: [
               'mysql'
             ],
             memory: 500,
-            mount_points: [
-            ],
+            mount_points: [],
             port_mappings: [
               {
                 container_port: 80,
                 host_port: 80
               }
             ],
-            volumes_from: [
-            ]
+            volumes_from: []
           },
           {
             name: 'mysql',
@@ -131,12 +128,9 @@ Aws.config[:ecs] = {
             essential: true,
             image: 'mysql',
             memory: 500,
-            mount_points: [
-            ],
-            port_mappings: [
-            ],
-            volumes_from: [
-            ]
+            mount_points: [],
+            port_mappings: [],
+            volumes_from: []
           }
         ],
         status: 'ACTIVE',
@@ -144,13 +138,11 @@ Aws.config[:ecs] = {
         revision: 8,
         task_definition_arn: 'arn:aws:ecs:us-east-1:123456789012:task-definition/my-ecs-task-definition:8',
         task_role_arn: 'arn:aws:iam::123456789012:role/my-iam-role',
-        volumes: [
-        ]
+        volumes: []
       }
     },
     describe_services: {
-      failures: [
-      ],
+      failures: [],
       services: [
         {
           cluster_arn: 'arn:aws:ecs:us-east-1:123456789012:cluster/my-ecs-cluster',
@@ -184,8 +176,7 @@ Aws.config[:ecs] = {
                 'Troubleshooting section of the Amazon ECS Developer Guide.'
             }
           ],
-          load_balancers: [
-          ],
+          load_balancers: [],
           pending_count: 0,
           running_count: 0,
           service_arn: 'arn:aws:ecs:us-east-1:123456789012:service/my-ecs-service',

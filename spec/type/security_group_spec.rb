@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'awspec/error'
 
@@ -121,8 +123,7 @@ describe security_group('sg-1a2b3cd4') do
                                   vpc_peering_connection_id: 'pcx-f9e8d7c6',
                                   peering_status: 'active'
                                 }
-                              }
-                             )
+                              })
   }
   it { should have_outbound_rule({ ip_protocol: 'tcp', from_port: 443, to_port: 443, prefix_list_id: 'pl-a5321fa3' }) }
 end

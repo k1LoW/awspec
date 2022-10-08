@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Alb
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           load_balancer_name
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         albs = select_alb_by_vpc_id(@vpc_id)
@@ -19,7 +22,7 @@ module Awspec::Generator
       end
 
       def alb_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe alb('<%= alb.load_balancer_name %>') do
   it { should exist }
   its(:load_balancer_arn) { should eq '<%= alb.load_balancer_arn %>' }
@@ -31,7 +34,6 @@ describe alb('<%= alb.load_balancer_name %>') do
   its(:ip_address_type) { should eq '<%= alb.ip_address_type %>' }
 end
 EOF
-        template
       end
     end
   end

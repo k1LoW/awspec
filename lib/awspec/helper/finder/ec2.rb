@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Ec2
@@ -32,7 +34,7 @@ module Awspec::Helper
                                                   instance_ids: [id]
                                                 })
             if res.reservations.count > 1
-              STDERR.puts "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
+              warn "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
             end
           end
         end
@@ -40,6 +42,7 @@ module Awspec::Helper
         return nil if res.reservations.count == 0
         return res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
         raise Awspec::DuplicatedResourceTypeError, dup_ec2_instance(id) if res.reservations.count > 1
+
         raise "Unexpected condition of having reservations = #{res.reservations.count}"
       end
 
@@ -68,22 +71,23 @@ module Awspec::Helper
       end
 
       # find_internet_gateway find_vpn_gateway find_customer_gateway
-      gateway_types = %w(internet vpn customer transit)
+      gateway_types = %w[internet vpn customer transit]
       gateway_types.each do |type|
-        define_method 'find_' + type + '_gateway' do |*args|
+        define_method "find_#{type}_gateway" do |*args|
           gateway_id = args.first
-          method_name = 'describe_' + type + '_gateways'
+          method_name = "describe_#{type}_gateways"
           res = ec2_client.send(
             method_name,
-            { filters: [{ name: type + '-gateway-id', values: [gateway_id] }] }
+            { filters: [{ name: "#{type}-gateway-id", values: [gateway_id] }] }
           )
-          resource = res[type + '_gateways'].single_resource(gateway_id)
+          resource = res["#{type}_gateways"].single_resource(gateway_id)
           return resource if resource
+
           res = ec2_client.send(
             method_name,
             { filters: [{ name: 'tag:Name', values: [gateway_id] }] }
           )
-          res[type + '_gateways'].single_resource(gateway_id)
+          res["#{type}_gateways"].single_resource(gateway_id)
         end
       end
 
@@ -98,6 +102,7 @@ module Awspec::Helper
                                                   })
         resource = res.vpn_connections.single_resource(vpn_connection_id)
         return resource if resource
+
         res = ec2_client.describe_vpn_connections({
                                                     filters: [
                                                       {
@@ -115,7 +120,7 @@ module Awspec::Helper
           res = ec2_client.describe_nat_gateways({
                                                    nat_gateway_ids: [gateway_id]
                                                  })
-        rescue
+        rescue StandardError
           res = ec2_client.describe_nat_gateways({
                                                    filter: [{ name: 'tag:Name', values: [gateway_id] }]
                                                  })
@@ -138,6 +143,7 @@ module Awspec::Helper
                                                      })
         resource = res.network_interfaces.single_resource(interface_id)
         return resource if resource
+
         res = ec2_client.describe_network_interfaces({
                                                        filters: [{ name: 'tag:Name', values: [interface_id] }]
                                                      })
@@ -155,20 +161,6 @@ module Awspec::Helper
           end
         end
         instances
-      end
-
-      def select_eip_by_instance_id(id)
-        res = ec2_client.describe_addresses({
-                                              filters: [{ name: 'instance-id', values: [id] }]
-                                            })
-        res.addresses
-      end
-
-      def select_eip_by_public_ip(id)
-        res = ec2_client.describe_addresses({
-                                              filters: [{ name: 'public-ip', values: [id] }]
-                                            })
-        res.addresses
       end
 
       def select_network_interface_by_instance_id(id)
@@ -205,7 +197,7 @@ module Awspec::Helper
           res = ec2_client.describe_launch_templates({
                                                        launch_template_ids: [id]
                                                      })
-        rescue
+        rescue StandardError
           res = ec2_client.describe_launch_templates({
                                                        launch_template_names: [id]
                                                      })
@@ -218,7 +210,7 @@ module Awspec::Helper
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_id: id
                                                            })
-      rescue
+      rescue StandardError
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_name: id
                                                            })

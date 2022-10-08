@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Kinesis < ResourceBase
     aws_resource Aws::Kinesis::Client
@@ -17,6 +19,7 @@ module Awspec::Type
 
     def resource_via_client
       return @resource_via_client unless @resource_via_client.nil?
+
       @resource_via_client = find_kinesis_by_stream_name(@display_name)
     end
 

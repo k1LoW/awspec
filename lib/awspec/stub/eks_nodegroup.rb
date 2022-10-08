@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:eks] = {
   stub_responses: {
     describe_nodegroup: {

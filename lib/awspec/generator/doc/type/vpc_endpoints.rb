@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -5,10 +7,13 @@ module Awspec::Generator
         def initialize
           super
           @type_name = 'VpcEndpoints'
-          @type = Awspec::Type::VpcEndpoints.new('my-vpc-endpoint')
+          @type = Awspec::Type::VpcEndpoints.new('vpce-abc123')
           @ret = @type.resource_via_client
-          @matchers = []
-          @ignore_matchers = []
+          @matchers = [
+            Awspec::Type::VpcEndpoints::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', '),
+            'belong_to_vpc'
+          ]
+          @ignore_matchers = Awspec::Type::VpcEndpoints::STATES.map { |state| "be_#{state.tr('-', '_')}" }
           @describes = []
         end
       end

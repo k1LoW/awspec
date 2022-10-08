@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk'
 require 'awspec/helper/finder/nlb'
 require 'awspec/helper/finder/alb'
@@ -8,6 +10,7 @@ require 'awspec/helper/finder/ec2'
 require 'awspec/helper/finder/ecr'
 require 'awspec/helper/finder/ecs'
 require 'awspec/helper/finder/efs'
+require 'awspec/helper/finder/eip'
 require 'awspec/helper/finder/security_group'
 require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
@@ -51,6 +54,7 @@ require 'awspec/helper/finder/secretsmanager'
 require 'awspec/helper/finder/cognito_user_pool'
 require 'awspec/helper/finder/msk'
 require 'awspec/helper/finder/cognito_identity_pool'
+require 'awspec/helper/finder/transfer'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -67,6 +71,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Ecr
     include Awspec::Helper::Finder::Ecs
     include Awspec::Helper::Finder::Efs
+    include Awspec::Helper::Finder::Eip
     include Awspec::Helper::Finder::Firehose
     include Awspec::Helper::Finder::SecurityGroup
     include Awspec::Helper::Finder::Rds
@@ -111,6 +116,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::CognitoUserPool
     include Awspec::Helper::Finder::Msk
     include Awspec::Helper::Finder::CognitoIdentityPool
+    include Awspec::Helper::Finder::Transfer
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -158,7 +164,8 @@ module Awspec::Helper
       secretsmanager_client: Aws::SecretsManager::Client,
       msk_client: Aws::Kafka::Client,
       cognito_identity_client: Aws::CognitoIdentity::Client,
-      cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client
+      cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client,
+      transfer_client: Aws::Transfer::Client
     }
 
     CLIENT_OPTIONS = {
@@ -174,7 +181,7 @@ module Awspec::Helper
 
     CLIENTS.each do |method_name, client|
       define_method method_name do
-        unless self.methods.include? "@#{method_name}"
+        unless methods.include? "@#{method_name}"
           instance_variable_set(
             "@#{method_name}",
             Awspec::Helper::ClientWrap.new(client.new(CLIENT_OPTIONS))

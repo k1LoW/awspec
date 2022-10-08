@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 module Awspec
   class DuplicatedResourceTypeError < StandardError
   end
+
   class InvalidAccountError < StandardError
   end
+
   ##
   # The exception when sending message to a unavailable AWS resource.
   #

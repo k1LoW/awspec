@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class EcsService < ResourceBase
     attr_accessor :cluster
+
     def initialize(service)
       super
       @display_name = service
@@ -18,10 +21,10 @@ module Awspec::Type
       @cluster || 'default'
     end
 
-    STATES = %w(ACTIVE DRAINING INACTIVE)
+    STATES = %w[ACTIVE DRAINING INACTIVE]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.status == state
       end
     end

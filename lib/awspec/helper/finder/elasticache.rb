@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Elasticache
@@ -6,7 +8,7 @@ module Awspec::Helper
                                                            cache_cluster_id: id
                                                          })
         res.cache_clusters.single_resource(id)
-      rescue
+      rescue StandardError
         nil
       end
 

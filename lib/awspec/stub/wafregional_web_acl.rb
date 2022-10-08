@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:wafregional] = {
   stub_responses: {
     list_web_acls: {

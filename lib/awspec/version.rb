@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec
-  VERSION = '1.24.4'
+  VERSION = '1.28.1'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Eip
@@ -10,11 +12,12 @@ module Awspec::Generator
       def generate_all
         eips = select_all_addresses
         raise 'Not Found Elastic IP addresses.' if eips.empty?
+
         ERB.new(eip_spec_template, nil, '-').result(binding).chomp
       end
 
       def eip_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% eips.each do |eip| %>
 describe eip('<%= eip.public_ip %>') do
   it { should exist }
@@ -23,7 +26,6 @@ describe eip('<%= eip.public_ip %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

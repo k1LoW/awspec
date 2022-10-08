@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class VpnConnection < ResourceBase
     tags_allowed
@@ -15,12 +17,12 @@ module Awspec::Type
       @id ||= resource_via_client.vpn_connection_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       pending available deleting deleted
-    )
+    ]
 
     STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
+      define_method "#{state.tr('-', '_')}?" do
         resource_via_client.state == state
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:mq] = {
   stub_responses: {
     describe_broker: {
@@ -66,9 +68,9 @@ Aws.config[:mq] = {
       tags: {
         'Name' => 'my-mq'
       },
-      subnet_ids: [
-        'subnet-c102731fbf7b7abb9',
-        'subnet-4efe21eb33f86ef91'
+      subnet_ids: %w[
+        subnet-c102731fbf7b7abb9
+        subnet-4efe21eb33f86ef91
       ],
       host_instance_type: 'mq.m4.large',
       security_groups: [

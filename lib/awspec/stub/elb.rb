@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:elasticloadbalancing] = {
   stub_responses: {
     describe_load_balancers: {

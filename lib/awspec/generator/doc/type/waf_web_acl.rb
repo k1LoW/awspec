@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -9,7 +11,7 @@ module Awspec::Generator
           @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
-          @describes = %w(default_action)
+          @describes = %w[default_action]
         end
       end
     end

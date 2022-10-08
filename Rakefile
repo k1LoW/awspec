@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 require 'bundler/gem_tasks'
 
 begin
   require 'rspec'
   require 'rspec/core'
   require 'rspec/core/rake_task'
-  require 'octorelease'
+  require 'octorelease' unless ENV['CI']
+  require 'parallel'
   require 'rubocop/rake_task'
 rescue LoadError
 end
@@ -12,12 +15,24 @@ end
 require 'awspec'
 
 types = Awspec::Helper::Type::TYPES.map do |type|
-  'spec:' + type
+  "spec:#{type}"
 end
 
 if defined?(RSpec)
   task spec: 'spec:all'
   namespace :spec do
+    task :parallel do
+      Parallel.each(types.concat([
+                                   'spec:account',
+                                   'spec:core',
+                                   'spec:generator_spec',
+                                   'spec:generator_doc',
+                                   'spec:helper'
+                                 ])) do |t|
+        puts ''
+        Rake::Task[t].execute
+      end
+    end
     task all: ['spec:type',
                'spec:account',
                'spec:core',
@@ -29,7 +44,7 @@ if defined?(RSpec)
 
     Awspec::Helper::Type::TYPES.map do |type|
       RSpec::Core::RakeTask.new(type) do |t|
-        t.pattern = 'spec/type/' + type + '_spec.rb'
+        t.pattern = "spec/type/#{type}_spec.rb"
       end
     end
 
@@ -59,5 +74,5 @@ end
 
 task :generate_docs do
   docs = Awspec::Generator::Doc::Type.generate_doc
-  File.write('doc/resource_types.md', docs + "\n")
+  File.write('doc/resource_types.md', "#{docs}\n")
 end

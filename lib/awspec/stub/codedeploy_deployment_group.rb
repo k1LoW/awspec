@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:codedeploy] = {
   stub_responses: {
     get_deployment_group: {

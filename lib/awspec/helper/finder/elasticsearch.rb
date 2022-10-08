@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Elasticsearch
       def find_elasticsearch_domain(id)
         res = elasticsearch_client.describe_elasticsearch_domain(domain_name: id)
         res.domain_status
-      rescue
+      rescue StandardError
         nil
       end
 

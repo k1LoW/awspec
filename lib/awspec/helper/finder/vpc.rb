@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Vpc
@@ -7,6 +9,7 @@ module Awspec::Helper
                                        })
         resource = res.vpcs.single_resource(id)
         return resource if resource
+
         res = ec2_client.describe_vpcs({
                                          filters: [{ name: 'tag:Name', values: [id] }]
                                        })
@@ -19,6 +22,7 @@ module Awspec::Helper
                                                })
         resource = res.route_tables.single_resource(route_table_id)
         return resource if resource
+
         res = ec2_client.describe_route_tables({
                                                  filters: [{ name: 'tag:Name', values: [route_table_id] }]
                                                })
@@ -31,6 +35,7 @@ module Awspec::Helper
                                                })
         resource = res.network_acls.single_resource(id)
         return resource if resource
+
         res = ec2_client.describe_network_acls({
                                                  filters: [{ name: 'tag:Name', values: [id] }]
                                                })
@@ -62,6 +67,7 @@ module Awspec::Helper
                                                           })
         resource = res.vpc_peering_connections.single_resource(vpc_peering_connection_id)
         return resource if resource
+
         res = ec2_client.describe_vpc_peering_connections({
                                                             filters: [
                                                               {
@@ -87,24 +93,24 @@ module Awspec::Helper
       def find_vpc_attribute(vpc_id, vpc_attribute)
         res = ec2_client.describe_vpc_attribute({ vpc_id: vpc_id, attribute: vpc_attribute })
         case vpc_attribute
-        when 'enableDnsSupport' then
+        when 'enableDnsSupport'
           res.enable_dns_support.value
-        when 'enableDnsHostnames' then
+        when 'enableDnsHostnames'
           res.enable_dns_hostnames.value
         end
       end
 
       def select_vpc_attribute(vpc_id)
         attributes = {}
-        vpc_attributes = %w(
+        vpc_attributes = %w[
           enableDnsHostnames enableDnsSupport
-        )
+        ]
         vpc_attributes.each do |vpc_attribute|
           res = ec2_client.describe_vpc_attribute({ vpc_id: vpc_id, attribute: vpc_attribute })
           attributes[vpc_attribute] = case vpc_attribute
-                                      when 'enableDnsHostnames' then
+                                      when 'enableDnsHostnames'
                                         res.enable_dns_hostnames.value
-                                      when 'enableDnsSupport' then
+                                      when 'enableDnsSupport'
                                         res.enable_dns_support.value
                                       end
         end

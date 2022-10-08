@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_context 'region', :region do
   before do |example|
     region = example.metadata[:region]
@@ -14,6 +16,7 @@ shared_context 'account', :account do
   before do |example|
     sts_client = Aws::STS::Client.new
     raise Awspec::InvalidAccountError unless sts_client.get_caller_identity.account == example.metadata[:account]
+
     example.metadata[:described_class].account = example.metadata[:account]
   end
 end

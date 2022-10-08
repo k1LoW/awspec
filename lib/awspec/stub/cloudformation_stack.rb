@@ -1,4 +1,6 @@
-# rubocop:disable Metrics/LineLength
+# frozen_string_literal: true
+
+# rubocop:disable Layout/LineLength
 Aws.config[:cloudformation] = {
   stub_responses: {
     describe_stacks: {
@@ -17,7 +19,7 @@ Aws.config[:cloudformation] = {
           disable_rollback: false,
           notification_arns: [],
           timeout_in_minutes: nil,
-          capabilities: %w(CAPABILITY_IAM CAPABILITY_NAMED_IAM),
+          capabilities: %w[CAPABILITY_IAM CAPABILITY_NAMED_IAM],
           outputs:
             [
               {

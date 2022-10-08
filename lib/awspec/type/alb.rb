@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Alb < ResourceBase
     tags_allowed
@@ -9,12 +11,12 @@ module Awspec::Type
       @id ||= resource_via_client.load_balancer_name if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       active provisioning failed
-    )
+    ]
 
     STATES.each do |state|
-      define_method state + '?' do
+      define_method "#{state}?" do
         check_existence
         resource_via_client.state.code == state
       end
@@ -27,8 +29,10 @@ module Awspec::Type
         sg == sg_id
       end
       return true if ret
+
       sg2 = find_security_group(sg_id)
       return true if sgs.include? sg2.group_id
+
       false
     end
 
@@ -39,6 +43,7 @@ module Awspec::Type
         az.subnet_id == subnet_id
       end
       return true if ret
+
       subnet2 = find_subnet(subnet_id)
       subnet2.subnet_id = subnet_id
     end

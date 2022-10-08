@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:apigateway] = {
   stub_responses: {
     get_rest_api: {

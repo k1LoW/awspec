@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Route53
@@ -6,12 +8,13 @@ module Awspec::Helper
         selected = []
         loop do
           res.hosted_zones.each do |hosted_zone|
-            if hosted_zone[:name] == id || hosted_zone[:id] == '/hostedzone/' + id || hosted_zone[:id] == id
+            if hosted_zone[:name] == id || hosted_zone[:id] == "/hostedzone/#{id}" || hosted_zone[:id] == id
               selected.push(hosted_zone)
             end
           end
 
           break unless res.is_truncated
+
           res = route53_client.list_hosted_zones({
                                                    marker: res.next_marker
                                                  })

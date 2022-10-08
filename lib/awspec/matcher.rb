@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # EC2
 require 'awspec/matcher/belong_to_vpc'
 require 'awspec/matcher/belong_to_subnet'
@@ -11,6 +13,7 @@ require 'awspec/matcher/belong_to_subnets'
 require 'awspec/matcher/belong_to_db_subnet_group'
 require 'awspec/matcher/have_db_parameter_group'
 require 'awspec/matcher/have_option_group'
+require 'awspec/matcher/have_cluster_member'
 
 # SecurityGroup
 require 'awspec/matcher/be_opened'

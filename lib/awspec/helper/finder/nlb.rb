@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Nlb
@@ -6,8 +8,8 @@ module Awspec::Helper
         res.load_balancers.select do |lb|
           lb.type == 'network'
         end.single_resource(id)
-      rescue
-        return nil
+      rescue StandardError
+        nil
       end
 
       def select_nlb_by_vpc_id(vpc_id)
@@ -20,8 +22,8 @@ module Awspec::Helper
       def find_nlb_listener(arn)
         res = elbv2_client.describe_listeners({ listener_arns: [arn] })
         res.listeners.single_resource(arn)
-      rescue
-        return nil
+      rescue StandardError
+        nil
       end
 
       def select_nlb_listener_by_nlb_arn(arn)
@@ -38,18 +40,19 @@ module Awspec::Helper
       def find_nlb_target_group(id)
         res = elbv2_client.describe_target_groups({ names: [id] })
         httpx_res = res.target_groups.select do |tg|
-          %w(HTTP HTTPS).include?(tg.protocol)
+          %w[HTTP HTTPS].include?(tg.protocol)
         end
         if !httpx_res || httpx_res.empty?
           raise "ERROR: Found no HTTP nor HTTPS -protocol target group named '#{id}'."
         end
+
         httpx_res.single_resource(id)
-      rescue
+      rescue StandardError
         # Prefer the HTTP/HTTPS protocol target group, but survive without it:
         begin
           res.target_groups.single_resource(id)
-        rescue
-          return nil
+        rescue StandardError
+          nil
         end
       end
 

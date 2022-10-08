@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -11,8 +13,8 @@ module Awspec::Generator
             'belong_to_vpc',
             'its(:inbound), its(:outbound), its(:inbound_entries_count), its(:outbound_entries_count)'
           ]
-          @ignore_matchers = %w(be_allowed be_denied)
-          @describes = %w(inbound_entries_count outbound_entries_count)
+          @ignore_matchers = %w[be_allowed be_denied]
+          @describes = %w[inbound_entries_count outbound_entries_count]
         end
       end
     end

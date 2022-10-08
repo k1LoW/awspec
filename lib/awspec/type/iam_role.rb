@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class IamRole < ResourceBase
     aws_resource Aws::IAM::Role
@@ -25,6 +27,7 @@ module Awspec::Type
                                          policy_name: policy_name
                                        })
       return JSON.parse(URI.decode_www_form_component(res.policy_document)) == JSON.parse(document) if document
+
       res
     end
 

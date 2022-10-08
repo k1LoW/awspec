@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Aws.config[:kinesis] = {
   stub_responses: {
     list_streams: {
-      stream_names: [
-        'my-kinesis',
-        'second-stream',
-        'third-stream'
+      stream_names: %w[
+        my-kinesis
+        second-stream
+        third-stream
       ],
       has_more_streams: false
     },
@@ -17,7 +19,7 @@ Aws.config[:kinesis] = {
         stream_creation_timestamp: Time.at(1_529_001_577),
         enhanced_monitoring: [
           {
-            shard_level_metrics: %w(
+            shard_level_metrics: %w[
               IncomingBytes
               OutgoingRecords
               IteratorAgeMilliseconds
@@ -25,7 +27,7 @@ Aws.config[:kinesis] = {
               ReadProvisionedThroughputExceeded
               WriteProvisionedThroughputExceeded
               OutgoingBytes
-            )
+            ]
           }
         ],
         encryption_type: 'KMS',

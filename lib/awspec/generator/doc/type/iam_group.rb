@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -7,7 +9,7 @@ module Awspec::Generator
           @type_name = 'IamGroup'
           @type = Awspec::Type::IamGroup.new('my-iam-group')
           @ret = @type.resource_via_client
-          @matchers = %w(be_allowed_action)
+          @matchers = %w[be_allowed_action]
           @ignore_matchers = []
           @describes = []
         end

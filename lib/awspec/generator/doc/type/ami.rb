@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -8,9 +10,9 @@ module Awspec::Generator
           @type = Awspec::Type::Ami.new('my-ami')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::Ami::STATES.map { |state| 'be_' + state }.join(', ')
+            Awspec::Type::Ami::STATES.map { |state| "be_#{state}" }.join(', ')
           ]
-          @ignore_matchers = Awspec::Type::Ami::STATES.map { |state| 'be_' + state.tr('-', '_') }
+          @ignore_matchers = Awspec::Type::Ami::STATES.map { |state| "be_#{state.tr('-', '_')}" }
           @describes = []
         end
       end

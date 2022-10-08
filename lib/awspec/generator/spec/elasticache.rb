@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Elasticache
@@ -9,14 +11,16 @@ module Awspec::Generator
           res = elasticache_client.describe_cache_clusters(opt)
           clusters.push(*res.cache_clusters)
           break if res.marker.nil?
+
           opt = { marker: res.marker }
         end
         raise 'Not Found Cache Clusters' if clusters.empty?
+
         ERB.new(cache_clusters_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
 
       def cache_clusters_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% clusters.each do |cluster| %>
 describe elasticache('<%= cluster.cache_cluster_id %>') do
   it { should exist }
@@ -36,7 +40,6 @@ describe elasticache('<%= cluster.cache_cluster_id %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class RdsDbClusterParameterGroup
@@ -9,14 +11,13 @@ module Awspec::Generator
       end
 
       def db_cluster_parameter_group_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe rds_db_cluster_parameter_group('<%= @parameter_group %>') do
 <% res.each do |key, value| %>
   its('<%= key %>') { should eq '<%= value %>' }
 <% end %>
 end
 EOF
-        template
       end
     end
   end

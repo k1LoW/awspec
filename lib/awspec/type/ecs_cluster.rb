@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class EcsCluster < ResourceBase
     def initialize(name)
@@ -13,10 +15,10 @@ module Awspec::Type
       @id ||= resource_via_client.cluster_name if resource_via_client
     end
 
-    STATES = %w(ACTIVE INACTIVE)
+    STATES = %w[ACTIVE INACTIVE]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.status == state
       end
     end
@@ -38,6 +40,7 @@ module Awspec::Type
       puts ''
       warn Color.on_red(Color.white("!!! `#{__method__}` is deprecated. awspec don't provide complex result !!!"))
       return @container_instances if @container_instances
+
       arns = container_instance_arns
       @container_instances ||=
         arns.empty? ? [] : find_ecs_container_instances(id, arns).map! { |ci| EcsContainerInstance.new(id, ci) }

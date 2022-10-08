@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -17,23 +19,24 @@ module Awspec::Generator
           @matchers.sort! do |a, b|
             ret = sort_num(a) <=> sort_num(b)
             next ret if ret != 0
+
             a.casecmp(b)
           end
           if @ret.respond_to?(:members)
             @describes += @ret.members.select do |describe|
               if @ret[describe].is_a?(Array)
-                next true unless @ret[describe].first.is_a?(Array) || @ret[describe].first.is_a?(Hash) || @ret[describe].first.is_a?(Struct) # rubocop:disable Metrics/LineLength
+                next true unless @ret[describe].first.is_a?(Array) || @ret[describe].first.is_a?(Hash) || @ret[describe].first.is_a?(Struct) # rubocop:disable Layout/LineLength
               else
                 next true unless @ret[describe].is_a?(Hash) || @ret[describe].is_a?(Struct)
               end
             end
           end
           its = @describes.map do |describe|
-            'its(:' + describe.to_s + ')'
+            "its(:#{describe})"
           end
 
           @descriptions = {}
-          merge_file = File.dirname(__FILE__) + '/../../../../../doc/_resource_types/' + type_name.underscore + '.md'
+          merge_file = "#{File.dirname(__FILE__)}/../../../../../doc/_resource_types/#{type_name.underscore}.md"
           if File.exist?(merge_file)
             matcher = nil
             File.foreach(merge_file) do |line|
@@ -54,15 +57,16 @@ module Awspec::Generator
             method.to_s.include?('?')
           end
           methods.map! do |method|
-            next 'exist' if 'exists?' == method.to_s
-            next 'have_' + Regexp.last_match[1] if /\Ahas_(.+)\?\z/ =~ method.to_s
-            next 'be_' + Regexp.last_match[1] if /\A(.+)\?\z/ =~ method.to_s
+            next 'exist' if method.to_s == 'exists?'
+            next "have_#{Regexp.last_match[1]}" if /\Ahas_(.+)\?\z/ =~ method.to_s
+            next "be_#{Regexp.last_match[1]}" if /\A(.+)\?\z/ =~ method.to_s
+
             method.to_s
           end
         end
 
         def doc_template
-          template = <<-'EOF'
+          <<-'EOF'
 ## <a name="<%= @type_name.gsub(/ /, '_').underscore %>"><%= @type_name.gsub(/ /, '_').underscore %></a>
 
 <%= @type_name %> resource type.
@@ -78,7 +82,6 @@ module Awspec::Generator
 <%= @descriptions['advanced'] %><%- end -%>
 
 EOF
-          template
         end
 
         def sort_num(str)

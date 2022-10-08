@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'set'
 
 module Awspec::Type
@@ -89,10 +91,10 @@ module Awspec::Type
       running_counter >= min_expected
     end
 
-    STATES = %w(ACTIVE INACTIVE)
+    STATES = %w[ACTIVE INACTIVE]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.status == state
       end
     end

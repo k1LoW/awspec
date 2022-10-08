@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
       class AlbListener < Base
-        # rubocop:disable Metrics/LineLength
+        # rubocop:disable Layout/LineLength
         def initialize
           super
           @type_name = 'AlbListener'

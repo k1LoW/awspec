@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:ecs] = {
   stub_responses: {
     describe_container_instances: {
@@ -71,8 +73,7 @@ Aws.config[:ecs] = {
           status: 'ACTIVE'
         }
       ],
-      failures: [
-      ]
+      failures: []
     }
   }
 }

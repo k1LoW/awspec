@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class RedshiftClusterParameterGroup
@@ -9,14 +11,13 @@ module Awspec::Generator
       end
 
       def redshift_cluster_parameters_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe redshift_cluster_parameter_group('<%= @parameter_group %>') do
 <% res.each do |key, value| %>
   its('<%= key %>') { should eq '<%= value %>' }
 <% end %>
 end
 EOF
-        template
       end
     end
   end

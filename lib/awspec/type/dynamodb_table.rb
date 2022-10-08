@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class DynamodbTable < ResourceBase
     aws_resource Aws::DynamoDB::Table
@@ -10,15 +12,15 @@ module Awspec::Type
       @id ||= resource_via_client.table_name if resource_via_client
     end
 
-    STATUSES = %w(
+    STATUSES = %w[
       CREATING
       UPDATING
       DELETING
       ACTIVE
-    )
+    ]
 
     STATUSES.each do |status|
-      define_method status.downcase + '?' do
+      define_method "#{status.downcase}?" do
         resource_via_client.table_status == status
       end
     end

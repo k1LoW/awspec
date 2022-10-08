@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class CloudwatchAlarm
@@ -5,11 +7,12 @@ module Awspec::Generator
       def generate_all
         alarms = select_all_cloudwatch_alarms
         raise 'Not Found alarm' if alarms.empty?
+
         ERB.new(alarm_spec_template, nil, '-').result(binding).chomp
       end
 
       def alarm_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% alarms.each do |alarm| %>
 describe cloudwatch_alarm('<%= alarm.alarm_name %>') do
   it { should exist }
@@ -36,7 +39,6 @@ describe cloudwatch_alarm('<%= alarm.alarm_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

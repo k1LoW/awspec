@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Lambda
@@ -5,11 +7,12 @@ module Awspec::Generator
       def generate_all
         lambda_functions = select_all_lambda_functions
         raise 'Not Found lambda' if lambda_functions.empty?
+
         ERB.new(lambda_spec_template, nil, '-').result(binding).chomp
       end
 
       def lambda_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% lambda_functions.each do |function| %>
 describe lambda('<%= function.function_name %>') do
   it { should exist }
@@ -22,7 +25,6 @@ describe lambda('<%= function.function_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

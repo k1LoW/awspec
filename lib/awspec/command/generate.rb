@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'thor'
 require 'awspec/setup'
 
@@ -7,13 +9,13 @@ module Awspec
     class_option :region
     class_option :secrets_path
 
-    types = %w(
+    types = %w[
       vpc ec2 rds security_group elb network_acl route_table subnet nat_gateway network_interface alb nlb
-      internet_gateway autoscaling_group alb_listener nlb_listener redshift
-    )
+      internet_gateway autoscaling_group alb_listener nlb_listener redshift rds_proxy
+    ]
 
     types.each do |type|
-      desc type + ' [vpc_id]', "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
+      desc "#{type} [vpc_id]", "Generate #{type} spec from VPC ID (or VPC \"Name\" tag)"
       define_method type do |_vpc_id|
         Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_vpc_id(_vpc_id)"
@@ -36,26 +38,38 @@ module Awspec
       end
     end
 
-    types = %w(
+    types = %w[
       rds_db_parameter_group rds_db_cluster_parameter_group redshift_cluster_parameter_group
-    )
+    ]
 
     types.each do |type|
-      desc type + ' [parameter_group_name]', "Generate #{type} spec from parameter group name."
+      desc "#{type} [parameter_group_name]", "Generate #{type} spec from parameter group name."
       define_method type do |_parameter_group_name|
         Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
         eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_parameter_group(_parameter_group_name)"
       end
     end
 
-    types_for_generate_all = %w(
+    types = %w[
+      rds_db_cluster rds_global_cluster
+    ]
+
+    types.each do |type|
+      desc "#{type} [cluster_identifier]", "Generate #{type} spec from cluster identifier."
+      define_method type do |_cluster_identifier|
+        Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate(_cluster_identifier)"
+      end
+    end
+
+    types_for_generate_all = %w[
       cloudwatch_alarm cloudwatch_event directconnect ebs efs
       elasticsearch iam_group iam_policy iam_role iam_user kms lambda
       acm cloudwatch_logs eip codebuild elasticache
-    )
+    ]
 
     types_for_generate_all.each do |type|
-      if %w(iam_policy ebs).include?(type)
+      if %w[iam_policy ebs].include?(type)
         desc type, "Generate attached #{type} spec"
       else
         desc type, "Generate #{type} spec"

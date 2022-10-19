@@ -10,7 +10,8 @@ module Awspec::Generator
           @type = Awspec::Type::VpnGateway.new('my-vpn-gateway')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::VpnGateway::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', ')
+            Awspec::Type::VpnGateway::STATES.map { |state| "be_#{state.tr('-', '_')}" }.join(', '),
+            'belong_to_vpc'
           ]
           @ignore_matchers = Awspec::Type::VpnGateway::STATES.map { |state| "be_#{state.tr('-', '_')}" }
           @describes = []

@@ -49,6 +49,7 @@ end
 ```ruby
 describe vpc_endpoints('my-vpc-endpoint') do
   it { should have_subnet('subnet-abc123') }
+  it { should have_subnet('my-subnet') }
 end
 ```
 

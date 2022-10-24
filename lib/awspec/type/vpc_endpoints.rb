@@ -45,6 +45,12 @@ module Awspec::Type
         subnet == subnet_id
       end
       return true if ret
+
+      res = find_subnet(subnet_id)
+      ret = subnets.find do |subnet|
+        subnet == res.subnet_id
+      end
+      return true if ret
     end
   end
 end

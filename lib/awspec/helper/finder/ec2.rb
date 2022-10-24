@@ -76,12 +76,16 @@ module Awspec::Helper
         define_method "find_#{type}_gateway" do |*args|
           gateway_id = args.first
           method_name = "describe_#{type}_gateways"
-          res = ec2_client.send(
-            method_name,
-            { filters: [{ name: "#{type}-gateway-id", values: [gateway_id] }] }
-          )
-          resource = res["#{type}_gateways"].single_resource(gateway_id)
-          return resource if resource
+          begin
+            res = ec2_client.send(
+              method_name,
+              { filters: [{ name: "#{type}-gateway-id", values: [gateway_id] }] }
+            )
+            resource = res["#{type}_gateways"].single_resource(gateway_id)
+            return resource if resource
+          rescue StandardError
+            resource = nil
+          end
 
           res = ec2_client.send(
             method_name,

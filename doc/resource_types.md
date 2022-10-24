@@ -4101,7 +4101,16 @@ end
 ```
 
 
-### its(:availability_zone), its(:state), its(:type), its(:vpc_attachments), its(:vpn_gateway_id), its(:amazon_side_asn), its(:tags)
+### belong_to_vpc
+
+```ruby
+describe vpn_gateway('my-vpn-gateway') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```
+
+### its(:availability_zone), its(:state), its(:type), its(:vpn_gateway_id), its(:amazon_side_asn)
 ## <a name="waf_web_acl">waf_web_acl</a>
 
 WafWebAcl resource type.

@@ -27,16 +27,8 @@ module Awspec::Type
       end
     end
 
-    def availability_zone
-      resource_via_client.availability_zone
-    end
-
-    def vpc_attachments
-      resource_via_client.vpc_attachments
-    end
-
-    def type
-      resource_via_client.type
+    def vpc_id
+      resource_via_client.vpc_attachments.first.vpc_id
     end
   end
 end

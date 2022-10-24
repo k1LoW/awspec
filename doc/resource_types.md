@@ -3370,7 +3370,7 @@ describe s3_bucket('my-bucket') do
   it do
     should have_lifecycle_rule(
       id: 'MyRuleName2',
-      prefix: '123/',
+      filter: { prefix: '123/' },
       noncurrent_version_expiration: { noncurrent_days: 2 },
       expiration: { days: 3 },
       transitions: [{ days: 5, storage_class: 'STANDARD_IA' }, { days: 10, storage_class: 'GLACIER' }],

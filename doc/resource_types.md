@@ -404,7 +404,7 @@ end
 
 ### be_unmanaged
 
-### its(:compute_environment_name), its(:compute_environment_arn), its(:unmanagedv_cpus), its(:ecs_cluster_arn), its(:tags), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role), its(:update_policy)
+### its(:compute_environment_name), its(:compute_environment_arn), its(:unmanagedv_cpus), its(:ecs_cluster_arn), its(:tags), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role), its(:update_policy), its(:eks_configuration), its(:container_orchestration_type), its(:uuid)
 ## <a name="batch_job_definition">batch_job_definition</a>
 
 BatchJobDefinition resource type.
@@ -417,7 +417,7 @@ describe batch_job_definition('my-batch-job-definition') do
 end
 ```
 
-### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:scheduling_priority), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties), its(:tags), its(:propagate_tags), its(:platform_capabilities)
+### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:scheduling_priority), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties), its(:tags), its(:propagate_tags), its(:platform_capabilities), its(:eks_properties), its(:container_orchestration_type)
 ## <a name="batch_job_queue">batch_job_queue</a>
 
 BatchJobQueue resource type.
@@ -2468,6 +2468,7 @@ end
 ```ruby
 describe nat_gateway('nat-7ff7777f') do
   it { should have_eip('123.0.456.789') }
+  it { should have_eip('my-eip') }
 end
 ```
 
@@ -2475,7 +2476,7 @@ end
 ### have_tag
 
 ```ruby
-describe nat_gateway('nat-7ff7777f') do
+describe nat_gateway('my-nat-gateway') do
   it { should have_tag('Name').value('my-nat-gateway') }
 end
 ```

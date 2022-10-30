@@ -404,7 +404,7 @@ end
 
 ### be_unmanaged
 
-### its(:compute_environment_name), its(:compute_environment_arn), its(:unmanagedv_cpus), its(:ecs_cluster_arn), its(:tags), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role), its(:update_policy)
+### its(:compute_environment_name), its(:compute_environment_arn), its(:unmanagedv_cpus), its(:ecs_cluster_arn), its(:tags), its(:type), its(:state), its(:status), its(:status_reason), its(:service_role), its(:update_policy), its(:eks_configuration), its(:container_orchestration_type), its(:uuid)
 ## <a name="batch_job_definition">batch_job_definition</a>
 
 BatchJobDefinition resource type.
@@ -417,7 +417,7 @@ describe batch_job_definition('my-batch-job-definition') do
 end
 ```
 
-### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:scheduling_priority), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties), its(:tags), its(:propagate_tags), its(:platform_capabilities)
+### its(:job_definition_name), its(:job_definition_arn), its(:revision), its(:status), its(:type), its(:scheduling_priority), its(:parameters), its(:retry_strategy), its(:timeout), its(:node_properties), its(:tags), its(:propagate_tags), its(:platform_capabilities), its(:eks_properties), its(:container_orchestration_type)
 ## <a name="batch_job_queue">batch_job_queue</a>
 
 BatchJobQueue resource type.
@@ -2440,7 +2440,7 @@ end
 
 ### be_updating
 
-### its(:active_operation_arn), its(:client_authentication), its(:cluster_arn), its(:cluster_name), its(:creation_time), its(:current_version), its(:enhanced_monitoring), its(:number_of_broker_nodes), its(:state), its(:state_info), its(:zookeeper_connect_string), its(:zookeeper_connect_string_tls)
+### its(:active_operation_arn), its(:client_authentication), its(:cluster_arn), its(:cluster_name), its(:creation_time), its(:current_version), its(:enhanced_monitoring), its(:number_of_broker_nodes), its(:state), its(:state_info), its(:zookeeper_connect_string), its(:zookeeper_connect_string_tls), its(:storage_mode)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

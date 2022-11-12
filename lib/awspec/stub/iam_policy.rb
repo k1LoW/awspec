@@ -34,6 +34,7 @@ Aws.config[:iam] = {
         {
           attachment_count: 1,
           arn: 'arn:aws:iam::aws:policy/my-iam-policy',
+          default_version_id: 'v1',
           is_attachable: true,
           policy_id: 'PABCDEFGHI123455689',
           policy_name: 'my-iam-policy',
@@ -42,6 +43,7 @@ Aws.config[:iam] = {
         {
           attachment_count: 1,
           arn: 'arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator',
+          default_version_id: 'v1',
           is_attachable: true,
           policy_id: 'PABCDEFGHI123455688',
           policy_name: 'AmazonAPIGatewayAdministrator',
@@ -50,6 +52,7 @@ Aws.config[:iam] = {
         {
           attachment_count: 1,
           arn: 'arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforDataPipelineRole',
+          default_version_id: 'v1',
           is_attachable: true,
           policy_id: 'PABCDEFGHI123455687',
           policy_name: 'AmazonEC2RoleforDataPipelineRole',
@@ -67,6 +70,17 @@ Aws.config[:iam] = {
       policy_groups: [
         { group_name: 'my-iam-group' }
       ]
+    },
+    get_policy_version: {
+      policy_version: {
+        document: '{"Statement": [{"Action": ["s3:ListAllMyBuckets"],' \
+                  '"Effect": "Allow","Resource": "arn:aws:s3:::*"},' \
+                  '{"Action": "s3:*","Effect": "Allow","Resource":' \
+                  '["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]}]}',
+        version_id: 'v1',
+        is_default_version: true,
+        create_date: Time.new(2022, 11, 12, 01, 23, 45, '+00:00')
+      }
     }
   }
 }

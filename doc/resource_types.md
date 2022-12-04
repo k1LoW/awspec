@@ -729,7 +729,7 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id)
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status)
 ## <a name="codebuild">codebuild</a>
 
 Codebuild resource type.
@@ -1237,7 +1237,7 @@ describe ecs_cluster('my-ecs-cluster') do
 end
 ```
 
-### its(:cluster_arn), its(:cluster_name), its(:configuration), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics), its(:tags), its(:settings), its(:capacity_providers), its(:default_capacity_provider_strategy), its(:attachments), its(:attachments_status)
+### its(:cluster_arn), its(:cluster_name), its(:configuration), its(:status), its(:registered_container_instances_count), its(:running_tasks_count), its(:pending_tasks_count), its(:active_services_count), its(:statistics), its(:tags), its(:settings), its(:capacity_providers), its(:default_capacity_provider_strategy), its(:attachments), its(:attachments_status), its(:service_connect_defaults)
 ## <a name="ecs_container_instance">ecs_container_instance</a>
 
 ECS Container Instance resource type.
@@ -2245,7 +2245,7 @@ DOC
 end
 ```
 
-### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms)
+### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms), its(:xks_key_configuration)
 ## <a name="lambda">lambda</a>
 
 Lambda resource type.
@@ -2294,7 +2294,7 @@ end
 
 This matcher does not support Amazon S3 event sources ([see SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method)).
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:package_type), its(:image_config_response), its(:signing_profile_version_arn), its(:signing_job_arn), its(:architectures), its(:ephemeral_storage)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:package_type), its(:image_config_response), its(:signing_profile_version_arn), its(:signing_job_arn), its(:architectures), its(:ephemeral_storage), its(:snap_start)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.

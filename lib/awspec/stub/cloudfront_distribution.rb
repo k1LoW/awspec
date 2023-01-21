@@ -107,7 +107,8 @@ Aws.config[:cloudfront] = {
               },
               web_acl_id: '',
               http_version: 'http2',
-              is_ipv6_enabled: true
+              is_ipv6_enabled: true,
+              staging: false
             },
             {
               id: 'E2CLOUDFRONTXX',
@@ -223,7 +224,8 @@ Aws.config[:cloudfront] = {
               },
               web_acl_id: '',
               http_version: 'http1.1',
-              is_ipv6_enabled: true
+              is_ipv6_enabled: true,
+              staging: false
             }
           ]
       }

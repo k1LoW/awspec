@@ -170,7 +170,8 @@ module Awspec::Helper
 
     CLIENT_OPTIONS = {
       http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil,
-      http_wire_trace: ENV['http_wire_trace'] || false
+      http_wire_trace: ENV['http_wire_trace'] || false,
+      endpoint: ENV['aws_custom_endpoint'] || nil
     }
 
     check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')

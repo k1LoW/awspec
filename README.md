@@ -172,6 +172,23 @@ Awspec.configure do |config|
 end
 ```
 
+### Advanced Tips: Setting A Custom Endpoint And Testing Locally
+
+Set the `aws_custom_endpoint` environment variable to tell awspec to use a different endpoint to connect to aws:
+
+```
+aws_custom_endpoint=http://localhost:5000 bundle exec rake spec
+```
+
+This can be used with [Moto's Standalone Server Mode](http://docs.getmoto.org/en/latest/docs/server_mode.html) to run all your aws tests locally. For example, to create resources on the local server using the aws cli, run:
+
+```
+AWS_SECRET_ACCESS_KEY=dummy AWS_ACCESS_KEY_ID=dummy \
+    aws --endpoint http://localhost:5000 s3 mb my-bucket
+```
+
+Awspec should then be able to verify that those resources were created properly.
+
 ## Support AWS Resources
 
 [Resource Types information here](doc/resource_types.md)

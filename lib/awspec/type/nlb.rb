@@ -32,7 +32,9 @@ module Awspec::Type
       return true if ret
 
       subnet2 = find_subnet(subnet_id)
-      subnet2.subnet_id = subnet_id
+      azs.find do |az|
+        az.subnet_id == subnet2.subnet_id
+      end
     end
   end
 end

@@ -14,6 +14,26 @@ describe iam_policy('my-iam-policy') do
   it { should be_attached_to_group('my-iam-group') }
   it { should be_attached_to_user('my-iam-user') }
   it { should be_attached_to_role('HelloIAmGodRole') }
+  it do
+    should have_policy_document(<<-'DOC')
+{
+"Statement": [
+    {
+     "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]
+    }
+  ]
+}
+DOC
+  end
 end
 
 describe iam_policy('unknow-iam-policy') do

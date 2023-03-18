@@ -23,9 +23,16 @@ module Awspec::Type
     end
 
     def has_eip?(ip_address = nil)
-      resource_via_client.nat_gateway_addresses.find do |address|
-        return address.public_ip == ip_address
+      ret = resource_via_client.nat_gateway_addresses.find do |address|
+        address.public_ip == ip_address
       end
+      return true if ret
+
+      res = select_eip(ip_address)
+      ret = resource_via_client.nat_gateway_addresses.find do |address|
+        address.public_ip == res.public_ip
+      end
+      return true if ret
     end
   end
 end

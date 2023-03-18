@@ -6,7 +6,9 @@ module Awspec::Generator
       class EcrRepository < Base
         def initialize
           super
+          @type_name = 'ECR Repository'
           @type = Awspec::Type::EcrRepository.new('my-ecr-repository')
+          @ret = @type.resource_via_client
           @matchers = []
           @ignore_matchers = []
           @describes = []

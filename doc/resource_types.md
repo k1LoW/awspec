@@ -1202,11 +1202,17 @@ end
 
 ## <a name="ecr_repository">ecr_repository</a>
 
-EcrRepository resource type.
+ECR Repository resource type.
 
 ### exist
 
+```ruby
+describe ecr_repository('my-ecr-repository') do
+  it { should exist }
+end
+```
 
+### its(:repository_arn), its(:registry_id), its(:repository_name), its(:repository_uri), its(:created_at), its(:image_tag_mutability), its(:image_scanning_configuration), its(:encryption_configuration)
 ## <a name="ecs_cluster">ecs_cluster</a>
 
 ECS Cluster resource type.

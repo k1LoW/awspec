@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Efs
@@ -7,7 +9,7 @@ module Awspec::Helper
                                                    file_system_id: id,
                                                    max_items: 1
                                                  })
-        rescue
+        rescue StandardError
           # Aws::EFS::Errors::BadRequest (invalid file system ID: my-efs)
           file_system_id = get_id_by_name_tag(id)
           res = efs_client.describe_file_systems({
@@ -21,7 +23,7 @@ module Awspec::Helper
       def find_efs_tags(id, tag_key)
         begin
           tag_set = efs_client.describe_tags({ file_system_id: id })
-        rescue
+        rescue StandardError
           # Aws::EFS::Errors::BadRequest (invalid file system ID: my-efs)
           file_system_id = get_id_by_name_tag(id)
           tag_set = efs_client.describe_tags({
@@ -55,8 +57,7 @@ module Awspec::Helper
 
       def select_all_file_systems
         file_systems_query = efs_client.describe_file_systems
-        file_systems = file_systems_query.file_systems
-        file_systems
+        file_systems_query.file_systems
       end
     end
   end

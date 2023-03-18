@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'awspec/error'
 
 module Awspec::Type
@@ -21,6 +23,7 @@ module Awspec::Type
       if user_id
         user = find_iam_user(user_id)
         return false unless user
+
         users.any? do |u|
           u.user_name == user.user_name
         end
@@ -35,6 +38,7 @@ module Awspec::Type
       if group_id
         group = find_iam_group(group_id)
         return false unless group
+
         groups.any? do |g|
           g.group_name == group.group_name
         end
@@ -49,12 +53,22 @@ module Awspec::Type
       if role_id
         role = find_iam_role(role_id)
         return false unless role
+
         roles.any? do |r|
           r.role_name == role.role_name
         end
       else
         !roles.empty?
       end
+    end
+
+    def has_policy_document?(document)
+      res = iam_client.get_policy_version({
+                                            policy_arn: resource_via_client.arn,
+                                            version_id: resource_via_client.default_version_id
+                                          })
+
+      JSON.parse(URI.decode_www_form_component(res.policy_version.document)) == JSON.parse(document)
     end
   end
 end

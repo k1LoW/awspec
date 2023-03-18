@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:cloudfront] = {
   stub_responses: {
     list_distributions: {
@@ -15,6 +17,7 @@ Aws.config[:cloudfront] = {
               status: 'Deployed',
               last_modified_time: Time.new(2015, 1, 2, 10, 00, 00, '+00:00'),
               domain_name: 'abcdefghijklmn.cloudfront.net',
+              staging: false,
               aliases: {
                 quantity: 0,
                 items: []
@@ -63,10 +66,10 @@ Aws.config[:cloudfront] = {
                 min_ttl: 0,
                 allowed_methods: {
                   quantity: 2,
-                  items: %w(HEAD GET),
+                  items: %w[HEAD GET],
                   cached_methods: {
                     quantity: 2,
-                    items: %w(HEAD GET)
+                    items: %w[HEAD GET]
                   }
                 },
                 smooth_streaming: false,
@@ -105,7 +108,8 @@ Aws.config[:cloudfront] = {
               },
               web_acl_id: '',
               http_version: 'http2',
-              is_ipv6_enabled: true
+              is_ipv6_enabled: true,
+              staging: false
             },
             {
               id: 'E2CLOUDFRONTXX',
@@ -113,6 +117,7 @@ Aws.config[:cloudfront] = {
               status: 'Deployed',
               last_modified_time: Time.new(2016, 3, 2, 10, 00, 00, '+00:00'),
               domain_name: '123456789zyxw.cloudfront.net',
+              staging: false,
               aliases: {
                 quantity: 1,
                 items: ['cf-s3-origin-hosting.dev.example.com']
@@ -159,10 +164,10 @@ Aws.config[:cloudfront] = {
                 min_ttl: 0,
                 allowed_methods: {
                   quantity: 2,
-                  items: %w(HEAD GET),
+                  items: %w[HEAD GET],
                   cached_methods: {
                     quantity: 2,
-                    items: %w(HEAD GET)
+                    items: %w[HEAD GET]
                   }
                 },
                 smooth_streaming: false,
@@ -221,7 +226,8 @@ Aws.config[:cloudfront] = {
               },
               web_acl_id: '',
               http_version: 'http1.1',
-              is_ipv6_enabled: true
+              is_ipv6_enabled: true,
+              staging: false
             }
           ]
       }

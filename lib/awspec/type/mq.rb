@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Mq < ResourceBase
     def resource_via_client
@@ -8,13 +10,13 @@ module Awspec::Type
       @id ||= resource_via_client.broker_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       running reboot-in-progress creation-in-progress
       creation-failed deletion-in-progress
-    )
+    ]
 
     STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
+      define_method "#{state.tr('-', '_')}?" do
         resource_via_client.broker_state.downcase == state
       end
     end
@@ -44,6 +46,7 @@ module Awspec::Type
       res = select_security_group_by_group_name([sg_id])
 
       return false unless res.count == 1
+
       has_vpc_security_group_id?(res.first.group_id)
     end
 
@@ -51,6 +54,7 @@ module Awspec::Type
       res = select_security_group_by_tag_name([sg_id])
 
       return false unless res.count == 1
+
       has_vpc_security_group_id?(res.first.group_id)
     end
   end

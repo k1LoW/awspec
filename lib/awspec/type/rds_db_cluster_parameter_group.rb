@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class RdsDbClusterParameterGroup < ResourceBase
     def resource_via_client
       return @resource_via_client if @resource_via_client
+
       @resource_via_client ||= select_all_rds_db_cluster_parameters(@display_name)
     end
 

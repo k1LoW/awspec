@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :belong_to_metric do |name|
   match do |type|
     if @namespace

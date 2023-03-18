@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module SsmParameter
@@ -10,7 +12,8 @@ module Awspec::Helper
                 values: [name]
               }
             ]
-          }).parameters[0]
+          }
+        ).parameters[0]
       end
 
       def find_parameter_tag(id, tag_key)

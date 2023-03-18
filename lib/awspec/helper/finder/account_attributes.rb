@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module AccountAttributes
@@ -12,11 +14,11 @@ module Awspec::Helper
             attributes[attr[:attribute_name].tr('-', '_').to_sym] = values
           else
             value = values.first
-            if value =~ /\A\d+\z/
-              attributes[attr[:attribute_name].tr('-', '_').to_sym] = value.to_i
-            else
-              attributes[attr[:attribute_name].tr('-', '_').to_sym] = value
-            end
+            attributes[attr[:attribute_name].tr('-', '_').to_sym] = if value =~ /\A\d+\z/
+                                                                      value.to_i
+                                                                    else
+                                                                      value
+                                                                    end
           end
         end
         attributes.to_struct
@@ -52,7 +54,7 @@ module Awspec::Helper
 
       def find_ses_send_quota
         ses_client.get_send_quota
-      rescue
+      rescue StandardError
         # Aws::Errors::NoSuchEndpointError
         nil
       end

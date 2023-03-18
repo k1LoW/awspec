@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class NatGateway
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
-        )
+        describes = %w[
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         nat_gateways = select_nat_gateway_by_vpc_id(@vpc_id)
@@ -18,7 +21,7 @@ module Awspec::Generator
       end
 
       def nat_gateway_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe nat_gateway('<%= nat_gateway_id %>') do
   it { should exist }
   it { should be_<%= nat_gateway.state %> }
@@ -32,7 +35,6 @@ describe nat_gateway('<%= nat_gateway_id %>') do
 <% end %>
 end
 EOF
-        template
       end
     end
   end

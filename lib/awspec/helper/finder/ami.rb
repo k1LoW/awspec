@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Ami
@@ -7,11 +9,13 @@ module Awspec::Helper
                                          })
         resource = res.images.single_resource(image_id)
         return resource if resource
+
         res = ec2_client.describe_images({
                                            filters: [{ name: 'name', values: [image_id] }]
                                          })
         resource = res.images.single_resource(image_id)
         return resource if resource
+
         res = ec2_client.describe_images({
                                            filters: [{ name: 'tag:Name', values: [image_id] }]
                                          })

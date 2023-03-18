@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -18,7 +20,7 @@ module Awspec::Generator
         end
 
         def account_attribute_spec_template
-          template = <<-'EOF'
+          <<-'EOF'
 <% @ret.members.each do |key| %>
 <%- next if @ret[key].is_a?(String) -%>
 describe account_attribute('<%= key %>') do
@@ -39,11 +41,10 @@ end
 <%= ' ' %>
 <% end %>
 EOF
-          template
         end
 
         def doc_template
-          template = <<-'EOF'
+          <<-'EOF'
 ## <a name="<%= @type_name.gsub(/ /, '_').underscore %>"><%= @type_name.gsub(/ /, '_').underscore %></a>
 
 <%= @type_name %> resource type.
@@ -61,7 +62,6 @@ EOF
 ### :unlock: Advanced use
 <%= @descriptions['advanced'] %><%- end -%>
 EOF
-          template
         end
       end
     end

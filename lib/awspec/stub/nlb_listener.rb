@@ -1,4 +1,6 @@
-# rubocop:disable Metrics/LineLength
+# frozen_string_literal: true
+
+# rubocop:disable Layout/LineLength
 Aws.config[:elasticloadbalancingv2] = {
   stub_responses: {
     describe_load_balancers: {
@@ -85,8 +87,7 @@ Aws.config[:elasticloadbalancingv2] = {
               type: 'forward'
             }
           ],
-          conditions: [
-          ],
+          conditions: [],
           is_default: true,
           priority: 'default',
           rule_arn: 'arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:listener-rule/app/my-nlb/1aa1bb1cc1ddee11/f2f7dc8efc522ab2/defaaaaaaaultbbbb'

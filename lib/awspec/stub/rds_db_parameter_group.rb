@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:rds] = {
   stub_responses: {
     describe_db_parameters: {
@@ -13,6 +15,14 @@ Aws.config[:rds] = {
         {
           parameter_name: 'max_allowed_packet',
           parameter_value: '16777216'
+        },
+        {
+          parameter_name: 'rds.logical_replication',
+          parameter_value: '1'
+        },
+        {
+          parameter_name: 'rds.accepted_password_auth_method',
+          parameter_value: 'md5+scram'
         }
       ]
     }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk'
 require 'awspec/resource_reader'
 require 'awspec/helper/finder'
@@ -34,12 +36,13 @@ module Awspec::Type
           tags = resource_via_client.tag_set
         end
         return false unless tags
+
         tags.any? { |t| t['key'] == key && t['value'] == value }
       end
     end
 
     def method_missing(name)
-      name_str = name.to_s if name.class == Symbol
+      name_str = name.to_s if name.instance_of?(Symbol)
       describe = name_str.tr('-', '_').to_sym
 
       if !resource_via_client.nil? && resource_via_client.members.include?(describe)
@@ -47,12 +50,12 @@ module Awspec::Type
       elsif resource_via_client.nil?
         raise Awspec::NoExistingResource.new(self.class, @display_name)
       else
-        super unless self.respond_to?(:resource)
+        super unless respond_to?(:resource)
         method_missing_via_black_list(name, delegate_to: resource)
       end
     end
 
-    undef :timeout
+    undef :timeout if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('3.1.0')
 
     private
 

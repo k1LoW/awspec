@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Alb
@@ -7,7 +9,7 @@ module Awspec::Helper
           lb.type == 'application'
         end.single_resource(id)
       rescue Aws::ElasticLoadBalancingV2::Errors::LoadBalancerNotFound
-        return nil
+        nil
       end
 
       def select_alb_by_vpc_id(vpc_id)
@@ -21,7 +23,7 @@ module Awspec::Helper
         res = elbv2_client.describe_listeners({ listener_arns: [arn] })
         res.listeners.single_resource(arn)
       rescue StandardError
-        return nil
+        nil
       end
 
       def select_alb_listener_by_alb_arn(arn)
@@ -38,10 +40,10 @@ module Awspec::Helper
       def find_alb_target_group(id)
         res = elbv2_client.describe_target_groups({ names: [id] })
         res.target_groups.select do |tg|
-          %w(HTTP HTTPS).include?(tg.protocol)
+          %w[HTTP HTTPS].include?(tg.protocol)
         end.single_resource(id)
       rescue StandardError
-        return nil
+        nil
       end
 
       def select_rule_by_alb_listener_id(id)
@@ -61,7 +63,7 @@ module Awspec::Helper
           resource.resource_arn == id
         end.first.tags
       rescue StandardError
-        return nil
+        nil
       end
     end
   end

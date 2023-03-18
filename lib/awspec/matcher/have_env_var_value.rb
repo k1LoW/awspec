@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_env_var_value do |env_var, value|
   match do |lambda_function|
     if lambda_function.environment.variables.key?(env_var)

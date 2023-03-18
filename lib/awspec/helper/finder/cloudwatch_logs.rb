@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module CloudwatchLogs
@@ -29,6 +31,7 @@ module Awspec::Helper
           end
           break if ret.present?
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         ret
@@ -59,6 +62,7 @@ module Awspec::Helper
           res = cloudwatch_logs_client.describe_log_groups(req)
           log_groups.push(*res.log_groups)
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
         log_groups
@@ -68,21 +72,22 @@ module Awspec::Helper
         cloudwatch_logs_client.list_tags_log_group(log_group_name: id)[:tags]
       end
 
-      filter_types = %w(metric subscription)
+      filter_types = %w[metric subscription]
       filter_types.each do |type|
-        define_method 'select_all_cloudwatch_logs_' + type + '_filter' do |*args|
+        define_method "select_all_cloudwatch_logs_#{type}_filter" do |*args|
           req = { log_group_name: args.first }
-          method_name = 'describe_' + type + '_filters'
+          method_name = "describe_#{type}_filters"
           resources = []
           loop do
             res = cloudwatch_logs_client.send(method_name, req)
             case type
-            when 'metric' then
+            when 'metric'
               resources.push(*res.metric_filters)
-            when 'subscription' then
+            when 'subscription'
               resources.push(*res.subscription_filters)
             end
             break if res.next_token.nil?
+
             req[:next_token] = res.next_token
           end
           resources

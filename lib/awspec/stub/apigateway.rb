@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:apigateway] = {
   stub_responses: {
     get_rest_api: {
@@ -67,6 +69,45 @@ Aws.config[:apigateway] = {
             types: [
               'EDGE'
             ]
+          }
+        }
+      ]
+    },
+    get_resources: {
+      position: '1',
+      items: [
+        {
+          path: '/proxy',
+          resource_methods: {
+            'GET' => {
+              http_method: 'GET',
+              method_integration: { http_method: 'POST', uri: 'http://127.0.0.1:8080/hockey' }
+            }
+          }
+        },
+        {
+          path: '/zambonis',
+          resource_methods: {
+            'POST' => {
+              http_method: 'POST',
+              method_integration: { http_method: 'POST',
+                                    uri: 'http://127.0.0.1:8080/zambonis/{arena}?arena=Saddledome' }
+            }
+          }
+        },
+        {
+          path: '/zambonis/123',
+          resource_methods: {
+            'POST' => {
+              http_method: 'POST',
+              method_integration: { http_method: 'AWS',
+                                    uri: 'arn:aws:apigateway:us-east-1:cognito-idp:action/ListUsers' }
+            },
+            'GET' => {
+              http_method: 'GET',
+              method_integration: { http_method: 'AWS',
+                                    uri: 'arn:aws:apigateway:us-east-1:cognito-idp:action/SignUp?username=test' }
+            }
           }
         }
       ]

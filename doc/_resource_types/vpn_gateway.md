@@ -22,4 +22,11 @@ describe vpn_gateway('my-vpn-gateway') do
 end
 ```
 
-### its(:vpn_gateway_id), its(:state), its(:type), its(:availability_zone)
+### belong_to_vpc
+
+```ruby
+describe vpn_gateway('my-vpn-gateway') do
+  it { should belong_to_vpc('vpc-ab123cde') }
+  it { should belong_to_vpc('my-vpc') }
+end
+```

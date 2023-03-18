@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:firehose] = {
   stub_responses: {
     describe_delivery_stream: {

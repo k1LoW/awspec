@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'fileutils'
 require 'yaml'
 
@@ -18,7 +20,7 @@ EOF
       dir = 'spec'
       if File.exist? dir
         unless File.directory? dir
-          $stderr.puts '!! #{dir} already exists and is not a directory'
+          warn "!! #{dir} already exists and is not a directory"
         end
       else
         FileUtils.mkdir dir
@@ -26,7 +28,7 @@ EOF
       end
 
       if File.exist? 'spec/spec_helper.rb'
-        $stderr.puts '!! spec/spec_helper.rb already exists'
+        warn '!! spec/spec_helper.rb already exists'
       else
         File.open('spec/spec_helper.rb', 'w') do |f|
           f.puts content
@@ -43,7 +45,7 @@ task :default => :spec
 EOF
 
       if File.exist? 'Rakefile'
-        $stderr.puts '!! Rakefile already exists'
+        warn '!! Rakefile already exists'
       else
         File.open('Rakefile', 'w') do |f|
           f.puts content
@@ -57,7 +59,7 @@ EOF
 secrets.yml
 EOF
       if File.exist? 'spec/.gitignore'
-        $stderr.puts '!! spec/.gitignore already exists'
+        warn '!! spec/.gitignore already exists'
       else
         File.open('spec/.gitignore', 'w') do |f|
           f.puts content
@@ -72,7 +74,7 @@ EOF
 --format documentation
 EOF
       if File.exist? '.rspec'
-        $stderr.puts '!! .rspec already exists'
+        warn '!! .rspec already exists'
       else
         File.open('.rspec', 'w') do |f|
           f.puts content

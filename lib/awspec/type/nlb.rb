@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Nlb < ResourceBase
     def resource_via_client
@@ -8,12 +10,12 @@ module Awspec::Type
       @id ||= resource_via_client.load_balancer_name if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       active provisioning failed
-    )
+    ]
 
     STATES.each do |state|
-      define_method state + '?' do
+      define_method "#{state}?" do
         resource_via_client.state.code == state
       end
     end
@@ -28,8 +30,11 @@ module Awspec::Type
         az.subnet_id == subnet_id
       end
       return true if ret
+
       subnet2 = find_subnet(subnet_id)
-      subnet2.subnet_id = subnet_id
+      azs.find do |az|
+        az.subnet_id == subnet2.subnet_id
+      end
     end
   end
 end

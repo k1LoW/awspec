@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class S3Bucket
@@ -5,6 +7,7 @@ module Awspec::Generator
       def generate_all
         buckets = select_all_buckets
         raise 'Not Found Bucket' if buckets.empty?
+
         specs = buckets.map do |bucket|
           content(bucket)
         end
@@ -18,6 +21,7 @@ module Awspec::Generator
 
       def generate_grant_specs(acl)
         return [] unless acl
+
         linespecs = []
         acl.grants.each do |grant|
           linespecs.push(ERB.new(grant_linetemplate, nil, '-').result(binding))
@@ -27,10 +31,9 @@ module Awspec::Generator
 
       def grant_linetemplate
         grantee = 'grant.grantee.display_name || grant.grantee.uri || grant.grantee.id'
-        template = <<-EOF
+        <<-EOF
 it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.permission %>') }
         EOF
-        template
       end
 
       def generate_lifecycle_rule_transitions_spec(transitions_rule)
@@ -47,13 +50,14 @@ it { should have_acl_grant(grantee: '<%= #{grantee} %>', permission: '<%= grant.
                           "#{k}: '#{v.inspect}'"
                         end
           end
-          rules << '{ ' + elements.join(', ') + ' }'
+          rules << "{ #{elements.join(', ')} }"
         end
-        '[' + rules.join(', ') + ']'
+        "[#{rules.join(', ')}]"
       end
 
       def generate_lifecycle_rule_specs(lifecycle_rule)
         return [] unless lifecycle_rule
+
         linespecs = []
         lifecycle_rule.rules.each do |rule|
           transitions = generate_lifecycle_rule_transitions_spec(rule.transitions.map(&:to_h))
@@ -81,7 +85,7 @@ it do
       end
 
       def bucket_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe s3_bucket('<%= bucket.name %>') do
   it { should exist }
 <%- if acl -%>
@@ -102,9 +106,11 @@ describe s3_bucket('<%= bucket.name %>') do
   <%= line %>
 <% end %>
 <%- end -%>
+<%- if location -%>
+  it { should have_location('<%= location %>') }
+<%- end -%>
 end
 EOF
-        template
       end
 
       private
@@ -117,6 +123,7 @@ EOF
         bucket_policy = policy.policy.read if policy
         lifecycle_rule = find_bucket_lifecycle_configuration(bucket.name)
         lifecycle_specs = generate_lifecycle_rule_specs(lifecycle_rule) if lifecycle_rule
+        location = find_bucket_location(bucket.name)
         ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
     end

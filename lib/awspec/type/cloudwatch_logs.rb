@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class CloudwatchLogs < ResourceBase
     def resource_via_client
@@ -13,9 +15,14 @@ module Awspec::Type
       return true if ret == stream_name
     end
 
-    def has_metric_filter?(filter_name)
-      ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name).filter_name
-      return true if ret == filter_name
+    def has_metric_filter?(filter_name, pattern = nil)
+      ret = find_cloudwatch_logs_metric_fileter_by_log_group_name(@id, filter_name)
+      if pattern.nil?
+        return true if ret.filter_name == filter_name
+      else
+        return false unless ret.filter_pattern == pattern
+      end
+      return true if ret.filter_name == filter_name
     end
 
     def has_subscription_filter?(filter_name, pattern = nil)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:directconnect] = {
   stub_responses: {
     describe_virtual_interfaces: {

@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 require 'aws-sdk'
 require 'awspec/helper/finder/nlb'
 require 'awspec/helper/finder/alb'
 require 'awspec/helper/finder/vpc'
+require 'awspec/helper/finder/vpc_endpoints'
 require 'awspec/helper/finder/subnet'
 require 'awspec/helper/finder/ec2'
 require 'awspec/helper/finder/ecr'
 require 'awspec/helper/finder/ecs'
 require 'awspec/helper/finder/efs'
+require 'awspec/helper/finder/eip'
 require 'awspec/helper/finder/security_group'
 require 'awspec/helper/finder/rds'
 require 'awspec/helper/finder/route53'
@@ -47,6 +51,10 @@ require 'awspec/helper/finder/redshift'
 require 'awspec/helper/finder/codedeploy'
 require 'awspec/helper/finder/mq'
 require 'awspec/helper/finder/secretsmanager'
+require 'awspec/helper/finder/cognito_user_pool'
+require 'awspec/helper/finder/msk'
+require 'awspec/helper/finder/cognito_identity_pool'
+require 'awspec/helper/finder/transfer'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -57,11 +65,13 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Nlb
     include Awspec::Helper::Finder::Alb
     include Awspec::Helper::Finder::Vpc
+    include Awspec::Helper::Finder::VpcEndpoints
     include Awspec::Helper::Finder::Subnet
     include Awspec::Helper::Finder::Ec2
     include Awspec::Helper::Finder::Ecr
     include Awspec::Helper::Finder::Ecs
     include Awspec::Helper::Finder::Efs
+    include Awspec::Helper::Finder::Eip
     include Awspec::Helper::Finder::Firehose
     include Awspec::Helper::Finder::SecurityGroup
     include Awspec::Helper::Finder::Rds
@@ -103,6 +113,10 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Codedeploy
     include Awspec::Helper::Finder::Mq
     include Awspec::Helper::Finder::Secretsmanager
+    include Awspec::Helper::Finder::CognitoUserPool
+    include Awspec::Helper::Finder::Msk
+    include Awspec::Helper::Finder::CognitoIdentityPool
+    include Awspec::Helper::Finder::Transfer
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -147,16 +161,27 @@ module Awspec::Helper
       redshift_client: Aws::Redshift::Client,
       codedeploy_client: Aws::CodeDeploy::Client,
       mq_client: Aws::MQ::Client,
-      secretsmanager_client: Aws::SecretsManager::Client
+      secretsmanager_client: Aws::SecretsManager::Client,
+      msk_client: Aws::Kafka::Client,
+      cognito_identity_client: Aws::CognitoIdentity::Client,
+      cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client,
+      transfer_client: Aws::Transfer::Client
     }
 
     CLIENT_OPTIONS = {
-      http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil
+      http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil,
+      http_wire_trace: ENV['http_wire_trace'] || false
     }
+
+    check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')
+
+    # define_method below will "hide" any exception that comes from bad
+    # setup of AWS client, so let's try first to create a instance
+    Awsecrets.load if check_configuration
 
     CLIENTS.each do |method_name, client|
       define_method method_name do
-        unless self.methods.include? "@#{method_name}"
+        unless methods.include? "@#{method_name}"
           instance_variable_set(
             "@#{method_name}",
             Awspec::Helper::ClientWrap.new(client.new(CLIENT_OPTIONS))

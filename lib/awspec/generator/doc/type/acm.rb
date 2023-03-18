@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -8,9 +10,9 @@ module Awspec::Generator
           @type = Awspec::Type::Acm.new('example.jp')
           @ret = @type.resource_via_client
           @matchers = [
-            Awspec::Type::Acm::STATUSES.map { |status| 'be_' + status.downcase }.join(', ')
+            Awspec::Type::Acm::STATUSES.map { |status| "be_#{status.downcase}" }.join(', ')
           ]
-          @ignore_matchers = Awspec::Type::Acm::STATUSES.map { |status| 'be_' + status.downcase }
+          @ignore_matchers = Awspec::Type::Acm::STATUSES.map { |status| "be_#{status.downcase}" }
           @describes = []
         end
       end

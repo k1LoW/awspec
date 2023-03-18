@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:batch] = {
   stub_responses: {
     describe_job_definitions: {

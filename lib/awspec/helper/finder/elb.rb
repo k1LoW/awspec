@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Elb
@@ -6,8 +8,8 @@ module Awspec::Helper
                                                    load_balancer_names: [id]
                                                  })
         res.load_balancer_descriptions.single_resource(id)
-      rescue
-        return nil
+      rescue StandardError
+        nil
       end
 
       def find_elb_attribute(id)
@@ -15,8 +17,8 @@ module Awspec::Helper
                                                              load_balancer_name: id
                                                            })
         res.load_balancer_attributes
-      rescue
-        return nil
+      rescue StandardError
+        nil
       end
 
       def select_elb_by_vpc_id(vpc_id)

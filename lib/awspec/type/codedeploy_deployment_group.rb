@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class CodedeployDeploymentGroup < ResourceBase
     attr_accessor :application_name
@@ -25,8 +27,10 @@ module Awspec::Type
         asg.name == asg_name
       end
       return true if res
+
       asg2 = find_autoscaling_group(asg_name)
       return true if asgs.include? asg2.auto_scaling_group_name
+
       false
     end
   end

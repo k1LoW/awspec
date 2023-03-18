@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class Array
   def single_resource(id = nil)
-    if self.count > 1
+    if count > 1
       raise Awspec::DuplicatedResourceTypeError, "Duplicated resource type #{id}"
     end
-    self.first if self.count == 1
+
+    first if count == 1
   end
 end

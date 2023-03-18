@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Directconnect
@@ -9,11 +11,12 @@ module Awspec::Generator
       def generate_virtual_interface_all
         virtual_interfaces = select_virtual_interfaces
         raise 'Not Found virtual_interfaces' if virtual_interfaces.empty?
+
         ERB.new(virtual_interface_spec_template, nil, '-').result(binding).chomp
       end
 
       def virtual_interface_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% virtual_interfaces.each do |interface| %>
 describe directconnect_virtual_interface('<%= interface.virtual_interface_name %>') do
   it { should exist }
@@ -26,7 +29,6 @@ describe directconnect_virtual_interface('<%= interface.virtual_interface_name %
 end
 <% end %>
 EOF
-        template
       end
     end
   end

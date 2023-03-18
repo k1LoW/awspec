@@ -1,23 +1,53 @@
 AllCops:
-  TargetRubyVersion: 2.1
+  SuggestExtensions: false
 
-Layout/IndentHeredoc:
+Layout/ClosingHeredocIndentation:
   Enabled: false
 
-Layout/MultilineOperationIndentation:
+Layout/HashAlignment:
   Enabled: false
 
-Layout/MultilineMethodCallBraceLayout:
+Layout/HeredocIndentation:
+  Enabled: false
+  
+Gemspec/RequiredRubyVersion:
   Enabled: false
 
-Lint/HandleExceptions:
+Lint/DuplicateMethods:
+  Exclude:
+    - 'lib/awspec/type/codedeploy_deployment_group.rb'
+    - 'lib/awspec/type/ecs_container_instance.rb'
+    - 'lib/awspec/type/ecs_service.rb'
+    - 'lib/awspec/type/eks_nodegroup.rb'
+    - 'lib/awspec/type/resource_base.rb'
+
+Lint/ErbNewArguments:
   Enabled: false
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+Lint/MissingSuper:
+  Exclude:
+    - 'lib/awspec/generator/doc/type/account_attribute.rb'
+    - 'lib/awspec/generator/doc/type/account_attribute_base.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'lib/awspec/type/resource_base.rb'
+
+Lint/SuppressedException:
+  Exclude:
+    - 'Rakefile'
+
+Lint/UnreachableLoop:
+  Exclude:
+    - 'lib/awspec/type/nat_gateway.rb'
+    - 'lib/awspec/type/route53_hosted_zone.rb'
 
 Lint/UselessAssignment:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 50
+  Max: 60
 
 Metrics/BlockLength:
   Max: 60
@@ -26,37 +56,45 @@ Metrics/ClassLength:
   Max: 130
 
 Metrics/CyclomaticComplexity:
-  Max: 15
-
-Metrics/LineLength:
-  Max: 120
+  Max: 30
 
 Metrics/MethodLength:
   Max: 30
 
 Metrics/ModuleLength:
-  CountComments: false
   Max: 200
 
-Metrics/PerceivedComplexity:
-  Max: 15
+Metrics/ParameterLists:
+  MaxOptionalParameters: 4
 
-Style/PredicateName:
+Metrics/PerceivedComplexity:
+  Max: 30
+
+Naming/HeredocDelimiterNaming:
   Enabled: false
 
-Performance/StringReplacement:
+Naming/MethodParameterName:
+  Exclude:
+    - 'lib/awspec/generator/spec/security_group.rb'
+    - 'lib/awspec/helper/client_wrap.rb'
+    - 'lib/awspec/type/network_acl.rb'
+
+Naming/PredicateName:
+  Enabled: false
+
+Naming/VariableNumber:
   Enabled: false
 
 Security/Eval:
-  Enabled: false
+  Exclude:
+    - 'lib/awspec/command/generate.rb'
+    - 'lib/awspec/generator/doc/type.rb'
+    - 'lib/awspec/helper/type.rb'
+    - 'lib/awspec/type/account.rb'
+    - 'lib/awspec/type/account_attribute.rb'
+    - 'spec/generator/doc/type_spec.rb'
 
-Style/Alias:
-  Enabled: false
-
-Style/BarePercentLiterals:
-  Enabled: false
-
-Style/BracesAroundHashParameters:
+Style/CaseLikeIf:
   Enabled: false
 
 Style/ClassAndModuleChildren:
@@ -65,8 +103,24 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-Style/MethodMissing:
+Style/EvalWithLocation:
   Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'lib/awspec/helper.rb'
 
 Style/MutableConstant:
   Enabled: false
@@ -77,17 +131,12 @@ Style/NumericLiteralPrefix:
 Style/NumericPredicate:
   Enabled: false
 
-Style/StabbyLambdaParentheses:
+Style/SafeNavigation:
   Enabled: false
 
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/RedundantSelf:
+Style/SoleNestedConditional:
   Enabled: false
 
 Style/SymbolProc:
   Enabled: false
 
-Style/YodaCondition:
-  Enabled: false

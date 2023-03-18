@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class IamGroup
@@ -5,13 +7,14 @@ module Awspec::Generator
       def generate_all
         groups = select_all_iam_groups
         raise 'Not Found IAM Group' if groups.empty?
+
         specs = groups.map do |group|
           inline_policies = select_inline_policy_by_group_name(group.group_name).map do |policy_name|
             res = iam_client.get_group_policy({
                                                 group_name: group.group_name,
                                                 policy_name: policy_name
                                               })
-            document = JSON.generate(JSON.parse(URI.decode(res.policy_document)))
+            document = JSON.generate(JSON.parse(URI.decode_www_form_component(res.policy_document)))
             "it { should have_inline_policy('#{policy_name}').policy_document('#{document}') }"
           end
           content = ERB.new(iam_group_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
@@ -20,7 +23,7 @@ module Awspec::Generator
       end
 
       def iam_group_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe iam_group('<%= group.group_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= group.arn %>' }
@@ -32,7 +35,6 @@ describe iam_group('<%= group.group_name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

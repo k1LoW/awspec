@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class SecurityGroup
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           group_id group_name
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         sgs = select_security_group_by_vpc_id(@vpc_id)
@@ -28,14 +31,14 @@ module Awspec::Generator
       def generate_linespecs(sg)
         linespecs = []
         permissions = { 'inbound' => sg.ip_permissions, 'outbound' => sg.ip_permissions_egress }
-        %w(inbound outbound).each do |inout|
+        %w[inbound outbound].each do |inout|
           permissions[inout].each do |permission|
             port = if permission.from_port.nil?
                      nil
                    elsif permission.from_port == permission.to_port
                      permission.from_port
                    else
-                     "'" + permission.from_port.to_s + '-' + permission.to_port.to_s + "'"
+                     "'#{permission.from_port}-#{permission.to_port}'"
                    end
 
             protocol = if permission.ip_protocol.to_i < 0
@@ -59,14 +62,13 @@ module Awspec::Generator
       end
 
       def security_group_spec_linetemplate
-        template = <<-'EOF'
+        <<-'EOF'
 its(:<%= inout %>) { should be_opened<%- unless port.nil? -%>(<%= port %>)<%- end -%>.protocol('<%= protocol %>').for('<%= target %>') }
 EOF
-        template
       end
 
       def security_group_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe security_group('<%= sg.group_name %>') do
   it { should exist }
 <% describes.each do |describe| %>
@@ -88,7 +90,6 @@ describe security_group('<%= sg.group_name %>') do
 <%- end -%>
 end
 EOF
-        template
       end
     end
   end

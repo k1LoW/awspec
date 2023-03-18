@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Eks < ResourceBase
     def initialize(name)
@@ -13,10 +15,10 @@ module Awspec::Type
       @id ||= resource_via_client.name if resource_via_client
     end
 
-    STATES = %w(ACTIVE CREATING)
+    STATES = %w[ACTIVE CREATING]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.status == state
       end
     end

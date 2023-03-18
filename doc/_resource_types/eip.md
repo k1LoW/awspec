@@ -1,7 +1,7 @@
 ### exist
 
 ```ruby
-describe eip('123.0.456.789') do
+describe eip('my-eip') do
   it { should exist }
 end
 ```

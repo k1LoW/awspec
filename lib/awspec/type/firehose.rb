@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Firehose < ResourceBase
     def initialize(name)
@@ -13,10 +15,10 @@ module Awspec::Type
       @id ||= @delivery_stream_name if resource_via_client
     end
 
-    STATES = %w(ACTIVE CREATING DELETING)
+    STATES = %w[ACTIVE CREATING DELETING]
 
     STATES.each do |state|
-      define_method state.downcase + '?' do
+      define_method "#{state.downcase}?" do
         resource_via_client.delivery_stream_status == state
       end
     end

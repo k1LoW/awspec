@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Awspec::Generator::Spec::S3Bucket do
@@ -35,6 +37,7 @@ describe s3_bucket('my-bucket') do
       status: 'Enabled'
     )
   end
+  it { should have_location('ap-northeast-1') }
 end
 EOF
     expect(s3_bucket.generate_all.to_s).to eq spec

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Doc
     module Type
@@ -7,7 +9,7 @@ module Awspec::Generator
         types = Awspec::Helper::Type::TYPES
         types.delete('base')
         links = types.sort.map do |type|
-          '[' + type + '](#' + type + ')'
+          "[#{type}](##{type})"
         end
         links.push('[account](#account)') # add account
         header = <<-'EOF'
@@ -44,10 +46,10 @@ EOF
 EOF
 
         links = attributes.map do |type|
-          '[' + type + '](#' + type + ')'
+          "[#{type}](##{type})"
         end
 
-        doc += links.join("\n| ") + "\n"
+        doc += "#{links.join("\n| ")}\n"
 
         attributes.map do |type|
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"

@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'awspec/helper/states'
+
 module Awspec::Type
   class Ec2 < ResourceBase
     aws_resource Aws::EC2::Instance
@@ -6,6 +10,16 @@ module Awspec::Type
     def initialize(name)
       super
       @display_name = name
+    end
+
+    # required by Awspec::Generator::Doc::Type
+    STATES = Awspec::Helper::States::EC2_STATES
+
+    Awspec::Helper::States.ec2_states_checks.each do |method_name, state|
+      define_method method_name do
+        check_existence
+        resource_via_client.state.name == state
+      end
     end
 
     def resource_via_client
@@ -17,18 +31,8 @@ module Awspec::Type
     end
 
     def security_group_count
+      check_existence
       resource_via_client.security_groups.count
-    end
-
-    STATES = %w(
-      pending running shutting-down
-      terminated stopping stopped
-    )
-
-    STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
-        resource_via_client.state.name == state
-      end
     end
 
     def disabled_api_termination?
@@ -56,31 +60,38 @@ module Awspec::Type
     end
 
     def has_security_group?(sg_id)
+      check_existence
       sgs = resource_via_client.security_groups
       ret = sgs.find do |sg|
         sg.group_id == sg_id || sg.group_name == sg_id
       end
       return true if ret
+
       sg2 = find_security_group(sg_id)
       return false unless sg2.tag_name == sg_id
+
       sgs.find do |sg|
         sg.group_id == sg2.group_id
       end
     end
 
     def has_iam_instance_profile?(iam_instance_profile_name)
+      check_existence
       iam = resource_via_client.iam_instance_profile
       ret = iam.arn.split('/').last == iam_instance_profile_name
       return true if ret
     end
 
     def has_ebs?(volume_id)
+      check_existence
       blocks = resource_via_client.block_device_mappings
       ret = blocks.find do |block|
         next false unless block.ebs
+
         block.ebs.volume_id == volume_id
       end
       return true if ret
+
       blocks2 = find_ebs(volume_id)
       blocks2.attachments.find do |attachment|
         attachment.instance_id == id
@@ -89,16 +100,18 @@ module Awspec::Type
 
     def has_network_interface?(network_interface_id, device_index = nil)
       res = find_network_interface(network_interface_id)
+      check_existence
       interfaces = resource_via_client.network_interfaces
-      interfaces.find do |interface|
+      ret = interfaces.find do |interface|
         next false if device_index && interface.attachment.device_index != device_index
+
         interface.network_interface_id == res.network_interface_id
       end
     end
 
     def has_event?(event_code)
       status = find_ec2_status(id)
-      status.events.find do |event|
+      ret = status.events.find do |event|
         event.code == event_code
       end
     end
@@ -106,6 +119,7 @@ module Awspec::Type
     def has_events?
       status = find_ec2_status(id)
       return false if status.nil?
+
       status.events.count > 0
     end
 
@@ -124,6 +138,7 @@ module Awspec::Type
       }
       classic_link_instances = ec2_client.describe_classic_link_instances(option)
       return false if classic_link_instances.instances.count == 0
+
       instances = classic_link_instances[0]
       sgs = instances[0].groups
       ret = sgs.find do |sg|
@@ -133,8 +148,7 @@ module Awspec::Type
     end
 
     def has_credit_specification?(cpu_credits)
-      ret = find_ec2_credit_specifications(id)
-      ret.cpu_credits == cpu_credits
+      find_ec2_credit_specifications(id).cpu_credits == cpu_credits
     end
 
     private
@@ -148,6 +162,7 @@ module Awspec::Type
     end
 
     def resource_security_groups
+      check_existence
       resource_via_client.security_groups
     end
   end

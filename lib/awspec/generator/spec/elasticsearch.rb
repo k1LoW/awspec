@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class Elasticsearch
@@ -5,11 +7,12 @@ module Awspec::Generator
       def generate_all
         domains = select_all_elasticsearch_domains
         raise 'Not Found Domain' if domains.empty?
+
         ERB.new(domain_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
       end
 
       def domain_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 <% domains.each do |domain| %>
 describe elasticsearch('<%= domain.domain_status.domain_name %>') do
   it { should exist }
@@ -34,7 +37,6 @@ describe elasticsearch('<%= domain.domain_status.domain_name %>') do
 end
 <% end %>
 EOF
-        template
       end
     end
   end

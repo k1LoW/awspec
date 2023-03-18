@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class ResourceBase < Base
     attr_reader :id, :resource_via_client

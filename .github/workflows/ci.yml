@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.1
+        bundler-cache: true
+
+    - name: Run rubocop
+      uses: reviewdog/action-rubocop@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        fail_on_error: true
+
+  test:
+    name: Test
+    needs: [ lint ]
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '2.1'
+          - '2.2'
+          - '2.3'
+          - '2.4'
+          - '2.5'
+          - '2.6'
+          - '2.7'
+          - '3.0'
+          - '3.1'
+    runs-on: ubuntu-latest
+    env:
+      DISABLE_AWS_CLIENT_CHECK: true
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
+
+    - name: Show Ruby version
+      run: ruby -v
+
+    - name: Generate document
+      run: bundle exec bin/toolbox docgen > doc/resource_types.md
+
+    - name: Run tests
+      run: bundle exec rake spec:parallel

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../stub/ec2'
 
 stub_responses = Aws.config[:ec2][:stub_responses]

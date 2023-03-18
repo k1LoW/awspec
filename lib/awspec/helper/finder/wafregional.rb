@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module WafRegional
@@ -14,6 +16,7 @@ module Awspec::Helper
         end
 
         return nil unless finded
+
         wafregional_client.get_web_acl(web_acl_id: finded.web_acl_id).web_acl
       end
 
@@ -30,6 +33,7 @@ module Awspec::Helper
         end
 
         return nil unless finded
+
         wafregional_client.get_rule(rule_id: finded.rule_id).rule
       end
 
@@ -46,6 +50,7 @@ module Awspec::Helper
         end
 
         return nil unless finded
+
         wafregional_client.get_ip_set(ip_set_id: finded.ip_set_id).ip_set
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'awspec/error'
 Awspec::Stub.load 'iam_policy'
@@ -12,17 +14,37 @@ describe iam_policy('my-iam-policy') do
   it { should be_attached_to_group('my-iam-group') }
   it { should be_attached_to_user('my-iam-user') }
   it { should be_attached_to_role('HelloIAmGodRole') }
+  it do
+    should have_policy_document(<<-'DOC')
+{
+"Statement": [
+    {
+     "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]
+    }
+  ]
+}
+DOC
+  end
 end
 
 describe iam_policy('unknow-iam-policy') do
   it { should_not exist }
-  methods = %w(attachment_count policy_id policy_name attachable?)
+  methods = %w[attachment_count policy_id policy_name attachable?]
   methods.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do
       expect { subject.send(method_name) }.to raise_error(Awspec::NoExistingResource)
     end
   end
-  methods_with_param = %w(attached_to_user? attached_to_group? attached_to_role?)
+  methods_with_param = %w[attached_to_user? attached_to_group? attached_to_role?]
   methods_with_param.each do |method_name|
     it "#{method_name} raises Awspec::NoExistingResource" do
       expect { subject.send(method_name, 'foobar') }.to raise_error(Awspec::NoExistingResource)

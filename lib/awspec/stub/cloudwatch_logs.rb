@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Aws.config[:cloudwatchlogs] = {
   stub_responses: {
     describe_log_groups: {
@@ -18,7 +20,8 @@ Aws.config[:cloudwatchlogs] = {
     describe_metric_filters: {
       metric_filters: [
         {
-          filter_name: 'my-cloudwatch-logs-metric-filter'
+          filter_name: 'my-cloudwatch-logs-metric-filter',
+          filter_pattern: '[date, error]'
         }
       ]
     },

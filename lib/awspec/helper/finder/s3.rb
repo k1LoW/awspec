@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module S3
@@ -16,9 +18,9 @@ module Awspec::Helper
       def head_object(id, key)
         res = s3_client.head_object({
                                       bucket: id,
-                                      key: key.sub(%r(\A/), '')
+                                      key: key.sub(%r{\A/}, '')
                                     })
-        res.data.class == Aws::S3::Types::HeadObjectOutput
+        res.data.instance_of?(Aws::S3::Types::HeadObjectOutput)
       rescue Aws::S3::Errors::NotFound
         false
       end
@@ -31,6 +33,17 @@ module Awspec::Helper
 
       def find_bucket_policy(id)
         s3_client.get_bucket_policy(bucket: id)
+      rescue Aws::S3::Errors::ServiceError
+        nil
+      end
+
+      def find_bucket_location(id)
+        bucket_location = s3_client.get_bucket_location(bucket: id)
+        if bucket_location.location_constraint.nil? || bucket_location.location_constraint.empty?
+          'us-east-1'
+        else
+          bucket_location.location_constraint
+        end
       rescue Aws::S3::Errors::ServiceError
         nil
       end

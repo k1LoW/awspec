@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Redshift
       def find_redshift_cluster_identifier(id)
         res = redshift_client.describe_clusters(cluster_identifier: id)
         res.clusters.single_resource(id)
-      rescue
+      rescue StandardError
         nil
       end
 
@@ -25,6 +27,7 @@ module Awspec::Helper
             parameters[param.parameter_name] = param.parameter_value
           end
           break if res.marker.nil?
+
           res = redshift_client.describe_cluster_parameters({
                                                               parameter_group_name: parameter_group,
                                                               marker: res.marker

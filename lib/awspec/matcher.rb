@@ -1,13 +1,19 @@
+# frozen_string_literal: true
+
 # EC2
 require 'awspec/matcher/belong_to_vpc'
 require 'awspec/matcher/belong_to_subnet'
 require 'awspec/matcher/have_tag'
 require 'awspec/matcher/have_network_interface'
 
+# EKS
+require 'awspec/matcher/belong_to_subnets'
+
 # RDS
 require 'awspec/matcher/belong_to_db_subnet_group'
 require 'awspec/matcher/have_db_parameter_group'
 require 'awspec/matcher/have_option_group'
+require 'awspec/matcher/have_cluster_member'
 
 # SecurityGroup
 require 'awspec/matcher/be_opened'
@@ -53,6 +59,7 @@ require 'awspec/matcher/have_rule'
 
 # CloudWatch Logs
 require 'awspec/matcher/have_subscription_filter'
+require 'awspec/matcher/have_metric_filter'
 
 # DynamoDB
 require 'awspec/matcher/have_attribute_definition'

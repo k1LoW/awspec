@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class BatchJobDefinition < ResourceBase
     def initialize(jobdef)

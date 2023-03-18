@@ -1,25 +1,53 @@
+# frozen_string_literal: true
+
 module Awspec::Helper
   module Finder
     module Ec2
       def find_ec2(id)
         # instance_id or tag:Name
-        begin
-          res = ec2_client.describe_instances({
-                                                instance_ids: [id]
-                                              })
-        rescue
-          # Aws::EC2::Errors::InvalidInstanceIDMalformed
-          # Aws::EC2::Errors::InvalidInstanceIDNotFound
-          res = ec2_client.describe_instances({
-                                                filters: [{ name: 'tag:Name', values: [id] }]
-                                              })
+
+        # First tries to search by using an educated guess, based on the
+        # references below:
+        # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html
+        # https://docs.chef.io/inspec/resources/aws_ec2_instance/
+        # This should be faster then just first trying ID when the parameter is
+        # clearly not one
+
+        # https://medium.com/@Bakku1505/ruby-start-with-end-with-vs-regular-expressions-59728be0859e
+        if id.start_with?('i-') && id.length == 19 && id =~ /^i-[0-9a-f]/
+          begin
+            res = ec2_client.describe_instances({
+                                                  instance_ids: [id]
+                                                })
+          rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
+            res = ec2_client.describe_instances({
+                                                  filters: [{ name: 'tag:Name', values: [id] }]
+                                                })
+          end
+        else
+          begin
+            res = ec2_client.describe_instances({
+                                                  filters: [{ name: 'tag:Name', values: [id] }]
+                                                })
+          rescue Aws::EC2::Errors::InvalidInstanceIDNotFound, Aws::EC2::Errors::InvalidInstanceIDMalformed => e
+            res = ec2_client.describe_instances({
+                                                  instance_ids: [id]
+                                                })
+            if res.reservations.count > 1
+              warn "Warning: '#{id}' unexpectedly identified as a valid instance ID during fallback search"
+            end
+          end
         end
-        # rubocop:enable Style/GuardClause
-        if res.reservations.count == 1
-          res.reservations.first.instances.single_resource(id)
-        elsif res.reservations.count > 1
-          raise Awspec::DuplicatedResourceTypeError, "Duplicate instances matching id or tag #{id}"
-        end
+
+        return nil if res.reservations.count == 0
+        return res.reservations.first.instances.single_resource(id) if res.reservations.count == 1
+        raise Awspec::DuplicatedResourceTypeError, dup_ec2_instance(id) if res.reservations.count > 1
+
+        raise "Unexpected condition of having reservations = #{res.reservations.count}"
+      end
+
+      def dup_ec2_instance(id)
+        "Duplicate instances matching id or tag #{id}"
       end
 
       def find_ec2_attribute(id, attribute)
@@ -43,22 +71,27 @@ module Awspec::Helper
       end
 
       # find_internet_gateway find_vpn_gateway find_customer_gateway
-      gateway_types = %w(internet vpn customer)
+      gateway_types = %w[internet vpn customer transit]
       gateway_types.each do |type|
-        define_method 'find_' + type + '_gateway' do |*args|
+        define_method "find_#{type}_gateway" do |*args|
           gateway_id = args.first
-          method_name = 'describe_' + type + '_gateways'
-          res = ec2_client.send(
-            method_name,
-            { filters: [{ name: type + '-gateway-id', values: [gateway_id] }] }
-          )
-          resource = res[type + '_gateways'].single_resource(gateway_id)
-          return resource if resource
+          method_name = "describe_#{type}_gateways"
+          begin
+            res = ec2_client.send(
+              method_name,
+              { filters: [{ name: "#{type}-gateway-id", values: [gateway_id] }] }
+            )
+            resource = res["#{type}_gateways"].single_resource(gateway_id)
+            return resource if resource
+          rescue StandardError
+            resource = nil
+          end
+
           res = ec2_client.send(
             method_name,
             { filters: [{ name: 'tag:Name', values: [gateway_id] }] }
           )
-          res[type + '_gateways'].single_resource(gateway_id)
+          res["#{type}_gateways"].single_resource(gateway_id)
         end
       end
 
@@ -73,6 +106,7 @@ module Awspec::Helper
                                                   })
         resource = res.vpn_connections.single_resource(vpn_connection_id)
         return resource if resource
+
         res = ec2_client.describe_vpn_connections({
                                                     filters: [
                                                       {
@@ -90,7 +124,7 @@ module Awspec::Helper
           res = ec2_client.describe_nat_gateways({
                                                    nat_gateway_ids: [gateway_id]
                                                  })
-        rescue
+        rescue StandardError
           res = ec2_client.describe_nat_gateways({
                                                    filter: [{ name: 'tag:Name', values: [gateway_id] }]
                                                  })
@@ -113,6 +147,7 @@ module Awspec::Helper
                                                      })
         resource = res.network_interfaces.single_resource(interface_id)
         return resource if resource
+
         res = ec2_client.describe_network_interfaces({
                                                        filters: [{ name: 'tag:Name', values: [interface_id] }]
                                                      })
@@ -130,20 +165,6 @@ module Awspec::Helper
           end
         end
         instances
-      end
-
-      def select_eip_by_instance_id(id)
-        res = ec2_client.describe_addresses({
-                                              filters: [{ name: 'instance-id', values: [id] }]
-                                            })
-        res.addresses
-      end
-
-      def select_eip_by_public_ip(id)
-        res = ec2_client.describe_addresses({
-                                              filters: [{ name: 'public-ip', values: [id] }]
-                                            })
-        res.addresses
       end
 
       def select_network_interface_by_instance_id(id)
@@ -180,7 +201,7 @@ module Awspec::Helper
           res = ec2_client.describe_launch_templates({
                                                        launch_template_ids: [id]
                                                      })
-        rescue
+        rescue StandardError
           res = ec2_client.describe_launch_templates({
                                                        launch_template_names: [id]
                                                      })
@@ -193,10 +214,19 @@ module Awspec::Helper
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_id: id
                                                            })
-      rescue
+      rescue StandardError
         res = ec2_client.describe_launch_template_versions({
                                                              launch_template_name: id
                                                            })
+      end
+
+      def find_tgw_attachments_by_tgw_id(tgw_id)
+        res = ec2_client.describe_transit_gateway_attachments({
+                                                                filters: [
+                                                                  { name: 'transit-gateway-id', values: [tgw_id] }
+                                                                ]
+                                                              })
+        res.transit_gateway_attachments
       end
     end
   end

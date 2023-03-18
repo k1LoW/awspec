@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class NetworkInterface < ResourceBase
     tags_allowed
@@ -10,12 +12,12 @@ module Awspec::Type
       @id ||= resource_via_client.network_interface_id if resource_via_client
     end
 
-    STATES = %w(
+    STATES = %w[
       available attaching in-use detaching
-    )
+    ]
 
     STATES.each do |state|
-      define_method state.tr('-', '_') + '?' do
+      define_method "#{state.tr('-', '_')}?" do
         resource_via_client.status == state
       end
     end
@@ -25,6 +27,7 @@ module Awspec::Type
       return false unless instance
       return false unless resource_via_client.attachment
       return false if device_index && resource_via_client.attachment.device_index != device_index
+
       resource_via_client.attachment.instance_id == instance.instance_id && \
         resource_via_client.attachment.status == 'attached'
     end
@@ -32,6 +35,7 @@ module Awspec::Type
     def has_private_ip_address?(ip_address, primary = nil)
       resource_via_client.private_ip_addresses.find do |i|
         next false if !primary.nil? && i.primary != primary
+
         i.private_ip_address == ip_address
       end
     end
@@ -42,8 +46,10 @@ module Awspec::Type
         sg.group_id == sg_id || sg.group_name == sg_id
       end
       return true if ret
+
       sg2 = find_security_group(sg_id)
       return false unless sg2.tag_name == sg_id
+
       sgs.find do |sg|
         sg.group_id == sg2.group_id
       end

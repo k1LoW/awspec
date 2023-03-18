@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   class Template
     def self.generate(type)
       @type = type
       @account_attribute = false
-      @root_path = File.dirname(__FILE__) + '/../../../'
+      @root_path = "#{File.dirname(__FILE__)}/../../../"
       generate_stub
       generate_type
       generate_type_spec
@@ -15,7 +17,7 @@ module Awspec::Generator
     def self.generate_account_attribute(type)
       @type = type
       @account_attribute = true
-      @root_path = File.dirname(__FILE__) + '/../../../'
+      @root_path = "#{File.dirname(__FILE__)}/../../../"
       generate_type
       generate_account_attribute_generator_doc
       generate_resource_type_doc
@@ -23,7 +25,7 @@ module Awspec::Generator
     end
 
     def self.generate_type
-      path = 'lib/awspec/type/' + @type.underscore + '.rb'
+      path = "lib/awspec/type/#{@type.underscore}.rb"
       base = @account_attribute ? 'AccountAttributeBase' : 'ResourceBase'
       content = <<-"EOF"
 module Awspec::Type
@@ -33,26 +35,26 @@ module Awspec::Type
     end
 
     def id
-     @id ||= # FIXME
+      @id ||= # FIXME
     end
   end
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_stub
-      path = 'lib/awspec/stub/' + @type.underscore + '.rb'
+      path = "lib/awspec/stub/#{@type.underscore}.rb"
       content = <<-"EOF"
 # Aws.config[:ec2] = {
 #   stub_responses: true
 # }
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_type_spec
-      path = 'spec/type/' + @type.underscore + '_spec.rb'
+      path = "spec/type/#{@type.underscore}_spec.rb"
       content = <<-"EOF"
 require 'spec_helper'
 Awspec::Stub.load '#{@type.underscore}'
@@ -61,11 +63,11 @@ describe #{@type.underscore}('my-#{@type.underscore.tr('_', '-')}') do
   it { should exist }
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_generator_doc
-      path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
+      path = "lib/awspec/generator/doc/type/#{@type.underscore}.rb"
       content = <<-"EOF"
 module Awspec::Generator
   module Doc
@@ -85,11 +87,11 @@ module Awspec::Generator
   end
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_account_attribute_generator_doc
-      path = 'lib/awspec/generator/doc/type/' + @type.underscore + '.rb'
+      path = "lib/awspec/generator/doc/type/#{@type.underscore}.rb"
       content = <<-"EOF"
 module Awspec::Generator
   module Doc
@@ -109,15 +111,15 @@ module Awspec::Generator
   end
 end
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.generate_resource_type_doc
-      path = 'doc/_resource_types/' + @type.underscore + '.md'
+      path = "doc/_resource_types/#{@type.underscore}.md"
       content = <<-"EOF"
 ### exist
 EOF
-      self.file_check_and_puts(path, content)
+      file_check_and_puts(path, content)
     end
 
     def self.put_message
@@ -133,7 +135,7 @@ EOF
 
     def self.file_check_and_puts(path, content)
       if File.exist? @root_path + path
-        $stderr.puts "!! #{path} already exists"
+        warn "!! #{path} already exists"
       else
         File.open(@root_path + path, 'w') do |f|
           f.puts content

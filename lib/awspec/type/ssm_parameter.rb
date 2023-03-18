@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class SsmParameter < ResourceBase
     def initialize(name)
@@ -20,6 +22,7 @@ module Awspec::Type
     def has_tag?(key, value)
       tag = find_parameter_tag(id, key)
       return nil if tag.value != value
+
       tag
     end
   end

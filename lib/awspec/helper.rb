@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'awspec/helper/color'
 require 'awspec/helper/type'
 require 'awspec/helper/finder'

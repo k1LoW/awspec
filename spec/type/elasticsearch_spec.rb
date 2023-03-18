@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'elasticsearch'
 
@@ -6,7 +8,7 @@ describe elasticsearch('my-elasticsearch') do
   its(:elasticsearch_version) { should eq '2.3' }
   its('elasticsearch_cluster_config.instance_type') { should eq 't2.micro.elasticsearch' }
   it do
-    should have_access_policies <<-policy
+    should have_access_policies <<-POLICY
 {
   "version": "2012-10-17",
   "statement": [
@@ -20,6 +22,6 @@ describe elasticsearch('my-elasticsearch') do
     }
   ]
 }
-  policy
+  POLICY
   end
 end

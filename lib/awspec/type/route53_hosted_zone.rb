@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Route53HostedZone < ResourceBase
     def resource_via_client
@@ -28,6 +30,7 @@ module Awspec::Type
 
       record_sets.each do |record_set|
         return match_record(record_set, name, value, options) unless record_set.resource_records.empty?
+
         return match_alias_record(record_set, name, options)
       end
     end
@@ -37,8 +40,10 @@ module Awspec::Type
     def match_failover_record(record_sets, name, value, options)
       record_sets.select! { |record_set| record_set.failover == options[:record_type] }
       return false if record_sets.empty?
+
       record_sets.each do |record_set|
         return match_alias_record(record_set, name, options) if value.nil?
+
         return match_record(record_set, name, value, options)
       end
     end
@@ -58,8 +63,8 @@ module Awspec::Type
 
     def match_alias_record(record_set, name, options)
       record_set.name == name && \
-      record_set.alias_target.dns_name == options[:alias_dns_name] && \
-      record_set.alias_target.hosted_zone_id == options[:alias_hosted_zone_id]
+        record_set.alias_target.dns_name == options[:alias_dns_name] && \
+        record_set.alias_target.hosted_zone_id == options[:alias_hosted_zone_id]
     end
   end
 end

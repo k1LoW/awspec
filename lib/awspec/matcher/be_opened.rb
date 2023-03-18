@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :be_opened do |port|
   match do |sg|
     sg.opened?(port, @protocol, @cidr)

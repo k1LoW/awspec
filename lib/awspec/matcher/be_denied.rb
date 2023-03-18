@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :be_denied do |port|
   match do |type|
     type.denied?(port, @protocol, @cidr, @rule_number)

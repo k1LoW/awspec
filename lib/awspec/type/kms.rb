@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awspec::Type
   class Kms < ResourceBase
     def resource_via_client
@@ -14,7 +16,8 @@ module Awspec::Type
 
     def has_key_policy?(policy_name, document = nil)
       res = kms_client.get_key_policy(key_id: id, policy_name: policy_name)
-      return JSON.parse(URI.decode(res.policy)) == JSON.parse(document) if document
+      return JSON.parse(URI.decode_www_form_component(res.policy)) == JSON.parse(document) if document
+
       res
     end
   end

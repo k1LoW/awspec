@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Awspec::Generator
   module Spec
     class NlbListener
       include Awspec::Helper::Finder
       def generate_by_vpc_id(vpc_id)
-        describes = %w(
+        describes = %w[
           load_balancer_arn port protocol ssl_policy
-        )
+        ]
         vpc = find_vpc(vpc_id)
         raise 'Not Found VPC' unless vpc
+
         @vpc_id = vpc[:vpc_id]
         @vpc_tag_name = vpc.tag_name
         nlbs = select_nlb_by_vpc_id(@vpc_id)
@@ -77,7 +80,7 @@ module Awspec::Generator
       end
 
       def nlb_listener_spec_template
-        template = <<-'EOF'
+        <<-'EOF'
 describe nlb_listener('<%= listener.listener_arn %>') do
   it { should exist }
   <%- describes.each do |describe| -%>
@@ -103,7 +106,6 @@ describe nlb_listener('<%= listener.listener_arn %>') do
   <%- end -%>
 end
 EOF
-        template
       end
     end
   end

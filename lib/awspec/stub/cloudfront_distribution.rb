@@ -17,6 +17,7 @@ Aws.config[:cloudfront] = {
               status: 'Deployed',
               last_modified_time: Time.new(2015, 1, 2, 10, 00, 00, '+00:00'),
               domain_name: 'abcdefghijklmn.cloudfront.net',
+              staging: false,
               aliases: {
                 quantity: 0,
                 items: []
@@ -115,6 +116,7 @@ Aws.config[:cloudfront] = {
               status: 'Deployed',
               last_modified_time: Time.new(2016, 3, 2, 10, 00, 00, '+00:00'),
               domain_name: '123456789zyxw.cloudfront.net',
+              staging: false,
               aliases: {
                 quantity: 1,
                 items: ['cf-s3-origin-hosting.dev.example.com']

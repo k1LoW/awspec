@@ -61,5 +61,14 @@ module Awspec::Type
         !roles.empty?
       end
     end
+
+    def has_policy_document?(document)
+      res = iam_client.get_policy_version({
+                                            policy_arn: resource_via_client.arn,
+                                            version_id: resource_via_client.default_version_id
+                                          })
+
+      JSON.parse(URI.decode_www_form_component(res.policy_version.document)) == JSON.parse(document)
+    end
   end
 end

@@ -1936,6 +1936,34 @@ describe iam_policy('my-iam-user') do
 end
 ```
 
+
+### have_policy_document
+
+```ruby
+describe iam_policy('my-iam-user') do
+  it do
+    should have_policy_document(<<-'DOC')
+{
+"Statement": [
+    {
+     "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::my-bucket", "arn:aws:s3:::my-bucket/*"]
+    }
+  ]
+}
+DOC
+  end
+end
+```
+
 ### its(:policy_name), its(:policy_id), its(:arn), its(:path), its(:default_version_id), its(:attachment_count), its(:permissions_boundary_usage_count), its(:is_attachable), its(:description), its(:create_date), its(:update_date), its(:tags)
 ## <a name="iam_role">iam_role</a>
 

@@ -2468,6 +2468,7 @@ end
 ```ruby
 describe nat_gateway('nat-7ff7777f') do
   it { should have_eip('123.0.456.789') }
+  it { should have_eip('my-eip') }
 end
 ```
 
@@ -2475,7 +2476,7 @@ end
 ### have_tag
 
 ```ruby
-describe nat_gateway('nat-7ff7777f') do
+describe nat_gateway('my-nat-gateway') do
   it { should have_tag('Name').value('my-nat-gateway') }
 end
 ```

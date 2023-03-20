@@ -147,7 +147,7 @@ module Awspec::Helper
                                                      })
         resource = res.network_interfaces.single_resource(interface_id)
         return resource if resource
-
+      rescue Aws::EC2::Errors::InvalidNetworkInterfaceIdMalformed => e
         res = ec2_client.describe_network_interfaces({
                                                        filters: [{ name: 'tag:Name', values: [interface_id] }]
                                                      })

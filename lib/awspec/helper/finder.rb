@@ -170,9 +170,15 @@ module Awspec::Helper
 
     CLIENT_OPTIONS = {
       http_proxy: ENV['http_proxy'] || ENV['https_proxy'] || nil,
-      http_wire_trace: ENV['http_wire_trace'] || false,
-      endpoint: ENV['aws_custom_endpoint'] || nil
+      http_wire_trace: ENV['http_wire_trace'] || false
     }
+
+    # We have to set this conditionally after defining `CLIENT_OPTIONS`,
+    # because setting the `endpoint` argument to `nil` results in an error from
+    # the aws sdk.
+    if ENV.has_key?('aws_custom_endpoint')
+      CLIENT_OPTIONS[:endpoint] = ENV['aws_custom_endpoint']
+    end
 
     check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')
 

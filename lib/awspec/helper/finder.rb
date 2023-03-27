@@ -176,7 +176,7 @@ module Awspec::Helper
     # We have to set this conditionally after defining `CLIENT_OPTIONS`,
     # because setting the `endpoint` argument to `nil` results in an error from
     # the aws sdk.
-    if ENV.has_key?('aws_custom_endpoint')
+    if ENV.key?('aws_custom_endpoint')
       CLIENT_OPTIONS[:endpoint] = ENV['aws_custom_endpoint']
     end
 

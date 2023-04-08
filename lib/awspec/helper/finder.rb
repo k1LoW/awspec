@@ -177,7 +177,7 @@ module Awspec::Helper
     # because setting the `endpoint` argument to `nil` results in an error from
     # the aws sdk.
     if ENV.key?('endpoint')
-      CLIENT_OPTIONS[:endpoint] = ENV['aws_custom_endpoint']
+      CLIENT_OPTIONS[:endpoint] = ENV['endpoint']
     end
 
     check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')

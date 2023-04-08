@@ -172,7 +172,7 @@ Awspec.configure do |config|
 end
 ```
 
-### Advanced Tips: Setting A Custom Endpoint And Testing Locally
+### Advanced Tips: Setting A Custom Endpoint
 
 Set the `endpoint` environment variable to tell awspec to use a different
 endpoint to connect to aws. Common use cases are connecting to aws through a

@@ -176,7 +176,8 @@ end
 
 Set the `endpoint` environment variable to tell awspec to use a different
 endpoint to connect to aws. Common use cases are connecting to aws through a
-proxy or connecting to a local mock aws environment.
+proxy, using a different service with an aws compatible interface, or
+connecting to a local mock aws environment.
 
 For example, first create a resource on a local aws service using the aws cli:
 

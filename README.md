@@ -182,7 +182,7 @@ For example, first create a resource on a local aws service using the aws cli:
 
 ```
 AWS_SECRET_ACCESS_KEY=dummy AWS_ACCESS_KEY_ID=dummy \
-    aws --endpoint http://localhost:5000 s3 mb my-bucket
+    aws --endpoint-url http://localhost:5000 s3 mb s3://my-bucket
 ```
 
 Then you can tell awspec to run the test suite using the same custom endpoint:

@@ -172,6 +172,26 @@ Awspec.configure do |config|
 end
 ```
 
+### Advanced Tips: Setting A Custom Endpoint
+
+Set the `endpoint` environment variable to tell awspec to use a different
+endpoint to connect to aws. Common use cases are connecting to aws through a
+proxy, using a different service with an aws compatible interface, or
+connecting to a local mock aws environment.
+
+For example, first create a resource on a local aws service using the aws cli:
+
+```
+AWS_SECRET_ACCESS_KEY=dummy AWS_ACCESS_KEY_ID=dummy \
+    aws --endpoint-url http://localhost:5000 s3 mb s3://my-bucket
+```
+
+Then you can tell awspec to run the test suite using the same custom endpoint:
+
+```
+endpoint=http://localhost:5000 bundle exec rake spec
+```
+
 ## Support AWS Resources
 
 [Resource Types information here](doc/resource_types.md)

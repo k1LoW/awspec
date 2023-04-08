@@ -173,6 +173,13 @@ module Awspec::Helper
       http_wire_trace: ENV['http_wire_trace'] || false
     }
 
+    # We have to set this conditionally after defining `CLIENT_OPTIONS`,
+    # because setting the `endpoint` argument to `nil` results in an error from
+    # the aws sdk.
+    if ENV.key?('endpoint')
+      CLIENT_OPTIONS[:endpoint] = ENV['endpoint']
+    end
+
     check_configuration = ENV['DISABLE_AWS_CLIENT_CHECK'] != 'true' if ENV.key?('DISABLE_AWS_CLIENT_CHECK')
 
     # define_method below will "hide" any exception that comes from bad

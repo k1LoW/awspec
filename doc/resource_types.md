@@ -729,7 +729,7 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status)
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status), its(:inherited_properties)
 ## <a name="codebuild">codebuild</a>
 
 Codebuild resource type.

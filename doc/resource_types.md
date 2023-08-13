@@ -173,7 +173,7 @@ describe alb('my-alb') do
 end
 ```
 
-### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type), its(:customer_owned_ipv_4_pool)
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type), its(:customer_owned_ipv_4_pool), its(:enforce_security_group_inbound_rules_on_private_link_traffic)
 ## <a name="alb_listener">alb_listener</a>
 
 AlbListener resource type.
@@ -2728,7 +2728,7 @@ describe nlb('my-nlb') do
 end
 ```
 
-### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type), its(:customer_owned_ipv_4_pool)
+### its(:load_balancer_arn), its(:dns_name), its(:canonical_hosted_zone_id), its(:created_time), its(:load_balancer_name), its(:scheme), its(:vpc_id), its(:type), its(:security_groups), its(:ip_address_type), its(:customer_owned_ipv_4_pool), its(:enforce_security_group_inbound_rules_on_private_link_traffic)
 ## <a name="nlb_listener">nlb_listener</a>
 
 NlbListener resource type.

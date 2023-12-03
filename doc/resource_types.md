@@ -209,7 +209,7 @@ describe alb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:li
 end
 ```
 
-### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy), its(:alpn_policy)
+### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy), its(:alpn_policy), its(:mutual_authentication)
 ## <a name="alb_target_group">alb_target_group</a>
 
 AlbTargetGroup resource type.
@@ -729,7 +729,7 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status), its(:inherited_properties)
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status), its(:inherited_properties), its(:log_group_class)
 ## <a name="codebuild">codebuild</a>
 
 Codebuild resource type.
@@ -1336,7 +1336,7 @@ describe efs('my-efs') do
 end
 ```
 
-### its(:owner_id), its(:creation_token), its(:file_system_id), its(:file_system_arn), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps), its(:availability_zone_name), its(:availability_zone_id)
+### its(:owner_id), its(:creation_token), its(:file_system_id), its(:file_system_arn), its(:creation_time), its(:life_cycle_state), its(:name), its(:number_of_mount_targets), its(:performance_mode), its(:encrypted), its(:kms_key_id), its(:throughput_mode), its(:provisioned_throughput_in_mibps), its(:availability_zone_name), its(:availability_zone_id), its(:file_system_protection)
 ## <a name="elastic_ip">elastic_ip</a>
 
 Elastic IP resource type.
@@ -2764,7 +2764,7 @@ describe nlb_listener('arn:aws:elasticloadbalancing:ap-northeast-1:1234567890:li
 end
 ```
 
-### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy), its(:alpn_policy)
+### its(:listener_arn), its(:load_balancer_arn), its(:port), its(:protocol), its(:certificates), its(:ssl_policy), its(:alpn_policy), its(:mutual_authentication)
 ## <a name="nlb_target_group">nlb_target_group</a>
 
 NlbTargetGroup resource type.

@@ -767,7 +767,7 @@ describe codedeploy_deployment_group('my-codedeploy-deployment-group'), applicat
 end
 ```
 
-### its(:application_name), its(:deployment_group_id), its(:deployment_group_name), its(:deployment_config_name), its(:on_premises_instance_tag_filters), its(:service_role_arn), its(:target_revision), its(:trigger_configurations), its(:alarm_configuration), its(:deployment_style), its(:outdated_instances_strategy), its(:load_balancer_info), its(:last_successful_deployment), its(:last_attempted_deployment), its(:ec2_tag_set), its(:on_premises_tag_set), its(:compute_platform), its(:ecs_services)
+### its(:application_name), its(:deployment_group_id), its(:deployment_group_name), its(:deployment_config_name), its(:on_premises_instance_tag_filters), its(:service_role_arn), its(:target_revision), its(:trigger_configurations), its(:alarm_configuration), its(:deployment_style), its(:outdated_instances_strategy), its(:load_balancer_info), its(:last_successful_deployment), its(:last_attempted_deployment), its(:ec2_tag_set), its(:on_premises_tag_set), its(:compute_platform), its(:ecs_services), its(:termination_hook_enabled)
 ## <a name="cognito_identity_pool">cognito_identity_pool</a>
 
 CognitoIdentityPool resource type.

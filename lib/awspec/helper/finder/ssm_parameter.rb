@@ -18,6 +18,7 @@ module Awspec::Helper
             return res.parameters.first
           end
           break if res.next_token.nil?
+
           req[:next_token] = res.next_token
         end
       end

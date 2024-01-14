@@ -3852,7 +3852,7 @@ end
 ```
 
 
-### its(:arn), its(:certificate), its(:protocol_details), its(:domain), its(:endpoint_type), its(:host_key_fingerprint), its(:identity_provider_details), its(:identity_provider_type), its(:logging_role), its(:post_authentication_login_banner), its(:pre_authentication_login_banner), its(:protocols), its(:security_policy_name), its(:server_id), its(:state), its(:user_count), its(:workflow_details), its(:structured_log_destinations), its(:s3_storage_options)
+### its(:arn), its(:certificate), its(:protocol_details), its(:domain), its(:endpoint_type), its(:host_key_fingerprint), its(:identity_provider_details), its(:identity_provider_type), its(:logging_role), its(:post_authentication_login_banner), its(:pre_authentication_login_banner), its(:protocols), its(:security_policy_name), its(:server_id), its(:state), its(:user_count), its(:workflow_details), its(:structured_log_destinations), its(:s3_storage_options), its(:as_2_service_managed_egress_ip_addresses)
 ## <a name="transit_gateway">transit_gateway</a>
 
 TransitGateway resource type.

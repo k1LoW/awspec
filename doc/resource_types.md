@@ -52,6 +52,7 @@
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
 | [launch_template](#launch_template)
+| [managed_prefix_list](#managed_prefix_list)
 | [mq](#mq)
 | [msk](#msk)
 | [nat_gateway](#nat_gateway)
@@ -466,7 +467,7 @@ describe cloudformation_stack('my-cloudformation-stack') do
 end
 ```
 
-### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create)
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create), its(:detailed_status)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.
@@ -2411,6 +2412,47 @@ end
 ```
 
 ### its(:launch_template_id), its(:launch_template_name), its(:create_time), its(:created_by), its(:default_version_number), its(:latest_version_number), its(:tags)
+## <a name="managed_prefix_list">managed_prefix_list</a>
+
+ManagedPrefixList resource type.
+
+### exist
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  it { should exist }
+end
+```
+
+
+### have_cidr
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  it { should have_cidr('10.0.0.0/16') }
+  it { should have_cidr('192.168.0.0/24').desc('dev') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+### its(:entries_count)
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  its(:entries_count) { should eq 2 }
+end
+```
+
+
+### its(:prefix_list_id), its(:address_family), its(:state), its(:state_message), its(:prefix_list_arn), its(:prefix_list_name), its(:max_entries), its(:version), its(:owner_id)
 ## <a name="mq">mq</a>
 
 MQ resource type.
@@ -2978,7 +3020,7 @@ describe rds_db_cluster('my-rds-db-cluster') do
 end
 ```
 
-### its(:allocated_storage), its(:availability_zones), its(:backup_retention_period), its(:character_set_name), its(:database_name), its(:db_cluster_identifier), its(:db_cluster_parameter_group), its(:db_subnet_group), its(:status), its(:automatic_restart_time), its(:percent_progress), its(:earliest_restorable_time), its(:endpoint), its(:reader_endpoint), its(:custom_endpoints), its(:multi_az), its(:engine), its(:engine_version), its(:latest_restorable_time), its(:port), its(:master_username), its(:db_cluster_option_group_memberships), its(:preferred_backup_window), its(:preferred_maintenance_window), its(:replication_source_identifier), its(:read_replica_identifiers), its(:status_infos), its(:hosted_zone_id), its(:storage_encrypted), its(:kms_key_id), its(:db_cluster_resource_id), its(:db_cluster_arn), its(:associated_roles), its(:iam_database_authentication_enabled), its(:clone_group_id), its(:cluster_create_time), its(:earliest_backtrack_time), its(:backtrack_window), its(:backtrack_consumed_change_records), its(:enabled_cloudwatch_logs_exports), its(:capacity), its(:engine_mode), its(:scaling_configuration_info), its(:rds_custom_cluster_configuration), its(:deletion_protection), its(:http_endpoint_enabled), its(:activity_stream_mode), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:copy_tags_to_snapshot), its(:cross_account_clone), its(:domain_memberships), its(:tag_list), its(:global_write_forwarding_status), its(:global_write_forwarding_requested), its(:pending_modified_values), its(:db_cluster_instance_class), its(:storage_type), its(:iops), its(:publicly_accessible), its(:auto_minor_version_upgrade), its(:monitoring_interval), its(:monitoring_role_arn), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:serverless_v2_scaling_configuration), its(:network_type), its(:db_system_id), its(:master_user_secret), its(:io_optimized_next_allowed_modification_time), its(:local_write_forwarding_status), its(:aws_backup_recovery_point_arn), its(:limitless_database), its(:storage_throughput)
+### its(:allocated_storage), its(:availability_zones), its(:backup_retention_period), its(:character_set_name), its(:database_name), its(:db_cluster_identifier), its(:db_cluster_parameter_group), its(:db_subnet_group), its(:status), its(:automatic_restart_time), its(:percent_progress), its(:earliest_restorable_time), its(:endpoint), its(:reader_endpoint), its(:custom_endpoints), its(:multi_az), its(:engine), its(:engine_version), its(:latest_restorable_time), its(:port), its(:master_username), its(:db_cluster_option_group_memberships), its(:preferred_backup_window), its(:preferred_maintenance_window), its(:replication_source_identifier), its(:read_replica_identifiers), its(:status_infos), its(:hosted_zone_id), its(:storage_encrypted), its(:kms_key_id), its(:db_cluster_resource_id), its(:db_cluster_arn), its(:associated_roles), its(:iam_database_authentication_enabled), its(:clone_group_id), its(:cluster_create_time), its(:earliest_backtrack_time), its(:backtrack_window), its(:backtrack_consumed_change_records), its(:enabled_cloudwatch_logs_exports), its(:capacity), its(:engine_mode), its(:scaling_configuration_info), its(:rds_custom_cluster_configuration), its(:deletion_protection), its(:http_endpoint_enabled), its(:activity_stream_mode), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:copy_tags_to_snapshot), its(:cross_account_clone), its(:domain_memberships), its(:tag_list), its(:global_write_forwarding_status), its(:global_write_forwarding_requested), its(:pending_modified_values), its(:db_cluster_instance_class), its(:storage_type), its(:iops), its(:publicly_accessible), its(:auto_minor_version_upgrade), its(:monitoring_interval), its(:monitoring_role_arn), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:serverless_v2_scaling_configuration), its(:network_type), its(:db_system_id), its(:master_user_secret), its(:io_optimized_next_allowed_modification_time), its(:local_write_forwarding_status), its(:aws_backup_recovery_point_arn), its(:limitless_database), its(:storage_throughput), its(:certificate_details)
 ## <a name="rds_db_cluster_parameter_group">rds_db_cluster_parameter_group</a>
 
 RdsDbClusterParameterGroup resource type.

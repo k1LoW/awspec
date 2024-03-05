@@ -22,3 +22,25 @@ describe transit_gateway('my-tgw') do
   its(:transit_gateway_id) { should eq 'tgw-1234567890abcdefg' }
 end
 ```
+### have_attachment
+
+#### using attachment id
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment('tgw-attach-1234567890abcdefg') }
+end
+```
+
+#### using attachment name
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment('my-prod-tgw-attachment') }
+end
+```
+
+#### using regular expression attachment name
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment(/^my-\w+-tgw-attachment$/) }
+end
+```

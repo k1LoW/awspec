@@ -466,7 +466,7 @@ describe cloudformation_stack('my-cloudformation-stack') do
 end
 ```
 
-### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create)
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create), its(:detailed_status)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.
@@ -3883,6 +3883,27 @@ end
 ```
 
 ### have_attachment
+
+#### using attachment id
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment('tgw-attach-1234567890abcdefg') }
+end
+```
+
+#### using attachment name
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment('my-prod-tgw-attachment') }
+end
+```
+
+#### using regular expression attachment name
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment(/^my-\w+-tgw-attachment$/) }
+end
+```
 
 ### have_tag
 

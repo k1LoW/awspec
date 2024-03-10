@@ -228,6 +228,18 @@ module Awspec::Helper
                                                               })
         res.transit_gateway_attachments
       end
+
+      def find_managed_prefix_list(prefix_list_name)
+        res = ec2_client.describe_managed_prefix_lists({
+                                                         filters: [{ name: 'prefix-list-name',
+                                                                     values: [prefix_list_name] }]
+                                                       })
+        res.prefix_lists.single_resource(prefix_list_name)
+      end
+
+      def select_managed_prefix_list_entries(prefix_list_id)
+        ec2_client.get_managed_prefix_list_entries({ prefix_list_id: prefix_list_id }).data.entries
+      end
     end
   end
 end

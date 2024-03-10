@@ -3884,6 +3884,27 @@ end
 
 ### have_attachment
 
+#### using attachment id
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment('tgw-attach-1234567890abcdefg') }
+end
+```
+
+#### using attachment name
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment('my-prod-tgw-attachment') }
+end
+```
+
+#### using regular expression attachment name
+```ruby
+describe transit_gateway('tgw-1234567890abcdefg') do
+  it { should have_attachment(/^my-\w+-tgw-attachment$/) }
+end
+```
+
 ### have_tag
 
 ### its(:transit_gateway_id), its(:transit_gateway_arn), its(:state), its(:owner_id), its(:description), its(:creation_time)

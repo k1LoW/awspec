@@ -52,6 +52,7 @@
 | [lambda](#lambda)
 | [launch_configuration](#launch_configuration)
 | [launch_template](#launch_template)
+| [managed_prefix_list](#managed_prefix_list)
 | [mq](#mq)
 | [msk](#msk)
 | [nat_gateway](#nat_gateway)
@@ -2411,6 +2412,47 @@ end
 ```
 
 ### its(:launch_template_id), its(:launch_template_name), its(:create_time), its(:created_by), its(:default_version_number), its(:latest_version_number), its(:tags)
+## <a name="managed_prefix_list">managed_prefix_list</a>
+
+ManagedPrefixList resource type.
+
+### exist
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  it { should exist }
+end
+```
+
+
+### have_cidr
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  it { should have_cidr('10.0.0.0/16') }
+  it { should have_cidr('192.168.0.0/24').desc('dev') }
+end
+```
+
+
+### have_tag
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+### its(:entries_count)
+
+```ruby
+describe managed_prefix_list('my-managed-prefix-list') do
+  its(:entries_count) { should eq 2 }
+end
+```
+
+
+### its(:prefix_list_id), its(:address_family), its(:state), its(:state_message), its(:prefix_list_arn), its(:prefix_list_name), its(:max_entries), its(:version), its(:owner_id)
 ## <a name="mq">mq</a>
 
 MQ resource type.

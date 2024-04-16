@@ -43,6 +43,7 @@ require 'awspec/generator/spec/redshift_cluster_parameter_group'
 require 'awspec/generator/spec/rds_proxy'
 require 'awspec/generator/spec/rds_db_cluster'
 require 'awspec/generator/spec/rds_global_cluster'
+require 'awspec/generator/spec/managed_prefix_list'
 
 # Doc
 require 'awspec/generator/doc/type'

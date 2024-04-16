@@ -21,3 +21,23 @@ describe transit_gateway('my-transit-gateway') do
   it { should exist }
   its(:transit_gateway_id) { should eq 'tgw-1234567890abcdefg' }
 end
+
+describe transit_gateway('my-transit-gateway') do
+  it { should exist }
+  it 'supports `have_attachment` by attachment name' do
+    should have_attachment('my-transit-gateway-attachment')
+  end
+end
+
+describe transit_gateway('my-transit-gateway') do
+  it { should exist }
+  it 'supports `have_attachment` by attachment regular expression' do
+    should have_attachment(/my-transit-gateway-attachment/)
+  end
+end
+
+describe transit_gateway('my-transit-gateway') do
+  it 'supports have_attachment when `should exist` hasn\'t been called first' do
+    should have_attachment('tgw-attach-1234567890abcdefg')
+  end
+end

@@ -18,9 +18,21 @@ module Awspec::Type
     end
 
     def has_attachment?(att_id)
-      atts = find_tgw_attachments_by_tgw_id(@id)
-      ret = atts.find_all { |att| att.transit_gateway_attachment_id == att_id }
-      ret.any?
+      atts = find_tgw_attachments_by_tgw_id(id)
+
+      atts.any? do |att|
+        att.transit_gateway_attachment_id == att_id || attachment_has_name?(att, att_id)
+      end
+    end
+
+    private
+
+    def attachment_has_name?(attachment, name)
+      if name.is_a?(Regexp)
+        attachment.tags.any? { |tag| tag.key == 'Name' && (name =~ tag.value) }
+      else
+        attachment.tags.any? { |tag| tag.key == 'Name' && tag.value == name }
+      end
     end
   end
 end

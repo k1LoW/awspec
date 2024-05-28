@@ -27,7 +27,7 @@ module Awspec::Generator
 describe iam_group('<%= group.group_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= group.arn %>' }
-  its(:create_date) { should eq Time.parse('<%= group.create_date %>') }
+  its(:create_date) { should eq Time.parse('<%= group.create_date.utc %>') }
 <% select_iam_policy_by_group_name(group.group_name).each do |policy| %>  it { should have_iam_policy('<%= policy.policy_name %>') }
 <% end %>
 <%- inline_policies.each do |line| -%>

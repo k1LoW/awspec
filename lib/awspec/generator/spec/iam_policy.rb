@@ -23,7 +23,7 @@ describe iam_policy('<%= policy.policy_name %>') do
   it { should_not be_attachable }
 <%- end -%>
   its(:arn) { should eq '<%= policy.arn %>' }
-  its(:update_date) { should eq Time.parse('<%= policy.update_date %>') }
+  its(:update_date) { should eq Time.parse('<%= policy.update_date.utc %>') }
   its(:attachment_count) { should eq <%= policy.attachment_count %> }
 <%- users = select_attached_users(policy.arn) -%>
 <%- if users.empty? -%>

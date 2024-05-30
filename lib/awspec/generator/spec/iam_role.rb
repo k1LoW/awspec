@@ -27,7 +27,7 @@ module Awspec::Generator
 describe iam_role('<%= role.role_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= role.arn %>' }
-  its(:create_date) { should eq Time.parse('<%= role.create_date %>') }
+  its(:create_date) { should eq Time.parse('<%= role.create_date.utc %>') }
 <% select_iam_policy_by_role_name(role.role_name).each do |policy| %>  it { should have_iam_policy('<%= policy.policy_name %>') }
 <% end %>
 <%- inline_policies.each do |line| -%>

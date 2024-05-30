@@ -27,7 +27,7 @@ module Awspec::Generator
 describe iam_user('<%= user.user_name %>') do
   it { should exist }
   its(:arn) { should eq '<%= user.arn %>' }
-  its(:create_date) { should eq Time.parse('<%= user.create_date %>') }
+  its(:create_date) { should eq Time.parse('<%= user.create_date.utc %>') }
 <% select_iam_policy_by_user_name(user.user_name).each do |policy| %>  it { should have_iam_policy('<%= policy.policy_name %>') }
 <% end %>
 <%- inline_policies.each do |line| -%>

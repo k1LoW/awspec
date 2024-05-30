@@ -737,7 +737,22 @@ Codebuild resource type.
 
 ### exist
 
+```ruby
+describe codebuild('my-codebuild1') do
+  it { should exist }
+end
+```
 
+
+### have_tag
+
+```ruby
+describe codebuild('my-codebuild1') do
+  it { should have_tag('env').value('dev') }
+end
+```
+
+### its(:name), its(:arn), its(:description), its(:secondary_sources), its(:source_version), its(:secondary_source_versions), its(:secondary_artifacts), its(:service_role), its(:timeout_in_minutes), its(:queued_timeout_in_minutes), its(:encryption_key), its(:created), its(:last_modified), its(:webhook), its(:vpc_config), its(:file_system_locations), its(:build_batch_config), its(:concurrent_build_limit), its(:project_visibility), its(:public_project_alias), its(:resource_access_role)
 ## <a name="codedeploy">codedeploy</a>
 
 Codedeploy resource type.

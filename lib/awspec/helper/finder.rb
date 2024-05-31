@@ -55,6 +55,7 @@ require 'awspec/helper/finder/cognito_user_pool'
 require 'awspec/helper/finder/msk'
 require 'awspec/helper/finder/cognito_identity_pool'
 require 'awspec/helper/finder/transfer'
+require 'awspec/helper/finder/codepipeline'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -117,6 +118,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Msk
     include Awspec::Helper::Finder::CognitoIdentityPool
     include Awspec::Helper::Finder::Transfer
+    include Awspec::Helper::Finder::Codepipeline
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -165,7 +167,8 @@ module Awspec::Helper
       msk_client: Aws::Kafka::Client,
       cognito_identity_client: Aws::CognitoIdentity::Client,
       cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client,
-      transfer_client: Aws::Transfer::Client
+      transfer_client: Aws::Transfer::Client,
+      codepipeline_client: Aws::CodePipeline::Client
     }
 
     CLIENT_OPTIONS = {

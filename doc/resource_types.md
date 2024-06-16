@@ -2297,7 +2297,7 @@ DOC
 end
 ```
 
-### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms), its(:xks_key_configuration)
+### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:key_agreement_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms), its(:xks_key_configuration)
 ## <a name="lambda">lambda</a>
 
 Lambda resource type.

@@ -44,6 +44,7 @@ require 'awspec/generator/spec/rds_proxy'
 require 'awspec/generator/spec/rds_db_cluster'
 require 'awspec/generator/spec/rds_global_cluster'
 require 'awspec/generator/spec/managed_prefix_list'
+require 'awspec/generator/spec/codepipeline'
 
 # Doc
 require 'awspec/generator/doc/type'

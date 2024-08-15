@@ -34,7 +34,7 @@ RSpec::Matchers.define :belong_to_subnet do |subnet_id|
     end
 
     # RDS DB Subnet Group
-    if type.instance_of?(Awspec::Type::RdsDbSubnetGroup)
+    if type.instance_of?(Awspec::Type::RdsDBSubnetGroup)
       subnets = type.resource_via_client[:subnets]
       ret = subnets.find do |s|
         s[:subnet_identifier] == subnet_id

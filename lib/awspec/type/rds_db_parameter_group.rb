@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Awspec::Type
-  class InvalidRdsDbParameter < StandardError
+  class InvalidRdsDBParameter < StandardError
     ##
     # Overrides the superclass initialize method to include more information
     # and default error message.
@@ -19,7 +19,7 @@ module Awspec::Type
     ##
     # Thanks to AWS for creating parameters names like
     # 'rds.accepted_password_auth_method', which would be caught as method 'rds'
-    # by method_missing in RdsDbParameterGroup class, this class was created
+    # by method_missing in RdsDBParameterGroup class, this class was created
     # See https://github.com/k1LoW/awspec/issues/527 for more details
     def initialize(params)
       @params = params
@@ -33,11 +33,11 @@ module Awspec::Type
       param_name = name.to_sym
       return @params[param_name] if @params.include?(param_name)
 
-      raise InvalidRdsDbParameter, name
+      raise InvalidRdsDBParameter, name
     end
   end
 
-  class RdsDbParameterGroup < ResourceBase
+  class RdsDBParameterGroup < ResourceBase
     def resource_via_client
       return @resource_via_client if @resource_via_client
 

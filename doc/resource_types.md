@@ -1404,7 +1404,7 @@ describe eks('my-eks') do
 end
 ```
 
-### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:kubernetes_network_config), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config), its(:connector_config), its(:id), its(:health), its(:outpost_config), its(:access_config)
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:kubernetes_network_config), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config), its(:connector_config), its(:id), its(:health), its(:outpost_config), its(:access_config), its(:upgrade_policy)
 ## <a name="eks_nodegroup">eks_nodegroup</a>
 
 EksNodegroup resource type.
@@ -2983,7 +2983,7 @@ end
 
 ## <a name="rds_db_cluster">rds_db_cluster</a>
 
-RdsDbCluster resource type.
+RdsDBCluster resource type.
 
 ```ruby
 describe rds_db_cluster('my-rds-db-cluster') do
@@ -3038,7 +3038,7 @@ end
 ### its(:allocated_storage), its(:availability_zones), its(:backup_retention_period), its(:character_set_name), its(:database_name), its(:db_cluster_identifier), its(:db_cluster_parameter_group), its(:db_subnet_group), its(:status), its(:automatic_restart_time), its(:percent_progress), its(:earliest_restorable_time), its(:endpoint), its(:reader_endpoint), its(:custom_endpoints), its(:multi_az), its(:engine), its(:engine_version), its(:latest_restorable_time), its(:port), its(:master_username), its(:db_cluster_option_group_memberships), its(:preferred_backup_window), its(:preferred_maintenance_window), its(:replication_source_identifier), its(:read_replica_identifiers), its(:status_infos), its(:hosted_zone_id), its(:storage_encrypted), its(:kms_key_id), its(:db_cluster_resource_id), its(:db_cluster_arn), its(:associated_roles), its(:iam_database_authentication_enabled), its(:clone_group_id), its(:cluster_create_time), its(:earliest_backtrack_time), its(:backtrack_window), its(:backtrack_consumed_change_records), its(:enabled_cloudwatch_logs_exports), its(:capacity), its(:engine_mode), its(:scaling_configuration_info), its(:rds_custom_cluster_configuration), its(:deletion_protection), its(:http_endpoint_enabled), its(:activity_stream_mode), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:copy_tags_to_snapshot), its(:cross_account_clone), its(:domain_memberships), its(:tag_list), its(:global_write_forwarding_status), its(:global_write_forwarding_requested), its(:pending_modified_values), its(:db_cluster_instance_class), its(:storage_type), its(:iops), its(:publicly_accessible), its(:auto_minor_version_upgrade), its(:monitoring_interval), its(:monitoring_role_arn), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:serverless_v2_scaling_configuration), its(:network_type), its(:db_system_id), its(:master_user_secret), its(:io_optimized_next_allowed_modification_time), its(:local_write_forwarding_status), its(:aws_backup_recovery_point_arn), its(:limitless_database), its(:storage_throughput), its(:certificate_details), its(:engine_lifecycle_support)
 ## <a name="rds_db_cluster_parameter_group">rds_db_cluster_parameter_group</a>
 
-RdsDbClusterParameterGroup resource type.
+RdsDBClusterParameterGroup resource type.
 
 ```ruby
 describe rds_db_cluster_parameter_group('my-rds-db-cluster-parameter-group') do
@@ -3059,7 +3059,7 @@ end
 
 ## <a name="rds_db_parameter_group">rds_db_parameter_group</a>
 
-RdsDbParameterGroup resource type.
+RdsDBParameterGroup resource type.
 
 ```ruby
 describe rds_db_parameter_group('my-rds-db-parameter-group') do
@@ -3079,7 +3079,7 @@ end
 
 ## <a name="rds_db_subnet_group">rds_db_subnet_group</a>
 
-RdsDbSubnetGroup resource type.
+RdsDBSubnetGroup resource type.
 
 ### exist
 

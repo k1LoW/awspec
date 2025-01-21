@@ -2,7 +2,7 @@
 
 module Awspec::Generator
   module Spec
-    class RdsDbClusterParameterGroup
+    class RdsDBClusterParameterGroup
       include Awspec::Helper::Finder
       def generate_by_parameter_group(parameter_group)
         @parameter_group = parameter_group

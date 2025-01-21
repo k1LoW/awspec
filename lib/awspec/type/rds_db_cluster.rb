@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Awspec::Type
-  class RdsDbCluster < ResourceBase
+  class RdsDBCluster < ResourceBase
     aws_resource Aws::RDS::Types::DBCluster
 
     def resource_via_client

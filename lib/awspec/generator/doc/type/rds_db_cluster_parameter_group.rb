@@ -3,10 +3,10 @@
 module Awspec::Generator
   module Doc
     module Type
-      class RdsDbClusterParameterGroup < Base
+      class RdsDBClusterParameterGroup < Base
         def initialize
           super
-          @type = Awspec::Type::RdsDbClusterParameterGroup.new('my-rds-db-cluster-parameter-group')
+          @type = Awspec::Type::RdsDBClusterParameterGroup.new('my-rds-db-cluster-parameter-group')
           @matchers = []
           @ignore_matchers = []
           @describes = []

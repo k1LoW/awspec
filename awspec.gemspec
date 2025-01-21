@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'base64', '~> 0.1.0'
   spec.add_runtime_dependency 'dry-inflector'
   spec.add_runtime_dependency 'ipaddress'
+  spec.add_runtime_dependency 'ostruct', '~> 0.6.1'
   spec.add_runtime_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'rspec-its'
   spec.add_runtime_dependency 'term-ansicolor'

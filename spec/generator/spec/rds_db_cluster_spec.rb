@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-describe 'Awspec::Generator::Spec::RdsDbCluster' do
+describe 'Awspec::Generator::Spec::RdsDBCluster' do
   before do
     Awspec::Stub.load 'rds_db_cluster'
   end
-  let(:rds_db_cluster) { Awspec::Generator::Spec::RdsDbCluster.new }
+  let(:rds_db_cluster) { Awspec::Generator::Spec::RdsDBCluster.new }
   it 'generate spec' do
     spec = <<-'EOF'
 describe rds_db_cluster('my-rds-db-cluster') do

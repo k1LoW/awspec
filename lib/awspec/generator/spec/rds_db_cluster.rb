@@ -2,7 +2,7 @@
 
 module Awspec::Generator
   module Spec
-    class RdsDbCluster
+    class RdsDBCluster
       include Awspec::Helper::Finder
       def generate(db_cluster_identifier)
         cluster = find_db_cluster(db_cluster_identifier)

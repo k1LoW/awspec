@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Awspec::Type
-  class RdsDbSubnetGroup < ResourceBase
+  class RdsDBSubnetGroup < ResourceBase
     aws_resource Aws::RDS::Types::DBSubnetGroup
 
     def resource_via_client

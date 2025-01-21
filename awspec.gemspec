@@ -20,12 +20,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.3'
+  spec.required_ruby_version = '>= 3.0'
   spec.add_runtime_dependency 'addressable'
   spec.add_runtime_dependency 'awsecrets', '~> 1'
   spec.add_runtime_dependency 'aws-sdk', '~> 3'
+  spec.add_runtime_dependency 'base64', '~> 0.1.0'
   spec.add_runtime_dependency 'dry-inflector'
   spec.add_runtime_dependency 'ipaddress'
+  spec.add_runtime_dependency 'ostruct', '~> 0.6.1'
   spec.add_runtime_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'rspec-its'
   spec.add_runtime_dependency 'term-ansicolor'

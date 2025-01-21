@@ -6,7 +6,6 @@ begin
   require 'rspec'
   require 'rspec/core'
   require 'rspec/core/rake_task'
-  require 'octorelease' unless ENV['CI']
   require 'parallel'
   require 'rubocop/rake_task'
 rescue LoadError

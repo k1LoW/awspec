@@ -1,7 +1,7 @@
 ### exist
 
 ```ruby
-describe codedeploy('my-codedeploy') do
+describe codepipeline('my-codepipeline') do
   it { should exist }
 end
 ```

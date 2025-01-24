@@ -19,6 +19,7 @@
 | [codebuild](#codebuild)
 | [codedeploy](#codedeploy)
 | [codedeploy_deployment_group](#codedeploy_deployment_group)
+| [codepipeline](#codepipeline)
 | [cognito_identity_pool](#cognito_identity_pool)
 | [cognito_user_pool](#cognito_user_pool)
 | [customer_gateway](#customer_gateway)
@@ -759,6 +760,12 @@ Codedeploy resource type.
 
 ### exist
 
+```ruby
+describe codedeploy('my-codedeploy') do
+  it { should exist }
+end
+```
+
 ### its(:application_id), its(:application_name), its(:create_time), its(:linked_to_git_hub), its(:git_hub_account_name), its(:compute_platform)
 ## <a name="codedeploy_deployment_group">codedeploy_deployment_group</a>
 
@@ -784,6 +791,19 @@ end
 ```
 
 ### its(:application_name), its(:deployment_group_id), its(:deployment_group_name), its(:deployment_config_name), its(:on_premises_instance_tag_filters), its(:service_role_arn), its(:target_revision), its(:trigger_configurations), its(:alarm_configuration), its(:deployment_style), its(:outdated_instances_strategy), its(:load_balancer_info), its(:last_successful_deployment), its(:last_attempted_deployment), its(:ec2_tag_set), its(:on_premises_tag_set), its(:compute_platform), its(:ecs_services), its(:termination_hook_enabled)
+## <a name="codepipeline">codepipeline</a>
+
+Codepipeline resource type.
+
+### exist
+
+```ruby
+describe codepipeline('my-codepipeline') do
+  it { should exist }
+end
+```
+
+### its(:name), its(:role_arn), its(:artifact_stores), its(:version), its(:execution_mode), its(:pipeline_type), its(:variables), its(:triggers)
 ## <a name="cognito_identity_pool">cognito_identity_pool</a>
 
 CognitoIdentityPool resource type.

@@ -20,6 +20,7 @@ Lint/DuplicateMethods:
     - 'lib/awspec/type/ecs_service.rb'
     - 'lib/awspec/type/eks_nodegroup.rb'
     - 'lib/awspec/type/resource_base.rb'
+    - 'lib/awspec/type/wafv2_ip_set.rb'
 
 Lint/ErbNewArguments:
   Enabled: false

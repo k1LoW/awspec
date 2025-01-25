@@ -89,6 +89,7 @@
 | [vpn_gateway](#vpn_gateway)
 | [waf_web_acl](#waf_web_acl)
 | [wafregional_web_acl](#wafregional_web_acl)
+| [wafv2_ip_set](#wafv2_ip_set)
 | [account](#account)
 
 ## <a name="acm">acm</a>
@@ -4300,6 +4301,30 @@ end
 
 
 ### its(:default_action), its(:web_acl_id), its(:name), its(:metric_name), its(:web_acl_arn)
+## <a name="wafv2_ip_set">wafv2_ip_set</a>
+
+Wafv2IpSet resource type.
+
+### exist
+
+You can set `scope` to CLOUDFRONT or REGIONAL ( default: `REGIONAL` ).
+
+```ruby
+describe wafv2_ip_set('my-ip-set'), scope: 'REGIONAL' do
+  it { should exist }
+end
+```
+
+
+### have_ip_address
+
+```ruby
+describe wafv2_ip_set('my-ip-set'), scope: 'REGIONAL' do
+  it { should have_ip_address('10.0.0.0/32') }
+end
+```
+
+### its(:name), its(:id), its(:arn), its(:description), its(:ip_address_version), its(:addresses)
 # Account and Attributes
 
 ## <a name="account">account</a>

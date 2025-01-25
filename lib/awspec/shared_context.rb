@@ -38,3 +38,9 @@ shared_context 'application_name', :application_name do
     example.metadata[:described_class].application_name = example.metadata[:application_name]
   end
 end
+
+shared_context 'scope', :scope do
+  before do |example|
+    example.metadata[:described_class].scope = example.metadata[:scope]
+  end
+end

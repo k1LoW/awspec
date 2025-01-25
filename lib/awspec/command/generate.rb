@@ -62,6 +62,18 @@ module Awspec
       end
     end
 
+    types = %w[
+      wafv2_ip_set
+    ]
+
+    types.each do |type|
+      desc "#{type} [scope]", "Generate #{type} spec from scope: (CLOUDFRONT or REGIONAL)."
+      define_method type do |_scope|
+        Awsecrets.load(profile: options[:profile], region: options[:region], secrets_path: options[:secrets_path])
+        eval "puts Awspec::Generator::Spec::#{type.camelize}.new.generate_by_scope(_scope)"
+      end
+    end
+
     types_for_generate_all = %w[
       cloudwatch_alarm cloudwatch_event directconnect ebs efs
       elasticsearch iam_group iam_policy iam_role iam_user kms lambda

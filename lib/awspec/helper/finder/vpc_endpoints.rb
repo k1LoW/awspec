@@ -11,8 +11,8 @@ module Awspec::Helper
         end
 
         resource = ret.single_resource(id)
-        return resource if resource
-
+        resource if resource
+      rescue Aws::EC2::Errors::InvalidVpcEndpointIdNotFound, Aws::EC2::Errors::InvalidVpcEndpointIdMalformed
         res = ec2_client.describe_vpc_endpoints({
                                                   filters: [{ name: 'tag:Name', values: [id] }]
                                                 })

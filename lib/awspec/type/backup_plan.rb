@@ -1,3 +1,4 @@
+# copyright (c) 2025 Atlassian US, Inc.
 module Awspec::Type
   class BackupPlan < ResourceBase
     def resource_via_client

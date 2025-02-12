@@ -1,3 +1,4 @@
+# copyright (c) 2025 Atlassian US, Inc.
 RSpec::Matchers.define :belong_to_backup_plan do |plan|
     match do |type|
       return true if type.backup_plan_id == plan

@@ -1,3 +1,4 @@
+# copyright (c) 2025 Atlassian US, Inc.
 Aws.config[:backup] = {
   stub_responses: {
     list_backup_vaults: {

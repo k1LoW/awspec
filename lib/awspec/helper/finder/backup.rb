@@ -1,3 +1,4 @@
+# copyright (c) 2025 Atlassian US, Inc.
 # frozen_string_literal: true
 
 module Awspec::Helper

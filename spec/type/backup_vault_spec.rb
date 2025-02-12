@@ -1,3 +1,4 @@
+# copyright (c) 2025 Atlassian US, Inc.
 require 'spec_helper'
 Awspec::Stub.load 'backup_vault'
 

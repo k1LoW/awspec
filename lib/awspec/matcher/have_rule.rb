@@ -4,6 +4,7 @@ RSpec::Matchers.define :have_rule do |rule_id|
   match do |type|
     return type.has_rule?(rule_id, @priority, @action) if type.instance_of?(Awspec::Type::WafWebAcl)
     return type.has_rule?(rule_id, @priority, @action) if type.instance_of?(Awspec::Type::WafregionalWebAcl)
+    return type.has_rule?(rule_id, @priority, @action, @override_action) if type.instance_of?(Awspec::Type::Wafv2WebAcl)
     return type.has_rule?(rule_id, @priority, @conditions, @actions) if type.instance_of?(Awspec::Type::AlbListener)
 
     type.has_rule?(rule_id, @priority, @conditions, @actions) if type.instance_of?(Awspec::Type::NlbListener)
@@ -19,6 +20,10 @@ RSpec::Matchers.define :have_rule do |rule_id|
 
   chain :action do |action|
     @action = action
+  end
+
+  chain :override_action do |override_action|
+    @override_action = override_action
   end
 
   chain :conditions do |conditions|

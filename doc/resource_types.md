@@ -90,6 +90,7 @@
 | [waf_web_acl](#waf_web_acl)
 | [wafregional_web_acl](#wafregional_web_acl)
 | [wafv2_ip_set](#wafv2_ip_set)
+| [wafv2_web_acl](#wafv2_web_acl)
 | [account](#account)
 
 ## <a name="acm">acm</a>
@@ -4310,7 +4311,11 @@ Wafv2IpSet resource type.
 You can set `scope` to CLOUDFRONT or REGIONAL ( default: `REGIONAL` ).
 
 ```ruby
-describe wafv2_ip_set('my-ip-set'), scope: 'REGIONAL' do
+describe wafv2_ip_set('my-wafv2-ip-set'), scope: 'REGIONAL' do
+  it { should exist }
+end
+
+describe wafv2_ip_set('my-wafv2-ip-set'), scope: 'CLOUDFRONT', region: 'us-east-1' do
   it { should exist }
 end
 ```
@@ -4319,12 +4324,44 @@ end
 ### have_ip_address
 
 ```ruby
-describe wafv2_ip_set('my-ip-set'), scope: 'REGIONAL' do
+describe wafv2_ip_set('my-wafv2-ip-set'), scope: 'REGIONAL' do
   it { should have_ip_address('10.0.0.0/32') }
 end
 ```
 
 ### its(:name), its(:id), its(:arn), its(:description), its(:ip_address_version), its(:addresses)
+## <a name="wafv2_web_acl">wafv2_web_acl</a>
+
+Wafv2WebAcl resource type.
+
+### exist
+
+You can set `scope` to CLOUDFRONT or REGIONAL ( default: `REGIONAL` ).
+
+```ruby
+describe wafv2_web_acl('my-wafv2-web-acl'), scope: 'REGIONAL' do
+  it { should exist }
+  its(:default_action) { should eq 'ALLOW' }
+end
+
+describe wafv2_web_acl('my-wafv2-web-acl'), scope: 'CLOUDFRONT', region: 'us-east-1' do
+  it { should exist }
+  its(:default_action) { should eq 'ALLOW' }
+end
+```
+
+
+### have_rule
+
+```ruby
+describe wafv2_web_acl('my-wafv2-web-acl'), scope: 'REGIONAL' do
+  it { should have_rule('AWS-AWSManagedRulesCommonRuleSet') }
+  it { should have_rule('AWS-AWSManagedRulesKnownBadInputsRuleSet').order(1) }
+  it { should have_rule('AWS-AWSManagedRulesLinuxRuleSet').order(2).override_action('NONE') }
+end
+```
+
+### its(:name), its(:id), its(:arn), its(:description), its(:data_protection_config), its(:capacity), its(:pre_process_firewall_manager_rule_groups), its(:post_process_firewall_manager_rule_groups), its(:managed_by_firewall_manager), its(:label_namespace), its(:custom_response_bodies), its(:captcha_config), its(:challenge_config), its(:token_domains), its(:association_config), its(:retrofitted_by_firewall_manager)
 # Account and Attributes
 
 ## <a name="account">account</a>

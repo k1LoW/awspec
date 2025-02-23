@@ -46,6 +46,7 @@ require 'awspec/generator/spec/rds_global_cluster'
 require 'awspec/generator/spec/managed_prefix_list'
 require 'awspec/generator/spec/codepipeline'
 require 'awspec/generator/spec/wafv2_ip_set'
+require 'awspec/generator/spec/wafv2_web_acl'
 
 # Doc
 require 'awspec/generator/doc/type'

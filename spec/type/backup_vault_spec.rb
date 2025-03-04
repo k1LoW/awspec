@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'backup_vault'
 
@@ -8,9 +10,9 @@ describe backup_vault('my-backup-vault') do
   it { should_not be_airgapped }
 
   its(:locked) { should be true }
-  its(:lock_date) { should be < (Time.now - 60*60*24*30) }
-  its(:vault_state) { should eq "AVAILABLE" }
-  its(:vault_type) { should eq "BACKUP_VAULT" }
+  its(:lock_date) { should be < (Time.now - 60 * 60 * 24 * 30) }
+  its(:vault_state) { should eq 'AVAILABLE' }
+  its(:vault_type) { should eq 'BACKUP_VAULT' }
   its(:min_retention_days) { should be 7 }
   its(:max_retention_days) { should be 35 }
   its(:lock_date) { should eq(Time.new(2024, 10, 4, 9, 00, 00, '+00:00')) }
@@ -26,9 +28,9 @@ describe backup_vault('my-airgapped-vault') do
 
   its(:locked) { should be false }
   its(:creation_date) { should be > Time.new(2016, 4, 4, 9, 00, 00, '+00:00') }
-  its(:vault_state) { should eq "AVAILABLE" }
-  its(:vault_type) { should eq "LOGICALLY_AIR_GAPPED_BACKUP_VAULT" }
-  its(:backup_vault_arn) { should match /:111122223333:/ }
-  its(:backup_vault_arn) { should match /:us-west-2:/ }
+  its(:vault_state) { should eq 'AVAILABLE' }
+  its(:vault_type) { should eq 'LOGICALLY_AIR_GAPPED_BACKUP_VAULT' }
+  its(:backup_vault_arn) { should match(/:111122223333:/) }
+  its(:backup_vault_arn) { should match(/:us-west-2:/) }
   its(:number_of_recovery_points) { should be > 10 }
 end

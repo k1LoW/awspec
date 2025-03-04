@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'backup_selection'
 
+# rubocop:disable Layout/LineLength
 describe backup_selection('my-backup-selection') do
   it { should exist }
 
@@ -12,4 +15,4 @@ describe backup_selection('my-backup-selection') do
   its(:backup_plan_id) { should eq 'fff3e784-1a0f-4e7c-8fe9-ba69825f7c00' }
   its(:creation_date) { should be > Time.new(2016, 4, 4, 4, 00, 00, '+00:00') }
   its(:iam_role_arn) { should match(/111122223333/).and(match(/my-backup-service-role/)) }
-  end
+end

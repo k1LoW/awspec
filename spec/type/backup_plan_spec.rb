@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 Awspec::Stub.load 'backup_plan'
 
 describe backup_plan('my-backup-plan') do
   it { should exist }
 
-  its(:backup_plan_arn) { should match /us-west-2:111122223333/ }
+  its(:backup_plan_arn) { should match(/us-west-2:111122223333/) }
   its(:backup_plan_id) { should eq 'fff3e784-1a0f-4e7c-8fe9-ba69825f7c00' }
   its(:creation_date) { should be < Time.new(2024, 4, 4, 9, 00, 00, '+00:00') }
   its(:deletion_date) { should be nil }

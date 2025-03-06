@@ -25,6 +25,7 @@ module Awspec
         codebuild sns_topic redshift redshift_cluster_parameter_group codedeploy codedeploy_deployment_group
         secretsmanager msk transit_gateway cognito_identity_pool cognito_user_pool vpc_endpoints
         transfer_server managed_prefix_list codepipeline wafv2_ip_set wafv2_web_acl
+        backup_vault backup_plan backup_selection
       ]
 
       ACCOUNT_ATTRIBUTES = %w[

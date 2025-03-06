@@ -57,6 +57,7 @@ require 'awspec/helper/finder/cognito_identity_pool'
 require 'awspec/helper/finder/transfer'
 require 'awspec/helper/finder/codepipeline'
 require 'awspec/helper/finder/wafv2'
+require 'awspec/helper/finder/backup'
 
 require 'awspec/helper/finder/account_attributes'
 
@@ -121,6 +122,7 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Transfer
     include Awspec::Helper::Finder::Codepipeline
     include Awspec::Helper::Finder::Wafv2
+    include Awspec::Helper::Finder::Backup
 
     CLIENTS = {
       ec2_client: Aws::EC2::Client,
@@ -171,7 +173,8 @@ module Awspec::Helper
       cognito_identity_provider_client: Aws::CognitoIdentityProvider::Client,
       transfer_client: Aws::Transfer::Client,
       codepipeline_client: Aws::CodePipeline::Client,
-      wafv2_client: Aws::WAFV2::Client
+      wafv2_client: Aws::WAFV2::Client,
+      backup_client: Aws::Backup::Client
     }
 
     CLIENT_OPTIONS = {

@@ -93,3 +93,6 @@ require 'awspec/matcher/have_env_var_value'
 
 # ManagedPrefixList
 require 'awspec/matcher/have_cidr'
+
+# BackupSelection
+require 'awspec/matcher/belong_to_backup_plan'

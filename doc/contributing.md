@@ -4,10 +4,10 @@
 
 1. Create your feature branch (`git checkout -b add-type-redshift`)
 2. Generate template files (`bundle exec bin/toolbox template redshift`)
-3. Fill files with code.
+3. Fill files with code and test your code regularly (`bundle exec rspec spec/type/redshift_spec.rb`)
 4. `bundle update` to update gems.
 5. Generate [doc/resource_types.md](resource_types.md) (`bundle exec rake generate_docs`)
-6. Run test (`bundle exec rake spec`)
+6. Run all tests (`bundle exec rake spec`)
 7. Push to the branch (`git push origin add-type-redshift`)
 8. Create a new Pull Request
 

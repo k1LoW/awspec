@@ -26,7 +26,8 @@ Aws.config[:backup] = {
         creation_date: Time.new(2016, 10, 4, 9, 00, 00, '+00:00'),
         creator_request_id: nil,
         iam_role_arn: 'arn:aws:iam::111122223333:role/service-role/my-backup-service-role'
-      ]
+      ],
+      next_token: nil
     }
   }
 }

@@ -7,6 +7,9 @@
 | [ami](#ami)
 | [apigateway](#apigateway)
 | [autoscaling_group](#autoscaling_group)
+| [backup_plan](#backup_plan)
+| [backup_selection](#backup_selection)
+| [backup_vault](#backup_vault)
 | [batch_compute_environment](#batch_compute_environment)
 | [batch_job_definition](#batch_job_definition)
 | [batch_job_queue](#batch_job_queue)
@@ -370,6 +373,46 @@ end
 ```
 
 ### its(:auto_scaling_group_name), its(:auto_scaling_group_arn), its(:launch_configuration_name), its(:launch_template), its(:mixed_instances_policy), its(:min_size), its(:max_size), its(:desired_capacity), its(:predicted_capacity), its(:default_cooldown), its(:availability_zones), its(:load_balancer_names), its(:target_group_arns), its(:health_check_type), its(:health_check_grace_period), its(:created_time), its(:placement_group), its(:vpc_zone_identifier), its(:enabled_metrics), its(:status), its(:termination_policies), its(:new_instances_protected_from_scale_in), its(:service_linked_role_arn), its(:max_instance_lifetime), its(:capacity_rebalance), its(:warm_pool_configuration), its(:warm_pool_size), its(:context), its(:desired_capacity_type), its(:default_instance_warmup), its(:traffic_sources), its(:instance_maintenance_policy), its(:availability_zone_distribution), its(:availability_zone_impairment_policy), its(:capacity_reservation_specification)
+## <a name="backup_plan">backup_plan</a>
+
+BackupPlan resource type.
+
+### exist
+
+```ruby
+describe backup_plan('my-backup-plan') do
+  it { should exist }
+end
+```
+
+### its(:backup_plan_arn), its(:backup_plan_id), its(:creation_date), its(:deletion_date), its(:version_id), its(:backup_plan_name), its(:creator_request_id), its(:last_execution_date), its(:advanced_backup_settings)
+## <a name="backup_selection">backup_selection</a>
+
+BackupSelection resource type.
+
+### exist
+
+```ruby
+describe backup_selection('my-backup-selection') do
+  it { should exist }
+end
+```
+
+### its(:selection_id), its(:selection_name), its(:backup_plan_id), its(:creation_date), its(:creator_request_id), its(:iam_role_arn)
+## <a name="backup_vault">backup_vault</a>
+
+BackupVault resource type.
+
+### exist
+
+```ruby
+describe backup_vault('my-backup-vault') do
+  it { should exist }
+end
+```
+
+
+### its(:backup_vault_name), its(:backup_vault_arn), its(:vault_type), its(:vault_state), its(:creation_date), its(:encryption_key_arn), its(:creator_request_id), its(:number_of_recovery_points), its(:locked), its(:min_retention_days), its(:max_retention_days), its(:lock_date)
 ## <a name="batch_compute_environment">batch_compute_environment</a>
 
 BatchComputeEnvironment resource type.
@@ -1801,8 +1844,6 @@ end
 ```
 
 
-### be_creating
-
 ### be_deleting
 
 ### have_splunk_destination
@@ -2547,11 +2588,7 @@ end
 
 ### be_active
 
-### be_creating
-
 ### be_deleting
-
-### be_failed
 
 ### be_updating
 

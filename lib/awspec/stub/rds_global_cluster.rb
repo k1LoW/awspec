@@ -30,7 +30,13 @@ Aws.config[:rds] = {
               global_write_forwarding_status: 'disabled'
             }
           ],
-          failover_state: nil
+          failover_state: nil,
+          tag_list: [
+            {
+              key: 'env',
+              value: 'dev'
+            }
+          ]
         }
       ],
       marker: nil

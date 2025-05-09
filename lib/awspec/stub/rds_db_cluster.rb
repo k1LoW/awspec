@@ -78,7 +78,12 @@ Aws.config[:rds] = {
           copy_tags_to_snapshot: false,
           cross_account_clone: false,
           domain_memberships: [],
-          tag_list: [],
+          tag_list: [
+            {
+              key: 'env',
+              value: 'dev'
+            }
+          ],
           global_write_forwarding_status: nil,
           global_write_forwarding_requested: false,
           pending_modified_values: nil,

@@ -45,3 +45,11 @@ describe rds_db_cluster('my-rds-db-cluster') do
   it { should have_security_group('my-db-sg') }
 end
 ```
+
+### have_tag
+
+```ruby
+describe rds_db_cluster('my-rds-db-cluster') do
+  it { should have_tag('env').value('dev') }
+end
+```

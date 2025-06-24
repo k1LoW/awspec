@@ -33,7 +33,11 @@ module Awspec::Type
         begin
           tags = resource_via_client.tags
         rescue NoMethodError
-          tags = resource_via_client.tag_set
+          begin
+            tags = resource_via_client.tag_set
+          rescue NoMethodError
+            tags = resource_via_client.tag_list
+          end
         end
         return false unless tags
 

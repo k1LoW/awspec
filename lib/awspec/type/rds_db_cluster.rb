@@ -3,6 +3,7 @@
 module Awspec::Type
   class RdsDBCluster < ResourceBase
     aws_resource Aws::RDS::Types::DBCluster
+    tags_allowed
 
     def resource_via_client
       @resource_via_client ||= find_db_cluster(@display_name)

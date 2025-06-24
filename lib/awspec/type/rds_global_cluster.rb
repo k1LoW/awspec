@@ -3,6 +3,7 @@
 module Awspec::Type
   class RdsGlobalCluster < ResourceBase
     aws_resource Aws::RDS::Types::GlobalCluster
+    tags_allowed
 
     def resource_via_client
       @resource_via_client ||= find_global_cluster(@display_name)

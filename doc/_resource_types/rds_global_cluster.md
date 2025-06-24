@@ -35,3 +35,11 @@ describe rds_global_cluster('my-rds-global-cluster') do
   it { should have_cluster_member('arn:aws:rds:ap-northeast-3:123456789012:cluster:my-secondary-cluster').is_writer(false) }
 end
 ```
+
+### have_tag
+
+```ruby
+describe rds_global_cluster('my-rds-global-cluster') do
+  it { should have_tag('env').value('dev') }
+end
+```

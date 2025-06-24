@@ -11,6 +11,7 @@ describe rds_db_cluster('my-rds-db-cluster') do
   it { should have_security_group('my-db-sg') }
   it { should have_cluster_member('my-rds-db-cluster-instance-1').is_writer(true) }
   it { should have_cluster_member('my-rds-db-cluster-instance-2').is_writer(false) }
+  it { should have_tag('env').value('dev') }
   its(:db_cluster_parameter_group) { should eq 'default.aurora-mysql5.7' }
   its(:engine) { should eq 'aurora-mysql' }
   its(:engine_version) { should eq '5.7.mysql_aurora.2.10.2' }

@@ -285,7 +285,7 @@ end
 
 ### have_tag
 
-### its(:platform_details), its(:usage_operation), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:tpm_support), its(:deprecation_time), its(:imds_support), its(:source_instance_id), its(:deregistration_protection), its(:last_launched_time), its(:image_allowed), its(:source_image_id), its(:source_image_region), its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform)
+### its(:platform_details), its(:usage_operation), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:tpm_support), its(:deprecation_time), its(:imds_support), its(:source_instance_id), its(:deregistration_protection), its(:last_launched_time), its(:image_allowed), its(:source_image_id), its(:source_image_region), its(:free_tier_eligible), its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).
@@ -490,7 +490,7 @@ describe batch_job_queue('my-batch-job-queue') do
 end
 ```
 
-### its(:job_queue_name), its(:job_queue_arn), its(:state), its(:scheduling_policy_arn), its(:status), its(:status_reason), its(:priority), its(:tags), its(:job_state_time_limit_actions)
+### its(:job_queue_name), its(:job_queue_arn), its(:state), its(:scheduling_policy_arn), its(:status), its(:status_reason), its(:priority), its(:service_environment_order), its(:job_queue_type), its(:tags), its(:job_state_time_limit_actions)
 ## <a name="cloudformation_stack">cloudformation_stack</a>
 
 CloudformationStack resource type.
@@ -976,7 +976,7 @@ end
 ```
 
 
-### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:table_id), its(:billing_mode_summary), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn), its(:global_table_version), its(:replicas), its(:restore_summary), its(:sse_description), its(:archival_summary), its(:table_class_summary), its(:deletion_protection_enabled), its(:on_demand_throughput), its(:warm_throughput), its(:multi_region_consistency)
+### its(:table_name), its(:table_status), its(:creation_date_time), its(:table_size_bytes), its(:item_count), its(:table_arn), its(:table_id), its(:billing_mode_summary), its(:local_secondary_indexes), its(:global_secondary_indexes), its(:stream_specification), its(:latest_stream_label), its(:latest_stream_arn), its(:global_table_version), its(:replicas), its(:global_table_witnesses), its(:restore_summary), its(:sse_description), its(:archival_summary), its(:table_class_summary), its(:deletion_protection_enabled), its(:on_demand_throughput), its(:warm_throughput), its(:multi_region_consistency)
 ### :unlock: Advanced use
 
 `dynamodb_table` can use `Aws::DynamoDB::Table` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Table.html).
@@ -1222,7 +1222,7 @@ end
 ```
 
 
-### its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:elastic_inference_accelerator_associations), its(:outpost_arn), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_reservation_id), its(:capacity_reservation_specification), its(:hibernation_options), its(:licenses), its(:metadata_options), its(:enclave_options), its(:boot_mode), its(:platform_details), its(:usage_operation), its(:usage_operation_update_time), its(:private_dns_name_options), its(:ipv_6_address), its(:tpm_support), its(:maintenance_options), its(:current_instance_boot_mode), its(:network_performance_options), its(:operator), its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:product_codes), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address)
+### its(:architecture), its(:client_token), its(:ebs_optimized), its(:ena_support), its(:hypervisor), its(:instance_lifecycle), its(:elastic_gpu_associations), its(:elastic_inference_accelerator_associations), its(:outpost_arn), its(:root_device_name), its(:root_device_type), its(:source_dest_check), its(:spot_instance_request_id), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:cpu_options), its(:capacity_block_id), its(:capacity_reservation_id), its(:capacity_reservation_specification), its(:hibernation_options), its(:licenses), its(:metadata_options), its(:enclave_options), its(:boot_mode), its(:platform_details), its(:usage_operation), its(:usage_operation_update_time), its(:private_dns_name_options), its(:ipv_6_address), its(:tpm_support), its(:maintenance_options), its(:current_instance_boot_mode), its(:network_performance_options), its(:operator), its(:instance_id), its(:image_id), its(:private_dns_name), its(:public_dns_name), its(:state_transition_reason), its(:key_name), its(:ami_launch_index), its(:product_codes), its(:instance_type), its(:launch_time), its(:placement), its(:kernel_id), its(:ramdisk_id), its(:platform), its(:monitoring), its(:subnet_id), its(:vpc_id), its(:private_ip_address), its(:public_ip_address)
 ### :unlock: Advanced use
 
 `ec2` can use `Aws::EC2::Instance` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html).
@@ -1293,7 +1293,7 @@ describe ecr_repository('my-ecr-repository') do
 end
 ```
 
-### its(:repository_arn), its(:registry_id), its(:repository_name), its(:repository_uri), its(:created_at), its(:image_tag_mutability), its(:image_scanning_configuration), its(:encryption_configuration)
+### its(:repository_arn), its(:registry_id), its(:repository_name), its(:repository_uri), its(:created_at), its(:image_tag_mutability), its(:image_tag_mutability_exclusion_filters), its(:image_scanning_configuration), its(:encryption_configuration)
 ## <a name="ecs_cluster">ecs_cluster</a>
 
 ECS Cluster resource type.
@@ -1448,7 +1448,7 @@ describe eip('123.0.456.789') do
 end
 ```
 
-### its(:allocation_id), its(:association_id), its(:domain), its(:network_interface_id), its(:network_interface_owner_id), its(:private_ip_address), its(:public_ipv_4_pool), its(:network_border_group), its(:customer_owned_ip), its(:customer_owned_ipv_4_pool), its(:carrier_ip), its(:service_managed), its(:instance_id), its(:public_ip)
+### its(:allocation_id), its(:association_id), its(:domain), its(:network_interface_id), its(:network_interface_owner_id), its(:private_ip_address), its(:public_ipv_4_pool), its(:network_border_group), its(:customer_owned_ip), its(:customer_owned_ipv_4_pool), its(:carrier_ip), its(:subnet_id), its(:service_managed), its(:instance_id), its(:public_ip)
 ## <a name="eks">eks</a>
 
 Eks resource type.
@@ -1821,7 +1821,7 @@ describe emr('my-emr') do
 end
 ```
 
-### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:unhealthy_node_replacement), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level), its(:placement_groups), its(:os_release_label), its(:ebs_root_volume_iops), its(:ebs_root_volume_throughput)
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:unhealthy_node_replacement), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level), its(:placement_groups), its(:os_release_label), its(:ebs_root_volume_iops), its(:ebs_root_volume_throughput), its(:extended_support)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.
@@ -2360,7 +2360,7 @@ DOC
 end
 ```
 
-### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:key_agreement_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms), its(:xks_key_configuration)
+### its(:aws_account_id), its(:key_id), its(:arn), its(:creation_date), its(:enabled), its(:description), its(:key_usage), its(:key_state), its(:deletion_date), its(:valid_to), its(:origin), its(:custom_key_store_id), its(:cloud_hsm_cluster_id), its(:expiration_model), its(:key_manager), its(:customer_master_key_spec), its(:key_spec), its(:encryption_algorithms), its(:signing_algorithms), its(:key_agreement_algorithms), its(:multi_region), its(:multi_region_configuration), its(:pending_deletion_window_in_days), its(:mac_algorithms), its(:xks_key_configuration), its(:current_key_material_id)
 ## <a name="lambda">lambda</a>
 
 Lambda resource type.
@@ -2793,7 +2793,7 @@ describe network_interface('eni-12ab3cde') do
 end
 ```
 
-### its(:association), its(:availability_zone), its(:connection_tracking_configuration), its(:description), its(:interface_type), its(:ipv_6_addresses), its(:mac_address), its(:network_interface_id), its(:outpost_arn), its(:owner_id), its(:private_dns_name), its(:private_ip_address), its(:ipv_4_prefixes), its(:ipv_6_prefixes), its(:requester_id), its(:requester_managed), its(:source_dest_check), its(:status), its(:subnet_id), its(:vpc_id), its(:deny_all_igw_traffic), its(:ipv_6_native), its(:ipv_6_address), its(:operator)
+### its(:association), its(:availability_zone), its(:connection_tracking_configuration), its(:description), its(:interface_type), its(:ipv_6_addresses), its(:mac_address), its(:network_interface_id), its(:outpost_arn), its(:owner_id), its(:private_dns_name), its(:public_dns_name), its(:public_ip_dns_name_options), its(:private_ip_address), its(:ipv_4_prefixes), its(:ipv_6_prefixes), its(:requester_id), its(:requester_managed), its(:source_dest_check), its(:status), its(:subnet_id), its(:vpc_id), its(:deny_all_igw_traffic), its(:ipv_6_native), its(:ipv_6_address), its(:operator), its(:associated_subnets)
 ## <a name="nlb">nlb</a>
 
 NLB resource type.
@@ -3103,7 +3103,7 @@ describe rds_db_cluster('my-rds-db-cluster') do
 end
 ```
 
-### its(:allocated_storage), its(:availability_zones), its(:backup_retention_period), its(:character_set_name), its(:database_name), its(:db_cluster_identifier), its(:db_cluster_parameter_group), its(:db_subnet_group), its(:status), its(:automatic_restart_time), its(:percent_progress), its(:earliest_restorable_time), its(:endpoint), its(:reader_endpoint), its(:custom_endpoints), its(:multi_az), its(:engine), its(:engine_version), its(:latest_restorable_time), its(:port), its(:master_username), its(:db_cluster_option_group_memberships), its(:preferred_backup_window), its(:preferred_maintenance_window), its(:replication_source_identifier), its(:read_replica_identifiers), its(:status_infos), its(:hosted_zone_id), its(:storage_encrypted), its(:kms_key_id), its(:db_cluster_resource_id), its(:db_cluster_arn), its(:associated_roles), its(:iam_database_authentication_enabled), its(:clone_group_id), its(:cluster_create_time), its(:earliest_backtrack_time), its(:backtrack_window), its(:backtrack_consumed_change_records), its(:enabled_cloudwatch_logs_exports), its(:capacity), its(:engine_mode), its(:scaling_configuration_info), its(:rds_custom_cluster_configuration), its(:deletion_protection), its(:http_endpoint_enabled), its(:activity_stream_mode), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:copy_tags_to_snapshot), its(:cross_account_clone), its(:domain_memberships), its(:global_write_forwarding_status), its(:global_write_forwarding_requested), its(:pending_modified_values), its(:db_cluster_instance_class), its(:storage_type), its(:iops), its(:publicly_accessible), its(:auto_minor_version_upgrade), its(:monitoring_interval), its(:monitoring_role_arn), its(:database_insights_mode), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:serverless_v2_scaling_configuration), its(:network_type), its(:db_system_id), its(:master_user_secret), its(:io_optimized_next_allowed_modification_time), its(:local_write_forwarding_status), its(:aws_backup_recovery_point_arn), its(:limitless_database), its(:storage_throughput), its(:cluster_scalability_type), its(:certificate_details), its(:engine_lifecycle_support)
+### its(:allocated_storage), its(:availability_zones), its(:backup_retention_period), its(:character_set_name), its(:database_name), its(:db_cluster_identifier), its(:db_cluster_parameter_group), its(:db_subnet_group), its(:status), its(:automatic_restart_time), its(:percent_progress), its(:earliest_restorable_time), its(:endpoint), its(:reader_endpoint), its(:custom_endpoints), its(:multi_az), its(:engine), its(:engine_version), its(:latest_restorable_time), its(:port), its(:master_username), its(:db_cluster_option_group_memberships), its(:preferred_backup_window), its(:preferred_maintenance_window), its(:replication_source_identifier), its(:read_replica_identifiers), its(:status_infos), its(:hosted_zone_id), its(:storage_encrypted), its(:kms_key_id), its(:db_cluster_resource_id), its(:db_cluster_arn), its(:associated_roles), its(:iam_database_authentication_enabled), its(:clone_group_id), its(:cluster_create_time), its(:earliest_backtrack_time), its(:backtrack_window), its(:backtrack_consumed_change_records), its(:enabled_cloudwatch_logs_exports), its(:capacity), its(:engine_mode), its(:scaling_configuration_info), its(:rds_custom_cluster_configuration), its(:deletion_protection), its(:http_endpoint_enabled), its(:activity_stream_mode), its(:activity_stream_status), its(:activity_stream_kms_key_id), its(:activity_stream_kinesis_stream_name), its(:copy_tags_to_snapshot), its(:cross_account_clone), its(:domain_memberships), its(:global_cluster_identifier), its(:global_write_forwarding_status), its(:global_write_forwarding_requested), its(:pending_modified_values), its(:db_cluster_instance_class), its(:storage_type), its(:iops), its(:publicly_accessible), its(:auto_minor_version_upgrade), its(:monitoring_interval), its(:monitoring_role_arn), its(:database_insights_mode), its(:performance_insights_enabled), its(:performance_insights_kms_key_id), its(:performance_insights_retention_period), its(:serverless_v2_scaling_configuration), its(:network_type), its(:db_system_id), its(:master_user_secret), its(:io_optimized_next_allowed_modification_time), its(:local_write_forwarding_status), its(:aws_backup_recovery_point_arn), its(:limitless_database), its(:storage_throughput), its(:cluster_scalability_type), its(:certificate_details), its(:engine_lifecycle_support)
 ## <a name="rds_db_cluster_parameter_group">rds_db_cluster_parameter_group</a>
 
 RdsDBClusterParameterGroup resource type.
@@ -3640,7 +3640,7 @@ end
 ```
 
 
-### its(:acl_grants_count), its(:acl_owner), its(:cors_rules_count), its(:name), its(:creation_date), its(:bucket_region)
+### its(:acl_grants_count), its(:acl_owner), its(:cors_rules_count), its(:name), its(:creation_date), its(:bucket_region), its(:bucket_arn)
 ### :unlock: Advanced use
 
 `s3_bucket` can use `Aws::S3::Bucket` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Bucket.html).
@@ -3966,6 +3966,10 @@ TransferServer resource type.
 describe transfer_server('s-4dc0a424f0154fa89') do
   it { should exist }
 end
+
+describe transfer_server('my-transfer-server') do
+  it { should exist }
+end
 ```
 
 
@@ -3986,7 +3990,7 @@ end
 ```
 
 
-### its(:arn), its(:certificate), its(:protocol_details), its(:domain), its(:endpoint_type), its(:host_key_fingerprint), its(:identity_provider_details), its(:identity_provider_type), its(:logging_role), its(:post_authentication_login_banner), its(:pre_authentication_login_banner), its(:protocols), its(:security_policy_name), its(:server_id), its(:state), its(:user_count), its(:workflow_details), its(:structured_log_destinations), its(:s3_storage_options), its(:as_2_service_managed_egress_ip_addresses)
+### its(:arn), its(:certificate), its(:protocol_details), its(:domain), its(:endpoint_type), its(:host_key_fingerprint), its(:identity_provider_details), its(:identity_provider_type), its(:logging_role), its(:post_authentication_login_banner), its(:pre_authentication_login_banner), its(:protocols), its(:security_policy_name), its(:server_id), its(:state), its(:user_count), its(:workflow_details), its(:structured_log_destinations), its(:s3_storage_options), its(:as_2_service_managed_egress_ip_addresses), its(:ip_address_type)
 ## <a name="transit_gateway">transit_gateway</a>
 
 TransitGateway resource type.
@@ -4261,7 +4265,7 @@ end
 ```
 
 
-### its(:category), its(:transit_gateway_id), its(:core_network_arn), its(:core_network_attachment_arn), its(:gateway_association_state), its(:options), its(:routes), its(:vgw_telemetry), its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id)
+### its(:category), its(:transit_gateway_id), its(:core_network_arn), its(:core_network_attachment_arn), its(:gateway_association_state), its(:options), its(:routes), its(:vgw_telemetry), its(:pre_shared_key_arn), its(:vpn_connection_id), its(:state), its(:customer_gateway_configuration), its(:type), its(:customer_gateway_id), its(:vpn_gateway_id)
 ## <a name="vpn_gateway">vpn_gateway</a>
 
 VpnGateway resource type.
@@ -4416,7 +4420,7 @@ describe wafv2_web_acl('my-wafv2-web-acl'), scope: 'REGIONAL' do
 end
 ```
 
-### its(:name), its(:id), its(:arn), its(:description), its(:data_protection_config), its(:capacity), its(:pre_process_firewall_manager_rule_groups), its(:post_process_firewall_manager_rule_groups), its(:managed_by_firewall_manager), its(:label_namespace), its(:custom_response_bodies), its(:captcha_config), its(:challenge_config), its(:token_domains), its(:association_config), its(:retrofitted_by_firewall_manager)
+### its(:name), its(:id), its(:arn), its(:description), its(:data_protection_config), its(:capacity), its(:pre_process_firewall_manager_rule_groups), its(:post_process_firewall_manager_rule_groups), its(:managed_by_firewall_manager), its(:label_namespace), its(:custom_response_bodies), its(:captcha_config), its(:challenge_config), its(:token_domains), its(:association_config), its(:retrofitted_by_firewall_manager), its(:on_source_d_do_s_protection_config), its(:application_config)
 # Account and Attributes
 
 ## <a name="account">account</a>

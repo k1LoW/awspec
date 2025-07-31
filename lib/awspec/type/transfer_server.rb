@@ -2,17 +2,14 @@
 
 module Awspec::Type
   class TransferServer < ResourceBase
-    attr_reader :id
-
     tags_allowed
 
-    def initialize(id)
-      super
-      @id = id
+    def resource_via_client
+      @resource_via_client ||= find_transfer_server(@display_name)
     end
 
-    def resource_via_client
-      @resource_via_client ||= find_transfer_server(@id)
+    def id
+      @id ||= resource_via_client.server_id if resource_via_client
     end
 
     STATES = %w[

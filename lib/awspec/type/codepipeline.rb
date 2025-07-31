@@ -7,7 +7,7 @@ module Awspec::Type
     end
 
     def id
-      @id ||= resource_via_client if resource_via_client.name
+      @id ||= resource_via_client.name if resource_via_client
     end
   end
 end

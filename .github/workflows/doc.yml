@@ -12,18 +12,18 @@ jobs:
       DISABLE_AWS_CLIENT_CHECK: true
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@ab177d40ee5483edb974554986f56b33477e21d0 # v1.265.0
       with:
-        ruby-version: '2.7'
+        ruby-version: ruby
         bundler-cache: true
 
     - name: Generate document
       run: bundle exec bin/toolbox docgen > doc/resource_types.md
 
-    - uses: EndBug/add-and-commit@v7
+    - uses: EndBug/add-and-commit@8c12ff729a98cfbcd3fe38b49f55eceb98a5ec02 # v7.5.0
       with:
         default_author: github_actions
         add: 'doc/resource_types.md'

@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 
 jobs:
@@ -13,16 +13,16 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@ab177d40ee5483edb974554986f56b33477e21d0 # v1.265.0
       with:
-        ruby-version: 3.1
+        ruby-version: ruby
         bundler-cache: true
 
     - name: Run rubocop
-      uses: reviewdog/action-rubocop@v1
+      uses: reviewdog/action-rubocop@a434f50eaae1589b90edcb14cabf70555571577a # v1.11.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: github-pr-review
@@ -46,10 +46,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@ab177d40ee5483edb974554986f56b33477e21d0 # v1.265.0
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true

@@ -67,6 +67,15 @@ module Awspec::Helper
         nil
       end
 
+      def select_backup_rule_by_plan_id(id)
+        selected = []
+        req = { backup_plan_id: id }
+        res = backup_client.get_backup_plan(req)
+        selected = res.backup_plan.rules
+      rescue Aws::Backup::Errors::ResourceNotFoundException
+        nil
+      end
+
       def locked?
         resource_via_client.locked
       end

@@ -2284,7 +2284,7 @@ describe kinesis('my-kinesis') do
 end
 ```
 
-### its(:stream_name), its(:stream_arn), its(:stream_status), its(:stream_mode_details), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count), its(:consumer_count)
+### its(:stream_name), its(:stream_arn), its(:stream_status), its(:stream_mode_details), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count), its(:consumer_count), its(:max_record_size_in_ki_b)
 ## <a name="kms">kms</a>
 
 Kms resource type.
@@ -2532,7 +2532,7 @@ end
 ```
 
 
-### its(:prefix_list_id), its(:address_family), its(:state), its(:state_message), its(:prefix_list_arn), its(:prefix_list_name), its(:max_entries), its(:version), its(:owner_id)
+### its(:prefix_list_id), its(:address_family), its(:state), its(:state_message), its(:prefix_list_arn), its(:prefix_list_name), its(:max_entries), its(:version), its(:owner_id), its(:ipam_prefix_list_resolver_target_id), its(:ipam_prefix_list_resolver_sync_enabled)
 ## <a name="mq">mq</a>
 
 MQ resource type.

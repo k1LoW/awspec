@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 RSpec::Matchers.define :have_plan_rule do |rule_id|
+  attr_list = %w[
+    rule_name target_backup_vault_name schedule_expression
+    start_window_minutes completion_window_minutes lifecycle
+    enable_continuous_backup schedule_expression_timezone
+  ]
+
   match do |plan|
     plan.has_plan_rule?(rule_id,
                         rule_name: @rule_name,
@@ -13,35 +19,20 @@ RSpec::Matchers.define :have_plan_rule do |rule_id|
                         schedule_expression_timezone: @schedule_expression_timezone)
   end
 
-  chain :rule_name do |rule_name|
-    @rule_name = rule_name
+  attr_list.each do |a|
+    define_method a.to_sym do |*args|
+      instance_variable_set("@#{a}", args[0])
+      self
+    end
   end
 
-  chain :target_backup_vault_name do |target_backup_vault_name|
-    @target_backup_vault_name = target_backup_vault_name
-  end
+  description do
+    attr = ''
+    attr_list.each do |a|
+      attr += "#{a} #{instance_variable_get("@#{a}")}" unless instance_variable_get("@#{a}").nil?
+    end
 
-  chain :schedule_expression do |schedule_expression|
-    @schedule_expression = schedule_expression
-  end
-
-  chain :start_window_minutes do |start_window_minutes|
-    @start_window_minutes = start_window_minutes
-  end
-
-  chain :completion_window_minutes do |completion_window_minutes|
-    @completion_window_minutes = completion_window_minutes
-  end
-
-  chain :lifecycle do |lifecycle|
-    @lifecycle = lifecycle
-  end
-
-  chain :enable_continuous_backup do |enable_continuous_backup|
-    @enable_continuous_backup = enable_continuous_backup
-  end
-
-  chain :schedule_expression_timezone do |schedule_expression_timezone|
-    @schedule_expression_timezone = schedule_expression_timezone
+    attr = " with #{attr}" if attr != ''
+    "have plan rule #{rule_id}#{attr}"
   end
 end

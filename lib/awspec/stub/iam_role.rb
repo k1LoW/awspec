@@ -8,6 +8,7 @@ Aws.config[:iam] = {
         role_name: 'my-iam-role',
         role_id: 'RABCDEFGHI123455689',
         arn: 'arn:aws:iam::123456789012:role/my-iam-role',
+        description: 'my-description',
         create_date: Time.new(2015, 1, 2, 9, 00, 00, '+00:00')
       ]
     },
@@ -34,7 +35,16 @@ Aws.config[:iam] = {
         role_name: 'my-iam-role',
         role_id: 'RABCDEFGHI123455689',
         arn: 'arn:aws:iam::123456789012:role/my-iam-role',
-        create_date: Time.new(2015, 1, 2, 9, 00, 00, '+00:00')
+        description: 'my-description',
+        create_date: Time.new(2015, 1, 2, 9, 00, 00, '+00:00'),
+        permissions_boundary: {
+          permissions_boundary_type: 'Policy',
+          permissions_boundary_arn: 'arn:aws:iam::123456789012:policy/my-permission-boundary'
+        },
+        role_last_used: {
+          region: 'us-east-1',
+          last_used_date: Time.new(2019, 11, 13, 17, 14, 00, '+00:00')
+        }
       }
     },
     get_role_policy: {

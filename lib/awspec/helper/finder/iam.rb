@@ -23,7 +23,23 @@ module Awspec::Helper
             )
           end
 
-          selected.single_resource(id)
+          res = selected.single_resource(id)
+
+          unless res.nil?
+            # Enrich the resource with all the fields returned by get_user, get_group, get_role, get_policy
+            params = type == 'policy' ? { :policy_arn => res['arn'] } : { "#{type}_name".to_sym => res["#{type}_name"] }
+            r = iam_client.send(
+              "get_#{type}",
+              params
+            )
+            object = r[type.to_sym]
+            unless object.nil?
+              object.to_h.each_key do |k|
+                res[k] = object[k] if res[k].nil?
+              end
+            end
+          end
+          res
         end
       end
 

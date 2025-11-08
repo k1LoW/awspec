@@ -18,7 +18,7 @@ module Awspec::Generator
 <%= links.join("\n| ") %>
 
 EOF
-        doc = ERB.new(header, nil, '-').result(binding)
+        doc = ERB.new(header, trim_mode: '-').result(binding)
 
         types.sort.map do |type|
           doc += eval "Awspec::Generator::Doc::Type::#{type.camelize}.new.generate_doc"

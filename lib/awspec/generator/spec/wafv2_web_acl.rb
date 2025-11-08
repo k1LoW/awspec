@@ -10,7 +10,7 @@ module Awspec::Generator
 
         specs = web_acls.map do |acl|
           web_acl = get_web_acl(scope, acl.name, acl.id)
-          ERB.new(wafv2_web_acl_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          ERB.new(wafv2_web_acl_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

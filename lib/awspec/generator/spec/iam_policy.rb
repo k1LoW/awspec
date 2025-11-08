@@ -8,7 +8,7 @@ module Awspec::Generator
         policies = select_all_attached_policies
         raise 'Not Found policy' if policies.empty?
 
-        ERB.new(policy_spec_template, nil, '-').result(binding).chomp
+        ERB.new(policy_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       # rubocop:disable all

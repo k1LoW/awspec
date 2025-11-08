@@ -48,7 +48,7 @@ module Awspec::Generator
               @descriptions[matcher] += line
             end
           end
-          ERB.new(doc_template, nil, '-').result(binding)
+          ERB.new(doc_template, trim_mode: '-').result(binding)
         end
 
         def collect_matchers

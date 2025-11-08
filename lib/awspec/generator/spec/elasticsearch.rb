@@ -8,7 +8,7 @@ module Awspec::Generator
         domains = select_all_elasticsearch_domains
         raise 'Not Found Domain' if domains.empty?
 
-        ERB.new(domain_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        ERB.new(domain_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
 
       def domain_spec_template

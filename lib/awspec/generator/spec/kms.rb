@@ -8,7 +8,7 @@ module Awspec::Generator
         aliases = select_all_kms_aliases.select { |kms_alias| customer_managed_key?(kms_alias) }
         raise 'Not Found alias' if aliases.empty?
 
-        ERB.new(keys_spec_template, nil, '-').result(binding).chomp
+        ERB.new(keys_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def keys_spec_template

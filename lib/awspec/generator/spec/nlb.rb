@@ -16,7 +16,7 @@ module Awspec::Generator
         nlbs = select_nlb_by_vpc_id(@vpc_id)
 
         specs = nlbs.map do |nlb|
-          content = ERB.new(nlb_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(nlb_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

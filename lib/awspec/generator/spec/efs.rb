@@ -10,7 +10,7 @@ module Awspec::Generator
 
         specs = file_systems.map do |file_system|
           file_system.name = get_name_by_id(file_system.file_system_id)
-          content = ERB.new(file_system_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(file_system_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

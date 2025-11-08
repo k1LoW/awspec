@@ -24,7 +24,7 @@ module Awspec::Generator
           outbound_entries_count = acl.entries.count do |entry|
             entry.egress == true
           end
-          content = ERB.new(network_acl_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(network_acl_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

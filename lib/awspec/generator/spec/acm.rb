@@ -8,7 +8,7 @@ module Awspec::Generator
         certificates = select_all_certificates
         raise 'Not Found Certificates' if certificates.empty?
 
-        ERB.new(acm_spec_template, nil, '-').result(binding).chomp
+        ERB.new(acm_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def acm_spec_template

@@ -17,7 +17,7 @@ module Awspec::Generator
             document = JSON.generate(JSON.parse(URI.decode_www_form_component(res.policy_document)))
             "it { should have_inline_policy('#{policy_name}').policy_document('#{document}') }"
           end
-          content = ERB.new(iam_group_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(iam_group_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

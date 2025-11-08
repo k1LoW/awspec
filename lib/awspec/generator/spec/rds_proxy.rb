@@ -11,7 +11,7 @@ module Awspec::Generator
         @vpc_id = vpc[:vpc_id]
         db_proxies = select_rds_proxy_by_vpc_id(@vpc_id)
         specs = db_proxies.map do |db_proxy|
-          content = ERB.new(rds_proxy_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(rds_proxy_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

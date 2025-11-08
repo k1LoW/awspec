@@ -8,7 +8,7 @@ module Awspec::Generator
         lambda_functions = select_all_lambda_functions
         raise 'Not Found lambda' if lambda_functions.empty?
 
-        ERB.new(lambda_spec_template, nil, '-').result(binding).chomp
+        ERB.new(lambda_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def lambda_spec_template

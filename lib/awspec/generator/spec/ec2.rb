@@ -23,7 +23,7 @@ module Awspec::Generator
           volumes = select_ebs_by_instance_id(instance_id)
           network_interfaces = select_network_interface_by_instance_id(instance_id)
           credit_specification = find_ec2_credit_specifications(instance_id)
-          content = ERB.new(ec2_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(ec2_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

@@ -20,7 +20,7 @@ module Awspec::Generator
           nlb_listeners.map do |listener|
             rules = select_rule_by_nlb_listener_id(listener.listener_arn).map(&:to_h)
             rules.map do |rule|
-              content = ERB.new(nlb_listener_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+              content = ERB.new(nlb_listener_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
             end
           end
         end

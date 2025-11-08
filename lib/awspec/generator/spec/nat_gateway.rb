@@ -15,7 +15,7 @@ module Awspec::Generator
         nat_gateways = select_nat_gateway_by_vpc_id(@vpc_id)
         specs = nat_gateways.map do |nat_gateway|
           nat_gateway_id = nat_gateway[:nat_gateway_id]
-          content = ERB.new(nat_gateway_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(nat_gateway_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

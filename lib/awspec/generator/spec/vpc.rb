@@ -16,7 +16,7 @@ module Awspec::Generator
         route_tables = select_route_table_by_vpc_id(@vpc_id)
         network_acls = select_network_acl_by_vpc_id(@vpc_id)
         vpc_attributes = select_vpc_attribute(@vpc_id)
-        spec = ERB.new(vpc_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        spec = ERB.new(vpc_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
 
       # rubocop:disable all

@@ -8,7 +8,7 @@ module Awspec::Generator
         events = select_all_cloudwatch_events
         raise 'Not Found event' if events.empty?
 
-        ERB.new(event_spec_template, nil, '-').result(binding).chomp
+        ERB.new(event_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def event_spec_template

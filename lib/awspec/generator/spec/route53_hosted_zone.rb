@@ -28,7 +28,7 @@ module Awspec::Generator
           generate_linespec(record_set)
         end
 
-        content = ERB.new(route53_hosted_zone_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        content = ERB.new(route53_hosted_zone_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
 
       def generate_linespec(record_set)
@@ -55,7 +55,7 @@ it { should have_record_set('<%= name %>').alias('<%= dns_name %>', '<%= hosted_
 <% end -%>
 EOF
         end
-        ERB.new(template, nil, '-').result(binding)
+        ERB.new(template, trim_mode: '-').result(binding)
       end
 
       def route53_hosted_zone_spec_template

@@ -21,7 +21,7 @@ module Awspec::Generator
             ret = find_security_group(sg_id)
             ret[:group_name]
           end
-          content = ERB.new(rds_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(rds_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

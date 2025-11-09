@@ -37,6 +37,7 @@ describe iam_group('my-iam-group') do
 }
 DOC
   end
+  its(:path) { should eq '/' }
   it { should be_allowed_action('ec2:DescribeInstances') }
   it { should be_allowed_action('ec2:DescribeInstances').resource_arn('*') }
   it do

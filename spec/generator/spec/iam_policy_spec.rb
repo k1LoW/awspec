@@ -13,7 +13,7 @@ describe Awspec::Generator::Spec::IamPolicy do
 describe iam_policy('my-iam-policy') do
   it { should exist }
   it { should be_attachable }
-  its(:arn) { should eq 'arn:aws:iam::aws:policy/my-iam-policy' }
+  its(:arn) { should eq 'arn:aws:iam::123456789012:policy/my-iam-policy' }
   its(:update_date) { should eq Time.parse('2015-01-02 10:00:00 UTC') }
   its(:attachment_count) { should eq 1 }
   it { should     be_attached_to_user('my-iam-user') }

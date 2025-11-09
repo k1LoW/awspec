@@ -33,7 +33,7 @@ Aws.config[:iam] = {
       policies: [
         {
           attachment_count: 1,
-          arn: 'arn:aws:iam::aws:policy/my-iam-policy',
+          arn: 'arn:aws:iam::123456789012:policy/my-iam-policy',
           default_version_id: 'v1',
           is_attachable: true,
           policy_id: 'PABCDEFGHI123455689',
@@ -80,6 +80,20 @@ Aws.config[:iam] = {
         version_id: 'v1',
         is_default_version: true,
         create_date: Time.new(2022, 11, 12, 01, 23, 45, '+00:00')
+      }
+    },
+    get_policy: {
+      policy: {
+        policy_name: 'my-iam-policy',
+        create_date: Time.new(2014, 1, 2, 10, 00, 00, '+00:00'),
+        description: 'my-description',
+        attachment_count: 1,
+        is_attachable: true,
+        policy_id: 'PABCDEFGHI123455689',
+        default_version_id: 'v1',
+        path: '/',
+        arn: 'arn:aws:iam::123456789012:policy/my-iam-policy',
+        update_date: Time.new(2015, 1, 2, 10, 00, 00, '+00:00')
       }
     }
   }

@@ -8,6 +8,13 @@ describe iam_role('my-iam-role') do
   it { should have_iam_policy('ReadOnlyAccess') }
   it { should have_inline_policy }
   it { should have_inline_policy('AllowS3BucketAccess') }
+  its(:description) { should_not be_nil }
+  its(:arn) { should eq 'arn:aws:iam::123456789012:role/my-iam-role' }
+  its(:path) { should eq '/' }
+  its(:create_date) { should eq Time.new(2015, 1, 2, 9, 00, 00, '+00:00') }
+  its('permissions_boundary.permissions_boundary_arn') { should end_with(':policy/my-permission-boundary') }
+  its('role_last_used.region') { should eq 'us-east-1' }
+  its('role_last_used.last_used_date') { should > Time.new(2015, 1, 2, 9, 00, 00, '+00:00') }
   it do
     should have_inline_policy('AllowS3BucketAccess').policy_document(<<-'DOC')
 {

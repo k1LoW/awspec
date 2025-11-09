@@ -414,7 +414,7 @@ end
 ```
 
 
-### its(:backup_vault_name), its(:backup_vault_arn), its(:vault_type), its(:vault_state), its(:creation_date), its(:encryption_key_arn), its(:creator_request_id), its(:number_of_recovery_points), its(:locked), its(:min_retention_days), its(:max_retention_days), its(:lock_date)
+### its(:backup_vault_name), its(:backup_vault_arn), its(:vault_type), its(:vault_state), its(:creation_date), its(:encryption_key_arn), its(:creator_request_id), its(:number_of_recovery_points), its(:locked), its(:min_retention_days), its(:max_retention_days), its(:lock_date), its(:encryption_key_type)
 ## <a name="batch_compute_environment">batch_compute_environment</a>
 
 BatchComputeEnvironment resource type.
@@ -2284,7 +2284,7 @@ describe kinesis('my-kinesis') do
 end
 ```
 
-### its(:stream_name), its(:stream_arn), its(:stream_status), its(:stream_mode_details), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count), its(:consumer_count), its(:max_record_size_in_ki_b)
+### its(:stream_name), its(:stream_arn), its(:stream_status), its(:stream_mode_details), its(:retention_period_hours), its(:stream_creation_timestamp), its(:encryption_type), its(:key_id), its(:open_shard_count), its(:consumer_count), its(:warm_throughput), its(:max_record_size_in_ki_b)
 ## <a name="kms">kms</a>
 
 Kms resource type.

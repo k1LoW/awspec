@@ -10,7 +10,7 @@ module Awspec::Generator
 
         specs = volumes.map do |volume|
           attachment_specs = generate_attachment_specs(volume)
-          content = ERB.new(ebs_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(ebs_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end
@@ -19,7 +19,7 @@ module Awspec::Generator
         linespecs = []
         volume.attachments.each do |attachment|
           instance = find_ec2(attachment.instance_id)
-          linespecs.push(ERB.new(attachment_linetemplate, nil, '-').result(binding)) if attachment.instance_id
+          linespecs.push(ERB.new(attachment_linetemplate, trim_mode: '-').result(binding)) if attachment.instance_id
         end
         linespecs
       end

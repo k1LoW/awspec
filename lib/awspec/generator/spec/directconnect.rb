@@ -12,7 +12,7 @@ module Awspec::Generator
         virtual_interfaces = select_virtual_interfaces
         raise 'Not Found virtual_interfaces' if virtual_interfaces.empty?
 
-        ERB.new(virtual_interface_spec_template, nil, '-').result(binding).chomp
+        ERB.new(virtual_interface_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def virtual_interface_spec_template

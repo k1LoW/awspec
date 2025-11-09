@@ -7,7 +7,7 @@ module Awspec::Generator
       def generate_by_parameter_group(parameter_group)
         @parameter_group = parameter_group
         res = select_all_redshift_cluster_parameters(@parameter_group)
-        ERB.new(redshift_cluster_parameters_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        ERB.new(redshift_cluster_parameters_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
 
       def redshift_cluster_parameters_spec_template

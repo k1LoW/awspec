@@ -15,7 +15,7 @@ module Awspec::Generator
         internet_gateways = select_internet_gateway_by_vpc_id(@vpc_id)
         specs = internet_gateways.map do |internet_gateway|
           internet_gateway_id = internet_gateway[:internet_gateway_id]
-          content = ERB.new(internet_gateway_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(internet_gateway_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

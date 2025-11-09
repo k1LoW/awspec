@@ -18,7 +18,7 @@ module Awspec::Generator
           subnet_linespecs = generate_subnet_linespecs(route_table)
           route_table_id = route_table[:route_table_id]
           route_table_tag_name = route_table.tag_name
-          content = ERB.new(route_table_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(route_table_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end
@@ -29,18 +29,22 @@ module Awspec::Generator
           if route.gateway_id
             destination = route.destination_cidr_block
             destination ||= route.destination_prefix_list_id
-            linespecs.push(ERB.new(route_table_spec_gateway_linetemplate, nil, '-').result(binding))
+            linespecs.push(ERB.new(route_table_spec_gateway_linetemplate, trim_mode: '-').result(binding))
           end
           if route.instance_id
             instance = find_ec2(route.instance_id)
-            linespecs.push(ERB.new(route_table_spec_instance_linetemplate, nil, '-').result(binding)) if instance
+            if instance
+              linespecs.push(ERB.new(route_table_spec_instance_linetemplate, trim_mode: '-').result(binding))
+            end
           end
           if route.vpc_peering_connection_id
             connection = find_vpc_peering_connection(route.vpc_peering_connection_id)
-            linespecs.push(ERB.new(route_table_spec_connection_linetemplate, nil, '-').result(binding)) if connection
+            if connection
+              linespecs.push(ERB.new(route_table_spec_connection_linetemplate, trim_mode: '-').result(binding))
+            end
           end
           if route.nat_gateway_id
-            linespecs.push(ERB.new(route_table_spec_nat_linetemplate, nil, '-').result(binding))
+            linespecs.push(ERB.new(route_table_spec_nat_linetemplate, trim_mode: '-').result(binding))
           end
         end
         linespecs
@@ -52,7 +56,7 @@ module Awspec::Generator
           next if a.subnet_id.nil?
 
           subnet = find_subnet(a.subnet_id)
-          linespecs.push(ERB.new(route_table_spec_subnet_linetemplate, nil, '-').result(binding)) if subnet
+          linespecs.push(ERB.new(route_table_spec_subnet_linetemplate, trim_mode: '-').result(binding)) if subnet
         end
         linespecs
       end

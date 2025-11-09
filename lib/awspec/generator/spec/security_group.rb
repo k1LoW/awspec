@@ -23,7 +23,7 @@ module Awspec::Generator
           outbound_rule_count = sg[:ip_permissions_egress].reduce(0) do |sum, permission|
             sum += permission.ip_ranges.count + permission.user_id_group_pairs.count
           end
-          content = ERB.new(security_group_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(security_group_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end
@@ -49,12 +49,12 @@ module Awspec::Generator
 
             permission.ip_ranges.each do |ip_range|
               target = ip_range.cidr_ip
-              linespecs.push(ERB.new(security_group_spec_linetemplate, nil, '-').result(binding))
+              linespecs.push(ERB.new(security_group_spec_linetemplate, trim_mode: '-').result(binding))
             end
             permission.user_id_group_pairs.each do |group|
               target = group.group_name
               target = group.group_id unless group.group_name
-              linespecs.push(ERB.new(security_group_spec_linetemplate, nil, '-').result(binding))
+              linespecs.push(ERB.new(security_group_spec_linetemplate, trim_mode: '-').result(binding))
             end
           end
         end

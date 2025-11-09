@@ -17,7 +17,7 @@ module Awspec::Generator
         @vpc_tag_name = vpc.tag_name
         autoscaling_groups = select_autoscaling_group_by_vpc_id(@vpc_id)
         specs = autoscaling_groups.map do |autoscaling_group|
-          content = ERB.new(autoscaling_group_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(autoscaling_group_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

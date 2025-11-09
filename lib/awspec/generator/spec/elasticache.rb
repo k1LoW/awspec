@@ -16,7 +16,7 @@ module Awspec::Generator
         end
         raise 'Not Found Cache Clusters' if clusters.empty?
 
-        ERB.new(cache_clusters_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        ERB.new(cache_clusters_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
 
       def cache_clusters_spec_template

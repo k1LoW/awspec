@@ -13,7 +13,7 @@ module Awspec::Generator
         eips = select_all_addresses
         raise 'Not Found Elastic IP addresses.' if eips.empty?
 
-        ERB.new(eip_spec_template, nil, '-').result(binding).chomp
+        ERB.new(eip_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def eip_spec_template

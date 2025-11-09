@@ -17,7 +17,7 @@ module Awspec::Generator
         specs = subnets.map do |subnet|
           subnet_id = subnet[:subnet_id]
           subnet_tag_name = subnet.tag_name
-          content = ERB.new(subnet_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(subnet_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

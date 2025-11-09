@@ -8,7 +8,7 @@ module Awspec::Generator
         pipelines = select_all_codepipelines
         raise 'Not Found CodePipeline' if pipelines.empty?
 
-        ERB.new(codepipeline_spec_template, nil, '-').result(binding).chomp
+        ERB.new(codepipeline_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def codepipeline_spec_template

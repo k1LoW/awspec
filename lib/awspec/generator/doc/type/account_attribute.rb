@@ -14,8 +14,9 @@ module Awspec::Generator
           @describes = []
         end
 
+        # rubocop:disable Layout/LineLength
         def generate_doc
-          @account_attribute_spec = ERB.new(account_attribute_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          @account_attribute_spec = ERB.new(account_attribute_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
           super
         end
 

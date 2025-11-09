@@ -8,7 +8,7 @@ module Awspec::Generator
         projects = select_all_codebuild_projects
         raise 'Not Found CodeBuild Project' if projects.empty?
 
-        ERB.new(codebuild_spec_template, nil, '-').result(binding).chomp
+        ERB.new(codebuild_spec_template, trim_mode: '-').result(binding).chomp
       end
 
       def codebuild_spec_template

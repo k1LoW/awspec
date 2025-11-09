@@ -24,7 +24,7 @@ module Awspec::Generator
 
         linespecs = []
         acl.grants.each do |grant|
-          linespecs.push(ERB.new(grant_linetemplate, nil, '-').result(binding))
+          linespecs.push(ERB.new(grant_linetemplate, trim_mode: '-').result(binding))
         end
         linespecs
       end
@@ -79,7 +79,7 @@ it do
     )
   end
           EOF
-          linespecs.push(ERB.new(template, nil, '-').result(binding))
+          linespecs.push(ERB.new(template, trim_mode: '-').result(binding))
         end
         linespecs
       end
@@ -124,7 +124,7 @@ EOF
         lifecycle_rule = find_bucket_lifecycle_configuration(bucket.name)
         lifecycle_specs = generate_lifecycle_rule_specs(lifecycle_rule) if lifecycle_rule
         location = find_bucket_location(bucket.name)
-        ERB.new(bucket_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        ERB.new(bucket_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
     end
   end

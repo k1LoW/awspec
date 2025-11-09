@@ -12,7 +12,7 @@ module Awspec::Generator
           log_stream_line = generate_log_stream_spec(log_group.log_group_name)
           metric_filter_lines = generate_log_metric_filters_specs(log_group.log_group_name)
           subscription_filter_lines = generate_log_subscription_filters_specs(log_group.log_group_name)
-          content = ERB.new(cloudwatch_logs_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(cloudwatch_logs_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

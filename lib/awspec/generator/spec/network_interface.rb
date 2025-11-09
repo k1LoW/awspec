@@ -19,7 +19,7 @@ module Awspec::Generator
           network_interface_id = interface[:network_interface_id]
           linespecs = generate_linespecs(interface)
           private_ip_addresses_count = interface.private_ip_addresses.count
-          content = ERB.new(network_interface_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(network_interface_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

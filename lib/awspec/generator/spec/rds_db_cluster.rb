@@ -39,7 +39,7 @@ EOF
       private
 
       def content(cluster)
-        ERB.new(rds_db_cluster_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+        ERB.new(rds_db_cluster_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
       end
     end
   end

@@ -10,7 +10,7 @@ module Awspec::Generator
 
         specs = ip_sets.map do |i|
           ip_set = get_ip_set(scope, i.name, i.id)
-          ERB.new(wafv2_ip_set_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          ERB.new(wafv2_ip_set_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

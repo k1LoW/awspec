@@ -20,7 +20,7 @@ module Awspec::Generator
         lbs = select_elb_by_vpc_id(@vpc_id)
 
         specs = lbs.map do |lb|
-          content = ERB.new(elb_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(elb_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

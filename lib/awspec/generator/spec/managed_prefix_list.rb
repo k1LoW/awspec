@@ -15,7 +15,7 @@ module Awspec::Generator
 
         specs = prefix_lists.map do |prefix_list|
           entries = select_managed_prefix_list_entries(prefix_list.prefix_list_id)
-          content = ERB.new(managed_prefix_list_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          content = ERB.new(managed_prefix_list_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
         end
         specs.join("\n")
       end

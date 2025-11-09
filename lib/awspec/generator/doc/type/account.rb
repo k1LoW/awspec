@@ -15,7 +15,7 @@ module Awspec::Generator
         end
 
         def generate_doc
-          @account_spec = ERB.new(account_spec_template, nil, '-').result(binding).gsub(/^\n/, '')
+          @account_spec = ERB.new(account_spec_template, trim_mode: '-').result(binding).gsub(/^\n/, '')
           super
         end
 

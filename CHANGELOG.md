@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.35.0](https://github.com/k1LoW/awspec/compare/v1.34.0...v1.35.0) - 2025-11-10
+- Improve backup plan rules output by @endemics in https://github.com/k1LoW/awspec/pull/611
+- Add missing details for IAM roles and policies by @endemics in https://github.com/k1LoW/awspec/pull/609
+- chore: remove ERB trim fix warnings by @endemics in https://github.com/k1LoW/awspec/pull/610
+- chore: setup tagpr labels by @k1LoW in https://github.com/k1LoW/awspec/pull/608
+
 ## [v1.34.0](https://github.com/k1LoW/awspec/compare/v1.33.0...v1.34.0) - 2025-10-18
 - Add support for aws backup rules (under backup plan) by @endemics in https://github.com/k1LoW/awspec/pull/605
 - feat: setup tagpr by @k1LoW in https://github.com/k1LoW/awspec/pull/606

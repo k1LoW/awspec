@@ -33,3 +33,5 @@
 	vPrefix = true
 	releaseBranch = main
 	versionFile = lib/awspec/version.rb
+	majorLabels = "tagpr:major"
+	minorLabels = "tagpr:minor"

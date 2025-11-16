@@ -2117,7 +2117,7 @@ end
 ```
 
 
-### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:max_session_duration), its(:permissions_boundary), its(:tags), its(:role_last_used)
+### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:max_session_duration), its(:tags)
 ### :unlock: Advanced use
 
 `iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).
@@ -2594,7 +2594,7 @@ end
 
 ### be_updating
 
-### its(:active_operation_arn), its(:client_authentication), its(:cluster_arn), its(:cluster_name), its(:creation_time), its(:current_version), its(:enhanced_monitoring), its(:number_of_broker_nodes), its(:state), its(:state_info), its(:zookeeper_connect_string), its(:zookeeper_connect_string_tls), its(:storage_mode), its(:customer_action_status)
+### its(:active_operation_arn), its(:client_authentication), its(:cluster_arn), its(:cluster_name), its(:creation_time), its(:current_version), its(:enhanced_monitoring), its(:number_of_broker_nodes), its(:state), its(:state_info), its(:zookeeper_connect_string), its(:zookeeper_connect_string_tls), its(:storage_mode), its(:rebalancing), its(:customer_action_status)
 ## <a name="nat_gateway">nat_gateway</a>
 
 NatGateway resource type.

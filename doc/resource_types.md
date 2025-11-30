@@ -593,7 +593,7 @@ describe cloudfront_distribution('123456789zyxw.cloudfront.net') do
 end
 ```
 
-### its(:id), its(:arn), its(:etag), its(:status), its(:last_modified_time), its(:domain_name), its(:origin_groups), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled), its(:alias_icp_recordals), its(:staging), its(:connection_mode), its(:anycast_ip_list_id)
+### its(:id), its(:arn), its(:etag), its(:status), its(:last_modified_time), its(:domain_name), its(:origin_groups), its(:comment), its(:price_class), its(:enabled), its(:web_acl_id), its(:http_version), its(:is_ipv6_enabled), its(:alias_icp_recordals), its(:staging), its(:connection_mode), its(:anycast_ip_list_id), its(:viewer_mtls_config), its(:connection_function_association)
 ## <a name="cloudtrail">cloudtrail</a>
 
 Cloudtrail resource type.
@@ -778,7 +778,7 @@ describe cloudwatch_logs('my-cloudwatch-logs-group') do
 end
 ```
 
-### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status), its(:inherited_properties), its(:log_group_class), its(:log_group_arn)
+### its(:log_group_name), its(:creation_time), its(:retention_in_days), its(:metric_filter_count), its(:arn), its(:stored_bytes), its(:kms_key_id), its(:data_protection_status), its(:inherited_properties), its(:log_group_class), its(:log_group_arn), its(:deletion_protection_enabled)
 ## <a name="codebuild">codebuild</a>
 
 Codebuild resource type.
@@ -2644,7 +2644,7 @@ end
 ```
 
 
-### its(:create_time), its(:delete_time), its(:failure_code), its(:failure_message), its(:nat_gateway_id), its(:provisioned_bandwidth), its(:state), its(:subnet_id), its(:vpc_id), its(:connectivity_type), its(:availability_mode), its(:auto_scaling_ips), its(:auto_provision_zones), its(:route_table_id)
+### its(:create_time), its(:delete_time), its(:failure_code), its(:failure_message), its(:nat_gateway_id), its(:provisioned_bandwidth), its(:state), its(:subnet_id), its(:vpc_id), its(:connectivity_type), its(:availability_mode), its(:auto_scaling_ips), its(:auto_provision_zones), its(:attached_appliances), its(:route_table_id)
 ## <a name="network_acl">network_acl</a>
 
 NetworkAcl resource type.
@@ -3413,7 +3413,7 @@ ns-890.awsdns-12.com.'
 end
 ```
 
-### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count), its(:linked_service)
+### its(:id), its(:name), its(:caller_reference), its(:config), its(:resource_record_set_count), its(:linked_service), its(:features)
 ## <a name="route_table">route_table</a>
 
 RouteTable resource type.

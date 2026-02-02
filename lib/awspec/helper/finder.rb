@@ -30,7 +30,6 @@ require 'awspec/helper/finder/ses'
 require 'awspec/helper/finder/directconnect'
 require 'awspec/helper/finder/ami'
 require 'awspec/helper/finder/cloudfront'
-require 'awspec/helper/finder/elastictranscoder'
 require 'awspec/helper/finder/cloudtrail'
 require 'awspec/helper/finder/waf'
 require 'awspec/helper/finder/wafregional'
@@ -94,7 +93,6 @@ module Awspec::Helper
     include Awspec::Helper::Finder::Directconnect
     include Awspec::Helper::Finder::Ami
     include Awspec::Helper::Finder::Cloudfront
-    include Awspec::Helper::Finder::Elastictranscoder
     include Awspec::Helper::Finder::Cloudtrail
     include Awspec::Helper::Finder::Waf
     include Awspec::Helper::Finder::WafRegional
@@ -145,7 +143,6 @@ module Awspec::Helper
       ses_client: Aws::SES::Client,
       directconnect_client: Aws::DirectConnect::Client,
       cloudfront_client: Aws::CloudFront::Client,
-      elastictranscoder_client: Aws::ElasticTranscoder::Client,
       elasticsearch_client: Aws::ElasticsearchService::Client,
       cloudtrail_client: Aws::CloudTrail::Client,
       waf_client: Aws::WAF::Client,

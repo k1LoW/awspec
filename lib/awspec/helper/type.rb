@@ -20,7 +20,7 @@ module Awspec
         rds rds_proxy rds_db_cluster_parameter_group rds_db_parameter_group rds_db_subnet_group
         rds_db_cluster rds_global_cluster
         route53_hosted_zone route_table s3_bucket security_group ses_identity subnet vpc cloudfront_distribution
-        elastictranscoder_pipeline waf_web_acl wafregional_web_acl customer_gateway vpn_gateway vpn_connection
+        waf_web_acl wafregional_web_acl customer_gateway vpn_gateway vpn_connection
         internet_gateway acm cloudwatch_logs dynamodb_table eip sqs ssm_parameter cloudformation_stack
         codebuild sns_topic redshift redshift_cluster_parameter_group codedeploy codedeploy_deployment_group
         secretsmanager msk transit_gateway cognito_identity_pool cognito_user_pool vpc_endpoints

@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.36.0](https://github.com/k1LoW/awspec/compare/v1.35.0...v1.36.0) - 2026-02-03
+- Remove `elastictranscoder_pipeline` type by @alexjfisher in https://github.com/k1LoW/awspec/pull/614
+
 ## [v1.35.0](https://github.com/k1LoW/awspec/compare/v1.34.0...v1.35.0) - 2025-11-10
 - Improve backup plan rules output by @endemics in https://github.com/k1LoW/awspec/pull/611
 - Add missing details for IAM roles and policies by @endemics in https://github.com/k1LoW/awspec/pull/609

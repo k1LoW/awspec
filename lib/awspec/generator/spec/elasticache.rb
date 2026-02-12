@@ -5,9 +5,9 @@ module Awspec::Generator
     class Elasticache
       include Awspec::Helper::Finder
       def generate_all
-        cache_clusters = collect_cache_clusters
-        replication_groups = collect_replication_groups
-        serverless_caches = collect_serverless_caches
+        cache_clusters = select_cache_clusters
+        replication_groups = select_replication_groups
+        serverless_caches = select_serverless_caches
         if cache_clusters.empty? && replication_groups.empty? && serverless_caches.empty?
           raise 'Not Found ElastiCache Resources'
         end
@@ -74,63 +74,6 @@ EOF
       end
 
       private
-
-      def collect_cache_clusters
-        opt = {}
-        clusters = []
-        loop do
-          res = elasticache_client.describe_cache_clusters(opt)
-          clusters.push(*res.cache_clusters)
-          break if res.marker.nil?
-
-          opt = { marker: res.marker }
-        end
-        clusters
-      end
-
-      def collect_replication_groups
-        opt = {}
-        groups = []
-        loop do
-          res = elasticache_client.describe_replication_groups(opt)
-          groups.push(*res.replication_groups)
-          token = pagination_token(res)
-          break if token.nil?
-
-          opt = pagination_param(res, token)
-        end
-        groups
-      end
-
-      def collect_serverless_caches
-        opt = {}
-        caches = []
-        loop do
-          res = elasticache_client.describe_serverless_caches(opt)
-          caches.push(*res.serverless_caches)
-          token = pagination_token(res)
-          break if token.nil?
-
-          opt = pagination_param(res, token)
-        end
-        caches
-      rescue StandardError
-        []
-      end
-
-      def pagination_token(response)
-        return response.marker if response.respond_to?(:marker) && response.marker
-        return response.next_token if response.respond_to?(:next_token) && response.next_token
-
-        nil
-      end
-
-      def pagination_param(response, token)
-        return { marker: token } if response.respond_to?(:marker)
-        return { next_token: token } if response.respond_to?(:next_token)
-
-        {}
-      end
 
       def engine_version_for(resource)
         return resource.engine_version if resource.respond_to?(:engine_version) && resource.engine_version

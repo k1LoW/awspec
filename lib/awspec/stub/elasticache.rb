@@ -56,6 +56,43 @@ Aws.config[:elasticache] = {
           subnets: []
         }
       ]
+    },
+    describe_replication_groups: {
+      replication_groups: [
+        {
+          replication_group_id: 'my-rep-group',
+          status: 'available',
+          engine: 'redis',
+          engine_version: '7.1',
+          cache_subnet_group_name: 'my-cache-subnet-group',
+          cache_parameter_group: {
+            cache_parameter_group_name: 'my-cache-parameter-group'
+          },
+          member_clusters: [
+            'my-rep-group-001',
+            'my-rep-group-002'
+          ],
+          cluster_enabled: true,
+          node_groups: [
+            {
+              node_group_members: [
+                { cache_cluster_id: 'my-rep-group-001' },
+                { cache_cluster_id: 'my-rep-group-002' }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    describe_serverless_caches: {
+      serverless_caches: [
+        {
+          serverless_cache_name: 'my-serverless-cache',
+          status: 'available',
+          engine: 'valkey',
+          engine_version: '7.2'
+        }
+      ]
     }
   }
 }

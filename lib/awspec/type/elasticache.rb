@@ -13,6 +13,7 @@ module Awspec::Type
       @resource_via_client = find_cache_cluster(@display_name)
       @resource_via_client ||= find_replication_group(@display_name)
       @resource_via_client ||= find_serverless_cache(@display_name)
+      @resource_via_client ||= infer_replication_group_from_cluster_prefix
     end
 
     def id
@@ -136,7 +137,18 @@ module Awspec::Type
       nil
     end
 
+    def node_count
+      num_nodes
+    end
+
     private
+    def infer_replication_group_from_cluster_prefix
+      group_id = infer_replication_group_id_from_cluster_prefix(@display_name)
+      return nil unless group_id
+
+      find_replication_group(group_id)
+    end
+
     def resource_status
       return nil unless resource_via_client
       return resource_via_client.cache_cluster_status if cache_cluster?

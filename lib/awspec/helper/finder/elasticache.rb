@@ -81,6 +81,20 @@ module Awspec::Helper
       rescue StandardError
         []
       end
+
+      def infer_replication_group_id_from_cluster_prefix(name)
+        clusters = select_cache_clusters
+        matches = clusters.select do |cluster|
+          cluster_id = cluster.cache_cluster_id
+          cluster_id == name || cluster_id.start_with?("#{name}-")
+        end
+        group_ids = matches.map(&:replication_group_id).compact.uniq
+        return nil unless group_ids.count == 1
+
+        group_ids.first
+      rescue StandardError
+        nil
+      end
     end
   end
 end

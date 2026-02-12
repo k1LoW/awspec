@@ -34,6 +34,17 @@ describe elasticache('my-rep-group') do
   its(:serverless) { should eq false }
 end
 
+describe elasticache('my-valkey') do
+  it { should exist }
+  it { should be_available }
+  its(:cache_type) { should eq 'replication_group' }
+  its(:engine) { should eq 'valkey' }
+  its(:engine_version) { should eq '7.1.0' }
+  its(:num_nodes) { should eq 1 }
+  its(:cluster_mode_enabled) { should eq false }
+  its(:serverless) { should eq false }
+end
+
 describe elasticache('my-serverless-cache') do
   it { should exist }
   it { should be_available }

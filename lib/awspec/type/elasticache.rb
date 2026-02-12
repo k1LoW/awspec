@@ -109,6 +109,8 @@ module Awspec::Type
       return resource_via_client.engine_version if resource_via_client.respond_to?(:engine_version)
       return resource_via_client.major_engine_version if resource_via_client.respond_to?(:major_engine_version)
 
+      return engine_version_from_member_clusters if replication_group?
+
       nil
     end
 
@@ -142,6 +144,31 @@ module Awspec::Type
     end
 
     private
+    def engine_version_from_member_clusters
+      cluster_ids = member_cluster_ids
+      return nil if cluster_ids.empty?
+
+      clusters = @cache_clusters ||= select_cache_clusters
+      cluster = clusters.find { |item| cluster_ids.include?(item.cache_cluster_id) }
+      cluster&.engine_version
+    end
+
+    def member_cluster_ids
+      if resource_via_client.respond_to?(:member_clusters) && resource_via_client.member_clusters
+        return resource_via_client.member_clusters.compact
+      end
+
+      if resource_via_client.respond_to?(:node_groups) && resource_via_client.node_groups
+        return resource_via_client.node_groups.flat_map do |group|
+          next [] unless group.respond_to?(:node_group_members)
+
+          group.node_group_members&.map { |member| member.cache_cluster_id } || []
+        end.compact
+      end
+
+      []
+    end
+
     def infer_replication_group_from_cluster_prefix
       group_id = infer_replication_group_id_from_cluster_prefix(@display_name)
       return nil unless group_id

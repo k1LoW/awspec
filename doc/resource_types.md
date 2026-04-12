@@ -1529,7 +1529,7 @@ end
 ```
 
 
-### its(:nodegroup_name), its(:nodegroup_arn), its(:cluster_name), its(:version), its(:release_version), its(:created_at), its(:modified_at), its(:status), its(:capacity_type), its(:instance_types), its(:subnets), its(:remote_access), its(:ami_type), its(:node_role), its(:labels), its(:taints), its(:resources), its(:disk_size), its(:health), its(:update_config), its(:node_repair_config), its(:launch_template), its(:tags)
+### its(:nodegroup_name), its(:nodegroup_arn), its(:cluster_name), its(:version), its(:release_version), its(:created_at), its(:modified_at), its(:status), its(:capacity_type), its(:instance_types), its(:subnets), its(:remote_access), its(:ami_type), its(:node_role), its(:labels), its(:taints), its(:resources), its(:disk_size), its(:health), its(:update_config), its(:node_repair_config), its(:launch_template), its(:tags), its(:warm_pool_config)
 ## <a name="elasticache">elasticache</a>
 
 Elasticache resource type.

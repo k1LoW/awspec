@@ -1677,7 +1677,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options), its(:domain_endpoint_options), its(:advanced_security_options), its(:auto_tune_options), its(:change_progress_details), its(:domain_processing_status), its(:modifying_properties), its(:deployment_strategy_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options), its(:domain_endpoint_options), its(:advanced_security_options), its(:auto_tune_options), its(:change_progress_details), its(:domain_processing_status), its(:modifying_properties), its(:deployment_strategy_options), its(:automated_snapshot_pause_options)
 ## <a name="elb">elb</a>
 
 ELB resource type.

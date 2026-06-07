@@ -873,7 +873,7 @@ describe cognito_user_pool('my-cognito-user-pool') do
   it { should exist }
 end
 ```
-### its(:id), its(:name), its(:status), its(:last_modified_date), its(:creation_date)
+### its(:id), its(:name), its(:status), its(:last_modified_date), its(:creation_date), its(:replica_regions)
 ## <a name="customer_gateway">customer_gateway</a>
 
 CustomerGateway resource type.
@@ -1807,7 +1807,7 @@ describe emr('my-emr') do
 end
 ```
 
-### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:unhealthy_node_replacement), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level), its(:placement_groups), its(:os_release_label), its(:ebs_root_volume_iops), its(:ebs_root_volume_throughput), its(:extended_support), its(:monitoring_configuration)
+### its(:id), its(:name), its(:instance_collection_type), its(:log_uri), its(:log_encryption_kms_key_id), its(:requested_ami_version), its(:running_ami_version), its(:release_label), its(:auto_terminate), its(:termination_protected), its(:unhealthy_node_replacement), its(:visible_to_all_users), its(:service_role), its(:normalized_instance_hours), its(:master_public_dns_name), its(:configurations), its(:security_configuration), its(:auto_scaling_role), its(:scale_down_behavior), its(:custom_ami_id), its(:ebs_root_volume_size), its(:repo_upgrade_on_boot), its(:cluster_arn), its(:outpost_arn), its(:step_concurrency_level), its(:placement_groups), its(:os_release_label), its(:ebs_root_volume_iops), its(:ebs_root_volume_throughput), its(:extended_support), its(:monitoring_configuration), its(:session_enabled)
 ## <a name="firehose">firehose</a>
 
 Firehose resource type.

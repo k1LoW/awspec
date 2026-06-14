@@ -284,7 +284,7 @@ end
 
 ### have_tag
 
-### its(:platform_details), its(:usage_operation), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:tpm_support), its(:deprecation_time), its(:imds_support), its(:source_instance_id), its(:deregistration_protection), its(:last_launched_time), its(:image_allowed), its(:source_image_id), its(:source_image_region), its(:free_tier_eligible), its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform)
+### its(:platform_details), its(:usage_operation), its(:description), its(:ena_support), its(:hypervisor), its(:image_owner_alias), its(:name), its(:root_device_name), its(:root_device_type), its(:sriov_net_support), its(:state_reason), its(:virtualization_type), its(:boot_mode), its(:tpm_support), its(:deprecation_time), its(:imds_support), its(:source_instance_id), its(:deregistration_protection), its(:last_launched_time), its(:image_allowed), its(:source_image_id), its(:source_image_region), its(:free_tier_eligible), its(:image_watermarks), its(:image_id), its(:image_location), its(:state), its(:owner_id), its(:creation_date), its(:public), its(:architecture), its(:image_type), its(:kernel_id), its(:ramdisk_id), its(:platform)
 ### :unlock: Advanced use
 
 `ami` can use `Aws::EC2::Image` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html).

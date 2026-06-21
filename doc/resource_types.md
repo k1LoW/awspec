@@ -941,7 +941,7 @@ describe directconnect_virtual_interface('my-directconnect-virtual-interface') d
 end
 ```
 
-### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:asn_long), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:mtu), its(:jumbo_frame_capable), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2), its(:aws_logical_device_id), its(:tags), its(:site_link_enabled)
+### its(:owner_account), its(:virtual_interface_id), its(:location), its(:connection_id), its(:virtual_interface_type), its(:virtual_interface_name), its(:vlan), its(:asn), its(:asn_long), its(:amazon_side_asn), its(:auth_key), its(:amazon_address), its(:customer_address), its(:address_family), its(:virtual_interface_state), its(:customer_router_config), its(:mtu), its(:jumbo_frame_capable), its(:virtual_gateway_id), its(:direct_connect_gateway_id), its(:route_filter_prefixes), its(:bgp_peers), its(:region), its(:aws_device_v2), its(:aws_logical_device_id), its(:tags), its(:site_link_enabled), its(:rate_limit)
 ## <a name="dynamodb_table">dynamodb_table</a>
 
 DynamodbTable resource type.
@@ -2395,7 +2395,7 @@ end
 
 This matcher does not support Amazon S3 event sources ([see SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method)).
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:package_type), its(:image_config_response), its(:signing_profile_version_arn), its(:signing_job_arn), its(:architectures), its(:ephemeral_storage), its(:snap_start), its(:runtime_version_config), its(:logging_config), its(:capacity_provider_config), its(:config_sha_256), its(:durable_config), its(:tenancy_config)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:signing_profile_version_arn), its(:signing_job_arn), its(:package_type), its(:image_config_response), its(:architectures), its(:ephemeral_storage), its(:snap_start), its(:runtime_version_config), its(:logging_config), its(:tenancy_config), its(:capacity_provider_config), its(:config_sha_256), its(:durable_config)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -4406,7 +4406,7 @@ describe wafv2_web_acl('my-wafv2-web-acl'), scope: 'REGIONAL' do
 end
 ```
 
-### its(:name), its(:id), its(:arn), its(:description), its(:data_protection_config), its(:capacity), its(:pre_process_firewall_manager_rule_groups), its(:post_process_firewall_manager_rule_groups), its(:managed_by_firewall_manager), its(:label_namespace), its(:custom_response_bodies), its(:captcha_config), its(:challenge_config), its(:token_domains), its(:association_config), its(:retrofitted_by_firewall_manager), its(:on_source_d_do_s_protection_config), its(:application_config)
+### its(:name), its(:id), its(:arn), its(:description), its(:data_protection_config), its(:capacity), its(:pre_process_firewall_manager_rule_groups), its(:post_process_firewall_manager_rule_groups), its(:managed_by_firewall_manager), its(:label_namespace), its(:custom_response_bodies), its(:captcha_config), its(:challenge_config), its(:token_domains), its(:association_config), its(:retrofitted_by_firewall_manager), its(:on_source_d_do_s_protection_config), its(:application_config), its(:monetization_config)
 # Account and Attributes
 
 ## <a name="account">account</a>

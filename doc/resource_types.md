@@ -121,7 +121,7 @@ describe acm('example.com') do
 end
 ```
 
-### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:managed_by), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary), its(:key_usages), its(:extended_key_usages), its(:certificate_authority_arn), its(:renewal_eligibility), its(:options)
+### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:managed_by), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary), its(:key_usages), its(:extended_key_usages), its(:certificate_authority_arn), its(:renewal_eligibility), its(:options), its(:certificate_key_pair_origin), its(:acme_endpoint_arn), its(:acme_account_id)
 ## <a name="alb">alb</a>
 
 ALB resource type.
@@ -514,7 +514,7 @@ describe cloudformation_stack('my-cloudformation-stack') do
 end
 ```
 
-### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create), its(:deletion_mode), its(:detailed_status), its(:last_operations)
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:deployment_config), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create), its(:deletion_mode), its(:detailed_status), its(:last_operations)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.
@@ -699,7 +699,7 @@ describe cloudwatch_alarm('my-cloudwatch-alarm') do
 end
 ```
 
-### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile), its(:metrics), its(:threshold_metric_id), its(:evaluation_state), its(:state_transitioned_timestamp), its(:evaluation_criteria), its(:evaluation_interval)
+### its(:alarm_name), its(:alarm_arn), its(:alarm_description), its(:alarm_configuration_updated_timestamp), its(:actions_enabled), its(:ok_actions), its(:alarm_actions), its(:insufficient_data_actions), its(:state_value), its(:state_reason), its(:state_reason_data), its(:state_updated_timestamp), its(:metric_name), its(:namespace), its(:statistic), its(:extended_statistic), its(:period), its(:unit), its(:evaluation_periods), its(:datapoints_to_alarm), its(:threshold), its(:comparison_operator), its(:treat_missing_data), its(:evaluate_low_sample_count_percentile), its(:metrics), its(:threshold_metric_id), its(:evaluation_state), its(:state_transitioned_timestamp), its(:evaluation_window), its(:evaluation_criteria), its(:evaluation_interval)
 ## <a name="cloudwatch_event">cloudwatch_event</a>
 
 CloudwatchEvent resource type.
@@ -4206,7 +4206,7 @@ end
 ```
 
 
-### its(:vpc_endpoint_id), its(:vpc_endpoint_type), its(:vpc_id), its(:service_name), its(:state), its(:policy_document), its(:route_table_ids), its(:subnet_ids), its(:groups), its(:ip_address_type), its(:dns_options), its(:private_dns_enabled), its(:requester_managed), its(:network_interface_ids), its(:dns_entries), its(:creation_timestamp), its(:owner_id), its(:last_error), its(:ipv_4_prefixes), its(:ipv_6_prefixes), its(:failure_reason), its(:service_network_arn), its(:resource_configuration_arn), its(:service_region)
+### its(:vpc_endpoint_id), its(:vpc_endpoint_type), its(:vpc_id), its(:service_name), its(:state), its(:policy_document), its(:route_table_ids), its(:subnet_ids), its(:groups), its(:ip_address_type), its(:dns_options), its(:private_dns_enabled), its(:requester_managed), its(:network_interface_ids), its(:dns_entries), its(:creation_timestamp), its(:owner_id), its(:last_error), its(:ipv_4_prefixes), its(:ipv_6_prefixes), its(:failure_reason), its(:service_network_arn), its(:resource_configuration_arn), its(:service_region), its(:payer_responsibilities)
 ### :unlock: Advanced use
 
 `vpc_endpoints` can use `Aws::EC2::Types::VpcEndpoint` resource (see https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/EC2/Types/VpcEndpoint.html).

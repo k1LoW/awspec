@@ -1677,7 +1677,7 @@ end
 ```
 
 
-### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options), its(:domain_endpoint_options), its(:advanced_security_options), its(:auto_tune_options), its(:change_progress_details), its(:domain_processing_status), its(:modifying_properties), its(:deployment_strategy_options), its(:automated_snapshot_pause_options)
+### its(:domain_id), its(:domain_name), its(:arn), its(:created), its(:deleted), its(:endpoint), its(:endpoints), its(:processing), its(:upgrade_processing), its(:elasticsearch_version), its(:access_policies), its(:snapshot_options), its(:vpc_options), its(:cognito_options), its(:encryption_at_rest_options), its(:node_to_node_encryption_options), its(:advanced_options), its(:log_publishing_options), its(:service_software_options), its(:domain_endpoint_options), its(:advanced_security_options), its(:auto_tune_options), its(:change_progress_details), its(:domain_processing_status), its(:modifying_properties), its(:deployment_strategy_options), its(:automated_snapshot_pause_options), its(:use_case), its(:engine_mode)
 ## <a name="elb">elb</a>
 
 ELB resource type.
@@ -2558,7 +2558,7 @@ describe mq('my-mq') do
 end
 ```
 
-### its(:vpc_id), its(:actions_required), its(:authentication_strategy), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:ldap_server_metadata), its(:pending_authentication_strategy), its(:pending_engine_version), its(:pending_host_instance_type), its(:pending_ldap_server_metadata), its(:pending_security_groups), its(:publicly_accessible), its(:security_groups), its(:storage_type), its(:subnet_ids), its(:data_replication_metadata), its(:data_replication_mode), its(:pending_data_replication_metadata), its(:pending_data_replication_mode)
+### its(:vpc_id), its(:actions_required), its(:authentication_strategy), its(:auto_minor_version_upgrade), its(:broker_arn), its(:broker_id), its(:broker_name), its(:broker_state), its(:created), its(:deployment_mode), its(:encryption_options), its(:engine_type), its(:engine_version), its(:host_instance_type), its(:ldap_server_metadata), its(:pending_authentication_strategy), its(:pending_engine_version), its(:pending_host_instance_type), its(:pending_ldap_server_metadata), its(:pending_security_groups), its(:pending_storage_size), its(:publicly_accessible), its(:security_groups), its(:storage_size), its(:storage_type), its(:subnet_ids), its(:data_replication_metadata), its(:data_replication_mode), its(:pending_data_replication_metadata), its(:pending_data_replication_mode)
 ## <a name="msk">msk</a>
 
 Msk resource type.

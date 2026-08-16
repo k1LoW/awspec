@@ -121,7 +121,7 @@ describe acm('example.com') do
 end
 ```
 
-### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:managed_by), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary), its(:key_usages), its(:extended_key_usages), its(:certificate_authority_arn), its(:renewal_eligibility), its(:options), its(:certificate_key_pair_origin), its(:acme_endpoint_arn), its(:acme_account_id)
+### its(:certificate_arn), its(:domain_name), its(:subject_alternative_names), its(:managed_by), its(:serial), its(:subject), its(:issuer), its(:created_at), its(:issued_at), its(:imported_at), its(:status), its(:revoked_at), its(:revocation_reason), its(:not_before), its(:not_after), its(:key_algorithm), its(:signature_algorithm), its(:in_use_by), its(:failure_reason), its(:type), its(:renewal_summary), its(:key_usages), its(:extended_key_usages), its(:certificate_authority_arn), its(:renewal_eligibility), its(:options), its(:update_summary), its(:certificate_key_pair_origin), its(:acme_endpoint_arn), its(:acme_account_id)
 ## <a name="alb">alb</a>
 
 ALB resource type.
@@ -1470,7 +1470,7 @@ describe eks('my-eks') do
 end
 ```
 
-### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:kubernetes_network_config), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config), its(:connector_config), its(:id), its(:health), its(:outpost_config), its(:access_config), its(:upgrade_policy), its(:zonal_shift_config), its(:remote_network_config), its(:compute_config), its(:storage_config), its(:deletion_protection), its(:control_plane_scaling_config)
+### its(:name), its(:arn), its(:created_at), its(:version), its(:endpoint), its(:role_arn), its(:kubernetes_network_config), its(:logging), its(:identity), its(:status), its(:client_request_token), its(:platform_version), its(:tags), its(:encryption_config), its(:connector_config), its(:id), its(:health), its(:outpost_config), its(:access_config), its(:upgrade_policy), its(:zonal_shift_config), its(:remote_network_config), its(:compute_config), its(:storage_config), its(:deletion_protection), its(:control_plane_scaling_config), its(:kube_api_server_config), its(:kube_scheduler_config), its(:kube_controller_manager_config)
 ## <a name="eks_nodegroup">eks_nodegroup</a>
 
 EksNodegroup resource type.
@@ -2101,7 +2101,7 @@ end
 ```
 
 
-### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:max_session_duration), its(:tags)
+### its(:path), its(:role_name), its(:role_id), its(:arn), its(:create_date), its(:assume_role_policy_document), its(:description), its(:max_session_duration), its(:tags), its(:source_role_template)
 ### :unlock: Advanced use
 
 `iam_role` can use `Aws::IAM::Role` resource (see http://docs.aws.amazon.com/sdkforruby/api/Aws/IAM/Role.html).

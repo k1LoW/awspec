@@ -514,7 +514,7 @@ describe cloudformation_stack('my-cloudformation-stack') do
 end
 ```
 
-### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:deployment_config), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create), its(:deletion_mode), its(:detailed_status), its(:last_operations)
+### its(:stack_id), its(:stack_name), its(:change_set_id), its(:description), its(:parameters), its(:creation_time), its(:deletion_time), its(:last_updated_time), its(:rollback_configuration), its(:stack_status), its(:stack_status_reason), its(:disable_rollback), its(:deployment_config), its(:notification_arns), its(:timeout_in_minutes), its(:capabilities), its(:role_arn), its(:enable_termination_protection), its(:parent_id), its(:root_id), its(:drift_information), its(:retain_except_on_create), its(:deletion_mode), its(:detailed_status), its(:last_operations), its(:alias_name)
 ## <a name="cloudfront_distribution">cloudfront_distribution</a>
 
 CloudfrontDistribution resource type.
@@ -1396,7 +1396,7 @@ describe ecs_task_definition('my-ecs-task-definition') do
 end
 ```
 
-### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:execution_role_arn), its(:network_mode), its(:revision), its(:volumes), its(:status), its(:requires_attributes), its(:placement_constraints), its(:compatibilities), its(:runtime_platform), its(:requires_compatibilities), its(:cpu), its(:memory), its(:inference_accelerators), its(:pid_mode), its(:ipc_mode), its(:proxy_configuration), its(:registered_at), its(:deregistered_at), its(:delete_requested_at), its(:registered_by), its(:ephemeral_storage), its(:enable_fault_injection)
+### its(:task_definition_arn), its(:family), its(:task_role_arn), its(:execution_role_arn), its(:network_mode), its(:revision), its(:volumes), its(:status), its(:requires_attributes), its(:placement_constraints), its(:compatibilities), its(:runtime_platform), its(:requires_compatibilities), its(:cpu), its(:memory), its(:inference_accelerators), its(:pid_mode), its(:ipc_mode), its(:proxy_configuration), its(:registered_at), its(:deregistered_at), its(:delete_requested_at), its(:registered_by), its(:ephemeral_storage), its(:enable_fault_injection), its(:trusted_execution_configuration)
 ## <a name="efs">efs</a>
 
 EFS resource type.
@@ -2395,7 +2395,7 @@ end
 
 This matcher does not support Amazon S3 event sources ([see SDK doc](http://docs.aws.amazon.com/sdkforruby/api/Aws/Lambda/Client.html#list_event_source_mappings-instance_method)).
 
-### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:signing_profile_version_arn), its(:signing_job_arn), its(:package_type), its(:image_config_response), its(:architectures), its(:ephemeral_storage), its(:snap_start), its(:runtime_version_config), its(:logging_config), its(:tenancy_config), its(:capacity_provider_config), its(:config_sha_256), its(:durable_config)
+### its(:function_name), its(:function_arn), its(:runtime), its(:role), its(:handler), its(:code_size), its(:description), its(:timeout), its(:memory_size), its(:last_modified), its(:code_sha_256), its(:version), its(:vpc_config), its(:dead_letter_config), its(:kms_key_arn), its(:master_arn), its(:revision_id), its(:layers), its(:state), its(:state_reason), its(:state_reason_code), its(:last_update_status), its(:last_update_status_reason), its(:last_update_status_reason_code), its(:file_system_configs), its(:signing_profile_version_arn), its(:signing_job_arn), its(:package_type), its(:image_config_response), its(:architectures), its(:ephemeral_storage), its(:snap_start), its(:runtime_version_config), its(:logging_config), its(:tenancy_config), its(:capacity_provider_config), its(:config_sha_256), its(:durable_config), its(:runtime_config)
 ## <a name="launch_configuration">launch_configuration</a>
 
 LaunchConfiguration resource type.
@@ -3666,7 +3666,7 @@ describe secretsmanager('my-secret') do
 end
 ```
 
-### its(:arn), its(:name), its(:type), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:external_secret_rotation_metadata), its(:external_secret_rotation_role_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:next_rotation_date), its(:owning_service), its(:created_date), its(:primary_region), its(:replication_status)
+### its(:arn), its(:name), its(:type), its(:description), its(:kms_key_id), its(:rotation_enabled), its(:rotation_lambda_arn), its(:external_secret_rotation_metadata), its(:external_secret_rotation_role_arn), its(:last_rotated_date), its(:last_changed_date), its(:last_accessed_date), its(:deleted_date), its(:next_rotation_date), its(:owning_service), its(:created_date), its(:primary_region), its(:replication_status), its(:cross_account_primary), its(:cross_account_replicas)
 ## <a name="security_group">security_group</a>
 
 SecurityGroup resource type.
